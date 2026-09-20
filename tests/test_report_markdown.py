@@ -145,8 +145,54 @@ def test_markdown_contains_summary_normative_reference_and_selected_route():
     assert "Все выполненные boolean-проверки пройдены" in text
     assert "SP16 8.2" in text
     assert "| 1 | E1 | INPUT | CALC | control |" in text
-    assert "Governing result" in text
+    assert "Управляющие нормативные величины" in text
     assert "NOT_DECLARED_BY_DAG" in text
+
+
+def test_markdown_renders_executed_scoped_governing_without_global_selection():
+    report = _report()
+    report["summary"]["governing"] = {
+        "status": "EXECUTED_DECLARATIONS",
+        "reason": "explicit",
+        "candidates": [
+            {
+                "scope": "sp554_section_10_bending_gamma_T",
+                "scope_title_ru": "СП 554, раздел 10 — изгиб",
+                "report_block_id": "GOV#1",
+                "sequence": 8,
+                "owner_node_id": "SP554_C_10_GOV",
+                "owner_standard_id": "SP554_2026",
+                "title": "Управляющий γT",
+                "normative_refs": [{"standard_id": "SP554_2026", "section": "10"}],
+                "quantity": {
+                    "quantity_id": "gamma_T_bending_governing",
+                    "symbol": "γT,gov",
+                    "name_ru": "Управляющий γT",
+                    "raw_value": 0.81,
+                    "canonical_unit": None,
+                    "display_value": "0.81",
+                },
+                "source": "explicit_dag_bound_report_metadata_plus_execution_trace",
+            }
+        ],
+    }
+    text = render_report_markdown(report)
+    assert "СП 554, раздел 10 — изгиб" in text
+    assert "SP554_C_10_GOV" in text
+    assert "γT,gov" in text
+    assert "0.81" in text
+    assert "не вычисляет глобальный максимум/минимум" in text
+
+
+def test_markdown_explains_declared_but_not_executed_governing_scope():
+    report = _report()
+    report["summary"]["governing"] = {
+        "status": "DECLARED_BY_DAG_NOT_EXECUTED",
+        "reason": "not reached",
+        "candidates": [],
+    }
+    text = render_report_markdown(report)
+    assert "producer-узлы ещё не выполнены" in text
 
 
 def test_markdown_renders_fail_closed_without_mutating_it():
