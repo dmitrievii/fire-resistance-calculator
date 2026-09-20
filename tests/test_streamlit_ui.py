@@ -9,7 +9,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_streamlit_is_presentation_only_and_has_no_http_api_dependency():
-    source = (ROOT / "streamlit_app.py").read_text(encoding="utf-8")
+    entry = (ROOT / "streamlit_app.py").read_text(encoding="utf-8")
+    core = (ROOT / "streamlit_app_core.py").read_text(encoding="utf-8")
+    source = entry + "\n" + core
     assert "FireUI1Application" in source
     assert "/api/" not in source
     assert "standard_core" in source
@@ -62,6 +64,21 @@ def test_streamlit_matrix_parsers_are_strict_and_dimension_friendly():
     assert sui._parse_vector("3") is None
     assert sui._parse_matrix("25,45\n30,50") == [[25.0, 45.0], [30.0, 50.0]]
     assert sui._parse_matrix("25,45") is None
+
+
+def test_graphic_selectors_cover_table21_table7_table30_and_thermal_geometry():
+    source = (ROOT / "streamlit_graphic_selectors.py").read_text(encoding="utf-8")
+    for token in [
+        'component == "table21_type_selector"',
+        'component == "table7_curve_selector"',
+        'component == "table30_scheme_selector"',
+        'component == "heated_sides_selector"',
+        'component == "protection_perimeter_mode_selector"',
+        '<svg',
+    ]:
+        assert token in source
+    for value in ['"1"', '"2"', '"3"', '"4"']:
+        assert value in source
 
 
 def test_streamlit_entrypoint_smoke_via_apptest():
