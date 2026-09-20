@@ -1,4 +1,4 @@
-"""Live REPORT-IR2 presentation for Streamlit.
+"""Live REPORT-IR presentation for Streamlit.
 
 This module renders the report projection only. It does not run normative DAG
 nodes, evaluate equations, or interpolate datasets.
@@ -15,6 +15,46 @@ def _value_line(core: Any, row: Mapping[str, Any]) -> str:
     symbol = row.get("symbol") or row.get("quantity_id")
     unit = f" {row['canonical_unit']}" if row.get("canonical_unit") else ""
     return f"**{symbol}** = `{core._fmt(row.get('raw_value'))}{unit}`"
+
+
+def _render_lookup_rows(core: Any, evidence: Mapping[str, Any]) -> None:
+    st = core.st
+    rows = evidence.get("selected_dataset_rows") or []
+    status = evidence.get("selected_dataset_rows_status")
+    if status != "CAPTURED_BY_RUNTIME_AUDIT" or not rows:
+        st.info(
+            "Для этого lookup нет совпавшего runtime-evidence блока. Отчёт не восстанавливает строки таблицы самостоятельно."
+        )
+        return
+
+    st.markdown("**Строки нормативной таблицы, зафиксированные runtime**")
+    flat = []
+    for item in rows:
+        row = item.get("row") if isinstance(item, Mapping) else None
+        record = {
+            "Роль": item.get("role") if isinstance(item, Mapping) else None,
+            "Индекс строки": item.get("row_index") if isinstance(item, Mapping) else None,
+        }
+        if isinstance(row, Mapping):
+            record.update(dict(row))
+        flat.append(record)
+    st.dataframe(flat, width="stretch", hide_index=True)
+
+    runtime = evidence.get("runtime_lookup_evidence") or {}
+    mode = runtime.get("selection_mode")
+    if mode == "linear_bracket":
+        st.caption(
+            "Интервал runtime: "
+            f"{runtime.get('axis')} = {core._fmt(runtime.get('axis_lower'))} … {core._fmt(runtime.get('axis_upper'))}; "
+            f"расчётная точка = {core._fmt(runtime.get('axis_value'))}; "
+            f"доля интервала = {core._fmt(runtime.get('fraction'))}."
+        )
+    elif mode == "linear_exact_knot":
+        st.caption(f"Точное табличное значение на узле {runtime.get('axis')} = {core._fmt(runtime.get('axis_value'))}.")
+    elif mode == "bilinear_grid":
+        st.caption(
+            f"Bilinear runtime grid: {runtime.get('bracket')} · fractions: {runtime.get('fractions')}"
+        )
 
 
 def _render_block(core: Any, block: Mapping[str, Any], *, expanded: bool = False) -> None:
@@ -52,17 +92,19 @@ def _render_block(core: Any, block: Mapping[str, Any], *, expanded: bool = False
             bindings = evidence.get("bindings") or []
             if bindings:
                 st.markdown("**Подстановка — значения из execution trace**")
-                rows = []
-                for row in bindings:
-                    rows.append(
+                st.dataframe(
+                    [
                         {
                             "Переменная": row.get("variable"),
                             "Quantity": row.get("quantity_id"),
                             "Значение": core._fmt(row.get("raw_value")) if row.get("present_in_trace") else "—",
                             "Ед.": row.get("canonical_unit") or "",
                         }
-                    )
-                st.dataframe(rows, width="stretch", hide_index=True)
+                        for row in bindings
+                    ],
+                    width="stretch",
+                    hide_index=True,
+                )
         elif mode == "lookup_spec":
             st.markdown(f"**Dataset:** `{spec.get('dataset_id')}`")
             interpolation = spec.get("interpolation") or {}
@@ -86,11 +128,7 @@ def _render_block(core: Any, block: Mapping[str, Any], *, expanded: bool = False
                     width="stretch",
                     hide_index=True,
                 )
-            if evidence.get("selected_dataset_rows_status") == "NOT_CAPTURED_BY_RUNTIME_YET":
-                st.info(
-                    "REPORT-IR2 пока намеренно не восстанавливает строки интерполяции повторным расчётом. "
-                    "Точные нижняя/верхняя строки должны быть записаны самим runtime executor в следующем gate."
-                )
+            _render_lookup_rows(core, evidence)
 
         outputs = list(block.get("outputs") or [])
         if outputs:
@@ -125,7 +163,7 @@ def install(core: Any) -> None:
                 c1.metric("Report blocks", report.get("block_count", 0))
                 c2.metric("DAG nodes", report.get("dag_census", {}).get("node_count", 0))
                 c3.metric("Datasets", report.get("dag_census", {}).get("dataset_count", 0))
-                st.caption(f"REPORT-IR2 · DAG `{report.get('graph_id')}` · `{report.get('report_sha256')}`")
+                st.caption(f"REPORT-IR · DAG `{report.get('graph_id')}` · `{report.get('report_sha256')}`")
                 st.download_button(
                     "Скачать Report IR JSON",
                     data=json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
