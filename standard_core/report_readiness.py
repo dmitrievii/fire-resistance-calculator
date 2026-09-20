@@ -1,22 +1,16 @@
 """Static report-readiness census for the frozen SP16/SP554 DAG.
 
-REPORT-IR7 does not execute the calculation graph and does not derive any
-engineering result.  It answers a narrower audit question: is the metadata in
-the frozen DAG sufficient for an unambiguous, publication-grade calculation
-report without the presentation layer guessing normative semantics?
-
-The census is deliberately conservative.  A compliance check is considered to
-have explicit verdict semantics only when its produced quantities are boolean
-(or a future ``report_spec.verdict_quantity_id`` points to a boolean output).
-Likewise, a governing result is considered declared only through the explicit
-``report_spec.governing_quantity_id`` contract.  Numeric quantity names and
-magnitudes are never interpreted heuristically.
+REPORT-IR7/8 does not execute the calculation graph and does not derive any
+engineering result. It audits whether report semantics are explicit enough for
+REPORT-IR to avoid guessing PASS/FAIL or governing quantities.
 """
 from __future__ import annotations
 
 import copy
 from collections import Counter
 from typing import Any, Mapping
+
+from .report_metadata import report_metadata_identity, report_spec_for_node
 
 
 REPORT_READINESS_SCHEMA = "fire_report_readiness_v1"
@@ -44,11 +38,6 @@ def _output_ids(node: Mapping[str, Any]) -> list[str]:
     return out
 
 
-def _report_spec(node: Mapping[str, Any]) -> Mapping[str, Any]:
-    value = node.get("report_spec")
-    return value if isinstance(value, Mapping) else {}
-
-
 def _is_boolean_quantity(quantity: Mapping[str, Any] | None) -> bool:
     if not isinstance(quantity, Mapping):
         return False
@@ -57,13 +46,14 @@ def _is_boolean_quantity(quantity: Mapping[str, Any] | None) -> bool:
 
 
 def _check_readiness(
+    model: Any,
     node_id: str,
     node: Mapping[str, Any],
     quantities: Mapping[str, Mapping[str, Any]],
 ) -> dict[str, Any]:
     outputs = _output_ids(node)
     bool_outputs = [qid for qid in outputs if _is_boolean_quantity(quantities.get(qid))]
-    spec = _report_spec(node)
+    spec = report_spec_for_node(model, node_id, node)
     declared = spec.get("verdict_quantity_id")
 
     if isinstance(declared, str) and declared in bool_outputs:
@@ -96,24 +86,41 @@ def _check_readiness(
 
 
 def _governing_declarations(
+    model: Any,
     nodes: Mapping[str, Mapping[str, Any]],
     quantities: Mapping[str, Mapping[str, Any]],
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     declarations: list[dict[str, Any]] = []
     invalid: list[dict[str, Any]] = []
+    seen_scopes: set[str] = set()
+
     for node_id, node in nodes.items():
-        spec = _report_spec(node)
+        spec = report_spec_for_node(model, node_id, node)
         qid = spec.get("governing_quantity_id")
         if not isinstance(qid, str):
             continue
+        scope = spec.get("governing_scope")
         outputs = _output_ids(node)
         row = {
             "node_id": str(node_id),
+            "scope": scope if isinstance(scope, str) else None,
+            "scope_title_ru": spec.get("governing_scope_title_ru"),
             "quantity_id": qid,
             "is_produced_by_node": qid in outputs,
             "quantity_exists": qid in quantities,
+            "scope_is_valid": isinstance(scope, str) and bool(scope.strip()),
+            "scope_is_unique": isinstance(scope, str) and scope not in seen_scopes,
         }
-        if row["is_produced_by_node"] and row["quantity_exists"]:
+        if row["scope_is_valid"] and row["scope_is_unique"]:
+            seen_scopes.add(str(scope))
+        if all(
+            (
+                row["is_produced_by_node"],
+                row["quantity_exists"],
+                row["scope_is_valid"],
+                row["scope_is_unique"],
+            )
+        ):
             declarations.append(row)
         else:
             invalid.append(row)
@@ -150,7 +157,7 @@ def build_report_readiness(model: Any) -> dict[str, Any]:
         if not refs:
             nodes_without_normative_refs.append(node_id)
 
-        spec = _report_spec(node)
+        spec = report_spec_for_node(model, node_id, node)
         if spec:
             nodes_with_report_spec.append(node_id)
 
@@ -160,19 +167,21 @@ def build_report_readiness(model: Any) -> dict[str, Any]:
                 formula_nodes_without_presentation_formula.append(node_id)
 
         if ntype == "compliance_check":
-            row = _check_readiness(node_id, node, quantities)
+            row = _check_readiness(model, node_id, node, quantities)
             check_rows.append(row)
             if row["blocker"] is not None:
                 blockers.append(_deep(row["blocker"]))
 
-    governing, invalid_governing = _governing_declarations(nodes, quantities)
+    governing, invalid_governing = _governing_declarations(model, nodes, quantities)
     if invalid_governing:
         for row in invalid_governing:
             blockers.append(
                 {
                     "kind": "INVALID_GOVERNING_DECLARATION",
                     **_deep(row),
-                    "message": "Declared governing quantity is not a valid output of the declaring node.",
+                    "message": (
+                        "Declared governing quantity/scope is invalid, duplicated, or is not produced by the declaring node."
+                    ),
                 }
             )
     if not governing:
@@ -181,8 +190,8 @@ def build_report_readiness(model: Any) -> dict[str, Any]:
                 "kind": "GOVERNING_RESULT_SEMANTICS",
                 "node_id": None,
                 "message": (
-                    "No report_spec.governing_quantity_id is declared in the frozen DAG. "
-                    "The report must therefore keep governing selection as NOT_DECLARED_BY_DAG."
+                    "No scoped governing declaration is available to REPORT-IR. "
+                    "The report must not choose a governing quantity heuristically."
                 ),
             }
         )
@@ -195,16 +204,15 @@ def build_report_readiness(model: Any) -> dict[str, Any]:
     )
     formula_candidate_count = node_type_counts.get("calculation", 0) + node_type_counts.get("compliance_check", 0)
 
-    if blockers:
-        status = "NEEDS_DAG_METADATA"
-    else:
-        status = "REPORT_METADATA_COMPLETE"
+    status = "NEEDS_DAG_METADATA" if blockers else "REPORT_METADATA_COMPLETE"
+    metadata_identity = report_metadata_identity(model)
 
     return {
         "schema": REPORT_READINESS_SCHEMA,
         "contract": REPORT_READINESS_CONTRACT,
         "graph_id": graph.get("graph_id") if isinstance(graph, Mapping) else None,
         "graph_sha256": getattr(model, "graph_sha256", None),
+        "report_metadata": metadata_identity,
         "status": status,
         "status_scope": "report_metadata_readiness_not_engineering_readiness",
         "node_count": len(nodes),
@@ -243,9 +251,13 @@ def build_report_readiness(model: Any) -> dict[str, Any]:
         },
         "governing_readiness": {
             "status": "DECLARED" if governing else "NOT_DECLARED_BY_DAG",
+            "declaration_count": len(governing),
+            "scopes": [row["scope"] for row in governing],
             "valid_declarations": governing,
             "invalid_declarations": invalid_governing,
-            "contract": "report_spec.governing_quantity_id must reference an output quantity of the same node",
+            "contract": (
+                "governing_quantity_id must reference an output of the same node and governing_scope must be unique"
+            ),
         },
         "blocking_metadata_gap_count": len(blockers),
         "blocking_metadata_gaps": blockers,
@@ -255,5 +267,6 @@ def build_report_readiness(model: Any) -> dict[str, Any]:
             "recomputes_engineering_values": False,
             "infers_numeric_pass_fail": False,
             "infers_governing_from_names_or_values": False,
+            "report_metadata_changes_execution_graph": False,
         },
     }
