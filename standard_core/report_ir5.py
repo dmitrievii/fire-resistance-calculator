@@ -18,6 +18,41 @@ from .report_metadata import report_metadata_for_model, report_metadata_identity
 REPORT_IR5_SCHEMA = "fire_report_ir_v4"
 REPORT_IR5_CONTRACT = "conservative_engineering_summary_v4"
 
+_SECTION_ORDER = (
+    "problem",
+    "input_data",
+    "fire_resistance_requirement",
+    "routing_and_assumptions",
+    "ambient_verification",
+    "critical_temperature_strength",
+    "critical_temperature",
+    "geometry",
+    "thermal_geometry",
+    "calculation",
+    "fire_protection_design",
+    "verification",
+    "fire_resistance_verification",
+    "results",
+    "audit",
+)
+_SECTION_TITLES_RU = {
+    "problem": "Расчётная задача",
+    "input_data": "Исходные данные",
+    "fire_resistance_requirement": "Требуемый предел огнестойкости",
+    "routing_and_assumptions": "Расчётная схема, применимость и принятые ветви",
+    "ambient_verification": "Проверка несущей способности по СП 16",
+    "critical_temperature_strength": "Определение температурного коэффициента",
+    "critical_temperature": "Критическая температура стали",
+    "geometry": "Геометрические характеристики",
+    "thermal_geometry": "Теплотехнические характеристики сечения",
+    "calculation": "Расчёт",
+    "fire_protection_design": "Подбор огнезащиты",
+    "verification": "Проверки",
+    "fire_resistance_verification": "Проверка огнестойкости",
+    "results": "Результаты",
+    "audit": "Диагностика и ограничения",
+}
+
 
 def _deep(value: Any) -> Any:
     return copy.deepcopy(value)
@@ -192,7 +227,39 @@ def _summary_from_ir4(ir4: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
+def _rebuild_sections(blocks: list[Mapping[str, Any]]) -> list[dict[str, Any]]:
+    grouped: dict[str, list[str]] = {}
+    first_sequence: dict[str, int] = {}
+    for block in blocks:
+        key = str(block.get("section_key") or "audit")
+        block_id = block.get("report_block_id")
+        if not isinstance(block_id, str):
+            continue
+        grouped.setdefault(key, []).append(block_id)
+        first_sequence.setdefault(key, int(block.get("sequence") or 0))
+
+    ordered_keys = [key for key in _SECTION_ORDER if key in grouped]
+    ordered_keys.extend(
+        key
+        for key in sorted(grouped, key=lambda item: (first_sequence.get(item, 0), item))
+        if key not in ordered_keys
+    )
+    return [
+        {
+            "section_key": key,
+            "title_ru": _SECTION_TITLES_RU.get(key, key),
+            "block_ids": grouped[key],
+        }
+        for key in ordered_keys
+    ]
+
+
 def _enrich_ir4_with_report_metadata(model: Any, ir4: Mapping[str, Any]) -> dict[str, Any]:
+    """Overlay report-only metadata, then rebuild presentation sections.
+
+    This function never modifies execution specs, inputs, outputs, route evidence
+    or numerical values. Only title/kind/section/presentation fields may change.
+    """
     enriched = _deep(ir4)
     for block in enriched.get("blocks") or []:
         if not isinstance(block, dict):
@@ -210,9 +277,20 @@ def _enrich_ir4_with_report_metadata(model: Any, ir4: Mapping[str, Any]) -> dict
                 raise ValueError(f"conflicting REPORT-IR presentation metadata for {node_id}.{key}")
             merged[key] = _deep(value)
         block["presentation"] = merged
+
         title = spec.get("title_ru") or spec.get("title")
         if isinstance(title, str) and title.strip():
             block["title"] = title.strip()
+        section_key = spec.get("section_key")
+        if isinstance(section_key, str) and section_key.strip():
+            block["section_key"] = section_key.strip()
+        kind = spec.get("kind")
+        if isinstance(kind, str) and kind.strip():
+            block["kind"] = kind.strip()
+
+    enriched["sections"] = _rebuild_sections(
+        [row for row in enriched.get("blocks") or [] if isinstance(row, Mapping)]
+    )
     return enriched
 
 
@@ -256,6 +334,7 @@ def build_report_ir5(model: Any, session_or_snapshot: Any) -> dict[str, Any]:
             "governing_value_source": "explicit_dag_bound_report_metadata_plus_completed_trace",
             "report_metadata_revision_id": metadata_identity.get("revision_id"),
             "report_metadata_base_graph_sha256": metadata_identity.get("base_graph_sha256"),
+            "report_sections_rebuilt_from_metadata_only": True,
         }
     )
     report.pop("report_sha256", None)
