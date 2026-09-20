@@ -23,6 +23,17 @@ def test_mobile_styles_reserve_streamlit_toolbar_safe_area():
     assert "padding-top: .55rem !important;" not in css
 
 
+def test_mobile_streamlit_header_is_fixed_and_opaque_while_scrolling():
+    css = mobile.MOBILE_STYLES
+    assert '[data-testid="stHeader"]' in css
+    assert "position: fixed !important;" in css
+    assert "background: var(--background-color, #ffffff) !important;" in css
+    assert "z-index: 1000000 !important;" in css
+    assert "border-bottom: 1px solid rgba(49, 51, 63, 0.12) !important;" in css
+    assert '[data-testid="stToolbar"]' in css
+    assert "z-index: 1000001 !important;" in css
+
+
 def test_mobile_composition_collapses_administration_and_diagnostics():
     source = (ROOT / "streamlit_mobile_ux.py").read_text(encoding="utf-8")
     assert 'st.expander("Расчёт · файл · история", expanded=False)' in source
