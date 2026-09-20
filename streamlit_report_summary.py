@@ -1,9 +1,11 @@
 """Conservative REPORT-IR5 summary panel for Streamlit."""
 from __future__ import annotations
 
+import json
 from typing import Any, Mapping
 
 from standard_core.report_ir5 import build_report_ir5
+from standard_core.report_markdown import render_report_markdown
 
 
 _STATUS_RU = {
@@ -52,6 +54,27 @@ def _render_summary(core: Any, report: Mapping[str, Any]) -> None:
     c2.metric("PASS", counts.get("PASS", 0))
     c3.metric("FAIL", counts.get("FAIL", 0))
     c4.metric("Неоднозначно", counts.get("UNRESOLVED", 0))
+
+    markdown = render_report_markdown(report)
+    d1, d2 = st.columns(2)
+    d1.download_button(
+        "Скачать расчётный отчёт (.md)",
+        data=markdown,
+        file_name="fire_resistance_calculation_report.md",
+        mime="text/markdown",
+        width="stretch",
+        on_click="ignore",
+        key="fire:report:download:markdown",
+    )
+    d2.download_button(
+        "Скачать полный Report IR (.json)",
+        data=json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        file_name="fire_report_ir_v4.json",
+        mime="application/json",
+        width="stretch",
+        on_click="ignore",
+        key="fire:report:download:ir5",
+    )
 
     checks = summary.get("checks") or []
     if checks:
