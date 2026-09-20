@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fire_report_ir_v3.schema.json",
+  "title": "FIRE REPORT-IR4 human-readable calculation report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "contract",
+    "source_report_schema",
+    "source_report_sha256",
+    "graph_id",
+    "graph_sha256",
+    "session_schema",
+    "session_status",
+    "entry_node_id",
+    "current_node_id",
+    "block_count",
+    "blocks",
+    "sections",
+    "selected_route",
+    "dag_census",
+    "audit",
+    "report_sha256"
+  ],
+  "properties": {
+    "schema": {"const": "fire_report_ir_v3"},
+    "contract": {"const": "human_readable_trace_projection_v3"},
+    "source_report_schema": {"const": "fire_report_ir_v2"},
+    "source_report_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "graph_id": {"type": ["string", "null"]},
+    "graph_sha256": {"type": ["string", "null"]},
+    "session_schema": {"type": ["string", "null"]},
+    "session_status": {"type": ["string", "null"]},
+    "entry_node_id": {"type": ["string", "null"]},
+    "current_node_id": {"type": ["string", "null"]},
+    "block_count": {"type": "integer", "minimum": 0},
+    "blocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "report_block_id",
+          "owner_node_id",
+          "sequence",
+          "kind",
+          "section_key",
+          "inputs",
+          "outputs",
+          "execution_spec",
+          "execution_evidence",
+          "runtime_case_evidence",
+          "human_readable"
+        ],
+        "properties": {
+          "report_block_id": {"type": "string"},
+          "owner_node_id": {"type": "string"},
+          "sequence": {"type": "integer"},
+          "kind": {"type": "string"},
+          "section_key": {"type": "string"},
+          "inputs": {"type": "array"},
+          "outputs": {"type": "array"},
+          "execution_spec": {"type": "object"},
+          "execution_evidence": {"type": "object"},
+          "runtime_case_evidence": {"type": ["object", "null"]},
+          "human_readable": {
+            "type": "object",
+            "required": ["mode"],
+            "properties": {
+              "mode": {
+                "enum": [
+                  "formula_substitution",
+                  "lookup_substitution",
+                  "route_decision",
+                  "trace_values"
+                ]
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["section_key", "title_ru", "block_ids"],
+        "properties": {
+          "section_key": {"type": "string"},
+          "title_ru": {"type": "string"},
+          "block_ids": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "selected_route": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sequence",
+          "report_block_id",
+          "selected_edge_id",
+          "from_node_id",
+          "to_node_id",
+          "edge_type",
+          "condition"
+        ],
+        "properties": {
+          "sequence": {"type": ["integer", "null"]},
+          "report_block_id": {"type": ["string", "null"]},
+          "selected_edge_id": {"type": "string"},
+          "from_node_id": {"type": ["string", "null"]},
+          "to_node_id": {"type": ["string", "null"]},
+          "edge_type": {"type": ["string", "null"]},
+          "condition": {}
+        }
+      }
+    },
+    "dag_census": {"type": "object"},
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calculation_values_recomputed_by_report",
+        "formula_expressions_evaluated_by_report",
+        "table_interpolation_recomputed_by_report",
+        "route_conditions_recomputed_by_report",
+        "numeric_substitution_is_text_only",
+        "result_source",
+        "formula_source",
+        "lookup_row_source",
+        "route_source",
+        "source_ir2_audit"
+      ],
+      "properties": {
+        "calculation_values_recomputed_by_report": {"const": false},
+        "formula_expressions_evaluated_by_report": {"const": false},
+        "table_interpolation_recomputed_by_report": {"const": false},
+        "route_conditions_recomputed_by_report": {"const": false},
+        "numeric_substitution_is_text_only": {"const": true},
+        "result_source": {"type": "string"},
+        "formula_source": {"type": "string"},
+        "lookup_row_source": {"type": "string"},
+        "route_source": {"type": "string"},
+        "source_ir2_audit": {"type": "object"}
+      }
+    },
+    "report_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}
