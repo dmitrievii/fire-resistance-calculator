@@ -4,10 +4,12 @@ on:
   push:
     branches:
       - feature/v0.68-web-deploy1
+      - 'feature/report-ir*'
   pull_request:
     branches:
       - develop
       - main
+  workflow_dispatch:
 
 permissions:
   contents: read
