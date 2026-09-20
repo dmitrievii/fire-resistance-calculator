@@ -4,6 +4,7 @@ from pathlib import Path
 
 from standard_core.fire_ui0 import ExecutionRegistry, FireDAGModel, GuidedCalculationSession
 from standard_core.report_ir2 import build_report_ir2, report_ir2_json, reportability_census
+from standard_core.declarative_runtime_evidence import clear_runtime_evidence_cache
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -97,10 +98,12 @@ def _graph():
 
 
 def _session():
+    clear_runtime_evidence_cache()
     model = FireDAGModel(_graph())
     registry = ExecutionRegistry()
     registry.register("CALC_Y", lambda values, node: {"y": values["x"] * 2.0})
-    registry.register("LOOKUP", lambda values, node: {"table_y": 15.0})
+    # LOOKUP is deliberately left declarative: the existing production lookup
+    # computes table_y and the audit hook records its selected dataset rows.
     session = GuidedCalculationSession(model, entry_node_id="INPUT_X", registry=registry)
     session.submit({"x": 3.0, "table_x": 1.5})
     return model, session
@@ -120,19 +123,53 @@ def test_ir2_binds_formula_variables_to_actual_trace_values_without_recalculatio
     assert evidence["report_recomputed_result"] is False
 
 
-def test_ir2_lookup_exposes_selector_and_result_but_does_not_reconstruct_brackets():
+def test_runtime_linear_lookup_evidence_records_exact_bracket_rows_without_report_recalculation():
     model, session = _session()
+    assert session.values["table_y"].value == 15.0
+
     report = build_report_ir2(model, session)
     block = next(block for block in report["blocks"] if block["owner_node_id"] == "LOOKUP")
     evidence = block["execution_evidence"]
+    runtime = evidence["runtime_lookup_evidence"]
 
     assert evidence["dataset_id"] == "TEST_TABLE"
     assert evidence["selectors"][0]["dataset_field"] == "a"
     assert evidence["selectors"][0]["raw_value"] == 1.5
     assert evidence["output_bindings"][0]["raw_value"] == 15.0
-    assert evidence["selected_dataset_rows"] is None
-    assert evidence["selected_dataset_rows_status"] == "NOT_CAPTURED_BY_RUNTIME_YET"
+    assert evidence["selected_dataset_rows_status"] == "CAPTURED_BY_RUNTIME_AUDIT"
+    assert [row["role"] for row in evidence["selected_dataset_rows"]] == ["lower", "upper"]
+    assert evidence["selected_dataset_rows"][0]["row"] == {"a": 1.0, "b": 10.0}
+    assert evidence["selected_dataset_rows"][1]["row"] == {"a": 2.0, "b": 20.0}
+    assert runtime["selection_mode"] == "linear_bracket"
+    assert runtime["axis"] == "a"
+    assert runtime["axis_value"] == 1.5
+    assert runtime["axis_lower"] == 1.0
+    assert runtime["axis_upper"] == 2.0
+    assert runtime["fraction"] == 0.5
+    assert runtime["result_recomputed"] is False
     assert evidence["report_recomputed_lookup"] is False
+    assert report["audit"]["table_interpolation_recomputed_by_report"] is False
+    assert report["audit"]["runtime_selected_dataset_rows_captured"] is True
+    assert report["audit"]["runtime_lookup_block_count"] == 1
+    assert report["audit"]["runtime_lookup_blocks_with_rows"] == 1
+
+
+def test_runtime_evidence_key_is_replay_safe_after_changed_input():
+    model, session = _session()
+    before = build_report_ir2(model, session)
+    before_lookup = next(block for block in before["blocks"] if block["owner_node_id"] == "LOOKUP")
+    assert before_lookup["execution_evidence"]["runtime_lookup_evidence"]["axis_value"] == 1.5
+
+    session.edit_answer("INPUT_X", {"x": 4.0, "table_x": 2.0})
+    after = build_report_ir2(model, session)
+    lookup = next(block for block in after["blocks"] if block["owner_node_id"] == "LOOKUP")
+    runtime = lookup["execution_evidence"]["runtime_lookup_evidence"]
+
+    assert session.values["table_y"].value == 20.0
+    assert runtime["selection_mode"] == "linear_exact_knot"
+    assert runtime["axis_value"] == 2.0
+    assert runtime["selected_rows"][0]["row"] == {"a": 2.0, "b": 20.0}
+    assert lookup["execution_evidence"]["selected_dataset_rows"] == runtime["selected_rows"]
 
 
 def test_ir2_is_deterministic():
