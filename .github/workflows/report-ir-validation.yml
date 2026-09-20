@@ -18,6 +18,7 @@ on:
       - 'normative_graph/report_metadata_v0.3.71_report_meta1.json'
       - 'tools/export_report_readiness.py'
       - 'tools/export_governing_candidates.py'
+      - 'tools/export_tension_report_route.py'
       - 'streamlit_report_ui.py'
       - 'streamlit_report_summary.py'
       - 'streamlit_app.py'
@@ -48,6 +49,7 @@ on:
       - 'normative_graph/report_metadata_v0.3.71_report_meta1.json'
       - 'tools/export_report_readiness.py'
       - 'tools/export_governing_candidates.py'
+      - 'tools/export_tension_report_route.py'
       - 'streamlit_report_ui.py'
       - 'streamlit_report_summary.py'
       - 'streamlit_app.py'
@@ -91,6 +93,7 @@ jobs:
             standard_core/report_metadata.py \
             tools/export_report_readiness.py \
             tools/export_governing_candidates.py \
+            tools/export_tension_report_route.py \
             streamlit_report_ui.py \
             streamlit_report_summary.py \
             streamlit_app.py
@@ -108,6 +111,8 @@ jobs:
         run: python -m tools.export_report_readiness
       - name: Export active-DAG governing candidates
         run: python -m tools.export_governing_candidates
+      - name: Export central-tension report route census
+        run: python -m tools.export_tension_report_route
       - name: Upload active-DAG report audits
         uses: actions/upload-artifact@v4
         with:
@@ -115,6 +120,7 @@ jobs:
           path: |
             artifacts/report_readiness_active_dag.json
             artifacts/governing_candidates_active_dag.json
+            artifacts/tension_report_route_active_dag.json
           if-no-files-found: error
       - name: Validate REPORT-IR schemas
         run: |
