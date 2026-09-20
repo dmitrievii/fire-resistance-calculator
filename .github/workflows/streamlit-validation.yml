@@ -5,6 +5,7 @@ on:
     branches:
       - 'feature/v0.68-streamlit-*'
       - 'feature/v0.69-streamlit-*'
+      - 'feature/v0.69.*-streamlit-*'
     paths:
       - 'streamlit_app.py'
       - 'streamlit_app_core.py'
