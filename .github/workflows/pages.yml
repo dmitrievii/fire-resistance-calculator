@@ -1,0 +1,53 @@
+name: Deploy FIRE Calculator UI to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'fire_ui1_web/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Prepare static site
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _site
+          mkdir -p _site/assets
+          cp fire_ui1_web/index.html _site/index.html
+          cp fire_ui1_web/styles.css _site/assets/styles.css
+          cp fire_ui1_web/dist/app.js _site/assets/app.js
+          sed -i 's|href="/assets/styles.css"|href="assets/styles.css"|' _site/index.html
+          sed -i 's|src="/assets/app.js"|src="assets/app.js"|' _site/index.html
+          touch _site/.nojekyll
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
