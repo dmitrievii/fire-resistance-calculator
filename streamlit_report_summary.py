@@ -1,4 +1,4 @@
-"""Conservative REPORT-IR5 summary panel for Streamlit."""
+"""Conservative REPORT-IR5 summary and REPORT-IR7 readiness panel for Streamlit."""
 from __future__ import annotations
 
 import json
@@ -6,6 +6,7 @@ from typing import Any, Mapping
 
 from standard_core.report_ir5 import build_report_ir5
 from standard_core.report_markdown import render_report_markdown
+from standard_core.report_readiness import build_report_readiness
 
 
 _STATUS_RU = {
@@ -30,7 +31,65 @@ def _refs_text(refs: Any) -> str:
     return "; ".join(out)
 
 
-def _render_summary(core: Any, report: Mapping[str, Any]) -> None:
+def _render_readiness(core: Any, readiness: Mapping[str, Any]) -> None:
+    st = core.st
+    verdict = readiness.get("check_verdict_readiness") or {}
+    governing = readiness.get("governing_readiness") or {}
+    blockers = readiness.get("blocking_metadata_gaps") or []
+
+    with st.expander("Готовность нормативного DAG к полному расчётному отчёту", expanded=False):
+        status = readiness.get("status")
+        if status == "REPORT_METADATA_COMPLETE":
+            st.success("Метаданные отчёта достаточны для однозначной публикационной сводки.")
+        else:
+            st.warning(
+                "Отчёт уже воспроизводит выполненный расчёт, но часть итоговой семантики пока нельзя "
+                "формировать без явных метаданных нормативного DAG."
+            )
+
+        c1, c2, c3, c4 = st.columns(4)
+        c1.metric("Узлов DAG", readiness.get("node_count", 0))
+        c2.metric("CHECK без явного verdict", verdict.get("needs_explicit_verdict_count", 0))
+        c3.metric("Governing", "объявлен" if governing.get("status") == "DECLARED" else "не объявлен")
+        c4.metric("Блокирующих gaps", readiness.get("blocking_metadata_gap_count", 0))
+
+        if blockers:
+            st.dataframe(
+                [
+                    {
+                        "Тип": row.get("kind"),
+                        "Узел": row.get("node_id") or "—",
+                        "Причина": row.get("message"),
+                    }
+                    for row in blockers
+                ],
+                width="stretch",
+                hide_index=True,
+            )
+
+        refs = readiness.get("normative_reference_coverage") or {}
+        presentation = readiness.get("presentation_metadata_coverage") or {}
+        st.caption(
+            f"Нормативные ссылки: {refs.get('nodes_with_refs', 0)}/{readiness.get('node_count', 0)} узлов; "
+            f"явный report_spec: {presentation.get('nodes_with_report_spec', 0)}/{readiness.get('node_count', 0)}. "
+            "Отсутствие formula_latex не блокирует trace-отчёт: expression из frozen DAG всё равно показывается дословно."
+        )
+        st.download_button(
+            "Скачать census готовности (.json)",
+            data=json.dumps(readiness, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+            file_name="fire_report_readiness_v1.json",
+            mime="application/json",
+            width="stretch",
+            on_click="ignore",
+            key="fire:report:download:readiness",
+        )
+        st.caption(
+            "Этот census анализирует только метаданные DAG. Он не запускает расчёт, не читает значения сессии "
+            "и не является оценкой инженерной готовности расчётного комплекса."
+        )
+
+
+def _render_summary(core: Any, report: Mapping[str, Any], readiness: Mapping[str, Any]) -> None:
     st = core.st
     summary = report.get("summary") or {}
     status = str(summary.get("summary_status") or "")
@@ -123,10 +182,11 @@ def _render_summary(core: Any, report: Mapping[str, Any]) -> None:
         "Сводка описывает только реально выполненные trace-проверки. Она не заменяет нормативный verdict "
         "и не интерпретирует числовые коэффициенты как PASS/FAIL без явного boolean-результата."
     )
+    _render_readiness(core, readiness)
 
 
 def install(core: Any) -> None:
-    """Render REPORT-IR5 summary immediately before the existing report/trace tabs."""
+    """Render the calculation summary and static report-readiness census."""
     if getattr(core, "_fire_report_summary_installed", False):
         return
     core._fire_report_summary_installed = True
@@ -140,8 +200,9 @@ def install(core: Any) -> None:
         if app is not None and sid and sid in app.service.sessions:
             session = app.service.get_session(sid)
             report = build_report_ir5(app.service.model, session)
-            _render_summary(core, report)
-            st.caption(f"REPORT-IR5 summary · `{report.get('report_sha256')}`")
+            readiness = build_report_readiness(app.service.model)
+            _render_summary(core, report, readiness)
+            st.caption(f"REPORT-IR5 summary · `{report.get('report_sha256')}` · REPORT-IR7 readiness")
         original(env)
 
     core._render_ledger_trace = _render_ledger_trace
