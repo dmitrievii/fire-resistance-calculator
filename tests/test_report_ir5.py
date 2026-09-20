@@ -70,6 +70,23 @@ def test_summary_reads_explicit_boolean_check_outputs_only():
     assert summary["summary_status"] == "EXECUTED_CHECK_FAILED"
 
 
+def test_declared_boolean_verdict_can_coexist_with_numeric_check_output():
+    source = _ir4(
+        [
+            _block(
+                "CHECK",
+                "C",
+                [_value("eta", 0.72), _value("check_pass", True)],
+                presentation={"verdict_quantity_id": "check_pass"},
+            )
+        ]
+    )
+    summary = report_ir5._summary_from_ir4(source)
+    row = summary["checks"][0]
+    assert row["verdict"] == "PASS"
+    assert row["verdict_source"] == "declared_boolean_verdict_quantity"
+
+
 def test_fail_closed_has_precedence_and_is_preserved_verbatim():
     source = _ir4(
         [
@@ -106,6 +123,30 @@ def test_governing_result_is_not_guessed_from_numeric_outputs():
     assert summary["governing"]["status"] == "NOT_DECLARED_BY_DAG"
     assert summary["governing"]["candidates"] == []
     assert summary["checks"][0]["verdict"] == "UNRESOLVED"
+
+
+def test_scoped_governing_value_is_read_from_declared_trace_output_only():
+    source = _ir4(
+        [
+            _block(
+                "FORMULA",
+                "GOV",
+                [_value("gamma_T_gov", 0.81, "1")],
+                presentation={
+                    "governing_scope": "section_10",
+                    "governing_scope_title_ru": "Раздел 10",
+                    "governing_quantity_id": "gamma_T_gov",
+                },
+            )
+        ]
+    )
+    summary = report_ir5._summary_from_ir4(source)
+    assert summary["governing"]["status"] == "EXECUTED_DECLARATIONS"
+    assert len(summary["governing"]["candidates"]) == 1
+    row = summary["governing"]["candidates"][0]
+    assert row["scope"] == "section_10"
+    assert row["quantity"]["raw_value"] == 0.81
+    assert row["source"] == "explicit_dag_bound_report_metadata_plus_execution_trace"
 
 
 def test_build_report_ir5_wraps_ir4_deterministically_and_freezes_audit_flags(monkeypatch):

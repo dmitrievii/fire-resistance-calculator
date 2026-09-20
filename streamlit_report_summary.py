@@ -1,4 +1,4 @@
-"""Conservative REPORT-IR5 summary and REPORT-IR7 readiness panel for Streamlit."""
+"""REPORT-IR5 summary and DAG report-readiness panel for Streamlit."""
 from __future__ import annotations
 
 import json
@@ -24,8 +24,8 @@ def _refs_text(refs: Any) -> str:
         if not isinstance(ref, Mapping):
             continue
         standard = ref.get("standard_id") or ""
-        section = ref.get("section") or ref.get("clause") or ""
-        text = " ".join(str(x) for x in (standard, section) if x)
+        locator = ref.get("clause") or ref.get("section") or ref.get("table_ref") or ""
+        text = " ".join(str(x) for x in (standard, locator) if x)
         if text:
             out.append(text)
     return "; ".join(out)
@@ -36,22 +36,41 @@ def _render_readiness(core: Any, readiness: Mapping[str, Any]) -> None:
     verdict = readiness.get("check_verdict_readiness") or {}
     governing = readiness.get("governing_readiness") or {}
     blockers = readiness.get("blocking_metadata_gaps") or []
+    metadata = readiness.get("report_metadata") or {}
 
     with st.expander("Готовность нормативного DAG к полному расчётному отчёту", expanded=False):
         status = readiness.get("status")
         if status == "REPORT_METADATA_COMPLETE":
-            st.success("Метаданные отчёта достаточны для однозначной публикационной сводки.")
+            st.success("Метаданные отчёта достаточны для однозначной текущей report-семантики.")
         else:
             st.warning(
-                "Отчёт уже воспроизводит выполненный расчёт, но часть итоговой семантики пока нельзя "
-                "формировать без явных метаданных нормативного DAG."
+                "Отчёт воспроизводит выполненный расчёт, но часть итоговой семантики пока нельзя "
+                "формировать без явных DAG-bound метаданных."
             )
 
         c1, c2, c3, c4 = st.columns(4)
         c1.metric("Узлов DAG", readiness.get("node_count", 0))
-        c2.metric("CHECK без явного verdict", verdict.get("needs_explicit_verdict_count", 0))
-        c3.metric("Governing", "объявлен" if governing.get("status") == "DECLARED" else "не объявлен")
+        c2.metric("CHECK без verdict", verdict.get("needs_explicit_verdict_count", 0))
+        if governing.get("status") == "DECLARED":
+            c3.metric("Governing-области", governing.get("declaration_count", 0))
+        else:
+            c3.metric("Governing-области", "не объявлены")
         c4.metric("Блокирующих gaps", readiness.get("blocking_metadata_gap_count", 0))
+
+        if governing.get("valid_declarations"):
+            st.markdown("**Объявленные governing-области**")
+            st.dataframe(
+                [
+                    {
+                        "Область": row.get("scope_title_ru") or row.get("scope"),
+                        "DAG node": row.get("node_id"),
+                        "Quantity": row.get("quantity_id"),
+                    }
+                    for row in governing.get("valid_declarations") or []
+                ],
+                width="stretch",
+                hide_index=True,
+            )
 
         if blockers:
             st.dataframe(
@@ -71,8 +90,8 @@ def _render_readiness(core: Any, readiness: Mapping[str, Any]) -> None:
         presentation = readiness.get("presentation_metadata_coverage") or {}
         st.caption(
             f"Нормативные ссылки: {refs.get('nodes_with_refs', 0)}/{readiness.get('node_count', 0)} узлов; "
-            f"явный report_spec: {presentation.get('nodes_with_report_spec', 0)}/{readiness.get('node_count', 0)}. "
-            "Отсутствие formula_latex не блокирует trace-отчёт: expression из frozen DAG всё равно показывается дословно."
+            f"явный report_spec/sidecar: {presentation.get('nodes_with_report_spec', 0)}/{readiness.get('node_count', 0)}. "
+            f"Report metadata: {metadata.get('revision_id') or 'inline only'}."
         )
         st.download_button(
             "Скачать census готовности (.json)",
@@ -84,8 +103,44 @@ def _render_readiness(core: Any, readiness: Mapping[str, Any]) -> None:
             key="fire:report:download:readiness",
         )
         st.caption(
-            "Этот census анализирует только метаданные DAG. Он не запускает расчёт, не читает значения сессии "
-            "и не является оценкой инженерной готовности расчётного комплекса."
+            "Census анализирует только DAG/report metadata: он не запускает расчёт, не читает значения сессии "
+            "и не меняет frozen execution graph."
+        )
+
+
+def _render_governing(core: Any, governing: Mapping[str, Any]) -> None:
+    st = core.st
+    status = governing.get("status")
+    rows = [row for row in governing.get("candidates") or [] if isinstance(row, Mapping)]
+    if status == "EXECUTED_DECLARATIONS" and rows:
+        st.markdown("**Управляющие нормативные величины**")
+        st.dataframe(
+            [
+                {
+                    "Область": row.get("scope_title_ru") or row.get("scope"),
+                    "DAG node": row.get("owner_node_id"),
+                    "Величина": (row.get("quantity") or {}).get("symbol") or (row.get("quantity") or {}).get("quantity_id"),
+                    "Значение": (row.get("quantity") or {}).get("display_value"),
+                    "Норма": _refs_text(row.get("normative_refs")),
+                }
+                for row in rows
+            ],
+            width="stretch",
+            hide_index=True,
+        )
+        st.caption(
+            "Это независимые governing-области, явно объявленные DAG-bound metadata и фактически выполненные runtime. "
+            "Отчёт не сравнивает их между собой и не вычисляет глобальный max/min."
+        )
+    elif status == "DECLARED_BY_DAG_NOT_EXECUTED":
+        st.caption(
+            "Governing-области объявлены DAG-bound metadata, но соответствующие producer-узлы ещё не выполнены "
+            "на текущем маршруте."
+        )
+    else:
+        st.caption(
+            "Governing result не выбирается эвристически: без явной декларации в DAG-bound metadata он остаётся "
+            "NOT_DECLARED_BY_DAG."
         )
 
 
@@ -96,9 +151,7 @@ def _render_summary(core: Any, report: Mapping[str, Any], readiness: Mapping[str
 
     st.markdown("### Итоговая расчётная сводка")
     message = _STATUS_RU.get(status, status or "—")
-    if status == "FAIL_CLOSED":
-        st.error(message)
-    elif status == "EXECUTED_CHECK_FAILED":
+    if status in {"FAIL_CLOSED", "EXECUTED_CHECK_FAILED"}:
         st.error(message)
     elif status == "CHECK_VERDICT_NOT_EXPLICIT":
         st.warning(message)
@@ -156,15 +209,15 @@ def _render_summary(core: Any, report: Mapping[str, Any], readiness: Mapping[str
             hide_index=True,
         )
 
+    _render_governing(core, summary.get("governing") or {})
+
     results = summary.get("results") or []
     if results:
         st.markdown("**Итоговые result-узлы**")
         for row in results:
             st.markdown(f"**{row.get('title') or row.get('owner_node_id')}**")
             for output in row.get("outputs") or []:
-                st.markdown(
-                    f"{output.get('symbol') or output.get('quantity_id')} = `{output.get('display_value')}`"
-                )
+                st.markdown(f"{output.get('symbol') or output.get('quantity_id')} = `{output.get('display_value')}`")
 
     failures = summary.get("fail_closed") or []
     if failures:
@@ -172,21 +225,15 @@ def _render_summary(core: Any, report: Mapping[str, Any], readiness: Mapping[str
         for row in failures:
             st.error(f"{row.get('title') or row.get('owner_node_id')}: {row.get('message') or 'blocked'}")
 
-    governing = summary.get("governing") or {}
-    if governing.get("status") == "NOT_DECLARED_BY_DAG":
-        st.caption(
-            "Governing utilization пока намеренно не выбирается отчётом: он будет показан только после "
-            "явного объявления governing quantity в нормативном DAG, без эвристики по именам или значениям."
-        )
     st.caption(
-        "Сводка описывает только реально выполненные trace-проверки. Она не заменяет нормативный verdict "
-        "и не интерпретирует числовые коэффициенты как PASS/FAIL без явного boolean-результата."
+        "Сводка описывает только реально выполненные trace-проверки. Числовые коэффициенты не трактуются "
+        "как PASS/FAIL без boolean verdict, а governing-величины не выбираются отчётом по величине."
     )
     _render_readiness(core, readiness)
 
 
 def install(core: Any) -> None:
-    """Render the calculation summary and static report-readiness census."""
+    """Render calculation summary plus static DAG report-readiness census."""
     if getattr(core, "_fire_report_summary_installed", False):
         return
     core._fire_report_summary_installed = True
@@ -202,7 +249,8 @@ def install(core: Any) -> None:
             report = build_report_ir5(app.service.model, session)
             readiness = build_report_readiness(app.service.model)
             _render_summary(core, report, readiness)
-            st.caption(f"REPORT-IR5 summary · `{report.get('report_sha256')}` · REPORT-IR7 readiness")
+            rev = (readiness.get("report_metadata") or {}).get("revision_id") or "inline"
+            st.caption(f"REPORT-IR5 · `{report.get('report_sha256')}` · report metadata `{rev}`")
         original(env)
 
     core._render_ledger_trace = _render_ledger_trace

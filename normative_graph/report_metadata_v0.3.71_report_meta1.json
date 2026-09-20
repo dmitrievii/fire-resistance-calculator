@@ -1,0 +1,34 @@
+{
+  "schema": "fire_dag_report_metadata_v1",
+  "revision_id": "v0.3.71_REPORT_META1",
+  "title": "REPORT-META1 governing semantics over frozen DAG v0.3.70",
+  "base_graph_id": "sp16_sp554_dag_v0-3-70_fire_bridge2_qualified_sp16_complex_state_handoff",
+  "base_graph_sha256": "49228df2c374fdaf7db1924be580f14919d0195290d59cbc433def1862306d68",
+  "scope": "presentation_and_report_semantics_only",
+  "execution_semantics_changed": false,
+  "node_report_specs": {
+    "SP554_C_10_GOV": {
+      "kind": "FORMULA",
+      "title_ru": "Управляющий температурный коэффициент для изгиба",
+      "formula_latex": "\\gamma_{T,gov}=\\max(\\gamma_{T,i}\\;\\text{ для всех применимых проверок})",
+      "display_precision": 3,
+      "governing_scope": "sp554_section_10_bending_gamma_T",
+      "governing_scope_title_ru": "СП 554, раздел 10 — изгиб",
+      "governing_quantity_id": "gamma_T_bending_governing"
+    },
+    "SP554_C_11_GOV": {
+      "kind": "FORMULA",
+      "title_ru": "Управляющий температурный коэффициент для N+M",
+      "formula_latex": "\\gamma_{T,gov}=\\max(\\gamma_{T,i}\\;\\text{ для всех применимых проверок})",
+      "display_precision": 3,
+      "governing_scope": "sp554_section_11_axial_bending_gamma_T",
+      "governing_scope_title_ru": "СП 554, раздел 11 — продольная сила с изгибом",
+      "governing_quantity_id": "gamma_T_nm_governing"
+    }
+  },
+  "notes": [
+    "The frozen v0.3.70 execution graph is not modified.",
+    "Only explicit existing governing producers are declared; diagnostic/superseded candidates are intentionally excluded.",
+    "No global maximum/minimum is introduced by report metadata."
+  ]
+}
