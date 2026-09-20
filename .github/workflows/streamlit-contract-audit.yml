@@ -1,0 +1,45 @@
+name: Streamlit contract audit
+
+on:
+  push:
+    branches: [feature/v0.68-streamlit-deploy1]
+    paths:
+      - '.github/workflows/streamlit-contract-audit.yml'
+      - 'standard_core/**'
+      - 'data/fire_bridge2_presentation_policy.json'
+      - 'normative_graph/**'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Census interactive cards
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from standard_core.fire_ui1_http import FireUI1Application
+          app = FireUI1Application.from_package_root(Path('.'))
+          contract = app.ui_contract()
+          basic = {'number','boolean','enum','string','text'}
+          components = {}
+          structured = []
+          for card in contract['node_cards']:
+              if not card.get('interactive'):
+                  continue
+              comp = (card.get('presentation') or {}).get('component') or 'generic'
+              dtypes = sorted({f.get('data_type') for f in card.get('fields', [])})
+              components.setdefault(comp, 0)
+              components[comp] += 1
+              if any(dt not in basic for dt in dtypes):
+                  structured.append((card['node_id'], comp, dtypes, [f['quantity_id'] for f in card.get('fields', [])]))
+          print('COMPONENT CENSUS')
+          for k,v in sorted(components.items()): print(f'{k}: {v}')
+          print('\nSTRUCTURED INTERACTIVE CARDS')
+          for row in structured: print(row)
+          print(f'\nTOTAL structured cards: {len(structured)}')
+          PY
