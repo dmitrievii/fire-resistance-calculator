@@ -1,0 +1,3572 @@
+{
+  "package_version": "0.23.0",
+  "release_stage": "v0.23_independent_normative_rebaseline_and_adversarial_audit_reconstructed_r1",
+  "generation": "reconstructed_from_materialized_parent_package_for_phase_0_24_compatibility_gate",
+  "public_object_count": 594,
+  "entries": [
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "antenna_structure_material_group_route_clause_17_1",
+      "signature": "(component_group: 'int', steel_grade: 'str', *, is_pipe: 'bool', annex_v_grade_selection_confirmed: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "antenna_wire_material_route_clause_17_4",
+      "signature": "(*, annex_b_table_b2_selection_confirmed: 'bool', copper_wire_used: 'bool', technological_necessity_confirmed: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "cross_lattice_and_platform_checks_clause_17_9",
+      "signature": "(brace_slenderness: 'float', tied_at_intersection: 'bool', vertical_deflection_mm: 'float', horizontal_deflection_mm: 'float', span_mm: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "diaphragm_check_clause_17_10",
+      "signature": "(actual_spacing_mm: 'float', mean_section_size_mm: 'float', *, diaphragm_at_concentrated_loads: 'bool', diaphragm_at_chord_breaks: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "erection_connection_check_clause_17_8",
+      "signature": "(accuracy_class: 'str', strength_class: 'str', *, sign_changing_force: 'bool', controlled_pretension_confirmed: 'bool', erection_weld_used: 'bool', installer_agreement_confirmed: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "flexible_cable_insert_check_clause_17_14",
+      "signature": "(clear_length_mm: 'float', rope_diameter_mm: 'float') -> 'dict[str, float | bool]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "galvanizing_check_clause_17_18",
+      "signature": "(*, guy_mechanical_details_galvanized: 'bool', insulator_fittings_galvanized: 'bool', fasteners_galvanized: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "guy_attachment_detailing_checks_clause_17_13",
+      "signature": "(*, guy_centered_at_chord_strut_intersection: 'bool', eye_plate_stiffened_against_bending: 'bool', attachment_exceeds_transport_envelope: 'bool', separate_rigid_insert_provided: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "mechanical_detail_evidence_clause_17_15",
+      "signature": "(*, standard_detail_used: 'bool', strength_tested: 'bool', fatigue_tested: 'bool', threaded_tension_element: 'bool', rounded_thread_root_confirmed: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "obstruction_marking_and_lighting_check_clause_17_17",
+      "signature": "(confirmed: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "pipe_flange_bolt_layout_check_clause_17_11",
+      "signature": "(*, one_circle: 'bool', minimum_possible_circle_diameter: 'bool', equal_spacing: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "rope_end_zinc_alloy_check_clause_17_3",
+      "signature": "(selected_alloy: 'str') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "steel_rope_selection_clause_17_2",
+      "signature": "(design_force_kn: 'float', environment: 'str', rope_construction: 'str', core_type: 'str', *, built_in_nut_insulator: 'bool', radio_allows_nonmetallic_core: 'bool', round_wire_rope_capacity_kn: 'float', end_binding_length_increased_25_percent: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "support_relative_deviation_check_clause_17_7",
+      "signature": "(actual_deviation_mm: 'float', support_height_mm: 'float', load_case: 'str') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "table_47_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "table_47_working_condition_factor",
+      "signature": "(case_id: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "truss_node_detailing_checks_clause_17_12",
+      "signature": "(*, members_centered_on_chord_axis: 'bool', eccentricity_mm: 'float', chord_cross_section_size_mm: 'float', node_moment_analysis_performed: 'bool', slot_end_hole_diameter_mm: 'float', round_brace_diameter_mm: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "vibration_damper_design_clause_17_16",
+      "signature": "(rope_or_wire_diameter_mm: 'float', pretension_n: 'float', mass_per_length_kg_m: 'float', span_m: 'float', *, low_frequency_hz: 'float', high_frequency_hz: 'float', paired_sequential_dampers: 'bool', low_frequency_selected_from_fundamental_mode: 'bool', high_frequency_damper_above_low_at_distance_s: 'bool', dampers_installed: 'bool', galloping_risk_present: 'bool', free_length_modified_with_leashes: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "vibration_damper_distance_eq215",
+      "signature": "(rope_or_wire_diameter_mm: 'float', pretension_n: 'float', mass_per_length_kg_m: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "wire_design_tension_force_clause_17_5",
+      "signature": "(breaking_force_n: 'float', wire_type: 'str', nominal_area_mm2: 'float | None' = None) -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.antenna_structures",
+      "name": "wire_material_safety_factor_clause_17_5",
+      "signature": "(wire_type: 'str', nominal_area_mm2: 'float | None' = None) -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.axial_members",
+      "name": "annex_d1_stability_coefficient",
+      "signature": "(relative_slenderness_value: 'float', section_type: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.axial_members",
+      "name": "axial_strength_utilization_ultimate",
+      "signature": "(axial_force_n: 'float', net_area_mm2: 'float', design_ultimate_resistance_n_mm2: 'float', ultimate_resistance_safety_factor: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.axial_members",
+      "name": "axial_strength_utilization_yield",
+      "signature": "(axial_force_n: 'float', net_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.axial_members",
+      "name": "central_compression_stability_coefficient",
+      "signature": "(relative_slenderness_value: 'float', section_type: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.axial_members",
+      "name": "central_compression_stability_utilization",
+      "signature": "(axial_force_n: 'float', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', stability_coefficient: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.axial_members",
+      "name": "open_u_section_phi_1",
+      "signature": "(c_max: 'float', relative_slenderness_y: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.axial_members",
+      "name": "open_u_section_torsional_flexural_utilization",
+      "signature": "(axial_force_n: 'float', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', c_max: 'float', relative_slenderness_y: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.axial_members",
+      "name": "relative_slenderness",
+      "signature": "(geometric_slenderness: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.axial_members",
+      "name": "single_angle_connection_strength_utilization",
+      "signature": "(axial_force_n: 'float', net_area_mm2: 'float', design_ultimate_resistance_n_mm2: 'float', ultimate_resistance_safety_factor: 'float', angle_working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.axial_members",
+      "name": "single_angle_working_condition_factor",
+      "signature": "(net_area_mm2: 'float', attached_leg_net_strip_area_mm2: 'float', alpha1: 'float', alpha2: 'float', beta: 'float', special_ten_percent_reduction_applies: 'bool') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.axial_members",
+      "name": "stability_delta",
+      "signature": "(relative_slenderness_value: 'float', alpha: 'float', beta: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.axial_members",
+      "name": "table_6_angle_coefficients",
+      "signature": "(table_case: 'str') -> 'tuple[float, float, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.axial_members",
+      "name": "table_7_section_coefficients",
+      "signature": "(section_type: 'str') -> 'tuple[float, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.base_plates_and_combined_force_strength",
+      "name": "annex_e2_base_plate_coefficients",
+      "signature": "(support_condition: 'str', geometric_ratio: 'float') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.base_plates_and_combined_force_strength",
+      "name": "annex_e2_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.base_plates_and_combined_force_strength",
+      "name": "base_plate_cantilever_moment_eq102",
+      "signature": "(foundation_pressure_n_mm2: 'float', cantilever_projection_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.base_plates_and_combined_force_strength",
+      "name": "base_plate_foundation_area_boundary",
+      "signature": "(foundation_strength_check_confirmed: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.base_plates_and_combined_force_strength",
+      "name": "base_plate_four_side_moments_eq103",
+      "signature": "(foundation_pressure_n_mm2: 'float', short_side_mm: 'float', alpha_1: 'float', alpha_2: 'float') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.base_plates_and_combined_force_strength",
+      "name": "base_plate_maximum_unit_width_moment",
+      "signature": "(moment_values_n_mm_per_mm: 'list[float] | tuple[float, ...]') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.base_plates_and_combined_force_strength",
+      "name": "base_plate_required_thickness_eq101",
+      "signature": "(maximum_unit_width_moment_n_mm_per_mm: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.base_plates_and_combined_force_strength",
+      "name": "base_plate_three_side_moment_eq104",
+      "signature": "(foundation_pressure_n_mm2: 'float', free_side_length_mm: 'float', alpha_3: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.base_plates_and_combined_force_strength",
+      "name": "base_plate_two_adjacent_sides_geometry",
+      "signature": "(rectangle_side_1_mm: 'float', rectangle_side_2_mm: 'float') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.base_plates_and_combined_force_strength",
+      "name": "combined_force_coefficients_from_annex_e1",
+      "signature": "(section_type: 'str', flange_to_web_area_ratio: 'float', minor_axis_moment_nonzero: 'bool') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.base_plates_and_combined_force_strength",
+      "name": "combined_force_point_utilization_eq106",
+      "signature": "(signed_axial_force_n: 'float', net_area_mm2: 'float', signed_bending_moment_x_n_mm: 'float', point_y_mm: 'float', net_inertia_x_mm4: 'float', signed_bending_moment_y_n_mm: 'float', point_x_mm: 'float', net_inertia_y_mm4: 'float', signed_bimoment_n_mm2: 'float', sectorial_coordinate_mm2: 'float', net_sectorial_inertia_mm6: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.base_plates_and_combined_force_strength",
+      "name": "combined_force_strength_utilization_eq105",
+      "signature": "(axial_force_n: 'float', net_area_mm2: 'float', bending_moment_x_n_mm: 'float', bending_moment_y_n_mm: 'float', bimoment_n_mm2: 'float', coefficient_n: 'float', coefficient_cx: 'float', coefficient_cy: 'float', minimum_net_section_modulus_x_mm3: 'float', minimum_net_section_modulus_y_mm3: 'float', minimum_net_sectorial_section_modulus_mm4: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.base_plates_and_combined_force_strength",
+      "name": "equation_105_applicability",
+      "signature": "(normative_yield_resistance_n_mm2: 'float', direct_dynamic_load: 'bool', shear_stress_n_mm2: 'float', design_shear_resistance_n_mm2: 'float', axial_force_n: 'float', net_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', clause_8_5_8_confirmed: 'bool', clause_8_5_18_confirmed: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.base_plates_and_combined_force_strength",
+      "name": "equation_105_omission_rule_clause_9_1_2",
+      "signature": "(reduced_relative_eccentricity: 'float', section_is_unweakened: 'bool', strength_and_stability_moments_are_equal: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.base_plates_and_combined_force_strength",
+      "name": "equation_107_applicability",
+      "signature": "(normative_yield_resistance_n_mm2: 'float', section_is_asymmetric_about_axis_perpendicular_to_bending_plane: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.base_plates_and_combined_force_strength",
+      "name": "high_strength_asymmetric_delta_eq108",
+      "signature": "(compression_force_n: 'float', relative_slenderness: 'float', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.base_plates_and_combined_force_strength",
+      "name": "high_strength_asymmetric_tension_fiber_utilization_eq107",
+      "signature": "(compression_force_n: 'float', net_area_mm2: 'float', bending_moment_n_mm: 'float', delta_coefficient: 'float', tension_fiber_section_modulus_mm3: 'float', design_ultimate_resistance_n_mm2: 'float', ultimate_resistance_safety_factor: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "adjusted_relative_eccentricity_x_clause_9_2_9",
+      "signature": "(relative_eccentricity_x: 'float', major_stiffness_plane_coincides_with_symmetry_plane: 'bool', table_21_section_type: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "annex_d2_shape_influence_coefficient",
+      "signature": "(section_type: 'str', relative_slenderness: 'float', relative_eccentricity_m: 'float', flange_to_web_area_ratio: 'float | None', offset_ratio_a1_to_h: 'float | None') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "annex_d3_stability_coefficient",
+      "signature": "(relative_slenderness: 'float', effective_relative_eccentricity: 'float', central_compression_phi: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "annex_d3_table_coefficient",
+      "signature": "(relative_slenderness: 'float', effective_relative_eccentricity: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "annex_d4_stability_coefficient",
+      "signature": "(relative_effective_slenderness: 'float', relative_eccentricity_m: 'float', central_compression_phi: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "annex_d4_table_coefficient",
+      "signature": "(relative_effective_slenderness: 'float', relative_eccentricity_m: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "annex_d5_effective_relative_eccentricity",
+      "signature": "(end_moment_ratio_delta: 'float', geometric_slenderness: 'float', reference_effective_eccentricity_m_eff_1: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "annex_d6_section_parameters",
+      "signature": "(section_type: 'str') -> 'dict[str, str]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "annex_d_continuous_bracing_cmax_eq_d4",
+      "signature": "(major_axis_inertia_mm4: 'float', minor_axis_inertia_mm4: 'float', major_axis_radius_mm: 'float', minor_axis_radius_mm: 'float', section_height_mm: 'float', eccentricity_x_mm: 'float', annex_zh_alpha_parameter: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "annex_d_open_section_cmax_eq_d1",
+      "signature": "(parameter_bundle: 'dict[str, float]') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "annex_d_open_section_parameters_eq_d2",
+      "signature": "(alpha_shear_center_ratio: 'float', beta_section_parameter: 'float', major_axis_inertia_mm4: 'float', minor_axis_inertia_mm4: 'float', sectorial_inertia_mm6: 'float', torsional_inertia_mm4: 'float', geometric_slenderness_y: 'float', gross_area_mm2: 'float', section_height_mm: 'float', eccentricity_x_mm: 'float') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "beam_column_in_plane_utilization_eq109",
+      "signature": "(axial_force_n: 'float', stability_coefficient_phi_e: 'float', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "beam_column_out_of_plane_utilization_eq111",
+      "signature": "(axial_force_n: 'float', out_of_plane_coefficient_c: 'float', central_compression_phi_y: 'float', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "beam_column_section_9_2_route",
+      "signature": "(effective_relative_eccentricity: 'float', section_is_box: 'bool', bending_in_one_plane: 'bool', bending_in_two_planes: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "biaxial_additional_checks_clause_9_2_9",
+      "signature": "(effective_relative_eccentricity_y: 'float', relative_eccentricity_x: 'float', relative_slenderness_x: 'float', relative_slenderness_y: 'float') -> 'dict[str, bool]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "biaxial_beam_column_utilization_eq116",
+      "signature": "(axial_force_n: 'float', biaxial_stability_coefficient_phi_exy: 'float', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "biaxial_stability_coefficient_eq117",
+      "signature": "(in_plane_phi_ey: 'float', out_of_plane_coefficient_c: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "box_delta_eq122",
+      "signature": "(axial_force_n: 'float', relative_slenderness: 'float', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "box_major_axis_phi_clause_9_2_10",
+      "signature": "(bending_in_major_stiffness_plane: 'bool', minor_axis_moment_is_zero: 'bool', phi_ex: 'float', phi_ey: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "box_major_axis_utilization_eq120",
+      "signature": "(axial_force_n: 'float', stability_phi_ex: 'float', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', major_axis_moment_n_mm: 'float', plastic_coefficient_cx: 'float', delta_x: 'float', minimum_section_modulus_x_mm3: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "box_minor_axis_utilization_eq121",
+      "signature": "(axial_force_n: 'float', stability_phi_ey: 'float', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', minor_axis_moment_n_mm: 'float', plastic_coefficient_cy: 'float', delta_y: 'float', minimum_section_modulus_y_mm3: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "central_compression_out_of_plane_utilization_eq115",
+      "signature": "(axial_force_n: 'float', central_compression_phi_x: 'float', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "design_moment_clause_9_2_6",
+      "signature": "(member_end_condition: 'str', maximum_moment_n_mm: 'float', middle_third_maximum_moment_n_mm: 'float', fixed_end_moment_n_mm: 'float', one_third_from_fixed_moment_n_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "effective_relative_eccentricity_eq110",
+      "signature": "(shape_influence_coefficient_eta: 'float', relative_eccentricity_m: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "minor_axis_bending_route_clause_9_2_8",
+      "signature": "(relative_slenderness_x: 'float', relative_slenderness_y: 'float') -> 'dict[str, bool]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "out_of_plane_coefficient_c",
+      "signature": "(relative_eccentricity_mx: 'float', alpha: 'float', beta: 'float', central_phi_y: 'float', bending_phi_b: 'float', c_max: 'float') -> 'dict[str, float | str]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "out_of_plane_coefficient_c_eq112",
+      "signature": "(alpha: 'float', beta: 'float', relative_eccentricity_mx: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "out_of_plane_coefficient_c_eq113",
+      "signature": "(relative_eccentricity_mx: 'float', central_phi_y: 'float', bending_phi_b: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "out_of_plane_coefficient_c_eq114",
+      "signature": "(relative_eccentricity_mx: 'float', c_at_5: 'float', c_at_10: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "relative_eccentricity_x_eq118",
+      "signature": "(eccentricity_x_mm: 'float', gross_area_mm2: 'float', compressed_section_modulus_x_mm3: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "relative_eccentricity_y_eq119",
+      "signature": "(eccentricity_y_mm: 'float', gross_area_mm2: 'float', compressed_section_modulus_y_mm3: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "stability_check_route_clause_9_2_1",
+      "signature": "(moment_in_one_principal_plane: 'bool') -> 'dict[str, bool]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "table_20_design_moment",
+      "signature": "(maximum_moment_n_mm: 'float', middle_third_moment_n_mm: 'float', auxiliary_moment_m2_n_mm: 'float', relative_eccentricity_m_max: 'float', relative_slenderness: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "table_21_alpha",
+      "signature": "(section_type: 'str', relative_eccentricity_mx: 'float', smaller_to_larger_flange_inertia_ratio: 'float | None') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.beam_column_stability",
+      "name": "table_21_beta",
+      "signature": "(section_type: 'str', relative_slenderness_y: 'float', central_phi_y: 'float', central_phi_at_3_14: 'float', smaller_to_larger_flange_inertia_ratio: 'float | None') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "asymmetric_compressed_flange_substitution_8_5_6",
+      "signature": "(effective_web_height_mm: 'float', compressed_web_zone_height_mm: 'float') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "asymmetric_split_web_substitutions_8_5_14",
+      "signature": "(sigma_1_n_mm2: 'float', sigma_2_n_mm2: 'float', plate_1_height_mm: 'float', effective_web_height_mm: 'float') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "asymmetric_tension_flange_web_utilization_eq85",
+      "signature": "(sigma_1_n_mm2: 'float', sigma_2_n_mm2: 'float', tau_n_mm2: 'float', sigma_cr_n_mm2: 'float', tau_cr_n_mm2: 'float', c_cr: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "average_web_shear_stress_eq79",
+      "signature": "(shear_force_n: 'float', web_thickness_mm: 'float', full_web_height_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "bending_normal_stress_eq78",
+      "signature": "(moment_n_mm: 'float', distance_from_neutral_axis_mm: 'float', major_inertia_mm4: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "box_flange_plate_limit_eq98",
+      "signature": "(flange_design_yield_resistance_n_mm2: 'float', compressed_flange_stress_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "class_2_3_asymmetric_web_utilization_eq87",
+      "signature": "(moment_n_mm: 'float', compression_flange_stress_n_mm2: 'float', compression_flange_area_mm2: 'float', compressed_zone_height_mm: 'float', tension_flange_stress_n_mm2: 'float', tension_flange_area_mm2: 'float', full_web_height_mm: 'float', web_thickness_mm: 'float', alpha_coefficient: 'float', web_design_yield_resistance_n_mm2: 'float', shear_stress_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "class_2_3_box_flange_limit_eq100",
+      "signature": "(web_relative_slenderness: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "class_2_3_flange_outstand_limit_eq99",
+      "signature": "(web_relative_slenderness: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "class_2_3_symmetric_web_utilization_eq86",
+      "signature": "(moment_n_mm: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', effective_web_height_mm: 'float', web_thickness_mm: 'float', flange_to_web_area_ratio: 'float', flange_resistance_ratio_r: 'float', alpha_coefficient: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "compressed_web_zone_height_eq88",
+      "signature": "(web_area_mm2: 'float', web_thickness_mm: 'float', tension_flange_area_mm2: 'float', tension_flange_stress_n_mm2: 'float', compression_flange_area_mm2: 'float', compression_flange_stress_n_mm2: 'float', web_design_yield_resistance_n_mm2: 'float', shear_stress_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "concentrated_load_stiffener_effective_section_8_5_10",
+      "signature": "(web_thickness_mm: 'float', elastic_modulus_n_mm2: 'float', design_yield_resistance_n_mm2: 'float', effective_web_height_mm: 'float', one_sided: 'bool', eccentricity_mm: 'float' = 0.0) -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "critical_local_web_stress_eq82",
+      "signature": "(c1: 'float', c2: 'float', design_yield_resistance_n_mm2: 'float', web_relative_slenderness: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "critical_normal_web_stress_eq81",
+      "signature": "(c_cr: 'float', design_yield_resistance_n_mm2: 'float', web_relative_slenderness: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "critical_web_shear_stress_eq83",
+      "signature": "(panel_aspect_ratio_mu: 'float', design_shear_resistance_n_mm2: 'float', plate_relative_slenderness: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "edge_stiffened_flange_limit_8_5_20",
+      "signature": "(base_limit: 'float', edge_stiffener_height_mm: 'float', effective_flange_outstand_mm: 'float', edge_stiffener_thickness_mm: 'float', flange_design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "flange_outstand_limit_eq97",
+      "signature": "(flange_design_yield_resistance_n_mm2: 'float', compressed_flange_stress_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "flange_restraint_parameter_eq84",
+      "signature": "(beta_factor: 'float', flange_width_mm: 'float', effective_web_height_mm: 'float', flange_thickness_mm: 'float', web_thickness_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "flexible_web_route_8_5_16",
+      "signature": "(web_relative_slenderness: 'float', design_yield_resistance_n_mm2: 'float', compressed_flange_stress_n_mm2: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "intermediate_stiffener_panel_length_8_5_13",
+      "signature": "(transverse_panel_length_mm: 'float', intermediate_stiffener_spacing_mm: 'float | None') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "longitudinal_stiffener_required_8_5_11",
+      "signature": "(web_relative_slenderness: 'float', design_yield_resistance_n_mm2: 'float', compressed_flange_stress_n_mm2: 'float', normal_stress_buckling_not_satisfied: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "lower_plate_critical_normal_eq95",
+      "signature": "(design_yield_resistance_n_mm2: 'float', lower_plate_relative_slenderness: 'float', plate_1_height_mm: 'float', effective_web_height_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "lower_plate_relative_slenderness_eq96",
+      "signature": "(lower_plate_height_mm: 'float', web_thickness_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "lower_plate_utilization_eq94",
+      "signature": "(sigma_n_mm2: 'float', sigma_local_2_n_mm2: 'float', tau_n_mm2: 'float', plate_1_height_mm: 'float', effective_web_height_mm: 'float', sigma_cr_2_n_mm2: 'float', sigma_local_cr_2_n_mm2: 'float', tau_cr_2_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "panel_check_routing_8_5_5",
+      "signature": "(panel_ratio: 'float', local_stress_present: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "preliminary_web_check_exemption_8_5_1",
+      "signature": "(web_relative_slenderness: 'float', local_stress_present: 'bool', double_sided_flange_welds: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "support_stiffener_effective_section_8_5_17",
+      "signature": "(web_thickness_mm: 'float', elastic_modulus_n_mm2: 'float', design_yield_resistance_n_mm2: 'float', effective_web_height_mm: 'float', lower_flange_width_mm: 'float', stiffener_projection_mm: 'float | None') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "support_stiffener_end_resistance_8_5_17",
+      "signature": "(end_arrangement: 'str', projection_a_mm: 'float', plate_thickness_mm: 'float', bearing_resistance_n_mm2: 'float', compression_resistance_n_mm2: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "symmetric_web_buckling_utilization_eq80",
+      "signature": "(sigma_n_mm2: 'float', sigma_local_n_mm2: 'float', tau_n_mm2: 'float', sigma_cr_n_mm2: 'float', sigma_local_cr_n_mm2: 'float', tau_cr_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "table_14_c1",
+      "signature": "(rho: 'float', panel_ratio: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "table_15_c2",
+      "signature": "(delta: 'float', panel_ratio: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "table_16_c_cr",
+      "signature": "(panel_ratio: 'float', table_12_value_when_not_above_0_8: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "table_17_c_cr",
+      "signature": "(alpha: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "table_18_alpha",
+      "signature": "(shear_ratio_tau_over_rsw: 'float', web_relative_slenderness: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "table_19_stiffener_inertias",
+      "signature": "(plate_1_height_ratio: 'float', panel_length_mm: 'float', effective_web_height_mm: 'float', web_thickness_mm: 'float') -> 'dict[str, float | None]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "transverse_stiffener_dimensions_8_5_9",
+      "signature": "(full_web_height_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float', one_sided: 'bool') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "transverse_stiffener_requirements_8_5_9",
+      "signature": "(section_class: 'int', web_relative_slenderness: 'float', moving_flange_load_present: 'bool', plastic_deformation_region: 'bool', effective_web_height_mm: 'float', class_1_extended_spacing_conditions_met: 'bool' = False) -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "upper_plate_critical_local_eq92",
+      "signature": "(psi: 'float', panel_aspect_ratio_mu_1: 'float', design_yield_resistance_n_mm2: 'float', web_relative_slenderness: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "upper_plate_critical_normal_no_local_eq90",
+      "signature": "(design_yield_resistance_n_mm2: 'float', plate_1_relative_slenderness: 'float', plate_1_height_mm: 'float', effective_web_height_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "upper_plate_critical_normal_with_local_eq91",
+      "signature": "(psi: 'float', design_yield_resistance_n_mm2: 'float', plate_1_relative_slenderness: 'float', plate_1_height_mm: 'float', effective_web_height_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "upper_plate_psi_and_slenderness_eq93",
+      "signature": "(panel_length_mm: 'float', plate_1_height_mm: 'float', web_thickness_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_member_local_stability",
+      "name": "upper_plate_utilization_eq89",
+      "signature": "(sigma_n_mm2: 'float', sigma_local_n_mm2: 'float', tau_n_mm2: 'float', sigma_cr_1_n_mm2: 'float', sigma_local_cr_1_n_mm2: 'float', tau_cr_1_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "annex_e1_base_coefficients",
+      "signature": "(section_type: 'str', flange_to_web_area_ratio: 'float | None', minor_axis_moment_is_zero: 'bool') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "annex_e1_design_coefficients",
+      "signature": "(section_type: 'str', flange_to_web_area_ratio: 'float | None', minor_axis_moment_is_zero: 'bool', equivalent_load_safety_factor: 'float') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "annex_e1_plastic_coefficient_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "apply_annex_e1_load_factor_cap",
+      "signature": "(coefficient: 'float', equivalent_load_safety_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "apply_bolt_hole_factor",
+      "signature": "(base_utilization_or_shear_stress: 'float', bolt_hole_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "bending_member_class_requirements",
+      "signature": "(member_class: 'int', load_is_static: 'bool', is_crane_runway_beam: 'bool', is_bimetal_beam: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "biaxial_redistribution_route",
+      "signature": "(redistribution_completed_in_x_plane: 'bool', redistribution_completed_in_y_plane: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "bimetal_bending_applicability",
+      "signature": "(section_family: 'str', has_two_symmetry_axes: 'bool', required_clause_checks_confirmed: 'bool', shear_stress_x_n_mm2: 'float', web_design_shear_resistance_n_mm2: 'float', shear_stress_y_n_mm2: 'float', flange_design_shear_resistance_n_mm2: 'float', is_support_section: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "bimetal_bending_utilization_eq59",
+      "signature": "(moment_x_n_mm: 'float', coefficient_c_xr: 'float', shear_reduction_beta_r: 'float', net_section_modulus_x_mm3: 'float', web_design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "bimetal_biaxial_bending_utilization_eq60",
+      "signature": "(moment_x_n_mm: 'float', moment_y_n_mm: 'float', coefficient_c_xr: 'float', coefficient_c_yr: 'float', shear_reduction_beta_r: 'float', net_section_modulus_x_mm3: 'float', net_section_modulus_y_mm3: 'float', web_design_yield_resistance_n_mm2: 'float', flange_design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "bimetal_major_axis_coefficient_eq61",
+      "signature": "(flange_reference_coefficient_c_xf: 'float', flange_to_web_area_ratio: 'float', flange_to_web_yield_resistance_ratio: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "bimetal_minor_axis_coefficient",
+      "signature": "(section_family: 'str', flange_to_web_yield_resistance_ratio: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "bimetal_shear_reduction_factor_eq62",
+      "signature": "(shear_stress_x_n_mm2: 'float', web_design_shear_resistance_n_mm2: 'float', flange_to_web_area_ratio: 'float', flange_to_web_yield_resistance_ratio: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "bolt_hole_factor_eq45",
+      "signature": "(hole_pitch_mm: 'float', hole_diameter_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "class_3_plastic_hinge_route",
+      "signature": "(clause_8_2_5_confirmed: 'bool', clause_8_4_6_confirmed: 'bool', clause_8_5_8_confirmed: 'bool', clause_8_5_9_confirmed: 'bool', clause_8_5_18_confirmed: 'bool', maximum_moment_sections_include_shear_effect: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "constrained_torsion_coefficient_table_10a",
+      "signature": "(major_axis_normalized_ratio: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "constrained_torsion_utilization_eq53",
+      "signature": "(moment_x_n_mm: 'float', bimoment_n_mm2: 'float', coefficient_c_x: 'float', shear_reduction_beta: 'float', minimum_net_section_modulus_x_mm3: 'float', coefficient_c_omega: 'float', minimum_net_sectorial_section_modulus_mm4: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "continuous_beam_partial_redistribution_applicability",
+      "signature": "(adjacent_span_1_mm: 'float', adjacent_span_2_mm: 'float', constant_section: 'bool', doubly_symmetric_section: 'bool', required_clause_checks_confirmed: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "effective_load_length_by_case",
+      "signature": "(figure_6_case: 'str', bearing_width_mm: 'float | None', flange_and_weld_or_fillet_height_mm: 'float | None', distribution_coefficient_psi: 'float | None', flange_and_rail_inertia_mm4: 'float | None', web_thickness_mm: 'float | None') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "effective_load_length_crane_eq49",
+      "signature": "(distribution_coefficient_psi: 'float', flange_and_rail_inertia_mm4: 'float', web_thickness_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "effective_load_length_eq48",
+      "signature": "(bearing_width_mm: 'float', flange_and_weld_or_fillet_height_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "effective_moment_by_end_condition",
+      "signature": "(end_condition: 'str', candidate_moments_n_mm: 'Sequence[float]', candidate_distances_mm: 'Sequence[float] | None', span_length_mm: 'float | None') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "effective_moment_hinged_end_eq57",
+      "signature": "(end_span_simple_beam_moments_n_mm: 'Sequence[float]', distances_to_end_support_mm: 'Sequence[float]', end_span_length_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "effective_moment_intermediate_span_eq58",
+      "signature": "(maximum_intermediate_simple_beam_moment_n_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "elastic_bending_utilization_eq41",
+      "signature": "(bending_moment_n_mm: 'float', minimum_net_section_modulus_mm3: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "elastic_combined_normal_utilization_eq43",
+      "signature": "(moment_x_n_mm: 'float', moment_y_n_mm: 'float', bimoment_n_mm2: 'float', net_inertia_x_mm4: 'float', net_inertia_y_mm4: 'float', net_sectorial_inertia_mm6: 'float', point_y_mm: 'float', point_x_mm: 'float', sectorial_coordinate_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "elastic_shear_utilization_eq42",
+      "signature": "(shear_force_n: 'float', first_moment_area_mm3: 'float', gross_second_moment_area_mm4: 'float', web_thickness_mm: 'float', design_shear_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "elastic_web_equivalent_stress_checks_eq44",
+      "signature": "(longitudinal_normal_stress_n_mm2: 'float', transverse_normal_stress_n_mm2: 'float', shear_stress_n_mm2: 'float', design_yield_resistance_n_mm2: 'float', design_shear_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'dict[str, float | bool]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "local_web_compression_stress_eq47",
+      "signature": "(concentrated_force_n: 'float', effective_load_length_mm: 'float', web_thickness_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "local_web_compression_utilization_eq46",
+      "signature": "(local_compressive_stress_n_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "plastic_bending_applicability",
+      "signature": "(member_class: 'int', section_family: 'str', normative_yield_resistance_n_mm2: 'float', shear_stress_x_n_mm2: 'float', design_shear_resistance_n_mm2: 'float', required_clause_checks_confirmed: 'bool', is_support_section: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "plastic_bending_utilization_eq50",
+      "signature": "(moment_x_n_mm: 'float', coefficient_c_x: 'float', shear_reduction_beta: 'float', minimum_net_section_modulus_x_mm3: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "plastic_biaxial_bending_utilization_eq51",
+      "signature": "(moment_x_n_mm: 'float', moment_y_n_mm: 'float', coefficient_c_x: 'float', coefficient_c_y: 'float', shear_reduction_beta: 'float', minimum_net_section_modulus_x_mm3: 'float', minimum_net_section_modulus_y_mm3: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "plastic_shear_reduction_factor_eq52",
+      "signature": "(shear_stress_x_n_mm2: 'float', design_shear_resistance_n_mm2: 'float', flange_to_web_area_ratio: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "pure_bending_modified_coefficients",
+      "signature": "(coefficient_c_x: 'float', coefficient_c_y: 'float') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "redistributed_design_moment_eq56",
+      "signature": "(maximum_elastic_moment_n_mm: 'float', effective_moment_n_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "support_shear_x_utilization_eq54",
+      "signature": "(shear_force_x_n: 'float', web_area_mm2: 'float', design_shear_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "support_shear_y_utilization_eq55",
+      "signature": "(shear_force_y_n: 'float', one_flange_area_mm2: 'float', design_shear_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "table_10a_constrained_torsion_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bending_members",
+      "name": "variable_section_plastic_routing",
+      "signature": "(is_most_unfavourable_moment_shear_section: 'bool', reduced_coefficients_explicitly_selected: 'bool') -> 'dict[str, str]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "bolt_bearing_capacity_eq187",
+      "signature": "(bearing_resistance_n_mm2: 'float', bolt_diameter_mm: 'float', summed_bearing_thickness_mm: 'float', connection_factor: 'float', working_condition_factor: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "bolt_count_detailing_adjustment_14_2_14",
+      "signature": "(calculated_bolt_count: 'int', connection_detail: 'str')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "bolt_group_force_distribution_14_2_11_12",
+      "signature": "(bolt_coordinates_mm: 'Sequence[Sequence[float]]', force_x_n: 'float', force_y_n: 'float', moment_z_n_mm: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "bolt_shear_capacity_eq186",
+      "signature": "(bolt_shear_resistance_n_mm2: 'float', gross_bolt_area_mm2: 'float', shear_planes: 'int', connection_factor: 'float', working_condition_factor: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "bolt_shear_tension_interaction_eq190",
+      "signature": "(bolt_shear_force_n: 'float', bolt_tension_force_n: 'float', shear_capacity_n: 'float', tension_capacity_n: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "bolt_tension_capacity_eq188",
+      "signature": "(bolt_tension_resistance_n_mm2: 'float', net_thread_area_mm2: 'float', working_condition_factor: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "bolted_and_friction_external_requirements",
+      "signature": "()"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "friction_bolt_diameter_check_14_3_7",
+      "signature": "(summed_shifted_thickness_mm: 'float', bolt_diameter_mm: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "friction_connection_effective_area_14_3_11",
+      "signature": "(gross_area_mm2: 'float', net_area_mm2: 'float', load_type: 'str')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "friction_connection_washer_requirement_14_3_10",
+      "signature": "(hole_bolt_clearance_mm: 'float', steel_ultimate_resistance_n_mm2: 'float', *, enlarged_head_and_nut: 'bool')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "friction_connection_working_factor_14_3_4",
+      "signature": "(bolt_count: 'int')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "friction_plane_capacity_eq191",
+      "signature": "(bolt_tension_resistance_n_mm2: 'float', net_thread_area_mm2: 'float', friction_coefficient: 'float', reliability_factor_gamma_h: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "friction_tension_reduction_14_3_6",
+      "signature": "(connection_factor_gamma_b: 'float', tensile_force_per_bolt_n: 'float', bolt_tension_resistance_n_mm2: 'float', net_thread_area_mm2: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "long_joint_reduction_factor_14_2_10",
+      "signature": "(joint_length_along_shear_mm: 'float', hole_diameter_mm: 'float', *, load_applied_over_full_length: 'bool' = False)"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "required_bolt_count_eq189",
+      "signature": "(design_force_n: 'float', shear_capacity_n: 'float', bearing_capacity_n: 'float', tension_capacity_n: 'float', *, applicable_modes: 'Sequence[str]' = ('shear', 'bearing'), long_joint_reduction_factor: 'float' = 1.0)"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "required_friction_bolt_count_eq192",
+      "signature": "(design_shear_force_n: 'float', friction_plane_capacity_n: 'float', friction_planes: 'int', working_condition_factor: 'float', *, maximum_search_bolts: 'int' = 10000)"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "table_40_catalog",
+      "signature": "()"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "table_40_check_layout",
+      "signature": "(actual_center_spacing_mm: 'float', actual_edge_along_force_mm: 'float', actual_edge_transverse_force_mm: 'float', requirements: 'dict[str, float]', *, friction_connection: 'bool' = False)"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "table_40_distance_requirements",
+      "signature": "(hole_diameter_mm: 'float', outer_element_thickness_mm: 'float', normative_yield_resistance_n_mm2: 'float', *, friction_connection: 'bool' = False, friction_planes: 'int' = 2, edge_type: 'str' = 'cut', stress_state: 'str' = 'tension', row_location: 'str' = 'middle_or_edge_with_angles', transverse_row_spacing_mm: 'float' = 0.0)"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "table_40_hole_diameter",
+      "signature": "(bolt_diameter_mm: 'float', accuracy_class: 'str', *, overhead_line_switchyard_or_contact_network: 'bool' = False, clearance_mm: 'float | None' = None)"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "table_41_catalog",
+      "signature": "()"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "table_41_connection_factor",
+      "signature": "(accuracy_class: 'str', *, multi_bolt: 'bool', bearing_geometry: 'str' = 'standard', interpolation_fraction: 'float | None' = None)"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "table_42_catalog",
+      "signature": "()"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.bolted_and_friction_connections",
+      "name": "table_42_friction_parameters",
+      "signature": "(surface_treatment: 'str', tightening_control: 'str', load_type: 'str', hole_bolt_clearance_mm: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "brittle_fracture_factor_register_clause_13_1",
+      "signature": "() -> 'dict[str, str]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "brittle_fracture_prevention_checklist_clause_13_1_13_2",
+      "signature": "(checks: 'dict[str, bool]') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "butt_weld_axial_utilization_eq175",
+      "signature": "(axial_force_n: 'float', thickness_mm: 'float', design_weld_length_mm: 'float', butt_weld_design_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "butt_weld_combined_stress_clause_14_1_15",
+      "signature": "(sigma_wx_n_mm2: 'float', sigma_wy_n_mm2: 'float', tau_wxy_n_mm2: 'float', butt_weld_yield_resistance_n_mm2: 'float', butt_weld_shear_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'dict[str, float | bool]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "butt_weld_resistance_branch_clause_14_1_14",
+      "signature": "(full_penetration: 'bool', quality_control_confirmed: 'bool', ultimate_branch_requested: 'bool') -> 'dict[str, str | bool]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "combined_connection_force_distribution_clause_14_1_13",
+      "signature": "(total_shear_force_n: 'float', friction_connection_capacity_n: 'float', weld_capacity_n: 'float', welding_after_bolt_tightening_confirmed: 'bool', controlled_tension_bolts_confirmed: 'bool') -> 'dict[str, float | bool]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "combined_fillet_weld_utilizations_eq182",
+      "signature": "(tau_f_n_mm2: 'float', tau_z_n_mm2: 'float', weld_metal_resistance_n_mm2: 'float', fusion_boundary_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'dict[str, float | bool]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "effective_butt_weld_length_clause_14_1_14",
+      "signature": "(full_weld_length_mm: 'float', thickness_mm: 'float', runout_tabs_used: 'bool') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "end_weld_minimum_length_clause_14_1_10",
+      "signature": "(narrower_plate_width_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "fillet_weld_axial_fusion_utilization_eq177",
+      "signature": "(axial_force_n: 'float', beta_z: 'float', weld_leg_mm: 'float', design_weld_length_mm: 'float', fusion_boundary_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "fillet_weld_axial_metal_utilization_eq176",
+      "signature": "(axial_force_n: 'float', beta_f: 'float', weld_leg_mm: 'float', design_weld_length_mm: 'float', weld_metal_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "fillet_weld_effective_length_clause_14_1_16",
+      "signature": "(total_segment_lengths_mm: 'list[float]') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "fillet_weld_governing_plane_clause_14_1_16",
+      "signature": "(beta_f: 'float', weld_metal_resistance_n_mm2: 'float', beta_z: 'float', fusion_boundary_resistance_n_mm2: 'float') -> 'str'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "fillet_weld_in_plane_moment_fusion_utilization_eq181",
+      "signature": "(moment_n_mm: 'float', x_mm: 'float', y_mm: 'float', inertia_zx_mm4: 'float', inertia_zy_mm4: 'float', fusion_boundary_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "fillet_weld_in_plane_moment_metal_utilization_eq180",
+      "signature": "(moment_n_mm: 'float', x_mm: 'float', y_mm: 'float', inertia_fx_mm4: 'float', inertia_fy_mm4: 'float', weld_metal_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "fillet_weld_out_of_plane_moment_fusion_utilization_eq179",
+      "signature": "(moment_n_mm: 'float', fusion_section_modulus_mm3: 'float', fusion_boundary_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "fillet_weld_out_of_plane_moment_metal_utilization_eq178",
+      "signature": "(moment_n_mm: 'float', weld_section_modulus_mm3: 'float', weld_metal_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "intermittent_weld_applicability_clause_14_1_10",
+      "signature": "(intermittent_weld_requested: 'bool', joint_transfers_force: 'bool', corrosion_or_sealing_requires_continuity: 'bool') -> 'dict[str, str | bool]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "intermittent_weld_spacing_limit_clause_14_1_10",
+      "signature": "(thinner_element_thickness_mm: 'float', member_state: 'str', construction_group: 'int') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "lamellar_tearing_adjusted_risk_clause_13_5",
+      "signature": "(base_risk_percent: 'float', through_thickness_action: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "lamellar_tearing_applicability_clause_13_3",
+      "signature": "(steel_grade_number: 'float', plate_thickness_mm: 'float', joint_type: 'str', through_thickness_tension: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "lamellar_tearing_check_clause_13_5",
+      "signature": "(adjusted_risk_percent: 'float', z_quality_group: 'str') -> 'dict[str, float | str | bool]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "lamellar_tearing_risk_sum_eq174",
+      "signature": "(connection_form_factor_percent: 'float', plate_thickness_factor_percent: 'float', weld_leg_factor_percent: 'float', restraint_factor_percent: 'float', welding_technology_factor_percent: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "maximum_fillet_weld_leg_clause_14_1_7",
+      "signature": "(thinner_element_thickness_mm: 'float', rounded_rolled_edge: 'bool' = False) -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "maximum_flank_weld_length_clause_14_1_7",
+      "signature": "(beta_f: 'float', weld_leg_mm: 'float', force_acts_along_full_weld: 'bool') -> 'float | None'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "minimum_fillet_weld_design_length_clause_14_1_7",
+      "signature": "(weld_leg_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "minimum_fillet_weld_leg_table38",
+      "signature": "(connection_type: 'str', thicker_element_thickness_mm: 'float', thinner_element_thickness_mm: 'float', steel_yield_strength_n_mm2: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "minimum_lap_length_clause_14_1_7",
+      "signature": "(thinner_element_thickness_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "one_sided_fillet_weld_route_clause_14_1_9",
+      "signature": "(one_sided_weld: 'bool', cyclic_or_dynamic_action: 'bool', root_tension_or_peeling_possible: 'bool') -> 'dict[str, str | bool]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "perimeter_or_plug_weld_route_clause_14_1_11_14_1_12",
+      "signature": "(weld_type: 'str', perimeter_is_closed: 'bool') -> 'dict[str, str | bool]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "plug_weld_requirements_clause_14_1_12",
+      "signature": "(drilled_element_thickness_mm: 'float', hole_diameter_mm: 'float | None' = None, slot_width_mm: 'float | None' = None, slot_length_mm: 'float | None' = None) -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "required_z_quality_group_clause_13_5",
+      "signature": "(construction_group: 'int', consequence_class: 'str', flange_connection_or_normal_force: 'bool' = False) -> 'str'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "resultant_shear_stress_eq183",
+      "signature": "(tau_n_n_mm2: 'float', tau_mx_n_mm2: 'float', tau_v_n_mm2: 'float', tau_my_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "spot_weld_beta_clause_14_1_20",
+      "signature": "(first_thickness_mm: 'float', second_thickness_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "spot_weld_governing_capacity_clause_14_1_20",
+      "signature": "(first_thickness_mm: 'float', second_thickness_mm: 'float', spot_diameter_mm: 'float', normative_weld_metal_ultimate_resistance_n_mm2: 'float', normative_connected_steel_ultimate_resistance_n_mm2: 'float') -> 'dict[str, float | str]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "spot_weld_shear_capacity_eq184",
+      "signature": "(spot_diameter_mm: 'float', normative_weld_metal_ultimate_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "spot_weld_tearout_capacity_eq185",
+      "signature": "(beta: 'float', spot_diameter_mm: 'float', thinner_element_thickness_mm: 'float', normative_connected_steel_ultimate_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "table_37_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "table_37_connection_form_factor",
+      "signature": "(connection_form_case: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "table_37_plate_thickness_factor",
+      "signature": "(plate_thickness_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "table_37_restraint_factor",
+      "signature": "(restraint_level: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "table_37_weld_leg_factor",
+      "signature": "(weld_leg_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "table_37_welding_technology_factor",
+      "signature": "(pass_count: 'str', weld_sequence: 'str', preheat: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "table_38_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "table_39_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "table_39_fillet_weld_coefficients",
+      "signature": "(welding_process: 'str', weld_position: 'str', weld_leg_mm: 'float') -> 'dict[str, float | str]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "through_thickness_property_test_route_clause_13_4",
+      "signature": "(test_result_available: 'bool') -> 'dict[str, str | bool]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "welded_connection_detailing_checklist_clause_14_1_1_14_1_6",
+      "signature": "(checks: 'dict[str, bool]') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.brittle_fracture_and_welded_connections",
+      "name": "welding_consumable_compatibility_clause_14_1_8",
+      "signature": "(welding_method: 'str', weld_metal_design_shear_resistance_n_mm2: 'float', fusion_boundary_design_shear_resistance_n_mm2: 'float', beta_f: 'float', beta_z: 'float', steel_yield_strength_n_mm2: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "batten_bending_moment_n_mm",
+      "signature": "(one_face_fictitious_shear_n: 'float', batten_pitch_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "batten_branch_slenderness_check",
+      "signature": "(branch_relative_slenderness: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "batten_shear_force_n",
+      "signature": "(one_face_fictitious_shear_n: 'float', batten_pitch_mm: 'float', branch_axis_spacing_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "battened_effective_slenderness_type_1",
+      "signature": "(whole_member_slenderness_y: 'float', branch_slenderness_1: 'float', branch_inertia_axis_1_mm4: 'float', branch_axis_spacing_b_mm: 'float', batten_inertia_mm4: 'float', batten_pitch_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "battened_effective_slenderness_type_2",
+      "signature": "(whole_member_max_slenderness: 'float', branch_slenderness_1: 'float', branch_slenderness_2: 'float', branch_inertia_axis_1_mm4: 'float', branch_inertia_axis_2_mm4: 'float', branch_axis_spacing_b1_mm: 'float', branch_axis_spacing_b2_mm: 'float', batten_inertia_plane_1_mm4: 'float', batten_inertia_plane_2_mm4: 'float', batten_pitch_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "battened_effective_slenderness_type_3",
+      "signature": "(whole_member_max_slenderness: 'float', branch_slenderness_3: 'float', branch_inertia_axis_3_mm4: 'float', branch_axis_spacing_b_mm: 'float', batten_inertia_mm4: 'float', batten_pitch_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "built_up_axial_strength_utilization",
+      "signature": "(axial_force_n: 'float', total_net_area_mm2: 'float', resistance_branch: 'str', design_yield_resistance_n_mm2: 'float', design_ultimate_resistance_n_mm2: 'float', ultimate_resistance_safety_factor: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "built_up_stability_method",
+      "signature": "(panel_count: 'int', connector_system: 'str') -> 'str'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "close_contact_connection_spacing_check",
+      "signature": "(connection_spacing_mm: 'float', selected_radius_of_gyration_mm: 'float', force_state: 'str', intermediate_connection_count: 'int') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "column_branch_spacer_fictitious_shear_n",
+      "signature": "(branch_force_1_n: 'float', branch_force_2_n: 'float', elastic_modulus_n_mm2: 'float', design_yield_resistance_n_mm2: 'float', stability_coefficient_phi: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "cross_lattice_additional_diagonal_force_n",
+      "signature": "(one_branch_force_n: 'float', one_diagonal_area_mm2: 'float', one_branch_area_mm2: 'float', coefficient_alpha_2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "cross_lattice_alpha_2",
+      "signature": "(diagonal_length_d_mm: 'float', panel_length_mm: 'float', branch_axis_spacing_b_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "distribute_fictitious_shear",
+      "signature": "(fictitious_shear_n: 'float', distribution_mode: 'str', connector_system_count: 'int') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "fictitious_shear_force_n",
+      "signature": "(axial_force_n: 'float', elastic_modulus_n_mm2: 'float', design_yield_resistance_n_mm2: 'float', stability_coefficient_phi: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "lattice_branch_slenderness_assessment",
+      "signature": "(branch_relative_slenderness: 'float', member_effective_relative_slenderness: 'float', clause_7_2_5_check_performed: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "lattice_branch_stability_coefficient",
+      "signature": "(branch_relative_slenderness: 'float', branch_section_type: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "lattice_built_up_stability_utilization",
+      "signature": "(axial_force_n: 'float', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', member_effective_relative_slenderness: 'float', branch_relative_slenderness: 'float', branch_section_type: 'str') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "lattice_diagonal_force_n",
+      "signature": "(one_plane_fictitious_shear_n: 'float', diagonal_length_d_mm: 'float', branch_axis_spacing_b_mm: 'float', lattice_force_coefficient_alpha_1: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "lattice_effective_slenderness_type_1",
+      "signature": "(whole_member_slenderness_y: 'float', total_area_mm2: 'float', diagonal_area_plane_1_mm2: 'float', diagonal_length_d_mm: 'float', branch_axis_spacing_b_mm: 'float', panel_length_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "lattice_effective_slenderness_type_2",
+      "signature": "(whole_member_max_slenderness: 'float', total_area_mm2: 'float', diagonal_area_plane_1_mm2: 'float', diagonal_area_plane_2_mm2: 'float', diagonal_length_d1_mm: 'float', diagonal_length_d2_mm: 'float', branch_axis_spacing_b1_mm: 'float', branch_axis_spacing_b2_mm: 'float', panel_length_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "lattice_effective_slenderness_type_3",
+      "signature": "(whole_member_max_slenderness: 'float', total_area_mm2: 'float', diagonal_area_one_face_mm2: 'float', diagonal_length_d_mm: 'float', branch_axis_spacing_b_mm: 'float', panel_length_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "reduced_length_brace_design_force_n",
+      "signature": "(fictitious_shear_n: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_axial_members",
+      "name": "table_8_formula_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "battened_branch_check_route_clause_9_3_4",
+      "signature": "(additional_force_n: 'float', local_bending_moment_n_mm: 'float', actual_or_fictitious_shear_n: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "biaxial_branch_additional_force_eq124",
+      "signature": "(moment_y_n_mm: 'float', spacing_b1_mm: 'float', moment_x_n_mm: 'float', spacing_b2_mm: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "branch_additional_force_x_type_2",
+      "signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "branch_additional_force_x_type_3",
+      "signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "branch_additional_force_y_type_2",
+      "signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "branch_additional_force_y_types_1_3",
+      "signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "branch_force_with_additional_component",
+      "signature": "(base_branch_axial_force_n: 'float', additional_force_n: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "built_up_relative_eccentricity_eq123",
+      "signature": "(eccentricity_mm: 'float', gross_area_mm2: 'float', compressed_branch_axis_distance_mm: 'float', free_axis_inertia_mm4: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "built_up_whole_member_stability_clause_9_3_2",
+      "signature": "(relative_effective_slenderness: 'float', relative_eccentricity_m: 'float', central_compression_phi: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "combined_flange_relative_slenderness",
+      "signature": "(effective_flange_outstand_mm: 'float', flange_thickness_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "combined_web_relative_slenderness",
+      "signature": "(effective_web_height_mm: 'float', web_thickness_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "connector_design_shear_clause_9_3_7",
+      "signature": "(actual_shear_force_n: 'float', fictitious_shear_force_n: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "edge_return_flange_limit_clause_9_4_8",
+      "signature": "(base_flange_limit: 'float', edge_return_applicable: 'bool')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "flange_limit_eq132",
+      "signature": "(central_compression_flange_limit: 'float', member_relative_slenderness_x: 'float', relative_eccentricity_mx: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "flange_limit_eq133",
+      "signature": "(central_compression_flange_limit: 'float', member_relative_slenderness_x: 'float', relative_eccentricity_mx: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "flange_limit_eq134",
+      "signature": "(member_relative_slenderness_x: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "flange_limit_eq135",
+      "signature": "(member_relative_slenderness_y: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "longitudinal_stiffener_route_clause_9_4_5",
+      "signature": "(longitudinal_stiffener_inertia_mm4: 'float', effective_web_height_mm: 'float', web_thickness_mm: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "reduced_area_route_clause_9_4_6",
+      "signature": "(section_type: 'int', alpha: 'float', actual_web_slenderness: 'float', limiting_web_slenderness: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "table_22_catalog",
+      "signature": "()"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "table_22_stress_parameters",
+      "signature": "(sigma_1_n_mm2: 'float', sigma_2_n_mm2: 'float', average_shear_stress_n_mm2: 'float', c_cr: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "table_22_type_1_limit",
+      "signature": "(member_relative_slenderness_x: 'float', relative_eccentricity_mx: 'float', central_compression_limit_m0: 'float', bending_member_limit_m20: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "table_22_type_2_limit",
+      "signature": "(alpha: 'float', type_1_limit_at_alpha_0_5: 'float', central_compression_limit_at_alpha_0_5: 'float', beta: 'float', c_cr: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', sigma_1_n_mm2: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "table_22_type_5_limit",
+      "signature": "(relative_eccentricity_my: 'float', central_compression_limit_m0: 'float', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', axial_force_n: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "table_23_catalog",
+      "signature": "()"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "table_23_limit",
+      "signature": "(section_type: 'int', central_compression_flange_limit: 'float', member_relative_slenderness_x: 'float', member_relative_slenderness_y: 'float', relative_eccentricity_mx: 'float', bending_member_limit_m20: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "tension_member_local_stability_route_clause_9_4_10",
+      "signature": "(compressive_stress_present: 'bool')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "three_sided_built_up_route_clause_9_3_5",
+      "signature": "(equilateral_constant_section_confirmed: 'bool')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "transverse_stiffener_route_clause_9_4_4",
+      "signature": "(wall_relative_slenderness_value: 'float', effective_web_height_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float', stiffener_arrangement: 'str', provided_stiffener_outstand_mm: 'float', geometrically_nonlinear_design: 'bool', solid_branch_of_built_up_column: 'bool')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "two_plane_limit_increase_clause_9_4_9",
+      "signature": "(stability_coefficients: 'list[float]', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', axial_force_n: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "two_solid_branch_route_clause_9_3_6",
+      "signature": "(moment_x_n_mm: 'float', branch_axial_force_n: 'float', branch_eccentricity_x_mm: 'float', moment_acts_in_one_branch_plane: 'bool')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "web_limit_adjustment_eq131",
+      "signature": "(web_limit_type_1: 'float', web_limit_type_2: 'float', axial_stability_utilization: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "web_limit_eq125",
+      "signature": "(member_relative_slenderness_x: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "web_limit_eq126",
+      "signature": "(member_relative_slenderness_x: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "web_limit_eq127",
+      "signature": "(alpha: 'float', beta: 'float', c_cr: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', sigma_1_n_mm2: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "web_limit_eq128",
+      "signature": "(type_2_web_limit: 'float', alpha: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "web_limit_eq129",
+      "signature": "(member_relative_slenderness_x: 'float', flange_width_mm: 'float', effective_web_height_mm: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_columns_and_combined_local_stability",
+      "name": "web_limit_eq130",
+      "signature": "(gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', axial_force_n: 'float')"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_flange_connections",
+      "name": "flange_shear_flow_t_n_mm",
+      "signature": "(transverse_shear_force_n: 'float', flange_static_moment_mm3: 'float', gross_section_moment_inertia_mm4: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_flange_connections",
+      "name": "full_penetration_web_weld_equivalence_14_4_1",
+      "signature": "(full_penetration_through_web_thickness: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_flange_connections",
+      "name": "local_load_line_pressure_v_n_mm",
+      "signature": "(load_factor_gamma_f: 'float', local_load_factor_gamma_f1: 'float', concentrated_load_n: 'float', effective_distribution_length_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_flange_connections",
+      "name": "moving_friction_utilization_eq198",
+      "signature": "(shear_flow_t_n_mm: 'float', local_pressure_v_n_mm: 'float', alpha: 'float', bolt_pitch_mm: 'float', friction_plane_capacity_n: 'float', friction_plane_count: 'int', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_flange_connections",
+      "name": "moving_fusion_boundary_utilization_eq197",
+      "signature": "(shear_flow_t_n_mm: 'float', local_pressure_v_n_mm: 'float', weld_coefficient_beta_z: 'float', weld_leg_mm: 'float', fusion_boundary_design_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_flange_connections",
+      "name": "moving_weld_metal_utilization_eq196",
+      "signature": "(shear_flow_t_n_mm: 'float', local_pressure_v_n_mm: 'float', weld_coefficient_beta_f: 'float', weld_leg_mm: 'float', weld_metal_design_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_flange_connections",
+      "name": "multilayer_flange_sheet_attachment_force_14_4_2",
+      "signature": "(sheet_section_force_capacity_n: 'float', attachment_segment: 'str') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_flange_connections",
+      "name": "stationary_friction_utilization_eq195",
+      "signature": "(shear_flow_t_n_mm: 'float', bolt_pitch_mm: 'float', friction_plane_capacity_n: 'float', friction_plane_count: 'int', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_flange_connections",
+      "name": "stationary_fusion_boundary_utilization_eq194",
+      "signature": "(shear_flow_t_n_mm: 'float', weld_line_count: 'int', weld_coefficient_beta_z: 'float', weld_leg_mm: 'float', fusion_boundary_design_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_flange_connections",
+      "name": "stationary_weld_metal_utilization_eq193",
+      "signature": "(shear_flow_t_n_mm: 'float', weld_line_count: 'int', weld_coefficient_beta_f: 'float', weld_leg_mm: 'float', weld_metal_design_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_flange_connections",
+      "name": "table_43_alpha",
+      "signature": "(loaded_flange: 'str', *, web_edge_planed_to_loaded_upper_flange: 'bool') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_flange_connections",
+      "name": "table_43_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.built_up_beam_flange_connections",
+      "name": "table_43_load_route",
+      "signature": "(nominal_load_character: 'str', loaded_flange: 'str', *, transverse_stiffener_at_load: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_alpha_built_up_eq_zh5",
+      "signature": "(effective_length_mm: 'float', flange_thickness_mm: 'float', effective_profile_height_mm: 'float', flange_width_mm: 'float', web_thickness_mm: 'float', compression_flange_braced_in_span: 'bool') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_alpha_rolled_eq_zh4",
+      "signature": "(torsional_inertia_mm4: 'float', minor_axis_inertia_mm4: 'float', effective_length_mm: 'float', section_height_mm: 'float', compression_flange_braced_in_span: 'bool') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_beta_eq_zh12",
+      "signature": "(n_ratio: 'float', h1_mm: 'float', h_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_channel_phi_b",
+      "signature": "(phi_1: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_delta_eq_zh10",
+      "signature": "(n_ratio: 'float', beta_value: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_eta_eq_zh13",
+      "signature": "(n_ratio: 'float', i1_mm4: 'float', i2_mm4: 'float', effective_length_mm: 'float', h_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_flange_inertia_ratio_n_eq_zh8",
+      "signature": "(more_developed_flange_inertia_mm4: 'float', less_developed_flange_inertia_mm4: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_interpolate_psi_a_for_n",
+      "signature": "(n_ratio: 'float', psi_a_at_n_0_9: 'float', psi_a_at_n_1_0: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_monosymmetric_phi1_eq_zh6",
+      "signature": "(psi_a: 'float', iy_mm4: 'float', ix_mm4: 'float', h_mm: 'float', h1_mm: 'float', lef_mm: 'float', e_n_mm2: 'float', ry_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_monosymmetric_phi2_eq_zh7",
+      "signature": "(psi_a: 'float', iy_mm4: 'float', ix_mm4: 'float', h_mm: 'float', h2_mm: 'float', lef_mm: 'float', e_n_mm2: 'float', ry_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_mu_eq_zh11",
+      "signature": "(n_ratio: 'float', beta_value: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_phi1_eq_zh3",
+      "signature": "(psi: 'float', minor_axis_inertia_mm4: 'float', major_axis_inertia_mm4: 'float', section_height_mm: 'float', effective_length_mm: 'float', elastic_modulus_n_mm2: 'float', design_yield_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_phi_b_eq_zh1",
+      "signature": "(phi_1: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_phi_b_eq_zh2",
+      "signature": "(phi_1: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_psi_a_eq_zh9",
+      "signature": "(coefficient_b: 'float', coefficient_c: 'float', coefficient_d: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_symmetric_i_phi_b",
+      "signature": "(psi: 'float', minor_axis_inertia_mm4: 'float', major_axis_inertia_mm4: 'float', section_height_mm: 'float', effective_length_mm: 'float', elastic_modulus_n_mm2: 'float', design_yield_resistance_n_mm2: 'float') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_table_1_psi",
+      "signature": "(case_id: 'str', alpha: 'float', load_flange: 'str | None' = None) -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_table_2_psi",
+      "signature": "(load_case: 'str', load_flange: 'str', alpha: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_table_3_phi_b",
+      "signature": "(compressed_flange: 'str', phi_1: 'float', phi_2: 'float', n_ratio: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_table_4_b",
+      "signature": "(row_id: 'str', load_case: 'str', delta: 'float', mu: 'float', beta: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "annex_zh_table_5_c_d",
+      "signature": "(load_case: 'str', section_branch: 'str', eta: 'float | None' = None, alpha: 'float | None' = None) -> 'tuple[float, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "apply_less_developed_compressed_flange_modifier",
+      "signature": "(phi_2: 'float', n_ratio: 'float', effective_length_mm: 'float', less_developed_flange_width_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "apply_t_section_low_alpha_modifier",
+      "signature": "(psi_a: 'float', alpha: 'float', load_case: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "bimetal_crane_runway_strength_utilization",
+      "signature": "(major_moment_n_mm: 'float', horizontal_moment_n_mm: 'float', major_axis_coefficient_c_xr: 'float', shear_reduction_beta_r: 'float', major_net_section_modulus_mm3: 'float', upper_flange_minor_section_modulus_mm3: 'float', web_design_yield_resistance_n_mm2: 'float', flange_design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', has_two_symmetry_axes: 'bool') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "class_2_3_coefficient_eq77",
+      "signature": "(bending_moment_n_mm: 'float', minimum_net_section_modulus_mm3: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', shear_reduction_beta: 'float', plastic_coefficient_cx: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "class_2_3_stability_reduction_eq76",
+      "signature": "(c_1x: 'float', c_x: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "compressed_flange_equivalent_force_eq74",
+      "signature": "(compressed_flange_area_mm2: 'float', web_area_mm2: 'float', compressed_flange_design_resistance_n_mm2: 'float', web_design_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "compressed_flange_relative_slenderness",
+      "signature": "(effective_length_mm: 'float', flange_width_mm: 'float', compressed_flange_design_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "continuous_bracing_force_per_length_eq75",
+      "signature": "(fictitious_shear_force_n: 'float', beam_span_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "crane_runway_equivalent_stress_utilization_eq63",
+      "signature": "(beta_factor: 'float', sigma_x_n_mm2: 'float', sigma_local_x_n_mm2: 'float', sigma_local_y_n_mm2: 'float', tau_xy_n_mm2: 'float', tau_local_xy_n_mm2: 'float', design_yield_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "crane_runway_lateral_torsional_stability_utilization",
+      "signature": "(major_moment_n_mm: 'float', horizontal_moment_n_mm: 'float', bimoment_n_mm2: 'float', stability_coefficient_phi_b: 'float', compressed_major_section_modulus_mm3: 'float', upper_flange_minor_section_modulus_mm3: 'float', compressed_sectorial_section_modulus_mm4: 'float', design_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "crane_runway_local_torsional_moment_eq68",
+      "signature": "(load_factor: 'float', wheel_dynamic_factor: 'float', normative_wheel_load_n: 'float', eccentricity_mm: 'float', transverse_horizontal_load_n: 'float', rail_height_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "crane_runway_longitudinal_normal_utilization_eq64",
+      "signature": "(sigma_x_n_mm2: 'float', sigma_local_x_n_mm2: 'float', design_yield_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "crane_runway_shear_utilization_eq66",
+      "signature": "(tau_xy_n_mm2: 'float', tau_local_xy_n_mm2: 'float', tau_f_xy_n_mm2: 'float', design_shear_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "crane_runway_stress_components_eq67",
+      "signature": "(bending_moment_n_mm: 'float', net_section_modulus_mm3: 'float', load_factor: 'float', wheel_dynamic_factor: 'float', normative_wheel_load_n: 'float', effective_load_length_mm: 'float', web_thickness_mm: 'float', local_torsional_moment_n_mm: 'float', stiffener_spacing_mm: 'float', torsional_inertia_rail_and_flange_mm4: 'float', web_height_mm: 'float', shear_force_n: 'float') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "crane_runway_transverse_normal_utilization_eq65",
+      "signature": "(sigma_local_y_n_mm2: 'float', sigma_f_y_n_mm2: 'float', design_yield_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "discrete_bracing_fictitious_force",
+      "signature": "(equivalent_force_n: 'float', effective_length_mm: 'float', compressed_flange_radius_of_gyration_mm: 'float', elastic_modulus_n_mm2: 'float', design_yield_resistance_n_mm2: 'float') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "effective_length_by_restraint",
+      "signature": "(span_or_cantilever_length_mm: 'float', restraint_point_distances_mm: 'list[float] | None', is_cantilever: 'bool', compression_flange_restrained_at_tip: 'bool') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "lateral_stability_check_exemption",
+      "signature": "(rigid_continuous_deck: 'bool', actual_relative_flange_slenderness: 'float', limiting_relative_flange_slenderness: 'float', tension_to_compression_flange_width_ratio: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "lateral_torsional_combined_utilization_eq70",
+      "signature": "(major_moment_n_mm: 'float', minor_moment_n_mm: 'float', bimoment_n_mm2: 'float', stability_coefficient_phi_b: 'float', compressed_major_section_modulus_mm3: 'float', compressed_minor_section_modulus_mm3: 'float', compressed_sectorial_section_modulus_mm4: 'float', design_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "lateral_torsional_stability_utilization_eq69",
+      "signature": "(bending_moment_n_mm: 'float', stability_coefficient_phi_b: 'float', compressed_fibre_section_modulus_mm3: 'float', design_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "table_11_limit",
+      "signature": "(load_position: 'str', flange_width_mm: 'float', flange_thickness_mm: 'float', flange_axis_spacing_mm: 'float', friction_flange_connections: 'bool' = False, compressed_flange_design_resistance_n_mm2: 'float | None' = None, compressed_flange_stress_n_mm2: 'float | None' = None) -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "table_11_limit_eq71",
+      "signature": "(flange_width_mm: 'float', flange_thickness_mm: 'float', flange_axis_spacing_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "table_11_limit_eq72",
+      "signature": "(flange_width_mm: 'float', flange_thickness_mm: 'float', flange_axis_spacing_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "table_11_limit_eq73",
+      "signature": "(flange_width_mm: 'float', flange_thickness_mm: 'float', flange_axis_spacing_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "table_12_c_cr_coefficient",
+      "signature": "(connection_type: 'str', delta_value: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.crane_runway_and_bending_stability",
+      "name": "table_13_beta",
+      "signature": "(case_id: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "actual_slenderness",
+      "signature": "(effective_length: 'float', radius_of_gyration: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "built_up_column_branch_effective_length_in_plane_eq138",
+      "signature": "(segment_length: 'float', adjacent_force_ratio_alpha: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "built_up_column_branch_effective_length_out_of_plane_eq139",
+      "signature": "(braced_length: 'float', section_count_k: 'int', other_force_sum_ratio_beta: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "column_effective_length_eq140",
+      "signature": "(column_length: 'float', effective_length_factor_mu: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "compressed_limit_alpha",
+      "signature": "(axial_force_n: 'float', stability_coefficient_phi: 'float', area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "frame_deformation_reduction_factor_eq147",
+      "signature": "(relative_slenderness: 'float', moment_n_mm: 'float', nonsway_reference_moment_n_mm: 'float', area_mm2: 'float', axial_force_n: 'float', compressed_fibre_section_modulus_mm3: 'float') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "frame_stiffness_ratio",
+      "signature": "(member_inertia: 'float', column_length: 'float', column_inertia: 'float', member_length: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "gallery_support_branch_effective_length_clause_10_3_10",
+      "signature": "(direction: 'str', support_height: 'float', node_spacing: 'float', mu: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "group_4_limiting_slenderness_increase",
+      "signature": "(base_limit: 'float', group_4_applies: 'bool') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "nonsway_frame_mu_eq145",
+      "signature": "(p_parameter: 'float', n_parameter: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "nonuniform_sway_frame_effective_length_eq146",
+      "signature": "(base_mu: 'float', checked_column_inertia: 'float', total_column_force: 'float', checked_column_force: 'float', total_column_inertia: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "out_of_plane_column_effective_length_clause_10_3_9",
+      "signature": "(restraint_spacing: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "single_angle_radius_selection_clause_10_1_4",
+      "signature": "(effective_length: 'float', node_spacing: 'float', buckling_direction: 'str') -> 'str'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "slenderness_check",
+      "signature": "(actual_slenderness_value: 'float', limiting_slenderness_value: 'float | None') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "structural_member_radius_selection_clause_10_2_2",
+      "signature": "(is_beam_column: 'bool', bending_plane_relation: 'str') -> 'str'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "sway_frame_mu_eq141",
+      "signature": "(n_parameter: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "sway_frame_mu_eq142",
+      "signature": "(n_parameter: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "sway_frame_mu_eq143",
+      "signature": "(p_parameter: 'float', n_parameter: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "sway_frame_mu_eq144",
+      "signature": "(p_parameter: 'float', n_parameter: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_24_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_24_effective_length",
+      "signature": "(case_id: 'str', member_role: 'str', geometric_length: 'float', out_of_plane_braced_length: 'float | None' = None) -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_25_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_25_cross_lattice_effective_length",
+      "signature": "(joint_case: 'str', supporting_state: 'str', node_to_intersection_length: 'float', full_member_length: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_26_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_26_structural_member_effective_length",
+      "signature": "(member_case: 'str', geometric_length: 'float', geometric_slenderness_l_over_i_min: 'float | None' = None, is_lattice_member: 'bool' = False) -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_27_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_27_spatial_member_properties",
+      "signature": "(row_id: 'str', force_state: 'str', base_lengths: 'dict[str, float]', mu_d: 'float | None' = None, out_of_plane_variant: 'bool' = False) -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_28_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_28_intersection_conditional_length",
+      "signature": "(joint_case: 'str', supporting_state: 'str', diagonal_length: 'float', alternate_diagonal_length: 'float', n_parameter: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_28_n_parameter",
+      "signature": "(chord_min_inertia: 'float', diagonal_length: 'float', diagonal_min_inertia: 'float', chord_panel_length: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_29_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_29_diagonal_length_factor",
+      "signature": "(connection_case: 'str', n_parameter: 'float', geometric_slenderness_l_over_i_min: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_29_end_connection_adjustment",
+      "signature": "(base_mu_d: 'float', gusset_configuration: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_30_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_30_effective_length_factor",
+      "signature": "(scheme_id: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_31_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_31_multistory_parameters",
+      "signature": "(frame_type: 'str', storey_position: 'str', span_count_k: 'int', p1: 'float', p2: 'float', n1: 'float', n2: 'float') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_31_special_case_mu",
+      "signature": "(case_id: 'str', parameter: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_32_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_32_compressed_limiting_slenderness",
+      "signature": "(row_id: 'str', alpha: 'float', group_4_applies: 'bool' = False) -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_33_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "table_33_tension_limiting_slenderness",
+      "signature": "(row_id: 'str', load_category: 'str', group_4_applies: 'bool' = False, low_self_weight_sag_for_row_5: 'bool' = False, crane_modes_1k_to_6k_for_row_3: 'bool' = False, prestressed_tension_member: 'bool' = False) -> 'float | None'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "truss_chord_effective_length_in_plane_eq136",
+      "signature": "(segment_length: 'float', adjacent_force_ratio_alpha: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.effective_lengths_and_limiting_slenderness",
+      "name": "truss_chord_effective_length_out_of_plane_eq137",
+      "signature": "(braced_length: 'float', section_count_k: 'int', other_force_sum_ratio_beta: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.fatigue_design",
+      "name": "annex_k_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.fatigue_design",
+      "name": "annex_k_group",
+      "signature": "(case_id: 'str') -> 'int'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.fatigue_design",
+      "name": "annex_k_tube_joint_group_case20",
+      "signature": "(chord_thickness_to_diameter_ratio: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.fatigue_design",
+      "name": "annex_k_tube_joint_group_case21",
+      "signature": "(brace_to_chord_diameter_ratio: 'float', chord_thickness_to_diameter_ratio: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.fatigue_design",
+      "name": "crane_runway_cycle_factor_clause_12_2",
+      "signature": "(crane_group: 'str', metallurgical_shop: 'bool') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.fatigue_design",
+      "name": "crane_runway_web_fatigue_resistance_clause_12_2",
+      "signature": "(flange_connection_type: 'str', web_zone_state: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.fatigue_design",
+      "name": "crane_runway_web_fatigue_utilization_eq173",
+      "signature": "(sigma_x_n_mm2: 'float', sigma_xy_n_mm2: 'float', local_sigma_y_n_mm2: 'float', flange_sigma_y_n_mm2: 'float', fatigue_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.fatigue_design",
+      "name": "cycle_factor_group_1_2_eq171",
+      "signature": "(load_cycles: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.fatigue_design",
+      "name": "cycle_factor_group_3_8_eq172",
+      "signature": "(load_cycles: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.fatigue_design",
+      "name": "fatigue_applicability_route_clause_12_1_1_12_1_3",
+      "signature": "(load_cycles: 'float', resonant_vortex_excitation: 'bool' = False) -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.fatigue_design",
+      "name": "fatigue_asymmetry_factor_table36",
+      "signature": "(maximum_signed_stress_n_mm2: 'float', minimum_signed_stress_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.fatigue_design",
+      "name": "fatigue_cycle_factor_alpha",
+      "signature": "(load_cycles: 'float', element_group: 'int') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.fatigue_design",
+      "name": "fatigue_design_resistance_table35",
+      "signature": "(element_group: 'int', normative_ultimate_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.fatigue_design",
+      "name": "fatigue_resistance_cap_check_clause_12_1_2",
+      "signature": "(cycle_factor_alpha: 'float', fatigue_resistance_n_mm2: 'float', asymmetry_factor_gamma_v: 'float', design_ultimate_resistance_n_mm2: 'float', ultimate_resistance_safety_factor: 'float') -> 'dict[str, float | bool]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.fatigue_design",
+      "name": "fatigue_utilization_eq170",
+      "signature": "(maximum_absolute_stress_n_mm2: 'float', cycle_factor_alpha: 'float', fatigue_resistance_n_mm2: 'float', asymmetry_factor_gamma_v: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.fatigue_design",
+      "name": "stress_asymmetry_ratio",
+      "signature": "(maximum_signed_stress_n_mm2: 'float', minimum_signed_stress_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.fatigue_design",
+      "name": "table_35_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.final_audit",
+      "name": "audit_public_docstrings",
+      "signature": "(package_dir: 'str | Path') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.final_audit",
+      "name": "run_final_audit",
+      "signature": "(package_root: 'str | Path') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.final_audit",
+      "name": "write_audit_reports",
+      "signature": "(report: 'dict[str, Any]', reports_dir: 'str | Path') -> 'None'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.general_requirements",
+      "name": "table_1_working_condition_factor",
+      "signature": "(case_id: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.independent_validation",
+      "name": "run_independent_validation",
+      "signature": "(root: 'str | Path') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.independent_validation",
+      "name": "write_independent_validation_reports",
+      "signature": "(report: 'dict[str, Any]', reports_dir: 'str | Path') -> 'None'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.inventory",
+      "name": "load_csv_rows",
+      "signature": "(path: 'str | Path') -> 'list[dict[str, str]]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.inventory",
+      "name": "summarize_inventory",
+      "signature": "(equation_rows: 'list[dict[str, str]]', table_rows: 'list[dict[str, str]]') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "apply_two_plane_slenderness_increase",
+      "signature": "(base_limiting_relative_slenderness: 'float', increase_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "edge_stiffener_requirements",
+      "signature": "(effective_flange_outstand_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float', member_reinforced_with_battens: 'bool') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "flange_relative_slenderness",
+      "signature": "(effective_flange_outstand_mm: 'float', flange_thickness_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "flange_slenderness_limit",
+      "signature": "(table_10_diagram_group: 'str', member_relative_slenderness: 'float', edge_stiffened: 'bool') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "flange_slenderness_limit_eq37",
+      "signature": "(member_relative_slenderness: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "flange_slenderness_limit_eq38",
+      "signature": "(member_relative_slenderness: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "flange_slenderness_limit_eq39",
+      "signature": "(member_relative_slenderness: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "flange_slenderness_limit_eq40",
+      "signature": "(member_relative_slenderness: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "local_stability_geometry_rule_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "longitudinal_stiffener_wall_limit_multiplier_eq30",
+      "signature": "(longitudinal_stiffener_inertia_mm4: 'float', effective_web_height_mm: 'float', web_thickness_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "reduced_area_box_central_eq32",
+      "signature": "(gross_area_mm2: 'float', effective_web_height_mm: 'float', reduced_web_height_mm: 'float', web_thickness_mm: 'float', effective_flange_plate_width_mm: 'float', reduced_flange_plate_width_mm: 'float', flange_thickness_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "reduced_area_box_eccentric_eq33",
+      "signature": "(gross_area_mm2: 'float', effective_web_height_mm: 'float', reduced_web_height_mm: 'float', web_thickness_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "reduced_area_i_or_channel_eq31",
+      "signature": "(gross_area_mm2: 'float', effective_web_height_mm: 'float', reduced_web_height_mm: 'float', web_thickness_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "reduced_area_required",
+      "signature": "(actual_wall_relative_slenderness: 'float', limiting_wall_relative_slenderness: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "reduced_plate_dimension_box_eq35",
+      "signature": "(plate_thickness_mm: 'float', actual_plate_relative_slenderness: 'float', limiting_plate_relative_slenderness: 'float', member_relative_slenderness: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "reduced_web_height_channel_eq36",
+      "signature": "(web_thickness_mm: 'float', actual_wall_relative_slenderness: 'float', limiting_wall_relative_slenderness: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "reduced_web_height_i_section_eq34",
+      "signature": "(web_thickness_mm: 'float', actual_wall_relative_slenderness: 'float', limiting_wall_relative_slenderness: 'float', member_relative_slenderness: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "table_10_flange_slenderness_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "table_9_wall_slenderness_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "transverse_stiffener_requirements",
+      "signature": "(wall_relative_slenderness_value: 'float', effective_web_height_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float', stiffener_arrangement: 'str', provided_stiffener_outstand_mm: 'float', geometrically_nonlinear_design: 'bool', solid_branch_of_built_up_column: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "two_plane_slenderness_increase_factor",
+      "signature": "(stability_coefficient_phi: 'float', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', axial_force_n: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "wall_relative_slenderness",
+      "signature": "(effective_web_height_mm: 'float', web_thickness_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "wall_slenderness_limit",
+      "signature": "(table_9_diagram_group: 'str', member_relative_slenderness: 'float', tee_flange_width_mm: 'float' = 1.0, effective_web_height_mm: 'float' = 1.0) -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "wall_slenderness_limit_eq23",
+      "signature": "(member_relative_slenderness: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "wall_slenderness_limit_eq24",
+      "signature": "(member_relative_slenderness: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "wall_slenderness_limit_eq25",
+      "signature": "(member_relative_slenderness: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "wall_slenderness_limit_eq26",
+      "signature": "(member_relative_slenderness: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "wall_slenderness_limit_eq27",
+      "signature": "(member_relative_slenderness: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "wall_slenderness_limit_eq28",
+      "signature": "(member_relative_slenderness: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.local_stability",
+      "name": "wall_slenderness_limit_eq29",
+      "signature": "(member_relative_slenderness: 'float', tee_flange_width_mm: 'float', effective_web_height_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "bolt_shear_design_resistance_n_mm2",
+      "signature": "(normative_bolt_ultimate_resistance_n_mm2: 'float', bolt_strength_class: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "bolt_tension_design_resistance_n_mm2",
+      "signature": "(normative_bolt_ultimate_resistance_n_mm2: 'float', bolt_strength_class: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "butt_weld_design_shear_resistance_n_mm2",
+      "signature": "(base_design_shear_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "butt_weld_design_ultimate_resistance_with_ndt_n_mm2",
+      "signature": "(base_design_ultimate_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "butt_weld_design_yield_resistance_with_ndt_n_mm2",
+      "signature": "(base_design_yield_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "butt_weld_design_yield_resistance_without_ndt_n_mm2",
+      "signature": "(base_design_yield_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "cold_formed_section_design_resistance_n_mm2",
+      "signature": "(source_sheet_design_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "connected_element_bearing_design_resistance_n_mm2",
+      "signature": "(base_design_ultimate_resistance_n_mm2: 'float', bolt_hole_accuracy_class: 'str', connected_steel_yield_strength_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "design_end_bearing_resistance_n_mm2",
+      "signature": "(normative_ultimate_resistance_n_mm2: 'float', material_safety_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "design_pin_local_bearing_resistance_n_mm2",
+      "signature": "(normative_ultimate_resistance_n_mm2: 'float', material_safety_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "design_roller_diametral_compression_resistance_n_mm2",
+      "signature": "(normative_ultimate_resistance_n_mm2: 'float', material_safety_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "design_shear_resistance_n_mm2",
+      "signature": "(normative_yield_resistance_n_mm2: 'float', material_safety_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "design_ultimate_resistance_n_mm2",
+      "signature": "(normative_ultimate_resistance_n_mm2: 'float', material_safety_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "design_yield_resistance_n_mm2",
+      "signature": "(normative_yield_resistance_n_mm2: 'float', material_safety_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "dissimilar_steel_butt_weld_governing_resistance_n_mm2",
+      "signature": "(first_steel_resistance_n_mm2: 'float', second_steel_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "fillet_weld_fusion_boundary_design_shear_resistance_n_mm2",
+      "signature": "(base_normative_ultimate_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "fillet_weld_metal_design_shear_resistance_n_mm2",
+      "signature": "(normative_weld_metal_ultimate_resistance_n_mm2: 'float', weld_metal_safety_factor_value: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "foundation_anchor_bolt_tension_design_resistance_n_mm2",
+      "signature": "(normative_yield_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "high_strength_wire_tension_design_resistance_n_mm2",
+      "signature": "(normative_ultimate_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "material_safety_factor",
+      "signature": "(control_category: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "steel_rope_design_tension_force_n",
+      "signature": "(rope_breaking_force_n: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "u_bolt_tension_design_resistance_n_mm2",
+      "signature": "(normative_yield_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.material_resistance",
+      "name": "weld_metal_safety_factor",
+      "signature": "(normative_weld_metal_ultimate_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.normative_rebaseline",
+      "name": "run_normative_rebaseline",
+      "signature": "(root: 'str | Path') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.normative_rebaseline",
+      "name": "write_normative_rebaseline_reports",
+      "signature": "(report: 'dict[str, Any]', reports_dir: 'str | Path') -> 'None'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "angle_member_eccentricity_factors_clause_16_12",
+      "signature": "(member: 'str', connection: 'str', c_over_b: 'float', reduced_slenderness: 'float', n_md_over_n_m: 'float', *, bolt_line_ratio: 'float' = 0.57, figure_15_g_or_d: 'bool' = False, welded_centering: 'str' = 'centroids', broken_wire_combination: 'bool' = False) -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "bolted_angle_brace_factor_eq211",
+      "signature": "(c_over_b: 'float', n_md_over_n_m: 'float', *, bolt_line_ratio: 'float' = 0.57) -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "bolted_angle_brace_factor_eq212",
+      "signature": "(c_over_b: 'float', n_md_over_n_m: 'float', *, bolt_line_ratio: 'float' = 0.57, figure_15_g_or_d: 'bool' = False) -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "bolted_angle_chord_factor_eq209",
+      "signature": "(c_over_b: 'float', reduced_slenderness: 'float', n_md_over_n_m: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "bolted_angle_chord_factor_eq210",
+      "signature": "(c_over_b: 'float', reduced_slenderness: 'float', n_md_over_n_m: 'float', *, figure_15_g_or_d: 'bool' = False) -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "guyed_rectangular_moment_eq206",
+      "signature": "(first_order_midspan_moment_n_mm: 'float', connection_beta: 'float', axial_force_n: 'float', delta: 'float', transverse_deflection_mm: 'float', initial_bow_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "guyed_rectangular_shear_eq207",
+      "signature": "(first_order_max_shear_n: 'float', connection_beta: 'float', axial_force_n: 'float', delta: 'float', length_mm: 'float', transverse_deflection_mm: 'float', initial_bow_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "guyed_support_second_order_auxiliaries",
+      "signature": "(length_mm: 'float', area_mm2: 'float', reduced_slenderness: 'float', axial_force_n: 'float', elastic_modulus_n_mm2: 'float') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "maximum_slenderness_eq201",
+      "signature": "(length_mm: 'float', chord_axis_spacing_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "maximum_slenderness_eq202",
+      "signature": "(length_mm: 'float', chord_axis_spacing_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "maximum_slenderness_eq203",
+      "signature": "(height_mm: 'float', upper_spacing_mm: 'float', lower_spacing_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "polygonal_tube_critical_stress_eq214",
+      "signature": "(relative_wall_slenderness: 'float', maximum_compressive_stress_n_mm2: 'float', minimum_stress_n_mm2: 'float', design_yield_resistance_n_mm2: 'float') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "polygonal_tube_wall_relative_slenderness",
+      "signature": "(width_mm: 'float', thickness_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "polygonal_tube_wall_stability_check",
+      "signature": "(face_count: 'int', width_mm: 'float', thickness_mm: 'float', maximum_compressive_stress_n_mm2: 'float', minimum_stress_n_mm2: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float', working_condition_factor: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "polygonal_tube_wall_stability_utilization_eq213",
+      "signature": "(maximum_compressive_stress_n_mm2: 'float', critical_stress_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "pyramidal_effective_length_factor_clause_16_5",
+      "signature": "(upper_spacing_mm: 'float', lower_spacing_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "relative_eccentricity_eq204",
+      "signature": "(moment_n_mm: 'float', axial_force_n: 'float', chord_axis_spacing_mm: 'float', connection_beta: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "relative_eccentricity_eq205",
+      "signature": "(moment_n_mm: 'float', axial_force_n: 'float', chord_axis_spacing_mm: 'float', connection_beta: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "section_16_applicability_route",
+      "signature": "(structure_case: 'str') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "section_16_detailing_checks",
+      "signature": "(*, traverse_member: 'str', panel_length_mm: 'float', alternate_chord_length_mm: 'float', actual_first_lower_brace_slenderness: 'float', support_system: 'str', actual_diaphragm_spacing_m: 'float', diaphragm_at_concentrated_loads: 'bool', diaphragm_at_chord_breaks: 'bool', edge_distance_mm: 'float', bolt_diameter_mm: 'float', permanently_tensioned_single_bolt_element: 'bool', braces_on_both_sides_of_chord_leg: 'bool', splice_total_bolts: 'int', splice_bolts_per_leg_each_side: 'int', splice_rows_per_leg_each_side: 'int', use_seven_bolt_exception: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "table_45_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "table_45_working_condition_factor",
+      "signature": "(case_id: 'str', *, applied_to_node_connection: 'bool' = False) -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "table_46_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "table_46_deformation_check",
+      "signature": "(row_id: 'str', measure: 'str', actual_relative_deformation: 'float', *, load_mode: 'str' = 'normal', stricter_equipment_limit_denominator: 'float | None' = None) -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.overhead_line_and_switchyard_supports",
+      "name": "triangular_additional_chord_force_eq208",
+      "signature": "(moment_x_n_mm: 'float', moment_y_n_mm: 'float', chord_axis_spacing_mm: 'float') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "asymmetric_strength_utilization_eq217",
+      "signature": "(axial_force_n: 'float', strengthened_area_mm2: 'float', moment_x_n_mm: 'float', inertia_x_mm4: 'float', point_y_mm: 'float', moment_y_n_mm: 'float', inertia_y_mm4: 'float', point_x_mm: 'float', design_yield_resistance_n_mm2: 'float', gamma_m: 'float', working_condition_factor: 'float') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "common_or_separate_design_resistance_clause_18_3_11",
+      "signature": "(existing_design_resistance_n_mm2: 'float', reinforcement_design_resistance_n_mm2: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "composite_resistance_factor_eq224",
+      "signature": "(reinforcement_design_yield_resistance_n_mm2: 'float', existing_design_yield_resistance_n_mm2: 'float', original_area_mm2: 'float', strengthened_area_mm2: 'float', original_inertia_mm4: 'float', strengthened_inertia_mm4: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "effective_design_resistance_eq223",
+      "signature": "(existing_design_yield_resistance_n_mm2: 'float', composite_factor_k: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "equivalent_eccentricity_eq220",
+      "signature": "(axial_force_eccentricity_mm: 'float', post_strengthening_initial_deflection_mm: 'float', welding_deflection_factor: 'float', welding_residual_deflection_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "existing_deviation_acceptance_clause_18_3_16",
+      "signature": "(*, listed_deviation_only: 'bool', damage_caused_by_deviation_absent: 'bool', adverse_operating_change_excluded: 'bool', capacity_and_stiffness_justified: 'bool', fatigue_and_brittle_fracture_measures_confirmed: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "existing_steel_design_resistances_clause_18_2_4",
+      "signature": "(route: 'str', normative_or_test_yield_n_mm2: 'float', normative_or_test_ultimate_n_mm2: 'float', *, steel_process: 'str' = 'open_hearth') -> 'dict[str, float | str]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "existing_structure_strengthening_route_clauses_18_3_1_to_18_3_4",
+      "signature": "(*, brittle_steel_temperature_condition_triggered: 'bool', post_reconstruction_stress_not_above_existing_confirmed: 'bool', actual_geometry_supports_and_defects_in_model_confirmed: 'bool', mandatory_code_checks_pass: 'bool', serviceability_exceedance_blocks_operation: 'bool', slenderness_exceedance_acceptable_by_test_or_calculation: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "existing_weld_resistance_defaults_clause_18_2_5",
+      "signature": "(base_normative_ultimate_n_mm2: 'float', base_design_yield_n_mm2: 'float', construction_period: 'str') -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "gamma_m_clause_18_3_13",
+      "signature": "(structure_group: 'int', axial_force_n: 'float', strengthened_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', gamma_n: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "gamma_n_clause_18_3_13",
+      "signature": "(*, welding_used: 'bool', initial_design_stress_n_mm2: 'float', design_yield_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "longitudinal_force_influence_alpha_n_clause_18_3_14",
+      "signature": "(euler_critical_force_n: 'float', initial_axial_force_n: 'float', *, bending_member: 'bool' = False) -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "material_evidence_route_clause_18_2_1",
+      "signature": "(*, factory_certificate_available: 'bool', sample_tests_completed: 'bool', executive_documentation_complete: 'bool', metal_quality_doubt_present: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "metal_test_program_clause_18_2_2",
+      "signature": "(steel_process: 'str', *, chemical_composition_tested: 'bool', tensile_properties_tested: 'bool', stress_strain_diagram_obtained: 'bool', impact_toughness_tested_if_required: 'bool', macro_microstructure_tested_if_required: 'bool', sulfur_percent: 'float', phosphorus_percent: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "post_strengthening_initial_deflection_eq221",
+      "signature": "(initial_deflection_mm: 'float', alpha_n: 'float', reinforcement_own_centroidal_inertia_sum_mm4: 'float', original_inertia_mm4: 'float', *, ignore_deformation_by_small_inertia_rule: 'bool' = False, reinforcement_on_flat_surfaces_parallel_to_bending_plane: 'bool' = False) -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "pre_1950_specialized_institute_route_clause_18_2_3",
+      "signature": "(manufacture_period: 'str', *, specialized_research_institute_confirmed: 'bool', steel_production_method_identified: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "reduced_relative_eccentricity_eq219",
+      "signature": "(equivalent_eccentricity_mm: 'float', strengthened_area_mm2: 'float', compressed_fiber_section_modulus_mm3: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "rivet_connection_capacity_clause_18_2_7",
+      "signature": "(limit_state: 'str', design_resistance_n_mm2: 'float', rivet_diameter_mm: 'float', *, shear_planes: 'int' = 1, connected_thickness_sum_mm: 'float | None' = None, working_condition_factor: 'float' = 1.0) -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "strengthened_member_stability_utilization_eq218",
+      "signature": "(axial_force_n: 'float', phi_e: 'float', strengthened_area_mm2: 'float', effective_design_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "strengthening_and_monitoring_route_clause_18_1_2",
+      "signature": "(current_category: 'str', *, monitoring_program_confirmed: 'bool', smooth_load_transfer_to_strengthening_confirmed: 'bool', construction_stage_capacity_confirmed: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "strengthening_execution_checks_clauses_18_3_5_to_18_3_10",
+      "signature": "(*, construction_stage_capacity_confirmed: 'bool', additional_holes_and_welding_effects_included: 'bool', load_state_during_work_defined: 'bool', intermittent_flange_weld_used: 'bool', structure_group: 'int', design_temperature_c: 'float', environment: 'str', combined_connection_type: 'str') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "symmetric_compression_strength_utilization_eq216",
+      "signature": "(axial_force_n: 'float', strengthened_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', gamma_n: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "table_48_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "table_48_rivet_resistance",
+      "signature": "(limit_state: 'str', connection_group: 'str', rivet_steel: 'str', *, connected_steel_design_yield_n_mm2: 'float | None' = None, countersunk_or_semicountersunk_head: 'bool' = False) -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "technical_condition_category_clause_18_1_1",
+      "signature": "(*, defects_or_damage_present: 'bool', local_character_only: 'bool', restricts_normal_operation: 'bool', requires_monitoring_or_strengthening: 'bool', sudden_failure_or_global_instability_risk: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "unknown_bolt_resistance_defaults_clause_18_2_6",
+      "signature": "() -> 'dict[str, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "verification_calculation_exemption_clause_18_1_3",
+      "signature": "(years_in_service: 'float', *, defects_or_damage_present: 'bool', operating_conditions_worsened: 'bool', loads_increased: 'bool', main_member_strengthening_required: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "weld_heating_stress_limit_clause_18_3_9",
+      "signature": "(structure_group: 'int', design_yield_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "weld_shortening_parameter_v",
+      "signature": "(kf_cm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "welding_deflection_factor_k_fw_clause_18_3_14",
+      "signature": "(base_eccentricity_plus_initial_deflection_mm: 'float', welding_residual_deflection_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.reconstruction_assessment",
+      "name": "welding_residual_deflection_eq222",
+      "signature": "(average_weld_continuity_factor: 'float', alpha_n: 'float', effective_length: 'float', weld_terms: 'Iterable[dict[str, float]]') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.runner",
+      "name": "run_case",
+      "signature": "(case_path: 'str | Path', package_root: 'str | Path') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.schema_validation",
+      "name": "validate_case",
+      "signature": "(case_data: 'dict[str, Any]', schema: 'dict[str, Any]') -> 'list[str]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "circumferential_stress_eq150",
+      "signature": "(pressure_n_mm2: 'float', thickness_mm: 'float', meridional_stress_n_mm2: 'float', meridional_radius_mm: 'float', circumferential_radius_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "conical_axial_stability_utilization_eq163",
+      "signature": "(axial_force_n: 'float', critical_force_n: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "conical_combined_stability_utilization_eq168",
+      "signature": "(axial_force_n: 'float', critical_force_n: 'float', hoop_compressive_stress_n_mm2: 'float', critical_hoop_stress_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "conical_critical_force_eq164",
+      "signature": "(thickness_mm: 'float', axial_critical_stress_n_mm2: 'float', equivalent_radius_mm: 'float', beta_degrees: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "conical_equivalent_radius_eq165",
+      "signature": "(top_radius_mm: 'float', bottom_radius_mm: 'float', beta_degrees: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "conical_external_pressure_critical_stress_eq167",
+      "signature": "(elastic_modulus_n_mm2: 'float', equivalent_radius_mm: 'float', cone_height_mm: 'float', thickness_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "conical_external_pressure_utilization_eq166",
+      "signature": "(hoop_compressive_stress_n_mm2: 'float', critical_hoop_stress_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "conical_internal_pressure_stresses_eq153",
+      "signature": "(pressure_n_mm2: 'float', radius_mm: 'float', thickness_mm: 'float', beta_degrees: 'float') -> 'tuple[float, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "cylindrical_axial_critical_stress",
+      "signature": "(radius_mm: 'float', thickness_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float', c_coefficient: 'float | None' = None) -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "cylindrical_axial_stability_utilization_eq154",
+      "signature": "(axial_compressive_stress_n_mm2: 'float', critical_stress_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "cylindrical_combined_stability_utilization_eq162",
+      "signature": "(axial_compressive_stress_n_mm2: 'float', axial_critical_stress_n_mm2: 'float', hoop_compressive_stress_n_mm2: 'float', hoop_critical_stress_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "cylindrical_external_pressure_critical_stress",
+      "signature": "(elastic_modulus_n_mm2: 'float', radius_mm: 'float', length_mm: 'float', thickness_mm: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "cylindrical_external_pressure_critical_stress_eq160",
+      "signature": "(elastic_modulus_n_mm2: 'float', radius_mm: 'float', length_mm: 'float', thickness_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "cylindrical_external_pressure_critical_stress_eq161",
+      "signature": "(elastic_modulus_n_mm2: 'float', radius_mm: 'float', thickness_mm: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "cylindrical_external_pressure_utilization_eq159",
+      "signature": "(hoop_compressive_stress_n_mm2: 'float', critical_hoop_stress_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "cylindrical_internal_pressure_stresses_eq151",
+      "signature": "(pressure_n_mm2: 'float', radius_mm: 'float', thickness_mm: 'float') -> 'tuple[float, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "cylindrical_panel_limit",
+      "signature": "(compressive_stress_n_mm2: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "cylindrical_panel_limit_eq157",
+      "signature": "(elastic_modulus_n_mm2: 'float', compressive_stress_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "cylindrical_panel_limit_eq158",
+      "signature": "(design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "cylindrical_panel_route_clause_11_2_3",
+      "signature": "(panel_width_mm: 'float', radius_mm: 'float', thickness_mm: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "cylindrical_psi_eq155",
+      "signature": "(radius_to_thickness_ratio: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "eccentric_compression_critical_stress_multiplier_clause_11_2_1",
+      "signature": "(maximum_compressive_stress_n_mm2: 'float', minimum_signed_stress_n_mm2: 'float', shear_stress_n_mm2: 'float', elastic_modulus_n_mm2: 'float', radius_mm: 'float', thickness_mm: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "membrane_strength_utilization_eq148",
+      "signature": "(sigma_x_n_mm2: 'float', sigma_y_n_mm2: 'float', tau_xy_n_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "meridional_stress_eq149",
+      "signature": "(projected_pressure_force_n: 'float', radius_mm: 'float', thickness_mm: 'float', beta_degrees: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "principal_stress_resistance_check_clause_11_1_1",
+      "signature": "(sigma_x_n_mm2: 'float', sigma_y_n_mm2: 'float', tau_xy_n_mm2: 'float', tension_design_resistance_n_mm2: 'float', compression_design_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "principal_stresses_2d",
+      "signature": "(sigma_x_n_mm2: 'float', sigma_y_n_mm2: 'float', tau_xy_n_mm2: 'float') -> 'tuple[float, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "ring_stiffener_requirements_clause_11_2_4",
+      "signature": "(pressure_n_mm2: 'float', radius_mm: 'float', spacing_mm: 'float', thickness_mm: 'float', elastic_modulus_n_mm2: 'float', design_yield_resistance_n_mm2: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "shell_analysis_route_clause_11_1_4_11_1_5",
+      "signature": "(has_geometry_thickness_or_load_discontinuity: 'bool', arbitrary_configuration_or_spatial_state: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "spherical_external_pressure_critical_stress_clause_11_2_9",
+      "signature": "(elastic_modulus_n_mm2: 'float', radius_mm: 'float', thickness_mm: 'float', design_yield_resistance_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "spherical_external_pressure_utilization_eq169",
+      "signature": "(pressure_n_mm2: 'float', radius_mm: 'float', thickness_mm: 'float', critical_stress_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "spherical_internal_pressure_stresses_eq152",
+      "signature": "(pressure_n_mm2: 'float', radius_mm: 'float', thickness_mm: 'float') -> 'tuple[float, float]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "table_34_c_coefficient",
+      "signature": "(radius_to_thickness_ratio: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "table_34_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "tube_bending_critical_stress_clause_11_2_2",
+      "signature": "(axial_critical_stress_n_mm2: 'float', relative_eccentricity_m: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "tube_local_stability_route_clause_11_2_2",
+      "signature": "(radius_mm: 'float', thickness_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float', relative_slenderness: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.sheet_structures_strength_and_stability",
+      "name": "tube_local_stability_utilization_eq156",
+      "signature": "(axial_force_n: 'float', relative_slenderness: 'float', gross_area_mm2: 'float', relative_eccentricity_m: 'float', design_yield_resistance_n_mm2: 'float', axial_critical_stress_n_mm2: 'float', radius_mm: 'float', thickness_mm: 'float', elastic_modulus_n_mm2: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.structural_detailing_and_support_bearings",
+      "name": "cylindrical_hinge_bearing_check_15_12_2",
+      "signature": "(support_force_n: 'float', contact_central_angle_deg: 'float', hinge_radius_mm: 'float', hinge_length_mm: 'float', local_bearing_design_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.structural_detailing_and_support_bearings",
+      "name": "cylindrical_hinge_local_bearing_utilization_eq199",
+      "signature": "(support_force_n: 'float', hinge_radius_mm: 'float', hinge_length_mm: 'float', local_bearing_design_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.structural_detailing_and_support_bearings",
+      "name": "paired_vertical_bracing_max_spacing_m_15_1",
+      "signature": "(structure_type: 'str', design_air_temperature_c: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.structural_detailing_and_support_bearings",
+      "name": "roller_bearing_check_15_12_3",
+      "signature": "(support_force_n: 'float', roller_count: 'int', roller_diameter_mm: 'float', roller_length_mm: 'float', diametral_compression_design_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.structural_detailing_and_support_bearings",
+      "name": "roller_diametral_compression_utilization_eq200",
+      "signature": "(support_force_n: 'float', roller_count: 'int', roller_diameter_mm: 'float', roller_length_mm: 'float', diametral_compression_design_resistance_n_mm2: 'float', working_condition_factor: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.structural_detailing_and_support_bearings",
+      "name": "section_15_requirement_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.structural_detailing_and_support_bearings",
+      "name": "section_15_requirement_route",
+      "signature": "(clause: 'str') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.structural_detailing_and_support_bearings",
+      "name": "support_bearing_friction_coefficient_15_12_1",
+      "signature": "(bearing_type: 'str') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.structural_detailing_and_support_bearings",
+      "name": "support_bearing_selection_15_12_1",
+      "signature": "(strict_uniform_pressure_distribution_required: 'bool', reaction_class: 'str', relieve_substructure_from_horizontal_forces: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.structural_detailing_and_support_bearings",
+      "name": "table_44_catalog",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.structural_detailing_and_support_bearings",
+      "name": "table_44_maximum_spacing_m",
+      "signature": "(building_type: 'str', direction: 'str', design_air_temperature_c: 'float') -> 'float'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.structural_detailing_and_support_bearings",
+      "name": "temperature_joint_spacing_assessment_15_1",
+      "signature": "(actual_distance_m: 'float', building_type: 'str', direction: 'str', design_air_temperature_c: 'float', frame_stiffness_increased_by_walls_or_other_structures: 'bool') -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.validation",
+      "name": "run_core_validation_cases",
+      "signature": "() -> 'dict[str, Any]'"
+    },
+    {
+      "kind": "function",
+      "module": "standard_core.validation",
+      "name": "write_validation_reports",
+      "signature": "(report: 'dict[str, Any]', reports_dir: 'str | Path') -> 'None'"
+    }
+  ]
+}

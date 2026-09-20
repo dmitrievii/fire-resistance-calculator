@@ -1,0 +1,14 @@
+{
+  "release_stage": "v0.25_independent_function_oracle_expansion_and_golden_cross_implementation_validation_reconstructed_r1",
+  "measurement_command": "coverage run --branch -m pytest -q --ignore=tests/test_release_manifest.py",
+  "covered_lines": 8710,
+  "num_statements": 9278,
+  "missing_lines": 568,
+  "percent_statements_covered": 89.92261695392192,
+  "covered_branches": 1516,
+  "num_branches": 2094,
+  "missing_branches": 578,
+  "num_partial_branches": 502,
+  "percent_branches_covered": 72.39732569245463,
+  "qualification_note": "Coverage measures execution only and is not independent numerical or normative correctness evidence."
+}

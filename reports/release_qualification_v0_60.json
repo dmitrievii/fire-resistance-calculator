@@ -1,0 +1,92 @@
+{
+  "schema": "release_qualification_v1",
+  "release_stage": "v0.60_sp16_mech3_axis_shear_pointwise_recovery_r1",
+  "package_version": "0.60.0",
+  "parent_release": "v0.59_sp16_mech2_load_cases_applicability_census_r1",
+  "scope": {
+    "axis_specific_Qx_Qy_mechanics": "CLOSED_SUPPORTED_GEOMETRY",
+    "sp16_8_2_3_Qy_component": "CLOSED_I_BOX",
+    "pointwise_same_section_stress_recovery": "CLOSED_SUPPORTED_TEMPLATES",
+    "ambient_Qy_runtime": "CLOSED_SUPPORTED_GEOMETRY",
+    "fire_Qy_mechanical_characterization": "CLOSED",
+    "fire_Qy_SP554_handoff": "OPEN_FIRE_BRIDGE2",
+    "torsion_T_runtime": "OPEN_SP16_MECH4",
+    "full_ambient_SP16_MECHANICAL_PASS_gate": "OPEN_SP16_MECH6"
+  },
+  "test_groups": [
+    {
+      "name": "mech1_mech2_mech3_and_affected_ui",
+      "passed": 87,
+      "failed": 0
+    },
+    {
+      "name": "fire_ui16_19",
+      "passed": 35,
+      "failed": 0
+    },
+    {
+      "name": "base_steel",
+      "passed": 428,
+      "failed": 0
+    },
+    {
+      "name": "stage_n1_n5",
+      "passed": 152,
+      "failed": 0
+    },
+    {
+      "name": "stage_n6_n8",
+      "passed": 99,
+      "failed": 0
+    },
+    {
+      "name": "stage_n9_n10",
+      "passed": 47,
+      "failed": 0
+    },
+    {
+      "name": "fire_d1_d2",
+      "passed": 51,
+      "failed": 0
+    },
+    {
+      "name": "fire_d31_d3_d4",
+      "passed": 53,
+      "failed": 0
+    },
+    {
+      "name": "phase_0_23",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "name": "release_api_hardening",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "name": "phase_0_25_validation",
+      "passed": 6,
+      "failed": 0
+    },
+    {
+      "name": "schemas_ui0",
+      "passed": 64,
+      "failed": 0
+    }
+  ],
+  "docstring_audit": "PASS",
+  "monolithic_full_pytest_claimed": false,
+  "active_dag": "normative_graph/dag_v0.3.63_sp16_mech3_axis_shear_pointwise_recovery.json",
+  "active_dag_sha256": "f56a21f817ebceae9e1484783bad0f7cb8c3b2312075f2cf7baf3bf444a5b7bd",
+  "dag_counts": {
+    "quantities": 829,
+    "datasets": 39,
+    "nodes": 707,
+    "edges": 1198
+  },
+  "ui_contract_counts": {
+    "interactive_nodes": 163,
+    "result_nodes": 52
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "table_number": "Е.1",
+  "annex": "Е",
+  "pages": [
+    161,
+    162,
+    163
+  ],
+  "audit_id": "SP16-TBL-Е-1",
+  "ratio": "A_f/A_w",
+  "interpolation": "linear for intermediate A_f/A_w values within the listed range",
+  "coefficient_cap": "c_x and c_y shall not exceed 1.15*gamma_f",
+  "n_rule_when_minor_axis_moment_nonzero": "n=1.5 except type 5a where n=2.0 and type 5b where n=3.0",
+  "section_types": {
+    "1": {
+      "ratio_nodes": [
+        0.25,
+        0.5,
+        1.0,
+        2.0
+      ],
+      "c_x": [
+        1.19,
+        1.12,
+        1.07,
+        1.04
+      ],
+      "c_y": [
+        1.47,
+        1.47,
+        1.47,
+        1.47
+      ],
+      "n_when_my_zero": 1.5
+    },
+    "2": {
+      "ratio_nodes": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "c_x": [
+        1.4,
+        1.28,
+        1.18
+      ],
+      "c_y": [
+        1.47,
+        1.47,
+        1.47
+      ],
+      "n_when_my_zero": 2.0
+    },
+    "3": {
+      "ratio_nodes": [
+        0.25,
+        0.5,
+        1.0,
+        2.0
+      ],
+      "c_x": [
+        1.19,
+        1.12,
+        1.07,
+        1.04
+      ],
+      "c_y": [
+        1.07,
+        1.12,
+        1.19,
+        1.26
+      ],
+      "n_when_my_zero": 1.5
+    },
+    "4": {
+      "ratio_nodes": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "c_x": [
+        1.4,
+        1.28,
+        1.18
+      ],
+      "c_y": [
+        1.12,
+        1.2,
+        1.31
+      ],
+      "n_when_my_zero": 2.0
+    },
+    "5a": {
+      "ratio_nodes": null,
+      "c_x_constant": 1.47,
+      "c_y_constant": 1.47,
+      "n_when_my_zero": 2.0
+    },
+    "5b": {
+      "ratio_nodes": null,
+      "c_x_constant": 1.47,
+      "c_y_constant": 1.47,
+      "n_when_my_zero": 3.0
+    },
+    "6": {
+      "ratio_nodes": [
+        0.25,
+        0.5,
+        1.0,
+        2.0
+      ],
+      "c_x": [
+        1.47,
+        1.47,
+        1.47,
+        1.47
+      ],
+      "c_y": [
+        1.04,
+        1.07,
+        1.12,
+        1.19
+      ],
+      "n_when_my_zero": 3.0
+    },
+    "7": {
+      "ratio_nodes": null,
+      "c_x_constant": 1.26,
+      "c_y_constant": 1.26,
+      "n_when_my_zero": 1.5
+    },
+    "8a": {
+      "ratio_nodes": null,
+      "c_x_constant": 1.6,
+      "c_y_constant": 1.47,
+      "n_when_my_zero": 3.0
+    },
+    "8b": {
+      "ratio_nodes": null,
+      "c_x_constant": 1.6,
+      "c_y_constant": 1.47,
+      "n_when_my_zero": 1.0
+    },
+    "9a": {
+      "ratio_nodes": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "c_x": [
+        1.6,
+        1.6,
+        1.6
+      ],
+      "c_y": [
+        1.07,
+        1.12,
+        1.19
+      ],
+      "n_when_my_zero": 3.0
+    },
+    "9b": {
+      "ratio_nodes": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "c_x": [
+        1.6,
+        1.6,
+        1.6
+      ],
+      "c_y": [
+        1.07,
+        1.12,
+        1.19
+      ],
+      "n_when_my_zero": 1.0
+    }
+  },
+  "standard_reference": "СП 16.13330.2017, Annex E, Table E.1"
+}

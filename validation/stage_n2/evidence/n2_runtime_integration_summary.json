@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "N2",
+  "release_candidate": "v0.28_stage_n2_section_model_profile_catalog_runtime_closed_reconstructed_r1",
+  "runtime_catalog": {
+    "status": "INTERIM_IMPORTED_FROM_NORMCAD_PENDING_ORIGINAL_GOST_AUDIT",
+    "profile_rows": 4069,
+    "families": 37,
+    "all_rows_resolved": true,
+    "resolution_errors": [],
+    "original_gost_audit_complete": false
+  },
+  "derived_runtime_policy_counts": {
+    "torsion": {
+      "CURRENT_SP16_ANNEX_D_FORMULA": 887,
+      "GEOMETRY_DERIVED_CLOSED_THIN_WALL_BREDT_APPROXIMATION_PENDING_ORIGINAL_GOST_AUDIT": 1018,
+      "GEOMETRY_DERIVED_OPEN_THIN_WALL_APPROXIMATION_PENDING_ORIGINAL_GOST_AUDIT": 304,
+      "GEOMETRY_IDENTITY_CIRCULAR_J_EQUALS_IX_PLUS_IY": 1860
+    },
+    "table7_axis_pair": {
+      "a/a": 2878,
+      "a/c": 109,
+      "b/b": 22,
+      "b/c": 382,
+      "c/c": 678
+    },
+    "shape_group": {
+      "ANGLE": 257,
+      "CHANNEL": 324,
+      "CHS": 1860,
+      "C_LIPPED_SECTION": 25,
+      "I_ROLLED_DSYMM": 491,
+      "RHS_SHS": 1018,
+      "TEE": 72,
+      "Z_SECTION": 22
+    }
+  },
+  "table7_coefficients": {
+    "a": {
+      "alpha": 0.03,
+      "beta": 0.06,
+      "phi_cap_lambda_bar_threshold": 3.8
+    },
+    "b": {
+      "alpha": 0.04,
+      "beta": 0.09,
+      "phi_cap_lambda_bar_threshold": 4.4
+    },
+    "c": {
+      "alpha": 0.04,
+      "beta": 0.14,
+      "phi_cap_lambda_bar_threshold": 5.8
+    }
+  },
+  "runtime_guards": [
+    "Raw historical NormCAD mass is not used; mass is recomputed from A at 7850 kg/m3.",
+    "Radii of gyration are recomputed as sqrt(I/A).",
+    "NormCAD afwx/afwy are not runtime truth; alpha_f is recomputed for supported mapped shapes.",
+    "NormCAD corrupt/sentinel It is never used when current-SP/geometry derivation is available.",
+    "Duplicate family+designation keys fail closed unless source_row_id is explicit."
+  ],
+  "deferred_final_gate": "All imported profile rows/families must be reconciled against original/effective product standards before final engineering-use release.",
+  "stage_n2_runtime_closed": true,
+  "engineering_use_ready": false,
+  "original_gost_profile_audit_deferred_to_final_package": true
+}

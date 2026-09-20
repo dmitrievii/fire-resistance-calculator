@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fatigue_design_case.schema.json",
+  "title": "SP 16.13330.2017 Section 12 fatigue design case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "standard",
+    "action",
+    "load_cycles",
+    "resonant_vortex_excitation",
+    "annex_k_case_id",
+    "normative_ultimate_resistance_n_mm2",
+    "maximum_signed_stress_n_mm2",
+    "minimum_signed_stress_n_mm2",
+    "design_ultimate_resistance_n_mm2",
+    "ultimate_resistance_safety_factor",
+    "net_section_stress_without_dynamic_and_stability_coefficients_confirmed",
+    "same_loading_for_extreme_stresses_confirmed",
+    "annex_k_case_selection_confirmed",
+    "crane_group",
+    "crane_in_metallurgical_shop",
+    "crane_flange_connection_type",
+    "crane_web_zone_state",
+    "crane_sigma_x_n_mm2",
+    "crane_sigma_xy_n_mm2",
+    "crane_local_sigma_y_n_mm2",
+    "crane_flange_sigma_y_n_mm2"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "standard": {
+      "const": "СП 16.13330.2017"
+    },
+    "action": {
+      "const": "fatigue_design"
+    },
+    "load_cycles": {
+      "type": "number",
+      "minimum": 100000
+    },
+    "resonant_vortex_excitation": {
+      "type": "boolean"
+    },
+    "annex_k_case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "normative_ultimate_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "maximum_signed_stress_n_mm2": {
+      "type": "number"
+    },
+    "minimum_signed_stress_n_mm2": {
+      "type": "number"
+    },
+    "design_ultimate_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "ultimate_resistance_safety_factor": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "net_section_stress_without_dynamic_and_stability_coefficients_confirmed": {
+      "const": true
+    },
+    "same_loading_for_extreme_stresses_confirmed": {
+      "const": true
+    },
+    "annex_k_case_selection_confirmed": {
+      "const": true
+    },
+    "crane_group": {
+      "type": "string",
+      "minLength": 1
+    },
+    "crane_in_metallurgical_shop": {
+      "type": "boolean"
+    },
+    "crane_flange_connection_type": {
+      "enum": [
+        "welded",
+        "friction"
+      ]
+    },
+    "crane_web_zone_state": {
+      "enum": [
+        "compression",
+        "tension"
+      ]
+    },
+    "crane_sigma_x_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "crane_sigma_xy_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "crane_local_sigma_y_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "crane_flange_sigma_y_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    }
+  }
+}

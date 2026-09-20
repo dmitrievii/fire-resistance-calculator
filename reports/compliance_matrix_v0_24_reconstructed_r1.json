@@ -1,0 +1,40 @@
+{
+  "package_version": "0.24.0",
+  "release_stage": "v0.24_release_api_hardening_and_function_level_validation_expansion_reconstructed_r1",
+  "inventory": {
+    "equations": {
+      "total": 240,
+      "implemented": 239,
+      "unresolved": 0
+    },
+    "tables": {
+      "total": 88,
+      "implemented_code_or_data": 63,
+      "external_reference_required": 24,
+      "unresolved": 0
+    },
+    "procedures": {
+      "total": 304,
+      "implemented": 303,
+      "unresolved": 0
+    }
+  },
+  "release_api": {
+    "engineering_functions": 581,
+    "tooling_functions": 17,
+    "named_test_binding": 581,
+    "body_execution_evidence": 581,
+    "independent_function_oracles": 40,
+    "v0_22_backward_call_compatible": true,
+    "parent_v0_23_backward_call_compatible": true,
+    "annotation_only_hardenings": 62
+  },
+  "parent_independent_evidence": {
+    "primary_routes": 21,
+    "arithmetic_oracles": 25,
+    "boundary_cases": 24,
+    "analytical_mutation_probes": 42,
+    "schema_adversarial_probes": 6
+  },
+  "qualification": "classified/implemented inventory closure and API hardening do not imply full independent numerical certification."
+}

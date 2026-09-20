@@ -1,0 +1,221 @@
+{
+  "schema_version": "1.0.0",
+  "crosswalks": [
+    {
+      "crosswalk_id": "CW-N1-B1-PHYSICAL",
+      "sp16": {
+        "section": "5",
+        "clause": "5.1",
+        "formula": null,
+        "table": "Б.1"
+      },
+      "dag": {
+        "node_ids": [
+          "SP16_K_E_SELECTOR",
+          "SP16_L_E"
+        ],
+        "quantity_ids": [
+          "E_norm",
+          "G_norm",
+          "steel_density",
+          "steel_linear_expansion",
+          "steel_poisson_ratio"
+        ]
+      },
+      "normcad": {
+        "module": "СП 16.13330.2017___Стальные конструкции.nrb",
+        "dialog": null,
+        "field_or_result": "Physical characteristics E/G defaults"
+      },
+      "package": {
+        "file": "standard_core/material_resistance.py",
+        "symbol": "SteelMaterialStrengthResolver.physical_properties",
+        "table_id": "SP16-TBL-Б-1"
+      },
+      "validation_case_ids": [
+        "SP16-N1-B1-0001"
+      ],
+      "status": "REMEDIATED_WITH_NORMCAD_DIVERGENCE",
+      "notes": "NormCAD E/G nonconforming to current Table Б.1; package and remediated DAG follow current СП."
+    },
+    {
+      "crosswalk_id": "CW-N1-V3",
+      "sp16": {
+        "section": "6",
+        "clause": "6.1",
+        "formula": null,
+        "table": "В.3"
+      },
+      "dag": {
+        "node_ids": [
+          "SP16_K_MATERIAL_ROUTE",
+          "SP16_L_RYN_V3"
+        ],
+        "quantity_ids": [
+          "fy_norm",
+          "fu_norm",
+          "Ry_annex",
+          "Ru_annex"
+        ]
+      },
+      "normcad": {
+        "module": "Прочность листовой стали.mdb / Прочность труб.mdb",
+        "dialog": null,
+        "field_or_result": "strength table row"
+      },
+      "package": {
+        "file": "data/annex_v3_strength_resistances.json",
+        "symbol": "SteelMaterialStrengthResolver.lookup_strength_row",
+        "table_id": "SP16-TBL-В-3"
+      },
+      "validation_case_ids": [
+        "SP16-N1-V3-ROUTE-0001",
+        "SP16-N1-V3-C355-0002"
+      ],
+      "status": "CURRENT_SP_PACKAGE_DAG_PASS_NORMCAD_STATIC_TRIANGULATION_COMPLETE_WITH_DIVERGENCES",
+      "notes": "Current V.3 is exact-source verified in package/DAG. NormCAD static MDB crosswalk is complete at interior probes: some rows match, while C345K/C355-family/C390/C440/C690 and thickness coverage contain historical divergences; tube MDB uses obsolete grade/standard taxonomy."
+    },
+    {
+      "crosswalk_id": "CW-N1-V4",
+      "sp16": {
+        "section": "6",
+        "clause": "6.1",
+        "formula": null,
+        "table": "В.4"
+      },
+      "dag": {
+        "node_ids": [
+          "SP16_K_MATERIAL_ROUTE",
+          "SP16_L_RYN_V4"
+        ],
+        "quantity_ids": [
+          "fy_norm",
+          "fu_norm",
+          "Ry_annex",
+          "Ru_annex"
+        ]
+      },
+      "normcad": {
+        "module": "Прочность фасонной стали.mdb",
+        "dialog": null,
+        "field_or_result": "parallel-flange I-beam row"
+      },
+      "package": {
+        "file": "data/annex_v4_parallel_flange_i_strength_resistances.json",
+        "symbol": "SteelMaterialStrengthResolver.lookup_strength_row",
+        "table_id": "SP16-TBL-В-4"
+      },
+      "validation_case_ids": [
+        "SP16-N1-V4-0001"
+      ],
+      "status": "CURRENT_SP_PACKAGE_DAG_PASS_NORMCAD_STATIC_TRIANGULATION_COMPLETE_WITH_DIVERGENCES",
+      "notes": "Package/DAG exactly follow current V.4. NormCAD mostly matches but stores C355B >40–60 with Ryn=335 MPa versus current 340 MPa and lacks the current C390B <=30 MPa band."
+    },
+    {
+      "crosswalk_id": "CW-N1-V5",
+      "sp16": {
+        "section": "6",
+        "clause": "6.1",
+        "formula": null,
+        "table": "В.5"
+      },
+      "dag": {
+        "node_ids": [
+          "SP16_K_MATERIAL_ROUTE",
+          "SP16_L_RYN_V5"
+        ],
+        "quantity_ids": [
+          "fy_norm",
+          "fu_norm",
+          "Ry_annex",
+          "Ru_annex"
+        ]
+      },
+      "normcad": {
+        "module": "Прочность фасонной стали.mdb",
+        "dialog": null,
+        "field_or_result": "shaped rolled product row"
+      },
+      "package": {
+        "file": "data/annex_v5_shaped_strength_resistances.json",
+        "symbol": "SteelMaterialStrengthResolver.lookup_strength_row",
+        "table_id": "SP16-TBL-В-5"
+      },
+      "validation_case_ids": [
+        "SP16-N1-C255-SHAPED-008"
+      ],
+      "status": "CURRENT_SP_PACKAGE_DAG_PASS_NORMCAD_STATIC_TRIANGULATION_COMPLETE_WITH_DIVERGENCES",
+      "notes": "Package/DAG exactly follow current V.5 and use flange thickness as governing thickness. NormCAD static data are outdated/incomplete for C345K, C355/C355-1, C390 and C440; exact runtime selection at overlapping raw boundary labels is not claimed."
+    },
+    {
+      "crosswalk_id": "CW-N1-T2-T3",
+      "sp16": {
+        "section": "6",
+        "clause": "6.1",
+        "formula": "Ry=Ryn/γm; Ru=Run/γm; Rs=0.58Ryn/γm",
+        "table": "2; 3"
+      },
+      "dag": {
+        "node_ids": [
+          "SP16_L_GAMMA_M",
+          "SP16_C_RY_TABLE2",
+          "SP16_C_RU_TABLE2",
+          "SP16_C_RS_TABLE2"
+        ],
+        "quantity_ids": [
+          "gamma_m",
+          "Ry_formula",
+          "Ru_formula",
+          "Rs_formula"
+        ]
+      },
+      "normcad": {
+        "module": "СП 16.13330.2017___Стальные конструкции.nrb",
+        "dialog": null,
+        "field_or_result": "Strength MDBs expose stored resistance values, but a complete explicit Table 3 gamma_m classification route was not established from static evidence; no NormCAD value is promoted to normative truth."
+      },
+      "package": {
+        "file": "standard_core/material_resistance.py",
+        "symbol": "SteelMaterialStrengthResolver.formula_resistances",
+        "table_id": "SP16-TBL-2/SP16-TBL-3"
+      },
+      "validation_case_ids": [
+        "SP16-N1-T2-T3-0001"
+      ],
+      "status": "CURRENT_SP_PACKAGE_DAG_PASS_NORMCAD_EXPLICIT_GAMMA_M_ROUTE_NOT_EVIDENCED",
+      "notes": "Current Table 2 formula contract and Table 3 categories are exact-source verified. Package requires explicit gamma_m category and keeps formula values separate from Annex rounded Ry/Ru."
+    },
+    {
+      "crosswalk_id": "CW-N1-GAMMA-U",
+      "sp16": {
+        "section": "4",
+        "clause": "4.3.2",
+        "formula": "γu=1.3",
+        "table": null
+      },
+      "dag": {
+        "node_ids": [
+          "SP16_C_GAMMA_U"
+        ],
+        "quantity_ids": [
+          "gamma_u"
+        ]
+      },
+      "normcad": {
+        "module": "СП 16.13330.2017___Стальные конструкции.nrb",
+        "dialog": null,
+        "field_or_result": "Static Nrb default gr_g__u = 1.3 captured at CP1251 text offset 168468"
+      },
+      "package": {
+        "file": "data/clause_4_3_2_gamma_u.json",
+        "symbol": "SteelMaterialStrengthResolver.resolve",
+        "table_id": null
+      },
+      "validation_case_ids": [
+        "SP16-N1-GAMMA-U-0001"
+      ],
+      "status": "PASS_ALL_CAPTURED_REPRESENTATIONS",
+      "notes": "Current СП, package, DAG and NormCAD static default agree on gamma_u=1.3."
+    }
+  ]
+}

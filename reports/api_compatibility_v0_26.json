@@ -1,0 +1,12 @@
+{
+  "package_version": "0.26.0",
+  "release_stage": "v0.26_validation_campaign_remediation_and_corpus_0001_0009_reconstructed_r1",
+  "parent_freeze": "data/engineering_api_freeze_v0_25_reconstructed_r1.json",
+  "parent_engineering_function_count": 581,
+  "current_engineering_function_count": 581,
+  "added_engineering_functions": [],
+  "removed_engineering_functions": [],
+  "changed_call_shapes": [],
+  "backward_call_shape_compatibility_pass": true,
+  "note": "Behavioral corrections in Phase 0.26 are intentional semantic fixes; call-shape compatibility does not imply value identity in corrected branches."
+}

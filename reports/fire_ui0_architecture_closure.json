@@ -1,0 +1,37 @@
+{
+  "release": "v0.42_fire_ui0_dag_driven_guided_calculation_architecture_r1",
+  "parent_release": "v0.41_fire_d4_sp554_section13_result_assessment_runtime_r1",
+  "status": "CLOSED",
+  "graph_id": "sp16_sp554_dag_v0-3-44_fire_d4",
+  "graph_counts": {"quantities": 748, "nodes": 657, "edges": 1108},
+  "ui_counts": {"interactive_nodes": 139, "inputs": 69, "decisions": 65, "standard_handoffs": 5, "result_nodes": 48},
+  "contracts": {
+    "dag_to_ui_contract": true,
+    "guided_session_state_machine": true,
+    "control_branch_handoff_navigation": true,
+    "data_edges_non_navigational": true,
+    "parallel_supporting_standard_tie_break": true,
+    "external_provenance_gate": true,
+    "edit_replay_invalidation": true,
+    "live_quantity_ledger": true,
+    "report_ready_trace": true,
+    "executor_registry_fail_closed": true,
+    "session_dag_identity_lock": true,
+    "integrated_fire_d2_d3_d4_reference_adapter": true
+  },
+  "control_result": {
+    "critical_temperature_c": 525.0192844353662,
+    "actual_fire_resistance_min": 14.326394173167056,
+    "required_fire_resistance_min": 15.0,
+    "compliance": "FAIL"
+  },
+  "focused_tests": {
+    "fire_ui0": "11/11 PASS",
+    "fire_d1": "11/11 PASS",
+    "fire_d2": "32/32 PASS",
+    "fire_d3": "23/23 PASS",
+    "fire_d31": "12/12 PASS",
+    "fire_d4": "15/15 PASS"
+  },
+  "engineering_use_ready": false
+}

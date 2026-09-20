@@ -1,0 +1,91 @@
+{
+  "schema": "release_qualification_v1",
+  "release_stage": "v0.64_sp16_mech7_primary_ambient_workflow_binding_r1",
+  "package_version": "0.64.0",
+  "parent_release": "v0.63_sp16_mech6_mechanical_pass_gate_r1",
+  "active_dag": "normative_graph/dag_v0.3.67_sp16_mech7_primary_ambient_binding.json",
+  "active_dag_sha256": "be105f728645122d671b44ced248e7a40b69e0aa45a1e9900466f2825f3d9d74",
+  "active_dag_counts": {
+    "quantities": 858,
+    "datasets": 39,
+    "nodes": 722,
+    "edges": 1219
+  },
+  "ui_contract_counts": {
+    "interactive_nodes": 168,
+    "result_nodes": 54
+  },
+  "scope": {
+    "primary_ambient_binding_layer_closed": true,
+    "axial_primary_binding_closed": true,
+    "central_compression_stability_binding_closed": true,
+    "limiting_slenderness_binding_closed": true,
+    "elastic_bending_primary_binding_closed": true,
+    "supported_nm_primary_binding_closed": true,
+    "major_axis_ltb_primary_binding_closed": true,
+    "central_compression_i_local_stability_binding_closed": true,
+    "fatigue_and_brittle_context_classification_closed": true,
+    "all_n3_n10_primary_flow_bindings_closed": false,
+    "mq_primary_binding_closed": false,
+    "universal_torsion_normative_check_closed": false,
+    "required_n9_n10_auto_execution_closed": false,
+    "sp554_qy_t_complex_state_handoff_closed": false
+  },
+  "source_tree_test_groups": [
+    {
+      "name": "SP16-MECH1..7 + affected FIRE-UI16..24",
+      "passed": 142,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "SP16 core mechanics group A",
+      "passed": 163,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "SP16 core mechanics group B + final audit",
+      "passed": 260,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "Stage N1-N10 workflows",
+      "passed": 243,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "FIRE/SP554 + adjacent runtime",
+      "passed": 93,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "Docstrings + independent normative rebaseline + final audit",
+      "passed": 9,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "Phase 0.23 normative rebaseline",
+      "passed": 5,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "Phase 0.24 API/direct coverage",
+      "passed": 6,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "Phase 0.25 + docstrings + schemas + FIRE-UI0",
+      "passed": 71,
+      "failed": 0,
+      "status": "PASS"
+    }
+  ],
+  "engineering_use_ready": false
+}

@@ -1,0 +1,86 @@
+{
+  "stage": "N4",
+  "scope": "Bending members / Section 8 current-SP16 runtime and DAG closure",
+  "current_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "discrepancies": [
+    {
+      "id": "N4-D-001",
+      "classification": ["PACKAGE_DEFECT", "FORMULA_MISMATCH"],
+      "normative_location": "8.2.8, equation (61)",
+      "finding": "Legacy package equation (61) used a superseded/incorrect c_xr expression involving an extra c_xf term. Current SP16 requires (alpha_f*r + 0.25 - 0.0833/r^2)/(alpha_f + 0.167).",
+      "first_divergent_atomic_step": "c_xr equation (61)",
+      "resolution": "REMEDIATED",
+      "production_change": "standard_core.bending_members.bimetal_major_axis_coefficient_eq61 now evaluates the current-SP16 expression; the legacy first parameter is retained only for call compatibility and is mathematically inert.",
+      "regression": "tests/test_stage_n4_bending_workflows.py::test_n4_equation_61_is_current_sp16_and_legacy_parameter_is_inert"
+    },
+    {
+      "id": "N4-D-002",
+      "classification": ["PACKAGE_COVERAGE_GAP", "BRANCH_LOGIC_MISMATCH"],
+      "normative_location": "8.1-8.5",
+      "finding": "The detailed package exposed many Section 8 atomic calculations but lacked a branch-safe guided route that evaluates only the applicable beam path.",
+      "first_divergent_atomic_step": "Section 8 applicability/orchestration",
+      "resolution": "REMEDIATED",
+      "production_change": "Added standard_core.bending_workflows.bending_member_guided_workflow plus explicit profile/material pre-schema hydration and strict branch routing.",
+      "regression": "tests/test_stage_n4_bending_workflows.py"
+    },
+    {
+      "id": "N4-D-003",
+      "classification": ["NORMCAD_OUTDATED_OR_NONCONFORMING", "FORMULA_MISMATCH"],
+      "normative_location": "8.5.12, equation (92)",
+      "finding": "NormCAD historical DSL calculates sigma_loc,cr,1 with division by lambda_a to the first power. Current SP16 equation (92) divides by lambda_a squared.",
+      "first_divergent_atomic_step": "equation (92) denominator exponent",
+      "resolution": "CLASSIFIED_NORMCAD_ONLY",
+      "production_change": "No NormCAD behavior imported. Package existing equation (92) and Stage N4 current DAG use lambda_a^2.",
+      "regression": "tests/test_stage_n4_dag.py::test_n4_eq92_has_lambda_a_squared"
+    },
+    {
+      "id": "N4-D-004",
+      "classification": ["DAG_DEFECT", "SHARED_IMPLEMENTATION_CONTEXT_MISMATCH"],
+      "normative_location": "Annex Ж, equations (Ж.3), (Ж.6), (Ж.7)",
+      "finding": "Pre-existing mixed SP16/SP554 DAG nodes for Annex Ж explicitly consume Ryn/fy_norm because they were adapted for the SP554 fire-transformation context. They are not a valid direct representation of current ambient SP16, which uses design Ry.",
+      "first_divergent_atomic_step": "E/Ry strength basis in Annex Ж phi calculation",
+      "resolution": "REMEDIATED_WITH_DEDICATED_CURRENT_SP16_NODES",
+      "production_change": "DAG v0.3.33 adds current-SP16 Ry-based nodes for Ж.3, Ж.6 and Ж.7 and a current phi_b/Eq.(69) chain, while preserving historical shared Ryn nodes for SP554 transformed invocation.",
+      "regression": "tests/test_stage_n4_dag.py::test_n4_current_annex_zh3_uses_design_Ry_not_Ryn"
+    },
+    {
+      "id": "N4-D-005",
+      "classification": ["DAG_COVERAGE_GAP"],
+      "normative_location": "8.1-8.5",
+      "finding": "DAG v0.3.32 contained many lower-level SP16/SP554 bending quantities but did not encode the Stage N4 current-SP16 guided beam orchestration as a separate auditable route.",
+      "first_divergent_atomic_step": "guided bending route selection",
+      "resolution": "REMEDIATED",
+      "production_change": "DAG v0.3.33 adds explicit beam state, strength-route classification, Eq.(41)/(42)/(61), current Annex Ж chain, Eq.(69), lambda_w screen and Eq.(92) evidence node.",
+      "regression": "tests/test_stage_n4_dag.py"
+    },
+    {
+      "id": "N4-D-006",
+      "classification": ["VALIDATION_INFRASTRUCTURE_DEFECT"],
+      "normative_location": "not normative",
+      "finding": "Final audit attempted strict-schema validation on raw reference-bearing guided examples before deterministic profile/material hydration, causing a false schema failure.",
+      "first_divergent_atomic_step": "audit pre-schema preparation",
+      "resolution": "REMEDIATED",
+      "production_change": "Extracted private runner helper _prepare_case_for_validation and reused the same preparation pipeline in final_audit before strict schema validation.",
+      "regression": "tests/test_stage_n4_bending_workflows.py::test_n4_reference_hydration_validates_before_strict_schema"
+    },
+    {
+      "id": "N4-D-007",
+      "classification": ["CLASSIFIED_SCOPE_BOUNDARY"],
+      "normative_location": "8.5",
+      "finding": "The guided path performs the 8.5.1 and 8.5.9 geometry/stiffener screen only; full interaction equations (80)-(100) remain in the existing dedicated bending_member_local_stability action.",
+      "first_divergent_atomic_step": null,
+      "resolution": "ACCEPTED_EXPLICIT_BOUNDARY",
+      "production_change": "Guided output reports SCREEN_ONLY_FULL_8_5_INTERACTION_REMAINS_SEPARATE and never silently returns a local-stability PASS.",
+      "regression": "tests/test_stage_n4_bending_workflows.py::test_n4_local_stability_screen_is_explicitly_screen_only"
+    }
+  ],
+  "summary": {
+    "total": 7,
+    "package_defects_remediated": 2,
+    "dag_defects_or_gaps_remediated": 2,
+    "normcad_divergences_classified": 1,
+    "validation_infrastructure_defects_remediated": 1,
+    "explicit_scope_boundaries": 1,
+    "open_runtime_package_or_dag_defects": 0
+  }
+}

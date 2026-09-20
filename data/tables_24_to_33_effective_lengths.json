@@ -1,0 +1,417 @@
+{
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "version": "Changes No. 1-6 through 09.12.2024",
+  "source_pages": [
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72
+  ],
+  "tables": {
+    "24": {
+      "clause": "10.1.1",
+      "page": 59,
+      "rows": {
+        "in_plane_general": {
+          "chord": 1.0,
+          "support_diagonal_or_post": 1.0,
+          "other_web": 0.8
+        },
+        "in_plane_single_angle_or_butt_web": {
+          "chord": 1.0,
+          "support_diagonal_or_post": 1.0,
+          "other_web": 0.9
+        },
+        "out_of_plane_general": {
+          "chord": 1.0,
+          "support_diagonal_or_post": 1.0,
+          "other_web": 1.0
+        },
+        "out_of_plane_butt_web": {
+          "chord": 1.0,
+          "support_diagonal_or_post": 1.0,
+          "other_web": 0.9
+        },
+        "single_angle_equal_restraint_distances": {
+          "chord": 0.85,
+          "support_diagonal_or_post": 1.0,
+          "other_web": 0.85
+        }
+      },
+      "length_basis": {
+        "in_plane": "l",
+        "out_of_plane": "l1",
+        "single_angle_equal_restraint_distances": "l"
+      }
+    },
+    "25": {
+      "clause": "10.1.3",
+      "page": 61,
+      "rows": {
+        "both_members_continuous": {
+          "tension": {
+            "basis": "l",
+            "factor": 1.0
+          },
+          "inactive": {
+            "basis": "l1",
+            "factor": 0.7
+          },
+          "compression": {
+            "basis": "l1",
+            "factor": 1.0
+          }
+        },
+        "support_interrupted_considered_continuous": {
+          "tension": {
+            "basis": "l1",
+            "factor": 0.7
+          },
+          "inactive": {
+            "basis": "l1",
+            "factor": 1.0
+          },
+          "compression": {
+            "basis": "l1",
+            "factor": 1.4
+          }
+        },
+        "both_interrupted_with_gusset": {
+          "tension": {
+            "basis": "l1",
+            "factor": 0.7
+          },
+          "inactive": null,
+          "compression": null
+        }
+      }
+    },
+    "26": {
+      "clause": "10.2.1",
+      "pages": [
+        61,
+        62
+      ],
+      "general_factor": 1.0,
+      "continuous_chord_or_butt_node_factor": 0.85,
+      "single_angle_welded_or_two_bolts": [
+        [
+          0,
+          90,
+          1.0,
+          false
+        ],
+        [
+          90,
+          120,
+          0.9,
+          false
+        ],
+        [
+          120,
+          150,
+          0.75,
+          true
+        ],
+        [
+          150,
+          200,
+          0.7,
+          true
+        ]
+      ],
+      "single_angle_one_bolt": [
+        [
+          0,
+          90,
+          1.0,
+          false
+        ],
+        [
+          90,
+          120,
+          0.95,
+          false
+        ],
+        [
+          120,
+          150,
+          0.85,
+          true
+        ],
+        [
+          150,
+          200,
+          0.8,
+          true
+        ]
+      ]
+    },
+    "27": {
+      "clause": "10.2.3",
+      "pages": [
+        63,
+        64
+      ],
+      "rows": {
+        "chord_15abc": {
+          "compression": {
+            "factor": 1.0,
+            "basis": "lm",
+            "radius": "imin"
+          },
+          "tension": {
+            "factor": 1.0,
+            "basis": "lm",
+            "radius": "imin"
+          }
+        },
+        "chord_15gd": {
+          "compression": {
+            "factor": 0.73,
+            "basis": "lm",
+            "radius": "imin"
+          },
+          "tension": {
+            "factor": 0.73,
+            "basis": "lm",
+            "radius": "imin"
+          }
+        },
+        "chord_15e": {
+          "compression": {
+            "factor": 0.64,
+            "basis": "lm",
+            "radius": "imin"
+          },
+          "tension": {
+            "factor": 0.64,
+            "basis": "lm",
+            "radius": "imin"
+          }
+        },
+        "diagonal_15ad": {
+          "compression": {
+            "factor_symbol": "mu_d",
+            "basis": "ldc",
+            "radius": "imin"
+          },
+          "tension": {
+            "factor": 1.0,
+            "basis": "ld_or_ld1",
+            "radius": "imin_or_ix"
+          }
+        },
+        "diagonal_15bcge": {
+          "compression": {
+            "factor_symbol": "mu_d",
+            "basis": "ld",
+            "radius": "imin"
+          },
+          "tension": {
+            "factor": 1.0,
+            "basis": "ld",
+            "radius": "imin"
+          }
+        },
+        "strut_15be": {
+          "compression": {
+            "factor": 0.8,
+            "basis": "lc",
+            "radius": "imin"
+          },
+          "tension": null
+        },
+        "strut_15c": {
+          "compression": {
+            "factor": 0.73,
+            "basis": "lc",
+            "radius": "imin"
+          },
+          "tension": null
+        }
+      }
+    },
+    "28": {
+      "clause": "10.2.3",
+      "page": 64,
+      "rows": {
+        "both_continuous": {
+          "tension": "ld",
+          "inactive": "1.3*ld",
+          "compression": "0.8*ld1"
+        },
+        "support_interrupted_fig15a": {
+          "tension": "1.3*ld",
+          "inactive": "1.6*ld",
+          "compression": "ld1"
+        },
+        "support_interrupted_fig15d": {
+          "tension": "(1.75-0.15*n)*ld",
+          "inactive": "(1.9-0.1*n)*ld",
+          "compression": "ld1"
+        },
+        "intersection_out_of_plane_braced": {
+          "tension": "ld",
+          "inactive": "ld",
+          "compression": "ld"
+        }
+      },
+      "n_formula": "n=Im_min*ld/(Id_min*lm)",
+      "n_clamp": [
+        1.0,
+        3.0
+      ]
+    },
+    "29": {
+      "clause": "10.2.3",
+      "page": 65,
+      "rows": {
+        "welded_or_two_bolts_n_le_2": {
+          "s_le_60": 1.14,
+          "s_60_160": "0.54+36/s",
+          "s_gt_160": 0.765
+        },
+        "welded_or_two_bolts_n_gt_6": {
+          "s_le_60": 1.04,
+          "s_60_160": "0.54+28.8/s",
+          "s_gt_160": 0.74
+        },
+        "one_bolt_without_gusset": {
+          "s_le_60": 1.12,
+          "s_60_160": "0.64+28.8/s",
+          "s_gt_160": 0.82
+        }
+      },
+      "interpolate_n_between_2_and_6": true,
+      "end_adjustments": {
+        "one_end_gusset": "0.5*(1+mu_d)",
+        "both_ends_gusset": 1.0
+      }
+    },
+    "30": {
+      "clause": "10.3.3",
+      "page": 66,
+      "scheme_factors": {
+        "scheme_1": 1.0,
+        "scheme_2": 0.7,
+        "scheme_3": 0.5,
+        "scheme_4": 2.0,
+        "scheme_5": 1.0,
+        "scheme_6": 2.0,
+        "scheme_7": 0.725,
+        "scheme_8": 1.12
+      },
+      "note": "Scheme IDs follow left-to-right order of the eight diagrams in Table 30."
+    },
+    "31": {
+      "clause": "10.3.4",
+      "pages": [
+        66,
+        67,
+        68,
+        69
+      ],
+      "equations": [
+        141,
+        142,
+        143,
+        144,
+        145
+      ],
+      "special_cases": {
+        "sway_p0_n_0_03_to_0_2": "2.15*sqrt((n+0.22)/n)",
+        "sway_p0_n_gt_0_2": "2.0*sqrt((n+0.28)/n)",
+        "sway_n_inf_p_0_03_to_50": "(p+0.63)/sqrt(p*(p+0.9)+0.1)",
+        "sway_p_inf_n_0_03_to_0_2": "1.21*sqrt((n+0.22)/(n+0.08))",
+        "sway_p_inf_n_gt_0_2": "sqrt((n+0.28)/n)",
+        "nonsway_p0": "sqrt((1+0.46*n)/(1+0.93*n))",
+        "nonsway_p_inf": "sqrt((1+0.39*n)/(2+1.54*n))"
+      }
+    },
+    "32": {
+      "clause": "10.4.1",
+      "pages": [
+        70,
+        71
+      ],
+      "rows": {
+        "1a": "180-60*alpha",
+        "1b": 120,
+        "2a": "210-60*alpha",
+        "2b": "220-40*alpha",
+        "3": 220,
+        "4": "180-60*alpha",
+        "5": "210-60*alpha",
+        "6": 200,
+        "7": 150
+      },
+      "alpha_min": 0.5
+    },
+    "33": {
+      "clause": "10.4.1",
+      "pages": [
+        71,
+        72
+      ],
+      "rows": {
+        "1": {
+          "dynamic": 250,
+          "static": 400,
+          "crane_or_rail": 250
+        },
+        "2": {
+          "dynamic": 350,
+          "static": 400,
+          "crane_or_rail": 300
+        },
+        "3": {
+          "dynamic": null,
+          "static": null,
+          "crane_or_rail": 150
+        },
+        "4": {
+          "dynamic": 300,
+          "static": 300,
+          "crane_or_rail": 200
+        },
+        "5": {
+          "dynamic": 400,
+          "static": 400,
+          "crane_or_rail": 300
+        },
+        "6": {
+          "dynamic": 250,
+          "static": null,
+          "crane_or_rail": null
+        },
+        "7": {
+          "dynamic": 350,
+          "static": null,
+          "crane_or_rail": null
+        },
+        "8": {
+          "dynamic": 150,
+          "static": null,
+          "crane_or_rail": null
+        }
+      },
+      "notes": {
+        "row5_static_low_self_weight_sag": 500,
+        "row3_crane_modes_1K_to_6K": 200,
+        "prestressed_tension_members": "unlimited"
+      }
+    }
+  }
+}

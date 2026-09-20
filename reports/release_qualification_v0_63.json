@@ -1,0 +1,91 @@
+{
+  "schema": "release_qualification_v1",
+  "release_stage": "v0.63_sp16_mech6_mechanical_pass_gate_r1",
+  "package_version": "0.63.0",
+  "parent_release": "v0.62_sp16_mech5_direct_bimoment_pointwise_recovery_r1",
+  "active_dag": "normative_graph/dag_v0.3.66_sp16_mech6_mechanical_pass_gate.json",
+  "active_dag_sha256": "fb916afc7c30c136c0be44f1ce618aaf57049767608ae727a32c0ffc1760685b",
+  "active_dag_counts": {
+    "quantities": 848,
+    "datasets": 39,
+    "nodes": 717,
+    "edges": 1212
+  },
+  "ui_contract_counts": {
+    "interactive_nodes": 164,
+    "result_nodes": 54
+  },
+  "scope": {
+    "aggregate_gate_semantics_closed": true,
+    "sp16_mechanical_pass_quantity_closed": true,
+    "sp554_transition_requires_sp16_pass": true,
+    "stress_recovery_never_counts_as_normative_pass_by_itself": true,
+    "missing_applicable_evidence_fail_closed": true,
+    "all_n3_n10_primary_flow_bindings_closed": false,
+    "sp554_qy_t_complex_state_handoff_closed": false
+  },
+  "runtime_remediations": [
+    "optional governing utilization is omitted when no numerical utilization exists; the ledger retains null rather than emitting invalid number=None",
+    "historical downstream FIRE-UI route-census helper is isolated below the production SP16_MECHANICAL_PASS gate; no production bypass was added",
+    "census statement updated to identify SP16-MECH6 as the downstream strict gate",
+    "engineering static-scan literal fallback for contextual applicability removed; census applicability is required evidence"
+  ],
+  "source_tree_test_groups": [
+    {
+      "name": "SP16-MECH1..6",
+      "passed": 39,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "FIRE-UI frontend + UI16..24",
+      "passed": 104,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "SP16 core mechanics group A",
+      "passed": 121,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "SP16 core mechanics group B",
+      "passed": 299,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "Stage N1-N10 workflows",
+      "passed": 243,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "FIRE-D1..D4 + SP554 routing runtime",
+      "passed": 76,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "Phase 0.23 normative rebaseline",
+      "passed": 5,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "Phase 0.24 API/direct coverage",
+      "passed": 5,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "Phase 0.25 + docstrings + schemas + FIRE-UI0",
+      "passed": 71,
+      "failed": 0,
+      "status": "PASS"
+    }
+  ],
+  "historical_dag_batch_note": "Historical stage *_dag.py batches are not used as a release PASS claim; active-DAG deterministic rebuild and fresh-extraction gates are required during packaging.",
+  "engineering_use_ready": false
+}

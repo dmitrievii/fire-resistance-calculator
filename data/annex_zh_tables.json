@@ -1,0 +1,42 @@
+{
+  "standard": "СП 16.13330.2017",
+  "annex": "Ж",
+  "pages": [165, 166, 167, 168, 169],
+  "table_zh1": {
+    "cases": {
+      "unbraced_point_midspan": {"kind": "unbraced_transverse", "c1": 1.37, "c2": 0.55},
+      "unbraced_point_quarter": {"kind": "unbraced_transverse", "c1": 1.49, "c2": 0.41},
+      "unbraced_two_points_thirds": {"kind": "unbraced_transverse", "c1": 1.10, "c2": 0.50},
+      "unbraced_point_midspan_equal_end_moments": {"kind": "unbraced_transverse", "c1": 1.73, "c2": 1.40},
+      "unbraced_uniform": {"kind": "unbraced_transverse", "c1": 1.13, "c2": 0.46},
+      "unbraced_uniform_equal_end_moments": {"kind": "unbraced_transverse", "c1": 1.25, "c2": 1.01},
+      "unbraced_pure_bending": {"kind": "unbraced_moment", "c1": 1.00},
+      "unbraced_triangular_moment": {"kind": "unbraced_moment", "c1": 1.88},
+      "unbraced_reverse_linear_moment": {"kind": "unbraced_moment", "c1": 2.77},
+      "two_or_more_braces": {"kind": "two_or_more_braces"},
+      "one_mid_brace_point_midspan": {"kind": "one_mid_brace", "multiplier": 1.75},
+      "one_mid_brace_point_quarter": {"kind": "one_mid_brace", "multipliers": {"compressed": 1.14, "tension": 1.60}},
+      "one_mid_brace_uniform": {"kind": "one_mid_brace", "multipliers": {"compressed": 1.14, "tension": 1.30}}
+    }
+  },
+  "table_zh2": {
+    "alpha_min": 4.0,
+    "alpha_break": 28.0,
+    "alpha_max": 100.0
+  },
+  "table_zh3": {
+    "phi_2_threshold": 0.85,
+    "phi_b_cap": 1.0
+  },
+  "table_zh4": {
+    "diagram_row_1": ["delta", "mu", "beta"],
+    "diagram_row_2": ["delta-1", "mu-1", "beta"],
+    "diagram_row_3": ["1-delta", "1-mu", "-beta"],
+    "diagram_row_4": ["-delta", "-mu", "-beta"]
+  },
+  "table_zh5": {
+    "point_midspan": {"c_i_multiplier": 0.330, "c_t_multiplier": 0.0826, "d": 3.265},
+    "uniformly_distributed": {"c_i_multiplier": 0.481, "c_t_multiplier": 0.1202, "d": 2.247},
+    "pure_bending": {"c_i_multiplier": 0.101, "c_t_multiplier": 0.0253, "d": 4.315}
+  }
+}

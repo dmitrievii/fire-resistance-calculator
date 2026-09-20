@@ -1,0 +1,49 @@
+{
+  "schema": "fire_ui12_section_model_executor_binding_closure_v1",
+  "release_stage": "v0.45_fire_ui12_section_model_executor_binding_r1",
+  "parent_release": "v0.44_fire_ui11_complete_engineering_questionnaire_section_editor_r1",
+  "graph_id": "sp16_sp554_dag_v0-3-48_fire_ui12_section_model_binding",
+  "closed": {
+    "profile_shape_specific_svg_preview": true,
+    "catalog_geometry_executor_binding": true,
+    "catalog_continuation_to_material": true,
+    "gost_r_57837_20k1_acceptance": true,
+    "parametric_shape_specific_input_schemas": true,
+    "parametric_geometry_executor_binding": true,
+    "double_branch_two_identical_catalog_branches_v1": true,
+    "arbitrary_manual_properties_route": true,
+    "arbitrary_2d_contour_route_removed": true
+  },
+  "catalog": {
+    "families": 37,
+    "profiles": 4069,
+    "status": "INTERIM_IMPORTED_FROM_NORMCAD_PENDING_ORIGINAL_GOST_AUDIT"
+  },
+  "limitations": [
+    "Catalog rows remain interim pending original product-standard audit; existing package engineering_use_ready remains false.",
+    "Catalog W_pl values are not invented when absent from the frozen catalog; W_pl_x/W_pl_y are optional at the catalog geometry-provider stage and downstream routes that require plastic properties must obtain them from an audited producer or explicit supported geometry route.",
+    "Parametric templates use sharp-corner analytic geometry; rolled fillets are not substituted for certified product-standard properties.",
+    "Two-branch editor v1 supports two identical catalog branches with parallel axes and centre-to-centre spacing; unequal branches, branch rotation and connector mechanics remain outside this editor.",
+    "Manual arbitrary section requires explicit section properties; no 2D contour drawing/editor is implemented or planned in this route.",
+    "Full SP16-to-FIRE-D4 production executor binding remains incomplete beyond the newly closed section-geometry producers."
+  ],
+  "acceptance_cases": [
+    {
+      "case": "catalog ГОСТ Р 57837-2017 20К1",
+      "expected_next_node": "SP554_I_STEEL_GRADE",
+      "A_gross_mm2": 5269.0
+    },
+    {
+      "case": "parametric CHS D=219 mm t=8 mm",
+      "expected_next_node": "SP554_I_STEEL_GRADE"
+    },
+    {
+      "case": "manual arbitrary properties with P_heated=1.2 m",
+      "expected_next_node": "SP554_I_STEEL_GRADE"
+    },
+    {
+      "case": "two catalog 20К1 branches spacing 300 mm about y",
+      "expected_next_node": "SP554_I_STEEL_GRADE"
+    }
+  ]
+}

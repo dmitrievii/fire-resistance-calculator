@@ -1,0 +1,65 @@
+{
+  "release_stage": "v0.54_fire_ui21_selector_hardening_qy_t_lock_r1",
+  "package_version": "0.54.0",
+  "graph_id": "sp16_sp554_dag_v0-3-57_fire_ui21_selector_hardening_qy_t_lock",
+  "graph_sha256": "7d942813f5af7d715b67f8ff43a2083961222cbe61b9aa5182ca867a44945499",
+  "generic_selector_audit": {
+    "status": "PASS",
+    "generic_selector_fields": 129,
+    "boolean_selector_fields": 41,
+    "enum_selector_fields": 88,
+    "decision_selector_fields": 66,
+    "empty_option_sets": 0,
+    "missing_value_or_label_entries": [],
+    "duplicate_value_sets": []
+  },
+  "reported_boolean_fields": {
+    "section_is_constant": [
+      {
+        "value": true,
+        "label": "Да"
+      },
+      {
+        "value": false,
+        "label": "Нет"
+      }
+    ],
+    "moment_plane_is_symmetry": [
+      {
+        "value": true,
+        "label": "Да"
+      },
+      {
+        "value": false,
+        "label": "Нет"
+      }
+    ]
+  },
+  "dynamic_selector_sources": {
+    "profile_catalog": {
+      "family_count": 37,
+      "profile_count": 4069,
+      "empty_families": []
+    },
+    "material_strength": {
+      "product_form_count": 5,
+      "empty_product_grade_sets": [],
+      "empty_grade_interval_sets": []
+    }
+  },
+  "unsupported_action_lock": {
+    "node_id": "SP554_H_SP20_LOADS",
+    "load_Qy_local": {
+      "value": 0.0,
+      "display_value": 0.0,
+      "reason_ru": "Недоступно для ввода: общий расчёт Qy ещё не реализован. До закрытия ветви принимается только Qy = 0."
+    },
+    "T_torsion": {
+      "value": 0.0,
+      "display_value": 0.0,
+      "reason_ru": "Недоступно для ввода: общий расчёт кручения T ещё не реализован. До закрытия ветви принимается только T = 0."
+    },
+    "runtime_policy": "nonzero external/non-UI Qy or T remains fail-closed; no Qy->Qz or T->B substitution"
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,18 @@
+{
+  "release_stage": "v0.26_validation_campaign_remediation_and_corpus_0001_0009_reconstructed_r1",
+  "evidence_classes": {
+    "legacy_self_check": "historical production/regression self-check; not independent evidence",
+    "independent_direct_function_oracle": "closed-form expected value written independently of the target production helper",
+    "external_vendor_published_cross_implementation": "published SCAD/KRISTALL numerical comparator; not a live vendor run",
+    "external_user_supplied_original_file": "user-supplied source file preserved byte-for-byte",
+    "external_user_supplied_transcription": "report supplied in chat and preserved as an explicit transcription, not an original file",
+    "remediation_regression": "test proving a defect exposed by validation remains corrected"
+  },
+  "anti_overclaim_rules": [
+    "Scalar agreement does not establish the whole normative route.",
+    "Source-side inconsistencies remain visible and block golden promotion.",
+    "Vendor interpolation behavior is evidence of that implementation, not automatically a normative rule.",
+    "Coverage is execution evidence only.",
+    "A full Change 6 rebaseline is not claimed by targeted remediation."
+  ]
+}

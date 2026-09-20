@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.1.0",
+  "case_id": "VAL-SP16-WELD-0004",
+  "title": "Угловой сварной шов Э60 — автоматическая сварка, односторонний тавр",
+  "evidence_class": "external_user_supplied_calculation_report",
+  "source": {
+    "original_filename": "chat_paste.txt",
+    "stored_path": "validation/cases/VAL-SP16-WELD-0004/source/source_report_transcribed_from_conversation.txt",
+    "sha256": "f0b6bd96091ff284af0de3c18edd981e213c059bc7dc13c1f5e20774d5fb2206",
+    "page_count": 0,
+    "preservation": "structured_transcription_from_conversation; no original file attachment was supplied"
+  },
+  "source_reported_inputs": {
+    "note": "Calculation-grade inputs are encoded in the source transcript and expected/comparison records for this validation campaign."
+  },
+  "source_reported_checks": [
+    {
+      "check_id": "kf_max",
+      "published_value": 7.2
+    },
+    {
+      "check_id": "beta_f",
+      "published_value": 1.1
+    },
+    {
+      "check_id": "beta_z",
+      "published_value": 1.15
+    },
+    {
+      "check_id": "14.1.8_upper",
+      "published_value": 174.0681818
+    },
+    {
+      "check_id": "14.1.8_source_pass_claim",
+      "published_value": 1
+    },
+    {
+      "check_id": "lw_calc",
+      "published_value": 9.75549
+    },
+    {
+      "check_id": "lw_min",
+      "published_value": 40
+    }
+  ],
+  "source_consistency_findings": [
+    {
+      "finding_id": "SOURCE-14.1.8-AUTOMATIC-UPPER-BOUND-OMITTED",
+      "description": "Automated welding requires Rwz<Rwf<Rwz*beta_z/beta_f; E60 at 240 MPa fails the upper bound."
+    },
+    {
+      "finding_id": "ONE-SIDED-APPLICABILITY-INCOMPLETE-SOURCE",
+      "description": "Positive acceptance of a one-sided T-weld requires the full clause 14.1.9 project conditions."
+    },
+    {
+      "finding_id": "SOURCE-UNUSED-MX-QY",
+      "description": "Mx and Qy are supplied but not used; if they act on the weld group, the combined-action route is incomplete."
+    }
+  ],
+  "validation_classification": {
+    "overall_status": "PARTIAL_MATCH_SOURCE_NORMATIVE_FAIL",
+    "count_as_full_end_to_end_golden_case": false,
+    "count_as_scalar_external_replay": true,
+    "directly_comparable_production_functions": [
+      "standard_core.*.maximum_fillet_weld_leg_clause_14_1_7",
+      "standard_core.*.table_39_fillet_weld_coefficients",
+      "standard_core.*.welding_consumable_compatibility_clause_14_1_8",
+      "standard_core.*.fillet_weld_governing_plane_clause_14_1_16",
+      "standard_core.*.minimum_fillet_weld_design_length_clause_14_1_7"
+    ],
+    "reason": "This campaign preserves source discrepancies and only promotes directly comparable scalar/procedure evidence."
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "audit_id": "SP16-TBL-1",
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "version_basis": "supplied consolidated text with Amendments No. 1-5",
+  "clause": "4.3.2",
+  "table": "1",
+  "lookup_policy": "exact_categorical_only",
+  "rows": [
+    {
+      "case_id": "1_floor_beams_and_compressed_floor_truss_members",
+      "gamma_c": 0.9,
+      "description_ru": "Балки сплошного сечения и сжатые элементы ферм перекрытий для перечисленных помещений при временной нагрузке, не превышающей вес перекрытий."
+    },
+    {
+      "case_id": "2_public_residential_columns_permanent_load_ratio_ge_0_8",
+      "gamma_c": 0.95,
+      "description_ru": "Колонны общественных и жилых зданий при постоянной нагрузке не менее 0,8 расчетной."
+    },
+    {
+      "case_id": "2_multistorey_columns_height_le_150m",
+      "gamma_c": 0.95,
+      "description_ru": "Колонны многоэтажных зданий высотой до 150 м включительно."
+    },
+    {
+      "case_id": "2_multistorey_i_section_height_gt_150m",
+      "gamma_c": 0.9,
+      "description_ru": "Колонны двутаврового сечения многоэтажных зданий высотой более 150 м."
+    },
+    {
+      "case_id": "2_multistorey_box_section_height_gt_150m",
+      "gamma_c": 0.87,
+      "description_ru": "Колонны коробчатого сечения многоэтажных зданий высотой более 150 м."
+    },
+    {
+      "case_id": "2_water_tower_supports",
+      "gamma_c": 0.95,
+      "description_ru": "Опоры водонапорных башен."
+    },
+    {
+      "case_id": "3_single_storey_industrial_columns_with_overhead_cranes",
+      "gamma_c": 1.05,
+      "description_ru": "Колонны одноэтажных производственных зданий с мостовыми кранами."
+    },
+    {
+      "case_id": "4_compressed_main_built_up_tee_lattice_members_slenderness_gt_60",
+      "gamma_c": 0.8,
+      "description_ru": "Сжатые основные элементы (кроме опорных) решетки составного таврового сечения из двух уголков в сварных фермах при гибкости >60."
+    },
+    {
+      "case_id": "5_tension_members_gross_section_strength",
+      "gamma_c": 0.9,
+      "description_ru": "Растянутые элементы (затяжки, тяги, оттяжки, подвески) при расчете на прочность по неослабленному сечению."
+    },
+    {
+      "case_id": "6_static_steel_fy_le_440_net_section_with_bolt_holes_non_friction",
+      "gamma_c": 1.1,
+      "description_ru": "Элементы из стали с пределом текучести до 440 Н/мм² при статической нагрузке и расчете ослабленного отверстиями сечения, кроме фрикционных соединений."
+    },
+    {
+      "case_id": "7a_first_brace_and_strut_group_per_table_1",
+      "gamma_c": 0.9,
+      "description_ru": "Сжатые элементы решетки пространственных решетчатых конструкций из одиночных уголков: первая группа рисунка 15 при непосредственном креплении сваркой либо двумя и более болтами вдоль уголка."
+    },
+    {
+      "case_id": "7a_second_brace_group_per_table_1",
+      "gamma_c": 0.8,
+      "description_ru": "Сжатые элементы решетки пространственных решетчатых конструкций из одиночных уголков: вторая группа раскосов рисунка 15 при непосредственном креплении сваркой либо двумя и более болтами вдоль уголка."
+    },
+    {
+      "case_id": "7b_single_bolt_or_gusset",
+      "gamma_c": 0.75,
+      "description_ru": "Такие элементы при непосредственном креплении одним болтом либо через фасонку независимо от вида соединения."
+    },
+    {
+      "case_id": "8_single_angle_compressed_members_one_leg_except_exclusions",
+      "gamma_c": 0.75,
+      "description_ru": "Сжатые элементы из одиночных уголков, прикрепляемых одной полкой, кроме исключений, перечисленных в таблице 1."
+    },
+    {
+      "case_id": "9a_bearing_plate_t_le_40mm",
+      "gamma_c": 1.2,
+      "description_ru": "Опорные плиты из стали с пределом текучести до 390 Н/мм² при статической нагрузке, толщиной до 40 мм."
+    },
+    {
+      "case_id": "9b_bearing_plate_40_lt_t_le_60mm",
+      "gamma_c": 1.15,
+      "description_ru": "Опорные плиты: свыше 40 до 60 мм."
+    },
+    {
+      "case_id": "9c_bearing_plate_60_lt_t_le_80mm",
+      "gamma_c": 1.1,
+      "description_ru": "Опорные плиты: свыше 60 до 80 мм."
+    },
+    {
+      "case_id": "default_unlisted_case_note_5",
+      "gamma_c": 1.0,
+      "description_ru": "Примечание 5: в случаях, не оговоренных таблицей 1, в формулах принимают γc = 1."
+    }
+  ],
+  "notes": [
+    "Коэффициенты gamma_c < 1 при совместном расчете не следует перемножать, кроме явно указанных сочетаний.",
+    "Для ослабленного болтовыми отверстиями сечения совместно учитываются предусмотренные таблицей сочетания позиций 6 с 1, 2 или 3.",
+    "Для опорных плит совместно учитываются предусмотренные таблицей сочетания позиций 9 с 2 или 3.",
+    "Коэффициенты позиций 1 и 2 учитываются также при расчете соответствующих соединений.",
+    "Если случай не оговорен таблицей, gamma_c = 1."
+  ],
+  "limitations": [
+    "The caller must classify the normative case explicitly. Geometry/use classification is not inferred."
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "case_id": "N2-PROFILE-15K4-001",
+  "standard": "СП 16.13330.2017",
+  "release_stage": "v0.57_fire_ui24_fire_val1_routing_remediation_r1",
+  "action": "profile_catalog_resolve",
+  "engineering_calculation_performed": true,
+  "inputs": {
+    "case_id": "N2-PROFILE-15K4-001",
+    "standard": "СП 16.13330.2017",
+    "action": "profile_catalog_resolve",
+    "family_id": 35,
+    "designation": "15К4",
+    "axis": "x"
+  },
+  "results": {
+    "profile_ref": {
+      "family_id": 35,
+      "designation": "15К4",
+      "source_row_id": 3387
+    },
+    "catalog_status": "INTERIM_IMPORTED_FROM_NORMCAD_PENDING_ORIGINAL_GOST_AUDIT",
+    "original_gost_audit_complete": false,
+    "original_gost_audit_gate": "DEFERRED_TO_FINAL_PACKAGE_PROFILE_AUDIT",
+    "source": {
+      "imported_from": "NormCAD historical profile MDB capture",
+      "normcad_source_sha256": "f7f967e5f22382eb0e20606be73189d2bc6db8f86588d66584fd49b5c4deb4e8",
+      "row_id": 3387,
+      "family_caption": "Двутавры колонные с параллельными гранями полок по ГОСТ Р 57837-2017",
+      "product_standard_label_unverified": "ГОСТ Р 57837-2017"
+    },
+    "family": {
+      "family_id": 35,
+      "caption": "Двутавры колонные с параллельными гранями полок по ГОСТ Р 57837-2017",
+      "shape_group": "I_ROLLED_DSYMM",
+      "product_standard_label_unverified": "ГОСТ Р 57837-2017",
+      "catalog_status": "INTERIM_IMPORTED_FROM_NORMCAD_PENDING_ORIGINAL_GOST_AUDIT",
+      "original_gost_audit_complete": false,
+      "table7_rule": "ROLLED_I_X_B_OR_A_GT500_Y_C",
+      "table7_type_x": null,
+      "table7_type_y": "c",
+      "annex_d_k": 1.29,
+      "table7_evidence": "Current SP16 Table 7: rolled I strong/web plane type b with Note 1 type-a override for h>500; minor-stiffness plane type c."
+    },
+    "designation": "15К4",
+    "shape_group": "I_ROLLED_DSYMM",
+    "dimensions": {
+      "h_mm": 160.0,
+      "b_mm": 152.0,
+      "tw_mm": 10.0,
+      "tf_mm": 15.0,
+      "r_mm": 11.0
+    },
+    "catalog_properties_interim": {
+      "A_mm2": 5964.0,
+      "Ix_mm4": 26291600.0,
+      "Iy_mm4": 8796600.0,
+      "Wx1_mm3": 328600.0,
+      "Wx2_mm3": 328600.0,
+      "Wy1_mm3": 115740.0,
+      "Wy2_mm3": 115740.0,
+      "Sx_mm3": 189670.0,
+      "Sy_mm3": 88650.0
+    },
+    "derived_properties": {
+      "mass_kg_m_at_7850": 46.8174,
+      "radius_x_mm": 66.39565976134433,
+      "radius_y_mm": 38.40507385996198,
+      "minimum_radius_mm": 38.40507385996198,
+      "minimum_section_modulus_x_mm3": 328600.0,
+      "minimum_section_modulus_y_mm3": 115740.0,
+      "alpha_f_x": 1.7538461538461538,
+      "alpha_f_y": 0.2850877192982456,
+      "alpha_f_calculation_note": "Af/Aw from nominal flange/web dimensions; x: b*tf/[tw*(h-2tf)], y: reciprocal two-flange convention",
+      "torsional_inertia_mm4": 497080.0,
+      "torsion_policy": "CURRENT_SP16_ANNEX_D_FORMULA",
+      "annex_d_k": 1.29,
+      "calculation_detail": {
+        "section_type": "i_doubly_symmetric",
+        "k": 1.29,
+        "sum_b_i_t_i3_mm4": 1156000.0,
+        "I_t_sp16_annex_d_mm4": 497080.0,
+        "normative_reference": "СП 16.13330.2017, приложение Д, примечание к формулам Д.1-Д.2",
+        "source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+        "provenance": "CURRENT_SP16_FORMULA_RESULT"
+      }
+    },
+    "sp16_table7": {
+      "x": {
+        "section_type": "b",
+        "alpha": 0.04,
+        "beta": 0.09,
+        "phi_cap_lambda_bar_threshold": 4.4,
+        "classification_rule": "ROLLED_I_X_B_OR_A_GT500_Y_C",
+        "evidence": "Table 7 rolled-I web-plane mapping with Note 1 h>500 override",
+        "normative_reference": "СП 16.13330.2017, 7.1.3, таблица 7 (ред. Изменения №6)",
+        "source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873"
+      },
+      "y": {
+        "section_type": "c",
+        "alpha": 0.04,
+        "beta": 0.14,
+        "phi_cap_lambda_bar_threshold": 5.8,
+        "classification_rule": "ROLLED_I_X_B_OR_A_GT500_Y_C",
+        "evidence": "Table 7 rolled-I minor-stiffness-plane mapping shown by the normative section forms",
+        "normative_reference": "СП 16.13330.2017, 7.1.3, таблица 7 (ред. Изменения №6)",
+        "source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873"
+      }
+    },
+    "historical_fields_not_used_as_runtime_truth": {
+      "mass_kg_m_db": 46.7999992,
+      "It_mm4_db": 385333.0,
+      "afwx_db": 1.7539999,
+      "afwy_db": 0.285
+    },
+    "selected_axis": "x",
+    "selected_axis_properties": {
+      "second_moment_mm4": 26291600.0,
+      "radius_of_gyration_mm": 66.39565976134433,
+      "minimum_section_modulus_mm3": 328600.0,
+      "table7_section_type": "b",
+      "table7_alpha": 0.04,
+      "table7_beta": 0.09
+    }
+  },
+  "scope_note": "Stage N2 interim profile resolution. Imported catalog rows are runtime-enabled but remain PENDING_ORIGINAL_GOST_AUDIT. Mass, radii, Table 7 coefficients and supported torsion quantities are recomputed; known corrupt NormCAD mass/afw/It fields are not used as runtime truth."
+}

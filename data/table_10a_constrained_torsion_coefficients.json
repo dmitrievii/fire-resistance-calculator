@@ -1,0 +1,56 @@
+{
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "table_number": "10а",
+  "clause": "8.2.3",
+  "page": 30,
+  "audit_id": "SP16-TBL-10а",
+  "independent_variable": "M_x/(c_x*W_xn_min*R_y*gamma_c)",
+  "interpolation": "linear between adjacent printed nodes; extrapolation is not permitted",
+  "nodes": [
+    {
+      "ratio": 0.0,
+      "c_omega": 1.47
+    },
+    {
+      "ratio": 0.1,
+      "c_omega": 1.636
+    },
+    {
+      "ratio": 0.2,
+      "c_omega": 1.845
+    },
+    {
+      "ratio": 0.3,
+      "c_omega": 2.054
+    },
+    {
+      "ratio": 0.4,
+      "c_omega": 2.263
+    },
+    {
+      "ratio": 0.5,
+      "c_omega": 2.472
+    },
+    {
+      "ratio": 0.6,
+      "c_omega": 2.681
+    },
+    {
+      "ratio": 0.7,
+      "c_omega": 2.89
+    },
+    {
+      "ratio": 0.8,
+      "c_omega": 3.099
+    },
+    {
+      "ratio": 0.9,
+      "c_omega": 3.308
+    },
+    {
+      "ratio": 0.99,
+      "c_omega": 3.496
+    }
+  ],
+  "standard_reference": "СП 16.13330.2017, clause 8.2.3, Table 10a"
+}

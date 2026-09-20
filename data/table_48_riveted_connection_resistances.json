@@ -1,0 +1,25 @@
+{
+  "standard": "СП 16.13330.2017",
+  "table": "48",
+  "clause": "18.2.7",
+  "page": 120,
+  "title": "Design resistances of existing riveted connections",
+  "units": "N/mm2",
+  "rows": [
+    {"limit_state": "shear", "symbol": "R_rs", "connection_group": "B", "rivet_steel": "St2_St3", "value": 180.0},
+    {"limit_state": "shear", "symbol": "R_rs", "connection_group": "B", "rivet_steel": "09G2", "value": 220.0},
+    {"limit_state": "shear", "symbol": "R_rs", "connection_group": "C", "rivet_steel": "St2_St3", "value": 160.0},
+    {"limit_state": "tension_head_pull_off", "symbol": "R_rt", "connection_group": "B_or_C", "rivet_steel": "St2_St3", "value": 120.0},
+    {"limit_state": "tension_head_pull_off", "symbol": "R_rt", "connection_group": "B_or_C", "rivet_steel": "09G2", "value": 150.0},
+    {"limit_state": "bearing", "symbol": "R_rp", "connection_group": "B", "value_expression": "2.0*Ry"},
+    {"limit_state": "bearing", "symbol": "R_rp", "connection_group": "C", "value_expression": "1.7*Ry"}
+  ],
+  "group_definitions": {
+    "B": "Rivets installed in holes drilled in assembled elements or in individual parts using templates/jigs.",
+    "C": "Rivets installed in holes punched or drilled without a template in individual parts."
+  },
+  "head_rule": {
+    "countersunk_or_semicountersunk": "multiply shear and bearing resistances by 0.8; tension is not permitted"
+  },
+  "unknown_documentation_rule": "Use group C and St2 when hole formation and rivet material cannot be established."
+}

@@ -1,0 +1,90 @@
+{
+  "stage": "N1 — Material / Strength",
+  "release_candidate": "v0.27_stage_n1_material_strength_closed_reconstructed_r1",
+  "normative_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "parent_package": "v0.26",
+  "parent_dag_sha256": "0b7ba0151ffd5fc2dd442bdbdfb70c5fd2686dc8e2f75ec0f61957051c1dfa27",
+  "remediated_dag_sha256": "230a7332fee87d18dec5f975ec96c9259c62112d56cc7123e61282d34c5e48ce",
+  "scope": {
+    "clauses": [
+      "4.3.2",
+      "5.1",
+      "6.1"
+    ],
+    "tables": [
+      "2",
+      "3",
+      "Б.1 (rolled-steel row)",
+      "В.3",
+      "В.4",
+      "В.5"
+    ],
+    "quantities": [
+      "Ryn",
+      "Run",
+      "Ry",
+      "Ru",
+      "Rs",
+      "E",
+      "G",
+      "rho",
+      "alpha",
+      "nu",
+      "gamma_m",
+      "gamma_u"
+    ]
+  },
+  "package_changes": {
+    "new_numeric_annex_tables": 4,
+    "material_lookup_class": "SteelMaterialStrengthResolver",
+    "external_reference_tables_before": 24,
+    "external_reference_tables_after": 20
+  },
+  "dag_changes": {
+    "tube_route": "external -> В.3",
+    "V3_missing_C355_100_160": "restored",
+    "V3_aliases_C355_1_C355_K": "restored",
+    "lookup_outputs": "Ryn only -> Ryn/Run/Ry/Ru",
+    "physical_constants": "E only -> E/G/rho/alpha/nu",
+    "table2_table3_nodes": "added"
+  },
+  "normcad": {
+    "physical_constants_verdict": "NONCONFORMING_CURRENT_SP16_FOR_E_G",
+    "strength_databases": "DECODED_STATIC_ROWS_WITH_RECORD_EVIDENCE",
+    "decoded_rows": {
+      "sheet_strength": 62,
+      "shaped_strength": 72,
+      "tube_strength": 6
+    },
+    "current_grade_rows_compared": 111,
+    "static_crosswalk_status_counts": {
+      "MATCH_STATIC_ROW_AND_BOUNDARY_LABEL": 50,
+      "VALUE_MISMATCH": 23,
+      "NORMCAD_THICKNESS_ROUTE_MISSING": 18,
+      "VALUES_MATCH_BOUNDARY_LABEL_DIFFERS_OR_UNCERTAIN": 15,
+      "NORMCAD_GRADE_MISSING": 5
+    },
+    "triangulation_strength_status": "COMPLETE_FOR_STATIC_CAPTURE_DECLARED_SCOPE",
+    "exact_runtime_boundary_selection": "NOT_CLAIMED_WHERE_STATIC_NORMCAD_LABELS_ARE_AMBIGUOUS"
+  },
+  "closure_status": "N1_CLOSED_DECLARED_SCOPE",
+  "not_claimed": [
+    "full SP16 validation",
+    "full package-wide Change 6 rebaseline",
+    "NormCAD exact runtime/UI boundary-selection semantics where static labels are ambiguous",
+    "engineering-use readiness"
+  ],
+  "source_verification": {
+    "current_sp16_source_vs_package_checks": "7/7 PASS_EXACT",
+    "strength_table_rows": "95/95 PASS_EXACT",
+    "boundary_probe_matrix": "981/981 expected source semantics to be regression-checked",
+    "boundary_expected_resolved": 866,
+    "boundary_expected_fail_closed": 115
+  },
+  "discrepancy_closure": {
+    "registered": 19,
+    "package_or_dag_defects_fixed": 5,
+    "normcad_divergences_explained": 14,
+    "unresolved": 0
+  }
+}

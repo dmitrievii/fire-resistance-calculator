@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fire_ui0_session.schema.json",
+  "title": "FIRE-UI0 guided calculation session snapshot",
+  "type": "object",
+  "required": ["schema", "graph_id", "graph_sha256", "entry_node_id", "current_node_id", "status", "values", "ledger", "trace", "interaction_history", "visited_node_ids"],
+  "properties": {
+    "schema": {"const": "fire_ui_session_v1"},
+    "graph_id": {"type": "string", "minLength": 1},
+    "graph_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "entry_node_id": {"type": "string", "minLength": 1},
+    "current_node_id": {"type": ["string", "null"]},
+    "status": {"type": "string", "minLength": 1},
+    "values": {"type": "object"},
+    "ledger": {"type": "array", "items": {"type": "object"}},
+    "trace": {"type": "array", "items": {"type": "object"}},
+    "interaction_history": {"type": "array", "items": {"type": "object"}},
+    "visited_node_ids": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,10 @@
+Источник: пользовательский расчетный отчет, вставленный в чат (12.08.2026 15:47:33).
+
+Mx=11767936.29624 N mm; Qy=6864.655 N; Nt=1961.33 N.
+Bolt db=18 mm; ns=20; summed bearing thickness=7 mm; tmin=13 mm.
+Half-joint: k=4 vertical rows, m=7 bolts per row, n=28. Staggered: s=500 mm, b1=100 mm longitudinal, b2=140 mm transverse, a=60 mm, a2=80 mm.
+Report: hmax=840 mm; N1=9006.0737 N; Ns=2264.82691 N.
+Report bolt data: Abn=192 mm2, Rbt=450 MPa -> Nbt=77760 N; Ab=254 mm2, Rbs=330 MPa -> Nbs=1508760 N.
+Report bearing: Rbp=580 MPa -> Nbp=65772 N.
+Report applies +10% to forces: Ns=2491.3097 N, Nt=2157.463 N; Eq.(190)=0.02779 PASS.
+Report Table 40 line states b1=100 <= b2+1.5*d0=170 mm as PASS. Normatively this is a minimum and therefore 100<170 is FAIL.

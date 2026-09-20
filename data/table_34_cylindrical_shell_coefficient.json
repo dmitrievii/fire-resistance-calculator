@@ -1,0 +1,22 @@
+{
+  "standard": "СП 16.13330.2017 Стальные конструкции",
+  "version": "Supplied consolidated text with Changes No. 1-6 through 09.12.2024",
+  "clause": "11.2.1",
+  "table_number": "34",
+  "audit_id": "SP16-TBL-34",
+  "topic": "Coefficient c for axial stability of closed circular cylindrical shells",
+  "lookup_policy": "Exact printed nodes only; the supplied clause does not state interpolation or extrapolation rules.",
+  "values": {
+    "100": 0.22,
+    "200": 0.18,
+    "300": 0.16,
+    "400": 0.14,
+    "600": 0.11,
+    "800": 0.09,
+    "1000": 0.08,
+    "1500": 0.07,
+    "2500": 0.06
+  },
+  "source_pages": [74],
+  "comments": "Values visually verified against Table 34. No unstated interpolation is implemented."
+}

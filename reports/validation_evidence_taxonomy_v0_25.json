@@ -1,0 +1,16 @@
+{
+  "release_stage": "v0.25_independent_function_oracle_expansion_and_golden_cross_implementation_validation_reconstructed_r1",
+  "evidence_classes": {
+    "parent_independent_direct_function_oracle": "separately written closed-form expected value from Phase 0.24",
+    "independent_source_rederived_closed_form_oracle": "new Phase 0.25 expected value re-derived from the normative formula without calling a production helper",
+    "external_vendor_published_cross_implementation": "comparison against a numerical value published in an external vendor verification example; not a live vendor run",
+    "contract_adversarial_probe": "negative test proving malformed/non-finite comparator evidence is rejected"
+  },
+  "anti_overclaim_rules": [
+    "Regression/self-check agreement is not independent validation.",
+    "A closed-form oracle validates the target function at the tested point, not every branch or applicability route.",
+    "A vendor-published comparator value is external cross-implementation evidence, not a live vendor execution.",
+    "A downstream formula supplied with a published coefficient does not validate generation of that coefficient.",
+    "Coverage is execution evidence only."
+  ]
+}

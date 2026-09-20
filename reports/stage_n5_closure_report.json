@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "release_stage": "v0.31_stage_n5_beam_columns_current_sp16_closed_reconstructed_r1",
+  "package_version": "0.31.0",
+  "parent_release": "v0.30_stage_n4_bending_members_current_sp16_closed_reconstructed_r1",
+  "stage": "N5",
+  "verdict": "STAGE_N5_BEAM_COLUMNS_CURRENT_SP16_CLOSED",
+  "engineering_use_ready": false,
+  "full_change_6_rebaseline_complete": false,
+  "original_gost_profile_audit_complete": false,
+  "authoritative_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "scope": {
+    "section_9_guided_beam_column_route": true,
+    "section_9_1_equations_105_106_routing": true,
+    "section_9_2_guided_stability_routing": true,
+    "annex_d2_eta_meff_route": true,
+    "annex_d3_exact_grid_fail_closed": true,
+    "clause_9_2_9_independent_trigger_retained": true,
+    "box_and_built_up_detailed_actions_retained": true,
+    "n1_n2_n3_n4_frozen_dependencies": true
+  },
+  "current_source_specific_findings": {
+    "c255b1_current_material": "Ryn=245 MPa; Ry=240 MPa; E=206000 MPa; G=79000 MPa",
+    "qualified_d3_node": "lambda_bar_x=1.5; m_eff_x=1.0; phi_e=0.593",
+    "d3_policy": "exact_grid_only; non-node requires explicit external coefficient with provenance; no hidden interpolation",
+    "current_15k4_torsional_inertia_mm4": 497080.0
+  },
+  "normcad": {
+    "role": "HISTORICAL_SECONDARY_ORACLE_NOT_NORMATIVE",
+    "linked_validation_case": "VAL-SP16-BEAMCOL-0008",
+    "historical_material_values_not_imported": true,
+    "lefy_2_95_mm_source_anomaly_preserved": true,
+    "interpolated_phi_e_0_18771_not_promoted_to_normative_lookup": true
+  },
+  "dag": {
+    "file": "normative_graph/dag_v0.3.34_stage_n5.json",
+    "sha256": "c60c9baaea65a577537dc4e3fb4e98ee0e85c4efa8048c0e351f07a3fe180765",
+    "schema_validation": "PASS",
+    "quantities": 665,
+    "nodes": 598,
+    "edges": 1039
+  },
+  "tests": {
+    "stage_n5_focused": "20/20 PASS",
+    "cumulative_engineering_and_release_tests_excluding_release_manifest": "685/685 PASS",
+    "main_py_release_audit": "PASS",
+    "generated_outputs": "25/25 current release identity",
+    "legacy_validation_cases": "1876/1876 PASS",
+    "independent_function_oracles": "60/581 retained",
+    "external_golden_cases": "6/6 retained",
+    "full_pytest_with_release_manifest": "686/686 PASS",
+    "release_manifest": "1/1 PASS"
+  },
+  "inventory": {
+    "equations": "241 total / 240 implemented / 1 no-code explanatory",
+    "tables": "88 total / 67 implemented-as-data / 20 external-reference-required / 1 no-code explanatory",
+    "procedures": "304 total / 303 implemented / 1 no-code explanatory"
+  },
+  "discrepancies": {
+    "total": 7,
+    "open_package_or_dag_defects": 0,
+    "runtime_unresolved": 0
+  },
+  "deferred_final_gates": [
+    "full package-wide Change 6 rebaseline",
+    "original/effective GOST/GOST R audit of interim imported profile catalog",
+    "final external engineering certification/qualification"
+  ],
+  "release_gate_note": "Stage N5 is closed only for the declared Section 9 guided beam-column runtime/DAG scope. Annex D.3 arbitrary-point interpolation is intentionally not invented; specialized box/built-up routes remain in their retained detailed actions. This does not make the cumulative package engineering-use ready."
+}

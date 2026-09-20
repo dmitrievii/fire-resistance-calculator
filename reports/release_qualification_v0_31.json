@@ -1,0 +1,10 @@
+{
+  "release_stage": "v0.31_stage_n5_beam_columns_current_sp16_closed_reconstructed_r1",
+  "qualification": "research_grade_stage_n5_beam_columns_closed_current_sp16_triangulated",
+  "stage_n5_closed": true,
+  "engineering_use_ready": false,
+  "full_change_6_rebaselined": false,
+  "original_gost_profile_audit_complete": false,
+  "tests": "685/685 pre-manifest + 1/1 manifest + 686/686 full + 20/20 focused",
+  "dag_sha256": "c60c9baaea65a577537dc4e3fb4e98ee0e85c4efa8048c0e351f07a3fe180765"
+}

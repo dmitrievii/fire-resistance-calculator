@@ -1,0 +1,24 @@
+{
+  "case_id": "VAL-SP16-BEAM-0001",
+  "production_release": "v0.25_independent_function_oracle_expansion_and_golden_cross_implementation_validation_reconstructed_r1",
+  "results": [
+    {
+      "check_id": "SRC-EQ45",
+      "function": "standard_core.bending_members.bolt_hole_factor_eq45",
+      "actual": 1.0273972602739727,
+      "pass_fail": "PASS"
+    },
+    {
+      "check_id": "SRC-EQ41",
+      "function": "standard_core.bending_members.elastic_bending_utilization_eq41",
+      "actual": 3.3706942488330043,
+      "pass_fail": "PASS",
+      "engineering_verdict": "FAIL"
+    }
+  ],
+  "diagnostic_counterfactual": {
+    "description": "Not a golden comparison: production equation (41) evaluated with the Wxn=196000 mm3 printed in the source section-properties block on page 1.",
+    "actual_utilization": 17.197419636903085,
+    "difference_from_source_reported_utilization": 13.826729636903085
+  }
+}

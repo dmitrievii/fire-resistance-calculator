@@ -1,0 +1,270 @@
+{
+  "release_stage": "v0.27_stage_n1_material_strength_closed_reconstructed_r1",
+  "policy": "Current Stage N1 closes Б.1 (rolled-steel physical constants) and В.3/В.4/В.5 strength datasets. Remaining historical Annex boundaries stay explicit.",
+  "source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "materialized_stage_n1": [
+    {
+      "audit_id": "SP16-TBL-Б-1",
+      "data_file": "data/annex_b1_physical_properties.json",
+      "status": "implemented_as_data"
+    },
+    {
+      "audit_id": "SP16-TBL-В-3",
+      "data_file": "data/annex_v3_strength_resistances.json",
+      "status": "implemented_as_data"
+    },
+    {
+      "audit_id": "SP16-TBL-В-4",
+      "data_file": "data/annex_v4_parallel_flange_i_strength_resistances.json",
+      "status": "implemented_as_data"
+    },
+    {
+      "audit_id": "SP16-TBL-В-5",
+      "data_file": "data/annex_v5_shaped_strength_resistances.json",
+      "status": "implemented_as_data"
+    }
+  ],
+  "remaining_external_tables": [
+    {
+      "audit_id": "SP16-TBL-Б-2",
+      "standard_reference": "Приложение Б",
+      "annex": "Б",
+      "table_number": "Б.2",
+      "title": "Физические характеристики проводов и проволоки",
+      "page": "132",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-В-1",
+      "standard_reference": "Приложение В",
+      "annex": "В",
+      "table_number": "В.1",
+      "title": "Нормируемые показатели ударной вязкости проката и труб",
+      "page": "134",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-В-2",
+      "standard_reference": "Приложение В",
+      "annex": "В",
+      "table_number": "В.2",
+      "title": "Требования по химическому составу",
+      "page": "135",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-В-6",
+      "standard_reference": "Приложение В",
+      "annex": "В",
+      "table_number": "В.6",
+      "title": "Расчетные сопротивления проката смятию торцевой поверхности, местному смятию в цилиндрических",
+      "page": "141",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-В-7",
+      "standard_reference": "Приложение В",
+      "annex": "В",
+      "table_number": "В.7",
+      "title": "Расчетные сопротивления отливок из углеродистой стали",
+      "page": "142",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-В-8",
+      "standard_reference": "Приложение В",
+      "annex": "В",
+      "table_number": "В.8",
+      "title": "Расчетные сопротивления отливок из серого чугуна",
+      "page": "142",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-В-9",
+      "standard_reference": "Приложение В",
+      "annex": "В",
+      "table_number": "В.9",
+      "title": "Характеристики сталей для обобщенной расчетной диаграммы работы (см. рисунок В.1)",
+      "page": "143",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-Г-1",
+      "standard_reference": "Приложение Г",
+      "annex": "Г",
+      "table_number": "Г.1",
+      "title": "Материалы для сварки, соответствующие стали",
+      "page": "145",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-Г-2",
+      "standard_reference": "Приложение Г",
+      "annex": "Г",
+      "table_number": "Г.2",
+      "title": "Нормативные и расчетные сопротивления металла швов сварных соединений с угловыми швами",
+      "page": "146",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-Г-3",
+      "standard_reference": "Приложение Г",
+      "annex": "Г",
+      "table_number": "Г.3",
+      "title": "Требования к болтам при различных условиях их применения",
+      "page": "146",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-Г-4",
+      "standard_reference": "Приложение Г",
+      "annex": "Г",
+      "table_number": "Г.4",
+      "title": "Стали фундаментных болтов и условия их применения",
+      "page": "147",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-Г-5",
+      "standard_reference": "Приложение Г",
+      "annex": "Г",
+      "table_number": "Г.5",
+      "title": "Нормативные сопротивления стали болтов и расчетные сопротивления одноболтовых соединений срезу и",
+      "page": "148",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-Г-6",
+      "standard_reference": "Приложение Г",
+      "annex": "Г",
+      "table_number": "Г.6",
+      "title": "Расчетные сопротивления смятию элементов, соединяемых болтами",
+      "page": "148",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-Г-7",
+      "standard_reference": "Приложение Г",
+      "annex": "Г",
+      "table_number": "Г.7",
+      "title": "Расчетные сопротивления растяжению фундаментных болтов",
+      "page": "149",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-Г-9",
+      "standard_reference": "Приложение Г",
+      "annex": "Г",
+      "table_number": "Г.9",
+      "title": "Площади сечения болтов",
+      "page": "149",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-И-1",
+      "standard_reference": "Приложение И",
+      "annex": "И",
+      "table_number": "И.1",
+      "title": "Коэффициенты расчетной длины",
+      "page": "172",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-И-2",
+      "standard_reference": "Приложение И",
+      "annex": "И",
+      "table_number": "И.2",
+      "title": "Коэффициенты расчетной длины",
+      "page": "172",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-И-3",
+      "standard_reference": "Приложение И",
+      "annex": "И",
+      "table_number": "И.3",
+      "title": "Коэффициенты расчетной длины",
+      "page": "173",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-И-4",
+      "standard_reference": "Приложение И",
+      "annex": "И",
+      "table_number": "И.4",
+      "title": "Коэффициенты расчетной длины",
+      "page": "174",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    },
+    {
+      "audit_id": "SP16-TBL-И-5",
+      "standard_reference": "Приложение И",
+      "annex": "И",
+      "table_number": "И.5",
+      "title": "Коэффициенты",
+      "page": "175",
+      "status": "external_reference_required",
+      "automation_level": "normative_reference_only",
+      "interpolation_policy": "none_invented",
+      "extrapolation_policy": "none_invented"
+    }
+  ],
+  "remaining_external_count": 20
+}

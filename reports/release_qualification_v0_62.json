@@ -1,0 +1,79 @@
+{
+  "schema": "release_qualification_v1",
+  "release_stage": "v0.62_sp16_mech5_direct_bimoment_pointwise_recovery_r1",
+  "package_version": "0.62.0",
+  "parent_release": "v0.61_sp16_mech4_free_torsion_pointwise_recovery_r1",
+  "active_dag": "normative_graph/dag_v0.3.65_sp16_mech5_direct_bimoment_pointwise_recovery.json",
+  "active_dag_sha256": "a4a882728a41361a211e3d3b9e6963f72d84061eb17363edda20af81b1a99407",
+  "active_dag_counts": {
+    "quantities": 841,
+    "datasets": 39,
+    "nodes": 713,
+    "edges": 1208
+  },
+  "ui_contract_counts": {
+    "interactive_nodes": 163,
+    "result_nodes": 52
+  },
+  "scope": {
+    "direct_B_policy_preserved": true,
+    "automatic_B_from_T_closed": false,
+    "i_section_sectorial_pointwise_recovery_closed": true,
+    "all_section_bimoment_geometry_closed": false,
+    "complete_N_M_Q_T_B_pointwise_state_supported_geometry_closed": true,
+    "full_sp16_mechanical_pass_closed": false,
+    "sp554_Qy_T_complex_state_handoff_closed": false
+  },
+  "source_tree_test_groups": [
+    {
+      "name": "MECH1-5 + affected FIRE-UI",
+      "passed": 146,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "SP16 core mechanics group A",
+      "passed": 180,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "SP16 core mechanics group B",
+      "passed": 244,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "Stage N1-N10 workflows",
+      "passed": 243,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "FIRE-D1..D4 runtime",
+      "passed": 68,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "Phase 0.23 normative rebaseline",
+      "passed": 5,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "Phase 0.24 API/direct coverage",
+      "passed": 6,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "Phase 0.25 + docstrings + schemas + FIRE-UI0",
+      "passed": 71,
+      "failed": 0,
+      "status": "PASS"
+    }
+  ],
+  "historical_dag_batch_note": "Historical stage *_dag.py batches are not used as a release PASS claim; active-DAG deterministic rebuild and fresh-extraction gates are required during packaging.",
+  "engineering_use_ready": false
+}

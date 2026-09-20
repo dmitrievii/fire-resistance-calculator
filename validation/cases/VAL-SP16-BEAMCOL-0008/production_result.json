@@ -1,0 +1,39 @@
+{
+  "case_id": "VAL-SP16-BEAMCOL-0008",
+  "release_stage": "v0.26_validation_campaign_remediation_and_corpus_0001_0009_reconstructed_r1",
+  "checks": [
+    {
+      "check_id": "An",
+      "actual_value": 5064
+    },
+    {
+      "check_id": "eq106",
+      "actual_value": 0.203400308
+    },
+    {
+      "check_id": "lambda_x",
+      "actual_value": 46.689799
+    },
+    {
+      "check_id": "lambda_y",
+      "actual_value": 0.076813
+    },
+    {
+      "check_id": "eta_x",
+      "actual_value": 1.3786321
+    },
+    {
+      "check_id": "meff_x",
+      "actual_value": 6.67245
+    },
+    {
+      "check_id": "phi_y_low_slenderness",
+      "actual_value": 1
+    },
+    {
+      "check_id": "eq109_given_phi_e",
+      "actual_value": 0.04426019
+    }
+  ],
+  "remediation_state": "current_v0.26_code_for_directly_comparable_routes"
+}

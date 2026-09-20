@@ -1,0 +1,39 @@
+{
+  "standard": "СП 16.13330.2017",
+  "standard_reference": "Clause 12.1.2, Table 36, supplied PDF page 79",
+  "title": "Fatigue asymmetry factor gamma_v",
+  "stress_sign_convention": "tension positive; compression negative; rho=sigma_min/sigma_max with sigma_max governing by absolute value",
+  "rows": [
+    {
+      "id": "tension_rho_minus1_to_0",
+      "stress_state": "tension",
+      "rho_min_inclusive": -1.0,
+      "rho_max_inclusive": 0.0,
+      "formula": "2.5/(1.5-rho)"
+    },
+    {
+      "id": "tension_rho_0_to_0_8",
+      "stress_state": "tension",
+      "rho_min_exclusive": 0.0,
+      "rho_max_inclusive": 0.8,
+      "formula": "2.0/(1.2-rho)"
+    },
+    {
+      "id": "tension_rho_0_8_to_1",
+      "stress_state": "tension",
+      "rho_min_exclusive": 0.8,
+      "rho_max_exclusive": 1.0,
+      "formula": "1.0/(1.0-rho)"
+    },
+    {
+      "id": "compression_rho_minus1_to_1",
+      "stress_state": "compression",
+      "rho_min_inclusive": -1.0,
+      "rho_max_exclusive": 1.0,
+      "formula": "2.0/(1.0-rho)"
+    }
+  ],
+  "interpolation": "not_applicable; rows are analytic expressions",
+  "source_edition": "СП 16.13330.2017, Changes No. 1-6 through 09.12.2024",
+  "source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873"
+}

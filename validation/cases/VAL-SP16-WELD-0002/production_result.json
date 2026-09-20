@@ -1,0 +1,27 @@
+{
+  "case_id": "VAL-SP16-WELD-0002",
+  "release_stage": "v0.26_validation_campaign_remediation_and_corpus_0001_0009_reconstructed_r1",
+  "checks": [
+    {
+      "check_id": "kf_max",
+      "actual_value": 6.0
+    },
+    {
+      "check_id": "kf_min",
+      "actual_value": 4.0
+    },
+    {
+      "check_id": "R_wz",
+      "actual_value": 166.5
+    },
+    {
+      "check_id": "manual_lower_bound",
+      "actual_value": 183.15
+    },
+    {
+      "check_id": "compatibility_pass",
+      "actual_value": 0
+    }
+  ],
+  "remediation_state": "current_v0.26_code_for_directly_comparable_routes"
+}

@@ -1,0 +1,58 @@
+{
+  "standard": "СП 16.13330.2017",
+  "standard_reference": "Clause 12.1.2, Table 35, supplied PDF page 78",
+  "title": "Fatigue design resistance Rv by element group and normative ultimate resistance Run",
+  "units": {
+    "normative_ultimate_resistance": "N/mm2",
+    "fatigue_resistance": "N/mm2"
+  },
+  "steel_bins": [
+    {
+      "id": "run_le_420",
+      "lower_exclusive": null,
+      "upper_inclusive": 420.0,
+      "group_1": 120.0,
+      "group_2": 100.0
+    },
+    {
+      "id": "run_gt_420_le_440",
+      "lower_exclusive": 420.0,
+      "upper_inclusive": 440.0,
+      "group_1": 128.0,
+      "group_2": 106.0
+    },
+    {
+      "id": "run_gt_440_le_520",
+      "lower_exclusive": 440.0,
+      "upper_inclusive": 520.0,
+      "group_1": 132.0,
+      "group_2": 108.0
+    },
+    {
+      "id": "run_gt_520_le_580",
+      "lower_exclusive": 520.0,
+      "upper_inclusive": 580.0,
+      "group_1": 136.0,
+      "group_2": 110.0
+    },
+    {
+      "id": "run_gt_580_le_675",
+      "lower_exclusive": 580.0,
+      "upper_inclusive": 675.0,
+      "group_1": 145.0,
+      "group_2": 116.0
+    }
+  ],
+  "all_steel_values": {
+    "3": 90.0,
+    "4": 75.0,
+    "5": 60.0,
+    "6": 45.0,
+    "7": 36.0,
+    "8": 27.0
+  },
+  "boundary_rule": "Printed bins are interpreted as <= upper boundary and > preceding upper boundary. Values above 675 N/mm2 are outside Table 35.",
+  "interpolation": "not_applicable",
+  "source_edition": "СП 16.13330.2017, Changes No. 1-6 through 09.12.2024",
+  "source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873"
+}

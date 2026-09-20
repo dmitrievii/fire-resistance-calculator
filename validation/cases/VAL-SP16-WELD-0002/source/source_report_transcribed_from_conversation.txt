@@ -1,0 +1,10 @@
+Источник: пользовательский расчетный отчет, вставленный в чат (12.08.2026 14:50:12).
+
+Ключевые исходные данные:
+Mx=862981995.05747 N mm; Qx=29419.95002 N; Qy=19613.30001 N; B=203 N mm2.
+Steel C245: Ryn=245, Run=370, Ry=235, Ru=350, Rs=136 MPa; gamma_c=0.95.
+Weld: t=5 mm, tmax=6 mm; fillet weld; electrode E42/E42A; Rwf=180 MPa; Rwz=0.45*370=166.5 MPa.
+Double-sided T-joint, manual welding.
+Report: kf,max=1.2*5=6 mm; kf,min(Table 38)=4 mm; kf=6 mm; beta_f=0.7; beta_z=1.0.
+Clause 14.1.8 report check: Rwf=180 < 1.1*Rwz=183.15 MPa -> condition NOT satisfied.
+The supplied report stops before the force-to-required-weld-length calculation.

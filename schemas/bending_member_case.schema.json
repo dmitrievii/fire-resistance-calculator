@@ -1,0 +1,429 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bending_member_case.schema.json",
+  "title": "СП 16.13330.2017 bending member strength case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "standard",
+    "action",
+    "member_class",
+    "load_is_static",
+    "is_crane_runway_beam",
+    "is_bimetal_beam",
+    "moment_x_n_mm",
+    "moment_y_n_mm",
+    "bimoment_n_mm2",
+    "minimum_net_section_modulus_x_mm3",
+    "minimum_net_section_modulus_y_mm3",
+    "net_inertia_x_mm4",
+    "net_inertia_y_mm4",
+    "net_sectorial_inertia_mm6",
+    "minimum_net_sectorial_section_modulus_mm4",
+    "point_x_mm",
+    "point_y_mm",
+    "sectorial_coordinate_mm2",
+    "shear_force_n",
+    "first_moment_area_mm3",
+    "gross_second_moment_area_mm4",
+    "web_thickness_mm",
+    "longitudinal_normal_stress_n_mm2",
+    "transverse_normal_stress_n_mm2",
+    "shear_stress_xy_n_mm2",
+    "normative_yield_resistance_n_mm2",
+    "design_yield_resistance_n_mm2",
+    "design_shear_resistance_n_mm2",
+    "working_condition_factor",
+    "web_has_bolt_holes",
+    "hole_pitch_mm",
+    "hole_diameter_mm",
+    "figure_6_case",
+    "bearing_width_mm",
+    "flange_and_weld_or_fillet_height_mm",
+    "distribution_coefficient_psi",
+    "flange_and_rail_inertia_mm4",
+    "concentrated_force_n",
+    "table_e1_section_type",
+    "flange_to_web_area_ratio",
+    "minor_axis_moment_is_zero",
+    "equivalent_load_safety_factor",
+    "plastic_section_family",
+    "required_clause_checks_confirmed",
+    "is_support_section",
+    "shear_stress_x_n_mm2",
+    "shear_stress_y_n_mm2",
+    "web_area_mm2",
+    "one_flange_area_mm2",
+    "support_shear_force_x_n",
+    "support_shear_force_y_n",
+    "adjacent_span_1_mm",
+    "adjacent_span_2_mm",
+    "continuous_constant_section",
+    "continuous_doubly_symmetric_section",
+    "continuous_required_clause_checks_confirmed",
+    "end_span_moment_1_n_mm",
+    "end_span_moment_2_n_mm",
+    "end_span_distance_1_mm",
+    "end_span_distance_2_mm",
+    "end_span_length_mm",
+    "intermediate_span_moment_n_mm",
+    "fixed_end_reference_moment_n_mm",
+    "maximum_elastic_moment_n_mm",
+    "redistribution_completed_in_x_plane",
+    "redistribution_completed_in_y_plane",
+    "clause_8_2_5_confirmed",
+    "clause_8_4_6_confirmed",
+    "clause_8_5_8_confirmed",
+    "clause_8_5_9_confirmed",
+    "clause_8_5_18_confirmed",
+    "maximum_moment_sections_include_shear_effect",
+    "web_design_yield_resistance_n_mm2",
+    "flange_design_yield_resistance_n_mm2",
+    "web_design_shear_resistance_n_mm2",
+    "flange_design_shear_resistance_n_mm2",
+    "flange_reference_coefficient_c_xf",
+    "bimetal_section_family",
+    "bimetal_has_two_symmetry_axes",
+    "bimetal_required_clause_checks_confirmed",
+    "bimetal_shear_stress_x_n_mm2",
+    "bimetal_shear_stress_y_n_mm2",
+    "bimetal_is_support_section"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "standard": {
+      "type": "string",
+      "const": "СП 16.13330.2017"
+    },
+    "action": {
+      "type": "string",
+      "const": "bending_member_strength"
+    },
+    "member_class": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3
+    },
+    "load_is_static": {
+      "type": "boolean"
+    },
+    "is_crane_runway_beam": {
+      "type": "boolean"
+    },
+    "is_bimetal_beam": {
+      "type": "boolean"
+    },
+    "moment_x_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "moment_y_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "bimoment_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "minimum_net_section_modulus_x_mm3": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "minimum_net_section_modulus_y_mm3": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "net_inertia_x_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "net_inertia_y_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "net_sectorial_inertia_mm6": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "minimum_net_sectorial_section_modulus_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "point_x_mm": {
+      "type": "number"
+    },
+    "point_y_mm": {
+      "type": "number"
+    },
+    "sectorial_coordinate_mm2": {
+      "type": "number"
+    },
+    "shear_force_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "first_moment_area_mm3": {
+      "type": "number",
+      "minimum": 0
+    },
+    "gross_second_moment_area_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "web_thickness_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "longitudinal_normal_stress_n_mm2": {
+      "type": "number"
+    },
+    "transverse_normal_stress_n_mm2": {
+      "type": "number"
+    },
+    "shear_stress_xy_n_mm2": {
+      "type": "number"
+    },
+    "normative_yield_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "design_yield_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "design_shear_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "working_condition_factor": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "web_has_bolt_holes": {
+      "type": "boolean"
+    },
+    "hole_pitch_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "hole_diameter_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "figure_6_case": {
+      "type": "string",
+      "enum": [
+        "welded_or_rolled",
+        "crane_wheel"
+      ]
+    },
+    "bearing_width_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "flange_and_weld_or_fillet_height_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "distribution_coefficient_psi": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "flange_and_rail_inertia_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "concentrated_force_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "table_e1_section_type": {
+      "type": "string",
+      "enum": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5a",
+        "5b",
+        "6",
+        "7",
+        "8a",
+        "8b",
+        "9a",
+        "9b"
+      ]
+    },
+    "flange_to_web_area_ratio": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "minor_axis_moment_is_zero": {
+      "type": "boolean"
+    },
+    "equivalent_load_safety_factor": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "plastic_section_family": {
+      "type": "string",
+      "enum": [
+        "i_section",
+        "box_section"
+      ]
+    },
+    "required_clause_checks_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "is_support_section": {
+      "type": "boolean"
+    },
+    "shear_stress_x_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "shear_stress_y_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "web_area_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "one_flange_area_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "support_shear_force_x_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "support_shear_force_y_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "adjacent_span_1_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "adjacent_span_2_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "continuous_constant_section": {
+      "type": "boolean"
+    },
+    "continuous_doubly_symmetric_section": {
+      "type": "boolean"
+    },
+    "continuous_required_clause_checks_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "end_span_moment_1_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "end_span_moment_2_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "end_span_distance_1_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "end_span_distance_2_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "end_span_length_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "intermediate_span_moment_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "fixed_end_reference_moment_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "maximum_elastic_moment_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "redistribution_completed_in_x_plane": {
+      "type": "boolean"
+    },
+    "redistribution_completed_in_y_plane": {
+      "type": "boolean"
+    },
+    "clause_8_2_5_confirmed": {
+      "type": "boolean"
+    },
+    "clause_8_4_6_confirmed": {
+      "type": "boolean"
+    },
+    "clause_8_5_8_confirmed": {
+      "type": "boolean"
+    },
+    "clause_8_5_9_confirmed": {
+      "type": "boolean"
+    },
+    "clause_8_5_18_confirmed": {
+      "type": "boolean"
+    },
+    "maximum_moment_sections_include_shear_effect": {
+      "type": "boolean"
+    },
+    "web_design_yield_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "flange_design_yield_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "web_design_shear_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "flange_design_shear_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "flange_reference_coefficient_c_xf": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "bimetal_section_family": {
+      "type": "string",
+      "enum": [
+        "i_section",
+        "box_section"
+      ]
+    },
+    "bimetal_has_two_symmetry_axes": {
+      "type": "boolean"
+    },
+    "bimetal_required_clause_checks_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "bimetal_shear_stress_x_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "bimetal_shear_stress_y_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "bimetal_is_support_section": {
+      "type": "boolean"
+    }
+  }
+}

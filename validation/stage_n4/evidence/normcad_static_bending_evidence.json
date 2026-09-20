@@ -1,0 +1,16 @@
+{
+  "source": "NormCAD/Dat/СП 16.13330.2017___Стальные конструкции.nrb",
+  "source_role": "historical_secondary_oracle_only",
+  "normcad_archive_sha256": "adb974f9f0b4d7dd9f2209b88346a02dea965e0f959d3561da825f3196796904",
+  "current_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "captures": [
+    {
+      "id": "N4-NC-EQ92",
+      "normcad_clause_tag": "8.5.12___1 92",
+      "normcad_expression_transliterated": "sigma_loc_cr_1 = psi*(1.24+0.476*mu1)*Ry/lambda_a",
+      "current_sp16_expression": "sigma_loc_cr_1 = psi*(1.24+0.476*mu1)*Ry/lambda_a^2",
+      "verdict": "NORMCAD_OUTDATED_OR_NONCONFORMING",
+      "note": "Captured statically from decoded NormCAD DSL; no executable NormCAD binary was run."
+    }
+  ]
+}

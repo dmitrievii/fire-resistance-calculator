@@ -1,0 +1,85 @@
+{
+  "schema": "release_qualification_v1",
+  "release_stage": "v0.61_sp16_mech4_free_torsion_pointwise_recovery_r1",
+  "package_version": "0.61.0",
+  "parent_release": "v0.60_sp16_mech3_axis_shear_pointwise_recovery_r1",
+  "active_dag": "normative_graph/dag_v0.3.64_sp16_mech4_free_torsion_pointwise_recovery.json",
+  "active_dag_sha256": "c30aca4b5cd658d0eb9635d30062cfdb776007ee3c83a8c50e11ca5af96c10d1",
+  "active_dag_counts": {
+    "quantities": 835,
+    "datasets": 39,
+    "nodes": 711,
+    "edges": 1206
+  },
+  "ui_contract_counts": {
+    "interactive_nodes": 163,
+    "result_nodes": 52
+  },
+  "scope": {
+    "free_torsion_supported_templates_closed": true,
+    "T_distinct_from_Mx_and_B": true,
+    "direct_B_policy_preserved": true,
+    "restrained_torsion_solver_closed": false,
+    "warping_normal_stress_recovery_closed": false,
+    "full_sp16_mechanical_pass_closed": false,
+    "sp554_Qy_T_handoff_closed": false
+  },
+  "source_tree_test_groups": [
+    {
+      "name": "MECH1-4 + affected UI",
+      "passed": 64,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "SP16 core mechanics group A",
+      "passed": 229,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "SP16 core mechanics group B",
+      "passed": 320,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "FIRE-D1..D4 runtime",
+      "passed": 68,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "FIRE-UI16..24",
+      "passed": 80,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "Phase 0.23 normative rebaseline",
+      "passed": 5,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "Phase 0.24 API hardening",
+      "passed": 5,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "Phase 0.25 validation",
+      "passed": 6,
+      "failed": 0,
+      "status": "PASS"
+    },
+    {
+      "name": "docstrings + schemas + FIRE-UI0",
+      "passed": 65,
+      "failed": 0,
+      "status": "PASS"
+    }
+  ],
+  "historical_dag_batch_note": "Historical stage *_dag.py batches emitted passing progress but did not exit within the execution window; they are not claimed as PASS in this release qualification. Active-DAG deterministic rebuild is used as a release gate instead.",
+  "engineering_use_ready": false
+}

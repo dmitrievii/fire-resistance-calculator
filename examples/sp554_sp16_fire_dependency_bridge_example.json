@@ -1,0 +1,6 @@
+{
+  "case_id": "FIRE-D1-SP554-SP16-MEMBER-MECHANICS",
+  "standard": "СП 554.1311500.2026 (project)",
+  "action": "sp554_sp16_fire_dependency_bridge",
+  "require_connection_scope": false
+}

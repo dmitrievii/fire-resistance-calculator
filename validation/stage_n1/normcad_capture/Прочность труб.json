@@ -1,0 +1,131 @@
+{
+  "file": "Прочность труб.mdb",
+  "sha256": "42ca4e3b3b7afc9dd70275c5ff019ac97eb0e9cfecc776f20358b686ea7f31f6",
+  "format": "Microsoft Access Jet3 / 2048-byte pages",
+  "main_count": 6,
+  "data_count": 6,
+  "main": [
+    {
+      "id_main": 1,
+      "caption": "Сталь ВСт3кп по ГОСТ 10705-80*",
+      "page": 26,
+      "row": 0
+    },
+    {
+      "id_main": 2,
+      "caption": "Сталь ВСт3пс по ГОСТ 10705-80*",
+      "page": 26,
+      "row": 1
+    },
+    {
+      "id_main": 3,
+      "caption": "Сталь ВСт3пс4 по ГОСТ 10706-76*",
+      "page": 26,
+      "row": 2
+    },
+    {
+      "id_main": 4,
+      "caption": "Сталь ВСт3сп по ГОСТ 10705-80*",
+      "page": 26,
+      "row": 3
+    },
+    {
+      "id_main": 5,
+      "caption": "Сталь ВСт3сп4 по ГОСТ 10706-76*",
+      "page": 26,
+      "row": 4
+    },
+    {
+      "id_main": 6,
+      "caption": "Сталь 20 по ГОСТ 8731-87",
+      "page": 26,
+      "row": 5
+    }
+  ],
+  "rows": [
+    {
+      "id_data": 8,
+      "id_main": 1,
+      "Ryn_MPa": 225.0,
+      "Run_MPa": 370.0,
+      "Ry_MPa": 215.0,
+      "Ru_MPa": 350.0,
+      "Rs_MPa": 124.0,
+      "condition_raw": "До 10 мм",
+      "page": 35,
+      "row": 0,
+      "record_hex": "080800000001000000000061430000b943000057430000af430000f842c4ee20313020ecec251d01ff",
+      "caption": "Сталь ВСт3кп по ГОСТ 10705-80*"
+    },
+    {
+      "id_data": 9,
+      "id_main": 2,
+      "Ryn_MPa": 225.0,
+      "Run_MPa": 370.0,
+      "Ry_MPa": 215.0,
+      "Ru_MPa": 350.0,
+      "Rs_MPa": 124.0,
+      "condition_raw": "До 10 мм",
+      "page": 35,
+      "row": 1,
+      "record_hex": "080900000002000000000061430000b943000057430000af430000f842c4ee20313020ecec251d01ff",
+      "caption": "Сталь ВСт3пс по ГОСТ 10705-80*"
+    },
+    {
+      "id_data": 10,
+      "id_main": 3,
+      "Ryn_MPa": 245.0,
+      "Run_MPa": 370.0,
+      "Ry_MPa": 235.0,
+      "Ru_MPa": 350.0,
+      "Rs_MPa": 136.0,
+      "condition_raw": "4-15 мм",
+      "page": 35,
+      "row": 2,
+      "record_hex": "080a00000003000000000075430000b94300006b430000af4300000843342d313520ecec241d01ff",
+      "caption": "Сталь ВСт3пс4 по ГОСТ 10706-76*"
+    },
+    {
+      "id_data": 11,
+      "id_main": 4,
+      "Ryn_MPa": 225.0,
+      "Run_MPa": 370.0,
+      "Ry_MPa": 215.0,
+      "Ru_MPa": 350.0,
+      "Rs_MPa": 124.0,
+      "condition_raw": "До 10 мм",
+      "page": 35,
+      "row": 3,
+      "record_hex": "080b00000004000000000061430000b943000057430000af430000f842c4ee20313020ecec251d01ff",
+      "caption": "Сталь ВСт3сп по ГОСТ 10705-80*"
+    },
+    {
+      "id_data": 12,
+      "id_main": 5,
+      "Ryn_MPa": 245.0,
+      "Run_MPa": 370.0,
+      "Ry_MPa": 235.0,
+      "Ru_MPa": 350.0,
+      "Rs_MPa": 136.0,
+      "condition_raw": "4-15 мм",
+      "page": 35,
+      "row": 4,
+      "record_hex": "080c00000005000000000075430000b94300006b430000af4300000843342d313520ecec241d01ff",
+      "caption": "Сталь ВСт3сп4 по ГОСТ 10706-76*"
+    },
+    {
+      "id_data": 13,
+      "id_main": 6,
+      "Ryn_MPa": 245.0,
+      "Run_MPa": 410.0,
+      "Ry_MPa": 225.0,
+      "Ru_MPa": 375.0,
+      "Rs_MPa": 130.0,
+      "condition_raw": "4-36 мм",
+      "page": 35,
+      "row": 5,
+      "record_hex": "080d00000006000000000075430000cd43000061430080bb4300000243342d333620ecec241d01ff",
+      "caption": "Сталь 20 по ГОСТ 8731-87"
+    }
+  ]
+}

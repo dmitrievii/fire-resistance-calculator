@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "N1 — Material / Strength",
+  "normative_source": {
+    "designation": "СП 16.13330.2017, Changes 1–6 through 09.12.2024",
+    "source_filename": "СП 16.13330(1).doc",
+    "source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+    "source_doc_hash_verified_at_capture": true,
+    "source_included_in_release": false,
+    "capture_transport": "LibreOffice HTML conversion of the locked DOC; numeric rows parsed from HTML table structure"
+  },
+  "method": "Independent extraction from LibreOffice HTML structure of the locked current DOC, then exact comparison to production material datasets.",
+  "checks": [
+    {
+      "id": "SOURCE_VS_PACKAGE_V3",
+      "source_rows": 38,
+      "package_rows": 38,
+      "mismatch_count": 0,
+      "status": "PASS_EXACT",
+      "mismatches": []
+    },
+    {
+      "id": "SOURCE_VS_PACKAGE_V4",
+      "source_rows": 34,
+      "package_rows": 34,
+      "mismatch_count": 0,
+      "status": "PASS_EXACT",
+      "mismatches": []
+    },
+    {
+      "id": "SOURCE_VS_PACKAGE_V5",
+      "source_rows": 23,
+      "package_rows": 23,
+      "mismatch_count": 0,
+      "status": "PASS_EXACT",
+      "mismatches": []
+    },
+    {
+      "id": "SOURCE_VS_PACKAGE_B1",
+      "status": "PASS_EXACT",
+      "source": {
+        "density_kg_m3": 7850.0,
+        "linear_expansion_per_C": 1.2e-05,
+        "E_MPa": 206000.0,
+        "G_MPa": 79000.0,
+        "poisson_ratio": 0.3
+      },
+      "package": {
+        "density_kg_m3": 7850.0,
+        "linear_expansion_per_C": 1.2e-05,
+        "E_MPa": 206000.0,
+        "G_MPa": 79000.0,
+        "poisson_ratio": 0.3
+      }
+    },
+    {
+      "id": "SOURCE_VS_PACKAGE_TABLE_2",
+      "status": "PASS_EXACT",
+      "source_formula_contract": {
+        "Ry": "Ryn/gamma_m",
+        "Ru": "Run/gamma_m",
+        "Rs": "0.58*Ryn/gamma_m",
+        "Rp": "Run/gamma_m",
+        "Rlp": "0.5*Run/gamma_m",
+        "Rcd": "0.025*Run/gamma_m"
+      },
+      "package_formulas": {
+        "design_yield_resistance": {
+          "symbol": "Ry",
+          "input_symbol": "Ryn",
+          "coefficient": 1.0,
+          "divide_by": "gamma_m"
+        },
+        "design_ultimate_resistance": {
+          "symbol": "Ru",
+          "input_symbol": "Run",
+          "coefficient": 1.0,
+          "divide_by": "gamma_m"
+        },
+        "design_shear_resistance": {
+          "symbol": "Rs",
+          "input_symbol": "Ryn",
+          "coefficient": 0.58,
+          "divide_by": "gamma_m"
+        },
+        "design_end_bearing_resistance": {
+          "symbol": "Rp",
+          "input_symbol": "Run",
+          "coefficient": 1.0,
+          "divide_by": "gamma_m"
+        },
+        "design_pin_local_bearing_resistance": {
+          "symbol": "Rlp",
+          "input_symbol": "Run",
+          "coefficient": 0.5,
+          "divide_by": "gamma_m"
+        },
+        "design_roller_diametral_compression_resistance": {
+          "symbol": "Rcd",
+          "input_symbol": "Run",
+          "coefficient": 0.025,
+          "divide_by": "gamma_m"
+        }
+      }
+    },
+    {
+      "id": "SOURCE_VS_PACKAGE_TABLE_3",
+      "status": "PASS_EXACT",
+      "source": {
+        "statistical_control": 1.025,
+        "nonstatistical_high_yield_or_hot_finished_or_foreign": 1.1,
+        "other_conforming": 1.05,
+        "ks1_limited_service": 1.0
+      },
+      "package": {
+        "statistical_control": 1.025,
+        "nonstatistical_high_yield_or_hot_finished_or_foreign": 1.1,
+        "other_conforming": 1.05,
+        "ks1_limited_service": 1.0
+      }
+    },
+    {
+      "id": "SOURCE_VS_PACKAGE_GAMMA_U",
+      "status": "PASS_EXACT",
+      "source": 1.3,
+      "package": 1.3
+    }
+  ],
+  "summary": {
+    "checks": 7,
+    "passed": 7,
+    "failed": 0,
+    "strength_table_rows_exactly_verified": 95
+  },
+  "verdict": "PASS"
+}

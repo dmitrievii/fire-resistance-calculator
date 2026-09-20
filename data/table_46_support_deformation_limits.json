@@ -1,0 +1,22 @@
+{
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "table": "46",
+  "clause": "16.15",
+  "pages": [113, 114],
+  "title": "Предельные относительные отклонения верха опор и прогибы траверс и балок",
+  "value_meaning": "Каждое числовое значение является знаменателем предельного отношения 1/n.",
+  "rows": [
+    {"row_id": "VL_TERMINAL_OR_CORNER_ANCHOR_UNDER_60_ALONG_WIRES", "description": "Концевая и угловая опора ВЛ анкерного типа высотой до 60 м вдоль проводов", "limits": {"top_deviation": 120, "vertical_span": 200, "vertical_cantilever": 70, "horizontal_span": null, "horizontal_cantilever": null}, "null_meaning": {"horizontal_span": "not_limited", "horizontal_cantilever": "not_limited"}},
+    {"row_id": "VL_ANCHOR_UNDER_60_ALONG_WIRES", "description": "Опора ВЛ анкерного типа высотой до 60 м вдоль проводов", "limits": {"top_deviation": 100, "vertical_span": 200, "vertical_cantilever": 70, "horizontal_span": null, "horizontal_cantilever": null}, "null_meaning": {"horizontal_span": "not_limited", "horizontal_cantilever": "not_limited"}},
+    {"row_id": "VL_INTERMEDIATE_EXCEPT_CROSSING_ALONG_OR_ACROSS", "description": "Промежуточная опора ВЛ, кроме переходной, вдоль и поперек проводов", "limits": {"top_deviation": null, "vertical_span": 150, "vertical_cantilever": 50, "horizontal_span": null, "horizontal_cantilever": null}, "null_meaning": {"top_deviation": "not_limited", "horizontal_span": "not_limited", "horizontal_cantilever": "not_limited"}},
+    {"row_id": "VL_CROSSING_OVER_60_ALONG_WIRES", "description": "Переходные опоры ВЛ всех типов высотой свыше 60 м вдоль проводов", "limits": {"top_deviation": 140, "vertical_span": 200, "vertical_cantilever": 70, "horizontal_span": null, "horizontal_cantilever": null}, "null_meaning": {"horizontal_span": "not_limited", "horizontal_cantilever": "not_limited"}},
+    {"row_id": "SWITCHYARD_SUPPORT_ALONG_WIRES", "description": "Опора ОРУ вдоль проводов", "limits": {"top_deviation": 100, "vertical_span": 200, "vertical_cantilever": 70, "horizontal_span": 200, "horizontal_cantilever": 70}, "null_meaning": {}},
+    {"row_id": "SWITCHYARD_SUPPORT_ACROSS_WIRES", "description": "Опора ОРУ поперек проводов", "limits": {"top_deviation": 70, "vertical_span": null, "vertical_cantilever": null, "horizontal_span": null, "horizontal_cantilever": null}, "null_meaning": {"vertical_span": "not_limited", "vertical_cantilever": "not_limited", "horizontal_span": "not_limited", "horizontal_cantilever": "not_limited"}},
+    {"row_id": "EQUIPMENT_SUPPORT_POST", "description": "Стойка опоры под оборудование", "limits": {"top_deviation": 100, "vertical_span": null, "vertical_cantilever": null, "horizontal_span": null, "horizontal_cantilever": null}, "null_meaning": {"vertical_span": "not_applicable", "vertical_cantilever": "not_applicable", "horizontal_span": "not_applicable", "horizontal_cantilever": "not_applicable"}},
+    {"row_id": "EQUIPMENT_BEAM", "description": "Балка под оборудование", "limits": {"top_deviation": null, "vertical_span": 300, "vertical_cantilever": 250, "horizontal_span": null, "horizontal_cantilever": null}, "null_meaning": {"top_deviation": "not_applicable", "horizontal_span": "not_applicable", "horizontal_cantilever": "not_applicable"}}
+  ],
+  "notes": [
+    "Отклонение опор ОРУ и прогибы траверс опор ВЛ в аварийном и монтажном режимах не нормируются.",
+    "Пределы для стоек и балок под оборудование уменьшаются, если технические условия оборудования устанавливают более жесткие требования."
+  ]
+}

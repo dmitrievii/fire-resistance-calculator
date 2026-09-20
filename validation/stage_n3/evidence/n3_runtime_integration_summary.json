@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "N3",
+  "release_candidate": "v0.29_stage_n3_axial_members_current_sp16_closed_reconstructed_r1",
+  "authoritative_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "scope": {
+    "solid_axial_guided_route": true,
+    "equation_5_branching": true,
+    "equations_7_8_9": true,
+    "current_equation_7a_gamma_res": true,
+    "built_up_table8_selected_dispatch": true,
+    "table8_equations_12_17": true,
+    "panel_count_branching": true,
+    "branch_limits_7_2_3_to_7_2_5": true,
+    "qfic_and_connector_force_route": true
+  },
+  "frozen_dependencies": {
+    "N1_material_strength": "v0.27 CLOSED",
+    "N2_section_profile_runtime": "v0.28 CLOSED interim profile catalog"
+  },
+  "dag": {
+    "file": "normative_graph/dag_v0.3.32_stage_n3.json",
+    "sha256": "226c04a36dded941a8176bed2e258cfc4cc76f157f5000ad6e4cef10c6738aab",
+    "schema_validation": "PASS"
+  },
+  "normcad_policy": "HISTORICAL_SECONDARY_ORACLE_NOT_NORMATIVE",
+  "source_ambiguities_classified": 1,
+  "runtime_unresolved": 0,
+  "engineering_use_ready": false,
+  "full_change_6_rebaseline_complete": false,
+  "original_gost_profile_audit_complete": false
+}

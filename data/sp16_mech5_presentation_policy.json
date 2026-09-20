@@ -1,0 +1,693 @@
+{
+  "schema": "sp16_mech5_presentation_policy_v1",
+  "release_stage": "v0.62_sp16_mech5_direct_bimoment_pointwise_recovery_r1",
+  "entry_node_id": "SP554_D_LOAD_BEARING",
+  "primary_mode": "engineering_guided",
+  "hidden_normative_nodes": [
+    "SP554_I_BUILDING_USE",
+    "SP554_D_METHOD",
+    "SP554_D_SOFTWARE",
+    "SP554_D_SOFTWARE_VALIDATED",
+    "SP554_D_SOFTWARE_REPORT",
+    "SP554_I_STEEL_GRADE",
+    "SP554_I_STEEL_PRODUCT_DATA",
+    "SP554_D_STRESS_STATE"
+  ],
+  "auto_answers": {
+    "SP554_D_METHOD": "calculation_analytical",
+    "SP554_D_SOFTWARE": true,
+    "SP554_D_SOFTWARE_VALIDATED": true,
+    "SP554_D_SOFTWARE_REPORT": true
+  },
+  "deferred_nodes": {
+    "SP554_H_REQUIRED_R": "post_actual_fire_resistance",
+    "SP554_D_FIRE_REGIME": "thermal_after_critical_temperature",
+    "SP554_D_SEISMIC": "fire_protection_design",
+    "SP554_H_SP14": "fire_protection_design"
+  },
+  "navigation_overrides": {
+    "SP554_D_PRODUCT_ROUTE": [
+      {
+        "when": {
+          "quantity_id": "section_product_route",
+          "value": "hot_rolled_section"
+        },
+        "to_node_id": "SP554_D_METHOD",
+        "id": "UI11_OVR_PRODUCT_ROLLED_TO_METHOD"
+      },
+      {
+        "when": {
+          "quantity_id": "section_product_route",
+          "value": "welded_from_hot_rolled_product"
+        },
+        "to_node_id": "SP554_D_METHOD",
+        "id": "UI11_OVR_PRODUCT_WELDED_TO_METHOD"
+      }
+    ],
+    "SP554_D_METHOD": [
+      {
+        "when": {
+          "quantity_id": "determination_method",
+          "value": "calculation_analytical"
+        },
+        "to_node_id": "SP554_D_SOFTWARE",
+        "id": "UI11_OVR_METHOD_TO_SOFTWARE"
+      }
+    ],
+    "SP554_K_STEEL_GROUP_FINAL": [
+      {
+        "when": {
+          "quantity_id": "steel_strength_group",
+          "value": "ordinary"
+        },
+        "to_node_id": "SP554_I_SECTION_WEAKENING",
+        "id": "UI13_OVR_STEEL_FINAL_ORDINARY_TO_WEAKENING"
+      },
+      {
+        "when": {
+          "quantity_id": "steel_strength_group",
+          "value": "increased"
+        },
+        "to_node_id": "SP554_I_SECTION_WEAKENING",
+        "id": "UI13_OVR_STEEL_FINAL_INCREASED_TO_WEAKENING"
+      },
+      {
+        "when": {
+          "quantity_id": "steel_strength_group",
+          "value": "high"
+        },
+        "to_node_id": "SP554_I_SECTION_WEAKENING",
+        "id": "UI13_OVR_STEEL_FINAL_HIGH_TO_WEAKENING"
+      },
+      {
+        "when": {
+          "quantity_id": "steel_strength_group",
+          "value": "fire_resistant"
+        },
+        "to_node_id": "SP554_I_SECTION_WEAKENING",
+        "id": "UI13_OVR_STEEL_FINAL_FIRE_RESISTANT_TO_WEAKENING"
+      }
+    ],
+    "SP16_D_WEAKENING": [
+      {
+        "when": {
+          "quantity_id": "sp16_has_weakening",
+          "value": false
+        },
+        "to_node_id": "SP554_G_NET_SECTION_PROPERTIES",
+        "id": "UI16_OVR_WEAKENING_NONE_TO_NET"
+      },
+      {
+        "when": {
+          "quantity_id": "sp16_has_weakening",
+          "value": true
+        },
+        "to_node_id": "SP554_D_NET_PROPERTY_REDUCTION",
+        "id": "UI16_OVR_WEAKENING_HOLES_TO_PROPERTY_POLICY"
+      }
+    ],
+    "SP554_G_NET_SECTION_PROPERTIES": [
+      {
+        "when": {
+          "quantity_id": "sp16_shear_weakening_mode",
+          "value": "none"
+        },
+        "to_node_id": "SP16_C_SHEAR_ALPHA_IDENTITY_WEAK",
+        "id": "UI14_OVR_NET_NONE_TO_ALPHA_IDENTITY"
+      },
+      {
+        "when": {
+          "quantity_id": "sp16_shear_weakening_mode",
+          "value": "formula45"
+        },
+        "to_node_id": "SP16_C_SHEAR_GROSS_PROPERTIES_WEAK",
+        "id": "UI14_OVR_NET_FORMULA45_TO_SHEAR_GROSS"
+      }
+    ],
+    "SP16_C_SHEAR_GROSS_PROPERTIES_WEAK": [
+      {
+        "when": {
+          "quantity_id": "sp16_shear_weakening_mode",
+          "value": "formula45"
+        },
+        "to_node_id": "SP16_A_SHEAR_WEAKENING_SUPPORTED",
+        "id": "UI14_OVR_SHEAR_GROSS_TO_APPLICABILITY"
+      }
+    ],
+    "SP16_C_SHEAR_ALPHA_IDENTITY_WEAK": [
+      {
+        "when": {
+          "quantity_id": "sp16_shear_weakening_mode",
+          "value": "none"
+        },
+        "to_node_id": "SP554_D_GOST27751_GAMMA_CT",
+        "id": "UI15_OVR_ALPHA_IDENTITY_TO_GAMMA_CT"
+      }
+    ],
+    "SP16_C_SHEAR_ALPHA45": [
+      {
+        "when": {
+          "quantity_id": "sp16_shear_weakening_mode",
+          "value": "formula45"
+        },
+        "to_node_id": "SP554_D_GOST27751_GAMMA_CT",
+        "id": "UI15_OVR_ALPHA45_TO_GAMMA_CT"
+      }
+    ],
+    "SP554_D_NET_PROPERTY_REDUCTION": [
+      {
+        "when": {
+          "quantity_id": "net_property_reduction_mode",
+          "value": "area_only_keep_gross"
+        },
+        "to_node_id": "SP554_G_NET_SECTION_PROPERTIES",
+        "id": "UI16_OVR_NET_AREA_ONLY"
+      },
+      {
+        "when": {
+          "quantity_id": "net_property_reduction_mode",
+          "value": "manual_net_properties"
+        },
+        "to_node_id": "SP554_I_NET_SECTION_MANUAL_PROPERTIES",
+        "id": "UI16_OVR_NET_MANUAL_INPUT"
+      }
+    ],
+    "SP554_I_NET_SECTION_MANUAL_PROPERTIES": [
+      {
+        "when": {
+          "quantity_id": "net_property_reduction_mode",
+          "value": "manual_net_properties"
+        },
+        "to_node_id": "SP554_G_NET_SECTION_PROPERTIES",
+        "id": "UI16_OVR_MANUAL_NET_TO_RESOLVER"
+      }
+    ]
+  },
+  "node_presentation": {
+    "SP554_D_GEOMETRY_MODE": {
+      "component": "section_editor_entry",
+      "stage": "section",
+      "title": "Основные характеристики сечения"
+    },
+    "SP554_I_CATALOG": {
+      "component": "profile_catalog_selector",
+      "stage": "section"
+    },
+    "SP554_I_PARAMETRIC": {
+      "component": "parametric_section_editor",
+      "stage": "section"
+    },
+    "SP554_I_ARBITRARY": {
+      "component": "manual_section_properties_editor",
+      "stage": "section"
+    },
+    "SP554_I_SECTION_WEAKENING": {
+      "component": "section_weakening_editor",
+      "stage": "section_weakening",
+      "title": "Круглые болтовые отверстия"
+    },
+    "SP554_H_REQUIRED_R": {
+      "component": "required_r_selector",
+      "stage": "post_actual_fire_resistance",
+      "provenance_mode": "optional"
+    },
+    "SP554_D_FIRE_REGIME": {
+      "stage": "thermal_after_critical_temperature"
+    },
+    "SP554_D_SEISMIC": {
+      "stage": "fire_protection_design"
+    },
+    "SP554_I_DOUBLE_BRANCH": {
+      "component": "double_branch_section_editor",
+      "stage": "section"
+    },
+    "SP554_I_STEEL_STRENGTH_EDITOR": {
+      "component": "material_strength_editor",
+      "stage": "material",
+      "title": "Сталь и нормативные сопротивления"
+    },
+    "SP554_D_NET_PROPERTY_REDUCTION": {
+      "stage": "section_weakening",
+      "title": "Влияние отверстия на I и W"
+    },
+    "SP554_I_NET_SECTION_MANUAL_PROPERTIES": {
+      "stage": "section_weakening",
+      "title": "Характеристики сечения нетто"
+    },
+    "SP554_H_SP20_LOADS": {
+      "component": "fire_signed_load_menu",
+      "stage": "loads",
+      "title": "FIRE_LOAD_CASE — отдельное пожарное сочетание",
+      "provenance_mode": "optional"
+    },
+    "SP554_D_VERIFICATION_PLAN_CONFIRM": {
+      "component": "verification_plan_summary",
+      "stage": "mechanical",
+      "title": "FIRE verification plan"
+    },
+    "SP554_R_UI16_DEFERRED_BRANCHES": {
+      "stage": "mechanical_summary",
+      "terminal_result": true,
+      "title": "Механическая проверка не завершена",
+      "component": "verification_incomplete_summary"
+    },
+    "SP16_D_MU_SCHEME": {
+      "component": "table30_scheme_selector",
+      "stage": "mechanical",
+      "title": "Расчётная длина по таблице 30"
+    },
+    "SP16_D_MU_SCHEME_X": {
+      "component": "table30_scheme_selector",
+      "stage": "mechanical",
+      "title": "Расчётная длина по таблице 30"
+    },
+    "SP16_D_MU_SCHEME_Y": {
+      "component": "table30_scheme_selector",
+      "stage": "mechanical",
+      "title": "Расчётная длина по таблице 30"
+    },
+    "SP16_D_CURVE": {
+      "component": "table7_curve_selector",
+      "stage": "mechanical",
+      "title": "Тип кривой устойчивости по таблице 7"
+    },
+    "SP16_D_CURVE_X": {
+      "component": "table7_curve_selector",
+      "stage": "mechanical",
+      "title": "Тип кривой устойчивости по таблице 7"
+    },
+    "SP16_D_CURVE_Y": {
+      "component": "table7_curve_selector",
+      "stage": "mechanical",
+      "title": "Тип кривой устойчивости по таблице 7"
+    },
+    "SP554_FIRE_D2_R_CRITICAL_TEMPERATURE": {
+      "stage": "mechanical_summary",
+      "terminal_result": false,
+      "title": "Критическая температура стали — переход к теплотехническому расчёту",
+      "continue_after_result": true
+    },
+    "SP554_I_EXPOSURE": {
+      "component": "heated_sides_selector",
+      "stage": "thermal_after_critical_temperature",
+      "title": "Количество обогреваемых сторон",
+      "subtitle": "СП 554, таблица 1: 3- или 4-сторонний обогрев. Схема огнезащиты по контуру/коробу выбирается отдельно только при переходе к проекту огнезащиты."
+    },
+    "SP554_D_PROTECTION_PERIMETER_MODE": {
+      "component": "protection_perimeter_mode_selector",
+      "stage": "fire_protection_design",
+      "title": "Схема выполнения огнезащиты",
+      "subtitle": "СП 554, таблица 1: огнезащита по контуру или в виде короба."
+    },
+    "SP554_I_HEATED_PERIMETER_MANUAL": {
+      "stage": "thermal_after_critical_temperature",
+      "title": "Обогреваемый периметр P — ручной ввод"
+    },
+    "SP554_I_PROTECTED_HEATED_PERIMETER_MANUAL": {
+      "stage": "fire_protection_design",
+      "title": "Обогреваемый периметр с огнезащитой — ручной ввод"
+    },
+    "SP16_D_TABLE21_TYPE": {
+      "component": "table21_type_selector",
+      "stage": "mechanical",
+      "title": "Тип сечения таблицы 21"
+    },
+    "SP16_I_M_CONST_FRAME_9_2_3": {
+      "stage": "mechanical",
+      "title": "Момент по 9.2.3 — колонна постоянного сечения"
+    },
+    "SP16_I_M_STEPPED_9_2_3": {
+      "stage": "mechanical",
+      "title": "Момент по 9.2.3 — ступенчатая колонна"
+    },
+    "SP16_I_M_FIXED_FREE_9_2_3": {
+      "stage": "mechanical",
+      "title": "Моменты по 9.2.3 — консоль"
+    },
+    "SP16_I_M_COMPRESSED_CHORD_9_2_3": {
+      "stage": "mechanical",
+      "title": "Момент по 9.2.3 — сжатый пояс"
+    },
+    "SP16_I_M_TABLE20_9_2_3": {
+      "stage": "mechanical",
+      "title": "Моменты по 9.2.3 — таблица 20"
+    },
+    "SP16_I_C_M_RESTRAINED_9_2_6": {
+      "stage": "mechanical",
+      "title": "Характерные Mx по 9.2.6"
+    },
+    "SP16_I_C_M_FIXED_FREE_9_2_6": {
+      "stage": "mechanical",
+      "title": "Характерные Mx по 9.2.6 — консоль"
+    },
+    "SP554_D_AFTER_UNPROTECTED": {
+      "component": "post_fire_resistance_action_selector",
+      "stage": "post_actual_fire_resistance",
+      "title": "Дальнейшее действие после расчёта без огнезащиты"
+    },
+    "SP554_D_12_5_ARSS_MATERIAL": {
+      "component": "protection_material_library_selector",
+      "stage": "fire_protection_design",
+      "title": "Огнезащитный материал — библиотека СТО АРСС"
+    },
+    "SP554_C_12_5_ARSS_MATERIAL_LOOKUP": {
+      "stage": "fire_protection_design",
+      "title": "Теплофизические свойства по СТО АРСС"
+    },
+    "SP554_I_12_5_MANUAL_MATERIAL_PROPERTIES": {
+      "component": "protection_material_properties_editor",
+      "stage": "fire_protection_design",
+      "title": "Теплофизические свойства огнезащиты — ручной ввод"
+    },
+    "SP554_D_AFTER_PROTECTED": {
+      "component": "post_fire_resistance_action_selector",
+      "stage": "post_actual_fire_resistance",
+      "title": "Дальнейшее действие после расчёта с огнезащитой"
+    },
+    "SP554_R_UNPROTECTED_CALCULATION_COMPLETE": {
+      "stage": "post_actual_fire_resistance",
+      "terminal_result": true,
+      "title": "Расчёт без огнезащиты завершён"
+    },
+    "SP554_R_PROTECTED_CALCULATION_COMPLETE": {
+      "stage": "post_actual_fire_resistance",
+      "terminal_result": true,
+      "title": "Расчёт с огнезащитой завершён без проверки Rreq"
+    },
+    "SP554_R_UNPROTECTED": {
+      "continue_after_result": true
+    },
+    "SP554_R_PROTECTED": {
+      "continue_after_result": true
+    },
+    "SP554_R_CRITICAL_TEMP_ATOMIC": {
+      "continue_after_result": true
+    },
+    "SP16_N6_R_RELEASE_GATE": {
+      "continue_after_result": true
+    },
+    "SP16_N7_R_RELEASE_GATE": {
+      "continue_after_result": true
+    },
+    "SP16_N8_R_RELEASE_GATE": {
+      "continue_after_result": true
+    },
+    "SP16_N9_R_RELEASE_GATE": {
+      "continue_after_result": true
+    },
+    "SP16_N10_R_RELEASE_GATE": {
+      "continue_after_result": true
+    },
+    "SP554_D_PROTECTION_SOURCE_MODE": {
+      "stage": "fire_protection_design",
+      "title": "Источник данных огнезащиты",
+      "subtitle": "Выберите библиотеку СТО АРСС, ручные теплофизические свойства или конкретное средство с готовой product-specific матрицей."
+    },
+    "SP554_I_PROTECTION": {
+      "stage": "fire_protection_design",
+      "title": "Идентификация конкретного средства огнезащиты",
+      "subtitle": "Этот блок появляется только для конкретного коммерческого продукта с документированной матрицей/номограммой."
+    },
+    "SP554_I_PROTECTION_PERFORMANCE_DOCUMENTED": {
+      "component": "documented_performance_matrix_editor",
+      "stage": "fire_protection_design",
+      "title": "Номограмма/матрица конкретного средства огнезащиты"
+    },
+    "SP554_I_12_6_VALIDATION_EVIDENCE": {
+      "stage": "fire_protection_design",
+      "title": "Валидация ручной модели по 12.6",
+      "subtitle": "Максимальное отклонение от испытаний и полнота набора валидационных случаев."
+    },
+    "SP554_I_12_5_SEARCH_BOUNDS": {
+      "stage": "fire_protection_design",
+      "title": "Диапазон поиска минимальной толщины"
+    },
+    "SP554_C_12_5_DIRECT_PROTECTED_TIME": {
+      "stage": "fire_protection_design",
+      "title": "Расчёт R с заданной толщиной по 12.5"
+    },
+    "SP554_C_12_5_MINIMUM_THICKNESS_SEARCH": {
+      "stage": "fire_protection_design",
+      "title": "Подбор минимальной толщины по 12.5"
+    },
+    "SP16_I_LOCAL_STRESS_CONTEXT": {
+      "stage": "mechanical",
+      "title": "Местная нагрузка для σloc",
+      "component": "local_stress_context_editor",
+      "subtitle": "Введите F и геометрию передачи сосредоточенной нагрузки по СП16 8.2.2."
+    },
+    "SP16_D_BIMOMENT_REQUIRED": {
+      "stage": "mechanical",
+      "title": "Fire — необходимость B"
+    },
+    "SP16_I_BIMOMENT_DIRECT": {
+      "component": "bimoment_direct_input",
+      "stage": "mechanical",
+      "title": "Fire — прямой B"
+    },
+    "SP16_C_BIMOMENT_ZERO": {
+      "stage": "mechanical",
+      "title": "Fire — B = 0"
+    },
+    "SP554_D_STRESS_STATE": {
+      "component": "verification_plan_summary",
+      "stage": "mechanical",
+      "title": "FIRE mechanical action-state contract"
+    },
+    "SP16_I_AMBIENT_LOADS": {
+      "component": "ambient_signed_load_menu",
+      "stage": "loads",
+      "title": "AMBIENT_LOAD_CASE — усилия при нормальной температуре",
+      "provenance_mode": "optional"
+    },
+    "SP16_D_AMBIENT_BIMOMENT_REQUIRED": {
+      "stage": "mechanical",
+      "title": "Ambient — необходимость B"
+    },
+    "SP16_I_AMBIENT_BIMOMENT_DIRECT": {
+      "component": "bimoment_direct_input",
+      "stage": "mechanical",
+      "title": "Ambient — прямой B"
+    },
+    "SP16_C_AMBIENT_BIMOMENT_ZERO": {
+      "stage": "mechanical",
+      "title": "Ambient — B = 0"
+    },
+    "SP16_C_AMBIENT_APPLICABILITY_CENSUS": {
+      "stage": "mechanical",
+      "title": "SP16 Applicability Census"
+    },
+    "SP16_D_AMBIENT_CENSUS_CONFIRM": {
+      "component": "applicability_census_summary",
+      "stage": "mechanical",
+      "title": "SP16 Applicability Census"
+    },
+    "SP16_R_AMBIENT_UNSUPPORTED_ACTIONS": {
+      "stage": "mechanical",
+      "terminal_result": true,
+      "title": "Ambient mechanical branch deferred"
+    },
+    "SP16_D_FIRE_LOAD_CASE_MODE": {
+      "stage": "loads",
+      "title": "FIRE_LOAD_CASE — источник усилий"
+    },
+    "SP16_C_FIRE_LOADS_INHERIT_AMBIENT": {
+      "stage": "loads",
+      "title": "FIRE_LOAD_CASE = AMBIENT_LOAD_CASE"
+    },
+    "SP16_C_FIRE_LOAD_CASE_FINALIZE": {
+      "stage": "loads",
+      "title": "FIRE_LOAD_CASE — typed state"
+    }
+  },
+  "section_editor": {
+    "composition_modes": [
+      {
+        "value": "single_branch",
+        "label": "Одноветвевое",
+        "status": "active"
+      },
+      {
+        "value": "double_branch",
+        "label": "Двухветвевое",
+        "status": "active",
+        "note": "Две одинаковые ветви из сортамента; решётка/планки задаются последующими вопросами СП16."
+      },
+      {
+        "value": "arbitrary",
+        "label": "Произвольное",
+        "status": "active",
+        "note": "Ручной ввод готовых характеристик; 2D-контур не используется."
+      }
+    ],
+    "single_branch_sources": [
+      "catalog_section",
+      "parametric_section"
+    ]
+  },
+  "provenance_policy": {
+    "required_primary_source_types": [
+      "EXTERNAL_STANDARD_RESULT"
+    ],
+    "user_entry_source_types": [
+      "USER_INPUT",
+      "GEOMETRY_INPUT",
+      "LOAD_INPUT"
+    ],
+    "rreq_provenance_optional_in_primary_ui": true
+  },
+  "technical_copy": {
+    "show_downstream_invalidation_message": false,
+    "show_node_ids_in_primary_ui": false,
+    "show_dag_terms_in_primary_ui": false,
+    "show_material_table_source": true,
+    "show_parallel_branch_queue": true
+  },
+  "deferred_engineering_features": {
+    "seismic_load_combination_sp14_mtr": "planned_separate_SP14_load_route",
+    "seismic_fire_protection_sp554_5_6": "planned_FIRE_D5_protection_route",
+    "double_branch_visual_section_editor": "planned_next_UI_binding",
+    "arbitrary_2d_section_editor": "planned_next_UI_binding",
+    "arbitrary_2d_editor": "REMOVED_BY_USER_DECISION_USE_MANUAL_PROPERTIES",
+    "double_branch_visual_editor": "CLOSED_TWO_IDENTICAL_CATALOG_BRANCHES_V1",
+    "component_specific_welded_materials": "planned_after_single_material_row_editor",
+    "torsion_T_runtime": "SP16_MECH4_FREE_TORSION_MECHANICS_CLOSED_SUPPORTED_TEMPLATES; SP554_HANDOFF_DEFERRED_FIRE_BRIDGE2",
+    "Qy_minor_axis_shear_runtime": "SP16_MECH3_AXIS_SHEAR_CLOSED_SUPPORTED_GEOMETRY; SP554_HANDOFF_DEFERRED_FIRE_BRIDGE2",
+    "bimoment_B_runtime": "DIRECT_CONDITIONAL_INPUT; SP16_MECH5 B*omega/Iomega POINTWISE CLOSED FOR DOUBLY_SYMMETRIC_I; OTHER NONZERO-B GEOMETRIES FAIL_CLOSED; NO B_FROM_T SOLVER",
+    "full_ambient_sp16_gate": "CENSUS_PLUS_MECHANICS_ONLY_DEFERRED_TO_SP16_MECH6"
+  },
+  "thermal_entry_node_id": "SP554_I_EXPOSURE",
+  "guided_excluded_node_prefixes": [
+    "SP16_N4_"
+  ],
+  "guided_excluded_nodes": [
+    "SP554_A_B1_INVERSE_DOMAIN",
+    "SP554_C_12_4_BUILD_PERFORMANCE_DATASET",
+    "SP554_C_12_5_1D_PERFORMANCE_DATASET",
+    "SP554_C_CTRL_COMPRESSION",
+    "SP554_C_CTRL_STRENGTH_ONLY",
+    "SP554_D_12_5_MATERIAL_SOURCE",
+    "SP554_D_PROTECTION_DATA",
+    "SP554_D_PROTECTION_DATA_METHOD",
+    "SP554_FIRE_D2_C_CRITICAL_TEMPERATURE_GOV",
+    "SP554_FIRE_D2_L_B1_MODULUS_TCR",
+    "SP554_FIRE_D2_L_B1_STRENGTH_TCR",
+    "SP554_I_12_4_TEST_SERIES",
+    "SP554_I_12_5_GENERATION_GRID",
+    "SP554_K_CTRL_KIND_COMPRESSION",
+    "SP554_K_CTRL_KIND_STRENGTH",
+    "SP554_K_PROTECTION_SOURCE_12_4",
+    "SP554_K_PROTECTION_SOURCE_12_5",
+    "SP554_L_B1_INVERSE_GAMMA_E",
+    "SP554_L_B1_INVERSE_GAMMA_T",
+    "SP554_L_B1_INVERSE_TIE",
+    "SP554_R_B1_INVERSE_OUT_OF_RANGE",
+    "SP554_R_HEATED_PERIMETER_CONFIGURATION_REQUIRED",
+    "SP554_FIRE_D4_I_REQUIRED_R_PROVENANCE"
+  ],
+  "fire_ui17": {
+    "critical_temperature_policy": "independent_gamma_T_gamma_e_inversion_then_earliest_temperature",
+    "table30_common_end_condition_shortcut": true,
+    "table7_schematic_redraw": true
+  },
+  "fire_ui18": {
+    "exact_tcr_continues_to_section12": true,
+    "fire_d2_result_node_is_stage_summary": true,
+    "fire_d3_handoff_node_id": "SP554_FIRE_D3_C_D2_TCR_HANDOFF",
+    "thermal_entry_node_id": "SP554_I_EXPOSURE",
+    "ambient_capacity_exceeded_terminal": true,
+    "bounded_tcr_without_exact_value_terminal": true
+  },
+  "fire_ui19": {
+    "table1_heated_perimeter_matrix": true,
+    "heated_side_count_separate_from_protection_geometry": true,
+    "unprotected_uses_steel_contour_basis": true,
+    "protected_modes": [
+      "contour",
+      "box"
+    ],
+    "protected_delta_quantity_id": "delta_pr_protected",
+    "manual_fallback_for_unmapped_geometry": true
+  },
+  "fire_ui23": {
+    "protection_source_selector_first": true,
+    "commercial_product_metadata_conditional": true,
+    "sto_arss_direct_fdm_12_5": true,
+    "manual_properties_direct_fdm_12_5": true,
+    "documented_product_matrix_structured_editor": true,
+    "raw_object_primary_ui": false,
+    "inverse_12_5_bounded_search": true
+  },
+  "sp16_mech1": {
+    "member_longitudinal_axis": "s",
+    "section_principal_axes": [
+      "x-x",
+      "y-y"
+    ],
+    "canonical_actions": [
+      "N",
+      "Mx",
+      "My",
+      "Qx",
+      "Qy",
+      "T"
+    ],
+    "conditional_direct_action": [
+      "B"
+    ],
+    "legacy_v057_mapping": {
+      "load_My_local": "M_x",
+      "load_Mz_local": "M_y",
+      "load_Qz_local": "Q_x",
+      "load_Qy_local": "Q_y"
+    },
+    "signs_preserved": true,
+    "Qy_runtime_closed": true,
+    "T_runtime_closed": true
+  },
+  "sp16_mech2": {
+    "ambient_fire_load_cases_separated": true,
+    "fire_load_modes": [
+      "same_as_ambient",
+      "separate"
+    ],
+    "silent_ambient_to_fire_copy_forbidden": true,
+    "ambient_applicability_census": true,
+    "ambient_full_pass_gate": false,
+    "Qy_runtime_closed": true,
+    "T_runtime_closed": true,
+    "Qy_T_visible_but_fail_closed": false,
+    "bimoment_policy": "conditional direct input independently for ambient/fire; no restrained-torsion solver"
+  },
+  "sp16_mech3": {
+    "axis_specific_Qx_Qy_supported_geometry_closed": true,
+    "pointwise_same_section_recovery": true,
+    "SP554_Qy_handoff_closed": false
+  },
+  "sp16_mech4": {
+    "free_torsion_supported_templates_closed": true,
+    "supported_templates": [
+      "i_section",
+      "tee",
+      "channel",
+      "rhs_shs"
+    ],
+    "T_semantics": "Saint_Venant_free_torsion_component_about_member_axis_s",
+    "T_distinct_from_Mx": true,
+    "T_distinct_from_B": true,
+    "B_policy": "conditional direct signed input; not derived from T",
+    "restrained_torsion_solver_closed": false,
+    "warping_normal_stress_recovery_closed": false,
+    "full_ambient_pass_gate_closed": false,
+    "SP554_T_handoff_closed": false,
+    "SP554_Qy_handoff_closed": false
+  },
+  "sp16_mech5": {
+    "direct_bimoment_question_and_signed_input_preserved": true,
+    "automatic_b_from_t": false,
+    "i_section_pointwise_warping_recovery_closed": true,
+    "other_nonzero_b_section_geometries_fail_closed": true,
+    "full_sp16_mechanical_pass_closed": false,
+    "sp554_qy_t_complex_state_handoff_closed": false
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "table": "45",
+  "clause": "16.4",
+  "pages": [109],
+  "title": "Коэффициенты условий работы элементов опор ВЛ, ОРУ и КС",
+  "interpolation": "not_applicable",
+  "connection_exclusion_note": "Коэффициенты таблицы не распространяются на соединения элементов в узлах.",
+  "rows": [
+    {"case_id": "FREE_STANDING_FIRST_TWO_PANELS_WELDED_CHORD", "description": "Сжатые пояса из одиночных уголков в первых двух панелях от башмака, узловые соединения на сварке", "gamma_c": 0.95},
+    {"case_id": "FREE_STANDING_FIRST_TWO_PANELS_BOLTED_CHORD", "description": "Сжатые пояса из одиночных уголков в первых двух панелях от башмака, узловые соединения на болтах", "gamma_c": 0.90},
+    {"case_id": "FLAT_TRAVERSE_CHORD_DIRECT_TWO_OR_MORE_BOLTS", "description": "Пояс плоской решетчатой траверсы, непосредственно прикрепленный к стойке двумя болтами и более вдоль пояса", "gamma_c": 0.90},
+    {"case_id": "FLAT_TRAVERSE_CHORD_ONE_BOLT_OR_GUSSET", "description": "Пояс плоской решетчатой траверсы, прикрепленный одним болтом или через фасонку", "gamma_c": 0.75},
+    {"case_id": "FLAT_TRAVERSE_DIAGONAL_OR_STRUT", "description": "Раскос или распорка плоской решетчатой траверсы", "gamma_c": 0.75},
+    {"case_id": "GUY_INTERMEDIATE_SUPPORT_NORMAL", "description": "Оттяжка промежуточной опоры в нормальном режиме", "gamma_c": 0.90},
+    {"case_id": "GUY_ANCHOR_OR_ANGLE_SUPPORT_NORMAL", "description": "Оттяжка анкерной, анкерно-угловой или угловой опоры в нормальном режиме", "gamma_c": 0.80},
+    {"case_id": "GUY_ANCHOR_OR_ANGLE_SUPPORT_EMERGENCY", "description": "Оттяжка анкерной, анкерно-угловой или угловой опоры в аварийном режиме", "gamma_c": 0.90}
+  ]
+}

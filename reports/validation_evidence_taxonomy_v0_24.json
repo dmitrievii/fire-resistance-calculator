@@ -1,0 +1,15 @@
+{
+  "package_version": "0.24.0",
+  "release_stage": "v0.24_release_api_hardening_and_function_level_validation_expansion_reconstructed_r1",
+  "evidence_classes": {
+    "legacy_internal_regression": "Existing unit/self-check suite; protects behavior but may share production assumptions.",
+    "direct_named_test_binding": "Public engineering function is explicitly referenced by a packaged test; not independent correctness evidence.",
+    "coverage_execution": "Function body executed in packaged coverage run; not correctness evidence.",
+    "independent_direct_function_oracle": "Separately written expected arithmetic/closed-form value compared with production function.",
+    "phase_0_23_route_oracle": "Independent route-level arithmetic evidence inherited and rerun under v0.24.",
+    "boundary_adversarial": "Explicit branch/domain expected result or expected exception.",
+    "analytical_mutation_probe": "Sensitivity check against intentionally altered analytical relation; not AST/source mutation testing.",
+    "external_cross_implementation": "Not performed in Phase 0.24."
+  },
+  "anti_overclaim_rule": "Only independent direct function oracles and inherited independent route oracles are counted as independent numerical evidence."
+}

@@ -1,0 +1,51 @@
+{
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "standard_reference": "Clause 7.1.2, Table 6, PDF page 14",
+  "audit_id": "SP16-TBL-6",
+  "values": {
+    "one_bolt_a_1_35d": {
+      "alpha1": 1.7,
+      "alpha2": 0.05,
+      "beta": 0.65,
+      "bolt_count": 1,
+      "geometry": "a = 1.35d",
+      "applicability_note": "Only lattice braces/struts, excluding members permanently in tension, with leg thickness <= 6 mm."
+    },
+    "one_bolt_a_1_5d": {
+      "alpha1": 1.7,
+      "alpha2": 0.05,
+      "beta": 0.85,
+      "bolt_count": 1,
+      "geometry": "a = 1.5d"
+    },
+    "one_bolt_a_2d": {
+      "alpha1": 1.7,
+      "alpha2": 0.05,
+      "beta": 1.0,
+      "bolt_count": 1,
+      "geometry": "a = 2d"
+    },
+    "multi_bolt_2": {
+      "alpha1": 1.77,
+      "alpha2": 0.19,
+      "beta": 1.0,
+      "bolt_count": 2,
+      "geometry": "a >= 1.5d and s >= 2d"
+    },
+    "multi_bolt_3": {
+      "alpha1": 1.45,
+      "alpha2": 0.36,
+      "beta": 1.0,
+      "bolt_count": 3,
+      "geometry": "a >= 1.5d and s >= 2d"
+    },
+    "multi_bolt_4": {
+      "alpha1": 1.17,
+      "alpha2": 0.47,
+      "beta": 1.0,
+      "bolt_count": 4,
+      "geometry": "a >= 1.5d and s >= 2d"
+    }
+  },
+  "no_interpolation_rule": "The supplied table gives discrete cases only. The implementation does not interpolate or extrapolate."
+}

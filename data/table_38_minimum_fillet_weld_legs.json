@@ -1,0 +1,30 @@
+{
+  "standard": "СП 16.13330.2017",
+  "clause": "14.1.7",
+  "table": "38",
+  "audit_id": "SP16-TBL-38",
+  "thicker_element_bins_mm": [
+    {"id": "4_5", "min_inclusive": 4.0, "max_inclusive": 5.0},
+    {"id": "6_10", "min_inclusive": 6.0, "max_inclusive": 10.0},
+    {"id": "11_16", "min_inclusive": 11.0, "max_inclusive": 16.0},
+    {"id": "17_22", "min_inclusive": 17.0, "max_inclusive": 22.0},
+    {"id": "23_32", "min_inclusive": 23.0, "max_inclusive": 32.0},
+    {"id": "33_40", "min_inclusive": 33.0, "max_inclusive": 40.0}
+  ],
+  "connection_rows": {
+    "double_sided_t_lap_or_corner": {
+      "description": "T-joint with double-sided fillet welds; lap and corner joints",
+      "values_mm": {"4_5": 3.0, "6_10": 4.0, "11_16": 6.0, "17_22": 10.0, "23_32": 12.0, "33_40": 16.0}
+    },
+    "single_sided_corner_or_t": {
+      "description": "Corner and T-joints with single-sided fillet welds",
+      "values_mm": {"4_5": 3.0, "6_10": 5.0, "11_16": 8.0, "17_22": 12.0, "23_32": 16.0, "33_40": 22.0}
+    }
+  },
+  "notes": [
+    "Printed values apply when thinner thickness t is at least 0.6 times thicker thickness T.",
+    "For steel yield strength above 590 N/mm2, minimum weld legs are governed by manufacturing regulations.",
+    "For element thickness above 40 mm, minimum weld leg is determined by calculation.",
+    "When t < 0.6T, minimum weld leg is determined by calculation but may not exceed 1.2t."
+  ]
+}

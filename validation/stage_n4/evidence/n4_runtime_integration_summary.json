@@ -1,0 +1,26 @@
+{
+  "stage": "N4",
+  "parent_release": "v0.29_stage_n3_axial_members_current_sp16_closed_reconstructed_r1",
+  "parent_zip_sha256": "9c9649b3aa3689991eed2573f7ba39c4864ad683b51170bdd7fa0b1e857af6e0",
+  "current_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "dag": {
+    "path": "normative_graph/dag_v0.3.33_stage_n4.json",
+    "sha256": "4de76fe047e435baff34a03db8496200f37be75993623af770548081ee4064fc",
+    "schema_status": "PASS"
+  },
+  "runtime": {
+    "guided_action": "bending_member_guided",
+    "workflow": "standard_core.bending_workflows.bending_member_guided_workflow",
+    "profile_material_hydration": "explicit reference hydration before strict schema validation",
+    "ordinary_class_1_strength": ["Eq.(41)", "Eq.(42)", "Eq.(43) when explicit point data are supplied"],
+    "ordinary_class_2_3_strength": ["Eq.(50)", "Eq.(51)", "Eq.(53) after explicit applicability gates"],
+    "specialized_routes": ["8.3 crane-runway -> dedicated action", "8.2.8 bimetal -> detailed bending action"],
+    "lateral_stability": ["8.4.4a rigid-deck exemption", "8.4.4b/Table 11 exemption", "current-SP16 Annex Ж phi_b + Eq.(69) for supported rolled doubly symmetric I route", "explicit separate assessment"],
+    "local_stability": "8.5.1 + 8.5.9 screen only; detailed 8.5 interaction action retained"
+  },
+  "known_deferred_items": [
+    "Original GOST/GOST R row-by-row profile catalog audit remains deferred to final package by user decision.",
+    "Full package-wide Change 6 rebaseline remains a final-package gate.",
+    "Guided local-stability route does not duplicate the detailed equations (80)-(100); it routes/screen only."
+  ]
+}

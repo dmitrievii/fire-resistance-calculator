@@ -1,0 +1,13 @@
+{
+  "release_stage": "v0.26_validation_campaign_remediation_and_corpus_0001_0009_reconstructed_r1",
+  "test_run": "537/537 PASS",
+  "coverage": {
+    "statements_percent": 93.97085037223445,
+    "branches_percent": 72.483537158984,
+    "covered_lines": 8962,
+    "num_statements": 9537,
+    "covered_branches": 1541,
+    "num_branches": 2126
+  },
+  "qualification": "Coverage is execution evidence only and is not treated as independent normative validation."
+}

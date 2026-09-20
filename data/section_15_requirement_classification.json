@@ -1,0 +1,902 @@
+{
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "section": "15",
+  "title": "Requirements for design of buildings, structures, and structural components",
+  "pages": [
+    97,
+    108
+  ],
+  "classification_purpose": "Separate executable scalar rules, linked calculations, evidence requirements, and external structural-analysis boundaries without inventing missing methods.",
+  "entries": [
+    {
+      "clause": "15",
+      "pages": [
+        97,
+        108
+      ],
+      "title_or_excerpt": "Требования по проектированию зданий, сооружений и конструкций",
+      "category": "section_heading",
+      "package_status": "catalogued_no_calculation",
+      "route": "Use the subordinate clause records."
+    },
+    {
+      "clause": "15.1",
+      "pages": [
+        97,
+        98
+      ],
+      "title_or_excerpt": "Расстояния между температурными швами Расстояния превышать наибольших значений",
+      "category": "implemented_table_and_decision_route",
+      "package_status": "implemented",
+      "route": "Use Table 44 lookup, compliance assessment, and paired-bracing spacing functions."
+    },
+    {
+      "clause": "15.2",
+      "pages": [
+        98,
+        99
+      ],
+      "title_or_excerpt": "Фермы и структурные плиты покрытий",
+      "category": "section_heading",
+      "package_status": "catalogued_no_calculation",
+      "route": "Use the subordinate clause records."
+    },
+    {
+      "clause": "15.2.1",
+      "pages": [
+        98,
+        98
+      ],
+      "title_or_excerpt": "Оси стержней ферм и структур следует центрировать в узлах для сварных ферм по центрам тяжести сечений (с",
+      "category": "linked_normative_calculation_required",
+      "package_status": "classified_external_or_previous_module_route",
+      "route": "Use the referenced previously implemented clause where available; otherwise provide externally verified evidence."
+    },
+    {
+      "clause": "15.2.2",
+      "pages": [
+        98,
+        98
+      ],
+      "title_or_excerpt": "При расчете плоских ферм соединения элементов в узлах ферм принимаются шарнирными при сечениях элементов из уголков или тавров при двутавровых, Н-образных и трубчатых сечениях эле…",
+      "category": "linked_normative_calculation_required",
+      "package_status": "classified_external_or_previous_module_route",
+      "route": "Use the referenced previously implemented clause where available; otherwise provide externally verified evidence."
+    },
+    {
+      "clause": "15.2.3",
+      "pages": [
+        98,
+        98
+      ],
+      "title_or_excerpt": "Расстояние между краями элементов решетки и пояса в узлах сварных ферм с фасонками a следует принимать",
+      "category": "direct_detailing_check_candidate",
+      "package_status": "classified_not_individually_encoded_in_v0.18",
+      "route": "Check directly against the printed dimensional or boolean requirement in the design-detailing checklist."
+    },
+    {
+      "clause": "15.2.4",
+      "pages": [
+        98,
+        99
+      ],
+      "title_or_excerpt": "В узлах ферм с поясами из тавров, двутавров и одиночных уголков крепления фасонок к полкам поясов встык",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.2.5",
+      "pages": [
+        99,
+        99
+      ],
+      "title_or_excerpt": "При расчете узлов ферм со стержнями трубчатого и двутаврового сечений и прикреплением элементов решетки",
+      "category": "external_structural_analysis_or_nonlinear_model_required",
+      "package_status": "classified_external_boundary",
+      "route": "Provide results from the referenced structural analysis or approved method; no substitute formula is generated."
+    },
+    {
+      "clause": "15.2.6",
+      "pages": [
+        99,
+        99
+      ],
+      "title_or_excerpt": "При пролетах ферм покрытий свыше 36 м следует предусматривать строительный подъем, равный прогибу от",
+      "category": "linked_normative_calculation_required",
+      "package_status": "classified_external_or_previous_module_route",
+      "route": "Use the referenced previously implemented clause where available; otherwise provide externally verified evidence."
+    },
+    {
+      "clause": "15.2.7",
+      "pages": [
+        99,
+        99
+      ],
+      "title_or_excerpt": "Фермы с сечениями всех элементов из гнутосварных прямоугольных (квадратных) профилей с непосредственным примыканием решетки к поясам и с нисходящим опорным раскосом допускается пр…",
+      "category": "direct_detailing_check_candidate",
+      "package_status": "classified_not_individually_encoded_in_v0.18",
+      "route": "Check directly against the printed dimensional or boolean requirement in the design-detailing checklist."
+    },
+    {
+      "clause": "15.3",
+      "pages": [
+        99,
+        100
+      ],
+      "title_or_excerpt": "Колонны",
+      "category": "section_heading",
+      "package_status": "catalogued_no_calculation",
+      "route": "Use the subordinate clause records."
+    },
+    {
+      "clause": "15.3.1",
+      "pages": [
+        99,
+        99
+      ],
+      "title_or_excerpt": "Отправочные элементы сквозных колонн с решетками в двух плоскостях следует укреплять диафрагмами",
+      "category": "direct_detailing_check_candidate",
+      "package_status": "classified_not_individually_encoded_in_v0.18",
+      "route": "Check directly against the printed dimensional or boolean requirement in the design-detailing checklist."
+    },
+    {
+      "clause": "15.3.2",
+      "pages": [
+        99,
+        99
+      ],
+      "title_or_excerpt": "В колоннах и стойках с односторонними поясными швами согласно 14.1.9 в узлах крепления связей, балок",
+      "category": "direct_detailing_check_candidate",
+      "package_status": "classified_not_individually_encoded_in_v0.18",
+      "route": "Check directly against the printed dimensional or boolean requirement in the design-detailing checklist."
+    },
+    {
+      "clause": "15.3.3",
+      "pages": [
+        99,
+        99
+      ],
+      "title_or_excerpt": "Угловые швы, прикрепляющие фасонки соединительной решетки к колоннам внахлестку, следует назначать по",
+      "category": "direct_detailing_check_candidate",
+      "package_status": "classified_not_individually_encoded_in_v0.18",
+      "route": "Check directly against the printed dimensional or boolean requirement in the design-detailing checklist."
+    },
+    {
+      "clause": "15.3.4",
+      "pages": [
+        99,
+        99
+      ],
+      "title_or_excerpt": "Монтажные стыки колонн следует выполнять с фрезерованными торцами, сваренными встык, на накладках со",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.3.5",
+      "pages": [
+        99,
+        100
+      ],
+      "title_or_excerpt": "В сквозных колоннах, ветви которых соединены планками, следует принимать",
+      "category": "direct_detailing_check_candidate",
+      "package_status": "classified_not_individually_encoded_in_v0.18",
+      "route": "Check directly against the printed dimensional or boolean requirement in the design-detailing checklist."
+    },
+    {
+      "clause": "15.4",
+      "pages": [
+        100,
+        102
+      ],
+      "title_or_excerpt": "Связи",
+      "category": "section_heading",
+      "package_status": "catalogued_no_calculation",
+      "route": "Use the subordinate clause records."
+    },
+    {
+      "clause": "15.4.1",
+      "pages": [
+        100,
+        100
+      ],
+      "title_or_excerpt": "В каждом температурном блоке здания следует предусматривать самостоятельную систему связей объединяющих плоские элементы в пространственную систему, способную воспринимать нагрузк…",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.4.2",
+      "pages": [
+        100,
+        100
+      ],
+      "title_or_excerpt": "Нижние пояса балок и ферм крановых путей пролетом свыше 12 м следует укреплять горизонтальными связями",
+      "category": "direct_detailing_check_candidate",
+      "package_status": "classified_not_individually_encoded_in_v0.18",
+      "route": "Check directly against the printed dimensional or boolean requirement in the design-detailing checklist."
+    },
+    {
+      "clause": "15.4.3",
+      "pages": [
+        100,
+        100
+      ],
+      "title_or_excerpt": "Для зданий с балками крановых путей вертикальные связи между основными колоннами располагаются в двух",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.4.4",
+      "pages": [
+        100,
+        100
+      ],
+      "title_or_excerpt": "Система связей покрытия зависит от: типа каркаса (стальной или смешанный); конструктивных особенностей",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.4.5",
+      "pages": [
+        100,
+        101
+      ],
+      "title_or_excerpt": "В зданиях с прогонами, в уровне нижних поясов стропильных ферм с восходящими раскосами, опирающимися",
+      "category": "linked_normative_calculation_required",
+      "package_status": "classified_external_or_previous_module_route",
+      "route": "Use the referenced previously implemented clause where available; otherwise provide externally verified evidence."
+    },
+    {
+      "clause": "15.4.6",
+      "pages": [
+        101,
+        101
+      ],
+      "title_or_excerpt": "По верхним поясам стропильных ферм поперечные горизонтальные связи при покрытии с прогонами следует",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.4.7",
+      "pages": [
+        101,
+        101
+      ],
+      "title_or_excerpt": "При наличии жесткого диска кровли в уровне верхних поясов ферм в покрытиях с уклоном кровли не более 10°",
+      "category": "linked_normative_calculation_required",
+      "package_status": "classified_external_or_previous_module_route",
+      "route": "Use the referenced previously implemented clause where available; otherwise provide externally verified evidence."
+    },
+    {
+      "clause": "15.4.8",
+      "pages": [
+        101,
+        101
+      ],
+      "title_or_excerpt": "При наличии жесткого диска кровли в соответствии с требованиями 15.4.7 в уровне верхних поясов ферм",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.4.9",
+      "pages": [
+        101,
+        101
+      ],
+      "title_or_excerpt": "При расположении покрытий в разных уровнях необходимо предусматривать по одной продольной системе",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.4.10",
+      "pages": [
+        101,
+        102
+      ],
+      "title_or_excerpt": "В местах расположения поперечных связей покрытия следует предусматривать установку вертикальных",
+      "category": "direct_detailing_check_candidate",
+      "package_status": "classified_not_individually_encoded_in_v0.18",
+      "route": "Check directly against the printed dimensional or boolean requirement in the design-detailing checklist."
+    },
+    {
+      "clause": "15.4.11",
+      "pages": [
+        102,
+        102
+      ],
+      "title_or_excerpt": "Горизонтальные связи по верхним и нижним поясам разрезных ферм пролетных строений транспортерных",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.4.12",
+      "pages": [
+        102,
+        102
+      ],
+      "title_or_excerpt": "При применении крестовой решетки связей покрытий, за исключением уникальных зданий и сооружений",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.4.13",
+      "pages": [
+        102,
+        102
+      ],
+      "title_or_excerpt": "В висячих покрытиях с плоскостными несущими системами (двухпоясными, изгибно-жесткими вантами и т.п.)",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.4.14",
+      "pages": [
+        102,
+        102
+      ],
+      "title_or_excerpt": "Крепление связей осуществляют на болтах класса точности В В зданиях, оборудованных кранами большой грузоподъемности и режимов работы 7К и 8К, а также в случае",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.4.15",
+      "pages": [
+        102,
+        102
+      ],
+      "title_or_excerpt": "Тяжи в качестве элементов связей должны использоваться в несущих конструкциях для зданий и сооружений",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.5",
+      "pages": [
+        102,
+        103
+      ],
+      "title_or_excerpt": "Балки и рамные конструкции",
+      "category": "section_heading",
+      "package_status": "catalogued_no_calculation",
+      "route": "Use the subordinate clause records."
+    },
+    {
+      "clause": "15.5.1",
+      "pages": [
+        102,
+        102
+      ],
+      "title_or_excerpt": "Пакеты листов для поясов сварных двутавровых балок применять не следует Для поясов балок с фрикционными соединениями следует применять пакеты, состоящие не более чем из трех листов",
+      "category": "direct_detailing_check_candidate",
+      "package_status": "classified_not_individually_encoded_in_v0.18",
+      "route": "Check directly against the printed dimensional or boolean requirement in the design-detailing checklist."
+    },
+    {
+      "clause": "15.5.2",
+      "pages": [
+        102,
+        102
+      ],
+      "title_or_excerpt": "Поясные швы сварных балок, а также швы, присоединяющие к основному сечению балки вспомогательные",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.5.3",
+      "pages": [
+        102,
+        103
+      ],
+      "title_or_excerpt": "При применении односторонних поясных швов в сварных двутавровых балках 1-го класса, несущих статическую нагрузку, следует выполнять следующие требования",
+      "category": "linked_normative_calculation_required",
+      "package_status": "classified_external_or_previous_module_route",
+      "route": "Use the referenced previously implemented clause where available; otherwise provide externally verified evidence."
+    },
+    {
+      "clause": "15.5.4",
+      "pages": [
+        103,
+        103
+      ],
+      "title_or_excerpt": "Ребра жесткости сварных балок должны быть удалены от стыков стенки на расстояние не менее 10 толщин",
+      "category": "direct_detailing_check_candidate",
+      "package_status": "classified_not_individually_encoded_in_v0.18",
+      "route": "Check directly against the printed dimensional or boolean requirement in the design-detailing checklist."
+    },
+    {
+      "clause": "15.5.5",
+      "pages": [
+        103,
+        103
+      ],
+      "title_or_excerpt": "В сварных двутавровых балках конструкций групп 2-4 применяются односторонние ребра жесткости с расположением их с одной стороны балки и приваркой их к поясам балки",
+      "category": "linked_normative_calculation_required",
+      "package_status": "classified_external_or_previous_module_route",
+      "route": "Use the referenced previously implemented clause where available; otherwise provide externally verified evidence."
+    },
+    {
+      "clause": "15.5.6",
+      "pages": [
+        103,
+        103
+      ],
+      "title_or_excerpt": "Рама - упругая неизменяемая система, составленная из прямолинейных или криволинейных элементов связанных между собой жестко или шарнирно в узлах (в местах пересечения элементов) и…",
+      "category": "external_structural_analysis_or_nonlinear_model_required",
+      "package_status": "classified_external_boundary",
+      "route": "Provide results from the referenced structural analysis or approved method; no substitute formula is generated."
+    },
+    {
+      "clause": "15.6",
+      "pages": [
+        103,
+        103
+      ],
+      "title_or_excerpt": "Балки крановых путей",
+      "category": "section_heading",
+      "package_status": "catalogued_no_calculation",
+      "route": "Use the subordinate clause records."
+    },
+    {
+      "clause": "15.6.1",
+      "pages": [
+        103,
+        103
+      ],
+      "title_or_excerpt": "Верхние поясные швы в балках крановых путей для кранов групп режимов работы 7К (в цехах металлургических производств) и 8К (по СП 20.13330) следует выполнять с проваром на всю тол…",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.6.2",
+      "pages": [
+        103,
+        103
+      ],
+      "title_or_excerpt": "Свободные кромки растянутых поясов балок крановых путей и балок рабочих площадок, непосредственно",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.6.3",
+      "pages": [
+        103,
+        103
+      ],
+      "title_or_excerpt": "Размеры ребер жесткости балок крановых путей должны удовлетворять требованиям 8.5.9, 8.5.10 и 8.5.17, при",
+      "category": "linked_normative_calculation_required",
+      "package_status": "classified_external_or_previous_module_route",
+      "route": "Use the referenced previously implemented clause where available; otherwise provide externally verified evidence."
+    },
+    {
+      "clause": "15.7",
+      "pages": [
+        103,
+        104
+      ],
+      "title_or_excerpt": "Листовые конструкции",
+      "category": "section_heading",
+      "package_status": "catalogued_no_calculation",
+      "route": "Use the subordinate clause records."
+    },
+    {
+      "clause": "15.7.1",
+      "pages": [
+        103,
+        103
+      ],
+      "title_or_excerpt": "Контур поперечных элементов жесткости оболочек следует проектировать замкнутым",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.7.2",
+      "pages": [
+        103,
+        103
+      ],
+      "title_or_excerpt": "Передачу сосредоточенных нагрузок на листовые конструкции следует предусматривать через элементы",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.7.3",
+      "pages": [
+        103,
+        104
+      ],
+      "title_or_excerpt": "В местах сопряжений оболочек различной формы следует применять плавные переходы для уменьшения местных напряжений",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.7.4",
+      "pages": [
+        104,
+        104
+      ],
+      "title_or_excerpt": "Выполнение всех стыковых швов следует предусматривать двусторонней или односторонней сваркой с подваркой корня или на подкладках В проекте следует указывать на необходимость обесп…",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.7.5",
+      "pages": [
+        104,
+        104
+      ],
+      "title_or_excerpt": "В листовых конструкциях следует применять сварные соединения встык; соединения листов толщиной 5 мм и",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.8",
+      "pages": [
+        104,
+        104
+      ],
+      "title_or_excerpt": "Висячие покрытия",
+      "category": "section_heading",
+      "package_status": "catalogued_no_calculation",
+      "route": "Use the subordinate clause records."
+    },
+    {
+      "clause": "15.8.1",
+      "pages": [
+        104,
+        104
+      ],
+      "title_or_excerpt": "Для конструкций из нитей следует применять канаты, пряди и высокопрочную проволоку (или прокат)",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.8.2",
+      "pages": [
+        104,
+        104
+      ],
+      "title_or_excerpt": "Кровля висячего покрытия должна быть расположена непосредственно на несущих нитях и повторять образуемую ими форму. Если форма кровли отличается от формы провисания нитей, кровлю…",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.8.3",
+      "pages": [
+        104,
+        104
+      ],
+      "title_or_excerpt": "Очертания опорных контуров следует назначать с учетом кривых давления от усилий в прикрепленных к ним",
+      "category": "external_structural_analysis_or_nonlinear_model_required",
+      "package_status": "classified_external_boundary",
+      "route": "Provide results from the referenced structural analysis or approved method; no substitute formula is generated."
+    },
+    {
+      "clause": "15.8.4",
+      "pages": [
+        104,
+        104
+      ],
+      "title_or_excerpt": "Для сохранения стабильности формы, которая должна обеспечивать герметичность принятой конструкции",
+      "category": "external_structural_analysis_or_nonlinear_model_required",
+      "package_status": "classified_external_boundary",
+      "route": "Provide results from the referenced structural analysis or approved method; no substitute formula is generated."
+    },
+    {
+      "clause": "15.8.5",
+      "pages": [
+        104,
+        104
+      ],
+      "title_or_excerpt": "Сечение нити должно быть рассчитано по наибольшему усилию, возникающему при расчетной нагрузке, с",
+      "category": "external_structural_analysis_or_nonlinear_model_required",
+      "package_status": "classified_external_boundary",
+      "route": "Provide results from the referenced structural analysis or approved method; no substitute formula is generated."
+    },
+    {
+      "clause": "15.8.6",
+      "pages": [
+        104,
+        104
+      ],
+      "title_or_excerpt": "Вертикальные и горизонтальные перемещения нитей и усилия в них следует определять с учетом нелинейности",
+      "category": "external_structural_analysis_or_nonlinear_model_required",
+      "package_status": "classified_external_boundary",
+      "route": "Provide results from the referenced structural analysis or approved method; no substitute formula is generated."
+    },
+    {
+      "clause": "15.8.7",
+      "pages": [
+        104,
+        104
+      ],
+      "title_or_excerpt": "При расчете нитей из канатов и их закреплений коэффициенты условий работы следует принимать в соответствии с разделом 17. Для стабилизирующих канатов, если они не являются затяжка…",
+      "category": "linked_normative_calculation_required",
+      "package_status": "classified_external_or_previous_module_route",
+      "route": "Use the referenced previously implemented clause where available; otherwise provide externally verified evidence."
+    },
+    {
+      "clause": "15.8.8",
+      "pages": [
+        104,
+        104
+      ],
+      "title_or_excerpt": "Опорные узлы нитей из прокатных профилей следует выполнять шарнирными",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.9",
+      "pages": [
+        104,
+        106
+      ],
+      "title_or_excerpt": "Фланцевые соединения",
+      "category": "section_heading",
+      "package_status": "catalogued_no_calculation",
+      "route": "Use the subordinate clause records."
+    },
+    {
+      "clause": "15.9.1",
+      "pages": [
+        104,
+        104
+      ],
+      "title_or_excerpt": "К фланцевому соединению (ФС) стальных строительных конструкций следует относить соединение, в котором",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.9.2",
+      "pages": [
+        104,
+        104
+      ],
+      "title_or_excerpt": "Применяют ФС в монтажных стыках ферм и пространственных конструкций с элементами различного очертания, опорах ЛЭП, башенных и антенно-мачтовых сооружениях, стыках балок, колонн, э…",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.9.3",
+      "pages": [
+        104,
+        105
+      ],
+      "title_or_excerpt": "Классифицируются ФС по следующим признакам I - по условиям работы а) ФС конструкций группы 1",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.9.4",
+      "pages": [
+        105,
+        105
+      ],
+      "title_or_excerpt": "На основании расчетов в проектной документации ФС следует классифицировать в соответствии с 15.9.3 по",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.9.5",
+      "pages": [
+        105,
+        105
+      ],
+      "title_or_excerpt": "Фланцевые соединения конструкций группы 1 (I, а) следует проектировать только на болтах с предварительным",
+      "category": "linked_normative_calculation_required",
+      "package_status": "classified_external_or_previous_module_route",
+      "route": "Use the referenced previously implemented clause where available; otherwise provide externally verified evidence."
+    },
+    {
+      "clause": "15.9.6",
+      "pages": [
+        105,
+        105
+      ],
+      "title_or_excerpt": "Фланцевые соединения, подверженные сжатию или совместному действию сжатия с изгибом (II, а), следует",
+      "category": "external_structural_analysis_or_nonlinear_model_required",
+      "package_status": "classified_external_boundary",
+      "route": "Provide results from the referenced structural analysis or approved method; no substitute formula is generated."
+    },
+    {
+      "clause": "15.9.7",
+      "pages": [
+        105,
+        106
+      ],
+      "title_or_excerpt": "Фланцевые соединения, отнесенные по классификации к II, б и II, в, следует рассчитывать по пространственной",
+      "category": "external_structural_analysis_or_nonlinear_model_required",
+      "package_status": "classified_external_boundary",
+      "route": "Provide results from the referenced structural analysis or approved method; no substitute formula is generated."
+    },
+    {
+      "clause": "15.9.8",
+      "pages": [
+        106,
+        106
+      ],
+      "title_or_excerpt": "При проектировании ФС следует проверять а) прочность и местную устойчивость соединяемых элементов в околофланцевой зоне б) несущую способность сварных швов крепления фланца к элем…",
+      "category": "external_structural_analysis_or_nonlinear_model_required",
+      "package_status": "classified_external_boundary",
+      "route": "Provide results from the referenced structural analysis or approved method; no substitute formula is generated."
+    },
+    {
+      "clause": "15.9.9",
+      "pages": [
+        106,
+        106
+      ],
+      "title_or_excerpt": "Для ФС II,б и II,в узел примыкания балки к полке колонны, дополнительно к требованиям 15.9.8, следует",
+      "category": "external_structural_analysis_or_nonlinear_model_required",
+      "package_status": "classified_external_boundary",
+      "route": "Provide results from the referenced structural analysis or approved method; no substitute formula is generated."
+    },
+    {
+      "clause": "15.9.10",
+      "pages": [
+        106,
+        106
+      ],
+      "title_or_excerpt": "При проектировании ФС для фланцев следует применять сталь в соответствии с разделом 5 и приложением В",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.9.11",
+      "pages": [
+        106,
+        106
+      ],
+      "title_or_excerpt": "При проектировании ФС II,б+III,б+IV,б и II,в+III,б+IV,б следует применять болты классов прочности 8.8, 10.9",
+      "category": "linked_normative_calculation_required",
+      "package_status": "classified_external_or_previous_module_route",
+      "route": "Use the referenced previously implemented clause where available; otherwise provide externally verified evidence."
+    },
+    {
+      "clause": "15.9.12",
+      "pages": [
+        106,
+        106
+      ],
+      "title_or_excerpt": "Требования по натяжению болтов и к контролю плотности контакта между поверхностями фланцев для ФС",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.9.13",
+      "pages": [
+        106,
+        107
+      ],
+      "title_or_excerpt": "Приемка в эксплуатацию ФС при наличии начальных несовершенств в виде грибовидности должна осуществляться после получения положительных результатов при выполнении дополнительных ра…",
+      "category": "external_structural_analysis_or_nonlinear_model_required",
+      "package_status": "classified_external_boundary",
+      "route": "Provide results from the referenced structural analysis or approved method; no substitute formula is generated."
+    },
+    {
+      "clause": "15.10",
+      "pages": [
+        107,
+        107
+      ],
+      "title_or_excerpt": "Соединения с фрезерованными торцами В соединениях элементов с фрезерованными торцами (в стыках и базах колонн и т.п.) сжимающую силу следует",
+      "category": "external_structural_analysis_or_nonlinear_model_required",
+      "package_status": "classified_external_boundary",
+      "route": "Provide results from the referenced structural analysis or approved method; no substitute formula is generated."
+    },
+    {
+      "clause": "15.11",
+      "pages": [
+        107,
+        107
+      ],
+      "title_or_excerpt": "Монтажные крепления",
+      "category": "section_heading",
+      "package_status": "catalogued_no_calculation",
+      "route": "Use the subordinate clause records."
+    },
+    {
+      "clause": "15.11.1",
+      "pages": [
+        107,
+        107
+      ],
+      "title_or_excerpt": "Монтажные крепления конструкций зданий и сооружений с балками крановых путей, рассчитываемыми на",
+      "category": "design_detailing_or_evidence_requirement",
+      "package_status": "classified_evidence_route",
+      "route": "Record design evidence, drawing reference, material/connection selection, or linked standard compliance."
+    },
+    {
+      "clause": "15.11.2",
+      "pages": [
+        107,
+        107
+      ],
+      "title_or_excerpt": "Для перераспределения изгибающих моментов в элементах рамных систем каркасных зданий в узлах соединения ригелей с колоннами применяются стальные накладки, работающие в пластическо…",
+      "category": "external_structural_analysis_or_nonlinear_model_required",
+      "package_status": "classified_external_boundary",
+      "route": "Provide results from the referenced structural analysis or approved method; no substitute formula is generated."
+    },
+    {
+      "clause": "15.12",
+      "pages": [
+        107,
+        108
+      ],
+      "title_or_excerpt": "Опорные части",
+      "category": "section_heading",
+      "package_status": "catalogued_no_calculation",
+      "route": "Use the subordinate clause records."
+    },
+    {
+      "clause": "15.12.1",
+      "pages": [
+        107,
+        107
+      ],
+      "title_or_excerpt": "Неподвижные шарнирные опоры с центрирующими прокладками, тангенциальные, а при весьма больших реакциях - балансирные опоры следует применять при необходимости строго равномерного…",
+      "category": "implemented_selection_and_fixed_coefficients",
+      "package_status": "implemented",
+      "route": "Use support-bearing selection and friction-coefficient functions."
+    },
+    {
+      "clause": "15.12.2",
+      "pages": [
+        107,
+        108
+      ],
+      "title_or_excerpt": "Расчет на смятие в цилиндрических шарнирах (цапфах) балансирных опор следует выполнять (при",
+      "category": "implemented_formula",
+      "package_status": "implemented",
+      "route": "Use equation (199) with explicit contact-angle applicability check."
+    },
+    {
+      "clause": "15.12.3",
+      "pages": [
+        108,
+        108
+      ],
+      "title_or_excerpt": "Расчет на диаметральное сжатие катков следует выполнять по формуле",
+      "category": "implemented_formula",
+      "package_status": "implemented",
+      "route": "Use equation (200) with explicit roller count and geometry."
+    }
+  ],
+  "summary": {
+    "section_heading": 11,
+    "implemented_table_and_decision_route": 1,
+    "linked_normative_calculation_required": 11,
+    "direct_detailing_check_candidate": 10,
+    "design_detailing_or_evidence_requirement": 31,
+    "external_structural_analysis_or_nonlinear_model_required": 13,
+    "implemented_selection_and_fixed_coefficients": 1,
+    "implemented_formula": 2
+  }
+}

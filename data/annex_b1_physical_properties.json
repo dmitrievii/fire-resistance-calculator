@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "audit_id": "SP16-TBL-Б-1",
+  "table_number": "Б.1",
+  "title": "Физические характеристики материалов для стальных конструкций",
+  "normative_source": {
+    "designation": "СП 16.13330.2017 «Стальные конструкции», Changes 1–6 through 09.12.2024",
+    "source_filename": "СП 16.13330(1).doc",
+    "source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+    "source_included_in_package": false
+  },
+  "rolled_steel": {
+    "density_kg_m3": 7850.0,
+    "linear_expansion_per_C": 1.2e-05,
+    "E_MPa": 206000.0,
+    "G_MPa": 79000.0,
+    "poisson_ratio": 0.3
+  },
+  "notes": [
+    "Stage N1 materializes the rolled-steel values needed by the steel member/fire crosswalk; other B.1 material families remain outside this N1 resolver."
+  ]
+}

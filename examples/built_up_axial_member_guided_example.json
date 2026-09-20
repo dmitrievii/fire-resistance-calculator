@@ -1,0 +1,46 @@
+{
+  "case_id": "N3-GUIDED-BUILTUP-001",
+  "standard": "СП 16.13330.2017",
+  "action": "built_up_axial_member_guided",
+  "force_state": "compression",
+  "axial_force_n": 800000.0,
+  "gross_area_mm2": 5000.0,
+  "section_weakening": "none",
+  "working_condition_factor": 1.0,
+  "post_yield_service_possible": false,
+  "panel_count": 8,
+  "connector_system": "lattice",
+  "built_up_section_type": 1,
+  "table8_data": {
+    "whole_member_slenderness_y": 45.0,
+    "diagonal_area_plane_1_mm2": 500.0,
+    "diagonal_length_d_mm": 600.0,
+    "branch_axis_spacing_b_mm": 400.0,
+    "panel_length_mm": 1000.0
+  },
+  "branch_relative_slenderness": 3.0,
+  "branch_section_type": "b",
+  "close_contact_check": {
+    "connection_spacing_mm": 300.0,
+    "selected_radius_of_gyration_mm": 10.0,
+    "intermediate_connection_count": 2
+  },
+  "connector_force_check": {
+    "distribution_mode": "connectors_only",
+    "connector_system_count": 2,
+    "diagonal_length_d_mm": 600.0,
+    "branch_axis_spacing_b_mm": 400.0,
+    "lattice_force_coefficient_alpha_1": 0.5,
+    "panel_length_mm": 1000.0,
+    "one_branch_force_n": 200000.0,
+    "one_diagonal_area_mm2": 500.0,
+    "one_branch_area_mm2": 2500.0
+  },
+  "material_ref": {
+    "product_form": "plate_sheet_strip",
+    "steel_grade": "C355",
+    "thickness_mm": 10.0,
+    "material_safety_category": "other_conforming",
+    "design_resistance_source": "annex_tabulated"
+  }
+}

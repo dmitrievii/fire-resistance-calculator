@@ -1,0 +1,54 @@
+{
+  "release_stage": "v0.56_fire_ui23_protection_route_closure_r1",
+  "package_version": "0.56.0",
+  "parent_release": "v0.55.1_fire_ui22_result_continuation_hotfix_r1",
+  "qualification": "research_grade_fire_ui23_protection_route_closure_r1",
+  "engineering_use_ready": false,
+  "authoritative_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "authoritative_sp554_source_sha256": "86a3c010ee74e469670f7aff5b95c807ffcff81bc81cbebe16f994af477507e3",
+  "dag": {
+    "path": "normative_graph/dag_v0.3.59_fire_ui23_protection_route_closure.json",
+    "sha256": "db01baa52cb042185b14092588d48e241af64ec639bdc349236b9fedbfe7442a",
+    "quantities": 801,
+    "datasets": 39,
+    "nodes": 689,
+    "edges": 1171,
+    "deterministic_rebuild_x2": true
+  },
+  "closure": {
+    "protection_source_selector_first": true,
+    "commercial_product_metadata_conditional": true,
+    "sto_arss_library_route_to_sp554_12_5": true,
+    "manual_properties_route_to_sp554_12_5": true,
+    "sto_arss_mineral_wool_density_kg_m3": 100.0,
+    "sto_arss_source_density_range_preserved_kg_m3": [
+      80.0,
+      100.0
+    ],
+    "kelvin_basis_preserved_and_converted_for_solver": true,
+    "explicit_sp554_12_6_validation_gate": true,
+    "direct_given_thickness_12_5_runtime": true,
+    "bounded_inverse_minimum_thickness_12_5_runtime": true,
+    "raw_protection_performance_object_removed_from_arss_manual_ui": true,
+    "documented_product_matrix_specialized_editor": true,
+    "premature_12_7_9_normalization_edges_removed": true
+  },
+  "explicit_open_scope": {
+    "Qy_axis_specific_shear_runtime_closed": false,
+    "torsion_T_runtime_closed": false,
+    "policy": "primary UI locked to zero; nonzero external values fail closed; no Qy->Qz or T->B substitution"
+  },
+  "tests": {
+    "collected_total": 1059,
+    "non_manifest_file_sharded": "1058/1058 PASS",
+    "release_manifest_replay": "1/1 PASS",
+    "focused_fire_ui23": "10/10 PASS",
+    "public_docstrings": "PASS",
+    "main_release_audit": "PASS",
+    "validation_cases": "1876 PASS",
+    "phase_0_25_validation": "PASS",
+    "external_golden_cases": "6/6 PASS",
+    "unresolved_equations_tables": "0/0",
+    "full_file_sharded_cumulative": "1059/1059 PASS"
+  }
+}

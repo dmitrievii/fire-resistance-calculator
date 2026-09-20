@@ -1,0 +1,79 @@
+{
+  "standard": "СП 16.13330.2017",
+  "source_pages": [39, 40, 41, 45],
+  "table_14": {
+    "row_variable": "rho",
+    "row_nodes": [0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40],
+    "column_variable": "a_over_hef_or_a1_over_hef",
+    "column_nodes": [0.50, 0.60, 0.67, 0.80, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0],
+    "terminal_column_rule": ">=2.0 uses 2.0 column",
+    "values": [
+      [56.7, 46.6, 41.8, 34.9, 28.5, 24.5, 21.7, 19.5, 17.7, 16.2],
+      [38.9, 31.3, 27.9, 23.0, 18.6, 16.2, 14.6, 13.6, 12.7, 12.0],
+      [33.9, 26.7, 23.5, 19.2, 15.4, 13.3, 12.1, 11.3, 10.7, 10.2],
+      [30.6, 24.9, 20.3, 16.2, 12.9, 11.1, 10.0, 9.4, 9.0, 8.7],
+      [28.9, 21.6, 18.5, 14.5, 11.3, 9.6, 8.7, 8.1, 7.8, 7.6],
+      [28.0, 20.6, 17.4, 13.4, 10.2, 8.6, 7.7, 7.2, 6.9, 6.7],
+      [27.4, 20.0, 16.8, 12.7, 9.5, 7.9, 7.0, 6.6, 6.3, 6.1]
+    ],
+    "interpolation": "not stated; exact nodes only"
+  },
+  "table_15": {
+    "row_variable": "delta",
+    "row_nodes": [1.0, 2.0, 4.0, 6.0, 10.0, 30.0],
+    "row_terminal_rules": ["delta<=1 uses row 1", "delta>=30 uses row 30"],
+    "column_variable": "a_over_hef_or_a1_over_hef",
+    "column_nodes": [0.50, 0.60, 0.67, 0.80, 1.00, 1.20, 1.40, 1.60],
+    "terminal_column_rule": ">=1.60 uses 1.60 column",
+    "values": [
+      [1.56, 1.56, 1.56, 1.56, 1.56, 1.56, 1.56, 1.56],
+      [1.64, 1.64, 1.64, 1.67, 1.76, 1.82, 1.84, 1.85],
+      [1.66, 1.67, 1.69, 1.75, 1.88, 2.01, 2.09, 2.12],
+      [1.67, 1.68, 1.70, 1.77, 1.92, 2.08, 2.19, 2.26],
+      [1.68, 1.69, 1.71, 1.78, 1.96, 2.14, 2.28, 2.38],
+      [1.68, 1.70, 1.72, 1.80, 1.99, 2.20, 2.38, 2.52]
+    ],
+    "interpolation": "not stated; exact interior nodes only"
+  },
+  "table_16": {
+    "ratio_nodes": [0.9, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0],
+    "c_cr": [37.0, 39.2, 45.2, 52.8, 62.0, 72.6, 84.7],
+    "terminal_rules": ["ratio<=0.8 uses Table 12", "ratio>=2.0 uses 84.7"],
+    "interpolation": "not stated; exact interior nodes only"
+  },
+  "table_17": {
+    "alpha_nodes": [1.0, 1.2, 1.4, 1.6, 1.8, 2.0],
+    "c_cr": [10.2, 12.7, 15.5, 20.0, 25.0, 30.0],
+    "interpolation": "not stated; exact nodes only"
+  },
+  "table_18": {
+    "row_variable": "tau_over_Rsw",
+    "row_nodes": [0.0, 0.5, 0.6, 0.7, 0.8, 0.9],
+    "column_variable": "web_relative_slenderness",
+    "column_nodes": [2.2, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5],
+    "values": [
+      [0.240, 0.239, 0.235, 0.226, 0.213, 0.195, 0.173, 0.153],
+      [0.203, 0.202, 0.197, 0.189, 0.176, 0.158, 0.136, 0.116],
+      [0.186, 0.185, 0.181, 0.172, 0.159, 0.141, 0.119, 0.099],
+      [0.167, 0.166, 0.162, 0.152, 0.140, 0.122, 0.100, 0.080],
+      [0.144, 0.143, 0.139, 0.130, 0.117, 0.099, 0.077, 0.057],
+      [0.119, 0.118, 0.114, 0.105, 0.092, 0.074, 0.052, 0.032]
+    ],
+    "interpolation": "not stated; exact nodes only"
+  },
+  "table_19": {
+    "h1_over_hef_nodes": [0.20, 0.25, 0.30],
+    "transverse_required": "Ir >= 3*hef*tw^3",
+    "longitudinal_required": {
+      "0.20": "(2.5-0.5*a/hef)*a^2*tw^3/hef",
+      "0.25": "(1.5-0.4*a/hef)*a^2*tw^3/hef",
+      "0.30": "1.5*hef*tw^3"
+    },
+    "longitudinal_limits": {
+      "0.20": {"minimum": "1.5*hef*tw^3", "maximum": "7*hef*tw^3"},
+      "0.25": {"minimum": "1.5*hef*tw^3", "maximum": "8.5*hef*tw^3"},
+      "0.30": {"minimum": null, "maximum": null}
+    },
+    "interpolation": "linear interpolation explicitly required for longitudinal required inertia at intermediate h1/hef"
+  }
+}

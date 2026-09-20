@@ -1,0 +1,281 @@
+{
+  "case_id": "UI-D3-HF-20K1-FIRE-ACCEPT-001",
+  "scale_factor_vs_low_load": 58,
+  "cold_reference": {
+    "status": "COMPLETE",
+    "derived": {
+      "geometric_slenderness_x": 24.57963143462627,
+      "geometric_slenderness_y": 42.04438987982087,
+      "relative_slenderness_x": 0.856272034981208,
+      "relative_slenderness_y": 1.464685724750979,
+      "central_phi_x": 0.9616162662640445,
+      "central_phi_y": 0.8322863284814596,
+      "relative_eccentricity_x": 4.027261146496816,
+      "relative_eccentricity_y": 0.0
+    },
+    "d2_d3_x": {
+      "status": "D3_BILINEAR_INTERPOLATED",
+      "eta": 1.463489863098805,
+      "m_eff": 5.893855863949761,
+      "phi_e": 0.23212198342349993,
+      "source": "table_D.3_bilinear_digital_policy_no_extrapolation",
+      "exact_lookup_error": "row_value must equal a printed table node: [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 8.0, 9.0]"
+    },
+    "d2_d3_y": {
+      "status": "CENTRAL_COMPRESSION_LIMITING_CASE",
+      "eta": null,
+      "m_eff": 0.0,
+      "phi_e": 0.8322863284814596,
+      "source": "clause_7.1.3_limit_M_equals_0"
+    },
+    "coefficient_c": {
+      "status": "RESOLVED",
+      "alpha": 0.8513630573248409,
+      "beta": 1.0,
+      "phi_at_3_14": 0.5370345356854724,
+      "branch": "equation_112",
+      "c_raw": 0.22580186611390457,
+      "c_max": 1.0,
+      "c": 0.3
+    },
+    "stability_branch": {
+      "route": "9.2.1_9.2.2_9.2.4_ONE_PLANE_MAJOR"
+    },
+    "stability_checks": [
+      {
+        "equation": "109",
+        "utilization": 0.003270510290155035,
+        "pass": true
+      },
+      {
+        "equation": "111",
+        "utilization": 0.003040449379733962,
+        "pass": true
+      }
+    ],
+    "strength": {
+      "route": "9.1.1_EQ105",
+      "applicability_eq105": {
+        "permitted": true,
+        "axial_stress_n_mm2": 0.1970831690973591,
+        "low_axial_stress_branch": true,
+        "reasons": []
+      },
+      "annex_e1": {
+        "c_x": 1.0478,
+        "c_y": 1.47,
+        "n": 1.5
+      },
+      "utilization": 0.002941429660408222,
+      "pass": true
+    },
+    "required_unresolved": [],
+    "governing_utilization": 0.003270510290155035,
+    "pass": true,
+    "trace_policy": "FIRST_APPLICABLE_BRANCH_WITH_EXPLICIT_D3_BILINEAR_INTERPOLATION_NO_EXTRAPOLATION"
+  },
+  "fire_mechanical_case": {
+    "member_route": "combined_nm",
+    "steel_strength_group": "ordinary",
+    "high_strength_gost9651_qualified": false,
+    "fire_resistant_gost9651_qualified": false,
+    "fy_norm_n_mm2": 255.0,
+    "E_norm_n_mm2": 206000.0,
+    "route": {
+      "N_n": 58000,
+      "A_net_mm2": 5074.0,
+      "gamma_c_strength": 1.0,
+      "gamma_c_stability": 1.0,
+      "W_pl_x_eff_mm3": 419013.5,
+      "W_pl_y_eff_mm3": 199547.125,
+      "M_x_nmm": 17400000,
+      "M_y_nmm": 0.0,
+      "B_nmm2": 0.0,
+      "W_omega_eff_mm4": 1000000000.0,
+      "stability_mode": "in_plane",
+      "A_gross_mm2": 5269.0,
+      "phi_e_sp16": 0.23212198342349993,
+      "eta_sp16": 1.463489863098805,
+      "M_for_11_3_nmm": 17400000,
+      "W_pl_for_11_3_mm3": 419013.5,
+      "mu_length_sp16": 0.7,
+      "member_length_mm": 3000.0,
+      "J_min_mm4": 13144700.0,
+      "stress_state": "compression_plus_bending",
+      "section_is_constant": true,
+      "moment_plane_is_symmetry": true,
+      "mef_gt_20": false,
+      "section_is_box": false,
+      "sp16_table21_type": "1",
+      "major_axis_is_x": true
+    }
+  },
+  "fire_d2": {
+    "status": "COMPLETE",
+    "member_route": "combined_nm",
+    "requested_steel_strength_group": "ordinary",
+    "effective_steel_strength_group": "ordinary",
+    "qualification_notes": [],
+    "gamma_T_candidates": [
+      {
+        "formula_ref": "11.1",
+        "gamma_T_required": 0.2076742437450637
+      },
+      {
+        "formula_ref": "11.2",
+        "gamma_T_required": 0.1859701929696
+      }
+    ],
+    "gamma_T_required": 0.2076742437450637,
+    "gamma_T_governing_formula_ref": "11.1",
+    "gamma_E_required": 0.009570815374603399,
+    "critical_temperature_c": 697.2591986624773,
+    "critical_temperature_controlling_kind": "gamma_T",
+    "strength_curve_inversion": {
+      "status": "EXACT_WITHIN_PUBLISHED_CURVE",
+      "temperature_c": 697.2591986624773,
+      "temperature_relation": "=",
+      "published_minimum_gamma": 0.2,
+      "published_maximum_temperature_c": 700.0
+    },
+    "modulus_curve_inversion": {
+      "status": "ABOVE_PUBLISHED_TEMPERATURE_RANGE",
+      "temperature_c": null,
+      "temperature_lower_bound_c": 700.0,
+      "temperature_relation": ">",
+      "published_minimum_gamma": 0.43,
+      "published_maximum_temperature_c": 700.0
+    },
+    "route_trace": {
+      "route": "combined_nm",
+      "stability_mode": "in_plane",
+      "l_eff_mm": 2100.0,
+      "e_11_3_mm": 300.0,
+      "m_11_3": 3.7724321531406506,
+      "m_eff_11_3": 5.520916215349341
+    },
+    "governing_policy": "MIN_CRITICAL_TEMPERATURE_AFTER_INDEPENDENT_CURVE_INVERSION",
+    "draft_literal_min_coefficient_policy_executed": false,
+    "gamma_T_table_at_critical_temperature": 0.20767424374506366,
+    "gamma_E_table_at_critical_temperature": 0.4349334424075409,
+    "R_yt_critical_n_mm2": 52.956932154991236,
+    "E_t_critical_n_mm2": 89596.28913595343
+  },
+  "fire_d4": {
+    "status": "COMPLETE",
+    "normative_scope": "SP554_SECTION13",
+    "upstream_thermal_result": {
+      "status": "COMPLETE",
+      "actual_fire_resistance_min": 15.169253707893384,
+      "calculated_time_min": 15.169253707893384,
+      "steel_temperature_c": 697.2591986624773,
+      "fire_temperature_c": 740.2283056253518,
+      "step_count": 152,
+      "crossing_bracket": [
+        15.099999999999962,
+        15.199999999999962
+      ],
+      "thermal_trace": [
+        {
+          "time_min": 0.1,
+          "fire_temperature_c": 108.0690142606406,
+          "steel_temperature_c": 21.052083984904826,
+          "alpha_w_m2k": 34.06553179428328,
+          "steel_cp_j_kgk": 486.048
+        },
+        {
+          "time_min": 0.2,
+          "fire_temperature_c": 163.1658050499322,
+          "steel_temperature_c": 22.823646900624826,
+          "alpha_w_m2k": 35.570719463292875,
+          "steel_cp_j_kgk": 486.36615019703527
+        },
+        {
+          "time_min": 0.30000000000000004,
+          "fire_temperature_c": 203.36022637957802,
+          "steel_temperature_c": 25.15539980628976,
+          "alpha_w_m2k": 36.894998609168674,
+          "steel_cp_j_kgk": 486.901870822749
+        },
+        {
+          "time_min": 0.4,
+          "fire_temperature_c": 235.02100518727565,
+          "steel_temperature_c": 27.950095233879647,
+          "alpha_w_m2k": 38.09534224687397,
+          "steel_cp_j_kgk": 487.606992901422
+        },
+        {
+          "time_min": 0.5,
+          "fire_temperature_c": 261.1446514959265,
+          "steel_temperature_c": 31.140448186752778,
+          "alpha_w_m2k": 39.20586603165607,
+          "steel_cp_j_kgk": 488.4521087987252
+        },
+        {
+          "time_min": 9.99999999999998,
+          "fire_temperature_c": 678.4273315131338,
+          "steel_temperature_c": 563.1323927222747,
+          "alpha_w_m2k": 121.62846815445432,
+          "steel_cp_j_kgk": 649.1410295641372
+        }
+      ],
+      "reduced_emissivity": 0.5629139072847682,
+      "material_parameters": {
+        "source": "sp554_12_2_defaults",
+        "rho": 7850.0,
+        "c0": 480.0,
+        "kc": 0.00063,
+        "eps_fire": 0.85,
+        "eps_steel": 0.625
+      },
+      "thermal_route": "UNPROTECTED_STEP_12_2",
+      "critical_temperature_c": 697.2591986624773,
+      "reduced_thickness_mm": 4.484255319148936,
+      "reduced_thickness_trace": {
+        "producer": "explicit_reduced_thickness",
+        "equation_ref": "12.2"
+      },
+      "result_definition": "SP554_13.2_time_from_heat_exposure_start_to_critical_steel_temperature",
+      "fire_regime": "standard",
+      "fire_d2_handoff_preserved": true,
+      "normative_route": "SP554_12.1_12.2_formulas_12.1_to_12.4"
+    },
+    "assessment": {
+      "status": "COMPLETE",
+      "normative_scope": "SP554_13.1_13.3",
+      "critical_temperature_c": 697.2591986624773,
+      "actual_fire_resistance_min": 15.169253707893384,
+      "required_fire_resistance_min": 15.0,
+      "fire_regime": "standard",
+      "limit_state_symbol": "R",
+      "actual_r_notation": "R 15.1692537079",
+      "required_r_notation": "R 15",
+      "class_rounding_applied": false,
+      "comparison_rounding_applied": false,
+      "compliance": "PASS",
+      "compliance_pass": true,
+      "margin_min": 0.16925370789338423,
+      "protection_state": "UNPROTECTED",
+      "next_action": "REQUIREMENT_SATISFIED",
+      "requirement_provenance": {
+        "source_kind": "external_normative_requirement",
+        "source_document": "UI hotfix acceptance requirement",
+        "source_reference": "R15",
+        "value_min": 15.0
+      },
+      "section_13_1_result_definition": "critical_temperature_at_loss_of_load_bearing_capacity",
+      "section_13_2_result_definition": "time_from_start_of_heat_exposure_to_critical_temperature",
+      "section_13_3_designation_definition": "R_plus_exact_time_to_limit_state_under_standard_fire"
+    },
+    "section_13_runtime_closed": true,
+    "required_fire_resistance_source_is_external": true
+  },
+  "derived_section": {
+    "Wplx_gross_mm3": 420476.0,
+    "Wplx_net_mm3": 419013.5,
+    "Wply_gross_mm3": 199864.0,
+    "Wply_net_mm3": 199547.125,
+    "heated_perimeter_mm": 1175.0,
+    "reduced_thickness_mm": 4.484255319148936
+  }
+}

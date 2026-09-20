@@ -1,0 +1,10 @@
+{
+  "release_stage": "v0.32_stage_n6_built_up_beam_columns_local_stability_current_sp16_closed_reconstructed_r1",
+  "qualification": "research_grade_stage_n6_built_up_beam_columns_local_stability_closed_current_sp16",
+  "stage_n6_closed": true,
+  "engineering_use_ready": false,
+  "full_change_6_rebaselined": false,
+  "original_gost_profile_audit_complete": false,
+  "tests": "718/718 pre-manifest + 1/1 manifest + 719/719 full + 33/33 focused; main.py PASS; 26/26 outputs current identity",
+  "dag_sha256": "3a7c8dbb4c1e0fb8dc251eaba570ea4b1eb50c86130d25e93c778e0cca64144b"
+}

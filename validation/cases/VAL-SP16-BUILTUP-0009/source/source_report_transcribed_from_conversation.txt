@@ -1,0 +1,8 @@
+Источник: пользовательский расчетный отчет, вставленный в чат (20.08.2026 09:00:08).
+
+N=12258.31251 N; E=210000 MPa; G=78500 MPa. Source C255 values: Ryn=255, Run=380, Ry=245, Ru=360, Rs=142 MPa; gamma_c=0.99.
+Two-branch built-up member: Ab1=211 mm2; A=422 mm2; b=400 mm; lb=400 mm; lambda_x=1.13; lambda_y=1.25; branch lambda_1=44.2007.
+Branch I_b1=27000 mm4; batten I_s=12340000 mm4.
+Source n=0.00219 and Eq.(12) lambda_eff=sqrt(1.25^2+0.82*44.2007^2*(1+n))=40.08873.
+Source lambda_bar_eff=1.36929; branch lambda_bar=1.50974. It then takes phi=0.90838 and Eq.(7)=0.13184 PASS, without rejecting branch lambda_bar>1.4.
+Second x-axis route uses lambda_bar=0.0386 -> phi=1 and Eq.(7)=0.11976 PASS.

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fire_ui0_ui_contract.schema.json",
+  "title": "FIRE-UI0 DAG-generated UI contract",
+  "type": "object",
+  "required": ["schema", "graph_id", "graph_sha256", "entry_node_id", "engine_contract", "counts", "node_cards", "ledger_contract", "trace_contract", "navigation_policy"],
+  "properties": {
+    "schema": {"const": "fire_ui_contract_v1"},
+    "graph_id": {"type": "string", "minLength": 1},
+    "graph_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "entry_node_id": {"type": "string", "minLength": 1},
+    "engine_contract": {"type": "object"},
+    "counts": {"type": "object"},
+    "node_cards": {"type": "array", "items": {"type": "object"}},
+    "ledger_contract": {"type": "object"},
+    "trace_contract": {"type": "object"},
+    "navigation_policy": {"type": "object"}
+  },
+  "additionalProperties": false
+}

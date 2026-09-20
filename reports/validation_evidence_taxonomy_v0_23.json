@@ -1,0 +1,14 @@
+{
+  "release_stage": "v0.23_independent_normative_rebaseline_and_adversarial_audit_reconstructed_r1",
+  "classes": {
+    "implementation_self_check": "non-independent legacy regression/transcription evidence; reported separately",
+    "independent_hand_calculation_oracle": "separate arithmetic path compared with materialized production result/direct public target",
+    "boundary_condition_check": "direct production-function domain/branch probe with explicit expected result or exception",
+    "targeted_formula_mutation_probe": "analytical oracle-sensitivity probe; not source-level mutation testing",
+    "schema_adversarial_probe": "recursive/fail-closed input integrity probe",
+    "external_cross_implementation": "not performed",
+    "published_worked_example": "no complete worked-example corpus identified in supplied СП source"
+  },
+  "legacy_validation_case_count": 1876,
+  "policy": "Legacy self-check/transcription evidence is reported separately and must not be described as independent validation."
+}

@@ -1,0 +1,80 @@
+{
+  "case_id": "VAL-SP16-BEAMCOL-0008",
+  "overall_validation_status": "PARTIAL_MATCH_PRODUCTION_REMEDIATED_WITH_OPEN_D3_POLICY",
+  "checks": [
+    {
+      "check_id": "An",
+      "published_or_source_value": 5064,
+      "production_or_independent_value": 5064,
+      "absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "eq106",
+      "published_or_source_value": 0.2034003,
+      "production_or_independent_value": 0.203400308,
+      "absolute_error": 7.999999995789153e-09,
+      "absolute_tolerance": 1e-07,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "lambda_x",
+      "published_or_source_value": 46.6898,
+      "production_or_independent_value": 46.689799,
+      "absolute_error": 9.999999974752427e-07,
+      "absolute_tolerance": 1e-05,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "lambda_y",
+      "published_or_source_value": 0.07681,
+      "production_or_independent_value": 0.076813,
+      "absolute_error": 3.0000000000030003e-06,
+      "absolute_tolerance": 1e-05,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "eta_x",
+      "published_or_source_value": 1.37863,
+      "production_or_independent_value": 1.3786321,
+      "absolute_error": 2.0999999998938534e-06,
+      "absolute_tolerance": 1e-05,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "meff_x",
+      "published_or_source_value": 6.67245,
+      "production_or_independent_value": 6.67245,
+      "absolute_error": 0.0,
+      "absolute_tolerance": 0.0001,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "phi_y_low_slenderness",
+      "published_or_source_value": 1,
+      "production_or_independent_value": 1,
+      "absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "eq109_given_phi_e",
+      "published_or_source_value": 0.0442602,
+      "production_or_independent_value": 0.04426019,
+      "absolute_error": 1.0000000001675335e-08,
+      "absolute_tolerance": 1e-07,
+      "comparison_status": "PASS"
+    }
+  ],
+  "end_to_end_gate": {
+    "status": "NOT_ACCEPTED",
+    "reason_codes": [
+      "SOURCE-LEFY-UNIT-ANOMALY",
+      "D3-INTERPOLATION-POLICY-OPEN",
+      "D2-COEFFICIENT-REMEDIATED",
+      "LOW-SLENDERNESS-REMEDIATED",
+      "CLAUSE9.2.9-MIXED-ROUTE-REMEDIATED"
+    ]
+  }
+}

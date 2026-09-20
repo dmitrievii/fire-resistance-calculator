@@ -1,0 +1,53 @@
+{
+  "case_id": "VAL-SP16-BEAMCOL-0008",
+  "checks": [
+    {
+      "check_id": "An",
+      "published_value": 5064,
+      "absolute_tolerance": 0,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "eq106",
+      "published_value": 0.2034003,
+      "absolute_tolerance": 1e-07,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "lambda_x",
+      "published_value": 46.6898,
+      "absolute_tolerance": 1e-05,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "lambda_y",
+      "published_value": 0.07681,
+      "absolute_tolerance": 1e-05,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "eta_x",
+      "published_value": 1.37863,
+      "absolute_tolerance": 1e-05,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "meff_x",
+      "published_value": 6.67245,
+      "absolute_tolerance": 0.0001,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "phi_y_low_slenderness",
+      "published_value": 1,
+      "absolute_tolerance": 0,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "eq109_given_phi_e",
+      "published_value": 0.0442602,
+      "absolute_tolerance": 1e-07,
+      "expected_comparison_status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "N2-NORMCAD-15K4-RUNTIME-OBSERVATION",
+  "source_role": "USER_PROVIDED_NORMCAD_REPORT_TRANSCRIPTION_SECONDARY_ORACLE",
+  "source_file_reference": "Вставленный текст.txt (not redistributed in this package)",
+  "catalog": "Двутавры колонные с параллельными гранями полок по ГОСТ Р 57837-2017",
+  "designation": "15К4",
+  "observed": {
+    "h_mm": 160.0,
+    "b_mm": 152.0,
+    "tw_mm": 10.0,
+    "tf_mm": 15.0,
+    "r_mm": 11.0,
+    "A_mm2": 5964.0,
+    "mass_kg_m": 46.8174,
+    "Ix_mm4": 26291600.0,
+    "Iy_mm4": 8796600.0,
+    "Wx1_mm3": 328600.0,
+    "Wx2_mm3": 328600.0,
+    "Wy1_mm3": 115740.0,
+    "Wy2_mm3": 115740.0,
+    "Sx_mm3": 189670.0,
+    "Sy_mm3": 88650.0,
+    "It_mm4": 385333.0,
+    "afwx": 1.754,
+    "afwy": 0.285
+  },
+  "normative_status": "NOT_NORMATIVE",
+  "use": "Decoder cross-check and first-divergence localization only"
+}

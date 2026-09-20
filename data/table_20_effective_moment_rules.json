@@ -1,0 +1,22 @@
+{
+  "standard": "СП 16.13330.2017",
+  "table": "20",
+  "clause": "9.2.3",
+  "page": 49,
+  "scope": "Pinned-ended compressed member with one symmetry axis coinciding with bending plane.",
+  "rules": {
+    "m_max_le_3": {
+      "lambda_bar_lt_4": "M = M_max - 0.25*lambda_bar*(M_max-M_1)",
+      "lambda_bar_ge_4": "M = M_1"
+    },
+    "3_lt_m_max_le_20": {
+      "lambda_bar_lt_4": "M = M_2 + (m_max-3)*(M_max-M_2)/17",
+      "lambda_bar_ge_4": "M = M_1 + (m_max-3)*(M_max-M_1)/17"
+    }
+  },
+  "notes": [
+    "M_1 is the largest moment in the middle third and is not less than 0.5*M_max.",
+    "M_2 is the moment M for m_max<=3 and lambda_bar<4 and is not less than 0.5*M_max.",
+    "For m_eff>20 route to bending-member design under Section 8."
+  ]
+}

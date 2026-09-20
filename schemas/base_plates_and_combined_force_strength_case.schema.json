@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "base_plates_and_combined_force_strength_case.schema.json",
+  "title": "СП 16.13330.2017 base plates and combined-force strength case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "standard",
+    "action",
+    "foundation_strength_check_confirmed",
+    "foundation_pressure_n_mm2",
+    "cantilever_projection_mm",
+    "four_side_short_side_mm",
+    "four_side_ratio_b_over_a",
+    "three_side_free_side_length_mm",
+    "three_side_ratio_a1_over_d1",
+    "base_plate_design_yield_resistance_n_mm2",
+    "working_condition_factor",
+    "normative_yield_resistance_n_mm2",
+    "direct_dynamic_load",
+    "shear_stress_n_mm2",
+    "design_shear_resistance_n_mm2",
+    "axial_force_n",
+    "net_area_mm2",
+    "design_yield_resistance_n_mm2",
+    "clause_8_5_8_confirmed",
+    "clause_8_5_18_confirmed",
+    "annex_e1_section_type",
+    "flange_to_web_area_ratio",
+    "bending_moment_x_n_mm",
+    "bending_moment_y_n_mm",
+    "bimoment_n_mm2",
+    "minimum_net_section_modulus_x_mm3",
+    "minimum_net_section_modulus_y_mm3",
+    "minimum_net_sectorial_section_modulus_mm4",
+    "signed_axial_force_n",
+    "signed_bending_moment_x_n_mm",
+    "point_y_mm",
+    "net_inertia_x_mm4",
+    "signed_bending_moment_y_n_mm",
+    "point_x_mm",
+    "net_inertia_y_mm4",
+    "signed_bimoment_n_mm2",
+    "sectorial_coordinate_mm2",
+    "net_sectorial_inertia_mm6",
+    "reduced_relative_eccentricity",
+    "section_is_unweakened",
+    "strength_and_stability_moments_are_equal",
+    "high_strength_normative_yield_resistance_n_mm2",
+    "high_strength_section_asymmetry_confirmed",
+    "high_strength_compression_force_n",
+    "high_strength_relative_slenderness",
+    "high_strength_gross_area_mm2",
+    "high_strength_design_yield_resistance_n_mm2",
+    "high_strength_net_area_mm2",
+    "high_strength_bending_moment_n_mm",
+    "high_strength_tension_fiber_section_modulus_mm3",
+    "high_strength_design_ultimate_resistance_n_mm2",
+    "ultimate_resistance_safety_factor"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "standard": {
+      "type": "string",
+      "const": "СП 16.13330.2017"
+    },
+    "action": {
+      "type": "string",
+      "const": "base_plates_and_combined_force_strength"
+    },
+    "foundation_strength_check_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "foundation_pressure_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "cantilever_projection_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "four_side_short_side_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "four_side_ratio_b_over_a": {
+      "type": "number",
+      "minimum": 1
+    },
+    "three_side_free_side_length_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "three_side_ratio_a1_over_d1": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "base_plate_design_yield_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "working_condition_factor": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "normative_yield_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 440
+    },
+    "direct_dynamic_load": {
+      "type": "boolean",
+      "const": false
+    },
+    "shear_stress_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "design_shear_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "axial_force_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "net_area_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "design_yield_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "clause_8_5_8_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "clause_8_5_18_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "annex_e1_section_type": {
+      "type": "string",
+      "enum": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5a",
+        "5b",
+        "6",
+        "7",
+        "8a",
+        "8b",
+        "9a",
+        "9b"
+      ]
+    },
+    "flange_to_web_area_ratio": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "bending_moment_x_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "bending_moment_y_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "bimoment_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "minimum_net_section_modulus_x_mm3": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "minimum_net_section_modulus_y_mm3": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "minimum_net_sectorial_section_modulus_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "signed_axial_force_n": {
+      "type": "number"
+    },
+    "signed_bending_moment_x_n_mm": {
+      "type": "number"
+    },
+    "point_y_mm": {
+      "type": "number"
+    },
+    "net_inertia_x_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "signed_bending_moment_y_n_mm": {
+      "type": "number"
+    },
+    "point_x_mm": {
+      "type": "number"
+    },
+    "net_inertia_y_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "signed_bimoment_n_mm2": {
+      "type": "number"
+    },
+    "sectorial_coordinate_mm2": {
+      "type": "number"
+    },
+    "net_sectorial_inertia_mm6": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "reduced_relative_eccentricity": {
+      "type": "number",
+      "minimum": 0
+    },
+    "section_is_unweakened": {
+      "type": "boolean"
+    },
+    "strength_and_stability_moments_are_equal": {
+      "type": "boolean"
+    },
+    "high_strength_normative_yield_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 440
+    },
+    "high_strength_section_asymmetry_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "high_strength_compression_force_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "high_strength_relative_slenderness": {
+      "type": "number",
+      "minimum": 0
+    },
+    "high_strength_gross_area_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "high_strength_design_yield_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "high_strength_net_area_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "high_strength_bending_moment_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "high_strength_tension_fiber_section_modulus_mm3": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "high_strength_design_ultimate_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "ultimate_resistance_safety_factor": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    }
+  }
+}

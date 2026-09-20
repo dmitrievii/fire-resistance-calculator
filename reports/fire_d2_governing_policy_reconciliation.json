@@ -1,0 +1,63 @@
+{
+  "stage": "FIRE-D2",
+  "subject": "SP554 Sections 8-11 governing critical-temperature reconciliation",
+  "locked_source": "SP554 2026 project draft / СП Стальные 27.05_0 (1) (1).docx",
+  "secondary_predecessor": "СТО АРСС 11251254.001-018-03, clause 8.2.8",
+  "production_policy": "INVERT_EACH_APPLICABLE_REDUCTION_CURVE_THEN_SELECT_MINIMUM_CRITICAL_TEMPERATURE",
+  "findings": [
+    {
+      "id": "FIRE-D2-REC-001",
+      "source_location": "SP554 8.6",
+      "locked_literal": "critical temperature corresponds to the smallest of gamma_T and gamma_e",
+      "classification": "CONFIRMED_PROJECT_DRAFT_LOGIC_ERROR_FOR_PRODUCTION_EXECUTION",
+      "reason": "gamma_T and gamma_e are ordinates of different decreasing temperature curves; numeric comparison of the coefficients does not identify the earlier temperature. The predecessor ARSS method explicitly determines two temperatures and takes the smaller temperature.",
+      "production_remediation": "independently invert gamma_T and gamma_E on their own Appendix-B curves and use min(t_cr_T, t_cr_E)"
+    },
+    {
+      "id": "FIRE-D2-REC-002",
+      "source_location": "SP554 10.3",
+      "locked_literal": "critical temperature by the smallest gamma_T obtained from Section 10 formulas",
+      "classification": "CONFIRMED_PROJECT_DRAFT_LOGIC_ERROR_FOR_PRODUCTION_EXECUTION",
+      "reason": "Each Section-10 gamma_T is a demand divided by ambient normative resistance. The Appendix-B gamma_T curve decreases with temperature. Therefore the largest required gamma_T reaches its limit first and corresponds to the smallest critical temperature.",
+      "production_remediation": "gamma_T_governing = max(applicable Section-10 gamma_T); then invert the gamma_T curve"
+    },
+    {
+      "id": "FIRE-D2-REC-003",
+      "source_location": "SP554 11.9",
+      "locked_literal": "critical temperature by the smallest gamma_T obtained from Section 11 formulas",
+      "classification": "CONFIRMED_PROJECT_DRAFT_LOGIC_ERROR_FOR_PRODUCTION_EXECUTION",
+      "reason": "The same monotonic demand/capacity argument as Section 10 applies. Selecting the smaller required coefficient would select a later rather than earlier loss of capacity.",
+      "production_remediation": "gamma_T_governing = max(applicable Section-11 gamma_T); then invert the gamma_T curve"
+    },
+    {
+      "id": "FIRE-D2-REC-004",
+      "source_location": "Appendix B Table B.1 / Figures B.1-B.8",
+      "classification": "DIGITAL_FIGURE_POLYLINE_POLICY",
+      "production_remediation": "exact Table-B.1 knots with linear interpolation only along published plotted segments; no extrapolation; gamma=1 maps to 250 C, upper end of unit plateau"
+    },
+    {
+      "id": "FIRE-D2-REC-005",
+      "source_location": "Appendix B Table B.1 note 1",
+      "classification": "QUALIFICATION_GATE",
+      "production_remediation": "high-strength group requires GOST 9651 / 600 C retention evidence; otherwise increased-strength coefficients are used"
+    },
+    {
+      "id": "FIRE-D2-REC-006",
+      "source_location": "Appendix B Table B.1 note 2",
+      "classification": "QUALIFICATION_GATE",
+      "production_remediation": "fire-resistant group fails closed unless the stated test/retention evidence is explicitly confirmed"
+    }
+  ],
+  "numerical_demonstration": {
+    "steel_group": "ordinary",
+    "gamma_T_required": 0.5208333333333334,
+    "gamma_E_required": 0.6999768586775605,
+    "t_cr_strength_c": 560.6481481481482,
+    "t_cr_modulus_c": 525.0192844353662,
+    "production_t_cr_c": 525.0192844353662,
+    "production_controlling_kind": "gamma_E",
+    "draft_literal_min_coefficient_would_select": "gamma_T",
+    "draft_literal_selected_temperature_c": 560.6481481481482
+  },
+  "open_findings": 0
+}

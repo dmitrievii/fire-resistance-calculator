@@ -1,0 +1,22 @@
+{
+  "schema": "fire_ui13_material_strength_editor_closure_v1",
+  "release_stage": "v0.46_fire_ui13_material_strength_editor_r1",
+  "package_version": "0.46.0",
+  "parent_release": "v0.45_fire_ui12_section_model_executor_binding_r1",
+  "dag_id": "sp16_sp554_dag_v0-3-49_fire_ui13_material_strength_editor",
+  "closed": {
+    "combined_material_strength_editor": true,
+    "steel_grade_dropdown": true,
+    "product_form_annex_v_routing": true,
+    "exact_printed_thickness_interval_selection": true,
+    "steel_delivery_standard_removed_from_primary_ui": true,
+    "annex_v_exact_row_executor_binding": true,
+    "catalog_material_context_inference": true,
+    "sp554_steel_group_continuation": true
+  },
+  "deliberate_limits": {
+    "full_sp16_to_fire_d4_executor_binding": false,
+    "welded_component_specific_material_editor": false,
+    "engineering_use_ready": false
+  }
+}

@@ -1,0 +1,347 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SP16 v0.12 effective lengths and limiting slenderness case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "standard",
+    "action",
+    "section_10_applicability_confirmed",
+    "truss_segment_length_mm",
+    "truss_adjacent_force_ratio_alpha",
+    "truss_braced_length_mm",
+    "section_count_k",
+    "truss_other_force_sum_ratio_beta",
+    "column_segment_length_mm",
+    "column_adjacent_force_ratio_alpha",
+    "column_braced_length_mm",
+    "column_other_force_sum_ratio_beta",
+    "table_24_case",
+    "table_24_member_role",
+    "table_25_joint_case",
+    "table_25_supporting_state",
+    "node_to_intersection_length_mm",
+    "full_member_length_mm",
+    "table_26_member_case",
+    "geometric_slenderness_l_over_i_min",
+    "is_lattice_member",
+    "table_28_joint_case",
+    "table_28_supporting_state",
+    "diagonal_length_mm",
+    "alternate_diagonal_length_mm",
+    "chord_min_inertia_mm4",
+    "diagonal_min_inertia_mm4",
+    "chord_panel_length_mm",
+    "table_29_connection_case",
+    "table_29_gusset_configuration",
+    "column_length_mm",
+    "table_30_scheme_id",
+    "frame_p",
+    "frame_n",
+    "base_mu",
+    "checked_column_inertia_mm4",
+    "total_column_force_n",
+    "checked_column_force_n",
+    "total_column_inertia_mm4",
+    "relative_slenderness",
+    "moment_n_mm",
+    "nonsway_reference_moment_n_mm",
+    "area_mm2",
+    "axial_force_n",
+    "compressed_fibre_section_modulus_mm3",
+    "radius_of_gyration_mm",
+    "stability_coefficient_phi",
+    "design_yield_resistance_n_mm2",
+    "working_condition_factor",
+    "table_32_row",
+    "table_33_row",
+    "table_33_load_category",
+    "group_4_applies"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "standard": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string",
+      "const": "effective_lengths_and_limiting_slenderness"
+    },
+    "section_10_applicability_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "truss_segment_length_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "truss_adjacent_force_ratio_alpha": {
+      "type": "number",
+      "minimum": 0
+    },
+    "truss_braced_length_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "section_count_k": {
+      "type": "number",
+      "minimum": 0
+    },
+    "truss_other_force_sum_ratio_beta": {
+      "type": "number",
+      "minimum": 0
+    },
+    "column_segment_length_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "column_adjacent_force_ratio_alpha": {
+      "type": "number",
+      "minimum": 0
+    },
+    "column_braced_length_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "column_other_force_sum_ratio_beta": {
+      "type": "number",
+      "minimum": 0
+    },
+    "table_24_case": {
+      "type": "string",
+      "enum": [
+        "in_plane_general",
+        "in_plane_single_angle_or_butt_web",
+        "out_of_plane_general",
+        "out_of_plane_butt_web",
+        "single_angle_equal_restraint_distances"
+      ]
+    },
+    "table_24_member_role": {
+      "type": "string",
+      "enum": [
+        "chord",
+        "support_diagonal_or_post",
+        "other_web"
+      ]
+    },
+    "table_25_joint_case": {
+      "type": "string",
+      "enum": [
+        "both_members_continuous",
+        "support_interrupted_considered_continuous",
+        "both_interrupted_with_gusset"
+      ]
+    },
+    "table_25_supporting_state": {
+      "type": "string",
+      "enum": [
+        "tension",
+        "inactive",
+        "compression"
+      ]
+    },
+    "node_to_intersection_length_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "full_member_length_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "table_26_member_case": {
+      "type": "string",
+      "enum": [
+        "general",
+        "continuous_or_butt_node",
+        "single_angle_welded_or_two_bolts",
+        "single_angle_one_bolt"
+      ]
+    },
+    "geometric_slenderness_l_over_i_min": {
+      "type": "number",
+      "minimum": 0
+    },
+    "is_lattice_member": {
+      "type": "boolean"
+    },
+    "table_28_joint_case": {
+      "type": "string",
+      "enum": [
+        "both_continuous",
+        "support_interrupted_fig15a",
+        "support_interrupted_fig15d",
+        "intersection_out_of_plane_braced"
+      ]
+    },
+    "table_28_supporting_state": {
+      "type": "string",
+      "enum": [
+        "tension",
+        "inactive",
+        "compression"
+      ]
+    },
+    "diagonal_length_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "alternate_diagonal_length_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "chord_min_inertia_mm4": {
+      "type": "number",
+      "minimum": 0
+    },
+    "diagonal_min_inertia_mm4": {
+      "type": "number",
+      "minimum": 0
+    },
+    "chord_panel_length_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "table_29_connection_case": {
+      "type": "string",
+      "enum": [
+        "welded_or_two_bolts",
+        "one_bolt_without_gusset"
+      ]
+    },
+    "table_29_gusset_configuration": {
+      "type": "string",
+      "enum": [
+        "no_gusset_ends",
+        "one_gusset_end",
+        "both_gusset_ends"
+      ]
+    },
+    "column_length_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "table_30_scheme_id": {
+      "type": "string",
+      "enum": [
+        "scheme_1",
+        "scheme_2",
+        "scheme_3",
+        "scheme_4",
+        "scheme_5",
+        "scheme_6",
+        "scheme_7",
+        "scheme_8"
+      ]
+    },
+    "frame_p": {
+      "type": "number",
+      "minimum": 0
+    },
+    "frame_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "base_mu": {
+      "type": "number",
+      "minimum": 0
+    },
+    "checked_column_inertia_mm4": {
+      "type": "number",
+      "minimum": 0
+    },
+    "total_column_force_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "checked_column_force_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "total_column_inertia_mm4": {
+      "type": "number",
+      "minimum": 0
+    },
+    "relative_slenderness": {
+      "type": "number",
+      "minimum": 0
+    },
+    "moment_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "nonsway_reference_moment_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "area_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "axial_force_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "compressed_fibre_section_modulus_mm3": {
+      "type": "number",
+      "minimum": 0
+    },
+    "radius_of_gyration_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "stability_coefficient_phi": {
+      "type": "number",
+      "minimum": 0
+    },
+    "design_yield_resistance_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "working_condition_factor": {
+      "type": "number",
+      "minimum": 0
+    },
+    "table_32_row": {
+      "type": "string",
+      "enum": [
+        "1a",
+        "1b",
+        "2a",
+        "2b",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    "table_33_row": {
+      "type": "string",
+      "enum": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ]
+    },
+    "table_33_load_category": {
+      "type": "string",
+      "enum": [
+        "dynamic",
+        "static",
+        "crane_or_rail"
+      ]
+    },
+    "group_4_applies": {
+      "type": "boolean"
+    }
+  }
+}

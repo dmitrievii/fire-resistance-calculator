@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "golden_cross_implementation_case.schema.json",
+  "title": "SP16 Golden Cross-Implementation Case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["case_id", "source_example", "source_pdf_pages", "source_quantity", "function", "args", "kwargs", "published_value", "absolute_tolerance", "units", "notes"],
+  "properties": {
+    "case_id": {"type": "string", "minLength": 1},
+    "source_example": {"type": "string", "minLength": 1},
+    "source_pdf_pages": {"type": "array", "minItems": 1, "items": {"type": "integer", "minimum": 1}},
+    "source_quantity": {"type": "string", "minLength": 1},
+    "function": {"type": "string", "pattern": "^standard_core\\.[A-Za-z_][A-Za-z0-9_]*\\.[A-Za-z_][A-Za-z0-9_]*$"},
+    "args": {"type": "array"},
+    "kwargs": {"type": "object"},
+    "published_value": {"type": "number"},
+    "absolute_tolerance": {"type": "number", "minimum": 0},
+    "units": {"type": "string", "minLength": 1},
+    "notes": {"type": "string"}
+  }
+}

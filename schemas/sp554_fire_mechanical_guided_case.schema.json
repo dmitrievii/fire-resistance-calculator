@@ -1,0 +1,540 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FIRE-D2 SP554 member fire mechanical guided case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "standard",
+    "action",
+    "member_route",
+    "steel_strength_group",
+    "high_strength_gost9651_qualified",
+    "fire_resistant_gost9651_qualified",
+    "fy_norm_n_mm2",
+    "E_norm_n_mm2",
+    "route"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "standard": {
+      "const": "SP554_2026"
+    },
+    "action": {
+      "const": "sp554_fire_mechanical_guided"
+    },
+    "member_route": {
+      "enum": [
+        "central_tension",
+        "central_compression",
+        "bending",
+        "combined_nm",
+        "static_stress_8_7"
+      ]
+    },
+    "steel_strength_group": {
+      "enum": [
+        "ordinary",
+        "increased",
+        "high",
+        "fire_resistant"
+      ]
+    },
+    "high_strength_gost9651_qualified": {
+      "type": "boolean"
+    },
+    "fire_resistant_gost9651_qualified": {
+      "type": "boolean"
+    },
+    "fy_norm_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "E_norm_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "route": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "N_n": {
+          "type": "number"
+        },
+        "A_net_mm2": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "A_gross_mm2": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "gamma_c": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "gamma_c_strength": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "gamma_c_stability": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "lambda_bar": {
+          "type": "number",
+          "minimum": 0
+        },
+        "buckling_curve_type": {
+          "enum": [
+            "a",
+            "b",
+            "c"
+          ]
+        },
+        "phi_sp16_formula8": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "mu_length_sp16": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "member_length_mm": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "J_min_mm4": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "sigma_n_static_n_mm2": {
+          "type": "number"
+        },
+        "compression_stability_applicable": {
+          "type": "boolean"
+        },
+        "M_x_nmm": {
+          "type": "number"
+        },
+        "M_y_nmm": {
+          "type": "number"
+        },
+        "B_nmm2": {
+          "type": "number"
+        },
+        "W_pl_x_eff_mm3": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "W_pl_y_eff_mm3": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "W_omega_eff_mm4": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "stability_mode": {
+          "enum": [
+            "none",
+            "in_plane",
+            "out_of_plane_major",
+            "minor_axis",
+            "biaxial_nonbox",
+            "box"
+          ]
+        },
+        "phi_e_sp16": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "eta_sp16": {
+          "type": "number"
+        },
+        "M_for_11_3_nmm": {
+          "type": "number"
+        },
+        "W_pl_for_11_3_mm3": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "c_sp16": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "phi_y_sp16": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "phi_x_sp16": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "phi_ey_sp16": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "phi_ex_sp16": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "lambda_bar_x": {
+          "type": "number",
+          "minimum": 0
+        },
+        "lambda_bar_y": {
+          "type": "number",
+          "minimum": 0
+        },
+        "major_axis_is_x": {
+          "type": "boolean"
+        },
+        "checks": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "eq_10_1": {
+              "$ref": "#/$defs/eq101"
+            },
+            "eq_10_2": {
+              "$ref": "#/$defs/eq102"
+            },
+            "eq_10_3": {
+              "$ref": "#/$defs/eq103"
+            },
+            "eq_10_4_10_5": {
+              "$ref": "#/$defs/eq104105"
+            },
+            "eq_10_6": {
+              "$ref": "#/$defs/eq106"
+            },
+            "eq_10_7": {
+              "$ref": "#/$defs/eq107"
+            }
+          },
+          "minProperties": 1
+        },
+        "stress_state": {
+          "enum": [
+            "compression_plus_bending",
+            "tension_plus_bending"
+          ]
+        },
+        "section_is_constant": {
+          "type": "boolean"
+        },
+        "moment_plane_is_symmetry": {
+          "type": "boolean"
+        },
+        "mef_gt_20": {
+          "type": "boolean"
+        },
+        "section_is_box": {
+          "type": "boolean"
+        },
+        "sp16_table21_type": {
+          "enum": [
+            "1",
+            "2",
+            "3"
+          ]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "point103": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "x_mm",
+        "y_mm",
+        "omega_mm2"
+      ],
+      "properties": {
+        "x_mm": {
+          "type": "number"
+        },
+        "y_mm": {
+          "type": "number"
+        },
+        "omega_mm2": {
+          "type": "number"
+        }
+      }
+    },
+    "point104": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "y_mm",
+        "sigma_y_n_mm2"
+      ],
+      "properties": {
+        "y_mm": {
+          "type": "number"
+        },
+        "sigma_y_n_mm2": {
+          "type": "number"
+        }
+      }
+    },
+    "eq101": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "M_x_nmm",
+        "M_y_nmm",
+        "W_pl_min_eff_mm3"
+      ],
+      "properties": {
+        "M_x_nmm": {
+          "type": "number"
+        },
+        "M_y_nmm": {
+          "type": "number"
+        },
+        "W_pl_min_eff_mm3": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "eq102": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "alpha_h",
+        "Q_n",
+        "S_mm3",
+        "I_mm4",
+        "t_w_mm"
+      ],
+      "properties": {
+        "alpha_h": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "Q_n": {
+          "type": "number"
+        },
+        "S_mm3": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "I_mm4": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "t_w_mm": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "eq103": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "M_x_nmm",
+        "M_y_nmm",
+        "B_nmm2",
+        "I_xn_mm4",
+        "I_yn_mm4",
+        "I_omega_n_mm6",
+        "section_points"
+      ],
+      "properties": {
+        "M_x_nmm": {
+          "type": "number"
+        },
+        "M_y_nmm": {
+          "type": "number"
+        },
+        "B_nmm2": {
+          "type": "number"
+        },
+        "I_xn_mm4": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "I_yn_mm4": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "I_omega_n_mm6": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "section_points": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/point103"
+          }
+        }
+      }
+    },
+    "eq104105": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "M_x_nmm",
+        "Q_n",
+        "alpha_h",
+        "S_mm3",
+        "I_shear_mm4",
+        "t_w_mm",
+        "I_xn_mm4",
+        "section_points"
+      ],
+      "properties": {
+        "M_x_nmm": {
+          "type": "number"
+        },
+        "Q_n": {
+          "type": "number"
+        },
+        "alpha_h": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "S_mm3": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "I_shear_mm4": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "t_w_mm": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "I_xn_mm4": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "section_points": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/point104"
+          }
+        }
+      }
+    },
+    "eq106": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "M_x_nmm",
+        "phi_b_sp16",
+        "W_pl_x_eff_mm3",
+        "section_family",
+        "beam_is_bisteel",
+        "sp16_section_class"
+      ],
+      "properties": {
+        "M_x_nmm": {
+          "type": "number"
+        },
+        "phi_b_sp16": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "W_pl_x_eff_mm3": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "section_family": {
+          "const": "i_section"
+        },
+        "beam_is_bisteel": {
+          "type": "boolean"
+        },
+        "sp16_section_class": {
+          "enum": [
+            "1",
+            "2",
+            "3"
+          ]
+        }
+      }
+    },
+    "eq107": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "M_x_nmm",
+        "M_y_nmm",
+        "B_nmm2",
+        "phi_b_sp16",
+        "W_pl_x_eff_mm3",
+        "W_pl_y_eff_mm3",
+        "W_omega_eff_mm4",
+        "M_y_term_sign",
+        "B_term_sign",
+        "section_family",
+        "beam_is_bisteel",
+        "sp16_section_class"
+      ],
+      "properties": {
+        "M_x_nmm": {
+          "type": "number"
+        },
+        "M_y_nmm": {
+          "type": "number"
+        },
+        "B_nmm2": {
+          "type": "number"
+        },
+        "phi_b_sp16": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "W_pl_x_eff_mm3": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "W_pl_y_eff_mm3": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "W_omega_eff_mm4": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "M_y_term_sign": {
+          "enum": [
+            -1,
+            1
+          ]
+        },
+        "B_term_sign": {
+          "enum": [
+            -1,
+            1
+          ]
+        },
+        "section_family": {
+          "const": "i_section"
+        },
+        "beam_is_bisteel": {
+          "type": "boolean"
+        },
+        "sp16_section_class": {
+          "enum": [
+            "1",
+            "2",
+            "3"
+          ]
+        }
+      }
+    }
+  }
+}

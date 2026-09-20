@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.1.0",
+  "corpus_revision": "0009",
+  "case_count": 9,
+  "cases": [
+    {
+      "case_id": "VAL-SP16-BEAM-0001",
+      "title": "Двутавр 18М — изгиб в одной главной плоскости, отчет с прогрессирующим разрушением",
+      "evidence_class": "external_user_supplied_word_report",
+      "source_sha256": "c0b23def395cfa9f7d1b524a504da8570b782661780de54b62a42fb5759f42ea",
+      "status": "PARTIAL_SOURCE_INCONSISTENT",
+      "scalar_checks_passed": "2/2",
+      "full_end_to_end_golden": false,
+      "case_path": "validation/cases/VAL-SP16-BEAM-0001/case.json"
+    },
+    {
+      "case_id": "VAL-SP16-BEAMCOL-0008",
+      "title": "Сжато-изогнутый 15К4 при изгибе в двух направлениях",
+      "evidence_class": "external_user_supplied_calculation_report",
+      "source_sha256": "9b61b77851887b4a98a27efb5cfb80b148324d40709b90384be8ea818b15dd6c",
+      "status": "PARTIAL_MATCH_PRODUCTION_REMEDIATED_WITH_OPEN_D3_POLICY",
+      "full_end_to_end_golden": false,
+      "case_path": "validation/cases/VAL-SP16-BEAMCOL-0008/case.json"
+    },
+    {
+      "case_id": "VAL-SP16-BEND-0006",
+      "title": "Двухосный изгиб 36ДБ1 — прочность стенки и Eq.(43)/(44)",
+      "evidence_class": "external_user_supplied_calculation_report",
+      "source_sha256": "94a4edea2effc93c30c5fc0bb15bc50f7e8362a279a5c52d267b5bec17fea6a4",
+      "status": "PARTIAL_MATCH_SOURCE_AND_RUNNER_REMEDIATED",
+      "full_end_to_end_golden": false,
+      "case_path": "validation/cases/VAL-SP16-BEND-0006/case.json"
+    },
+    {
+      "case_id": "VAL-SP16-BEND-0007",
+      "title": "25ДБ4 — изгиб и общая устойчивость многопролетной балки",
+      "evidence_class": "external_user_supplied_calculation_report",
+      "source_sha256": "78e16e6ab75300ab874d62026bb5592db7c73160b43fcfcc742c6c7bf0d96be0",
+      "status": "PARTIAL_MATCH_SOURCE_ROUTING_ERROR_AND_RUNNER_REMEDIATED",
+      "full_end_to_end_golden": false,
+      "case_path": "validation/cases/VAL-SP16-BEND-0007/case.json"
+    },
+    {
+      "case_id": "VAL-SP16-BOLT-0003",
+      "title": "Болты при одновременном срезе и растяжении — шахматная схема",
+      "evidence_class": "external_user_supplied_calculation_report",
+      "source_sha256": "c2d00e026e739526b6adfaa566016636d7eab455ef7e026c36362a9aff3c4ee9",
+      "status": "PARTIAL_MATCH_SOURCE_NORMATIVE_FAIL",
+      "full_end_to_end_golden": false,
+      "case_path": "validation/cases/VAL-SP16-BOLT-0003/case.json"
+    },
+    {
+      "case_id": "VAL-SP16-BOLT-0005",
+      "title": "Болтовая группа на момент — 50 болтов, односторонняя накладка",
+      "evidence_class": "external_user_supplied_calculation_report",
+      "source_sha256": "4ca1a49168b971555242fe14d2e5fe1bdc647d0ec046b8e143fd5b8a26c3da60",
+      "status": "PARTIAL_MATCH_SOURCE_NORMATIVE_FAIL",
+      "full_end_to_end_golden": false,
+      "case_path": "validation/cases/VAL-SP16-BOLT-0005/case.json"
+    },
+    {
+      "case_id": "VAL-SP16-BUILTUP-0009",
+      "title": "Центрально-сжатая двухветвевая составная колонна с планками",
+      "evidence_class": "external_user_supplied_calculation_report",
+      "source_sha256": "466be09cda878bd2715804389cf492867ddbf29c194513a183ff0df8d4f6d278",
+      "status": "PARTIAL_MATCH_PRODUCTION_REMEDIATED_SOURCE_MISSES_BRANCH_FAIL",
+      "full_end_to_end_golden": false,
+      "case_path": "validation/cases/VAL-SP16-BUILTUP-0009/case.json"
+    },
+    {
+      "case_id": "VAL-SP16-WELD-0002",
+      "title": "Подбор длины и катета сварных угловых соединений — остановка на проверке сварочного материала Э42/Э42А",
+      "evidence_class": "external_user_supplied_calculation_report",
+      "source_sha256": "862381c2f95f542f70bccc9a7e450c5115ac998528497b0b64939593b826155b",
+      "status": "PARTIAL_MATCH_SOURCE_STOPS_BEFORE_LENGTH",
+      "full_end_to_end_golden": false,
+      "case_path": "validation/cases/VAL-SP16-WELD-0002/case.json"
+    },
+    {
+      "case_id": "VAL-SP16-WELD-0004",
+      "title": "Угловой сварной шов Э60 — автоматическая сварка, односторонний тавр",
+      "evidence_class": "external_user_supplied_calculation_report",
+      "source_sha256": "f0b6bd96091ff284af0de3c18edd981e213c059bc7dc13c1f5e20774d5fb2206",
+      "status": "PARTIAL_MATCH_SOURCE_NORMATIVE_FAIL",
+      "full_end_to_end_golden": false,
+      "case_path": "validation/cases/VAL-SP16-WELD-0004/case.json"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "N2",
+  "title": "Section Model / Profile Catalog source scope",
+  "authoritative_sp16_source": {
+    "filename": "СП 16.13330(1).doc",
+    "sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+    "included_in_release": false,
+    "status": "SOLE_NORMATIVE_TRUTH_FOR_SP16"
+  },
+  "current_sp16_evidence": [
+    {
+      "reference": "Приложение А",
+      "purpose": "Canonical meanings of A, An, I/Ix/Iy, Ixn/Iyn, It, Iomega, S, Wx/Wy, Wc/Wt, Wxn/Wyn and radii of gyration."
+    },
+    {
+      "reference": "Приложение Д, формулы Д.1-Д.2 and accompanying note",
+      "purpose": "Current-SP computational It relation: It=(k/3)*sum(b_i*t_i^3), with k by section type."
+    },
+    {
+      "reference": "Приложение Ж, Ж.3 / формула Ж.4",
+      "purpose": "Rolled-I lateral-stability route consumes It determined according to Annex D."
+    },
+    {
+      "reference": "8.4.1",
+      "purpose": "Section resistance/warping properties Wcx, Wcy and Wcω are required by bending stability checks."
+    },
+    {
+      "reference": "2 and 5.3",
+      "purpose": "Profile/product data are governed by applicable product normative documents; current SP16 itself does not reproduce a complete universal profile catalog."
+    }
+  ],
+  "directly_referenced_product_standards_relevant_to_profile_catalogs": [
+    "ГОСТ 19425-74",
+    "ГОСТ Р 54864-2016",
+    "ГОСТ Р 57837-2017",
+    "ГОСТ Р 58064-2018"
+  ],
+  "file_library_search_result": {
+    "current_product_standard_full_tables_found": false,
+    "non_normative_secondary_reference_found": "SCAD1049.pdf",
+    "decision": "By explicit user decision, historical NormCAD profile rows may be imported as an INTERIM runtime catalog so existing branches operate now. They are not promoted to original-GOST-validated production data; final row-by-row/source audit is deferred to the final package profile audit."
+  },
+  "substage_policy": {
+    "N2A_SECTION_PROPERTY_CONTRACT": "closable from current SP16 definitions plus transparent analytic geometry and the explicit Annex-D It formula",
+    "N2B_NORMCAD_HISTORICAL_CAPTURE": "closable as a historical secondary-oracle capture with integrity/anomaly audit",
+    "N2C_CURRENT_PROFILE_CATALOG_REBASELINE": "DEFERRED_BY_USER_TO_FINAL_PACKAGE_PROFILE_AUDIT: existing NormCAD profile rows are runtime-integrated now with explicit interim provenance; original/effective product-standard verification remains a mandatory final engineering-use release gate."
+  },
+  "runtime_integration_decision": {
+    "requested_by_user": true,
+    "policy": "IMPORT_EXISTING_PROFILES_NOW_VALIDATE_ORIGINAL_GOSTS_AT_FINAL_PACKAGE_STAGE",
+    "runtime_catalog_status": "INTERIM_IMPORTED_FROM_NORMCAD_PENDING_ORIGINAL_GOST_AUDIT",
+    "engineering_use_ready": false,
+    "release_stage": "v0.28_stage_n2_section_model_profile_catalog_runtime_closed_reconstructed_r1",
+    "stage_n2_runtime_closed": true,
+    "original_gost_profile_audit_complete": false
+  }
+}

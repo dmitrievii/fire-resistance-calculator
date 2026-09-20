@@ -1,0 +1,371 @@
+{
+  "schema_version": "1.0.0",
+  "audit_id": "SP16-TBL-В-5",
+  "table_number": "В.5",
+  "title": "Нормативные и расчетные сопротивления фасонного проката",
+  "normative_source": {
+    "designation": "СП 16.13330.2017 «Стальные конструкции», Changes 1–6 through 09.12.2024",
+    "source_filename": "СП 16.13330(1).doc",
+    "source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+    "source_included_in_package": false
+  },
+  "product_forms": [
+    "shaped_rolled"
+  ],
+  "selection_policy": {
+    "steel_grade": "exact after explicit identifier normalization",
+    "thickness": "exact interval; no interpolation",
+    "extrapolation": "forbidden",
+    "missing_row": "fail_closed"
+  },
+  "rows": [
+    {
+      "grades": [
+        "С245"
+      ],
+      "thickness_interval": {
+        "min_mm": 4,
+        "max_mm": 20,
+        "min_inclusive": true,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 245,
+      "Run_MPa": 370,
+      "Ry_MPa": 240,
+      "Ru_MPa": 360
+    },
+    {
+      "grades": [
+        "С245"
+      ],
+      "thickness_interval": {
+        "min_mm": 20,
+        "max_mm": 40,
+        "min_inclusive": false,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 235,
+      "Run_MPa": 370,
+      "Ry_MPa": 230,
+      "Ru_MPa": 360
+    },
+    {
+      "grades": [
+        "С255"
+      ],
+      "thickness_interval": {
+        "min_mm": 4,
+        "max_mm": 10,
+        "min_inclusive": true,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 255,
+      "Run_MPa": 380,
+      "Ry_MPa": 250,
+      "Ru_MPa": 370
+    },
+    {
+      "grades": [
+        "С255"
+      ],
+      "thickness_interval": {
+        "min_mm": 10,
+        "max_mm": 20,
+        "min_inclusive": false,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 245,
+      "Run_MPa": 370,
+      "Ry_MPa": 240,
+      "Ru_MPa": 360
+    },
+    {
+      "grades": [
+        "С255"
+      ],
+      "thickness_interval": {
+        "min_mm": 20,
+        "max_mm": 40,
+        "min_inclusive": false,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 235,
+      "Run_MPa": 370,
+      "Ry_MPa": 230,
+      "Ru_MPa": 360
+    },
+    {
+      "grades": [
+        "С345"
+      ],
+      "thickness_interval": {
+        "min_mm": 4,
+        "max_mm": 10,
+        "min_inclusive": true,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 345,
+      "Run_MPa": 480,
+      "Ry_MPa": 340,
+      "Ru_MPa": 470
+    },
+    {
+      "grades": [
+        "С345"
+      ],
+      "thickness_interval": {
+        "min_mm": 10,
+        "max_mm": 20,
+        "min_inclusive": false,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 325,
+      "Run_MPa": 470,
+      "Ry_MPa": 320,
+      "Ru_MPa": 460
+    },
+    {
+      "grades": [
+        "С345"
+      ],
+      "thickness_interval": {
+        "min_mm": 20,
+        "max_mm": 40,
+        "min_inclusive": false,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 305,
+      "Run_MPa": 460,
+      "Ry_MPa": 300,
+      "Ru_MPa": 450
+    },
+    {
+      "grades": [
+        "С345К"
+      ],
+      "thickness_interval": {
+        "min_mm": 4,
+        "max_mm": 10,
+        "min_inclusive": true,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 345,
+      "Run_MPa": 480,
+      "Ry_MPa": 340,
+      "Ru_MPa": 470
+    },
+    {
+      "grades": [
+        "С355"
+      ],
+      "thickness_interval": {
+        "min_mm": 5,
+        "max_mm": 16,
+        "min_inclusive": true,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 355,
+      "Run_MPa": 490,
+      "Ry_MPa": 350,
+      "Ru_MPa": 480
+    },
+    {
+      "grades": [
+        "С355"
+      ],
+      "thickness_interval": {
+        "min_mm": 16,
+        "max_mm": 40,
+        "min_inclusive": false,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 345,
+      "Run_MPa": 480,
+      "Ry_MPa": 340,
+      "Ru_MPa": 470
+    },
+    {
+      "grades": [
+        "С355"
+      ],
+      "thickness_interval": {
+        "min_mm": 40,
+        "max_mm": 60,
+        "min_inclusive": false,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 340,
+      "Run_MPa": 470,
+      "Ry_MPa": 330,
+      "Ru_MPa": 460
+    },
+    {
+      "grades": [
+        "С355-1"
+      ],
+      "thickness_interval": {
+        "min_mm": 5,
+        "max_mm": 16,
+        "min_inclusive": true,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 355,
+      "Run_MPa": 490,
+      "Ry_MPa": 350,
+      "Ru_MPa": 480
+    },
+    {
+      "grades": [
+        "С355-1"
+      ],
+      "thickness_interval": {
+        "min_mm": 16,
+        "max_mm": 40,
+        "min_inclusive": false,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 345,
+      "Run_MPa": 480,
+      "Ry_MPa": 340,
+      "Ru_MPa": 470
+    },
+    {
+      "grades": [
+        "С355-1"
+      ],
+      "thickness_interval": {
+        "min_mm": 40,
+        "max_mm": 60,
+        "min_inclusive": false,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 340,
+      "Run_MPa": 470,
+      "Ry_MPa": 330,
+      "Ru_MPa": 460
+    },
+    {
+      "grades": [
+        "С390"
+      ],
+      "thickness_interval": {
+        "min_mm": 5,
+        "max_mm": 10,
+        "min_inclusive": true,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 390,
+      "Run_MPa": 520,
+      "Ry_MPa": 380,
+      "Ru_MPa": 505
+    },
+    {
+      "grades": [
+        "С390"
+      ],
+      "thickness_interval": {
+        "min_mm": 10,
+        "max_mm": 20,
+        "min_inclusive": false,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 380,
+      "Run_MPa": 500,
+      "Ry_MPa": 370,
+      "Ru_MPa": 480
+    },
+    {
+      "grades": [
+        "С390"
+      ],
+      "thickness_interval": {
+        "min_mm": 20,
+        "max_mm": 40,
+        "min_inclusive": false,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 370,
+      "Run_MPa": 490,
+      "Ry_MPa": 360,
+      "Ru_MPa": 480
+    },
+    {
+      "grades": [
+        "С390"
+      ],
+      "thickness_interval": {
+        "min_mm": 40,
+        "max_mm": 60,
+        "min_inclusive": false,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 365,
+      "Run_MPa": 485,
+      "Ry_MPa": 350,
+      "Ru_MPa": 475
+    },
+    {
+      "grades": [
+        "С440"
+      ],
+      "thickness_interval": {
+        "min_mm": 5,
+        "max_mm": 10,
+        "min_inclusive": true,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 440,
+      "Run_MPa": 600,
+      "Ry_MPa": 430,
+      "Ru_MPa": 585
+    },
+    {
+      "grades": [
+        "С440"
+      ],
+      "thickness_interval": {
+        "min_mm": 10,
+        "max_mm": 20,
+        "min_inclusive": false,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 440,
+      "Run_MPa": 580,
+      "Ry_MPa": 430,
+      "Ru_MPa": 565
+    },
+    {
+      "grades": [
+        "С440"
+      ],
+      "thickness_interval": {
+        "min_mm": 20,
+        "max_mm": 40,
+        "min_inclusive": false,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 430,
+      "Run_MPa": 550,
+      "Ry_MPa": 420,
+      "Ru_MPa": 535
+    },
+    {
+      "grades": [
+        "С440"
+      ],
+      "thickness_interval": {
+        "min_mm": 40,
+        "max_mm": 60,
+        "min_inclusive": false,
+        "max_inclusive": true
+      },
+      "Ryn_MPa": 420,
+      "Run_MPa": 520,
+      "Ry_MPa": 410,
+      "Ru_MPa": 505
+    }
+  ],
+  "notes": [
+    "For shaped rolled products, governing thickness is flange thickness."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "corpus_revision": "0001",
+  "registered_case_id": "VAL-SP16-BEAM-0001",
+  "source_sha256": "c0b23def395cfa9f7d1b524a504da8570b782661780de54b62a42fb5759f42ea",
+  "source_page_count": 2,
+  "scalar_replays": {
+    "passed": 2,
+    "total": 2
+  },
+  "full_end_to_end_status": "NOT_ACCEPTED",
+  "overall_case_status": "PARTIAL_SOURCE_INCONSISTENT",
+  "critical_findings": [
+    "SRC-CONFLICT-001",
+    "SRC-CONFLICT-002"
+  ],
+  "production_code_changed": false,
+  "engineering_api_changed": false
+}

@@ -1,0 +1,23 @@
+{
+  "standard_reference": "Clause 6.5, Table 5, PDF page 13",
+  "units": "N/mm2",
+  "shear_factors_by_strength_class": {
+    "5.6": 0.42,
+    "5.8": 0.41,
+    "8.8": 0.4,
+    "10.9": 0.4,
+    "12.9": 0.35
+  },
+  "tension_factors_by_strength_class": {
+    "5.6": 0.45,
+    "5.8": 0.41,
+    "8.8": 0.54,
+    "10.9": 0.7,
+    "12.9": 0.7
+  },
+  "bearing_factors_by_accuracy_class": {
+    "A": 1.6,
+    "B": 1.35
+  },
+  "bearing_applicability": "Connected steel yield strength not greater than 450 N/mm2."
+}

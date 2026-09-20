@@ -1,0 +1,10 @@
+{
+  "standard_reference": "Clause 6.1, Table 3, PDF page 11",
+  "categories": {
+    "statistical_control": 1.025,
+    "nonstatistical_high_yield_or_hot_finished_or_foreign": 1.1,
+    "other_conforming": 1.05,
+    "ks1_limited_service": 1.0
+  },
+  "classification_note": "The caller must select the applicable category explicitly; the package does not infer it from incomplete product metadata."
+}

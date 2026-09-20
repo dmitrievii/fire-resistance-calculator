@@ -1,0 +1,454 @@
+{
+  "package_version": "0.57.0",
+  "release_stage": "v0.57_fire_ui24_fire_val1_routing_remediation_r1",
+  "release_qualification": "research_grade_fire_ui24_fire_val1_routing_remediation_r1",
+  "parent_release": "v0.56_fire_ui23_protection_route_closure_r1",
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "engineering_use_ready": false,
+  "engineering_public_function_count": 581,
+  "phase_0_24_parent_oracle_case_count": 40,
+  "phase_0_25_added_oracle_case_count": 20,
+  "combined_independently_oracled_function_count": 60,
+  "combined_independent_function_oracle_fraction": 0.10327022375215146,
+  "independent_public_function_validation_complete": false,
+  "external_cross_implementation_case_count": 6,
+  "externally_compared_distinct_function_count": 5,
+  "external_independent_validation_complete": false,
+  "evidence_taxonomy": {
+    "parent_independent_direct_function_oracle": "separately written closed-form expected value from Phase 0.24",
+    "independent_source_rederived_closed_form_oracle": "new Phase 0.25 expected value re-derived from the normative formula without calling a production helper",
+    "external_vendor_published_cross_implementation": "comparison against a numerical value published in an external vendor verification example; not a live vendor run",
+    "contract_adversarial_probe": "negative test proving malformed/non-finite comparator evidence is rejected"
+  },
+  "checks": {
+    "parent_phase_0_24_function_level_evidence_passes": true,
+    "all_20_new_source_rederived_oracles_pass": true,
+    "expanded_oracle_functions_do_not_duplicate_parent_scope": true,
+    "at_least_60_distinct_engineering_functions_independently_oracled": true,
+    "external_vendor_published_golden_cases_pass": true,
+    "golden_contract_is_fail_closed_under_adversarial_probes": true,
+    "engineering_api_is_call_shape_identical_to_v0_24_parent": true,
+    "engineering_use_ready_remains_false": true
+  },
+  "phase_0_25_validation_pass": true,
+  "expanded_independent_oracles": [
+    {
+      "validation_case_id": "P025-FLV-041",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.bolted_and_friction_connections.bolt_bearing_capacity_eq187",
+      "standard_reference": "14.2.9 equation (187)",
+      "actual": 104976.0,
+      "expected": 104976.0,
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-042",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.bolted_and_friction_connections.bolt_tension_capacity_eq188",
+      "standard_reference": "14.2.9 equation (188)",
+      "actual": 93100.0,
+      "expected": 93100.0,
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-043",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.bolted_and_friction_connections.friction_plane_capacity_eq191",
+      "standard_reference": "14.3.3 equation (191)",
+      "actual": 30624.999999999996,
+      "expected": 30624.999999999996,
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-044",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.sheet_structures_strength_and_stability.meridional_stress_eq149",
+      "standard_reference": "11.1.2 equation (149)",
+      "actual": 15.915494309189532,
+      "expected": 15.915494309189532,
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-045",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.sheet_structures_strength_and_stability.circumferential_stress_eq150",
+      "standard_reference": "11.1.2 equation (150)",
+      "actual": 100.0,
+      "expected": 100.0,
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-046",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.sheet_structures_strength_and_stability.cylindrical_internal_pressure_stresses_eq151",
+      "standard_reference": "11.1.3 equation (151)",
+      "actual": [
+        50.0,
+        100.0
+      ],
+      "expected": [
+        50.0,
+        100.0
+      ],
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-047",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.sheet_structures_strength_and_stability.spherical_internal_pressure_stresses_eq152",
+      "standard_reference": "11.1.3 equation (152)",
+      "actual": [
+        50.0,
+        50.0
+      ],
+      "expected": [
+        50.0,
+        50.0
+      ],
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-048",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.sheet_structures_strength_and_stability.conical_internal_pressure_stresses_eq153",
+      "standard_reference": "11.1.3 equation (153)",
+      "actual": [
+        57.73502691896257,
+        115.47005383792514
+      ],
+      "expected": [
+        57.73502691896257,
+        115.47005383792514
+      ],
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-049",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.sheet_structures_strength_and_stability.cylindrical_axial_stability_utilization_eq154",
+      "standard_reference": "11.2.1 equation (154)",
+      "actual": 0.625,
+      "expected": 0.625,
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-050",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.sheet_structures_strength_and_stability.cylindrical_external_pressure_utilization_eq159",
+      "standard_reference": "11.2.4 equation (159)",
+      "actual": 0.5,
+      "expected": 0.5,
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-051",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.sheet_structures_strength_and_stability.cylindrical_external_pressure_critical_stress_eq160",
+      "standard_reference": "11.2.4 equation (160)",
+      "actual": 56.650000000000006,
+      "expected": 56.650000000000006,
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-052",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.sheet_structures_strength_and_stability.cylindrical_external_pressure_critical_stress_eq161",
+      "standard_reference": "11.2.4 equation (161)",
+      "actual": 3.5020000000000002,
+      "expected": 3.5020000000000002,
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-053",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.sheet_structures_strength_and_stability.cylindrical_combined_stability_utilization_eq162",
+      "standard_reference": "11.2.5 equation (162)",
+      "actual": 0.9,
+      "expected": 0.9,
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-054",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.sheet_structures_strength_and_stability.conical_axial_stability_utilization_eq163",
+      "standard_reference": "11.2.6 equation (163)",
+      "actual": 0.5,
+      "expected": 0.5,
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-055",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.sheet_structures_strength_and_stability.conical_critical_force_eq164",
+      "standard_reference": "11.2.6 equation (164)",
+      "actual": 4710000.0,
+      "expected": 4710000.000000001,
+      "absolute_error": 9.313225746154785e-10,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-056",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.sheet_structures_strength_and_stability.conical_equivalent_radius_eq165",
+      "standard_reference": "11.2.6 equation (165)",
+      "actual": 1096.9655114602888,
+      "expected": 1096.9655114602888,
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-057",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.sheet_structures_strength_and_stability.conical_external_pressure_utilization_eq166",
+      "standard_reference": "11.2.7 equation (166)",
+      "actual": 0.5,
+      "expected": 0.5,
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-058",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.sheet_structures_strength_and_stability.conical_external_pressure_critical_stress_eq167",
+      "standard_reference": "11.2.7 equation (167)",
+      "actual": 56.650000000000006,
+      "expected": 56.650000000000006,
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-059",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.sheet_structures_strength_and_stability.conical_combined_stability_utilization_eq168",
+      "standard_reference": "11.2.8 equation (168)",
+      "actual": 0.9,
+      "expected": 0.9,
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    },
+    {
+      "validation_case_id": "P025-FLV-060",
+      "evidence_class": "independent_source_rederived_closed_form_oracle",
+      "function": "standard_core.sheet_structures_strength_and_stability.spherical_external_pressure_utilization_eq169",
+      "standard_reference": "11.2.9 equation (169)",
+      "actual": 0.5,
+      "expected": 0.5,
+      "absolute_error": 0.0,
+      "tolerance": 1e-10,
+      "pass_fail": "pass"
+    }
+  ],
+  "external_golden_validation": {
+    "evidence_class": "vendor_published_verification_examples",
+    "qualification_warning": "These cases reproduce values published in the SCAD Office/KRISTALL verification compendium. They are external cross-implementation evidence, not live SCAD executions performed by this package and not universal certification.",
+    "software_certificate": {
+      "product": "SCAD Office",
+      "included_module": "КРИСТАЛЛ",
+      "certificate_number": "РОСС RU.04ПЛК0.ОС01.Н00046",
+      "valid_from": "2025-08-08",
+      "valid_until": "2028-08-07",
+      "source_url": "https://scadsoft.com/download/sert_SCAD%20Office_2025.pdf",
+      "source_sha256": "5bc351a5334fc1b5a10d9dfe21a3b8b9ef2a461a57e4d7fa5593d61e64a43560"
+    },
+    "verification_compendium": {
+      "title": "SCAD Office. Верификационные примеры",
+      "source_url": "https://scadsoft.com/download/SCADVerification1049_2.pdf",
+      "source_sha256": "b9239af7ee1388fb30d639ef630b5f32b4d225eba59885d6e43dc8a7db11c56b",
+      "declared_normative_compatibility": "СП 16.13330.2017",
+      "redistributed_in_package": false
+    },
+    "case_count": 6,
+    "passed_count": 6,
+    "failed_count": 0,
+    "pass": true,
+    "results": [
+      {
+        "case_id": "SCAD-KRISTALL-4.1-EQ41",
+        "evidence_class": "external_vendor_published_cross_implementation",
+        "function": "standard_core.bending_members.elastic_bending_utilization_eq41",
+        "computed_value": 0.993154508611094,
+        "published_value": 0.993,
+        "absolute_error": 0.00015450861109400638,
+        "absolute_tolerance": 0.0005,
+        "pass": true,
+        "source_example": "КРИСТАЛЛ 4.1",
+        "source_pdf_pages": [
+          31,
+          32
+        ],
+        "qualification_note": "Published value is rounded to three decimals. W=15187.794 cm3 and M=3469.28 kNm are represented in the package's N-mm unit convention."
+      },
+      {
+        "case_id": "SCAD-KRISTALL-4.6-EQ5",
+        "evidence_class": "external_vendor_published_cross_implementation",
+        "function": "standard_core.axial_members.axial_strength_utilization_yield",
+        "computed_value": 0.9042245370370371,
+        "published_value": 0.904,
+        "absolute_error": 0.00022453703703706474,
+        "absolute_tolerance": 0.0005,
+        "pass": true,
+        "source_example": "КРИСТАЛЛ 4.6",
+        "source_pdf_pages": [
+          44,
+          46
+        ],
+        "qualification_note": "A=230.4 cm2 and N=5000 kN are converted to the package's mm/N unit convention."
+      },
+      {
+        "case_id": "SCAD-KRISTALL-4.6-EQ7-PHI-Y",
+        "evidence_class": "external_vendor_published_cross_implementation",
+        "function": "standard_core.axial_members.central_compression_stability_utilization",
+        "computed_value": 0.9397469726013687,
+        "published_value": 0.94,
+        "absolute_error": 0.0002530273986312004,
+        "absolute_tolerance": 0.0005,
+        "pass": true,
+        "source_example": "КРИСТАЛЛ 4.6",
+        "source_pdf_pages": [
+          45,
+          46
+        ],
+        "qualification_note": "Validates equation (7) with externally published phi_y supplied as input; it does not validate generation of phi_y."
+      },
+      {
+        "case_id": "SCAD-KRISTALL-4.6-EQ7-PHI-Z",
+        "evidence_class": "external_vendor_published_cross_implementation",
+        "function": "standard_core.axial_members.central_compression_stability_utilization",
+        "computed_value": 1.0024662273137883,
+        "published_value": 1.002,
+        "absolute_error": 0.0004662273137883144,
+        "absolute_tolerance": 0.0006,
+        "pass": true,
+        "source_example": "КРИСТАЛЛ 4.6",
+        "source_pdf_pages": [
+          45,
+          46
+        ],
+        "qualification_note": "Validates equation (7) with externally published phi_z supplied as input; it does not validate generation of phi_z."
+      },
+      {
+        "case_id": "SCAD-KRISTALL-2.1-EQ186",
+        "evidence_class": "external_vendor_published_cross_implementation",
+        "function": "standard_core.bolted_and_friction_connections.bolt_shear_capacity_eq186",
+        "computed_value": 115866.0,
+        "published_value": 115866.0,
+        "absolute_error": 0.0,
+        "absolute_tolerance": 1e-09,
+        "pass": true,
+        "source_example": "КРИСТАЛЛ 2.1",
+        "source_pdf_pages": [
+          106,
+          108
+        ],
+        "qualification_note": "Published manual result 115.866 kN; represented as 115866 N."
+      },
+      {
+        "case_id": "SCAD-KRISTALL-2.1-EQ187",
+        "evidence_class": "external_vendor_published_cross_implementation",
+        "function": "standard_core.bolted_and_friction_connections.bolt_bearing_capacity_eq187",
+        "computed_value": 104976.0,
+        "published_value": 104976.0,
+        "absolute_error": 0.0,
+        "absolute_tolerance": 1e-09,
+        "pass": true,
+        "source_example": "КРИСТАЛЛ 2.1",
+        "source_pdf_pages": [
+          106,
+          108
+        ],
+        "qualification_note": "Published manual result 104.976 kN; represented as 104976 N."
+      }
+    ],
+    "coverage_limit": "Vendor-published scalar examples cover only a small subset of the engineering API and do not validate upstream generation of supplied coefficients unless the example explicitly exercises it."
+  },
+  "parent_v0_24_engineering_api_compatibility": {
+    "parent_engineering_function_count": 581,
+    "current_engineering_function_count": 581,
+    "removed_engineering_functions": [],
+    "added_engineering_functions": [],
+    "changed_engineering_signatures": [],
+    "pass": true
+  },
+  "golden_contract_adversarial_probes": [
+    {
+      "probe": "missing_tolerance",
+      "rejected": true,
+      "pass_fail": "pass"
+    },
+    {
+      "probe": "negative_tolerance",
+      "rejected": true,
+      "pass_fail": "pass"
+    },
+    {
+      "probe": "nan_published_value",
+      "rejected": true,
+      "pass_fail": "pass"
+    },
+    {
+      "probe": "infinite_argument",
+      "rejected": true,
+      "pass_fail": "pass"
+    },
+    {
+      "probe": "invalid_function_path",
+      "rejected": true,
+      "pass_fail": "pass"
+    },
+    {
+      "probe": "empty_pages",
+      "rejected": true,
+      "pass_fail": "pass"
+    },
+    {
+      "probe": "unexpected_field",
+      "rejected": true,
+      "pass_fail": "pass"
+    },
+    {
+      "probe": "bool_tolerance",
+      "rejected": true,
+      "pass_fail": "pass"
+    }
+  ],
+  "open_gaps": {
+    "engineering_functions_without_independent_direct_oracle": 521,
+    "engineering_functions_without_external_cross_implementation_case": 576,
+    "annex_tables_remaining_external_reference_required": 24,
+    "live_vendor_replay_performed": false,
+    "full_external_validation_complete": false
+  }
+}

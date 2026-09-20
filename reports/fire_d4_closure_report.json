@@ -1,0 +1,47 @@
+{
+  "release": "v0.41_fire_d4_sp554_section13_result_assessment_runtime_r1",
+  "parent": "v0.40_fire_d31_sp554_section12_full_scope_reconciliation_r1",
+  "verdict": "FIRE-D4 SP554 Section 13 standard-fire result-assessment runtime CLOSED in declared scope",
+  "closed": {
+    "13.1_critical_temperature_result": true,
+    "13.2_time_to_critical_result": true,
+    "13.3_exact_R_notation_standard_fire": true,
+    "13.4_fire_protection_efficiency_indicator_reporting": true,
+    "exact_unrounded_Rfact_ge_Rreq_compliance": true,
+    "required_R_external_provenance_gate": true,
+    "unprotected_failure_to_protection_design": true,
+    "protected_failure_to_redesign": true
+  },
+  "open_boundaries": {
+    "nonstandard_real_alternative_fire_assessment": false,
+    "automatic_SP2_required_R_producer": false,
+    "annex_A_schedule_and_fire_protection_design": false,
+    "connection_fire_resistance": false,
+    "engineering_use_ready": false
+  },
+  "control_case": {
+    "critical_temperature_c": 525.0192844353662,
+    "actual_fire_resistance_min": 14.326394173167056,
+    "required_fire_resistance_min": 15.0,
+    "actual_r_notation": "R 14.3263941732",
+    "required_r_notation": "R 15",
+    "assessment": "FAIL",
+    "margin_min": -0.6736058268329437,
+    "next_action": "FIRE_PROTECTION_DESIGN_REQUIRED"
+  },
+  "dag": {
+    "path": "normative_graph/dag_v0.3.44_fire_d4.json",
+    "graph_id": "sp16_sp554_dag_v0-3-44_fire_d4",
+    "quantities": 748,
+    "nodes": 657,
+    "edges": 1108,
+    "datasets": 38,
+    "sha256": "cb5143967c7503c5280283e227d6ab63fcfd305782fff2d3c26e4f1c43e5dfed"
+  },
+  "reconciliation_notes": [
+    "R designation is a Section-13 result notation and is no longer gated by successful compliance.",
+    "No nearest-class rounding, flooring or ceiling is used before compliance comparison.",
+    "Required fire resistance remains an external normative/project handoff with mandatory source/value provenance.",
+    "Critical-temperature generic DAG provenance now admits the FIRE-D2 formula-result producer."
+  ]
+}

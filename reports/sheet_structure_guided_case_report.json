@@ -1,0 +1,110 @@
+{
+  "case_id": "EX-STAGE-N8-CYL-AXIAL-001",
+  "standard": "СП 16.13330.2017",
+  "release_stage": "v0.67_fire_bridge2_qualified_sp16_complex_state_handoff_r1",
+  "action": "sheet_structure_guided",
+  "engineering_calculation_performed": true,
+  "inputs": {
+    "case_id": "EX-STAGE-N8-CYL-AXIAL-001",
+    "standard": "СП 16.13330.2017",
+    "action": "sheet_structure_guided",
+    "working_condition_factor": 1.0,
+    "route": {
+      "kind": "cylinder_axial_11_2_1",
+      "radius_mm": 1000.0,
+      "thickness_mm": 10.0,
+      "axial_compressive_stress_n_mm2": 80.0,
+      "eccentric_compression_or_pure_bending": false
+    },
+    "design_yield_resistance_n_mm2": 350.0,
+    "elastic_modulus_n_mm2": 206000.0
+  },
+  "resolution_trace": {
+    "material": {
+      "material_ref": {
+        "product_form": "plate_sheet_strip",
+        "steel_grade": "C355",
+        "thickness_mm": 10.0,
+        "material_safety_category": "other_conforming",
+        "design_resistance_source": "annex_tabulated"
+      },
+      "selected_design_resistance_source": "annex_tabulated",
+      "resolved_values": {
+        "design_yield_resistance_n_mm2": 350.0,
+        "elastic_modulus_n_mm2": 206000.0
+      },
+      "stage_n1_bundle": {
+        "stage": "N1_MATERIAL_STRENGTH",
+        "normative_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+        "annex_strength": {
+          "product_form": "plate_sheet_strip",
+          "steel_grade_input": "C355",
+          "steel_grade_normalized": "С355",
+          "governing_thickness_mm": 10.0,
+          "source_table": "В.3",
+          "source_row_index": 8,
+          "source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+          "thickness_interval": {
+            "min_mm": 2,
+            "max_mm": 16,
+            "min_inclusive": true,
+            "max_inclusive": true
+          },
+          "Ryn_MPa": 355,
+          "Run_MPa": 490,
+          "Ry_tabulated_MPa": 350,
+          "Ru_tabulated_MPa": 480,
+          "note": null
+        },
+        "physical_properties": {
+          "density_kg_m3": 7850.0,
+          "linear_expansion_per_C": 1.2e-05,
+          "E_MPa": 206000.0,
+          "G_MPa": 79000.0,
+          "poisson_ratio": 0.3,
+          "source_table": "Б.1",
+          "source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873"
+        },
+        "table_2_formula_resistances": {
+          "gamma_m": 1.05,
+          "Ry_formula_MPa": 338.0952380952381,
+          "Ru_formula_MPa": 466.66666666666663,
+          "Rs_formula_MPa": 196.09523809523807,
+          "Rp_formula_MPa": 466.66666666666663,
+          "Rlp_formula_MPa": 233.33333333333331,
+          "Rcd_formula_MPa": 11.666666666666666
+        },
+        "gamma_u": 1.3,
+        "gamma_u_source": "СП 16 4.3.2",
+        "selection_warning": "Ry/Ru printed in Annex В and values recomputed from Table 2 + an explicitly selected gamma_m are preserved as separate quantities; this resolver does not silently substitute one for the other."
+      }
+    }
+  },
+  "results": {
+    "status": "COMPLETE",
+    "route": "cylinder_axial_11_2_1",
+    "critical": {
+      "radius_to_thickness_ratio": 100.0,
+      "c_coefficient": 0.22,
+      "psi": 0.7835922330097087,
+      "yield_branch_n_mm2": 274.25728155339806,
+      "elastic_branch_n_mm2": 453.2,
+      "critical_stress_n_mm2": 274.25728155339806,
+      "governing_branch": "psi_Ry",
+      "table34_source": "exact_printed_node"
+    },
+    "eccentric_adjustment": null,
+    "adjusted_critical_stress_n_mm2": 274.25728155339806,
+    "equation_154_utilization": 0.29169690426040323,
+    "pass": true,
+    "analysis_gate": {
+      "local_edge_effect_analysis_required": false,
+      "certified_spatial_software_required": false,
+      "base_membrane_equations_still_required": true,
+      "unresolved_requirements": [],
+      "complete": true
+    },
+    "governing_utilization": 0.29169690426040323
+  },
+  "scope_note": "Stage N8 applicability-safe current-SP16 Section 11 workflow. Exactly one shell/panel route is evaluated. Table 34 is exact-node only unless an explicitly sourced external c coefficient is supplied. Local edge effects, arbitrary spatial shell analysis and unavailable global/member checks remain explicit fail-closed dependencies."
+}

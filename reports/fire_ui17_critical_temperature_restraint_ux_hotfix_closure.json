@@ -1,0 +1,22 @@
+{
+  "schema": "fire_ui17_critical_temperature_restraint_ux_hotfix_closure_v1",
+  "release_stage": "v0.50_fire_ui17_critical_temperature_restraint_ux_hotfix_r1",
+  "package_version": "0.50.0",
+  "parent_release": "v0.49_fire_ui16_signed_load_verification_plan_parallel_dag_r1",
+  "dag": "normative_graph/dag_v0.3.53_fire_ui17_critical_temperature_restraint_ux_hotfix.json",
+  "presentation_policy": "data/fire_ui17_presentation_policy.json",
+  "closed": {
+    "independent_gamma_T_gamma_e_inversion": true,
+    "ambient_capacity_exceeded_without_lookup": true,
+    "above_published_range_bounded_result": true,
+    "legacy_single_domain_gate_removed_from_guided_production": true,
+    "raw_restraint_object_removed_from_ordinary_compression_context": true,
+    "table30_engineering_selector": true,
+    "table7_visual_selector": true
+  },
+  "known_deferred": {
+    "Qy_axis_specific_shear": true,
+    "torsion_T": true,
+    "engineering_use_ready": false
+  }
+}

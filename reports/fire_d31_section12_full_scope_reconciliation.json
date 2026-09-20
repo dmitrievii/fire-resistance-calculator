@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "FIRE-D3.1",
+  "release_target": "v0.40_fire_d31_sp554_section12_full_scope_reconciliation_r1",
+  "parent_release": "v0.39_fire_d3_sp554_section12_thermal_runtime_r1",
+  "sp554": {
+    "designation": "СП 554.1311500.2026",
+    "effective_date": "2026-09-01",
+    "locked_equation_source_sha256": "86a3c010ee74e469670f7aff5b95c807ffcff81bc81cbebe16f994af477507e3",
+    "enacted_baseline_reconciled": true
+  },
+  "closure": {
+    "full_scope_reconciled": true,
+    "full_literal_runtime_closed": false,
+    "formula_12_8_algebra_closed": true,
+    "wet_embedded_properties_route_closed": true,
+    "literal_repeated_t_phi_recurrence_closed": false,
+    "double_counting_guard_closed": true,
+    "validation_12_6_mandatory": true
+  },
+  "wet_route_policy": {
+    "supported_mode": "embedded_in_thermal_properties",
+    "requires_confirmation": "moisture_embedded_in_properties_confirmed=true",
+    "explicit_t_phi_applied": false,
+    "requires_12_6_validation": true,
+    "unsupported_mode": "explicit_t_phi_12_8",
+    "unsupported_reason": "No normative moisture-depletion/state evolution is specified that makes repeated per-step t_phi subtraction invariant to time-step refinement."
+  },
+  "dag": {
+    "path": "normative_graph/dag_v0.3.43_fire_d31.json",
+    "quantities": 743,
+    "nodes": 651,
+    "edges": 1100,
+    "datasets": 38,
+    "sha256": "5b19204e3ec29a7289bdbe8a483122c8e4b0c63b5fd0c2aad677bc9529a7892f"
+  },
+  "engineering_use_ready": false
+}

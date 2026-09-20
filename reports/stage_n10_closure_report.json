@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "release_stage": "v0.36_stage_n10_brittle_fracture_current_sp16_closed_reconstructed_r1",
+  "package_version": "0.36.0",
+  "parent_release": "v0.35_stage_n9_fatigue_current_sp16_closed_reconstructed_r1",
+  "stage": "N10",
+  "verdict": "STAGE_N10_BRITTLE_FRACTURE_CURRENT_SP16_CLOSED",
+  "engineering_use_ready": false,
+  "full_change_6_rebaseline_complete": false,
+  "original_gost_profile_audit_complete": false,
+  "authoritative_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "scope": {
+    "clauses_13_1_13_5_guided_route": true,
+    "equation_174": true,
+    "table_37": true,
+    "complete_clause13_2_conditional_gate": true,
+    "clause13_3_engineering_review_gate": true,
+    "clause13_4_test_certificate_gate": true,
+    "z15_z25_z35_route": true,
+    "n1_to_n9_frozen_dependencies": true
+  },
+  "normative_policy": {
+    "clause13_1": "exactly four printed factor groups",
+    "clause13_2": "all represented applicable requirements explicit; partial checklist cannot imply pass",
+    "clause13_3_13_4": "engineering applicability and test/certificate evidence fail closed",
+    "table37": "printed factors/analytic expressions only; no invented interpolation",
+    "z_quality": "minimum group route and numeric psi_zr<=psi_zn both independently required"
+  },
+  "normcad": {
+    "role": "HISTORICAL_SECONDARY_ORACLE_NOT_NORMATIVE",
+    "dedicated_stage_n10_section13_case_found": false,
+    "synthetic_golden_case_created": false
+  },
+  "dag": {
+    "file": "normative_graph/dag_v0.3.39_stage_n10.json",
+    "sha256": "a420ef733154eff581b58c5f186c8e28f60e6fa952db819193d368f3e40b358c",
+    "schema_validation": "PASS",
+    "quantities": 729,
+    "nodes": 635,
+    "edges": 1072,
+    "datasets": 36
+  },
+  "tests": {
+    "stage_n10_focused_runtime_dag": "51/51 PASS",
+    "cumulative_excluding_release_manifest": "833/833 PASS",
+    "full_pytest_with_release_manifest": "834/834 PASS",
+    "release_manifest": "1/1 PASS",
+    "main_py_release_audit": "PASS",
+    "generated_outputs": "30/30 current release identity",
+    "legacy_validation_cases": "1876/1876 PASS",
+    "independent_function_oracles": "60/581 retained",
+    "external_golden_cases": "6/6 retained"
+  },
+  "reconciliation": {
+    "items": 8,
+    "open_package_or_dag_defects": 0,
+    "runtime_unresolved_in_declared_closed_routes": 0
+  },
+  "deferred_final_gates": [
+    "full package-wide Change 6 rebaseline",
+    "original/effective GOST/GOST R audit of interim imported profile catalog",
+    "final external engineering certification/qualification"
+  ],
+  "inventory": {
+    "equations": "241 total / 240 implemented / 1 no-code explanatory",
+    "tables": "88 total / 67 implemented-as-data / 20 external-reference-required / 1 no-code explanatory",
+    "procedures": "304 total / 303 implemented / 1 no-code explanatory"
+  }
+}

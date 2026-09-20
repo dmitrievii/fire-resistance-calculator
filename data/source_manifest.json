@@ -1,0 +1,49 @@
+{
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "source_filename": "СП 16.13330(1).doc",
+  "source_included_in_package": false,
+  "source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "source_changes": [
+    "2018-08-16",
+    "2019-12-04",
+    "2021-12-15",
+    "2022-05-31",
+    "2023-06-27",
+    "2024-12-09"
+  ],
+  "release_stage": "v0.29_stage_n3_axial_members_current_sp16_closed_reconstructed_r1",
+  "stage_n1_source_scope": [
+    "4.3.2",
+    "5.1",
+    "6.1",
+    "Table 2",
+    "Table 3",
+    "Table Б.1 rolled steel",
+    "Table В.3",
+    "Table В.4",
+    "Table В.5"
+  ],
+  "notes": "Authoritative current SP16 source is not redistributed. Stages N1 and N2 runtime remain closed in their declared scopes. Stage N3 axial-member routes are closed against the current SP16 source. Imported profile rows remain pending original/effective GOST verification, deferred by user to the final package audit. NormCAD remains a historical secondary oracle. Full package-wide Change 6 rebaseline remains open.",
+  "release_qualification": "research_grade_stage_n3_axial_members_closed_current_sp16_triangulated",
+  "stage_n2_runtime_scope": [
+    "section property model and provenance separation",
+    "interim imported profile catalog: 4069 rows / 37 families",
+    "Table 7 coefficient registry and family/axis routing",
+    "Annex D free-torsion It recomputation for supported I/T/channel routes",
+    "profile_ref hydration into existing runner branches"
+  ],
+  "stage_n2_original_gost_profile_audit_complete": false,
+  "stage_n2_original_gost_profile_audit_policy": "DEFERRED_BY_USER_TO_FINAL_PACKAGE_PROFILE_AUDIT",
+  "stage_n3_current_sp16_scope": [
+    "7.1.1",
+    "7.1.2",
+    "7.1.3",
+    "7.2.1-7.2.10",
+    "equations (5)-(22) axial/built-up routes",
+    "Table 6",
+    "Table 7",
+    "Table 8",
+    "Annex D.1 exact-node reference"
+  ],
+  "stage_n3_notes": "Stage N3 adds guided applicability-safe solid/built-up axial workflows, current equation (7a)/gamma_res, design-Ry lambda_bar, selected Table 8 routing and Qfic/connector-force logic. One current-source text-vs-Table-D.1 exact-boundary ambiguity is explicitly classified, not silently normalized."
+}

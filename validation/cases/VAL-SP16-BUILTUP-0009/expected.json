@@ -1,0 +1,35 @@
+{
+  "case_id": "VAL-SP16-BUILTUP-0009",
+  "checks": [
+    {
+      "check_id": "n",
+      "published_value": 0.00219,
+      "absolute_tolerance": 5e-06,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "eq12_lambda_eff",
+      "published_value": 40.08873,
+      "absolute_tolerance": 5e-05,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "lambda_bar_branch",
+      "published_value": 1.50974,
+      "absolute_tolerance": 5e-06,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "branch_limit_pass_source_omitted",
+      "published_value": 1,
+      "absolute_tolerance": 0,
+      "expected_comparison_status": "FAIL"
+    },
+    {
+      "check_id": "phi_x_low_slenderness",
+      "published_value": 1,
+      "absolute_tolerance": 0,
+      "expected_comparison_status": "PASS"
+    }
+  ]
+}

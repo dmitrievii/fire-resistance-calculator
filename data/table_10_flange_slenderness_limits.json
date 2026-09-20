@@ -1,0 +1,41 @@
+{
+  "standard": "СП 16.13330.2017",
+  "standard_reference": "СП 16.13330.2017",
+  "table_number": "10",
+  "clause": "7.3.8",
+  "source_pages": [25, 26],
+  "quantity": "limiting relative slenderness of a flange outstand or flange plate",
+  "member_relative_slenderness_domain": [0.8, 4.0],
+  "boundary_rule": "Use 0.8 when member relative slenderness is below 0.8 and 4.0 when it is above 4.0.",
+  "classification_rule": "The diagram group is selected by comparison with the diagrams printed in Table 10; automatic geometry classification is not provided.",
+  "diagram_groups": {
+    "group_1": {
+      "visual_description": "First diagram row, including I- and T-type flange outstands",
+      "equation": "37",
+      "expression": "0.36 + 0.10*lambda_bar",
+      "edge_stiffener_multiplier": 1.5
+    },
+    "group_2": {
+      "visual_description": "Second diagram row of open rolled/bent section outstands",
+      "equation": "38",
+      "expression": "0.43 + 0.08*lambda_bar",
+      "edge_stiffener_multiplier": 1.5
+    },
+    "group_3": {
+      "visual_description": "Third diagram row of angle-like outstands",
+      "equation": "39",
+      "expression": "0.40 + 0.07*lambda_bar",
+      "edge_stiffener_multiplier": 1.6
+    },
+    "group_4": {
+      "visual_description": "Fourth diagram row of the lipped/edge-return sections shown in the table",
+      "equation": "40",
+      "expression": "0.85 + 0.19*lambda_bar",
+      "edge_stiffener_multiplier": null
+    }
+  },
+  "notes": [
+    "The multipliers apply only to the equation groups explicitly named in the note to Table 10.",
+    "Clause 7.3.9 refers box-section flange plates back to Table 10 and defines their relative slenderness explicitly."
+  ]
+}

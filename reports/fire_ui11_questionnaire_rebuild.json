@@ -1,0 +1,35 @@
+{
+  "release_stage": "v0.44_fire_ui11_complete_engineering_questionnaire_section_editor_r1",
+  "parent": "v0.43.2_fire_ui1_sp554_applicability_routing_hotfix_r1",
+  "graph_id": "sp16_sp554_dag_v0-3-47_fire_ui11_engineering_questionnaire",
+  "presentation_policy": "fire_ui_presentation_policy_v1",
+  "entry_node": "SP554_D_LOAD_BEARING",
+  "catalog": {
+    "families": 37,
+    "profiles": 4069,
+    "exact_row_identity": true
+  },
+  "closed": {
+    "building_use_hidden": true,
+    "rreq_deferred": true,
+    "rreq_provenance_optional_primary_ui": true,
+    "method_software_auto_resolved": true,
+    "fire_regime_deferred": true,
+    "early_seismic_fire_removed": true,
+    "welded_scope_warning_removed": true,
+    "geometry_provenance_bug": true,
+    "profile_catalog_selector": true,
+    "multi_step_back": true,
+    "technical_dag_copy_removed": true,
+    "section_editor_shell": true,
+    "weakening_editor_shell": true
+  },
+  "open": {
+    "double_branch_visual_editor": true,
+    "arbitrary_2d_editor": true,
+    "sp14_mtr_route": true,
+    "full_executor_binding": true,
+    "fire_d5": true,
+    "connections": true
+  }
+}

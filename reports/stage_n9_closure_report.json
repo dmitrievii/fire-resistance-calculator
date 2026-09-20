@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "release_stage": "v0.35_stage_n9_fatigue_current_sp16_closed_reconstructed_r1",
+  "package_version": "0.35.0",
+  "parent_release": "v0.34_stage_n8_sheet_structures_current_sp16_closed_reconstructed_r1",
+  "stage": "N9",
+  "verdict": "STAGE_N9_FATIGUE_CURRENT_SP16_CLOSED",
+  "engineering_use_ready": false,
+  "full_change_6_rebaseline_complete": false,
+  "original_gost_profile_audit_complete": false,
+  "authoritative_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "scope": {
+    "clauses_12_1_12_2_guided_route": true,
+    "equations_170_173": true,
+    "tables_35_36": true,
+    "annex_k_table_k1": true,
+    "change6_clause_12_1_3_exclusion": true,
+    "crane_runway_12_2_route": true,
+    "n1_to_n8_frozen_dependencies": true
+  },
+  "normative_policy": {
+    "low_cycle": "n<1e5 is fail-closed/external because 12.1.3 is excluded by Change No. 6",
+    "table35": "printed bins/constants only; no hidden interpolation or extrapolation",
+    "table36": "signed rho and printed piecewise expressions",
+    "crane": "12.2 alpha override is distinct from equations (171)-(172); equation (173) requires equation-(67) stress provenance"
+  },
+  "normcad": {
+    "role": "HISTORICAL_SECONDARY_ORACLE_NOT_NORMATIVE",
+    "dedicated_stage_n9_section12_case_found": false,
+    "synthetic_golden_case_created": false
+  },
+  "dag": {
+    "file": "normative_graph/dag_v0.3.38_stage_n9.json",
+    "sha256": "6ce5fd6540a371ac864a13f97145df924d0778f0fc7cd9ed453eefab68773cbc",
+    "schema_validation": "PASS",
+    "quantities": 714,
+    "nodes": 629,
+    "edges": 1066,
+    "datasets": 34
+  },
+  "tests": {
+    "stage_n9_focused_runtime_dag": "58/58 PASS",
+    "cumulative_excluding_release_manifest": "813/813 PASS",
+    "full_pytest_with_release_manifest": "814/814 PASS",
+    "release_manifest": "1/1 PASS",
+    "main_py_release_audit": "PASS",
+    "generated_outputs": "29/29 current release identity",
+    "legacy_validation_cases": "1876/1876 PASS",
+    "independent_function_oracles": "60/581 retained",
+    "external_golden_cases": "6/6 retained"
+  },
+  "reconciliation": {
+    "items": 8,
+    "open_package_or_dag_defects": 0,
+    "runtime_unresolved_in_declared_closed_routes": 0
+  },
+  "deferred_final_gates": [
+    "full package-wide Change 6 rebaseline",
+    "original/effective GOST/GOST R audit of interim imported profile catalog",
+    "final external engineering certification/qualification"
+  ],
+  "inventory": {
+    "equations": "241 total / 240 implemented / 1 no-code explanatory",
+    "tables": "88 total / 67 implemented-as-data / 20 external-reference-required / 1 no-code explanatory",
+    "procedures": "304 total / 303 implemented / 1 no-code explanatory"
+  }
+}

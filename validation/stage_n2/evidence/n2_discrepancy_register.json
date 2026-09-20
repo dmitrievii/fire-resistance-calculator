@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "N2",
+  "items": [
+    {
+      "id": "N2-D-001",
+      "primary_class": "PACKAGE_COVERAGE_GAP",
+      "status": "REMEDIATED_N2A",
+      "subject": "Central section-property model",
+      "finding": "The N1 parent package consumed scalar section properties in downstream checks but had no centralized, provenance-aware section-property model.",
+      "remediation": "Added standard_core.section_model with explicit geometry-derived property models and a distinct current-SP16 Annex-D It calculator."
+    },
+    {
+      "id": "N2-D-002",
+      "primary_class": "DAG_DEFECT",
+      "secondary_class": "SOURCE_PROVENANCE_GAP",
+      "status": "REMEDIATED_N2_RUNTIME_CLOSED",
+      "subject": "SECTION_CATALOG_STAGE2",
+      "finding": "The DAG catalog interface had an empty inline row set and did not expose a production-eligibility/source-validation state for catalog properties.",
+      "remediation": "Stage N2 DAG adds explicit catalog provenance/validation quantities and a fail-closed production eligibility gate."
+    },
+    {
+      "id": "N2-D-003",
+      "primary_class": "PROFILE_DATABASE_MISMATCH",
+      "secondary_class": "NORMCAD_OUTDATED_OR_NONCONFORMING",
+      "status": "CLASSIFIED",
+      "subject": "NormCAD historical profile database integrity",
+      "finding": "Static extraction found objective anomalous/corrupt values, including negative properties, severe mass/area inconsistencies and very large repeated It sentinel-like values.",
+      "remediation": "NormCAD catalog is retained only under validation/stage_n2 with production_eligible=false and fail-closed access by default."
+    },
+    {
+      "id": "N2-D-004",
+      "primary_class": "FORMULA_MISMATCH",
+      "secondary_class": "NORMCAD_OUTDATED_OR_NONCONFORMING",
+      "status": "CLASSIFIED",
+      "subject": "15К4 It first divergence",
+      "finding": "For h=160, b=152, tw=10, tf=15 mm, NormCAD stores/reports It≈385333 mm4, equal to the unadjusted plate sum / 3. Current SP16 Annex D gives 497080 mm4 for the same plate idealization with k=1.29.",
+      "remediation": "Current-SP Annex-D It is calculated separately from any catalog/NormCAD It field."
+    },
+    {
+      "id": "N2-D-005",
+      "primary_class": "FORMULA_MISMATCH",
+      "secondary_class": "NORMCAD_STATIC_PATH_DIVERGENCE",
+      "status": "CLASSIFIED_STATIC_EVIDENCE",
+      "subject": "NormCAD D.1/D.2 torsion variable path",
+      "finding": "The inspected static NormCAD DSL derives adjusted Jt_ with k but the D.1/D.2 gr_m expression references the original Jt variable.",
+      "remediation": "Do not reuse this historical route; the production Stage N2 model binds the Annex-D formula result explicitly. Runtime execution of NormCAD was not used for this finding."
+    },
+    {
+      "id": "N2-D-006",
+      "primary_class": "SOURCE_AMBIGUITY",
+      "secondary_class": "EXTERNAL_REFERENCE_REQUIRED",
+      "status": "DEFERRED_BY_USER_TO_FINAL_PROFILE_GOST_AUDIT",
+      "subject": "Current/effective profile catalog values",
+      "finding": "The current SP16 points profile/product data to applicable product normative documents, but the required current product-standard table sources are not available in the current file corpus.",
+      "remediation": "Existing NormCAD rows are imported into an explicitly interim runtime catalog so current calculation branches can operate. Each row/family remains PENDING_ORIGINAL_GOST_AUDIT; final engineering-use release remains blocked until original/effective product standards are checked."
+    },
+    {
+      "id": "N2-D-007",
+      "primary_class": "DATA_KEY_AMBIGUITY",
+      "status": "REMEDIATED_RUNTIME",
+      "subject": "Duplicate NormCAD designation within family 14",
+      "finding": "Family 14 contains two source rows with designation 17,5КТ1 (source_row_id 80 and 82) and different geometry; family+designation alone is not unique.",
+      "remediation": "Runtime catalog stores a list per designation and fails closed on ambiguous lookup unless source_row_id is supplied explicitly."
+    }
+  ],
+  "summary": {
+    "total": 7,
+    "remediated": 3,
+    "classified_normcad": 3,
+    "deferred_external_source_dependency": 1,
+    "open_external_source_dependency": 0,
+    "open_package_or_dag_defects": 0,
+    "stage_n2_runtime_unresolved": 0,
+    "final_profile_gost_audit_deferred": 1
+  }
+}

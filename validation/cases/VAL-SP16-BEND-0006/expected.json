@@ -1,0 +1,35 @@
+{
+  "case_id": "VAL-SP16-BEND-0006",
+  "checks": [
+    {
+      "check_id": "alpha",
+      "published_value": 1.05263,
+      "absolute_tolerance": 5e-06,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "sigma_x",
+      "published_value": 168.11338,
+      "absolute_tolerance": 1e-05,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "sigma_y",
+      "published_value": 3.47222,
+      "absolute_tolerance": 1e-05,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "eq44",
+      "published_value": 0.51008,
+      "absolute_tolerance": 1e-05,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "eq43",
+      "published_value": 0.64822,
+      "absolute_tolerance": 1e-05,
+      "expected_comparison_status": "PASS"
+    }
+  ]
+}

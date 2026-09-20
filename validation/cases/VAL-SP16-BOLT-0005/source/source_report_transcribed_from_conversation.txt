@@ -1,0 +1,7 @@
+Источник: пользовательский расчетный отчет, вставленный в чат (12.08.2026 16:06:11).
+
+Mx=8825952.22218 N mm. Bolt db=20 mm; ns=33; St=6 mm; tmin=7 mm; k=5; m=10; s=120 mm; a=45 mm; a_any=47 mm.
+Source: n=50; hmax=1080 mm; N1=4011.79646 N; Nb,max=802.3592 N. Progressive collapse material multiplier 1.1 is applied externally (SP385).
+Class 12.9 source Rbs=425 MPa, Ab=314 mm2; high-strength/accuracy B; source uses d0=26 mm in spacing factors and gamma_b reductions.
+Source Nbs=3844561.05 N; bearing Rbp=536.25 MPa, Nbp=50127.85206 N; governing bearing.
+For one-sided cover plate source multiplies Nb,max by 1.1 to 882.59512 N, then applies Eq.(189) and claims required bolt count=1.

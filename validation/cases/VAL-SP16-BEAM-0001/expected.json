@@ -1,0 +1,23 @@
+{
+  "case_id": "VAL-SP16-BEAM-0001",
+  "checks": [
+    {
+      "check_id": "SRC-EQ45",
+      "published_value": 1.0274,
+      "absolute_tolerance": 5e-05,
+      "rounding_basis": "4 decimal places in source"
+    },
+    {
+      "check_id": "SRC-EQ41",
+      "published_value": 3.37069,
+      "absolute_tolerance": 5e-06,
+      "rounding_basis": "5 decimal places in source",
+      "expected_pass_fail": "FAIL"
+    }
+  ],
+  "non_golden_preserved_values": {
+    "page_1_Wxn_mm3": 196000.0,
+    "page_2_Wxn_used_mm3": 1000000.0,
+    "eq41_if_page_1_Wxn_were_used": 17.197419636903085
+  }
+}

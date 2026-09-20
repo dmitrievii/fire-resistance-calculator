@@ -1,0 +1,17 @@
+{
+  "standard_reference": "Clause 6.4, Table 4, PDF page 12",
+  "units": "N/mm2",
+  "formulas": {
+    "butt_weld_yield_with_ndt": "Rwy = Ry",
+    "butt_weld_ultimate_with_ndt": "Rwu = Ru",
+    "butt_weld_yield_without_ndt": "Rwy = 0.85*Ry",
+    "butt_weld_shear": "Rws = Rs",
+    "fillet_weld_metal": "Rwf = 0.55*Rwun/gamma_wm",
+    "fillet_weld_fusion_boundary": "Rwz = 0.45*Run"
+  },
+  "weld_metal_safety_factor": {
+    "at_or_below_490_n_mm2": 1.25,
+    "at_or_above_590_n_mm2": 1.35,
+    "between_490_and_590": "not specified by Table 4; explicit user value required"
+  }
+}

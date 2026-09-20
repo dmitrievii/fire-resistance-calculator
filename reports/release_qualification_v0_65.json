@@ -1,0 +1,37 @@
+{
+  "schema": "release_qualification_v1",
+  "release_stage": "v0.65_sp16_mech8_mq_interaction_torsion_scope_r1",
+  "package_version": "0.65.0",
+  "parent_release": "v0.64_sp16_mech7_primary_ambient_workflow_binding_r1",
+  "active_dag": "normative_graph/dag_v0.3.68_sp16_mech8_mq_torsion_scope.json",
+  "engineering_use_ready": false,
+  "closed_scope": {
+    "class1_eq44_i_mx_qx": true,
+    "class2_823_i_box_supported_routes": true,
+    "class3_mq": false,
+    "torsion_scope_reconciled": true,
+    "universal_arbitrary_t_resistance": false
+  },
+  "source_tree_evidence": {
+    "sp16_core_a": "155/155 PASS",
+    "sp16_core_b": "237/237 PASS",
+    "n1_n10_workflows": "243/243 PASS",
+    "fire_sp554_runtime": "76/76 PASS",
+    "phase_0_23": "5/5 PASS",
+    "phase_0_24": "5/5 PASS",
+    "phase_0_25": "6/6 PASS",
+    "docs_schemas_ui0_final_audit": "68/68 PASS"
+  },
+  "active_dag_sha256": "53e49875026507632472568dcea2d1feafbeded5cae3e8dd2068d7e7d99e9dd0",
+  "active_dag_counts": {
+    "quantities": 866,
+    "datasets": 39,
+    "nodes": 725,
+    "edges": 1224
+  },
+  "ui_contract_counts": {
+    "interactive_nodes": 170,
+    "result_nodes": 54
+  },
+  "dag_deterministic_rebuild_pass": true
+}

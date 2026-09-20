@@ -1,0 +1,45 @@
+{
+  "release_stage": "v0.55_fire_ui22_routing_protection_library_hotfix_r1",
+  "package_version": "0.55.0",
+  "parent_release": "v0.54_fire_ui21_selector_hardening_qy_t_lock_r1",
+  "qualification": "research_grade_fire_ui22_routing_protection_library_hotfix_r1",
+  "engineering_use_ready": false,
+  "authoritative_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "authoritative_sp554_source_sha256": "86a3c010ee74e469670f7aff5b95c807ffcff81bc81cbebe16f994af477507e3",
+  "dag": {
+    "path": "normative_graph/dag_v0.3.58_fire_ui22_routing_protection_library_hotfix.json",
+    "sha256": "169d7e26d5388c698302679bf56c26df37e4e86c63159250748a2d1e80df1799",
+    "quantities": 797,
+    "datasets": 39,
+    "nodes": 685,
+    "edges": 1160,
+    "deterministic_rebuild_x2": true
+  },
+  "closure": {
+    "gammae_output_navigation_closed": true,
+    "sp16_9_2_3_guided_entry_restored": true,
+    "sp16_9_2_6_guided_entry_restored": true,
+    "M_11_3_binding_restored": true,
+    "post_unprotected_fire_protection_entry_added": true,
+    "protected_and_unprotected_post_result_actions_added": true,
+    "sto_arss_protection_material_library_added": true,
+    "sto_arss_mineral_wool_density_fixed_kg_m3": 100.0,
+    "manual_protection_properties_route_added": true,
+    "direct_vs_inverse_protection_Rreq_dependency_split": true
+  },
+  "explicit_open_scope": {
+    "Qy_axis_specific_shear_runtime_closed": false,
+    "torsion_T_runtime_closed": false,
+    "policy": "primary UI remains locked at zero; nonzero external values fail closed; no Qy_to_Qz or T_to_B substitution"
+  },
+  "tests": {
+    "focused_fire_ui22": "11/11 PASS",
+    "independent_normative_rebaseline_plus_final_audit": "8/8 PASS after literal-fallback remediation",
+    "main_release_audit": "PASS",
+    "validation_cases": "1876 PASS",
+    "phase_0_25_validation": "PASS",
+    "external_golden_cases": "6/6 PASS",
+    "unresolved_equations_tables": "0/0",
+    "source_tree_note": "A monolithic non-manifest pytest run in this execution environment repeatedly exceeded the wrapper timeout after the first ~27 percent. The inherited v0.54 baseline had 1035/1035 PASS; all v0.55-specific and affected audit/routing tests were rerun and pass. Release-manifest replay and fresh-extraction focused gates are executed after packaging."
+  }
+}

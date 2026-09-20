@@ -1,0 +1,45 @@
+{
+  "standard": "СП 16.13330.2017",
+  "clause": "14.1.7-14.1.8",
+  "table": "39",
+  "audit_id": "SP16-TBL-39",
+  "weld_leg_bins_mm": [
+    {"id": "3_8", "min_inclusive": 3.0, "max_inclusive": 8.0},
+    {"id": "9_12", "min_inclusive": 9.0, "max_inclusive": 12.0},
+    {"id": "14_16", "min_inclusive": 14.0, "max_inclusive": 16.0},
+    {"id": "over_16", "min_exclusive": 16.0}
+  ],
+  "processes": {
+    "automatic_d3_5": {
+      "boat": {
+        "beta_f": {"3_8": 1.1, "9_12": 1.1, "14_16": 1.1, "over_16": 0.7},
+        "beta_z": {"3_8": 1.15, "9_12": 1.15, "14_16": 1.15, "over_16": 1.0}
+      },
+      "lower": {
+        "beta_f": {"3_8": 1.1, "9_12": 0.9, "14_16": 0.9, "over_16": 0.7},
+        "beta_z": {"3_8": 1.15, "9_12": 1.05, "14_16": 1.05, "over_16": 1.0}
+      }
+    },
+    "automatic_or_mechanized_d1_4_2": {
+      "boat": {
+        "beta_f": {"3_8": 0.9, "9_12": 0.9, "14_16": 0.8, "over_16": 0.7},
+        "beta_z": {"3_8": 1.05, "9_12": 1.05, "14_16": 1.0, "over_16": 1.0}
+      },
+      "lower_horizontal_vertical": {
+        "beta_f": {"3_8": 0.9, "9_12": 0.8, "14_16": 0.7, "over_16": 0.7},
+        "beta_z": {"3_8": 1.05, "9_12": 1.0, "14_16": 1.0, "over_16": 1.0}
+      }
+    },
+    "manual_or_mechanized_d_lt_1_4_or_flux_cored": {
+      "all_listed_positions": {
+        "beta_f": {"3_8": 0.7, "9_12": 0.7, "14_16": 0.7, "over_16": 0.7},
+        "beta_z": {"3_8": 1.0, "9_12": 1.0, "14_16": 1.0, "over_16": 1.0}
+      }
+    }
+  },
+  "notes": [
+    "The printed table has no 13 mm weld-leg column; 13 mm lookup is rejected.",
+    "For manual/mechanized d<1.4 mm or flux-cored wire, the printed constant coefficients are represented as beta_f=0.7 and beta_z=1.0 for the listed positions.",
+    "No interpolation between weld-leg bins is applied."
+  ]
+}

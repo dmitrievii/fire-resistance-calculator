@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0.0",
+  "release_stage": "v0.28_stage_n2_section_model_profile_catalog_runtime_closed_reconstructed_r1",
+  "package_version": "0.28.0",
+  "parent_release": "v0.27_stage_n1_material_strength_closed_reconstructed_r1",
+  "stage": "N2",
+  "verdict": "STAGE_N2_RUNTIME_INTEGRATION_CLOSED_PROFILE_GOST_AUDIT_DEFERRED",
+  "engineering_use_ready": false,
+  "full_change_6_rebaseline_complete": false,
+  "authoritative_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "scope": {
+    "section_property_model_closed": true,
+    "interim_profile_catalog_runtime_closed": true,
+    "table7_group_coefficients_runtime_closed": true,
+    "profile_ref_existing_branch_hydration_closed": true,
+    "original_effective_gost_profile_row_audit_complete": false,
+    "original_effective_gost_profile_row_audit_policy": "DEFERRED_BY_USER_TO_FINAL_PACKAGE_PROFILE_AUDIT"
+  },
+  "catalog": {
+    "profile_rows": 4069,
+    "families": 37,
+    "all_rows_resolved": true,
+    "status": "INTERIM_IMPORTED_FROM_NORMCAD_PENDING_ORIGINAL_GOST_AUDIT",
+    "catalog_sha256": "86fa843f76ae421098b07ebffee45800a648fca5fa0c84a1c2c4d0f76bde1c9d",
+    "family_registry_sha256": "4122df5ded708820d969b6be0ff4a85d97c35c4f5e913a2ea0a766dae57f8812",
+    "historical_normcad_capture_sha256": "ebbc3062f4a9382d61e84301885bc8ed9a3687c63b2cde7f1abf513b1887aecd",
+    "historical_normcad_capture_audit_sha256": "14c3813e838ffa021660e6739416383c261b17c6d4d1deff641429657861c3dc"
+  },
+  "runtime_policy_counts": {
+    "torsion": {
+      "CURRENT_SP16_ANNEX_D_FORMULA": 887,
+      "GEOMETRY_DERIVED_CLOSED_THIN_WALL_BREDT_APPROXIMATION_PENDING_ORIGINAL_GOST_AUDIT": 1018,
+      "GEOMETRY_DERIVED_OPEN_THIN_WALL_APPROXIMATION_PENDING_ORIGINAL_GOST_AUDIT": 304,
+      "GEOMETRY_IDENTITY_CIRCULAR_J_EQUALS_IX_PLUS_IY": 1860
+    },
+    "table7_axis_pair": {
+      "a/a": 2878,
+      "a/c": 109,
+      "b/b": 22,
+      "b/c": 382,
+      "c/c": 678
+    },
+    "shape_group": {
+      "ANGLE": 257,
+      "CHANNEL": 324,
+      "CHS": 1860,
+      "C_LIPPED_SECTION": 25,
+      "I_ROLLED_DSYMM": 491,
+      "RHS_SHS": 1018,
+      "TEE": 72,
+      "Z_SECTION": 22
+    }
+  },
+  "table7_coefficients": {
+    "a": {
+      "alpha": 0.03,
+      "beta": 0.06,
+      "phi_cap_lambda_bar_threshold": 3.8
+    },
+    "b": {
+      "alpha": 0.04,
+      "beta": 0.09,
+      "phi_cap_lambda_bar_threshold": 4.4
+    },
+    "c": {
+      "alpha": 0.04,
+      "beta": 0.14,
+      "phi_cap_lambda_bar_threshold": 5.8
+    }
+  },
+  "dag": {
+    "file": "normative_graph/dag_v0.3.31_stage_n2.json",
+    "sha256": "dd40c3b2670644042c4ba7c179072ba10e82a126361ab3469bb566ab8ecc4f8a",
+    "schema_validation": "PASS"
+  },
+  "tests": {
+    "stage_n2_focused": "31/31 PASS",
+    "full_pytest_excluding_release_manifest": "610/610 PASS",
+    "main_py_release_audit": "PASS",
+    "legacy_validation_cases": "1876/1876 PASS",
+    "independent_function_oracles": "60/581 retained",
+    "external_golden_cases": "6/6 retained"
+  },
+  "discrepancies": {
+    "total": 7,
+    "open_package_or_dag_defects": 0,
+    "open_external_source_dependency": 0,
+    "deferred_final_profile_gost_audit": 1,
+    "runtime_unresolved": 0
+  },
+  "release_gate_note": "Stage N2 runtime integration is closed for the explicitly declared interim catalog scope. This is not a claim that every imported profile row is correct under its original/effective GOST/GOST R. That audit remains a mandatory final-package gate."
+}

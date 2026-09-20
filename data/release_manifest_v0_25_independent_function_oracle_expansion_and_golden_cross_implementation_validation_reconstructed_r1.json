@@ -1,0 +1,1404 @@
+{
+  "schema_version": "1.0.0",
+  "package_version": "0.25.0",
+  "release_stage": "v0.25_independent_function_oracle_expansion_and_golden_cross_implementation_validation_reconstructed_r1",
+  "release_name": "v0.25_independent_function_oracle_expansion_and_golden_cross_implementation_validation_reconstructed_r1",
+  "release_qualification": "research_grade_independent_function_oracle_expansion_and_external_golden_validation",
+  "parent_release": "v0.24_release_api_hardening_and_function_level_validation_expansion_reconstructed_r1",
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "source_sha256": "072a70074aed3ad41a28a570ae3a1a6dae0d7481eb3edcf974eef81fdb2e31dc",
+  "engineering_use_ready": false,
+  "declared_scope_verdict": "PASS_FOR_PHASE_0_25_DECLARED_SCOPE",
+  "validation_summary": {
+    "legacy_validation_cases": "1876/1876 PASS",
+    "independent_function_oracles": "60/60 PASS across 60/581 engineering functions",
+    "external_scad_kristall_published_cases": "6/6 PASS across 5 production functions",
+    "golden_contract_adversarial_probes": "8/8 PASS",
+    "external_annex_boundaries": 24,
+    "full_external_validation_complete": false,
+    "engineering_use_ready": false
+  },
+  "file_count_excluding_manifest": 276,
+  "files": [
+    {
+      "path": "README.md",
+      "size_bytes": 2505,
+      "sha256": "4bed27b57da237870104dfa5db0c742fcf28207c74d2f35d2788c4ccf88a3768"
+    },
+    {
+      "path": "audit_inventory/clause_register.csv",
+      "size_bytes": 204665,
+      "sha256": "57ecf45b2b5ff8641740a467e5bb943d7fbbbe0c9746434ea0be31dc3dc6fc75"
+    },
+    {
+      "path": "audit_inventory/equation_inventory.csv",
+      "size_bytes": 175522,
+      "sha256": "b8368e42132a6c74c138a6bf158c0348fedc4a7286629ef67ac231532192625d"
+    },
+    {
+      "path": "audit_inventory/extraction_notes.md",
+      "size_bytes": 17219,
+      "sha256": "7f57a59cf30dc5c0c0169a6830b5a8d68afb8122d711ff51beb9aed780b53fcf"
+    },
+    {
+      "path": "audit_inventory/implementation_map.csv",
+      "size_bytes": 190293,
+      "sha256": "7f95d1d70f927dd80c7cc53f62ea68c3d798389d8be9217fab6d2b7e51b4b23c"
+    },
+    {
+      "path": "audit_inventory/procedure_inventory.csv",
+      "size_bytes": 145782,
+      "sha256": "59d31238ef806342a507c898bc7a7fc9fb7e3ce9218497041b651eabcce1ae9b"
+    },
+    {
+      "path": "audit_inventory/table_inventory.csv",
+      "size_bytes": 53344,
+      "sha256": "2ce664819afb76b213157e88599dfd555d33829f260353ee5a734e4829aa4f6b"
+    },
+    {
+      "path": "data/annex_d_table_d1_stability_coefficients.json",
+      "size_bytes": 4554,
+      "sha256": "fb6849e0794a5401ecd6f45b1dec49d63b8e21e4275a27f2cd053ea2f6e76f9b"
+    },
+    {
+      "path": "data/annex_d_tables_d2_to_d6.json",
+      "size_bytes": 28218,
+      "sha256": "bea19025adb1ebf68c23c0c5f7a057966bad8c26cf8ff7f3845f5c881b2d757d"
+    },
+    {
+      "path": "data/annex_e_table_e1_plastic_coefficients.json",
+      "size_bytes": 3056,
+      "sha256": "c480b10104e68735edd444f86c07a53d4f9800fb17749c4c6551525c638f78da"
+    },
+    {
+      "path": "data/annex_e_table_e2_base_plate_coefficients.json",
+      "size_bytes": 1314,
+      "sha256": "c5ad06023654b37904bb1543a12854fca574be78ca70fb4b5014d56d205dad9f"
+    },
+    {
+      "path": "data/annex_k_table_k1_fatigue_groups.json",
+      "size_bytes": 10398,
+      "sha256": "68026d69a8f87371260adcf1557df113ca4cc6ca2ee7fd1e8742ab0252677d31"
+    },
+    {
+      "path": "data/annex_reconstruction_catalog_v0_22.json",
+      "size_bytes": 12196,
+      "sha256": "0e9ea28470c256cf6b1b3db958f137c5e4b60c4419816d6d2891ccf79d379e12"
+    },
+    {
+      "path": "data/annex_zh_tables.json",
+      "size_bytes": 1969,
+      "sha256": "4e4b96a268aa08447477bf1263224f348b420b0f65f16ee14a157662f231eaa8"
+    },
+    {
+      "path": "data/api_freeze_v0_22_reconstructed_r1.json",
+      "size_bytes": 220766,
+      "sha256": "0aed64fdbb04b89b725c00ca6f1c2e69f0bc8d4c628918852bdfa15ba5056a91"
+    },
+    {
+      "path": "data/api_freeze_v0_23_parent_reconstructed_from_parent_package.json",
+      "size_bytes": 178401,
+      "sha256": "001516e2f60a23264aeab1c10f00b76e5f14641d44b9e48da6f92c0d2915a015"
+    },
+    {
+      "path": "data/api_freeze_v0_24_release_api_hardening_reconstructed_r1.json",
+      "size_bytes": 568280,
+      "sha256": "7886571fad4c0a720a7d6735d8ff37aa1900ef8a4a64c678eb9e4ff6156a1ddd"
+    },
+    {
+      "path": "data/engineering_api_freeze_v0_25_reconstructed_r1.json",
+      "size_bytes": 555797,
+      "sha256": "4dbaee6bed79702e6c0007210bdc494e333bfbddbc958d8f035c6919174a47c7"
+    },
+    {
+      "path": "data/external_scad_benchmarks_v0_25_reconstructed_r1.json",
+      "size_bytes": 4911,
+      "sha256": "2f0320e0d2597875e3e18c71e95b44102a79fa449957b24deb6fd305d825f017"
+    },
+    {
+      "path": "data/release_manifest_v0_21_reconstruction_assessment.json",
+      "size_bytes": 40170,
+      "sha256": "7f19c2415817b61d56b6b582d588fdf2d81005ab767bfca9d3010ea8fe71a552"
+    },
+    {
+      "path": "data/release_manifest_v0_22_final_annex_and_release_consolidation_reconstructed_r1.json",
+      "size_bytes": 42314,
+      "sha256": "26176e0d2f4dba6906bfc1bab59a9710fee404ddd0266ca7af6cadadf34d5455"
+    },
+    {
+      "path": "data/release_manifest_v0_23_independent_normative_rebaseline_and_adversarial_audit_reconstructed_r1.json",
+      "size_bytes": 45896,
+      "sha256": "69ae40acb08ad557d37025dc21cdc1d151a78bc866ca3377af65fa3bb473cef5"
+    },
+    {
+      "path": "data/release_manifest_v0_24_release_api_hardening_and_function_level_validation_expansion_reconstructed_r1.json",
+      "size_bytes": 49315,
+      "sha256": "d1a4cc5be638bc38021be9de84c4474d66b4c65840bda27ba503e026ae162732"
+    },
+    {
+      "path": "data/section_15_requirement_classification.json",
+      "size_bytes": 44222,
+      "sha256": "121ed64d5e5b640353ea9562c0ea22d0cb54a1ff288f295fce5b20e03972f7fa"
+    },
+    {
+      "path": "data/source_manifest.json",
+      "size_bytes": 1816,
+      "sha256": "cf752b6805a62bc8969d0705ccda06995c455e377594fe5e632ab8d7575e443d"
+    },
+    {
+      "path": "data/table_10_flange_slenderness_limits.json",
+      "size_bytes": 1714,
+      "sha256": "444346c3dcd48552edad971f384af72c820333fc8f28ea34aac9726ab6175dbd"
+    },
+    {
+      "path": "data/table_10a_constrained_torsion_coefficients.json",
+      "size_bytes": 1030,
+      "sha256": "093a5d71795cda40cfed1ac73fbbca762f92cc9140aa54b130a48b65c6977204"
+    },
+    {
+      "path": "data/table_11_lateral_torsional_slenderness_limits.json",
+      "size_bytes": 547,
+      "sha256": "8bb3536ed20c8cc77620420da562ea9c7d371ed6491e421bf834155f6c19ee5e"
+    },
+    {
+      "path": "data/table_12_web_buckling_c_cr.json",
+      "size_bytes": 343,
+      "sha256": "a152a3092f29f37a4abb9dd300ee88e09e2335d734f1ccfffcd93d13f7763611"
+    },
+    {
+      "path": "data/table_13_compressed_flange_beta.json",
+      "size_bytes": 289,
+      "sha256": "58947ebe263819a9dda35f95a30a0b294d09d2bba8bda30b5245dd215575ad7e"
+    },
+    {
+      "path": "data/table_1_working_condition_factors.json",
+      "size_bytes": 6714,
+      "sha256": "068f9df3e7e4b063be049814d182b12da8e8cef0eeb5340884df0e22b4e85bdd"
+    },
+    {
+      "path": "data/table_20_effective_moment_rules.json",
+      "size_bytes": 754,
+      "sha256": "972b5c3841a060b3a6762753d56bb9a16a098e1ffce8e9fc5b8c1047f1371ab0"
+    },
+    {
+      "path": "data/table_21_out_of_plane_coefficients.json",
+      "size_bytes": 1065,
+      "sha256": "7966f63740bd176f2892beaef64c7bc6d25ac6268da4e506ef29761f8676e5f0"
+    },
+    {
+      "path": "data/table_22_combined_web_slenderness_limits.json",
+      "size_bytes": 2138,
+      "sha256": "265f6da79f0c54ed6fb9adc0871be2b69dbed82cb73a393bc66cf7e1c3c086b5"
+    },
+    {
+      "path": "data/table_23_combined_flange_slenderness_limits.json",
+      "size_bytes": 1295,
+      "sha256": "7a52a69827815b79a8b58a5893d9bee93d411d2e0366384e024c71515d077b84"
+    },
+    {
+      "path": "data/table_2_resistance_formulas.json",
+      "size_bytes": 1028,
+      "sha256": "8b5c9c43b7aa0cc0007a8195e2515c67a639b7c55fdbdeef1cb0583663a7077e"
+    },
+    {
+      "path": "data/table_34_cylindrical_shell_coefficient.json",
+      "size_bytes": 757,
+      "sha256": "30a5a6054ab45d93188877b4c02ad6e3a9dd2c4ad092407a2543e4d82350c4d6"
+    },
+    {
+      "path": "data/table_35_fatigue_resistance.json",
+      "size_bytes": 1411,
+      "sha256": "f6fa3ba594a7efb50c5033c7503bcc2c9da7afc23ce54bff7ad19de14861b09d"
+    },
+    {
+      "path": "data/table_36_fatigue_asymmetry_factor.json",
+      "size_bytes": 1113,
+      "sha256": "aa347a7bc1fe5b0952a5987852807ff9fc739c7265be23519a85bb41608b1b38"
+    },
+    {
+      "path": "data/table_37_lamellar_tearing_risk_factors.json",
+      "size_bytes": 1479,
+      "sha256": "59b5b1d5c94ef39e63598a1bb15cb0123133036a7316323d16a606d45a935234"
+    },
+    {
+      "path": "data/table_38_minimum_fillet_weld_legs.json",
+      "size_bytes": 1425,
+      "sha256": "767b5f78ca4acf17700d7afd387d8aa016ea0d6821aa4044f1ad04b66225f72b"
+    },
+    {
+      "path": "data/table_39_fillet_weld_coefficients.json",
+      "size_bytes": 1775,
+      "sha256": "9f13a6b50247789a69029c36b04298316f509497789b79244e17ebf99d708c93"
+    },
+    {
+      "path": "data/table_3_material_safety_factors.json",
+      "size_bytes": 397,
+      "sha256": "802af12cf052d1eaed89cf6a9c1e6e397c77d8f519706a4bba5c1043ff1ef512"
+    },
+    {
+      "path": "data/table_40_bolt_spacing.json",
+      "size_bytes": 981,
+      "sha256": "289778cb70a26e63e075b71b2987c00572df9c1ae6c37911c1930b051ea8d8cc"
+    },
+    {
+      "path": "data/table_41_bolted_connection_working_factors.json",
+      "size_bytes": 405,
+      "sha256": "272a9c95ab5f6a93b9a62c735dbb22512c0cd6c7c022f62f5fc0cd0a33210a2e"
+    },
+    {
+      "path": "data/table_42_friction_connection_coefficients.json",
+      "size_bytes": 967,
+      "sha256": "7ac638c0fd06eb19c47a4a36ca8280830e0dfb391620aa2944c7f0d02eb8b61b"
+    },
+    {
+      "path": "data/table_43_built_up_beam_flange_connections.json",
+      "size_bytes": 1849,
+      "sha256": "3604dc057db6a3a856a55ebf5d1c73573807595d1f029733190a8ff0c7329774"
+    },
+    {
+      "path": "data/table_44_temperature_joint_distances.json",
+      "size_bytes": 2929,
+      "sha256": "7d947b50c8e7da29d66a14515c5f735e0ef53ccd1888de9e27c950b98e5b9b3d"
+    },
+    {
+      "path": "data/table_45_overhead_line_working_conditions.json",
+      "size_bytes": 2374,
+      "sha256": "457ccce83d774280519250a186571ad3d2671852568f926c0036376ec4842dda"
+    },
+    {
+      "path": "data/table_46_support_deformation_limits.json",
+      "size_bytes": 4151,
+      "sha256": "df8206eb2eab2f0a6d2e96bcdb923883b569abfc2f2c1dfd32f0b2a5b2349c4e"
+    },
+    {
+      "path": "data/table_47_antenna_structure_working_conditions.json",
+      "size_bytes": 2691,
+      "sha256": "dc52a32e6b6e838c7f3d6b354cb4d41ff01fe3efb9a6a0bdd2084115463bbca3"
+    },
+    {
+      "path": "data/table_48_riveted_connection_resistances.json",
+      "size_bytes": 1505,
+      "sha256": "45646f0bbc8c3bfdf0862ef71c0e080ca14cc2413b625ccf2e723d9d1929b705"
+    },
+    {
+      "path": "data/table_4_weld_resistance_formulas.json",
+      "size_bytes": 578,
+      "sha256": "862092463bcd363a8d4a1419891da1c1375f3fe52a7315e52d6cb9d540e5039a"
+    },
+    {
+      "path": "data/table_5_bolt_resistance_factors.json",
+      "size_bytes": 504,
+      "sha256": "2a778605fd2755e2ef5385a8050fa7dd16f639e33d6b320c3759ed94802a3022"
+    },
+    {
+      "path": "data/table_6_single_angle_coefficients.json",
+      "size_bytes": 1361,
+      "sha256": "61528a7b6fec0bb12c06c3e3185e7514d6e45e4e829bedf15a026ecb80e0287b"
+    },
+    {
+      "path": "data/table_7_section_type_coefficients.json",
+      "size_bytes": 1144,
+      "sha256": "8941a99f3fb41a5cf746f1c5271e8e8dbad4ddd3bfb4cd0eb1215c50c636e8b7"
+    },
+    {
+      "path": "data/table_8_built_up_effective_slenderness.json",
+      "size_bytes": 3857,
+      "sha256": "ade6beb9f6463097daeb067a502973b915491e69008018f98714a51e059872b7"
+    },
+    {
+      "path": "data/table_9_wall_slenderness_limits.json",
+      "size_bytes": 2343,
+      "sha256": "bbfff2f678dd14d973bea1dc635c737fd83c70602fb92fd5124b31254837ee80"
+    },
+    {
+      "path": "data/tables_14_to_19_bending_local_stability.json",
+      "size_bytes": 3406,
+      "sha256": "56474d1327dfbe325c00a88754b94280f82ded03b2a8247ada6f5c8e9548a837"
+    },
+    {
+      "path": "data/tables_24_to_33_effective_lengths.json",
+      "size_bytes": 9048,
+      "sha256": "b496b093e5e86a15f705e379dc85df743d19b359ab6e6a1fa27846f3dcf6a62f"
+    },
+    {
+      "path": "docs/assumptions.md",
+      "size_bytes": 9645,
+      "sha256": "128490f8df2ec4cf200ba4e45bdfe52d353115b2aa6b389cde3e3cd2cb6fdc9b"
+    },
+    {
+      "path": "docs/docstring_api_generation_plan.md",
+      "size_bytes": 743,
+      "sha256": "117278f28ee2a2bef29bf99f387d99b9d9ec7f396b7f96caebd68952ac30c7c3"
+    },
+    {
+      "path": "docs/implementation_status.md",
+      "size_bytes": 2429,
+      "sha256": "3d97ed1c15e2d0c70f03412537d259ec09dd91fac555f6ae4da8e608f2979242"
+    },
+    {
+      "path": "docs/limitations.md",
+      "size_bytes": 11075,
+      "sha256": "301b3c19a58f27dd377a024a1c46dffb86fe6116da0d42d449ac3c524ff9084a"
+    },
+    {
+      "path": "docs/model_capabilities_and_input_requirements.md",
+      "size_bytes": 10771,
+      "sha256": "26481d92545018160a29ee7414b705e5801c5b6229395ea8887b0618858ec40e"
+    },
+    {
+      "path": "examples/antenna_structures_example.json",
+      "size_bytes": 3141,
+      "sha256": "00fe9e1d96165bd975454d09aec62f821790b14e1f97d9bae27daef3d5710a28"
+    },
+    {
+      "path": "examples/axial_member_example.json",
+      "size_bytes": 831,
+      "sha256": "54893e567004cf0b76bb4524dda60fb240d08697b3bee4f95ea969afb4c0d7f2"
+    },
+    {
+      "path": "examples/base_plates_and_combined_force_strength_example.json",
+      "size_bytes": 2181,
+      "sha256": "6a7da3fc0cdb3ac79d004b9f7069b1d61a471812360181d208bc58af9a8fb387"
+    },
+    {
+      "path": "examples/beam_column_stability_example.json",
+      "size_bytes": 2465,
+      "sha256": "920733150ff46016c36316e9dc32f689351469b7312d2b64cc89f57abdf8da67"
+    },
+    {
+      "path": "examples/bending_member_example.json",
+      "size_bytes": 3227,
+      "sha256": "3e772a7c7060033f02b5a545e41aebc52bf21a54b60d230c41fd423e7fe39d66"
+    },
+    {
+      "path": "examples/bending_member_local_stability_example.json",
+      "size_bytes": 869,
+      "sha256": "54eb55f84e121477b4920f1747d9caf390c95536840906f5bc182dc38c1681fd"
+    },
+    {
+      "path": "examples/bolted_and_friction_connections_example.json",
+      "size_bytes": 2127,
+      "sha256": "fa5abc45b867a50568914d45281bd2da057acd9c333db5933aff26784a245360"
+    },
+    {
+      "path": "examples/brittle_fracture_and_welded_connections_example.json",
+      "size_bytes": 2167,
+      "sha256": "32b035ab177e452ba64f5a90c0ea11be3edcb4d689ecd54b98240f45c2084b87"
+    },
+    {
+      "path": "examples/built_up_axial_member_example.json",
+      "size_bytes": 1989,
+      "sha256": "98f02b24b57424563706c47bfae99394baf549784c20a268eb57c37540cafcf1"
+    },
+    {
+      "path": "examples/built_up_beam_columns_and_combined_local_stability_example.json",
+      "size_bytes": 1513,
+      "sha256": "1d0f705a3e0807d6f30649058e383a02bdde95ee59afdde847e5573089eeb746"
+    },
+    {
+      "path": "examples/built_up_beam_flange_connections_example.json",
+      "size_bytes": 1144,
+      "sha256": "742b08952071a8862514bd1e6abe1ea531f0cda24179b26b857fe531dd605218"
+    },
+    {
+      "path": "examples/crane_runway_and_bending_stability_example.json",
+      "size_bytes": 2205,
+      "sha256": "4cad65304c045eaf8a2356752000bf2ecb146a8b52e29c3ce2469a89d6bb158d"
+    },
+    {
+      "path": "examples/effective_lengths_and_limiting_slenderness_example.json",
+      "size_bytes": 2057,
+      "sha256": "368d0a2e205efec00ebc9e9336b87230cf003cd5c3ca22b2f12ea0d69366ffa8"
+    },
+    {
+      "path": "examples/fatigue_design_example.json",
+      "size_bytes": 907,
+      "sha256": "c22f664a389545ecc9b23491851e5a48e49c7bd8f8104869260637a03bd606c3"
+    },
+    {
+      "path": "examples/local_stability_example.json",
+      "size_bytes": 1182,
+      "sha256": "88d50eef4e49372f3effdc82636ff8039914573ff8b96773a58e3bba9f2c7366"
+    },
+    {
+      "path": "examples/minimal_case_example.json",
+      "size_bytes": 520,
+      "sha256": "ed7349bac8e1c6697aad1d1764fb1ac0ada2a1f98f4a423505a45199c707f32e"
+    },
+    {
+      "path": "examples/overhead_line_and_switchyard_supports_example.json",
+      "size_bytes": 2230,
+      "sha256": "2aefeee41d7e3ea8ce627c322a56446aa8fb996870c927456892a82a36502154"
+    },
+    {
+      "path": "examples/reconstruction_assessment_example.json",
+      "size_bytes": 3639,
+      "sha256": "5ff858911ad5499a4fd4830847dfbb993bec9f02748add00d144b5ccea01d1e4"
+    },
+    {
+      "path": "examples/sheet_structures_strength_and_stability_example.json",
+      "size_bytes": 1695,
+      "sha256": "e957e0e16a6ac8b93079da1bf38e3d9678505c3343cd78a238eef942c87d0495"
+    },
+    {
+      "path": "examples/structural_detailing_and_support_bearings_example.json",
+      "size_bytes": 1109,
+      "sha256": "da1d2d86acf8ff8e6b3dd2c2c4ce5b0eb48eacaa0034f3936173fbbfb2a7c3b0"
+    },
+    {
+      "path": "main.py",
+      "size_bytes": 3719,
+      "sha256": "6d7f3cf39f8c22e0bf6c039232c3b9e542995e75d71f6f65b53d57ac860ad31f"
+    },
+    {
+      "path": "outputs/.gitkeep",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "outputs/antenna_structures_result.json",
+      "size_bytes": 8163,
+      "sha256": "503dcc9bd5b004cab9dda13be09d9a0015af06a9d9f34c75e44961fe1efbc0d1"
+    },
+    {
+      "path": "outputs/axial_member_result.json",
+      "size_bytes": 2069,
+      "sha256": "f3b19771e98a729bfe240f595b8f34222d91694f1b076b27007103793dfb07dd"
+    },
+    {
+      "path": "outputs/base_plates_and_combined_force_strength_result.json",
+      "size_bytes": 4075,
+      "sha256": "3faf6e5fbbdb1ab321b0c0f527642f34bc3df0725a0511af847092be4ba91301"
+    },
+    {
+      "path": "outputs/beam_column_stability_result.json",
+      "size_bytes": 5248,
+      "sha256": "370d76f7de3bdf4a73a7eb556e23e3a338295ea0cde04f817777e3b4d4f2e311"
+    },
+    {
+      "path": "outputs/bending_member_local_stability_result.json",
+      "size_bytes": 2550,
+      "sha256": "40c9b1fd979d6a36930383ef41c34f12797b79010b0a805e3aefd0542c0b6f63"
+    },
+    {
+      "path": "outputs/bending_member_result.json",
+      "size_bytes": 6696,
+      "sha256": "87d135e1c37b0978ab1ee6bafd7042d5f7b78c7a360f6b8365dbe89f024d0e0b"
+    },
+    {
+      "path": "outputs/bolted_and_friction_connections_result.json",
+      "size_bytes": 6973,
+      "sha256": "3c292dc97e6de84d4cd47d8b44aa4f42416d0660bff1b770245aba5b869e33a9"
+    },
+    {
+      "path": "outputs/brittle_fracture_and_welded_connections_result.json",
+      "size_bytes": 5061,
+      "sha256": "9d7b1062b6cfe4ec81087ef5be53936a4736a58eb5931538817b8de15065d542"
+    },
+    {
+      "path": "outputs/built_up_axial_member_result.json",
+      "size_bytes": 5182,
+      "sha256": "bc49c2b294b867d482dedbb553dcbdfd193b58016727d37188a3cd6099b4386c"
+    },
+    {
+      "path": "outputs/built_up_beam_columns_and_combined_local_stability_result.json",
+      "size_bytes": 3499,
+      "sha256": "955d530bf3d036aeeb47402c5ef29fb2fd4d9bb49ede7cdb6dd34d8ef1ae994a"
+    },
+    {
+      "path": "outputs/built_up_beam_flange_connections_result.json",
+      "size_bytes": 5542,
+      "sha256": "f7e8bdaa7622aee917a9685ba6e96dc1d52d5386a8e3674e2eb2c0e39f3df5f4"
+    },
+    {
+      "path": "outputs/crane_runway_and_bending_stability_result.json",
+      "size_bytes": 4549,
+      "sha256": "a6c424d1fc914e73d4f65ecb25abae3063447de2af49cf430363c8756eff748d"
+    },
+    {
+      "path": "outputs/effective_lengths_and_limiting_slenderness_result.json",
+      "size_bytes": 4270,
+      "sha256": "6bc4cc6282cdd58b48b5c32a423bb22f5fc73ae855bf52b16d97c6bb12ae93b9"
+    },
+    {
+      "path": "outputs/fatigue_design_result.json",
+      "size_bytes": 2687,
+      "sha256": "470f7495c90363eea050f3aad387b653a2a3bf8be534d599a694732d62494065"
+    },
+    {
+      "path": "outputs/local_stability_result.json",
+      "size_bytes": 3402,
+      "sha256": "3a048bb9b93c55ed5ca80c44e8ed7c2eac819cddbce3b42b1356042f881584da"
+    },
+    {
+      "path": "outputs/material_resistance_result.json",
+      "size_bytes": 2238,
+      "sha256": "0a795c4e2c3443e31d49762564bf9c2b669ec2af1607fdb0288352daa36ab350"
+    },
+    {
+      "path": "outputs/overhead_line_and_switchyard_supports_result.json",
+      "size_bytes": 6212,
+      "sha256": "b5d175cce646e16c7a9d24ae560a9239767995284f64a6113c9fbac641c95e7e"
+    },
+    {
+      "path": "outputs/reconstruction_assessment_result.json",
+      "size_bytes": 7936,
+      "sha256": "113ab0f6d69343a1f91aad87de14bbd333e332b69f79a51b0b43483625415f58"
+    },
+    {
+      "path": "outputs/sheet_structures_strength_and_stability_result.json",
+      "size_bytes": 6188,
+      "sha256": "2f072d45b120aba44580baa4cd5db0c0089baead6901ff2fb7d69415522e731a"
+    },
+    {
+      "path": "outputs/structural_detailing_and_support_bearings_result.json",
+      "size_bytes": 7126,
+      "sha256": "691f85c7f43db6172e9aeec6368948fe92c94ef1e4ef8bbadfb49546dd86dbdd"
+    },
+    {
+      "path": "reports/antenna_structures_case_report.json",
+      "size_bytes": 8163,
+      "sha256": "503dcc9bd5b004cab9dda13be09d9a0015af06a9d9f34c75e44961fe1efbc0d1"
+    },
+    {
+      "path": "reports/antenna_structures_case_report.md",
+      "size_bytes": 4057,
+      "sha256": "3952bb19d054f533c97abddbcf4f6a9dbedc022fb6a46fdfe02d3f5bb716e7c5"
+    },
+    {
+      "path": "reports/api_hardening_report_v0_24.json",
+      "size_bytes": 63160,
+      "sha256": "5b034cb738062551511c74a71ada5ab6df3fe7e27bd4f0945c6c6b6756da91d5"
+    },
+    {
+      "path": "reports/api_hardening_report_v0_24.md",
+      "size_bytes": 577,
+      "sha256": "3076bb060656eef792e6fd3e9aedbe939e3eec7d784b96c1fa300f2fb7fe408c"
+    },
+    {
+      "path": "reports/axial_member_case_report.json",
+      "size_bytes": 2069,
+      "sha256": "f3b19771e98a729bfe240f595b8f34222d91694f1b076b27007103793dfb07dd"
+    },
+    {
+      "path": "reports/axial_member_case_report.md",
+      "size_bytes": 1012,
+      "sha256": "47a8029913a50f3025205fc295ce0ea26d3bf0d5da35b10a657737d3d3da528e"
+    },
+    {
+      "path": "reports/base_plates_and_combined_force_strength_case_report.json",
+      "size_bytes": 4075,
+      "sha256": "3faf6e5fbbdb1ab321b0c0f527642f34bc3df0725a0511af847092be4ba91301"
+    },
+    {
+      "path": "reports/base_plates_and_combined_force_strength_case_report.md",
+      "size_bytes": 1502,
+      "sha256": "d2cf2e04f07f9eb2e6153688f144f103d57d76de9689e8ebbb9f478c8ab6e9d0"
+    },
+    {
+      "path": "reports/beam_column_stability_case_report.json",
+      "size_bytes": 5248,
+      "sha256": "370d76f7de3bdf4a73a7eb556e23e3a338295ea0cde04f817777e3b4d4f2e311"
+    },
+    {
+      "path": "reports/beam_column_stability_case_report.md",
+      "size_bytes": 2227,
+      "sha256": "61876b5d30eca613ccb466695434716d525e3ec7120f0559756c97a95ad978f8"
+    },
+    {
+      "path": "reports/bending_member_case_report.json",
+      "size_bytes": 6696,
+      "sha256": "87d135e1c37b0978ab1ee6bafd7042d5f7b78c7a360f6b8365dbe89f024d0e0b"
+    },
+    {
+      "path": "reports/bending_member_case_report.md",
+      "size_bytes": 2776,
+      "sha256": "587cca62c494c049b1b44e957d07a94b9d9ec2a8acecd9012b82106f0a312750"
+    },
+    {
+      "path": "reports/bending_member_local_stability_case_report.json",
+      "size_bytes": 2550,
+      "sha256": "40c9b1fd979d6a36930383ef41c34f12797b79010b0a805e3aefd0542c0b6f63"
+    },
+    {
+      "path": "reports/bending_member_local_stability_case_report.md",
+      "size_bytes": 1352,
+      "sha256": "d98e81d983780ffecb01935064c72b9fa86776c13a43796fa82bfe8a928b5498"
+    },
+    {
+      "path": "reports/bolted_and_friction_connections_case_report.json",
+      "size_bytes": 6973,
+      "sha256": "3c292dc97e6de84d4cd47d8b44aa4f42416d0660bff1b770245aba5b869e33a9"
+    },
+    {
+      "path": "reports/bolted_and_friction_connections_case_report.md",
+      "size_bytes": 3751,
+      "sha256": "f963ad85d378440aa84568926f17c88fcdadb0a9346303d9066a165fe2944e21"
+    },
+    {
+      "path": "reports/brittle_fracture_and_welded_connections_case_report.json",
+      "size_bytes": 5061,
+      "sha256": "9d7b1062b6cfe4ec81087ef5be53936a4736a58eb5931538817b8de15065d542"
+    },
+    {
+      "path": "reports/brittle_fracture_and_welded_connections_case_report.md",
+      "size_bytes": 2294,
+      "sha256": "1edb8eab605f3bca5a33b84afc42c91c01dee68ec1e6bc561b209a4df166384e"
+    },
+    {
+      "path": "reports/built_up_axial_member_case_report.json",
+      "size_bytes": 5182,
+      "sha256": "bc49c2b294b867d482dedbb553dcbdfd193b58016727d37188a3cd6099b4386c"
+    },
+    {
+      "path": "reports/built_up_axial_member_case_report.md",
+      "size_bytes": 2651,
+      "sha256": "e581351ff24b8231be5b0c615b005ca73f1cb9009ac581976dd03bef74fea8ef"
+    },
+    {
+      "path": "reports/built_up_beam_columns_and_combined_local_stability_case_report.json",
+      "size_bytes": 3499,
+      "sha256": "955d530bf3d036aeeb47402c5ef29fb2fd4d9bb49ede7cdb6dd34d8ef1ae994a"
+    },
+    {
+      "path": "reports/built_up_beam_columns_and_combined_local_stability_case_report.md",
+      "size_bytes": 1595,
+      "sha256": "c5ce023b09b0ddcf5c89c505b383eb82d4ad58b2dcb3092886cc0d262d0bcfa5"
+    },
+    {
+      "path": "reports/built_up_beam_flange_connections_case_report.json",
+      "size_bytes": 5542,
+      "sha256": "f7e8bdaa7622aee917a9685ba6e96dc1d52d5386a8e3674e2eb2c0e39f3df5f4"
+    },
+    {
+      "path": "reports/built_up_beam_flange_connections_case_report.md",
+      "size_bytes": 3433,
+      "sha256": "69509323a98ad3fadedebfca13bde8b83c7c9da351e0df01abae452415f062e9"
+    },
+    {
+      "path": "reports/compliance_matrix_v0_22_reconstructed_r1.csv",
+      "size_bytes": 260864,
+      "sha256": "c2687ad190b8d914d944c3b39c442ccc20b36725e4a574bc911e8234502696ec"
+    },
+    {
+      "path": "reports/compliance_matrix_v0_22_reconstructed_r1.json",
+      "size_bytes": 436632,
+      "sha256": "a7dc3ee3d3ee84d97eb16b7e949e6ebf96924b4ff4a40693a1e7ff21fd27d491"
+    },
+    {
+      "path": "reports/compliance_matrix_v0_23_reconstructed_r1.csv",
+      "size_bytes": 190296,
+      "sha256": "9ce9dcba99909ab508d65512cc7ea242245ff8a697d2dc4f709d23f9f1ad969a"
+    },
+    {
+      "path": "reports/compliance_matrix_v0_23_reconstructed_r1.json",
+      "size_bytes": 329990,
+      "sha256": "09301ca22661eae29f251c41186c7d826a21a2f0b24af8cfd1332863d006969d"
+    },
+    {
+      "path": "reports/compliance_matrix_v0_24_reconstructed_r1.json",
+      "size_bytes": 1151,
+      "sha256": "abfb2e5c53bed40a2e7dc58da97a2c9146fbf266e360127d970ab521a6075950"
+    },
+    {
+      "path": "reports/coverage_summary_v0_23.json",
+      "size_bytes": 612,
+      "sha256": "38e28e72c6bed9f356fc17d8cbe382e3ecca585a55d4aa30891941163c86f5d7"
+    },
+    {
+      "path": "reports/coverage_summary_v0_23.md",
+      "size_bytes": 332,
+      "sha256": "d2504bb4aae4bffdcca7eb01f195d8e2e6bafc9b4fe99909ec2a4dc787e065bb"
+    },
+    {
+      "path": "reports/coverage_summary_v0_24.json",
+      "size_bytes": 742,
+      "sha256": "a5698a459a7228f0817e39463e26ce5f318d1bbe481070e15c23cf1d626155d3"
+    },
+    {
+      "path": "reports/coverage_summary_v0_24.md",
+      "size_bytes": 333,
+      "sha256": "edceee651349ed2919641d0ad4472ae50c66a873d4d1f9422badf5eeaeeeaece"
+    },
+    {
+      "path": "reports/coverage_summary_v0_25.json",
+      "size_bytes": 645,
+      "sha256": "0f1814cf8301874a5ebd708e25e368df87e5be5883fff53006545c4db963e4e9"
+    },
+    {
+      "path": "reports/coverage_summary_v0_25.md",
+      "size_bytes": 157,
+      "sha256": "b11f3f07d053d0a3823aab3b3ede3b89d0da4d28a6a2fa4db960513a7443cc7c"
+    },
+    {
+      "path": "reports/crane_runway_and_bending_stability_case_report.json",
+      "size_bytes": 4549,
+      "sha256": "a6c424d1fc914e73d4f65ecb25abae3063447de2af49cf430363c8756eff748d"
+    },
+    {
+      "path": "reports/crane_runway_and_bending_stability_case_report.md",
+      "size_bytes": 1849,
+      "sha256": "1b7d8b9dfb12371228a312ac941dcc6a9440f241d7a89e4a768aaca80846edc1"
+    },
+    {
+      "path": "reports/effective_lengths_and_limiting_slenderness_case_report.json",
+      "size_bytes": 4270,
+      "sha256": "6bc4cc6282cdd58b48b5c32a423bb22f5fc73ae855bf52b16d97c6bb12ae93b9"
+    },
+    {
+      "path": "reports/effective_lengths_and_limiting_slenderness_case_report.md",
+      "size_bytes": 1793,
+      "sha256": "dca7d6ff57ef17edc249bf0cf370780f7919ff40ae7bc746e258c62024f4a29b"
+    },
+    {
+      "path": "reports/external_scad_benchmark_comparison_v0_25_reconstructed_r1.json",
+      "size_bytes": 5161,
+      "sha256": "a22eedfc0469cfb1c3a643fe8071d50e7acaf7b1b0de526fa1ea077b9e83056c"
+    },
+    {
+      "path": "reports/fatigue_design_case_report.json",
+      "size_bytes": 2687,
+      "sha256": "470f7495c90363eea050f3aad387b653a2a3bf8be534d599a694732d62494065"
+    },
+    {
+      "path": "reports/fatigue_design_case_report.md",
+      "size_bytes": 1479,
+      "sha256": "821c8f1151dfc8687b691306424e2c30ddd67a1b876c8761e44a2f51a55c4e12"
+    },
+    {
+      "path": "reports/final_audit_report.json",
+      "size_bytes": 14491,
+      "sha256": "ffe129dc6e1650dfce6894550399c3edb6d28dfdaf6631be327295d0ee4f118c"
+    },
+    {
+      "path": "reports/final_audit_report.md",
+      "size_bytes": 11001,
+      "sha256": "c95365798ded70a94a83af502a4cedde693de7ca30024306b759aeedb03e4ac3"
+    },
+    {
+      "path": "reports/function_coverage_raw_v0_24.json",
+      "size_bytes": 1060258,
+      "sha256": "4feef775e4977931a9ffa0189101b1250b664740308fa20f876b16a4a33e83c0"
+    },
+    {
+      "path": "reports/function_coverage_raw_v0_25.json",
+      "size_bytes": 1078301,
+      "sha256": "95c7e0f4b83d65bb142198093f367874a98831befbeeed425d3abd351dbc1c9c"
+    },
+    {
+      "path": "reports/function_level_validation_v0_24.json",
+      "size_bytes": 280013,
+      "sha256": "affc01ebcc6a0714bff8e9c8dbc672275f3c73de04ff6549751edf54c856f965"
+    },
+    {
+      "path": "reports/function_level_validation_v0_24.md",
+      "size_bytes": 522,
+      "sha256": "7676547663c5b255810576d6f6aa2e157fa77b2ca8bb19dd0773a9cdb2ee5580"
+    },
+    {
+      "path": "reports/independent_normative_rebaseline_v0_23.json",
+      "size_bytes": 23281,
+      "sha256": "387df43135887c0fd9bb451b88f3caf57220d37dcef5fb46a12245ef1afc2109"
+    },
+    {
+      "path": "reports/independent_normative_rebaseline_v0_23.md",
+      "size_bytes": 2408,
+      "sha256": "b555f41bb87c548afda742d690732e6479c8025f85611c152a24f74445710cf2"
+    },
+    {
+      "path": "reports/independent_validation_report_v0_23.json",
+      "size_bytes": 53916,
+      "sha256": "fa5e167aae0e44b24934047b66751041615ae22c8357299db00ee6c6ec04130c"
+    },
+    {
+      "path": "reports/independent_validation_report_v0_23.md",
+      "size_bytes": 1081,
+      "sha256": "388e88f0f6e8a304a116826ab0fd73116cfe62f4f9d9bbcd9bba30c8332a14e6"
+    },
+    {
+      "path": "reports/local_stability_case_report.json",
+      "size_bytes": 3402,
+      "sha256": "3a048bb9b93c55ed5ca80c44e8ed7c2eac819cddbce3b42b1356042f881584da"
+    },
+    {
+      "path": "reports/local_stability_case_report.md",
+      "size_bytes": 1866,
+      "sha256": "a74c0ac5fb03b8c4d62a49935d24c929de5f352bdec6d924920afdbf4335cf64"
+    },
+    {
+      "path": "reports/material_resistance_case_report.json",
+      "size_bytes": 2238,
+      "sha256": "0a795c4e2c3443e31d49762564bf9c2b669ec2af1607fdb0288352daa36ab350"
+    },
+    {
+      "path": "reports/material_resistance_case_report.md",
+      "size_bytes": 1443,
+      "sha256": "53e2c6823a68ae1da232402fcdaad5b6f0b03eafdb1ad910872d831475b01262"
+    },
+    {
+      "path": "reports/overhead_line_and_switchyard_supports_case_report.json",
+      "size_bytes": 6212,
+      "sha256": "b5d175cce646e16c7a9d24ae560a9239767995284f64a6113c9fbac641c95e7e"
+    },
+    {
+      "path": "reports/overhead_line_and_switchyard_supports_case_report.md",
+      "size_bytes": 3129,
+      "sha256": "d812dc7f55fe5ac86d3885741d1955556cd39c28e603f91589754183d02d716d"
+    },
+    {
+      "path": "reports/phase_0_23_source_recheck.md",
+      "size_bytes": 1142,
+      "sha256": "049d7e1c9b46a43e533a4c96532ee66e99ee68c02b284b3ad4dffdfa642b8a9f"
+    },
+    {
+      "path": "reports/phase_0_25_validation_report.json",
+      "size_bytes": 18014,
+      "sha256": "52e6bd8676c4879d4611ca82b72cf5cc97caea84d3a317ef5ec0657804a417e3"
+    },
+    {
+      "path": "reports/phase_0_25_validation_report.md",
+      "size_bytes": 661,
+      "sha256": "4cecf8edb5fec37152526ea984cc5eaed441657dc12bde93b8cf913d33006494"
+    },
+    {
+      "path": "reports/reconstruction_assessment_case_report.json",
+      "size_bytes": 7936,
+      "sha256": "113ab0f6d69343a1f91aad87de14bbd333e332b69f79a51b0b43483625415f58"
+    },
+    {
+      "path": "reports/reconstruction_assessment_case_report.md",
+      "size_bytes": 3449,
+      "sha256": "c748f346f66411396296a90984f96ec3a2b40054e219fd7fd7736c8c473a8bbd"
+    },
+    {
+      "path": "reports/reconstruction_assessment_v0_22.json",
+      "size_bytes": 1118,
+      "sha256": "d18e064148ed5e84af180b178bf9aaccf3102fdbf0f53b8f56c6fcb04a7ff365"
+    },
+    {
+      "path": "reports/reconstruction_provenance_v0_22.md",
+      "size_bytes": 1378,
+      "sha256": "d04cb1ce033d7507d18d15b33464976b9e8266ca7ee58cc74374ad81b78ecfd7"
+    },
+    {
+      "path": "reports/release_qualification_v0_23.json",
+      "size_bytes": 1478,
+      "sha256": "84f7d7c377c4ae3bb87ccedd227e241124ebdaf4d50170504d8f30a21933e285"
+    },
+    {
+      "path": "reports/release_qualification_v0_24.json",
+      "size_bytes": 1695,
+      "sha256": "dd03f9a52fd3a800d05ad6205fe36c58293cc62367e223d6c6ae1bdd728aa6a9"
+    },
+    {
+      "path": "reports/release_qualification_v0_25.json",
+      "size_bytes": 1529,
+      "sha256": "88df1e9c3e5cee3905e42795e8a609e85f3a0a4edc5b0ea72697c779652bc82c"
+    },
+    {
+      "path": "reports/remediation_register_v0_23.json",
+      "size_bytes": 2826,
+      "sha256": "989e0c067680e592193f09f3805b0065f8a6af7e51caeac1d63423404fbdf90a"
+    },
+    {
+      "path": "reports/remediation_register_v0_24.json",
+      "size_bytes": 2818,
+      "sha256": "b513a88a2b2629873f07e8c9f4edf4575bc78a6c0f72a6a94938692ed44615a8"
+    },
+    {
+      "path": "reports/sheet_structures_strength_and_stability_case_report.json",
+      "size_bytes": 6188,
+      "sha256": "2f072d45b120aba44580baa4cd5db0c0089baead6901ff2fb7d69415522e731a"
+    },
+    {
+      "path": "reports/sheet_structures_strength_and_stability_case_report.md",
+      "size_bytes": 3766,
+      "sha256": "31a30b2b88d1aadb3c6c8eb57e93386c079284015406ad45074bcdb5a4cd6f51"
+    },
+    {
+      "path": "reports/structural_detailing_and_support_bearings_case_report.json",
+      "size_bytes": 7126,
+      "sha256": "691f85c7f43db6172e9aeec6368948fe92c94ef1e4ef8bbadfb49546dd86dbdd"
+    },
+    {
+      "path": "reports/structural_detailing_and_support_bearings_case_report.md",
+      "size_bytes": 4793,
+      "sha256": "b6b17c7a4993c2981ab057e20d1069f7f0823aef0161c00c59fc0f0a2a970f22"
+    },
+    {
+      "path": "reports/validation_evidence_taxonomy_v0_23.json",
+      "size_bytes": 1020,
+      "sha256": "373df13108f9f021c5321049f074d0377537ea379a94cee775b5e0f8d571eb84"
+    },
+    {
+      "path": "reports/validation_evidence_taxonomy_v0_24.json",
+      "size_bytes": 1249,
+      "sha256": "a161fdb504192108c20036be781181ed869d392c2b162af6ff3f5125dc98959b"
+    },
+    {
+      "path": "reports/validation_evidence_taxonomy_v0_25.json",
+      "size_bytes": 1212,
+      "sha256": "c19c88a626e68db5d2888349b1e538425c853b33eeef5947873149c446185948"
+    },
+    {
+      "path": "reports/validation_report.json",
+      "size_bytes": 915860,
+      "sha256": "a6ffaf54ea454d0cdcb4528a8e9fda7884d03551f6466feea24c38a81a3c4f25"
+    },
+    {
+      "path": "reports/validation_report.md",
+      "size_bytes": 141031,
+      "sha256": "57ddf56c8ff87c61f709b3291ed3707586e551b368311acb3e2f34306b6dd9c3"
+    },
+    {
+      "path": "run_case.py",
+      "size_bytes": 611,
+      "sha256": "863d35e7b5a2eb5e0b0eb86234a5d6030694708d89de4c965e847586cb5d14be"
+    },
+    {
+      "path": "schemas/antenna_structures_case.schema.json",
+      "size_bytes": 10140,
+      "sha256": "ffa27d187cae2995fb3a56cb399efed5d62c41a94f0d37b0c2086e12c3f8efec"
+    },
+    {
+      "path": "schemas/axial_member_case.schema.json",
+      "size_bytes": 2896,
+      "sha256": "201cf12cf50ca08ab5d71d97a7de8c7ff42576275d261e11cc1b49b23d756ce3"
+    },
+    {
+      "path": "schemas/base_plates_and_combined_force_strength_case.schema.json",
+      "size_bytes": 6931,
+      "sha256": "3d6088adfbe39e6004b12c40d8cf177f16b920ee682b9cc2b7997869931abf94"
+    },
+    {
+      "path": "schemas/beam_column_stability_case.schema.json",
+      "size_bytes": 8409,
+      "sha256": "82a6350c309a2dd47c3d95012ccc208422e03d69ba73d3019dd1d563e26a249b"
+    },
+    {
+      "path": "schemas/bending_member_case.schema.json",
+      "size_bytes": 10089,
+      "sha256": "240f39e7cb227d3df225351caeccd2ba80b809122c9e628d1b8ad264dcb772c1"
+    },
+    {
+      "path": "schemas/bending_member_local_stability_case.schema.json",
+      "size_bytes": 2616,
+      "sha256": "9541231e26afe36d99f2f22ccf10863861869c915f83ba1bb055c91d096fabdd"
+    },
+    {
+      "path": "schemas/bolted_and_friction_connections_case.schema.json",
+      "size_bytes": 6847,
+      "sha256": "2a3af6cf870158dc89861bcd452b5b5d82a1e9350928e70f1d2d85ba4751bbdf"
+    },
+    {
+      "path": "schemas/brittle_fracture_and_welded_connections_case.schema.json",
+      "size_bytes": 5589,
+      "sha256": "0b51834c411a8b5e8550ea85c1713741267a0504fcdef6f9e3f60996addbb944"
+    },
+    {
+      "path": "schemas/built_up_axial_member_case.schema.json",
+      "size_bytes": 6866,
+      "sha256": "83ba2ecaafd2da3d75e37ebdc82bb0323da79f980e0f9a14cc90f94f320e583c"
+    },
+    {
+      "path": "schemas/built_up_beam_columns_and_combined_local_stability_case.schema.json",
+      "size_bytes": 4952,
+      "sha256": "92cedf8c61b427b2f2a1f2e20fd2d58576114f8501f0b774c6a38cb8de591239"
+    },
+    {
+      "path": "schemas/built_up_beam_flange_connections_case.schema.json",
+      "size_bytes": 3718,
+      "sha256": "037583084e3cf9c880934cc0e1c2f0ef79c5f4cac57f1df3d397813bba07ef40"
+    },
+    {
+      "path": "schemas/crane_runway_and_bending_stability_case.schema.json",
+      "size_bytes": 7453,
+      "sha256": "b1d8fc32480be9f29035b8654cb5127f3d71f18754823024cffdaa1145297d1a"
+    },
+    {
+      "path": "schemas/effective_lengths_and_limiting_slenderness_case.schema.json",
+      "size_bytes": 7554,
+      "sha256": "9bd415cd7fcd2aa23d4f24ab4153648ac79d940f7f243651497b9bb1bfa32c17"
+    },
+    {
+      "path": "schemas/fatigue_design_case.schema.json",
+      "size_bytes": 2772,
+      "sha256": "3ff49b57e903e6af2b890005567724d7aaa61d5a4255b7bbd03bc7266c60c531"
+    },
+    {
+      "path": "schemas/golden_cross_implementation_case.schema.json",
+      "size_bytes": 1057,
+      "sha256": "7dd036c80bbce85bd9464360d927fa6a8ffdc9ff12866698bda43179c9c6a750"
+    },
+    {
+      "path": "schemas/local_stability_case.schema.json",
+      "size_bytes": 3353,
+      "sha256": "1942b5a7053c28f1d4927957c83da84cd2caa2a7226b942d168cd84f29d921e1"
+    },
+    {
+      "path": "schemas/minimal_case.schema.json",
+      "size_bytes": 1986,
+      "sha256": "439fbe7c7dfeb66765198a02d43f331b191609160b0a473286a12d862cf43cb1"
+    },
+    {
+      "path": "schemas/overhead_line_and_switchyard_supports_case.schema.json",
+      "size_bytes": 8199,
+      "sha256": "6a054a7a04504554bb189d6fec80399d691b2e41432b2c8a74338931739b7ae2"
+    },
+    {
+      "path": "schemas/reconstruction_assessment_case.schema.json",
+      "size_bytes": 10782,
+      "sha256": "6aa788a60f9091ded1f38f847abe4804aeee09370f483be2758fb07d8b3a57b8"
+    },
+    {
+      "path": "schemas/sheet_structures_strength_and_stability_case.schema.json",
+      "size_bytes": 5517,
+      "sha256": "200542bb20deb94b33de7ec632fbb30af6f85b705a5573716e36f3be3065f0fb"
+    },
+    {
+      "path": "schemas/structural_detailing_and_support_bearings_case.schema.json",
+      "size_bytes": 2920,
+      "sha256": "ea987023918950f96bf1ca4ca416d021c7715b8d2093f2cd5aec4e03bffcf998"
+    },
+    {
+      "path": "standard_core/__init__.py",
+      "size_bytes": 203,
+      "sha256": "e4a79035fdc042945480f60f856d166caa893c6d915fb01a53cd24d1dad4c4ee"
+    },
+    {
+      "path": "standard_core/annex_data.py",
+      "size_bytes": 545,
+      "sha256": "cf416462baff16f10b40915d758f476c8a435f42d15337734d5b7a093a77d0b7"
+    },
+    {
+      "path": "standard_core/antenna_structures.py",
+      "size_bytes": 38068,
+      "sha256": "32715342ff318bb3fab419e0dc7e8bc93bd9c080885159093f60c8f91494d174"
+    },
+    {
+      "path": "standard_core/api_hardening.py",
+      "size_bytes": 18084,
+      "sha256": "1854a43523ec93d13e4d7f9f441c5ad7422fc1ef8fbe522ffd914d1c2628b107"
+    },
+    {
+      "path": "standard_core/axial_members.py",
+      "size_bytes": 42295,
+      "sha256": "594270ee02f2c539d59483d594004a0f39f45a494cae90e9965d88d24805aeb0"
+    },
+    {
+      "path": "standard_core/base_plates_and_combined_force_strength.py",
+      "size_bytes": 59977,
+      "sha256": "d17e5e49031de8b8ff05a69e24f2bd85c79cd36f28a72476306b9da415c7527b"
+    },
+    {
+      "path": "standard_core/beam_column_stability.py",
+      "size_bytes": 118976,
+      "sha256": "d51367fcf16f60956862953c7644b91a6a22370f712a347650f555627808d16d"
+    },
+    {
+      "path": "standard_core/bending_member_local_stability.py",
+      "size_bytes": 109621,
+      "sha256": "4e3266631b8a30cc593ca2e60161e84d51d12f35ea1f3dae3ddb893a4fd9cb2d"
+    },
+    {
+      "path": "standard_core/bending_members.py",
+      "size_bytes": 130183,
+      "sha256": "7864213b534f58405b86a9428d37edb1f17b06d95941300a06ca160ba9abc890"
+    },
+    {
+      "path": "standard_core/bolted_and_friction_connections.py",
+      "size_bytes": 63680,
+      "sha256": "fc889f13e9bdc25f496de72dc4159c3d073f0e4833c94115b004666570628d4b"
+    },
+    {
+      "path": "standard_core/brittle_fracture_and_welded_connections.py",
+      "size_bytes": 120152,
+      "sha256": "a63096495360f794d21c3efb58c37ae1e55b4ff3aacfc13c4f150c9b8ea15927"
+    },
+    {
+      "path": "standard_core/built_up_axial_members.py",
+      "size_bytes": 81214,
+      "sha256": "b5d1f3c576e0c300460d97b3980e82e71612b381eab119c3b4fb2303cbdf2de6"
+    },
+    {
+      "path": "standard_core/built_up_beam_columns_and_combined_local_stability.py",
+      "size_bytes": 108776,
+      "sha256": "5cf993453bf294467a7796ad5dd5ee663c0a1cccf98ca7ebdf69fdeb33384fb5"
+    },
+    {
+      "path": "standard_core/built_up_beam_flange_connections.py",
+      "size_bytes": 46029,
+      "sha256": "f66b2288262e0ff33fd0b68dd3069effcdeb8dab46f44726178392241702be73"
+    },
+    {
+      "path": "standard_core/crane_runway_and_bending_stability.py",
+      "size_bytes": 131594,
+      "sha256": "d8caf0ad0c7fffbc853c38f1708b3704f98c5b455cb4ab522ae19081a1db01ef"
+    },
+    {
+      "path": "standard_core/effective_lengths_and_limiting_slenderness.py",
+      "size_bytes": 102774,
+      "sha256": "3685a02a94f643fc743de48d604f2f94f21a700e2301e01616c10bd3618dbb49"
+    },
+    {
+      "path": "standard_core/equations.py",
+      "size_bytes": 28978,
+      "sha256": "e0560771d92a1cab3c541b6bec8ad72618c6defbe3d928d1320f220fc35884b7"
+    },
+    {
+      "path": "standard_core/fatigue_design.py",
+      "size_bytes": 40265,
+      "sha256": "a455e0a3eff9ff72ab25634b59afae381708b3fd405184d238349d618f167dda"
+    },
+    {
+      "path": "standard_core/final_audit.py",
+      "size_bytes": 37360,
+      "sha256": "c777840083b30b423fc570c7a710cb74954f4da6255b3d5637c2aacb5d1656f6"
+    },
+    {
+      "path": "standard_core/function_level_validation.py",
+      "size_bytes": 21339,
+      "sha256": "ee0f2374f948e61368e61b2a4ec62b50e0aef52cc8776ed3f75e6b6100ffe500"
+    },
+    {
+      "path": "standard_core/general_requirements.py",
+      "size_bytes": 3149,
+      "sha256": "4221cb99865bae86c51f6bceca10e7a4a2a87eb44b93da58944f3c20e3bfed36"
+    },
+    {
+      "path": "standard_core/independent_validation.py",
+      "size_bytes": 28595,
+      "sha256": "6b479da655f9d03eb2e6f614feb56a271840fb326a39fec56d4ef9d39299ec32"
+    },
+    {
+      "path": "standard_core/inventory.py",
+      "size_bytes": 4660,
+      "sha256": "3b223da238714f19b7cfb1cd03d85dddc3e071a15b60b7e2c10bb882734ee69e"
+    },
+    {
+      "path": "standard_core/local_stability.py",
+      "size_bytes": 89739,
+      "sha256": "4dca79e4d5e0db4c36948a85d0ba82479293dfe786960f21a96689e6a2c421fa"
+    },
+    {
+      "path": "standard_core/material_resistance.py",
+      "size_bytes": 58327,
+      "sha256": "866b7b2aac4b8ce5745d8dba968d172f0c27392cbcf8a76d63bdb1152f339439"
+    },
+    {
+      "path": "standard_core/normative_rebaseline.py",
+      "size_bytes": 17618,
+      "sha256": "6a0997984a5707122acbac885f7947f92f6636a5610f5e3c91ff207f2b5757e7"
+    },
+    {
+      "path": "standard_core/overhead_line_and_switchyard_supports.py",
+      "size_bytes": 39928,
+      "sha256": "57427ba6974c15d71f2b3db9582e6265082998a1c724a462c42acd8627a52aa3"
+    },
+    {
+      "path": "standard_core/phase_0_25_validation.py",
+      "size_bytes": 24395,
+      "sha256": "1a9497262297a0764d109588636d85990e8ed46dc9ab35a46c2bea4576c0952d"
+    },
+    {
+      "path": "standard_core/reconstruction_assessment.py",
+      "size_bytes": 56857,
+      "sha256": "313bd1dc260ba7a5b80059ef3cb3573c08887aa8f8610475d088a5759605a902"
+    },
+    {
+      "path": "standard_core/release_metadata.py",
+      "size_bytes": 645,
+      "sha256": "4e3672abb14f32fb42492ea1d4f754c674e709f4c25df7e641ed0481208bbcfe"
+    },
+    {
+      "path": "standard_core/runner.py",
+      "size_bytes": 145092,
+      "sha256": "730a694244a58e230be824cbddce667f9d438ef5d7e4f1651cc5397a16b69d22"
+    },
+    {
+      "path": "standard_core/schema_validation.py",
+      "size_bytes": 6880,
+      "sha256": "1f60c58e40fe6c4ffdf1ce22999e69805eeb91a4dd8f7366995819076930903e"
+    },
+    {
+      "path": "standard_core/sheet_structures_strength_and_stability.py",
+      "size_bytes": 100091,
+      "sha256": "2d7fb1e9eb61b06b44e0d8cefa2d976254892850d68ec8e5e44902f7caedfc70"
+    },
+    {
+      "path": "standard_core/structural_detailing_and_support_bearings.py",
+      "size_bytes": 27674,
+      "sha256": "c4428f57220e8acc84de2ebfd0bb9e5b4779b1e82d1f1db4be87f0cb62e463e5"
+    },
+    {
+      "path": "standard_core/tables.py",
+      "size_bytes": 5534,
+      "sha256": "ef8508f05b14c6106cce34d772080f84d40b641f4455c5dc707770524c3df6c2"
+    },
+    {
+      "path": "standard_core/validation.py",
+      "size_bytes": 111704,
+      "sha256": "c947064673f6a70dcfe5aa00a4644399b4af6b8d0effd7a8175177b6a3edface"
+    },
+    {
+      "path": "tests/test_antenna_structures.py",
+      "size_bytes": 7924,
+      "sha256": "c26a391ad0e5c7ebb701b7b21db6c07e58d745ab345fb613a6bef0fdcc7c8b7d"
+    },
+    {
+      "path": "tests/test_axial_members.py",
+      "size_bytes": 5837,
+      "sha256": "ba2b8e6a113f4dd1bc58939ffadb16ba9c24d5cf77b3e7f57f627e6ad5e00949"
+    },
+    {
+      "path": "tests/test_base_plates_and_combined_force_strength.py",
+      "size_bytes": 7905,
+      "sha256": "a240364098d303854f7e8838c059c1a4f1783a62e381ef58f0f4b2f963f25fdd"
+    },
+    {
+      "path": "tests/test_beam_column_stability.py",
+      "size_bytes": 9934,
+      "sha256": "4eb71faf03e7ed69e8a0438b230dc8fa6bd06f85831e894966d3a31c8a9cfd28"
+    },
+    {
+      "path": "tests/test_bending_member_local_stability.py",
+      "size_bytes": 9861,
+      "sha256": "4b6747752221aafa43ea1e7ea391696675f41d4e40436ec5e30b4b701338d2d5"
+    },
+    {
+      "path": "tests/test_bending_members.py",
+      "size_bytes": 10977,
+      "sha256": "0bc0a347ba104672d4a986128c4defc42e172d2331b273c33bb4d60cfda0d1b6"
+    },
+    {
+      "path": "tests/test_bolted_and_friction_connections.py",
+      "size_bytes": 4585,
+      "sha256": "bf16d3c9b6b7245e9f26b0d0f3878a7346e71bb82eb8d7672dc8d5d7982e2949"
+    },
+    {
+      "path": "tests/test_brittle_fracture_and_welded_connections.py",
+      "size_bytes": 11014,
+      "sha256": "c2dd7ef568247e3fa44960f4913f54366eef56a2749c33aeb80c2f95f007fb4f"
+    },
+    {
+      "path": "tests/test_built_up_axial_members.py",
+      "size_bytes": 9577,
+      "sha256": "1e0f279678fc4a0d683e91dc297509514675ee18376a4c3d76548c474005b0c8"
+    },
+    {
+      "path": "tests/test_built_up_beam_columns_and_combined_local_stability.py",
+      "size_bytes": 7119,
+      "sha256": "daa5fc5167e04e7a8d83d6d5a6b71c8e728a1d22ad9267ac59d459281b5cefa7"
+    },
+    {
+      "path": "tests/test_built_up_beam_flange_connections.py",
+      "size_bytes": 3874,
+      "sha256": "239ded99a6fa0b2a8cefbf24114f425642c3538f339663a44eb8bcca14aa4b10"
+    },
+    {
+      "path": "tests/test_crane_runway_and_bending_stability.py",
+      "size_bytes": 13331,
+      "sha256": "01851abe500946375bc4610bf4b71a975c55d038282722204220786f93023535"
+    },
+    {
+      "path": "tests/test_docstrings.py",
+      "size_bytes": 342,
+      "sha256": "2208640cbdeda82cb197cab5ddd93e1d21ef1d2458b4834b10020a3f11c44bf9"
+    },
+    {
+      "path": "tests/test_effective_lengths_and_limiting_slenderness.py",
+      "size_bytes": 4943,
+      "sha256": "19c9fb16791c42686581782a6984728068d9eb6fb9ee45e6a088829fe8c5fa87"
+    },
+    {
+      "path": "tests/test_equations.py",
+      "size_bytes": 1750,
+      "sha256": "2984117ecc33e0006546149ce208ad21f9615c34a8a9437eec0cb2d87a9da7b8"
+    },
+    {
+      "path": "tests/test_fatigue_design.py",
+      "size_bytes": 6975,
+      "sha256": "e040d47406336f7f54fce8b2c43c05f071fa4fd94365705bed556a58fc1767a7"
+    },
+    {
+      "path": "tests/test_final_annex_and_release_consolidation.py",
+      "size_bytes": 2713,
+      "sha256": "53fda574c28af22a0ed6a0e4f2502168411e15fe10a43291365f3f7bc34b7c7a"
+    },
+    {
+      "path": "tests/test_final_audit.py",
+      "size_bytes": 1204,
+      "sha256": "25b41e2a798c8e35cdf36e973f083b13314c246d55cc2ea3516def2ca4b25137"
+    },
+    {
+      "path": "tests/test_local_stability.py",
+      "size_bytes": 8371,
+      "sha256": "d0f3538fa58e4da9dfd072c08a5b7fe44c318b7524fa60ca01429c35463da5df"
+    },
+    {
+      "path": "tests/test_material_resistance.py",
+      "size_bytes": 7540,
+      "sha256": "c7ebfa18dd8aca0e7169dfd8b053b669a0fc7f703bbff938cebe4190bf06596c"
+    },
+    {
+      "path": "tests/test_overhead_line_and_switchyard_supports.py",
+      "size_bytes": 7943,
+      "sha256": "0d9507cd277a9eff13ef1ed726e3eecfeec30d55bb4f16ca0b5d93ad4c6bf586"
+    },
+    {
+      "path": "tests/test_phase_0_23_independent_normative_rebaseline.py",
+      "size_bytes": 2786,
+      "sha256": "9b46c4ccb691e7e58b64c269c0725a27a2e5fecd21ecabbaef6f55b553168a86"
+    },
+    {
+      "path": "tests/test_phase_0_24_direct_function_coverage.py",
+      "size_bytes": 1937,
+      "sha256": "6c712c6081f7ffbd88b814c898c2e1ff5d255bed3a4b0695038a4aa1df6389af"
+    },
+    {
+      "path": "tests/test_phase_0_24_release_api_hardening.py",
+      "size_bytes": 2864,
+      "sha256": "7605ef5b7af8b385b2b07550a22bee42f8480b906e26e6a8461a1d23daa09fbe"
+    },
+    {
+      "path": "tests/test_phase_0_25_validation.py",
+      "size_bytes": 3077,
+      "sha256": "4f49f1f39775751930085ca9611f442274e505c0f3d7420229e46894a2f50001"
+    },
+    {
+      "path": "tests/test_reconstruction_assessment.py",
+      "size_bytes": 10054,
+      "sha256": "62725417a4b14104731e3ca172aae6f6922781f85f23e20ed9fc018d90029a9d"
+    },
+    {
+      "path": "tests/test_release_manifest.py",
+      "size_bytes": 1384,
+      "sha256": "e04f628388bc237d895e742ffa988ac531736959cdc82cd447346ce7da891c32"
+    },
+    {
+      "path": "tests/test_schemas.py",
+      "size_bytes": 19704,
+      "sha256": "abeea7481d369f692d42493ece6416c4c2a7bdc4d9b2bd414172d86b9fb26f9a"
+    },
+    {
+      "path": "tests/test_sheet_structures_strength_and_stability.py",
+      "size_bytes": 13970,
+      "sha256": "389ac1ecbdfbdd6fb94d1e1666ebe6824ba142f80694283e600758954c4e1656"
+    },
+    {
+      "path": "tests/test_structural_detailing_and_support_bearings.py",
+      "size_bytes": 4786,
+      "sha256": "1e9654af72340481030abed3c6cb36fa587c5ebb0506bfe29afd4a0e6f62a11b"
+    },
+    {
+      "path": "tests/test_tables.py",
+      "size_bytes": 4347,
+      "sha256": "0864f8d117c0ec8442673faa46562b906459513f5aff1a39c4eecba667418092"
+    },
+    {
+      "path": "tests/test_validation_examples.py",
+      "size_bytes": 4174,
+      "sha256": "efa562e1449d6e68c36a41dac37279587e992992021c8143288e7edf0dc62e71"
+    }
+  ]
+}

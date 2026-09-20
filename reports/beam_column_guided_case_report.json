@@ -1,0 +1,218 @@
+{
+  "case_id": "N5-GUIDED-BEAMCOL-001",
+  "standard": "СП 16.13330.2017",
+  "release_stage": "v0.67_fire_bridge2_qualified_sp16_complex_state_handoff_r1",
+  "action": "beam_column_guided",
+  "engineering_calculation_performed": true,
+  "inputs": {
+    "case_id": "N5-GUIDED-BEAMCOL-001",
+    "standard": "СП 16.13330.2017",
+    "action": "beam_column_guided",
+    "member_form": "solid_open",
+    "section_weakening": "none",
+    "same_load_combination_confirmed": true,
+    "section_classification_confirmed": true,
+    "major_stiffness_plane_coincides_with_symmetry_plane": true,
+    "axial_force_n": 300000.0,
+    "moment_x_n_mm": 9848814.07173532,
+    "moment_y_n_mm": 0.0,
+    "bimoment_n_mm2": 0.0,
+    "effective_length_x_mm": 2917.8229719042643,
+    "effective_length_y_mm": 1125.1659837311445,
+    "working_condition_factor": 0.95,
+    "annex_d2_section_type_x": "5",
+    "annex_d2_section_type_y": "5",
+    "annex_d2_flange_to_web_area_ratio_x": 1.7538461538461538,
+    "annex_d2_flange_to_web_area_ratio_y": 0.285,
+    "table_21_section_type": "1",
+    "minimum_net_sectorial_section_modulus_mm4": 1000000000.0,
+    "strength": {
+      "method": "auto",
+      "direct_dynamic_load": false,
+      "shear_stress_n_mm2": 0.0,
+      "clause_8_5_8_confirmed": true,
+      "clause_8_5_18_confirmed": true,
+      "annex_e1_section_type": "1",
+      "annex_e1_flange_to_web_area_ratio": 1.7538461538461538,
+      "section_is_asymmetric_about_axis_perpendicular_to_bending_plane": false
+    },
+    "stability": {},
+    "gross_area_mm2": 5964.0,
+    "inertia_x_mm4": 26291600.0,
+    "inertia_y_mm4": 8796600.0,
+    "compressed_section_modulus_x_mm3": 328600.0,
+    "compressed_section_modulus_y_mm3": 115740.0,
+    "radius_x_mm": 66.39565976134433,
+    "radius_y_mm": 38.40507385996198,
+    "table7_section_type_x": "b",
+    "table7_section_type_y": "c",
+    "normative_yield_resistance_n_mm2": 245.0,
+    "design_yield_resistance_n_mm2": 240.0,
+    "design_ultimate_resistance_n_mm2": 360.0,
+    "design_shear_resistance_n_mm2": 135.33333333333331,
+    "elastic_modulus_n_mm2": 206000.0,
+    "ultimate_resistance_safety_factor": 1.3,
+    "net_area_mm2": 5964.0,
+    "minimum_net_section_modulus_x_mm3": 328600.0,
+    "minimum_net_section_modulus_y_mm3": 115740.0,
+    "net_inertia_x_mm4": 26291600.0,
+    "net_inertia_y_mm4": 8796600.0
+  },
+  "resolution_trace": {
+    "profile": {
+      "profile_ref": {
+        "family_id": 35,
+        "designation": "15К4",
+        "axis": "x"
+      },
+      "catalog_status": "INTERIM_IMPORTED_FROM_NORMCAD_PENDING_ORIGINAL_GOST_AUDIT",
+      "original_gost_audit_complete": false,
+      "shape_group": "I_ROLLED_DSYMM",
+      "torsion_policy": "CURRENT_SP16_ANNEX_D_FORMULA",
+      "torsional_inertia_mm4": 497080.0,
+      "source": {
+        "imported_from": "NormCAD historical profile MDB capture",
+        "normcad_source_sha256": "f7f967e5f22382eb0e20606be73189d2bc6db8f86588d66584fd49b5c4deb4e8",
+        "row_id": 3387,
+        "family_caption": "Двутавры колонные с параллельными гранями полок по ГОСТ Р 57837-2017",
+        "product_standard_label_unverified": "ГОСТ Р 57837-2017"
+      }
+    },
+    "material": {
+      "material_ref": {
+        "product_form": "parallel_flange_i",
+        "steel_grade": "C255Б-1",
+        "thickness_mm": 15.0,
+        "material_safety_category": "other_conforming",
+        "design_resistance_source": "annex_tabulated"
+      },
+      "selected_design_resistance_source": "annex_tabulated",
+      "resolved_values": {
+        "normative_yield_resistance_n_mm2": 245.0,
+        "design_yield_resistance_n_mm2": 240.0,
+        "design_ultimate_resistance_n_mm2": 360.0,
+        "design_shear_resistance_n_mm2": 135.33333333333331,
+        "elastic_modulus_n_mm2": 206000.0,
+        "ultimate_resistance_safety_factor": 1.3
+      },
+      "stage_n1_bundle": {
+        "stage": "N1_MATERIAL_STRENGTH",
+        "normative_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+        "annex_strength": {
+          "product_form": "parallel_flange_i",
+          "steel_grade_input": "C255Б-1",
+          "steel_grade_normalized": "С255Б-1",
+          "governing_thickness_mm": 15.0,
+          "source_table": "В.4",
+          "source_row_index": 2,
+          "source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+          "thickness_interval": {
+            "min_mm": 10,
+            "max_mm": 20,
+            "min_inclusive": false,
+            "max_inclusive": true
+          },
+          "Ryn_MPa": 245,
+          "Run_MPa": 370,
+          "Ry_tabulated_MPa": 240,
+          "Ru_tabulated_MPa": 360,
+          "note": null
+        },
+        "physical_properties": {
+          "density_kg_m3": 7850.0,
+          "linear_expansion_per_C": 1.2e-05,
+          "E_MPa": 206000.0,
+          "G_MPa": 79000.0,
+          "poisson_ratio": 0.3,
+          "source_table": "Б.1",
+          "source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873"
+        },
+        "table_2_formula_resistances": {
+          "gamma_m": 1.05,
+          "Ry_formula_MPa": 233.33333333333331,
+          "Ru_formula_MPa": 352.38095238095235,
+          "Rs_formula_MPa": 135.33333333333331,
+          "Rp_formula_MPa": 352.38095238095235,
+          "Rlp_formula_MPa": 176.19047619047618,
+          "Rcd_formula_MPa": 8.809523809523808
+        },
+        "gamma_u": 1.3,
+        "gamma_u_source": "СП 16 4.3.2",
+        "selection_warning": "Ry/Ru printed in Annex В and values recomputed from Table 2 + an explicitly selected gamma_m are preserved as separate quantities; this resolver does not silently substitute one for the other."
+      }
+    }
+  },
+  "results": {
+    "status": "COMPLETE",
+    "derived": {
+      "geometric_slenderness_x": 43.94598957811736,
+      "geometric_slenderness_y": 29.297326385411573,
+      "relative_slenderness_x": 1.5,
+      "relative_slenderness_y": 1.0,
+      "central_phi_x": 0.8934180916680713,
+      "central_phi_y": 0.9008651435292161,
+      "relative_eccentricity_x": 0.5958442597264094,
+      "relative_eccentricity_y": 0.0
+    },
+    "d2_d3_x": {
+      "status": "D3_EXACT_NODE",
+      "eta": 1.6782909018191512,
+      "m_eff": 1.0000000000000002,
+      "phi_e": 0.593,
+      "source": "table_D.3_exact_printed_node"
+    },
+    "d2_d3_y": {
+      "status": "CENTRAL_COMPRESSION_LIMITING_CASE",
+      "eta": null,
+      "m_eff": 0.0,
+      "phi_e": 0.9008651435292161,
+      "source": "clause_7.1.3_limit_M_equals_0"
+    },
+    "coefficient_c": {
+      "status": "RESOLVED",
+      "alpha": 0.7,
+      "beta": 1.0,
+      "phi_at_3_14": 0.5370345356854724,
+      "branch": "equation_112",
+      "c_raw": 0.7056709927853775,
+      "c_max": 1.0,
+      "c": 0.7056709927853775
+    },
+    "stability_branch": {
+      "route": "9.2.1_9.2.2_9.2.4_ONE_PLANE_MAJOR"
+    },
+    "stability_checks": [
+      {
+        "equation": "109",
+        "utilization": 0.37204380687842925,
+        "pass": true
+      },
+      {
+        "equation": "111",
+        "utilization": 0.34704574477076217,
+        "pass": true
+      }
+    ],
+    "strength": {
+      "route": "9.1.1_EQ105",
+      "applicability_eq105": {
+        "permitted": true,
+        "axial_stress_n_mm2": 50.30181086519115,
+        "low_axial_stress_branch": false,
+        "reasons": []
+      },
+      "annex_e1": {
+        "c_x": 1.0473846153846154,
+        "c_y": 1.47,
+        "n": 1.5
+      },
+      "utilization": 0.2291361924897244,
+      "pass": true
+    },
+    "required_unresolved": [],
+    "governing_utilization": 0.37204380687842925,
+    "pass": true,
+    "trace_policy": "FIRST_APPLICABLE_BRANCH_WITH_EXPLICIT_D3_BILINEAR_INTERPOLATION_NO_EXTRAPOLATION"
+  },
+  "scope_note": "Stage N5 applicability-safe solid beam-column workflow for current SP16 Section 9. N1 material and N2 section hydration are explicit; N3/N4 primitives are reused. Table D.3 is exact-node only unless an explicitly sourced external phi_e is supplied. Built-up and box routes retain their existing detailed actions."
+}

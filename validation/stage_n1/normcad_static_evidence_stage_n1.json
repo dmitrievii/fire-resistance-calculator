@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "N1 — Material / Strength",
+  "normcad_role": "historical secondary oracle",
+  "nrb": {
+    "file": "СП 16.13330.2017___Стальные конструкции.nrb",
+    "sha256": "046159913feb8dad28c1cdb98f25980c1dbc327c3d5ac56eb5858e895e78f2cc",
+    "size_bytes": 218817,
+    "encoding_evidence": "CP1251-readable static module fields",
+    "captured": {
+      "E_MPa": {
+        "value": 210000.0,
+        "status": "CAPTURED_STATIC_DEFAULT",
+        "evidence": {
+          "text_offset_cp1251": 167812,
+          "needle": "\tE\tE\t210000\tМПа\tМодуль упругости",
+          "context": "\\tq___2њМПа\\tРаспределенная нагрузка на плиту\\rФизические характеристики\\tG\\tG\\t78500\\tМПа\\tМодуль сдвигаћ1\\r\\tE\\tE\\t210000\\tМПа\\tМодуль упругостић1\\rХарактеристики ослабления сечения\\ta___2\\ta___2њмм\\tШаг отверстий\\r\\td___1\\td___1њмм\\tДиаметр отверстия "
+        }
+      },
+      "G_MPa": {
+        "value": 78500.0,
+        "status": "CAPTURED_STATIC_DEFAULT",
+        "evidence": {
+          "text_offset_cp1251": 167756,
+          "needle": "Физические характеристики\tG\tG\t78500\tМПа\tМодуль сдвига",
+          "context": "е усилие, действующее на болт\\r\\tq___2\\tq___2њМПа\\tРаспределенная нагрузка на плиту\\rФизические характеристики\\tG\\tG\\t78500\\tМПа\\tМодуль сдвигаћ1\\r\\tE\\tE\\t210000\\tМПа\\tМодуль упругостић1\\rХарактеристики ослабления сечения\\ta___2\\ta___2њмм\\tШаг отверстий\\r\\td___1\\td___1њмм\\tДиаметр отверстия в стенке\\r\\td__f\\td__fњмм\\tДиаметр отверстия в по"
+        }
+      },
+      "gamma_u": {
+        "value": 1.3,
+        "status": "CAPTURED_STATIC_DEFAULT",
+        "evidence": {
+          "text_offset_cp1251": 168468,
+          "needle": "gr_g__u\tgr_g__u\t1,3њКоэффициент надежности в расчетах по временному сопротивлению",
+          "context": "счетное сопротивление стали сдвигу\\rКоэффициенты надежности и условия работы\\tgr_g__c\\tgr_g__cќКоэффициент условия работы\\r\\tgr_g__u\\tgr_g__u\\t1,3њКоэффициент надежности в расчетах по временному сопротивлениюћ1\\r\\tm__kp\\tm__kpќКоэффициент условия работы по п. 5.14 СП 14.13330 \"Строительство в сейсмических районах\"\\rОсновные характ"
+        }
+      }
+    }
+  },
+  "mdb_captures": {
+    "sheet_strength": {
+      "file": "Прочность листовой стали.mdb",
+      "sha256": "99fec3db69eb21dfeac80ba53fc1af318c5a4e73352b0fde7655e5b824a97958",
+      "decoded_main_rows": 29,
+      "decoded_strength_rows": 62,
+      "capture_json": "normcad_capture/Прочность листовой стали.json"
+    },
+    "tube_strength": {
+      "file": "Прочность труб.mdb",
+      "sha256": "42ca4e3b3b7afc9dd70275c5ff019ac97eb0e9cfecc776f20358b686ea7f31f6",
+      "decoded_main_rows": 6,
+      "decoded_strength_rows": 6,
+      "capture_json": "normcad_capture/Прочность труб.json"
+    },
+    "shaped_strength": {
+      "file": "Прочность фасонной стали.mdb",
+      "sha256": "04f46199e7a582531b8cae4cfab143ff046fbbd571b6c412ffff476a6082e1d7",
+      "decoded_main_rows": 22,
+      "decoded_strength_rows": 72,
+      "capture_json": "normcad_capture/Прочность фасонной стали.json"
+    }
+  },
+  "limits": {
+    "runtime_ui_boundary_selection_captured": false,
+    "static_database_rows_captured": true,
+    "interpretation": "Static MDB rows and conditions are evidence of stored data. Exact runtime resolution of overlapping/ditto-like boundary labels is not claimed without UI/runtime replay."
+  }
+}

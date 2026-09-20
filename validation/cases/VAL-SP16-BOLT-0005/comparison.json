@@ -1,0 +1,55 @@
+{
+  "case_id": "VAL-SP16-BOLT-0005",
+  "overall_validation_status": "PARTIAL_MATCH_SOURCE_NORMATIVE_FAIL",
+  "checks": [
+    {
+      "check_id": "n",
+      "published_or_source_value": 50,
+      "production_or_independent_value": 50,
+      "absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "hmax",
+      "published_or_source_value": 1080,
+      "production_or_independent_value": 1080,
+      "absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "N1",
+      "published_or_source_value": 4011.79646,
+      "production_or_independent_value": 4011.79646,
+      "absolute_error": 0.0,
+      "absolute_tolerance": 1e-06,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "Nbmax",
+      "published_or_source_value": 802.3592,
+      "production_or_independent_value": 802.3592,
+      "absolute_error": 0.0,
+      "absolute_tolerance": 0.0001,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "14.2.14_adjusted_count",
+      "published_or_source_value": 55,
+      "production_or_independent_value": 55,
+      "absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "comparison_status": "PASS"
+    }
+  ],
+  "end_to_end_gate": {
+    "status": "NOT_ACCEPTED",
+    "reason_codes": [
+      "SOURCE-HOLE-DIAMETER-M20-B-PLUS6",
+      "SOURCE-EQ189-USED-AFTER-MOMENT-DISTRIBUTION",
+      "SOURCE-14.2.14-FORCE-SCALING",
+      "SP385-CROSS-STANDARD-RBP"
+    ]
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "case_id": "N10-BRITTLE-FRACTURE-GUIDED-EXAMPLE",
+  "standard": "СП 16.13330.2017",
+  "release_stage": "v0.67_fire_bridge2_qualified_sp16_complex_state_handoff_r1",
+  "action": "brittle_fracture_guided",
+  "engineering_calculation_performed": true,
+  "inputs": {
+    "case_id": "N10-BRITTLE-FRACTURE-GUIDED-EXAMPLE",
+    "standard": "СП 16.13330.2017",
+    "action": "brittle_fracture_guided",
+    "route": {
+      "kind": "section13_full_review",
+      "design_yield_resistance_n_mm2": 240.0,
+      "welded_structure": true,
+      "steel_selection_5_2_table_v1_confirmed": true,
+      "stress_concentration_and_work_hardening_reduction_confirmed": true,
+      "solid_web_vs_lattice_concentration_considered": true,
+      "weld_zone_tensile_stress_n_mm2": 110.0,
+      "enhanced_ndt_for_welds_above_0_4_ry_confirmed": true,
+      "weld_intersections_avoided_confirmed": true,
+      "runoff_tabs_and_weld_ndt_confirmed": true,
+      "cover_plate_splice_with_flank_welds": true,
+      "flank_weld_termination_distance_each_side_mm": 25.0,
+      "guillotine_cutting_or_punched_holes": false,
+      "secondary_gusset_to_tension_member": false,
+      "steel_grade_number": 355.0,
+      "plate_thickness_mm": 30.0,
+      "joint_type": "tee",
+      "through_thickness_tension": true,
+      "clause_13_3_engineering_review_confirmed": true,
+      "lamellar_tearing_assessment_required": true,
+      "through_thickness_test_evidence_available": true,
+      "selected_z_quality_certificate_confirmed": true,
+      "connection_form_case": "corner_full_penetration",
+      "risk_weld_leg_mm": 8.0,
+      "restraint_level": "high_rigid_no_shrinkage",
+      "pass_count": "one",
+      "weld_sequence": "one_side_then_other",
+      "preheat": "without_preheat",
+      "through_thickness_action": "none",
+      "construction_group": 2,
+      "consequence_class": "KS-2",
+      "flange_connection_15_9_10_or_force_normal_to_plate": false,
+      "selected_z_quality_group": "Z25"
+    }
+  },
+  "resolution_trace": {},
+  "results": {
+    "status": "COMPLETE",
+    "route": "section13_full_review",
+    "general_prevention": {
+      "clause_13_1_factor_register": {
+        "low_temperature": "Reduced temperature with steel chemistry, structure and rolled-product thickness effects.",
+        "dynamic_or_impact_action": "Moving, dynamic and vibratory actions.",
+        "high_local_stress": "High local stresses from concentrated action, connection deformation, welding and residual stresses.",
+        "stress_concentration": "Stress concentrators oriented transverse to the direction of tensile stress."
+      },
+      "clause_13_2_checks": {
+        "steel_selection_5_2_table_v1": {
+          "applicable": true,
+          "confirmed": true
+        },
+        "stress_concentration_and_work_hardening_reduction": {
+          "applicable": true,
+          "confirmed": true
+        },
+        "solid_web_vs_lattice_concentration_considered": {
+          "applicable": true,
+          "confirmed": true
+        },
+        "enhanced_ndt_above_0_4_ry": {
+          "applicable": true,
+          "stress_n_mm2": 110.0,
+          "threshold_n_mm2": 96.0,
+          "confirmed": true
+        },
+        "weld_intersections_avoided": {
+          "applicable": true,
+          "confirmed": true
+        },
+        "runoff_tabs_and_weld_ndt": {
+          "applicable": true,
+          "confirmed": true
+        },
+        "flank_weld_termination_25_mm_each_side": {
+          "applicable": true,
+          "provided_mm": 25.0,
+          "minimum_mm": 25.0,
+          "confirmed": true
+        },
+        "minimum_section_thickness_for_guillotine_or_punching": {
+          "applicable": false,
+          "confirmed": true
+        },
+        "secondary_gusset_bolted_to_tension_member": {
+          "applicable": false,
+          "confirmed": true
+        }
+      },
+      "failed_requirements": [],
+      "pass": true
+    },
+    "lamellar_tearing": {
+      "required": true,
+      "status": "COMPLETE",
+      "clause_13_3_screen": {
+        "risk_assessment_required": true,
+        "primary_25_mm_route": true,
+        "other_plate_over_40_mm_route": false,
+        "ultrasonic_quality_control_relevant": true
+      },
+      "clause_13_4_test_evidence": {
+        "test_result_available": true,
+        "status": "evidence_available",
+        "required_evidence": "Verified through-thickness tensile-test result and declared Z quality."
+      },
+      "table_37_factors_percent": {
+        "psi_zf": 8.0,
+        "psi_zt": 6.0,
+        "psi_zsh": 2.4,
+        "psi_zj": 5.0,
+        "psi_zs": 0.0
+      },
+      "equation_174_base_risk_percent": 21.4,
+      "adjusted_risk_percent": 21.4,
+      "required_z_quality_group": "Z25",
+      "selected_z_quality_group": "Z25",
+      "selected_quality_meets_minimum_group": true,
+      "risk_check": {
+        "z_quality_group": "Z25",
+        "threshold_percent": 25.0,
+        "risk_percent": 21.4,
+        "utilization": 0.856,
+        "pass": true
+      },
+      "governing_utilization": 1.0,
+      "pass": true
+    },
+    "governing_utilization": 1.0,
+    "pass": true
+  },
+  "scope_note": "Stage N10 applicability-safe current-SP16 Section 13 workflow. Clause 13.2 conditional detailing/NDT obligations, clause 13.3 engineering applicability, clause 13.4 evidence, equation (174), Table 37 and Z-quality routing are explicit. No drawing recognition, material-certificate inference, NDT interpretation, or unstated lamellar-tearing rule is invented."
+}

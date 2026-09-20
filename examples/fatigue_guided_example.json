@@ -1,0 +1,20 @@
+{
+  "case_id": "N9-FATIGUE-GUIDED-EXAMPLE",
+  "standard": "СП 16.13330.2017",
+  "action": "fatigue_guided",
+  "route": {
+    "kind": "ordinary_fatigue_12_1_2",
+    "load_cycles": 1000000,
+    "resonant_vortex_excitation": false,
+    "sp20_load_basis_confirmed": true,
+    "net_section_stress_without_dynamic_and_stability_coefficients_confirmed": true,
+    "same_loading_for_extreme_stresses_confirmed": true,
+    "annex_k_case_selection_confirmed": true,
+    "annex_k_case_id": "K1-16-TRANSVERSE_WELD_SMOOTH",
+    "normative_ultimate_resistance_n_mm2": 440,
+    "design_ultimate_resistance_n_mm2": 400,
+    "ultimate_resistance_safety_factor": 1.3,
+    "maximum_signed_stress_n_mm2": 50,
+    "minimum_signed_stress_n_mm2": -25
+  }
+}

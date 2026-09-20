@@ -1,0 +1,4030 @@
+{
+  "schema": "standard_package_release_manifest_v1",
+  "release_stage": "v0.62_sp16_mech5_direct_bimoment_pointwise_recovery_r1",
+  "package_version": "0.62.0",
+  "parent_release": "v0.61_sp16_mech4_free_torsion_pointwise_recovery_r1",
+  "active_dag": "normative_graph/dag_v0.3.65_sp16_mech5_direct_bimoment_pointwise_recovery.json",
+  "file_count_excluding_manifest": 804,
+  "files": [
+    {
+      "path": ".coverage.fire_d2",
+      "size_bytes": 61440,
+      "sha256": "18734ea319ea45fcee5b63ba6bd7cdc713db62d4bd2fac745bd808305ed6e1c7"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 65396,
+      "sha256": "3a785783aabdf0344f8d078c0fad92e67a604dc13a4ec22caa430fb81e53f29c"
+    },
+    {
+      "path": "START_FIRE_UI1.bat",
+      "size_bytes": 155,
+      "sha256": "595e34e584095fe09bbf3feb2f9fd2c5e7ab4e6618820ecbcc0ceb833aeb5973"
+    },
+    {
+      "path": "audit_inventory/clause_register.csv",
+      "size_bytes": 205003,
+      "sha256": "9d3524ae538e897a5867f08a48b3b19df391df7be5a8fdcacb1749d334a14f79"
+    },
+    {
+      "path": "audit_inventory/equation_inventory.csv",
+      "size_bytes": 177906,
+      "sha256": "78d2b28830bf7382b762fed61ae7bbe7b34149bc1a126133c142518cda5d8eb6"
+    },
+    {
+      "path": "audit_inventory/extraction_notes.md",
+      "size_bytes": 17219,
+      "sha256": "7f57a59cf30dc5c0c0169a6830b5a8d68afb8122d711ff51beb9aed780b53fcf"
+    },
+    {
+      "path": "audit_inventory/implementation_map.csv",
+      "size_bytes": 192428,
+      "sha256": "64112dff74f46750123a8d61e282f38a789d06619f22a69b75f083729251975a"
+    },
+    {
+      "path": "audit_inventory/procedure_inventory.csv",
+      "size_bytes": 145895,
+      "sha256": "7df09d0ba1d275b2c7c94bc583a3bcfbd993db396e0f00530e42db6c0f0d8694"
+    },
+    {
+      "path": "audit_inventory/table_inventory.csv",
+      "size_bytes": 52939,
+      "sha256": "02f1ae0604ed96296b0e10c03987b84b01a6f47033f24ae8875cfe5a8c23320e"
+    },
+    {
+      "path": "data/annex_b1_physical_properties.json",
+      "size_bytes": 882,
+      "sha256": "1d2a927bb541278ce8b518be8a5ec50c9bd1c362deb840ff220b66df4ef21c20"
+    },
+    {
+      "path": "data/annex_d_table_d1_stability_coefficients.json",
+      "size_bytes": 4554,
+      "sha256": "fb6849e0794a5401ecd6f45b1dec49d63b8e21e4275a27f2cd053ea2f6e76f9b"
+    },
+    {
+      "path": "data/annex_d_tables_d2_to_d6.json",
+      "size_bytes": 28569,
+      "sha256": "1ba0325b98aff6394a8ad2e8465384b3442d45524f7e35afec2110c7350d9af6"
+    },
+    {
+      "path": "data/annex_e_table_e1_plastic_coefficients.json",
+      "size_bytes": 3056,
+      "sha256": "c480b10104e68735edd444f86c07a53d4f9800fb17749c4c6551525c638f78da"
+    },
+    {
+      "path": "data/annex_e_table_e2_base_plate_coefficients.json",
+      "size_bytes": 1314,
+      "sha256": "c5ad06023654b37904bb1543a12854fca574be78ca70fb4b5014d56d205dad9f"
+    },
+    {
+      "path": "data/annex_k_table_k1_fatigue_groups.json",
+      "size_bytes": 10563,
+      "sha256": "13953e1e7a23ae01cde185628583ee71ce9b152a78dab3afdfe24c2159f49de1"
+    },
+    {
+      "path": "data/annex_reconstruction_catalog_v0_22.json",
+      "size_bytes": 12196,
+      "sha256": "0e9ea28470c256cf6b1b3db958f137c5e4b60c4419816d6d2891ccf79d379e12"
+    },
+    {
+      "path": "data/annex_reconstruction_catalog_v0_27_stage_n1.json",
+      "size_bytes": 10711,
+      "sha256": "a834f389c1aa25758d57f9af12947ccb45a663ad27e1fb874b89b60cb36da5ce"
+    },
+    {
+      "path": "data/annex_v3_strength_resistances.json",
+      "size_bytes": 12205,
+      "sha256": "ddac3172a644b9a795584f279c3f62ab9326664a0954faf6c740298fcfe411cb"
+    },
+    {
+      "path": "data/annex_v4_parallel_flange_i_strength_resistances.json",
+      "size_bytes": 11043,
+      "sha256": "3d4f66867e917f91b2a7e76a6a06d5ce235dd53efa879016d4c7d28035851269"
+    },
+    {
+      "path": "data/annex_v5_shaped_strength_resistances.json",
+      "size_bytes": 7475,
+      "sha256": "f2062dc384bfac42024cf0651581231b24311d9dad1c587bbe1c671bb2a6188c"
+    },
+    {
+      "path": "data/annex_zh_tables.json",
+      "size_bytes": 1969,
+      "sha256": "4e4b96a268aa08447477bf1263224f348b420b0f65f16ee14a157662f231eaa8"
+    },
+    {
+      "path": "data/api_freeze_v0_22_reconstructed_r1.json",
+      "size_bytes": 220766,
+      "sha256": "0aed64fdbb04b89b725c00ca6f1c2e69f0bc8d4c628918852bdfa15ba5056a91"
+    },
+    {
+      "path": "data/api_freeze_v0_23_parent_reconstructed_from_parent_package.json",
+      "size_bytes": 178401,
+      "sha256": "001516e2f60a23264aeab1c10f00b76e5f14641d44b9e48da6f92c0d2915a015"
+    },
+    {
+      "path": "data/api_freeze_v0_24_release_api_hardening_reconstructed_r1.json",
+      "size_bytes": 568280,
+      "sha256": "7886571fad4c0a720a7d6735d8ff37aa1900ef8a4a64c678eb9e4ff6156a1ddd"
+    },
+    {
+      "path": "data/clause_4_3_2_gamma_u.json",
+      "size_bytes": 502,
+      "sha256": "276ab368ccfbe0f603f2e39055bd44ce86ed1f2ed4153b36b6c90d0083012ea5"
+    },
+    {
+      "path": "data/engineering_api_freeze_v0_25_reconstructed_r1.json",
+      "size_bytes": 555797,
+      "sha256": "4dbaee6bed79702e6c0007210bdc494e333bfbddbc958d8f035c6919174a47c7"
+    },
+    {
+      "path": "data/engineering_api_freeze_v0_26_validation_remediation_reconstructed_r1.json",
+      "size_bytes": 555778,
+      "sha256": "927542384a4b8a86f1a5cac5da05fd35eb1b90acc63c69d7503be1f903a67e7c"
+    },
+    {
+      "path": "data/external_scad_benchmarks_v0_25_reconstructed_r1.json",
+      "size_bytes": 4911,
+      "sha256": "2f0320e0d2597875e3e18c71e95b44102a79fa449957b24deb6fd305d825f017"
+    },
+    {
+      "path": "data/fire_ui0_ui_contract_v1.json",
+      "size_bytes": 551416,
+      "sha256": "d10379b4fa0a4fa1a16e18ad491ddbd1b463943c28a4cc24583c0be908434447"
+    },
+    {
+      "path": "data/fire_ui11_presentation_policy.json",
+      "size_bytes": 4421,
+      "sha256": "86994162895971c432a72e00af7bd9b6073d1757d4b134afa73268aa2ea66b4d"
+    },
+    {
+      "path": "data/fire_ui12_presentation_policy.json",
+      "size_bytes": 4421,
+      "sha256": "86994162895971c432a72e00af7bd9b6073d1757d4b134afa73268aa2ea66b4d"
+    },
+    {
+      "path": "data/fire_ui13_presentation_policy.json",
+      "size_bytes": 5791,
+      "sha256": "1b1dde1489d4e39b35cc9149623b6c81d82836e261ce972d056e82d98132713d"
+    },
+    {
+      "path": "data/fire_ui14_presentation_policy.json",
+      "size_bytes": 7181,
+      "sha256": "e0832a0a7f0412026da718a1898a69855e165adb0e53f348b4223b0053577839"
+    },
+    {
+      "path": "data/fire_ui15_presentation_policy.json",
+      "size_bytes": 7720,
+      "sha256": "8fd5f608ff594e2ec96db8a956f6d86896885247a81429e33ededa4c2e40d19f"
+    },
+    {
+      "path": "data/fire_ui16_presentation_policy.json",
+      "size_bytes": 9785,
+      "sha256": "09203ab835840ba8160f244f71bf278411500f23870ad435148cc1f5cb35d3f9"
+    },
+    {
+      "path": "data/fire_ui17_presentation_policy.json",
+      "size_bytes": 11754,
+      "sha256": "3c5c55e43b321da0d4bd178657a835c5385bd999a7fe425ae47759c79ede54aa"
+    },
+    {
+      "path": "data/fire_ui18_presentation_policy.json",
+      "size_bytes": 12185,
+      "sha256": "f38d069f85d9935cbada74ad075b0077720891c17e340fb08151e5332f31a369"
+    },
+    {
+      "path": "data/fire_ui19_presentation_policy.json",
+      "size_bytes": 13818,
+      "sha256": "a68e15e704b7b0f40fad2d4e976357a910f7772af86146965c91818c6ed16fe4"
+    },
+    {
+      "path": "data/fire_ui20_presentation_policy.json",
+      "size_bytes": 15056,
+      "sha256": "36edb2b38322f103d8ac68e72012ab20b742fb9f7a46a34c1eca6ab13676aa80"
+    },
+    {
+      "path": "data/fire_ui21_presentation_policy.json",
+      "size_bytes": 15683,
+      "sha256": "4b57f73fb76d0eaf1d3a2dd048e2655e013cf88497fc12296bfd20ecf8e95a8c"
+    },
+    {
+      "path": "data/fire_ui22_presentation_policy.json",
+      "size_bytes": 18323,
+      "sha256": "68f21fb84eedeccbcac936da7c39696ac7e62d3a4340a8f60cbd900d670ea47d"
+    },
+    {
+      "path": "data/fire_ui23_presentation_policy.json",
+      "size_bytes": 20505,
+      "sha256": "0e648316dd0ec1a82433979a9ea19df217c5a3f68ef0e0efafbcfce3c8b0a417"
+    },
+    {
+      "path": "data/fire_ui24_presentation_policy.json",
+      "size_bytes": 20884,
+      "sha256": "d7f5648db2219180f3ba131d55aa552fe681bc0a9d7507a961c6f201eba42fc6"
+    },
+    {
+      "path": "data/profile_catalog_interim_v0_28_stage_n2.json",
+      "size_bytes": 2590452,
+      "sha256": "86fa843f76ae421098b07ebffee45800a648fca5fa0c84a1c2c4d0f76bde1c9d"
+    },
+    {
+      "path": "data/profile_family_registry_v0_28_stage_n2.json",
+      "size_bytes": 25175,
+      "sha256": "4122df5ded708820d969b6be0ff4a85d97c35c4f5e913a2ea0a766dae57f8812"
+    },
+    {
+      "path": "data/release_manifest_v0_21_reconstruction_assessment.json",
+      "size_bytes": 40170,
+      "sha256": "7f19c2415817b61d56b6b582d588fdf2d81005ab767bfca9d3010ea8fe71a552"
+    },
+    {
+      "path": "data/release_manifest_v0_22_final_annex_and_release_consolidation_reconstructed_r1.json",
+      "size_bytes": 42314,
+      "sha256": "26176e0d2f4dba6906bfc1bab59a9710fee404ddd0266ca7af6cadadf34d5455"
+    },
+    {
+      "path": "data/release_manifest_v0_23_independent_normative_rebaseline_and_adversarial_audit_reconstructed_r1.json",
+      "size_bytes": 45896,
+      "sha256": "69ae40acb08ad557d37025dc21cdc1d151a78bc866ca3377af65fa3bb473cef5"
+    },
+    {
+      "path": "data/release_manifest_v0_24_release_api_hardening_and_function_level_validation_expansion_reconstructed_r1.json",
+      "size_bytes": 49315,
+      "sha256": "d1a4cc5be638bc38021be9de84c4474d66b4c65840bda27ba503e026ae162732"
+    },
+    {
+      "path": "data/release_manifest_v0_25_independent_function_oracle_expansion_and_golden_cross_implementation_validation_reconstructed_r1.json",
+      "size_bytes": 52512,
+      "sha256": "90d138818c269d43bf219ee5e3cf0e8b66f69b728226cdacdfa0fe03d9436164"
+    },
+    {
+      "path": "data/release_manifest_v0_26_validation_campaign_remediation_and_corpus_0001_0009_reconstructed_r1.json",
+      "size_bytes": 66639,
+      "sha256": "ab84b672c6ec036b1ca468702cbd88a8c4265f5b00fe82aba8ca0fdb8cde6465"
+    },
+    {
+      "path": "data/release_manifest_v0_27_stage_n1_material_strength_closed_reconstructed_r1.json",
+      "size_bytes": 74017,
+      "sha256": "4d79f0be9cc7c40e763e98df0de2383a970c50dc8f8ab86ba7e0b61c183e6153"
+    },
+    {
+      "path": "data/release_manifest_v0_28_stage_n2_section_model_profile_catalog_runtime_closed_reconstructed_r1.json",
+      "size_bytes": 78928,
+      "sha256": "b8b39f50c69e04d811554909142ef30f60ce7caff561e868f19f048acb445c6d"
+    },
+    {
+      "path": "data/release_manifest_v0_29_stage_n3_axial_members_current_sp16_closed_reconstructed_r1.json",
+      "size_bytes": 80768,
+      "sha256": "24d88dbbee59d6122ed58deadb492a9928e7a11430e89f14647d72cc7a2ee8c6"
+    },
+    {
+      "path": "data/release_manifest_v0_30_stage_n4_bending_members_current_sp16_closed_reconstructed_r1.json",
+      "size_bytes": 83941,
+      "sha256": "ead2e192bff5359e6a7f85de52c67d5da2ac61fb3cb1d578265c4bc345da2a73"
+    },
+    {
+      "path": "data/release_manifest_v0_31_stage_n5_beam_columns_current_sp16_closed_reconstructed_r1.json",
+      "size_bytes": 86916,
+      "sha256": "191c7b703eec3ee146e595f489249c6cbbda0f7d94534f946e19f39b8e1ebf02"
+    },
+    {
+      "path": "data/release_manifest_v0_32_stage_n6_built_up_beam_columns_local_stability_current_sp16_closed_reconstructed_r1.json",
+      "size_bytes": 89750,
+      "sha256": "b4586ff2083bae567f11416c183a9623b2e3eba7fdd78ee34eec04ec28826638"
+    },
+    {
+      "path": "data/release_manifest_v0_33_stage_n7_effective_lengths_limiting_slenderness_current_sp16_closed_reconstructed_r1.json",
+      "size_bytes": 92583,
+      "sha256": "6ae51ade40ec83a4a133bca3b282cf2135afa6fe03a30f691fa15b3241b3c954"
+    },
+    {
+      "path": "data/release_manifest_v0_34_stage_n8_sheet_structures_current_sp16_closed_reconstructed_r1.json",
+      "size_bytes": 95183,
+      "sha256": "da343177a1253a3ecd7f3e3798a68a7fd8ad5b369d32aa3db48a671d169573e0"
+    },
+    {
+      "path": "data/release_manifest_v0_35_stage_n9_fatigue_current_sp16_closed_reconstructed_r1.json",
+      "size_bytes": 97695,
+      "sha256": "47bb61e06251089a676e33e53b497d4493485a7669f2cf054c95d4a1e32438b8"
+    },
+    {
+      "path": "data/release_manifest_v0_36_stage_n10_brittle_fracture_current_sp16_closed_reconstructed_r1.json",
+      "size_bytes": 100301,
+      "sha256": "f729daca4a9dcd1d215e5772ace20206e692f0033d11a0de3f14cecf276dfc17"
+    },
+    {
+      "path": "data/release_manifest_v0_37_fire_d1_sp554_sp16_mechanical_dependency_closure_r1.json",
+      "size_bytes": 103027,
+      "sha256": "ddfb5bcec7442d40b916b729a4b679a2eb9e429fd164240d10e6ba753e95420b"
+    },
+    {
+      "path": "data/release_manifest_v0_38_fire_d2_sp554_critical_temperature_runtime_r1.json",
+      "size_bytes": 105779,
+      "sha256": "87ada8d48eee16eba476922cbe95cd40421636e993069efff293b344346665b1"
+    },
+    {
+      "path": "data/release_manifest_v0_39_fire_d3_sp554_section12_thermal_runtime_r1.json",
+      "size_bytes": 108331,
+      "sha256": "5a24239b6e2bcd8d38aeca5a8489c82766b82c3a7eba5eebf55e6b59faf793c9"
+    },
+    {
+      "path": "data/release_manifest_v0_40_fire_d31_sp554_section12_full_scope_reconciliation_r1.json",
+      "size_bytes": 109486,
+      "sha256": "1611c33a519b0d6f6e2931c82f4ce8163e8b514e762d8f5e22ef0fa1e7918d0c"
+    },
+    {
+      "path": "data/release_manifest_v0_41_fire_d4_sp554_section13_result_assessment_runtime_r1.json",
+      "size_bytes": 111733,
+      "sha256": "e565afa95d6863e8dc549f43a49dd11092d2df96d44012272123fb4b5b03dc66"
+    },
+    {
+      "path": "data/release_manifest_v0_42_fire_ui0_dag_driven_guided_calculation_architecture_r1.json",
+      "size_bytes": 114086,
+      "sha256": "01a2f9637e2cc4c54986569ace833ac4868b638c13e479c33f699d34af3118f3"
+    },
+    {
+      "path": "data/release_manifest_v0_43_1_fire_ui1_sp16_annex_d3_interpolation_hotfix_r1.json",
+      "size_bytes": 119028,
+      "sha256": "58821ae3d1b9c3988cb8861cfe2992c990e07f0ac64a51aec36f9448824be092"
+    },
+    {
+      "path": "data/release_manifest_v0_43_2_fire_ui1_sp554_applicability_routing_hotfix_r1.json",
+      "size_bytes": 119825,
+      "sha256": "3c21e794f1c44839fedc41650a7494d8b2a989bbef6b6751c95b8a844f8cce6b"
+    },
+    {
+      "path": "data/release_manifest_v0_43_fire_ui1_guided_wizard_live_calculation_ledger_frontend_r1.json",
+      "size_bytes": 116995,
+      "sha256": "b35b8c11854f360c01a0bf2014329635f1bf384e7a8790546833d847ea872da4"
+    },
+    {
+      "path": "data/release_manifest_v0_44_fire_ui11_complete_engineering_questionnaire_section_editor_r1.json",
+      "size_bytes": 121002,
+      "sha256": "44d7ac787fbf9be663ee0da63377676a8408801016cd6bf88d22bf2f28e61a05"
+    },
+    {
+      "path": "data/release_manifest_v0_45_fire_ui12_section_model_executor_binding_r1.json",
+      "size_bytes": 122204,
+      "sha256": "0ba7558ea62ce85baf1f6bcab5f37a51554ac8874c092ff0ce0a134e55104a82"
+    },
+    {
+      "path": "data/release_manifest_v0_46_fire_ui13_material_strength_editor_r1.json",
+      "size_bytes": 123358,
+      "sha256": "23f3ea30602b74446ab3e7b1e5f1974aa1292e7ce64df52fa125bccf7b7c20e8"
+    },
+    {
+      "path": "data/release_manifest_v0_47_fire_ui14_section_weakening_simplification_r1.json",
+      "size_bytes": 124739,
+      "sha256": "c753a72a4f9a74047973cef1085078557dcae40a2b15ac6c45ae76635e8c9669"
+    },
+    {
+      "path": "data/release_manifest_v0_48_fire_ui15_weakening_continuation_hotfix_r1.json",
+      "size_bytes": 125756,
+      "sha256": "7b6d174d7ae1689b0f4539c8b54219537a9d112f93b576094f8eb91c75e4ff37"
+    },
+    {
+      "path": "data/release_manifest_v0_49_fire_ui16_signed_load_verification_plan_parallel_dag_r1.json",
+      "size_bytes": 127673,
+      "sha256": "2e467d6565baa0ddeaa62f3d457551530804d0fd7c6b4fa84558b57817b394c8"
+    },
+    {
+      "path": "data/release_manifest_v0_50_fire_ui17_critical_temperature_restraint_ux_hotfix_r1.json",
+      "size_bytes": 129283,
+      "sha256": "f0b319cc299e84c4b6793e425ac0d1ad56d08d2e5d4807971b0dc716d8307f91"
+    },
+    {
+      "path": "data/release_manifest_v0_51_fire_ui18_fire_d2_to_d3_handoff_hotfix_r1.json",
+      "size_bytes": 130816,
+      "sha256": "e8d80140bf30e4695c695885ec9a1d32dc37a451390a24f61904c4a878e01ebe"
+    },
+    {
+      "path": "data/release_manifest_v0_52_fire_ui19_sp554_table1_heated_perimeter_matrix_r1.json",
+      "size_bytes": 132376,
+      "sha256": "d90d9eaf1c95b265a65c58c8ea1edce1b80cd88be90d1663c0222db743ad08aa"
+    },
+    {
+      "path": "data/release_manifest_v0_53_fire_ui20_conditional_signed_moments_thermal_bindings_r1.json",
+      "size_bytes": 133907,
+      "sha256": "676b4bf7c2efb0d76de6cc4130cbf81a653d8eeff6fd1be26f647c65dc00e2e1"
+    },
+    {
+      "path": "data/release_manifest_v0_54_fire_ui21_selector_hardening_qy_t_lock_r1.json",
+      "size_bytes": 135776,
+      "sha256": "262155c11147a8e57fb9694917893123928e6f1c860c4a50de8d15b7e64f3cc5"
+    },
+    {
+      "path": "data/release_manifest_v0_55_1_fire_ui22_result_continuation_hotfix_r1.json",
+      "size_bytes": 137937,
+      "sha256": "f03fa65a9f360143f611eabc13c5e3be45d086bb5963eb522da9be75d71b9d83"
+    },
+    {
+      "path": "data/release_manifest_v0_55_fire_ui22_routing_protection_library_hotfix_r1.json",
+      "size_bytes": 137526,
+      "sha256": "765a7551ea72b98eadbb9ab7557f6605f0396410980ebe983520bfb53e20dfc4"
+    },
+    {
+      "path": "data/release_manifest_v0_56_fire_ui23_protection_route_closure_r1.json",
+      "size_bytes": 139434,
+      "sha256": "4823b2aafe8629c30b3485248694afcfe9a07973f3a381f49f51dd46e8b01917"
+    },
+    {
+      "path": "data/release_manifest_v0_57_fire_ui24_fire_val1_routing_remediation_r1.json",
+      "size_bytes": 141304,
+      "sha256": "8519ef41a7f0d3b7727ee44b5663e10f32d0133cfc1730a840ed8fa964501b17"
+    },
+    {
+      "path": "data/release_manifest_v0_58_sp16_mech1_canonical_axes_mechanical_state_contract_r1.json",
+      "size_bytes": 143237,
+      "sha256": "79cc44c4d827e5cf91b4b617247e2adaf08eb904f934348d95e5ef8534647151"
+    },
+    {
+      "path": "data/release_manifest_v0_59_sp16_mech2_load_cases_applicability_census_r1.json",
+      "size_bytes": 145683,
+      "sha256": "16e62c273c306ea26ed8ad32faef69ea28f73399d2664447b3375180df8ecf56"
+    },
+    {
+      "path": "data/release_manifest_v0_60_sp16_mech3_axis_shear_pointwise_recovery_r1.json",
+      "size_bytes": 147707,
+      "sha256": "6c9c0a81d372eb25181d24e0df0a9559bfa246a283b7d8537b7fac76a081854a"
+    },
+    {
+      "path": "data/release_manifest_v0_61_sp16_mech4_free_torsion_pointwise_recovery_r1.json",
+      "size_bytes": 149557,
+      "sha256": "0b015cf276b52452a510ede2f1c726b6e1998c49fa87c84192ca9d7630ad419b"
+    },
+    {
+      "path": "data/section_15_requirement_classification.json",
+      "size_bytes": 44222,
+      "sha256": "121ed64d5e5b640353ea9562c0ea22d0cb54a1ff288f295fce5b20e03972f7fa"
+    },
+    {
+      "path": "data/source_manifest.json",
+      "size_bytes": 2246,
+      "sha256": "8b12b1cf339cb544bed73fd04d4c2063fdb51c6a83e6955b7bfdd8ed7e3eee43"
+    },
+    {
+      "path": "data/sp16_mech1_presentation_policy.json",
+      "size_bytes": 22156,
+      "sha256": "df71a21073117f79e399460de865c8fff9aa8495ba35405f1693be0b174a55cb"
+    },
+    {
+      "path": "data/sp16_mech1_ui_contract_v1.json",
+      "size_bytes": 569996,
+      "sha256": "1b83f55e8c4c309bfbb805e64591031b889c04b0e9857e9699147875611c7adb"
+    },
+    {
+      "path": "data/sp16_mech2_presentation_policy.json",
+      "size_bytes": 23517,
+      "sha256": "37933afd907f63796845e4d154b0a6ca19179a70aefe67408c25cfe35979dade"
+    },
+    {
+      "path": "data/sp16_mech2_ui_contract_v1.json",
+      "size_bytes": 586436,
+      "sha256": "32ae54dc033c2e98a76fef44e5ebc4bf8354ba204074089f3347e7ebd2c7233c"
+    },
+    {
+      "path": "data/sp16_mech3_presentation_policy.json",
+      "size_bytes": 23515,
+      "sha256": "eea50da2b6d322f1c6f8672ee0af42ad451443623b92c476aabb0c55c9edcdae"
+    },
+    {
+      "path": "data/sp16_mech3_ui_contract_v1.json",
+      "size_bytes": 589078,
+      "sha256": "fef1fc2f673a613387bc1f537561a7bcb8bea9120969396e5c5961ab072a327d"
+    },
+    {
+      "path": "data/sp16_mech4_presentation_policy.json",
+      "size_bytes": 24372,
+      "sha256": "2386c217568e3a872ea5e61a707958648d661708c8fda2a348528a940dabccc7"
+    },
+    {
+      "path": "data/sp16_mech4_ui_contract_v1.json",
+      "size_bytes": 590059,
+      "sha256": "27064e7fb0efb0fe7c3f8e1788aa56d2c9ce1a47792b8a6292ac7021db2c6985"
+    },
+    {
+      "path": "data/sp16_mech5_presentation_policy.json",
+      "size_bytes": 24765,
+      "sha256": "f15dc1b307003a7fad2024ea933b18169f714b267609e5c3b4cfeffcdae7ac3f"
+    },
+    {
+      "path": "data/sp16_mech5_ui_contract_v1.json",
+      "size_bytes": 590471,
+      "sha256": "bf9396d4c54edfdc7fbed4070b4342417c437ab226e102fff352d423322f707d"
+    },
+    {
+      "path": "data/table_10_flange_slenderness_limits.json",
+      "size_bytes": 1714,
+      "sha256": "444346c3dcd48552edad971f384af72c820333fc8f28ea34aac9726ab6175dbd"
+    },
+    {
+      "path": "data/table_10a_constrained_torsion_coefficients.json",
+      "size_bytes": 1030,
+      "sha256": "093a5d71795cda40cfed1ac73fbbca762f92cc9140aa54b130a48b65c6977204"
+    },
+    {
+      "path": "data/table_11_lateral_torsional_slenderness_limits.json",
+      "size_bytes": 547,
+      "sha256": "8bb3536ed20c8cc77620420da562ea9c7d371ed6491e421bf834155f6c19ee5e"
+    },
+    {
+      "path": "data/table_12_web_buckling_c_cr.json",
+      "size_bytes": 343,
+      "sha256": "a152a3092f29f37a4abb9dd300ee88e09e2335d734f1ccfffcd93d13f7763611"
+    },
+    {
+      "path": "data/table_13_compressed_flange_beta.json",
+      "size_bytes": 289,
+      "sha256": "58947ebe263819a9dda35f95a30a0b294d09d2bba8bda30b5245dd215575ad7e"
+    },
+    {
+      "path": "data/table_1_working_condition_factors.json",
+      "size_bytes": 6714,
+      "sha256": "068f9df3e7e4b063be049814d182b12da8e8cef0eeb5340884df0e22b4e85bdd"
+    },
+    {
+      "path": "data/table_20_effective_moment_rules.json",
+      "size_bytes": 754,
+      "sha256": "972b5c3841a060b3a6762753d56bb9a16a098e1ffce8e9fc5b8c1047f1371ab0"
+    },
+    {
+      "path": "data/table_21_out_of_plane_coefficients.json",
+      "size_bytes": 1065,
+      "sha256": "7966f63740bd176f2892beaef64c7bc6d25ac6268da4e506ef29761f8676e5f0"
+    },
+    {
+      "path": "data/table_22_combined_web_slenderness_limits.json",
+      "size_bytes": 2125,
+      "sha256": "1102593593d86cd22835699a941055c5da77f870a99f0e76491f64833b3e2097"
+    },
+    {
+      "path": "data/table_23_combined_flange_slenderness_limits.json",
+      "size_bytes": 1282,
+      "sha256": "6925f2aa1a0e14b41814ed4da4af62bcc8ad3a747c6973fed729079e68fdfac9"
+    },
+    {
+      "path": "data/table_2_resistance_formulas.json",
+      "size_bytes": 1028,
+      "sha256": "8b5c9c43b7aa0cc0007a8195e2515c67a639b7c55fdbdeef1cb0583663a7077e"
+    },
+    {
+      "path": "data/table_34_cylindrical_shell_coefficient.json",
+      "size_bytes": 744,
+      "sha256": "aad0c154ff15c0e87b28914ecad904ca18e6b8c51483b9c7f958f5899fe81db4"
+    },
+    {
+      "path": "data/table_35_fatigue_resistance.json",
+      "size_bytes": 1576,
+      "sha256": "687dd837ef70145afea237fa044bd5d1ee858b7dbdd8a78ae04d1f971eb095f2"
+    },
+    {
+      "path": "data/table_36_fatigue_asymmetry_factor.json",
+      "size_bytes": 1278,
+      "sha256": "27a394ebd482913c076f64170c9c2c297250fa53617684b82ee99ce73ccfe5eb"
+    },
+    {
+      "path": "data/table_37_lamellar_tearing_risk_factors.json",
+      "size_bytes": 1557,
+      "sha256": "9ba07d200210b50be8e2d7e69322870b83850496f067f6ca02b1e111714e8490"
+    },
+    {
+      "path": "data/table_38_minimum_fillet_weld_legs.json",
+      "size_bytes": 1425,
+      "sha256": "767b5f78ca4acf17700d7afd387d8aa016ea0d6821aa4044f1ad04b66225f72b"
+    },
+    {
+      "path": "data/table_39_fillet_weld_coefficients.json",
+      "size_bytes": 1775,
+      "sha256": "9f13a6b50247789a69029c36b04298316f509497789b79244e17ebf99d708c93"
+    },
+    {
+      "path": "data/table_3_material_safety_factors.json",
+      "size_bytes": 397,
+      "sha256": "802af12cf052d1eaed89cf6a9c1e6e397c77d8f519706a4bba5c1043ff1ef512"
+    },
+    {
+      "path": "data/table_40_bolt_spacing.json",
+      "size_bytes": 981,
+      "sha256": "289778cb70a26e63e075b71b2987c00572df9c1ae6c37911c1930b051ea8d8cc"
+    },
+    {
+      "path": "data/table_41_bolted_connection_working_factors.json",
+      "size_bytes": 405,
+      "sha256": "272a9c95ab5f6a93b9a62c735dbb22512c0cd6c7c022f62f5fc0cd0a33210a2e"
+    },
+    {
+      "path": "data/table_42_friction_connection_coefficients.json",
+      "size_bytes": 967,
+      "sha256": "7ac638c0fd06eb19c47a4a36ca8280830e0dfb391620aa2944c7f0d02eb8b61b"
+    },
+    {
+      "path": "data/table_43_built_up_beam_flange_connections.json",
+      "size_bytes": 1849,
+      "sha256": "3604dc057db6a3a856a55ebf5d1c73573807595d1f029733190a8ff0c7329774"
+    },
+    {
+      "path": "data/table_44_temperature_joint_distances.json",
+      "size_bytes": 2929,
+      "sha256": "7d947b50c8e7da29d66a14515c5f735e0ef53ccd1888de9e27c950b98e5b9b3d"
+    },
+    {
+      "path": "data/table_45_overhead_line_working_conditions.json",
+      "size_bytes": 2374,
+      "sha256": "457ccce83d774280519250a186571ad3d2671852568f926c0036376ec4842dda"
+    },
+    {
+      "path": "data/table_46_support_deformation_limits.json",
+      "size_bytes": 4151,
+      "sha256": "df8206eb2eab2f0a6d2e96bcdb923883b569abfc2f2c1dfd32f0b2a5b2349c4e"
+    },
+    {
+      "path": "data/table_47_antenna_structure_working_conditions.json",
+      "size_bytes": 2691,
+      "sha256": "dc52a32e6b6e838c7f3d6b354cb4d41ff01fe3efb9a6a0bdd2084115463bbca3"
+    },
+    {
+      "path": "data/table_48_riveted_connection_resistances.json",
+      "size_bytes": 1505,
+      "sha256": "45646f0bbc8c3bfdf0862ef71c0e080ca14cc2413b625ccf2e723d9d1929b705"
+    },
+    {
+      "path": "data/table_4_weld_resistance_formulas.json",
+      "size_bytes": 578,
+      "sha256": "862092463bcd363a8d4a1419891da1c1375f3fe52a7315e52d6cb9d540e5039a"
+    },
+    {
+      "path": "data/table_5_bolt_resistance_factors.json",
+      "size_bytes": 504,
+      "sha256": "2a778605fd2755e2ef5385a8050fa7dd16f639e33d6b320c3759ed94802a3022"
+    },
+    {
+      "path": "data/table_6_single_angle_coefficients.json",
+      "size_bytes": 1361,
+      "sha256": "61528a7b6fec0bb12c06c3e3185e7514d6e45e4e829bedf15a026ecb80e0287b"
+    },
+    {
+      "path": "data/table_7_section_type_coefficients.json",
+      "size_bytes": 1597,
+      "sha256": "8d52d2fdbc4fb1daf3650560546f7f7c38f1eb3fccc9f07420cb82b2e3822b3f"
+    },
+    {
+      "path": "data/table_8_built_up_effective_slenderness.json",
+      "size_bytes": 3964,
+      "sha256": "955f1c61a94d394ab90ad1233a46ba966f9c9f3648e0d89382f06fa684f76589"
+    },
+    {
+      "path": "data/table_9_wall_slenderness_limits.json",
+      "size_bytes": 2343,
+      "sha256": "bbfff2f678dd14d973bea1dc635c737fd83c70602fb92fd5124b31254837ee80"
+    },
+    {
+      "path": "data/tables_14_to_19_bending_local_stability.json",
+      "size_bytes": 3406,
+      "sha256": "56474d1327dfbe325c00a88754b94280f82ded03b2a8247ada6f5c8e9548a837"
+    },
+    {
+      "path": "data/tables_24_to_33_effective_lengths.json",
+      "size_bytes": 9003,
+      "sha256": "f66f8262deb19687fa20d756c065bda97fa890ee98cd6578c761712e909125d1"
+    },
+    {
+      "path": "docs/SP16_MECH1_CANONICAL_AXES.md",
+      "size_bytes": 2034,
+      "sha256": "52d524b2267098b243fbf2ad5192253e57ecec22f053ec022b9b5699851f97b4"
+    },
+    {
+      "path": "docs/SP16_MECH2_LOAD_CASES_APPLICABILITY_CENSUS.md",
+      "size_bytes": 2146,
+      "sha256": "807090a8c97f098649124a22eac2a777064ef9d38188c7c3544290f0fd6487ee"
+    },
+    {
+      "path": "docs/STO_ARSS_PROTECTION_MATERIAL_LIBRARY.md",
+      "size_bytes": 2144,
+      "sha256": "e69d250b6472dd1b399af2b89831f74ecc741bd4ab0a49869b8841628f1c9f29"
+    },
+    {
+      "path": "docs/assumptions.md",
+      "size_bytes": 9645,
+      "sha256": "128490f8df2ec4cf200ba4e45bdfe52d353115b2aa6b389cde3e3cd2cb6fdc9b"
+    },
+    {
+      "path": "docs/docstring_api_generation_plan.md",
+      "size_bytes": 743,
+      "sha256": "117278f28ee2a2bef29bf99f387d99b9d9ec7f396b7f96caebd68952ac30c7c3"
+    },
+    {
+      "path": "docs/fire_ui0_architecture.md",
+      "size_bytes": 3076,
+      "sha256": "b69cfdbeb7fac3668bc6f73cbdb62cfd95808f6d083d2f25e4e3bc6f78a1c02b"
+    },
+    {
+      "path": "docs/fire_ui0_service_contract.md",
+      "size_bytes": 846,
+      "sha256": "c7938182d594d7f7589f9e809ea3b38af641cf5911e1166fee379dd17b486825"
+    },
+    {
+      "path": "docs/fire_ui11_engineering_questionnaire.md",
+      "size_bytes": 2644,
+      "sha256": "b9f9f756729a836a3ab468accb5499beb8498e1bbf6c4f7ec63868fe13f1885c"
+    },
+    {
+      "path": "docs/fire_ui1_frontend_architecture.md",
+      "size_bytes": 3900,
+      "sha256": "4b829622df60a5d4ed04c883bc39164c98192caf7e9d6059cdfafd6a6c699cf4"
+    },
+    {
+      "path": "docs/fire_ui1_user_guide.md",
+      "size_bytes": 1451,
+      "sha256": "186897ec97fc8e703bd8f74f5c9d6f1cfed66b704acdc9488df76464316b3650"
+    },
+    {
+      "path": "docs/implementation_status.md",
+      "size_bytes": 6142,
+      "sha256": "77e459687329c26b3a8974a41819ae0ae1d4b7f1095483fcb0176a1fa8c257cc"
+    },
+    {
+      "path": "docs/limitations.md",
+      "size_bytes": 14060,
+      "sha256": "38299ee49eadde251ed8f1116a6de5d352b25f0d5cf7948140c0daa31bc66294"
+    },
+    {
+      "path": "docs/model_capabilities_and_input_requirements.md",
+      "size_bytes": 10771,
+      "sha256": "26481d92545018160a29ee7414b705e5801c5b6229395ea8887b0618858ec40e"
+    },
+    {
+      "path": "docs/source_evidence/STO_ARSS_11251254_001_018_03_thermal_properties_table_user_capture.jpg",
+      "size_bytes": 100740,
+      "sha256": "3bcb381b079d0968966c11e0f1559dda7566b410a22d1663627c63d9c76486a1"
+    },
+    {
+      "path": "examples/FIRE_DAG_baked_walkthrough_20K1_v0_2.html",
+      "size_bytes": 12259,
+      "sha256": "d5efc4f80e4cc7de18e233135e4d8bc526cb537b187c2057aba9be9563bc4c7f"
+    },
+    {
+      "path": "examples/antenna_structures_example.json",
+      "size_bytes": 3141,
+      "sha256": "00fe9e1d96165bd975454d09aec62f821790b14e1f97d9bae27daef3d5710a28"
+    },
+    {
+      "path": "examples/axial_member_example.json",
+      "size_bytes": 831,
+      "sha256": "54893e567004cf0b76bb4524dda60fb240d08697b3bee4f95ea969afb4c0d7f2"
+    },
+    {
+      "path": "examples/axial_member_guided_example.json",
+      "size_bytes": 704,
+      "sha256": "b742e3cbb34f2754c9610856075202346588fb3f305686d38713cc0a26af1f4d"
+    },
+    {
+      "path": "examples/base_plates_and_combined_force_strength_example.json",
+      "size_bytes": 2181,
+      "sha256": "6a7da3fc0cdb3ac79d004b9f7069b1d61a471812360181d208bc58af9a8fb387"
+    },
+    {
+      "path": "examples/beam_column_guided_example.json",
+      "size_bytes": 1524,
+      "sha256": "3d39961bb4e066c0c6848c59482b8647557e049741b9ce07836b44e5f9a3e1f4"
+    },
+    {
+      "path": "examples/beam_column_stability_example.json",
+      "size_bytes": 2465,
+      "sha256": "920733150ff46016c36316e9dc32f689351469b7312d2b64cc89f57abdf8da67"
+    },
+    {
+      "path": "examples/bending_member_example.json",
+      "size_bytes": 3227,
+      "sha256": "3e772a7c7060033f02b5a545e41aebc52bf21a54b60d230c41fd423e7fe39d66"
+    },
+    {
+      "path": "examples/bending_member_guided_example.json",
+      "size_bytes": 1205,
+      "sha256": "c3cbec76278d207103f15e580258bc47c8115147c655226a015348f713a05859"
+    },
+    {
+      "path": "examples/bending_member_local_stability_example.json",
+      "size_bytes": 869,
+      "sha256": "54eb55f84e121477b4920f1747d9caf390c95536840906f5bc182dc38c1681fd"
+    },
+    {
+      "path": "examples/bolted_and_friction_connections_example.json",
+      "size_bytes": 2127,
+      "sha256": "fa5abc45b867a50568914d45281bd2da057acd9c333db5933aff26784a245360"
+    },
+    {
+      "path": "examples/brittle_fracture_and_welded_connections_example.json",
+      "size_bytes": 2167,
+      "sha256": "32b035ab177e452ba64f5a90c0ea11be3edcb4d689ecd54b98240f45c2084b87"
+    },
+    {
+      "path": "examples/brittle_fracture_guided_example.json",
+      "size_bytes": 1598,
+      "sha256": "58e1a519fbd008681fd5260f1c4e92757db98698ab9a59acafe40f1d37e36521"
+    },
+    {
+      "path": "examples/built_up_axial_member_example.json",
+      "size_bytes": 1989,
+      "sha256": "98f02b24b57424563706c47bfae99394baf549784c20a268eb57c37540cafcf1"
+    },
+    {
+      "path": "examples/built_up_axial_member_guided_example.json",
+      "size_bytes": 1415,
+      "sha256": "c15bd02ec1876a838f2561e7998377ac86ccc3ed58c507d895415728a910bdf9"
+    },
+    {
+      "path": "examples/built_up_beam_column_guided_example.json",
+      "size_bytes": 2116,
+      "sha256": "de1d0564b8263874aa58b7f52c2092ed66b9230fcf47d912879d7eca4e886770"
+    },
+    {
+      "path": "examples/built_up_beam_columns_and_combined_local_stability_example.json",
+      "size_bytes": 1513,
+      "sha256": "1d0f705a3e0807d6f30649058e383a02bdde95ee59afdde847e5573089eeb746"
+    },
+    {
+      "path": "examples/built_up_beam_flange_connections_example.json",
+      "size_bytes": 1144,
+      "sha256": "742b08952071a8862514bd1e6abe1ea531f0cda24179b26b857fe531dd605218"
+    },
+    {
+      "path": "examples/crane_runway_and_bending_stability_example.json",
+      "size_bytes": 2205,
+      "sha256": "4cad65304c045eaf8a2356752000bf2ecb146a8b52e29c3ce2469a89d6bb158d"
+    },
+    {
+      "path": "examples/effective_length_guided_example.json",
+      "size_bytes": 685,
+      "sha256": "fe43b0465c2cc7dc4aa020190a525db442f0849ebf34519b16d02a2be8199773"
+    },
+    {
+      "path": "examples/effective_lengths_and_limiting_slenderness_example.json",
+      "size_bytes": 2057,
+      "sha256": "368d0a2e205efec00ebc9e9336b87230cf003cd5c3ca22b2f12ea0d69366ffa8"
+    },
+    {
+      "path": "examples/fatigue_design_example.json",
+      "size_bytes": 907,
+      "sha256": "c22f664a389545ecc9b23491851e5a48e49c7bd8f8104869260637a03bd606c3"
+    },
+    {
+      "path": "examples/fatigue_guided_example.json",
+      "size_bytes": 736,
+      "sha256": "49f2c4754b721c68b37d88f6cfcbb9e7978b109de06c9c7abf04c72b46658272"
+    },
+    {
+      "path": "examples/fire_d2_sp554_critical_temperature_case.json",
+      "size_bytes": 591,
+      "sha256": "afe66b950cf5247e621899e7f4110308de9a48d8ef3f090167a39beddceacb3a"
+    },
+    {
+      "path": "examples/fire_d3_sp554_thermal_case.json",
+      "size_bytes": 376,
+      "sha256": "55de3dca45a3359b1e52600e6a926e7d52ebf174f30799acccd33d89f03fef23"
+    },
+    {
+      "path": "examples/fire_d4_sp554_section13_assessment_case.json",
+      "size_bytes": 808,
+      "sha256": "73ab6739efe16adf7aaa69aa0a318233235179756e0278f6d652f92d6b5148fb"
+    },
+    {
+      "path": "examples/fire_ui0_guided_session_demo.json",
+      "size_bytes": 13850,
+      "sha256": "5c8390b1fbb180552a7813e43e4458652dffa5cb30aba96f4e911f87b23591b6"
+    },
+    {
+      "path": "examples/fire_ui0_integrated_fire_d2_d4_control.json",
+      "size_bytes": 6044,
+      "sha256": "189b2b4babdedd51bfa3ddcad66bcd1b313466de890bf683880fd833363f18cf"
+    },
+    {
+      "path": "examples/fire_ui16_route_census.py",
+      "size_bytes": 10614,
+      "sha256": "aab7063f4a3d71cb1830070d60132c1cf55c4732483db5f350cbad10d66a0a96"
+    },
+    {
+      "path": "examples/fire_ui1_20k1_interpolation_walkthrough.json",
+      "size_bytes": 1693,
+      "sha256": "4dd57c930f627ba2dda2e82ac36d4fe9a310d1b19e1d1990b8480fdaf8d9bace"
+    },
+    {
+      "path": "examples/fire_ui1_guided_ui_session.json",
+      "size_bytes": 13892,
+      "sha256": "dbc93a57094e63c1b3f1247344a83a96f41203d3d4332ac9d5496695a6c2fc55"
+    },
+    {
+      "path": "examples/local_stability_example.json",
+      "size_bytes": 1182,
+      "sha256": "88d50eef4e49372f3effdc82636ff8039914573ff8b96773a58e3bba9f2c7366"
+    },
+    {
+      "path": "examples/minimal_case_example.json",
+      "size_bytes": 520,
+      "sha256": "ed7349bac8e1c6697aad1d1764fb1ac0ada2a1f98f4a423505a45199c707f32e"
+    },
+    {
+      "path": "examples/overhead_line_and_switchyard_supports_example.json",
+      "size_bytes": 2230,
+      "sha256": "2aefeee41d7e3ea8ce627c322a56446aa8fb996870c927456892a82a36502154"
+    },
+    {
+      "path": "examples/profile_catalog_example.json",
+      "size_bytes": 174,
+      "sha256": "29e3a97ca75023669bdc180c3d1c8b4e870181d306a0000e6aee55d313810570"
+    },
+    {
+      "path": "examples/reconstruction_assessment_example.json",
+      "size_bytes": 3639,
+      "sha256": "5ff858911ad5499a4fd4830847dfbb993bec9f02748add00d144b5ccea01d1e4"
+    },
+    {
+      "path": "examples/sheet_structure_guided_example.json",
+      "size_bytes": 576,
+      "sha256": "25d087e85b22287521e3b064eae69b4977d4e3a0e8e2e054eeafa370f838247a"
+    },
+    {
+      "path": "examples/sheet_structures_strength_and_stability_example.json",
+      "size_bytes": 1695,
+      "sha256": "e957e0e16a6ac8b93079da1bf38e3d9678505c3343cd78a238eef942c87d0495"
+    },
+    {
+      "path": "examples/sp554_sp16_fire_dependency_bridge_example.json",
+      "size_bytes": 190,
+      "sha256": "4dad4068a28359d5c4b931f399d5ca2eca69ce6db7df18572a26686a39cf491d"
+    },
+    {
+      "path": "examples/structural_detailing_and_support_bearings_example.json",
+      "size_bytes": 1109,
+      "sha256": "da1d2d86acf8ff8e6b3dd2c2c4ce5b0eb48eacaa0034f3936173fbbfb2a7c3b0"
+    },
+    {
+      "path": "fire_ui1_launch.py",
+      "size_bytes": 1234,
+      "sha256": "c37e8ababce75b6a04475099e087694a8609f4792e1ddba0fa045f2594c05796"
+    },
+    {
+      "path": "fire_ui1_web/README.md",
+      "size_bytes": 631,
+      "sha256": "62d2dd5ce46d8d4aff84c922e0c19a7d105111a66c7191529aa9356f910fd67e"
+    },
+    {
+      "path": "fire_ui1_web/dist/app.js",
+      "size_bytes": 105762,
+      "sha256": "9de5c81a48579fb187068170bccdea4ea72e5653d26fe8c9be15d432d031d015"
+    },
+    {
+      "path": "fire_ui1_web/index.html",
+      "size_bytes": 4619,
+      "sha256": "b2ee711bb30a31d2b8181828a2baa0af56cfb275668e0865da8a8a765cd3d695"
+    },
+    {
+      "path": "fire_ui1_web/src/app.ts",
+      "size_bytes": 103539,
+      "sha256": "f004747c812eb0825d5b55c891f69036b4c4e437a93235863114e46c6ec71c84"
+    },
+    {
+      "path": "fire_ui1_web/styles.css",
+      "size_bytes": 16448,
+      "sha256": "a95d0c2457a9d0972ff00f5123d20b380af45b024147fd4dac1a83a03da3481a"
+    },
+    {
+      "path": "fire_ui1_web/tsconfig.json",
+      "size_bytes": 257,
+      "sha256": "c87483c9dbc099651fd7e7221e96a9cf0cc829853875b0532508fa25141886ab"
+    },
+    {
+      "path": "main.py",
+      "size_bytes": 4712,
+      "sha256": "14008470bd4f832ccaf0e78778df9a5c66b5aaf5c3f5583059aec4bce84b51e5"
+    },
+    {
+      "path": "normative_graph/dag_schema.json",
+      "size_bytes": 67531,
+      "sha256": "27fdb78bb6811dea1d2aa79178e84d2295e8fd536d3291be3958604f7c26aa6f"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.30_stage_n1.json",
+      "size_bytes": 2676654,
+      "sha256": "230a7332fee87d18dec5f975ec96c9259c62112d56cc7123e61282d34c5e48ce"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.31_stage_n2.json",
+      "size_bytes": 2677340,
+      "sha256": "dd40c3b2670644042c4ba7c179072ba10e82a126361ab3469bb566ab8ecc4f8a"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.32_stage_n3.json",
+      "size_bytes": 2767199,
+      "sha256": "226c04a36dded941a8176bed2e258cfc4cc76f157f5000ad6e4cef10c6738aab"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.33_stage_n4.json",
+      "size_bytes": 2814508,
+      "sha256": "4de76fe047e435baff34a03db8496200f37be75993623af770548081ee4064fc"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.34_stage_n5.json",
+      "size_bytes": 2843547,
+      "sha256": "c60c9baaea65a577537dc4e3fb4e98ee0e85c4efa8048c0e351f07a3fe180765"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.35_stage_n6.json",
+      "size_bytes": 2914313,
+      "sha256": "3a7c8dbb4c1e0fb8dc251eaba570ea4b1eb50c86130d25e93c778e0cca64144b"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.36_stage_n7.json",
+      "size_bytes": 2941635,
+      "sha256": "83df0991cc709ca22d9d345bf4049a6dd2a7d97844310788e06e659930d9aa16"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.37_stage_n8.json",
+      "size_bytes": 2964890,
+      "sha256": "8637d59c05a94c7564249c47e81736c35e0708734877fd3c29c359a91d28e8ca"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.38_stage_n9.json",
+      "size_bytes": 2999212,
+      "sha256": "6ce5fd6540a371ac864a13f97145df924d0778f0fc7cd9ed453eefab68773cbc"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.39_stage_n10.json",
+      "size_bytes": 3028121,
+      "sha256": "a420ef733154eff581b58c5f186c8e28f60e6fa952db819193d368f3e40b358c"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.40_fire_d1.json",
+      "size_bytes": 3036021,
+      "sha256": "1def1f58d0caa0f387083abeef8651e54fd03eb27117b56ff7325d9410ba5260"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.41_fire_d2.json",
+      "size_bytes": 3073147,
+      "sha256": "e89862567eab7bc4084c803376b8e6d479d6acd24e6666f2763a83d18c556e6e"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.42_fire_d3.json",
+      "size_bytes": 3084553,
+      "sha256": "ec4f36f7a61de834d7dd4ae69e8f3f7e667f392c0edd4c236431a66581ab7dd3"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.43_fire_d31.json",
+      "size_bytes": 3094692,
+      "sha256": "5b19204e3ec29a7289bdbe8a483122c8e4b0c63b5fd0c2aad677bc9529a7892f"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.44_fire_d4.json",
+      "size_bytes": 3111838,
+      "sha256": "cb5143967c7503c5280283e227d6ab63fcfd305782fff2d3c26e4f1c43e5dfed"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.45_sp16_d3_interpolation_hotfix.json",
+      "size_bytes": 3114462,
+      "sha256": "2c596ebc74794d521aaa7f8264218f7f38e89d4130cc5eb35c62b93d9dc5f954"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.46_sp554_applicability_routing_hotfix.json",
+      "size_bytes": 3121495,
+      "sha256": "33242d2f2d2ab8248d61f826b3701ca5bd752fa52671c3cceb0686005d77f635"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.47_fire_ui11_engineering_questionnaire.json",
+      "size_bytes": 3123565,
+      "sha256": "223b12dda10820599d4dcb37879c425ebc04550a7dea3e7d9d6cea429ecb47c9"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.48_fire_ui12_section_model_binding.json",
+      "size_bytes": 3136321,
+      "sha256": "98f6d9ec19c8af629e3fc69275e416f15a768a606da460016556e65195be4cde"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.49_fire_ui13_material_strength_editor.json",
+      "size_bytes": 3142247,
+      "sha256": "9c8f4242bc1ec219eea4767e6ad595c119ea9e58a5176f0df6dc7a5d8c7fd40b"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.50_fire_ui14_section_weakening_simplification.json",
+      "size_bytes": 3142981,
+      "sha256": "368956369a324506ea1788c569550b0fac490410632457b897d6ea49b562e713"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.51_fire_ui15_weakening_continuation_hotfix.json",
+      "size_bytes": 3143373,
+      "sha256": "1305ef45e101fe1e01e57e13e9863109f85866ef14d02d5ff9d74f37f2b14d2d"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.52_fire_ui16_signed_load_parallel_scheduler.json",
+      "size_bytes": 3166839,
+      "sha256": "2291d2b723e6d73e6d12e3278b1f450a492f448fb977e8d86cc91ab484ee4f73"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.53_fire_ui17_critical_temperature_restraint_ux_hotfix.json",
+      "size_bytes": 3191872,
+      "sha256": "c60d48d669e8a2bc80ec93e0988693658fcd5af2d24190424643cca18cdc813b"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.54_fire_ui18_fire_d2_to_d3_handoff_hotfix.json",
+      "size_bytes": 3192882,
+      "sha256": "bd47b9b2a89e8947229d6c239c649fad418ab121a673862a11a7d20a6108f51f"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.55_fire_ui19_sp554_table1_heated_perimeter_matrix.json",
+      "size_bytes": 3208637,
+      "sha256": "431a2a4345af544edf644625b9b22bdd57929cedefefb9117e4d0e93efca581f"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.56_fire_ui20_conditional_signed_moments_thermal_bindings.json",
+      "size_bytes": 3214559,
+      "sha256": "b452b4fac5976560c94cc704904e53b77fc7f4d9991b758bc6d666037bd3755d"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.57_fire_ui21_selector_hardening_qy_t_lock.json",
+      "size_bytes": 3215260,
+      "sha256": "68a36f8ea58eae76a393d5e5a7ce25bfb5e701fc4a8fc4e571e7af9f2c9f1ec5"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.58_fire_ui22_routing_protection_library_hotfix.json",
+      "size_bytes": 3260956,
+      "sha256": "169d7e26d5388c698302679bf56c26df37e4e86c63159250748a2d1e80df1799"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.59_fire_ui23_protection_route_closure.json",
+      "size_bytes": 3286641,
+      "sha256": "db01baa52cb042185b14092588d48e241af64ec639bdc349236b9fedbfe7442a"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.60_fire_ui24_fire_val1_routing_remediation.json",
+      "size_bytes": 3290353,
+      "sha256": "c0187dc0b0865040482a251abb3eb129d51f87b29499104c302ab06aa289b352"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.61_sp16_mech1_canonical_axes.json",
+      "size_bytes": 3299449,
+      "sha256": "58304669f67127e8c06d2e8c76ef186022595e86ca7f2d6d5e5e5f6be065f92b"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.62_sp16_mech2_load_cases_applicability_census.json",
+      "size_bytes": 3334130,
+      "sha256": "941e673b71e274d2f3d18bd21164a20c39648bd7cdcc29672f5831138a4f69b1"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.63_sp16_mech3_axis_shear_pointwise_recovery.json",
+      "size_bytes": 3361190,
+      "sha256": "f56a21f817ebceae9e1484783bad0f7cb8c3b2312075f2cf7baf3bf444a5b7bd"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.64_sp16_mech4_free_torsion_pointwise_recovery.json",
+      "size_bytes": 3383950,
+      "sha256": "c30aca4b5cd658d0eb9635d30062cfdb776007ee3c83a8c50e11ca5af96c10d1"
+    },
+    {
+      "path": "normative_graph/dag_v0.3.65_sp16_mech5_direct_bimoment_pointwise_recovery.json",
+      "size_bytes": 3394825,
+      "sha256": "a4a882728a41361a211e3d3b9e6963f72d84061eb17363edda20af81b1a99407"
+    },
+    {
+      "path": "outputs/.gitkeep",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "outputs/antenna_structures_result.json",
+      "size_bytes": 8114,
+      "sha256": "84e484681b08177ea31ace9b38bc5f81f32c57538ba5c5442a7399fb31b8fd6d"
+    },
+    {
+      "path": "outputs/axial_member_guided_result.json",
+      "size_bytes": 6294,
+      "sha256": "c4e0c86c54147d3cc2355844d0b8f17f47df9d5784b03c4709a74e77c9f108c1"
+    },
+    {
+      "path": "outputs/axial_member_result.json",
+      "size_bytes": 2113,
+      "sha256": "433837b0915dae01a39ed96e595280d0a89045b8a0798644fc95a54c2b2c160c"
+    },
+    {
+      "path": "outputs/base_plates_and_combined_force_strength_result.json",
+      "size_bytes": 4026,
+      "sha256": "53c2cfe63519a33cdaa9e738f47e28c093d44e7851d2da71729e14fa8f3b31be"
+    },
+    {
+      "path": "outputs/beam_column_guided_result.json",
+      "size_bytes": 8098,
+      "sha256": "ceb9ba28be0f7707cd9cebbedefcfe8d748fda134034b2ed7f519108ebfa0e5a"
+    },
+    {
+      "path": "outputs/beam_column_stability_result.json",
+      "size_bytes": 5242,
+      "sha256": "2e07fec171bdc32ff3d335595c704597536c0f30bbb1d20c202b30badf8d9c76"
+    },
+    {
+      "path": "outputs/bending_member_guided_result.json",
+      "size_bytes": 7213,
+      "sha256": "c3a154abc0870e225301d464a99b5fff8fa96ce3b563061a8ad02f5651ffa0f8"
+    },
+    {
+      "path": "outputs/bending_member_local_stability_result.json",
+      "size_bytes": 2501,
+      "sha256": "f143f1fbf27f62247844128d01381e2c0ea8dcda02a62cf015fe14657a87a9c5"
+    },
+    {
+      "path": "outputs/bending_member_result.json",
+      "size_bytes": 6971,
+      "sha256": "1e07e7074b5797d4e1c06e7b5a22400c4b5e1e731542b1c79022463c73ae94b3"
+    },
+    {
+      "path": "outputs/bolted_and_friction_connections_result.json",
+      "size_bytes": 6924,
+      "sha256": "4482423b7c5fb5910858aa5d30c910d9f963c19b3503a44c48978c8407bf9635"
+    },
+    {
+      "path": "outputs/brittle_fracture_and_welded_connections_result.json",
+      "size_bytes": 5012,
+      "sha256": "c6a7d022d69008271c5149da9d8e19217359ed93053da93ea717c4c91d671d01"
+    },
+    {
+      "path": "outputs/brittle_fracture_guided_result.json",
+      "size_bytes": 5480,
+      "sha256": "1a2af1e45fd05d7a7c4b06768e952e73e0d63d7637e2d82b97cd69691a5444f8"
+    },
+    {
+      "path": "outputs/built_up_axial_member_guided_result.json",
+      "size_bytes": 7093,
+      "sha256": "16d0bd7d0577f5ed9a4753921e39a59d924b74512c19f268014f5164f69d379e"
+    },
+    {
+      "path": "outputs/built_up_axial_member_result.json",
+      "size_bytes": 5128,
+      "sha256": "a5ec1811f86bf6b03b52a55bb9ab8af7b6ee4e9d55b28656e57919f7bba45353"
+    },
+    {
+      "path": "outputs/built_up_beam_column_guided_result.json",
+      "size_bytes": 8603,
+      "sha256": "8a047087a8a06c195403a21691b3692c50874ca8d1255cf79ac8c16be78c1bd8"
+    },
+    {
+      "path": "outputs/built_up_beam_columns_and_combined_local_stability_result.json",
+      "size_bytes": 3450,
+      "sha256": "e5c58df8acc791f0ea4d2092fdd88c9d22cdc434e6e3f58ec87b1a96c4d33a7a"
+    },
+    {
+      "path": "outputs/built_up_beam_flange_connections_result.json",
+      "size_bytes": 5493,
+      "sha256": "aeb1df40004d7116d827cc5cd8cd6da9bf50324e1bb335c668392ed911cc7a29"
+    },
+    {
+      "path": "outputs/crane_runway_and_bending_stability_result.json",
+      "size_bytes": 4626,
+      "sha256": "2b4c5e4e45875f6fdf4dd01692591f5de9e0b551167c779d8684c8620a6462b3"
+    },
+    {
+      "path": "outputs/effective_length_guided_result.json",
+      "size_bytes": 1967,
+      "sha256": "1cef5d0a67e449bb8554f9a1a5eab69f611a8d295d532acd559d0e4f57f885f8"
+    },
+    {
+      "path": "outputs/effective_lengths_and_limiting_slenderness_result.json",
+      "size_bytes": 4221,
+      "sha256": "5afa6bf9372b7fa91e172c3cd7061c58238ba65431a8095da6a075b45a0fac03"
+    },
+    {
+      "path": "outputs/fatigue_design_result.json",
+      "size_bytes": 2773,
+      "sha256": "08f5dc915f91e3781db85b3a26cfb3b01246769a972a947f3442c3711232cbca"
+    },
+    {
+      "path": "outputs/fatigue_guided_result.json",
+      "size_bytes": 2842,
+      "sha256": "de4cb4a045800cd1a9100b54020af7f6a68d29ecfc14b345acb845ac57d24a35"
+    },
+    {
+      "path": "outputs/local_stability_result.json",
+      "size_bytes": 3353,
+      "sha256": "c6666e6d1a8d4ef9a9ca9b8c193eb2440d6132ce8ed0803c19c34747e6539286"
+    },
+    {
+      "path": "outputs/material_resistance_result.json",
+      "size_bytes": 2189,
+      "sha256": "4c75b0a4fb39333bf60c462b90a3d2e9f6701cfc0ae31439cde2d6dc8e925c28"
+    },
+    {
+      "path": "outputs/overhead_line_and_switchyard_supports_result.json",
+      "size_bytes": 6163,
+      "sha256": "7b4cac01d031d16fd2e0e773ee324dccbb9f6a168b9fed6ff65dc75860142e39"
+    },
+    {
+      "path": "outputs/profile_catalog_result.json",
+      "size_bytes": 5251,
+      "sha256": "a892b554c29edd8850e358dc85643bf100c78de700e8840f270a986ce220db8f"
+    },
+    {
+      "path": "outputs/reconstruction_assessment_result.json",
+      "size_bytes": 7887,
+      "sha256": "ca2266b71c1bd7b9d08e7e853912da3ec7f900e28c31b3b7c530b946306477a5"
+    },
+    {
+      "path": "outputs/sheet_structure_guided_result.json",
+      "size_bytes": 4311,
+      "sha256": "573f49cf8af44416452f7ce4284de7969cb69ded5794bbbecacfdf58ac5c2487"
+    },
+    {
+      "path": "outputs/sheet_structures_strength_and_stability_result.json",
+      "size_bytes": 6139,
+      "sha256": "55a8ccbd2f04a4902d79eff12342a5258652917cc54cad04e144c6d74f96c628"
+    },
+    {
+      "path": "outputs/sp554_fire_mechanical_guided_result.json",
+      "size_bytes": 2872,
+      "sha256": "9e747c0cee971c86fa8eb36504bb32a82a8f5d5fab5ede0978ebc7a2d7353789"
+    },
+    {
+      "path": "outputs/sp554_fire_result_assessment_result.json",
+      "size_bytes": 5722,
+      "sha256": "38a357f828ae5bd236ce5f9480819fd8d6268d8d90c03b20da2f847a6e2dc406"
+    },
+    {
+      "path": "outputs/sp554_fire_thermal_guided_result.json",
+      "size_bytes": 3577,
+      "sha256": "99e44a9cf31751e38bd039f54894dad8eb2fa9838aae2386f5678b5b778743da"
+    },
+    {
+      "path": "outputs/sp554_sp16_fire_dependency_bridge_result.json",
+      "size_bytes": 10475,
+      "sha256": "257d622657569721e9cab35b970bbbf158f5a459b12d80080412898c07319104"
+    },
+    {
+      "path": "outputs/structural_detailing_and_support_bearings_result.json",
+      "size_bytes": 7077,
+      "sha256": "5a6732e99136fe417e630f4b6994b6e9ca500e862ab47f9a0c3c15f45dafc030"
+    },
+    {
+      "path": "reports/antenna_structures_case_report.json",
+      "size_bytes": 8114,
+      "sha256": "84e484681b08177ea31ace9b38bc5f81f32c57538ba5c5442a7399fb31b8fd6d"
+    },
+    {
+      "path": "reports/antenna_structures_case_report.md",
+      "size_bytes": 4008,
+      "sha256": "2abb80762f0504a3680b1774b15a5e29eae22b7d24c1dd7acc604eb1589aa4ba"
+    },
+    {
+      "path": "reports/api_compatibility_v0_26.json",
+      "size_bytes": 614,
+      "sha256": "97e62c442d6d48fd169d7cc9c98375f3d051ed830bbccc1738708db5f5825a29"
+    },
+    {
+      "path": "reports/api_hardening_report_v0_24.json",
+      "size_bytes": 63160,
+      "sha256": "5b034cb738062551511c74a71ada5ab6df3fe7e27bd4f0945c6c6b6756da91d5"
+    },
+    {
+      "path": "reports/api_hardening_report_v0_24.md",
+      "size_bytes": 577,
+      "sha256": "3076bb060656eef792e6fd3e9aedbe939e3eec7d784b96c1fa300f2fb7fe408c"
+    },
+    {
+      "path": "reports/axial_member_case_report.json",
+      "size_bytes": 2113,
+      "sha256": "433837b0915dae01a39ed96e595280d0a89045b8a0798644fc95a54c2b2c160c"
+    },
+    {
+      "path": "reports/axial_member_case_report.md",
+      "size_bytes": 1056,
+      "sha256": "4ed0692af0179ff025ca023b40c163c9f1cf5bef2c31cbb740b0537e43a219c9"
+    },
+    {
+      "path": "reports/axial_member_guided_case_report.json",
+      "size_bytes": 6288,
+      "sha256": "1a86885b081b3535f94e12d026abd17584a04d984189b1b42e6f230c5b941a20"
+    },
+    {
+      "path": "reports/axial_member_guided_case_report.md",
+      "size_bytes": 1695,
+      "sha256": "b7b93e713fe72e166ac18634147031ca6e635fee1d681795d18dd0dad80be05a"
+    },
+    {
+      "path": "reports/base_plates_and_combined_force_strength_case_report.json",
+      "size_bytes": 4026,
+      "sha256": "53c2cfe63519a33cdaa9e738f47e28c093d44e7851d2da71729e14fa8f3b31be"
+    },
+    {
+      "path": "reports/base_plates_and_combined_force_strength_case_report.md",
+      "size_bytes": 1453,
+      "sha256": "5314f41093cb5fa5d6a297f8ce4a74462624eb7e2869b26cc38f65eb5ac107ec"
+    },
+    {
+      "path": "reports/beam_column_guided_case_report.json",
+      "size_bytes": 8098,
+      "sha256": "ceb9ba28be0f7707cd9cebbedefcfe8d748fda134034b2ed7f519108ebfa0e5a"
+    },
+    {
+      "path": "reports/beam_column_guided_case_report.md",
+      "size_bytes": 2069,
+      "sha256": "787ce9ca1143ffcbd93466cf1e2fc1c22fd432435c951d5dacf5c11e92a0e105"
+    },
+    {
+      "path": "reports/beam_column_stability_case_report.json",
+      "size_bytes": 5242,
+      "sha256": "2e07fec171bdc32ff3d335595c704597536c0f30bbb1d20c202b30badf8d9c76"
+    },
+    {
+      "path": "reports/beam_column_stability_case_report.md",
+      "size_bytes": 2215,
+      "sha256": "c820763e974b31e79524687712fc2bbaaaaa330857bfe6cb4dcabf0157149731"
+    },
+    {
+      "path": "reports/bending_member_case_report.json",
+      "size_bytes": 6971,
+      "sha256": "1e07e7074b5797d4e1c06e7b5a22400c4b5e1e731542b1c79022463c73ae94b3"
+    },
+    {
+      "path": "reports/bending_member_case_report.md",
+      "size_bytes": 3010,
+      "sha256": "5d2b5a69a4e1ce0536fb5f5b52fa9b75968c6920bd568a5255c535aa5d2e7fee"
+    },
+    {
+      "path": "reports/bending_member_guided_case_report.json",
+      "size_bytes": 7213,
+      "sha256": "c3a154abc0870e225301d464a99b5fff8fa96ce3b563061a8ad02f5651ffa0f8"
+    },
+    {
+      "path": "reports/bending_member_guided_case_report.md",
+      "size_bytes": 1581,
+      "sha256": "a9b1c9bc7f0eab0cabedb514ac70447764af502fe63ea29903f1dbb24f083943"
+    },
+    {
+      "path": "reports/bending_member_local_stability_case_report.json",
+      "size_bytes": 2501,
+      "sha256": "f143f1fbf27f62247844128d01381e2c0ea8dcda02a62cf015fe14657a87a9c5"
+    },
+    {
+      "path": "reports/bending_member_local_stability_case_report.md",
+      "size_bytes": 1303,
+      "sha256": "daadd5ec84c3ffec2c8b52efca6cd512a67b25884fc4c89933bb2b71cc334cfd"
+    },
+    {
+      "path": "reports/bolted_and_friction_connections_case_report.json",
+      "size_bytes": 6924,
+      "sha256": "4482423b7c5fb5910858aa5d30c910d9f963c19b3503a44c48978c8407bf9635"
+    },
+    {
+      "path": "reports/bolted_and_friction_connections_case_report.md",
+      "size_bytes": 3702,
+      "sha256": "98b0888c1e453ae6d18da786a059f9d95361502f280774ce24aaf04b317b846f"
+    },
+    {
+      "path": "reports/brittle_fracture_and_welded_connections_case_report.json",
+      "size_bytes": 5012,
+      "sha256": "c6a7d022d69008271c5149da9d8e19217359ed93053da93ea717c4c91d671d01"
+    },
+    {
+      "path": "reports/brittle_fracture_and_welded_connections_case_report.md",
+      "size_bytes": 2245,
+      "sha256": "6fd9e5cf950eb5c9d523a2f4f818c4a8da7e75485f10fadca5ebcfed02a7d7c8"
+    },
+    {
+      "path": "reports/brittle_fracture_guided_case_report.json",
+      "size_bytes": 5474,
+      "sha256": "d5598e316996fbae79f76340d4582e6fe7ef2bb3b12a1cbf0cf1cc763392b41f"
+    },
+    {
+      "path": "reports/brittle_fracture_guided_case_report.md",
+      "size_bytes": 2900,
+      "sha256": "83ebf6426a90700f7dc2296367c1af6ab38223d2b2eff714660b74c8e62bbda1"
+    },
+    {
+      "path": "reports/built_up_axial_member_case_report.json",
+      "size_bytes": 5128,
+      "sha256": "a5ec1811f86bf6b03b52a55bb9ab8af7b6ee4e9d55b28656e57919f7bba45353"
+    },
+    {
+      "path": "reports/built_up_axial_member_case_report.md",
+      "size_bytes": 2599,
+      "sha256": "6b34b83c0fa5b75d53358ada19f3eedf5dfee46021fd4980ab2eb7794b1bcf12"
+    },
+    {
+      "path": "reports/built_up_axial_member_guided_case_report.json",
+      "size_bytes": 7087,
+      "sha256": "354798cd8122b7901a79df2451331f6682b1749020770dd871eeeae5b7d2afb7"
+    },
+    {
+      "path": "reports/built_up_axial_member_guided_case_report.md",
+      "size_bytes": 2503,
+      "sha256": "0fa1d50e2e1229b68b4b657c4a6537ba82950a38b839293e5082e90fc23d4592"
+    },
+    {
+      "path": "reports/built_up_beam_column_guided_case_report.json",
+      "size_bytes": 8603,
+      "sha256": "8a047087a8a06c195403a21691b3692c50874ca8d1255cf79ac8c16be78c1bd8"
+    },
+    {
+      "path": "reports/built_up_beam_column_guided_case_report.md",
+      "size_bytes": 2961,
+      "sha256": "45bc8af4fe38e6a1c923d2cb443817d05dca933965a22c3051bb80c87e9759a8"
+    },
+    {
+      "path": "reports/built_up_beam_columns_and_combined_local_stability_case_report.json",
+      "size_bytes": 3450,
+      "sha256": "e5c58df8acc791f0ea4d2092fdd88c9d22cdc434e6e3f58ec87b1a96c4d33a7a"
+    },
+    {
+      "path": "reports/built_up_beam_columns_and_combined_local_stability_case_report.md",
+      "size_bytes": 1546,
+      "sha256": "167fb32b87a74a283846693225eae0c2d3aff6af6fde1e413281659a9aacedfb"
+    },
+    {
+      "path": "reports/built_up_beam_flange_connections_case_report.json",
+      "size_bytes": 5493,
+      "sha256": "aeb1df40004d7116d827cc5cd8cd6da9bf50324e1bb335c668392ed911cc7a29"
+    },
+    {
+      "path": "reports/built_up_beam_flange_connections_case_report.md",
+      "size_bytes": 3384,
+      "sha256": "b52275126292ed6acc862ce66cffb3c0f75c010ee122db142bf9648bb7aae678"
+    },
+    {
+      "path": "reports/compliance_matrix_v0_22_reconstructed_r1.csv",
+      "size_bytes": 260864,
+      "sha256": "c2687ad190b8d914d944c3b39c442ccc20b36725e4a574bc911e8234502696ec"
+    },
+    {
+      "path": "reports/compliance_matrix_v0_22_reconstructed_r1.json",
+      "size_bytes": 436632,
+      "sha256": "a7dc3ee3d3ee84d97eb16b7e949e6ebf96924b4ff4a40693a1e7ff21fd27d491"
+    },
+    {
+      "path": "reports/compliance_matrix_v0_23_reconstructed_r1.csv",
+      "size_bytes": 190296,
+      "sha256": "9ce9dcba99909ab508d65512cc7ea242245ff8a697d2dc4f709d23f9f1ad969a"
+    },
+    {
+      "path": "reports/compliance_matrix_v0_23_reconstructed_r1.json",
+      "size_bytes": 329990,
+      "sha256": "09301ca22661eae29f251c41186c7d826a21a2f0b24af8cfd1332863d006969d"
+    },
+    {
+      "path": "reports/compliance_matrix_v0_24_reconstructed_r1.json",
+      "size_bytes": 1151,
+      "sha256": "abfb2e5c53bed40a2e7dc58da97a2c9146fbf266e360127d970ab521a6075950"
+    },
+    {
+      "path": "reports/coverage_summary_v0_23.json",
+      "size_bytes": 612,
+      "sha256": "38e28e72c6bed9f356fc17d8cbe382e3ecca585a55d4aa30891941163c86f5d7"
+    },
+    {
+      "path": "reports/coverage_summary_v0_23.md",
+      "size_bytes": 332,
+      "sha256": "d2504bb4aae4bffdcca7eb01f195d8e2e6bafc9b4fe99909ec2a4dc787e065bb"
+    },
+    {
+      "path": "reports/coverage_summary_v0_24.json",
+      "size_bytes": 742,
+      "sha256": "a5698a459a7228f0817e39463e26ce5f318d1bbe481070e15c23cf1d626155d3"
+    },
+    {
+      "path": "reports/coverage_summary_v0_24.md",
+      "size_bytes": 333,
+      "sha256": "edceee651349ed2919641d0ad4472ae50c66a873d4d1f9422badf5eeaeeeaece"
+    },
+    {
+      "path": "reports/coverage_summary_v0_25.json",
+      "size_bytes": 645,
+      "sha256": "0f1814cf8301874a5ebd708e25e368df87e5be5883fff53006545c4db963e4e9"
+    },
+    {
+      "path": "reports/coverage_summary_v0_25.md",
+      "size_bytes": 157,
+      "sha256": "b11f3f07d053d0a3823aab3b3ede3b89d0da4d28a6a2fa4db960513a7443cc7c"
+    },
+    {
+      "path": "reports/coverage_summary_v0_26.json",
+      "size_bytes": 462,
+      "sha256": "fa1d5b35c91fad4783fa413896f884a783c81f8ad0b2f38e612cb7956fee46e0"
+    },
+    {
+      "path": "reports/coverage_summary_v0_26.md",
+      "size_bytes": 278,
+      "sha256": "022810ef88f6ec0b19ae49849283f6fed82602e3a315d6d1054afe2d5b7f5d7e"
+    },
+    {
+      "path": "reports/crane_runway_and_bending_stability_case_report.json",
+      "size_bytes": 4626,
+      "sha256": "2b4c5e4e45875f6fdf4dd01692591f5de9e0b551167c779d8684c8620a6462b3"
+    },
+    {
+      "path": "reports/crane_runway_and_bending_stability_case_report.md",
+      "size_bytes": 1918,
+      "sha256": "8c910950bfccd3394345b41b2eb8bda3a6a8c0745af1a9c67738403d029236a0"
+    },
+    {
+      "path": "reports/effective_length_guided_case_report.json",
+      "size_bytes": 1967,
+      "sha256": "1cef5d0a67e449bb8554f9a1a5eab69f611a8d295d532acd559d0e4f57f885f8"
+    },
+    {
+      "path": "reports/effective_length_guided_case_report.md",
+      "size_bytes": 998,
+      "sha256": "8911fa1ffdd771aa2b2c897daae0c80d9b75ebab24227c1dbd1d9ac49d4e5dd6"
+    },
+    {
+      "path": "reports/effective_lengths_and_limiting_slenderness_case_report.json",
+      "size_bytes": 4221,
+      "sha256": "5afa6bf9372b7fa91e172c3cd7061c58238ba65431a8095da6a075b45a0fac03"
+    },
+    {
+      "path": "reports/effective_lengths_and_limiting_slenderness_case_report.md",
+      "size_bytes": 1743,
+      "sha256": "3bf2eea68d05c4cecdb54d6e2c9cae84cdac9e910b25f8eb0939652fb0971b80"
+    },
+    {
+      "path": "reports/external_scad_benchmark_comparison_v0_25_reconstructed_r1.json",
+      "size_bytes": 5161,
+      "sha256": "a22eedfc0469cfb1c3a643fe8071d50e7acaf7b1b0de526fa1ea077b9e83056c"
+    },
+    {
+      "path": "reports/fatigue_design_case_report.json",
+      "size_bytes": 2773,
+      "sha256": "08f5dc915f91e3781db85b3a26cfb3b01246769a972a947f3442c3711232cbca"
+    },
+    {
+      "path": "reports/fatigue_design_case_report.md",
+      "size_bytes": 1553,
+      "sha256": "011de748ca28c8f5f7a41e413e726b6166363d7219f1a057cea2e2a292243ad0"
+    },
+    {
+      "path": "reports/fatigue_guided_case_report.json",
+      "size_bytes": 2836,
+      "sha256": "715f3028a8dd198b0651667cfc025963b3c52488b157ce6583ebffa902c1cf9c"
+    },
+    {
+      "path": "reports/fatigue_guided_case_report.md",
+      "size_bytes": 1735,
+      "sha256": "0b2dd15f10ec69a25a46b9ccebd7b774c56fa08ce7dd8d6031b224b2988591af"
+    },
+    {
+      "path": "reports/final_audit_report.json",
+      "size_bytes": 15686,
+      "sha256": "57fed4da7c745be63715561fc9dcfc609ed4566210239e2e95ee7d29bbe7fd42"
+    },
+    {
+      "path": "reports/final_audit_report.md",
+      "size_bytes": 11919,
+      "sha256": "7effbf71823681055c8520375a7da243a2a65f15e56d9e87fc15c6f740895f00"
+    },
+    {
+      "path": "reports/fire_d1_closure_report.json",
+      "size_bytes": 1374,
+      "sha256": "0dec136f7ef3fa9afb136917745899825bd8683d374d6c20849d60ddf6079b50"
+    },
+    {
+      "path": "reports/fire_d1_closure_report.md",
+      "size_bytes": 941,
+      "sha256": "88a8c4655378641e96cb03430601aa2866dc61d3248a145fd9c34b63befcd5ac"
+    },
+    {
+      "path": "reports/fire_d1_dependency_matrix.json",
+      "size_bytes": 9088,
+      "sha256": "c53dee6596c4c3d4dd3ee28b7f888089fed103aa4b393b73d25ca979e2240aff"
+    },
+    {
+      "path": "reports/fire_d1_dependency_matrix.md",
+      "size_bytes": 2847,
+      "sha256": "184bc3ff7cc8d0fdfcb6741a47d8fb150a6cc4eee26c6f06e4ae24361acfdb4b"
+    },
+    {
+      "path": "reports/fire_d2_closure_report.json",
+      "size_bytes": 1342,
+      "sha256": "f7a57f3921d79e824cd5bafc6adeff2e586b7935013aa43d5be41034b83b29d8"
+    },
+    {
+      "path": "reports/fire_d2_closure_report.md",
+      "size_bytes": 1154,
+      "sha256": "de2b3843052ada5bad01cfb98b135a51564ee5f17cd4d907cab72152f74cee74"
+    },
+    {
+      "path": "reports/fire_d2_governing_policy_reconciliation.json",
+      "size_bytes": 3749,
+      "sha256": "90de1ec004d98956e77958bc98638ba830afab965de1e52183e8ff64be5972a9"
+    },
+    {
+      "path": "reports/fire_d2_governing_policy_reconciliation.md",
+      "size_bytes": 1802,
+      "sha256": "a27b3a5d248ccd4694f6b73bd4c30f84f2984e322f340721999d21f32aa9a342"
+    },
+    {
+      "path": "reports/fire_d31_section12_full_scope_reconciliation.json",
+      "size_bytes": 1502,
+      "sha256": "52eb0b7fb696e24cd319d98e89ea6ed8f58199967e4340f8baec699c6787a0cb"
+    },
+    {
+      "path": "reports/fire_d31_section12_full_scope_reconciliation.md",
+      "size_bytes": 5361,
+      "sha256": "d23eb9b9c8bdb29164bf6da7fa73840c7a2f574c7c2697ae175bb511af61d969"
+    },
+    {
+      "path": "reports/fire_d3_closure_report.json",
+      "size_bytes": 942,
+      "sha256": "2f0a547fba7ce4fdf56a1e19b357a24b512a6810bd8fb415f05606f900b309d3"
+    },
+    {
+      "path": "reports/fire_d3_closure_report.md",
+      "size_bytes": 2202,
+      "sha256": "e3f6bf536e5d1b2e5f58cc9205a1f3b3787060e8d0d10305c3bc60fa0710f498"
+    },
+    {
+      "path": "reports/fire_d3_source_reconciliation.json",
+      "size_bytes": 1222,
+      "sha256": "0de0486f60594fd2cdad1d4e4f565223d3fbbcf19d94b371f70ffbb18ee24839"
+    },
+    {
+      "path": "reports/fire_d3_source_reconciliation.md",
+      "size_bytes": 3002,
+      "sha256": "a908f4a4e6db13f3d1de30d322af1ac72e2a738f4e7cccd3b71ed6a9a1e4368f"
+    },
+    {
+      "path": "reports/fire_d4_closure_report.json",
+      "size_bytes": 2041,
+      "sha256": "fc28127143c3f68b4d75cd18a7266793b8f7f808c84095d8707ca3d8ab724dd4"
+    },
+    {
+      "path": "reports/fire_d4_closure_report.md",
+      "size_bytes": 2762,
+      "sha256": "29956153b9f5b4fd8adc50b3334c0eeab281032092f29e0d6d3cdc88e436a670"
+    },
+    {
+      "path": "reports/fire_ui0_architecture_closure.json",
+      "size_bytes": 1365,
+      "sha256": "cddd7b4ab204860485ee1c421e051941e757be4046a463cbadeaa4448fe09f60"
+    },
+    {
+      "path": "reports/fire_ui0_architecture_closure.md",
+      "size_bytes": 3929,
+      "sha256": "742742bf12106b9496cdcd38fd828565a252117b02a775f027e3e4a6cd8562c0"
+    },
+    {
+      "path": "reports/fire_ui11_questionnaire_rebuild.json",
+      "size_bytes": 1131,
+      "sha256": "e4d5a9170da914ddb962c76eedf7e112ad8d5a54a1e97475651d6436b2cff07a"
+    },
+    {
+      "path": "reports/fire_ui11_questionnaire_rebuild.md",
+      "size_bytes": 1306,
+      "sha256": "584dff44aed36c600b1f614d0161325a3e78a657c1226ed0178c2a663578cf87"
+    },
+    {
+      "path": "reports/fire_ui12_section_model_executor_binding_closure.json",
+      "size_bytes": 2491,
+      "sha256": "c281d483adf6e3c8714151914e72aa7ca89780c983e828b127bbc4e64857ecca"
+    },
+    {
+      "path": "reports/fire_ui12_section_model_executor_binding_closure.md",
+      "size_bytes": 2051,
+      "sha256": "c66268ebf88a6a2d4a0783b69158352ba07909396883981eed434747fd829348"
+    },
+    {
+      "path": "reports/fire_ui13_material_strength_editor_closure.json",
+      "size_bytes": 878,
+      "sha256": "20990bd3eff854656fdc98188c71557f2ed0a0fcfc463c1e780107b3b34ed6f4"
+    },
+    {
+      "path": "reports/fire_ui13_material_strength_editor_closure.md",
+      "size_bytes": 2971,
+      "sha256": "b27ad00bc560992ffc1d51b93999672e085015f7adb8a1d62d6498130b47c610"
+    },
+    {
+      "path": "reports/fire_ui14_section_weakening_simplification_closure.json",
+      "size_bytes": 2220,
+      "sha256": "5889746c79684ce42f0011b4231f193b748875006e996ce7347d09148ad869f5"
+    },
+    {
+      "path": "reports/fire_ui14_section_weakening_simplification_closure.md",
+      "size_bytes": 4039,
+      "sha256": "36a14ec1cbb8a56b0aa1dcdab22bd6310d35f357cab5bfb5bf35b4c699dbdffc"
+    },
+    {
+      "path": "reports/fire_ui15_weakening_continuation_hotfix_closure.json",
+      "size_bytes": 1425,
+      "sha256": "5a50e566787c2a5c958457349d8a3baafab8b937df9c40c0f7669f896f5a22c2"
+    },
+    {
+      "path": "reports/fire_ui15_weakening_continuation_hotfix_closure.md",
+      "size_bytes": 946,
+      "sha256": "67c8cd43840c8aa9616337d5bac963b46cc13a199861457afad12727052286a5"
+    },
+    {
+      "path": "reports/fire_ui16_signed_load_parallel_scheduler_closure.json",
+      "size_bytes": 1857,
+      "sha256": "6b45ee785a72405bae916752c7bf6b3694675c72da52a048e26164f6327be9e1"
+    },
+    {
+      "path": "reports/fire_ui16_signed_load_parallel_scheduler_closure.md",
+      "size_bytes": 3228,
+      "sha256": "8f714f73b97227748fc4500262082dea6b538ea14fb8213b4e369c30f6106cd1"
+    },
+    {
+      "path": "reports/fire_ui17_critical_temperature_restraint_ux_hotfix_closure.json",
+      "size_bytes": 960,
+      "sha256": "e078781518dcc9b0ff9f3720b4f760ba7c59edabf1503fa333a5fb175faa10d1"
+    },
+    {
+      "path": "reports/fire_ui17_critical_temperature_restraint_ux_hotfix_closure.md",
+      "size_bytes": 1812,
+      "sha256": "59995deb85d131f2785af4901f457736acf5750eb949e65defbd3d44ad9d4e0c"
+    },
+    {
+      "path": "reports/fire_ui18_fire_d2_to_d3_handoff_hotfix_closure.json",
+      "size_bytes": 1022,
+      "sha256": "ebe7da55568a3473dd423deed0982f4f222f21e5e9b54437f4ee15a1d225123f"
+    },
+    {
+      "path": "reports/fire_ui18_fire_d2_to_d3_handoff_hotfix_closure.md",
+      "size_bytes": 1743,
+      "sha256": "4f093ca018391508328498fc8f33b49a5007aa09f1b258b06549bccbbb8ac404"
+    },
+    {
+      "path": "reports/fire_ui19_sp554_table1_heated_perimeter_matrix_closure.json",
+      "size_bytes": 1928,
+      "sha256": "16937fd6f90994f3f25a8e0c8574da76ec481ac3ab3a3a272f16c2b431b3ac03"
+    },
+    {
+      "path": "reports/fire_ui19_sp554_table1_heated_perimeter_matrix_closure.md",
+      "size_bytes": 1875,
+      "sha256": "7bd66bba7a68e8134fc95b6ec6065b4e0d35d7a31c69933292c07502d5ccf431"
+    },
+    {
+      "path": "reports/fire_ui1_frontend_closure.json",
+      "size_bytes": 1717,
+      "sha256": "ec2eecb214e783f284c8d6109dff9ea7b027b4a4ba03040453297077cdba2d8d"
+    },
+    {
+      "path": "reports/fire_ui1_frontend_closure.md",
+      "size_bytes": 1971,
+      "sha256": "2b7d5192f5a96c2b42d9c73b1d7b39fcd3d0904f04f3df28d7a72bd86bd42ba6"
+    },
+    {
+      "path": "reports/fire_ui21_selector_audit_v0_54.json",
+      "size_bytes": 1995,
+      "sha256": "99df83af953235109276f6c78345d2c998530cece1cfd4f5823dc8e4f0d7e289"
+    },
+    {
+      "path": "reports/fire_ui21_selector_audit_v0_54.md",
+      "size_bytes": 1071,
+      "sha256": "2854e8022d8472f9d600ee7dd8962aede2faf1d1e3e97fd0b9fb017dd69abf13"
+    },
+    {
+      "path": "reports/fire_val1_v057_remediation_summary.json",
+      "size_bytes": 1526,
+      "sha256": "77079a6b753300c366ceac45273c1cf9da1d98caf8a7047eddac138a733b568e"
+    },
+    {
+      "path": "reports/fire_val1_v057_remediation_summary.md",
+      "size_bytes": 883,
+      "sha256": "b41dc1356024051cea489f084e92a8b088062fafc26f10cf7df1debafa8c10ea"
+    },
+    {
+      "path": "reports/function_coverage_raw_v0_24.json",
+      "size_bytes": 2091908,
+      "sha256": "194a1bdc23df4d87fd047f82ede5a332e6c3fce89542090538975d4c406e6787"
+    },
+    {
+      "path": "reports/function_coverage_raw_v0_25.json",
+      "size_bytes": 1078301,
+      "sha256": "95c7e0f4b83d65bb142198093f367874a98831befbeeed425d3abd351dbc1c9c"
+    },
+    {
+      "path": "reports/function_coverage_raw_v0_26.json",
+      "size_bytes": 2173235,
+      "sha256": "959b5cd75c85262f609c6e9c5b012136e679064b0b98bdb14ea588897b2e2d8d"
+    },
+    {
+      "path": "reports/function_coverage_raw_v0_27.json",
+      "size_bytes": 1414132,
+      "sha256": "3617f29b02e2ad901ec710b1db3c146372d6ba3c5b258e8c67b29722e39aa492"
+    },
+    {
+      "path": "reports/function_level_validation_v0_24.json",
+      "size_bytes": 280013,
+      "sha256": "affc01ebcc6a0714bff8e9c8dbc672275f3c73de04ff6549751edf54c856f965"
+    },
+    {
+      "path": "reports/function_level_validation_v0_24.md",
+      "size_bytes": 522,
+      "sha256": "7676547663c5b255810576d6f6aa2e157fa77b2ca8bb19dd0773a9cdb2ee5580"
+    },
+    {
+      "path": "reports/independent_normative_rebaseline_v0_23.json",
+      "size_bytes": 23281,
+      "sha256": "387df43135887c0fd9bb451b88f3caf57220d37dcef5fb46a12245ef1afc2109"
+    },
+    {
+      "path": "reports/independent_normative_rebaseline_v0_23.md",
+      "size_bytes": 2408,
+      "sha256": "b555f41bb87c548afda742d690732e6479c8025f85611c152a24f74445710cf2"
+    },
+    {
+      "path": "reports/independent_validation_report_v0_23.json",
+      "size_bytes": 53916,
+      "sha256": "fa5e167aae0e44b24934047b66751041615ae22c8357299db00ee6c6ec04130c"
+    },
+    {
+      "path": "reports/independent_validation_report_v0_23.md",
+      "size_bytes": 1081,
+      "sha256": "388e88f0f6e8a304a116826ab0fd73116cfe62f4f9d9bbcd9bba30c8332a14e6"
+    },
+    {
+      "path": "reports/local_stability_case_report.json",
+      "size_bytes": 3353,
+      "sha256": "c6666e6d1a8d4ef9a9ca9b8c193eb2440d6132ce8ed0803c19c34747e6539286"
+    },
+    {
+      "path": "reports/local_stability_case_report.md",
+      "size_bytes": 1817,
+      "sha256": "77ca4453f2096f682993bd3773cde8b398a924fd0757ec382df7fa2f1ee201e6"
+    },
+    {
+      "path": "reports/material_resistance_case_report.json",
+      "size_bytes": 2189,
+      "sha256": "4c75b0a4fb39333bf60c462b90a3d2e9f6701cfc0ae31439cde2d6dc8e925c28"
+    },
+    {
+      "path": "reports/material_resistance_case_report.md",
+      "size_bytes": 1394,
+      "sha256": "9b1aa2f55e3cfe4b8511a2399663920d6329ad9b10de3c40bfce2dc9e21a40eb"
+    },
+    {
+      "path": "reports/overhead_line_and_switchyard_supports_case_report.json",
+      "size_bytes": 6163,
+      "sha256": "7b4cac01d031d16fd2e0e773ee324dccbb9f6a168b9fed6ff65dc75860142e39"
+    },
+    {
+      "path": "reports/overhead_line_and_switchyard_supports_case_report.md",
+      "size_bytes": 3080,
+      "sha256": "c4c53cfdba16aa91f3838ab1bd749ed3b7d43d2f0f45ecbcf41d769f615f1145"
+    },
+    {
+      "path": "reports/phase_0_23_source_recheck.md",
+      "size_bytes": 1142,
+      "sha256": "049d7e1c9b46a43e533a4c96532ee66e99ee68c02b284b3ad4dffdfa642b8a9f"
+    },
+    {
+      "path": "reports/phase_0_25_validation_report.json",
+      "size_bytes": 17892,
+      "sha256": "eeb5959bc1813cc3c5c2d0319d0eb3b54af6595bdba921d87b2ae5369cd46f13"
+    },
+    {
+      "path": "reports/phase_0_25_validation_report.md",
+      "size_bytes": 661,
+      "sha256": "4cecf8edb5fec37152526ea984cc5eaed441657dc12bde93b8cf913d33006494"
+    },
+    {
+      "path": "reports/profile_catalog_case_report.json",
+      "size_bytes": 5245,
+      "sha256": "2410f809e8ef7e28763ddf5f16a9d1c711c33ec9efd0e41624b628f7e7a44f9e"
+    },
+    {
+      "path": "reports/profile_catalog_case_report.md",
+      "size_bytes": 4310,
+      "sha256": "2c8c15ac2dd5eb9a2e3c1eda2b8842a52b6b16c14bf5c81fbc5c88e2bb3f9f48"
+    },
+    {
+      "path": "reports/reconstruction_assessment_case_report.json",
+      "size_bytes": 7887,
+      "sha256": "ca2266b71c1bd7b9d08e7e853912da3ec7f900e28c31b3b7c530b946306477a5"
+    },
+    {
+      "path": "reports/reconstruction_assessment_case_report.md",
+      "size_bytes": 3400,
+      "sha256": "88b676cd1d7c63b24abd177bc03252a2298281f85789471e4e520b872e514e6b"
+    },
+    {
+      "path": "reports/reconstruction_assessment_v0_22.json",
+      "size_bytes": 1118,
+      "sha256": "d18e064148ed5e84af180b178bf9aaccf3102fdbf0f53b8f56c6fcb04a7ff365"
+    },
+    {
+      "path": "reports/reconstruction_provenance_v0_22.md",
+      "size_bytes": 1378,
+      "sha256": "d04cb1ce033d7507d18d15b33464976b9e8266ca7ee58cc74374ad81b78ecfd7"
+    },
+    {
+      "path": "reports/release_qualification_v0_23.json",
+      "size_bytes": 1478,
+      "sha256": "84f7d7c377c4ae3bb87ccedd227e241124ebdaf4d50170504d8f30a21933e285"
+    },
+    {
+      "path": "reports/release_qualification_v0_24.json",
+      "size_bytes": 1695,
+      "sha256": "dd03f9a52fd3a800d05ad6205fe36c58293cc62367e223d6c6ae1bdd728aa6a9"
+    },
+    {
+      "path": "reports/release_qualification_v0_25.json",
+      "size_bytes": 1529,
+      "sha256": "88df1e9c3e5cee3905e42795e8a609e85f3a0a4edc5b0ea72697c779652bc82c"
+    },
+    {
+      "path": "reports/release_qualification_v0_26.json",
+      "size_bytes": 1457,
+      "sha256": "019f22950562713f280221f0f5cfdc1ba201f55c440bb8f29a41853966b72745"
+    },
+    {
+      "path": "reports/release_qualification_v0_29.json",
+      "size_bytes": 467,
+      "sha256": "0f6eeddf3318ce4e260d50eb1c9070d0dc565062bf2602f0a842ffa91f885ee9"
+    },
+    {
+      "path": "reports/release_qualification_v0_30.json",
+      "size_bytes": 501,
+      "sha256": "b3314b884dc894c44fe6dfc99395d464a4292dee75a41ff79364349de97d47c6"
+    },
+    {
+      "path": "reports/release_qualification_v0_31.json",
+      "size_bytes": 495,
+      "sha256": "3e804e0d6564c10fd41f7d575116ee5e60672842e9b885f0a4cce10c1d5d4c72"
+    },
+    {
+      "path": "reports/release_qualification_v0_32.json",
+      "size_bytes": 578,
+      "sha256": "8cc098a78229d068a7e5561fbc12740127be937545f78ca027750b78f2d1b15b"
+    },
+    {
+      "path": "reports/release_qualification_v0_33.json",
+      "size_bytes": 507,
+      "sha256": "82f30b98ec3476045b7e4628778f1c4394fa69b8461a93bd8d250fcbd1ae720c"
+    },
+    {
+      "path": "reports/release_qualification_v0_53.json",
+      "size_bytes": 2275,
+      "sha256": "79ddf6e25d63390923757a47abf1f585ff72659fd5d9105f79b7f17b0b00ad5c"
+    },
+    {
+      "path": "reports/release_qualification_v0_53.md",
+      "size_bytes": 2168,
+      "sha256": "7783e7179effcd0bf9e9e29babf397d9f68847997135f6864d8d3572a3290030"
+    },
+    {
+      "path": "reports/release_qualification_v0_54.json",
+      "size_bytes": 2443,
+      "sha256": "c3a31c1c13cb821f0ff250359eb89aea4c31bcf566b6107d4a998c63d6356498"
+    },
+    {
+      "path": "reports/release_qualification_v0_54.md",
+      "size_bytes": 2065,
+      "sha256": "462be8d7ae7557b694f186311b6811412c83348c1ff96666f484301d36d647c7"
+    },
+    {
+      "path": "reports/release_qualification_v0_55.json",
+      "size_bytes": 2335,
+      "sha256": "b5944429d1955612b8c8f2005b1ae74d07c63d397f29c5ce5729d9653fa3ecf8"
+    },
+    {
+      "path": "reports/release_qualification_v0_56.json",
+      "size_bytes": 2247,
+      "sha256": "7be20f5bbb6c0cc1532b0835d98fbafc7b755d9211a58095e5ad8977cb7d8d48"
+    },
+    {
+      "path": "reports/release_qualification_v0_56.md",
+      "size_bytes": 789,
+      "sha256": "fa9ee7495d73377d5e626c94dc07290fba19644430e893ac5c3142a0012d6167"
+    },
+    {
+      "path": "reports/release_qualification_v0_57.json",
+      "size_bytes": 2190,
+      "sha256": "609db1003fdda82ac2a88188dc8f815042373b40773d8ff096ce5f7c66737de1"
+    },
+    {
+      "path": "reports/release_qualification_v0_57.md",
+      "size_bytes": 1012,
+      "sha256": "0950e0e433b609b9211272dde6f78536a30e0ece4e1d87ef8ff20a69b59277f7"
+    },
+    {
+      "path": "reports/release_qualification_v0_59.json",
+      "size_bytes": 1888,
+      "sha256": "f8f94e60b8955d5f37f8dbb03bb12df59694c5a7876483abf4da87b00143795d"
+    },
+    {
+      "path": "reports/release_qualification_v0_59.md",
+      "size_bytes": 1767,
+      "sha256": "4a8e9648ec2f294e30a14448a96153cceb7a851c41237db6b0b0f5a70102f93b"
+    },
+    {
+      "path": "reports/release_qualification_v0_60.json",
+      "size_bytes": 2162,
+      "sha256": "f4f9a40a8920c1011d9e65c459303bbd6e9002485d00542f5933ff8ac726249d"
+    },
+    {
+      "path": "reports/release_qualification_v0_60.md",
+      "size_bytes": 1224,
+      "sha256": "8138fd20cb7131f9066fc534be0bbcd1941845bda1534c2b3894b8f704347732"
+    },
+    {
+      "path": "reports/release_qualification_v0_61.json",
+      "size_bytes": 2319,
+      "sha256": "9fd6ee40ba60c2107e0f58e2395addce9bf1d739bae2b157ca82692c08257e40"
+    },
+    {
+      "path": "reports/release_qualification_v0_61.md",
+      "size_bytes": 1552,
+      "sha256": "7ddf885b245ebd55a904246f97c6106bae7965115c4f8395ccee6445cf812f36"
+    },
+    {
+      "path": "reports/release_qualification_v0_62.json",
+      "size_bytes": 2227,
+      "sha256": "6c0ed6ad79a9172e6924be4ef4d478983e757f3e9e5cf6d353b00da0c6f7a50e"
+    },
+    {
+      "path": "reports/release_qualification_v0_62.md",
+      "size_bytes": 1549,
+      "sha256": "632fc54bb4174b6095a9a833944c6eeccd2e3ad1c4572c653861288c1c769993"
+    },
+    {
+      "path": "reports/remediation_register_v0_23.json",
+      "size_bytes": 2826,
+      "sha256": "989e0c067680e592193f09f3805b0065f8a6af7e51caeac1d63423404fbdf90a"
+    },
+    {
+      "path": "reports/remediation_register_v0_24.json",
+      "size_bytes": 2818,
+      "sha256": "b513a88a2b2629873f07e8c9f4edf4575bc78a6c0f72a6a94938692ed44615a8"
+    },
+    {
+      "path": "reports/remediation_register_v0_26.json",
+      "size_bytes": 4717,
+      "sha256": "a4775c20f12d7b571284bf0f7ea099d07a1cd50e9482422b72ceb8ffca50d7a3"
+    },
+    {
+      "path": "reports/sheet_structure_guided_case_report.json",
+      "size_bytes": 4311,
+      "sha256": "573f49cf8af44416452f7ce4284de7969cb69ded5794bbbecacfdf58ac5c2487"
+    },
+    {
+      "path": "reports/sheet_structure_guided_case_report.md",
+      "size_bytes": 1258,
+      "sha256": "3d3be46d2e48df6c8752cc2c4515c909122f1f6ad14342ba5bd821f2765d41ed"
+    },
+    {
+      "path": "reports/sheet_structures_strength_and_stability_case_report.json",
+      "size_bytes": 6139,
+      "sha256": "55a8ccbd2f04a4902d79eff12342a5258652917cc54cad04e144c6d74f96c628"
+    },
+    {
+      "path": "reports/sheet_structures_strength_and_stability_case_report.md",
+      "size_bytes": 3717,
+      "sha256": "4faae15f5e682f89bb19c08ca29e48f4ad7474522d62e31175a860cd26e5046f"
+    },
+    {
+      "path": "reports/sp16_annex_d3_interpolation_hotfix.json",
+      "size_bytes": 2137,
+      "sha256": "1d426f4f7ddb4503a29eba36d159dfd8433109209d2b6c065aefa0d8ed5eedb6"
+    },
+    {
+      "path": "reports/sp16_annex_d3_interpolation_hotfix.md",
+      "size_bytes": 1774,
+      "sha256": "b21db36e9e3bf22bc8affffaa8cb9d01e404c1272c863dd1efc0c4ba2236b72c"
+    },
+    {
+      "path": "reports/sp16_mech1_v058_release_summary.json",
+      "size_bytes": 1078,
+      "sha256": "e54e2d84d6a0b3c6d59461de5746c4c1f951c4b8364110ed30130dfd1f6be034"
+    },
+    {
+      "path": "reports/sp16_mech1_v058_release_summary.md",
+      "size_bytes": 498,
+      "sha256": "ab1e29c12fbf1c249c22f5d239e26fb7c4ae6d72f6eabc734f4ebd9eb6ad7620"
+    },
+    {
+      "path": "reports/sp16_mech2_v059_release_summary.json",
+      "size_bytes": 844,
+      "sha256": "acc8a5b91027bab0c4595b76e00cdf036976546d4e2f9e73c19ab34fe95e3902"
+    },
+    {
+      "path": "reports/sp16_mech2_v059_release_summary.md",
+      "size_bytes": 801,
+      "sha256": "73bf6a4da6b266e590494c71957ef5998868d3f3a67c046fc3988a97375b7a64"
+    },
+    {
+      "path": "reports/sp16_mech3_v060_release_summary.md",
+      "size_bytes": 1140,
+      "sha256": "853b55c5933edc2f9a9d3ae10833986fe7cc9ff88341c75d8099de0cb55294f7"
+    },
+    {
+      "path": "reports/sp554_applicability_routing_hotfix.md",
+      "size_bytes": 2380,
+      "sha256": "24650cf61cdf401240254b86da909c35604872deb58b99f44c40e14461094400"
+    },
+    {
+      "path": "reports/sp554_fire_mechanical_guided_case_report.json",
+      "size_bytes": 2872,
+      "sha256": "9e747c0cee971c86fa8eb36504bb32a82a8f5d5fab5ede0978ebc7a2d7353789"
+    },
+    {
+      "path": "reports/sp554_fire_mechanical_guided_case_report.md",
+      "size_bytes": 1878,
+      "sha256": "ea58a17a7067c3aa245a73edb216dc7b172916d2c7d6f042ed2dc7729f73b3b3"
+    },
+    {
+      "path": "reports/sp554_fire_result_assessment_case_report.json",
+      "size_bytes": 5716,
+      "sha256": "031d9322ddf9bd7605ce93378bb77c42838ad54f21f1376b9626060de2f0d138"
+    },
+    {
+      "path": "reports/sp554_fire_result_assessment_case_report.md",
+      "size_bytes": 3948,
+      "sha256": "46bf4cfe44ade1879e3ba5ffaa6815e9d5533fce1af180167b6b219cf19ac444"
+    },
+    {
+      "path": "reports/sp554_fire_thermal_guided_case_report.json",
+      "size_bytes": 3577,
+      "sha256": "99e44a9cf31751e38bd039f54894dad8eb2fa9838aae2386f5678b5b778743da"
+    },
+    {
+      "path": "reports/sp554_fire_thermal_guided_case_report.md",
+      "size_bytes": 2618,
+      "sha256": "7b7004028f7f3ecb20551deb10695d46d2d2db82817a9b997426e8d930b5e7b6"
+    },
+    {
+      "path": "reports/sp554_sp16_fire_dependency_bridge_case_report.json",
+      "size_bytes": 10475,
+      "sha256": "257d622657569721e9cab35b970bbbf158f5a459b12d80080412898c07319104"
+    },
+    {
+      "path": "reports/sp554_sp16_fire_dependency_bridge_case_report.md",
+      "size_bytes": 6761,
+      "sha256": "a516656dd3906ce921a858dcce79124c96914bbaed6ddc5856e71687a296b159"
+    },
+    {
+      "path": "reports/stage_n10_closure_report.json",
+      "size_bytes": 2885,
+      "sha256": "8fabed309d3ddd1ac770cce6d948d95915e476664b766a81692ec1865ba5e1bd"
+    },
+    {
+      "path": "reports/stage_n10_closure_report.md",
+      "size_bytes": 1973,
+      "sha256": "fd8435597c1252a6aa24809c37625b469a2c123df8da613561b1bb915bca7bf2"
+    },
+    {
+      "path": "reports/stage_n10_reconciliation_register.json",
+      "size_bytes": 3063,
+      "sha256": "93092c33a549c1c4a16afd13dc86f0eab0c40c17afe30832441c8ac1a7c7f960"
+    },
+    {
+      "path": "reports/stage_n10_reconciliation_register.md",
+      "size_bytes": 2305,
+      "sha256": "7f02992df303a3334c60867bd00ec80a3eec8127dda9fc1fef3939199567dcd1"
+    },
+    {
+      "path": "reports/stage_n1_closure_report.json",
+      "size_bytes": 4086,
+      "sha256": "730fef4cd816fd0314defe6a8497a7f0030a1e1d4b331a1c295d8fb136375567"
+    },
+    {
+      "path": "reports/stage_n1_closure_report.md",
+      "size_bytes": 1574,
+      "sha256": "35e0ab00e198258f0361e2451422baabefc3a228c8ba89cc908ed3d0e174d3cd"
+    },
+    {
+      "path": "reports/stage_n2_closure_report.json",
+      "size_bytes": 3472,
+      "sha256": "3d819b36299914ccaaffbac35b71efa3b34a51a7c9e29ad0a076021d2067a569"
+    },
+    {
+      "path": "reports/stage_n2_closure_report.md",
+      "size_bytes": 2053,
+      "sha256": "c7db5c2eb6516d5385c76394a33cb26059fdf258d8fd18a4facd5921add306bf"
+    },
+    {
+      "path": "reports/stage_n3_closure_report.json",
+      "size_bytes": 2986,
+      "sha256": "de337b317533fd725fd6126629dfcc9a85f5d518689ee4247807dd082961a133"
+    },
+    {
+      "path": "reports/stage_n3_closure_report.md",
+      "size_bytes": 1298,
+      "sha256": "ac6e01bbfe0e72bcc1921d5d7f475aafa87b841d40019fd2af2066a7fe88ad62"
+    },
+    {
+      "path": "reports/stage_n4_closure_report.json",
+      "size_bytes": 3193,
+      "sha256": "86ca6ce2b489541a3f56253933d32f7a2e202e771ab866eb5ff59ef409406651"
+    },
+    {
+      "path": "reports/stage_n4_closure_report.md",
+      "size_bytes": 1563,
+      "sha256": "ca3df8bc4f0a2ee21cdebe66fdee6ce1583ba46b3d35ca13d90349d12f3e7276"
+    },
+    {
+      "path": "reports/stage_n5_closure_report.json",
+      "size_bytes": 3299,
+      "sha256": "c84436c2ea8cdf2d11be6df97b60e760e71fbaf3b81b038622bd68688e93ba3c"
+    },
+    {
+      "path": "reports/stage_n5_closure_report.md",
+      "size_bytes": 2287,
+      "sha256": "e17c1a9b00afd6556d2fb80462b5c408998eae790c0dcb9097cbc0350a7e7bac"
+    },
+    {
+      "path": "reports/stage_n6_closure_report.json",
+      "size_bytes": 2894,
+      "sha256": "e9e3b558b47ce1360b645470a189bd988cdcc9175f0451f23883f253999582c5"
+    },
+    {
+      "path": "reports/stage_n6_closure_report.md",
+      "size_bytes": 1761,
+      "sha256": "8cd80eff1d5639880aebcfe614a6a3732cf530227d77a1a426e68f37a6749053"
+    },
+    {
+      "path": "reports/stage_n6_reconciliation_register.json",
+      "size_bytes": 2069,
+      "sha256": "9e31d93bf17147a42987249c58f48f4053ec82f989be0bcf3eddbab93354a39c"
+    },
+    {
+      "path": "reports/stage_n6_reconciliation_register.md",
+      "size_bytes": 1600,
+      "sha256": "f837b24f379ddfa3800d4b81afce8dabc041a41fa40c3ab653ff6330ff03b76a"
+    },
+    {
+      "path": "reports/stage_n7_closure_report.json",
+      "size_bytes": 2869,
+      "sha256": "c8202aeaa253ffa0fbc16406478f2f094314c93d729f4c3d5d195bb7c7f094a1"
+    },
+    {
+      "path": "reports/stage_n7_closure_report.md",
+      "size_bytes": 2190,
+      "sha256": "a5508eeb71150e8c3ef83c86f42213b6f8f36e2d90d0494fb11e5d4cc794e99e"
+    },
+    {
+      "path": "reports/stage_n7_reconciliation_register.json",
+      "size_bytes": 2560,
+      "sha256": "90223a73f1951e311a1479466913bdc03ea7a93e3669bd56e205858aad00f87d"
+    },
+    {
+      "path": "reports/stage_n7_reconciliation_register.md",
+      "size_bytes": 2150,
+      "sha256": "fd72f4638aec80e428c160ad1ae1f3f45e98273760ce0df36af9fab1b02ed02b"
+    },
+    {
+      "path": "reports/stage_n8_closure_report.json",
+      "size_bytes": 2834,
+      "sha256": "67003e8c62c3f12b782ff081eff4c22753288e4da3f7e1eb9868f9ded841e00a"
+    },
+    {
+      "path": "reports/stage_n8_closure_report.md",
+      "size_bytes": 2008,
+      "sha256": "dc99b0f09daf6691681a27665651278931f69ee9be6d50fa65ef7ccd23d36234"
+    },
+    {
+      "path": "reports/stage_n8_reconciliation_register.json",
+      "size_bytes": 2985,
+      "sha256": "0bcf0f20ff4ce68aa74499788ec7f679f586eb8213b9e71f293805daa3c33baa"
+    },
+    {
+      "path": "reports/stage_n8_reconciliation_register.md",
+      "size_bytes": 2408,
+      "sha256": "430ad729c2d2eb24d20bfa9e38445ce0d9f131cb2d1845d527e7e94c99e47618"
+    },
+    {
+      "path": "reports/stage_n9_closure_report.json",
+      "size_bytes": 2753,
+      "sha256": "a436e75227eb6a90418c1c2daa0375b6924058263c92dbdb98a721501db2ad51"
+    },
+    {
+      "path": "reports/stage_n9_closure_report.md",
+      "size_bytes": 1926,
+      "sha256": "1eb3dbbd664b470d699e6144bcb07ee877df91f82e349ed779873cf5589abb49"
+    },
+    {
+      "path": "reports/stage_n9_reconciliation_register.json",
+      "size_bytes": 3148,
+      "sha256": "a40d82799b22b61182a516fd132da63d981fdf910786c33ce19e78064ccc9160"
+    },
+    {
+      "path": "reports/stage_n9_reconciliation_register.md",
+      "size_bytes": 2570,
+      "sha256": "9efa0bc155201143a79ce33355b165590dd8b7ee7686a342c3b7c62ad33e3eb6"
+    },
+    {
+      "path": "reports/structural_detailing_and_support_bearings_case_report.json",
+      "size_bytes": 7077,
+      "sha256": "5a6732e99136fe417e630f4b6994b6e9ca500e862ab47f9a0c3c15f45dafc030"
+    },
+    {
+      "path": "reports/structural_detailing_and_support_bearings_case_report.md",
+      "size_bytes": 4744,
+      "sha256": "a89e6bea3500698dbcdf65001e5355b74e0b8d2a2fd61b839486f4cf55b39bbd"
+    },
+    {
+      "path": "reports/validation_campaign_v0_26.json",
+      "size_bytes": 1562,
+      "sha256": "81bbd06c2f8c6b0a8502852a095e696674049a3ed73ea45d601ce191fcbb35f1"
+    },
+    {
+      "path": "reports/validation_campaign_v0_26.md",
+      "size_bytes": 1292,
+      "sha256": "4ad4fe70a03ca13ddcae8e3ecec090ce8ddd9566e1fcedaf7568964bf5e69a6b"
+    },
+    {
+      "path": "reports/validation_corpus_update_0001.json",
+      "size_bytes": 499,
+      "sha256": "542b7a4be7e0dc0319522293fd965c7bfc04debf92a870164b0d830b5f702312"
+    },
+    {
+      "path": "reports/validation_corpus_update_0001.md",
+      "size_bytes": 472,
+      "sha256": "acb18dce6387b96026b393b4916529b4788a19510660cbb99aabfcd46b917030"
+    },
+    {
+      "path": "reports/validation_evidence_taxonomy_v0_23.json",
+      "size_bytes": 1020,
+      "sha256": "373df13108f9f021c5321049f074d0377537ea379a94cee775b5e0f8d571eb84"
+    },
+    {
+      "path": "reports/validation_evidence_taxonomy_v0_24.json",
+      "size_bytes": 1249,
+      "sha256": "a161fdb504192108c20036be781181ed869d392c2b162af6ff3f5125dc98959b"
+    },
+    {
+      "path": "reports/validation_evidence_taxonomy_v0_25.json",
+      "size_bytes": 1212,
+      "sha256": "c19c88a626e68db5d2888349b1e538425c853b33eeef5947873149c446185948"
+    },
+    {
+      "path": "reports/validation_evidence_taxonomy_v0_26.json",
+      "size_bytes": 1213,
+      "sha256": "be4bd2b16ec580d0f19209386f6adc01ae30e06b4fc07317fffdee2762b87f70"
+    },
+    {
+      "path": "reports/validation_report.json",
+      "size_bytes": 915804,
+      "sha256": "5da39252ba8cfdf143711ca029a75bc9fc18f918bd3c0c8ca06699ac55455831"
+    },
+    {
+      "path": "reports/validation_report.md",
+      "size_bytes": 140979,
+      "sha256": "4c9a513e42dfdc5573069b64bc9d8826bcab1e6fd88ab070e6ee6f4f57b0eb47"
+    },
+    {
+      "path": "run_case.py",
+      "size_bytes": 611,
+      "sha256": "863d35e7b5a2eb5e0b0eb86234a5d6030694708d89de4c965e847586cb5d14be"
+    },
+    {
+      "path": "schemas/antenna_structures_case.schema.json",
+      "size_bytes": 10140,
+      "sha256": "ffa27d187cae2995fb3a56cb399efed5d62c41a94f0d37b0c2086e12c3f8efec"
+    },
+    {
+      "path": "schemas/axial_member_case.schema.json",
+      "size_bytes": 2896,
+      "sha256": "201cf12cf50ca08ab5d71d97a7de8c7ff42576275d261e11cc1b49b23d756ce3"
+    },
+    {
+      "path": "schemas/axial_member_guided_case.schema.json",
+      "size_bytes": 2746,
+      "sha256": "53fb6bdd845448e40334dfcc4d39af6ba04450f5895c63df937d8471ebbb3bd0"
+    },
+    {
+      "path": "schemas/base_plates_and_combined_force_strength_case.schema.json",
+      "size_bytes": 6931,
+      "sha256": "3d6088adfbe39e6004b12c40d8cf177f16b920ee682b9cc2b7997869931abf94"
+    },
+    {
+      "path": "schemas/beam_column_guided_case.schema.json",
+      "size_bytes": 9084,
+      "sha256": "21fec80dcddd3bd6662bbf10f363062d03d1cc2cd69913d5a9228baf096108e8"
+    },
+    {
+      "path": "schemas/beam_column_stability_case.schema.json",
+      "size_bytes": 8409,
+      "sha256": "82a6350c309a2dd47c3d95012ccc208422e03d69ba73d3019dd1d563e26a249b"
+    },
+    {
+      "path": "schemas/bending_member_case.schema.json",
+      "size_bytes": 10089,
+      "sha256": "240f39e7cb227d3df225351caeccd2ba80b809122c9e628d1b8ad264dcb772c1"
+    },
+    {
+      "path": "schemas/bending_member_guided_case.schema.json",
+      "size_bytes": 9650,
+      "sha256": "4e1d528c3b97b88fdecef58ad9b06829156f6419c595bf44af8c89c1b8f2d228"
+    },
+    {
+      "path": "schemas/bending_member_local_stability_case.schema.json",
+      "size_bytes": 2616,
+      "sha256": "9541231e26afe36d99f2f22ccf10863861869c915f83ba1bb055c91d096fabdd"
+    },
+    {
+      "path": "schemas/bolted_and_friction_connections_case.schema.json",
+      "size_bytes": 6847,
+      "sha256": "2a3af6cf870158dc89861bcd452b5b5d82a1e9350928e70f1d2d85ba4751bbdf"
+    },
+    {
+      "path": "schemas/brittle_fracture_and_welded_connections_case.schema.json",
+      "size_bytes": 5589,
+      "sha256": "0b51834c411a8b5e8550ea85c1713741267a0504fcdef6f9e3f60996addbb944"
+    },
+    {
+      "path": "schemas/brittle_fracture_guided_case.schema.json",
+      "size_bytes": 3610,
+      "sha256": "a96a903e645fb67845071906c812787da77505ff8050ec745a63494fc5cb2c6e"
+    },
+    {
+      "path": "schemas/built_up_axial_member_case.schema.json",
+      "size_bytes": 6866,
+      "sha256": "83ba2ecaafd2da3d75e37ebdc82bb0323da79f980e0f9a14cc90f94f320e583c"
+    },
+    {
+      "path": "schemas/built_up_axial_member_guided_case.schema.json",
+      "size_bytes": 2090,
+      "sha256": "a5d5a3297a2d0daade85a960c5e8b1f861fd7f4b4b9aed9672ae9f4858a96172"
+    },
+    {
+      "path": "schemas/built_up_beam_column_guided_case.schema.json",
+      "size_bytes": 12709,
+      "sha256": "7d3a3d2deb2a26e410ee3503062e7050b16913ddb3fde9c67f213638918c6ae5"
+    },
+    {
+      "path": "schemas/built_up_beam_columns_and_combined_local_stability_case.schema.json",
+      "size_bytes": 4952,
+      "sha256": "92cedf8c61b427b2f2a1f2e20fd2d58576114f8501f0b774c6a38cb8de591239"
+    },
+    {
+      "path": "schemas/built_up_beam_flange_connections_case.schema.json",
+      "size_bytes": 3718,
+      "sha256": "037583084e3cf9c880934cc0e1c2f0ef79c5f4cac57f1df3d397813bba07ef40"
+    },
+    {
+      "path": "schemas/crane_runway_and_bending_stability_case.schema.json",
+      "size_bytes": 7526,
+      "sha256": "beb6351d4641088c8931dc1d24476ce3b945ea7c7044e74cf98cc50a199cbbed"
+    },
+    {
+      "path": "schemas/effective_length_guided_case.schema.json",
+      "size_bytes": 7325,
+      "sha256": "dfb46bf9b0a9453584cbfafd81e26eb6bddbff3b92dd1ad4ea0d52c4097ea751"
+    },
+    {
+      "path": "schemas/effective_lengths_and_limiting_slenderness_case.schema.json",
+      "size_bytes": 7554,
+      "sha256": "9bd415cd7fcd2aa23d4f24ab4153648ac79d940f7f243651497b9bb1bfa32c17"
+    },
+    {
+      "path": "schemas/fatigue_design_case.schema.json",
+      "size_bytes": 2772,
+      "sha256": "3ff49b57e903e6af2b890005567724d7aaa61d5a4255b7bbd03bc7266c60c531"
+    },
+    {
+      "path": "schemas/fatigue_guided_case.schema.json",
+      "size_bytes": 2234,
+      "sha256": "a89e7239cfc12de2194568294f4a0bab676402fde55bdfcf58896ee1a82749cf"
+    },
+    {
+      "path": "schemas/fire_ui0_session.schema.json",
+      "size_bytes": 1043,
+      "sha256": "61fe186fbac10e6ce09d4cb630d79d898570f2bd667e3b5262bfa73b588a6c43"
+    },
+    {
+      "path": "schemas/fire_ui0_ui_contract.schema.json",
+      "size_bytes": 904,
+      "sha256": "bf3898a72f4d6deb290da7b08775b3f51252a95935684b9d6a3358318326c272"
+    },
+    {
+      "path": "schemas/golden_cross_implementation_case.schema.json",
+      "size_bytes": 1057,
+      "sha256": "7dd036c80bbce85bd9464360d927fa6a8ffdc9ff12866698bda43179c9c6a750"
+    },
+    {
+      "path": "schemas/local_stability_case.schema.json",
+      "size_bytes": 3353,
+      "sha256": "1942b5a7053c28f1d4927957c83da84cd2caa2a7226b942d168cd84f29d921e1"
+    },
+    {
+      "path": "schemas/minimal_case.schema.json",
+      "size_bytes": 1986,
+      "sha256": "439fbe7c7dfeb66765198a02d43f331b191609160b0a473286a12d862cf43cb1"
+    },
+    {
+      "path": "schemas/overhead_line_and_switchyard_supports_case.schema.json",
+      "size_bytes": 8199,
+      "sha256": "6a054a7a04504554bb189d6fec80399d691b2e41432b2c8a74338931739b7ae2"
+    },
+    {
+      "path": "schemas/profile_catalog_case.schema.json",
+      "size_bytes": 739,
+      "sha256": "08536cf449599db42b4e7f8cf2d9abff848de0e82f96280dbd73714583f18c8f"
+    },
+    {
+      "path": "schemas/reconstruction_assessment_case.schema.json",
+      "size_bytes": 10782,
+      "sha256": "6aa788a60f9091ded1f38f847abe4804aeee09370f483be2758fb07d8b3a57b8"
+    },
+    {
+      "path": "schemas/sheet_structure_guided_case.schema.json",
+      "size_bytes": 3969,
+      "sha256": "774d39db416ff748bb1fba85c8a52469637fc38a3f920db8dd3794839463d7c9"
+    },
+    {
+      "path": "schemas/sheet_structures_strength_and_stability_case.schema.json",
+      "size_bytes": 5517,
+      "sha256": "200542bb20deb94b33de7ec632fbb30af6f85b705a5573716e36f3be3065f0fb"
+    },
+    {
+      "path": "schemas/sp554_fire_mechanical_guided_case.schema.json",
+      "size_bytes": 11591,
+      "sha256": "b0cd60c25621ff1c7a15973ed1dd14d4959b789b849515d2cbdddd07ceca9385"
+    },
+    {
+      "path": "schemas/sp554_fire_result_assessment_case.schema.json",
+      "size_bytes": 6447,
+      "sha256": "f894fc6655f5c33d79cea7f015f8debdab147f66dff362e1e335812dc995be3e"
+    },
+    {
+      "path": "schemas/sp554_fire_thermal_guided_case.schema.json",
+      "size_bytes": 4104,
+      "sha256": "104f8b6edbfefc46899eeb282c8dde6fcbf4167ce2d345aa52b642c16016fac6"
+    },
+    {
+      "path": "schemas/sp554_sp16_fire_dependency_bridge_case.schema.json",
+      "size_bytes": 585,
+      "sha256": "a0af4174fe93e8ee8bfdbd3de1f6232e8b6f38a20303819a92aede7776f24cc4"
+    },
+    {
+      "path": "schemas/structural_detailing_and_support_bearings_case.schema.json",
+      "size_bytes": 2920,
+      "sha256": "ea987023918950f96bf1ca4ca416d021c7715b8d2093f2cd5aec4e03bffcf998"
+    },
+    {
+      "path": "scripts_fire_ui16_build_dag.py",
+      "size_bytes": 22070,
+      "sha256": "d98e9170328fc7b1053305e7bed750d779d88c4b5532be6c869782fb9b0cbc85"
+    },
+    {
+      "path": "scripts_fire_ui17_build_dag.py",
+      "size_bytes": 16374,
+      "sha256": "86d7096175e074464f534a9a66393e6d0f0618c5777ce0c019d6a402c9e67516"
+    },
+    {
+      "path": "scripts_fire_ui18_build_dag.py",
+      "size_bytes": 3471,
+      "sha256": "790a2cd93ccd9ef7019013f70ec60ec27b0d0dd5fc1447d35473992f7b3fd180"
+    },
+    {
+      "path": "scripts_fire_ui19_build_dag.py",
+      "size_bytes": 18105,
+      "sha256": "43dc14c1896191305375554fb97acae5cf36866f1138ac7fd8cea90033c47f4f"
+    },
+    {
+      "path": "scripts_fire_ui20_build_dag.py",
+      "size_bytes": 17027,
+      "sha256": "ad20e7698e445aa89855a6e2e8828eead741047d428bc4bd3e975e122ed659d6"
+    },
+    {
+      "path": "scripts_fire_ui21_build_dag.py",
+      "size_bytes": 2050,
+      "sha256": "7c6fb3af0979b9409b69706dc9932f75c5c7947a4a389cfdcdacbebf5e522270"
+    },
+    {
+      "path": "scripts_fire_ui22_build_dag.py",
+      "size_bytes": 45128,
+      "sha256": "22f738b7ad721c8bfc00fc98b08c927d9beb888bdf979735fe3003c10d248c33"
+    },
+    {
+      "path": "scripts_fire_ui23_build_dag.py",
+      "size_bytes": 24345,
+      "sha256": "98042696672db1d250ead9d1998fc7c2d6ff2960eeaf23d1a964e1a4df0de230"
+    },
+    {
+      "path": "scripts_fire_ui24_build_dag.py",
+      "size_bytes": 7656,
+      "sha256": "f8d530430a96ee5301a7bd48bc3ea3d708447bb24716fbb3e1cda58a8f52e919"
+    },
+    {
+      "path": "scripts_sp16_mech1_build_dag.py",
+      "size_bytes": 14336,
+      "sha256": "56f15380d39d2746f68e9ba93913a4d90285049d1e3679c56f74b58264170d81"
+    },
+    {
+      "path": "scripts_sp16_mech1_build_manifest.py",
+      "size_bytes": 1240,
+      "sha256": "3301bdcb7c487597b6978f4841f8e09287e0fd8bf66f656c00c01a61051c30b0"
+    },
+    {
+      "path": "scripts_sp16_mech2_build_dag.py",
+      "size_bytes": 22812,
+      "sha256": "0871bac15212fd6593b3033646a4c0a61c331bfa1ec0b6221aca9769e7e6341b"
+    },
+    {
+      "path": "scripts_sp16_mech2_build_manifest.py",
+      "size_bytes": 1252,
+      "sha256": "60c348bbe074c14a9d23c9c9114d26bb6bbd47b831cfeb6b3cbaea1c9e5900b9"
+    },
+    {
+      "path": "scripts_sp16_mech3_build_dag.py",
+      "size_bytes": 16436,
+      "sha256": "0124a7862516422b0783fed7f8b4916e721e3695e4bbcc062ed1f3d8e5387779"
+    },
+    {
+      "path": "scripts_sp16_mech3_build_manifest.py",
+      "size_bytes": 1161,
+      "sha256": "859a33fa0e4d99f9fef3a99f866c0eea5db3f460bf935cf98d7c2e6606dce3e9"
+    },
+    {
+      "path": "scripts_sp16_mech4_build_dag.py",
+      "size_bytes": 15197,
+      "sha256": "5fc533452df4f34d1862307e88511c0c73cac1adafd101a30f86864f25b948a7"
+    },
+    {
+      "path": "scripts_sp16_mech4_build_manifest.py",
+      "size_bytes": 1165,
+      "sha256": "900c53445712264629643854c7b002453a7d951bcc987922e3609ae14ecaaf3f"
+    },
+    {
+      "path": "scripts_sp16_mech5_build_dag.py",
+      "size_bytes": 9560,
+      "sha256": "484227cc7441ee433122c5d6f89ce1ebba2c3bdc4d850a865a1d13a3ff3372dc"
+    },
+    {
+      "path": "scripts_sp16_mech5_build_manifest.py",
+      "size_bytes": 1249,
+      "sha256": "01c79b9e3c2fd4c1f644d6444a0a6d96d473a5209ba0d27ce72f16c71e56993d"
+    },
+    {
+      "path": "scripts_stage_n2_build_interim_profile_catalog.py",
+      "size_bytes": 6356,
+      "sha256": "a38039bac9b14cbbc262c3dc28d0166d0755f0f5bf8272e62685781d48ecb655"
+    },
+    {
+      "path": "standard_core/__init__.py",
+      "size_bytes": 203,
+      "sha256": "e4a79035fdc042945480f60f856d166caa893c6d915fb01a53cd24d1dad4c4ee"
+    },
+    {
+      "path": "standard_core/annex_data.py",
+      "size_bytes": 497,
+      "sha256": "6166a2674bc0cad502fc84dc4f46e722bb2dc150559744f8be4a82a0444e9f22"
+    },
+    {
+      "path": "standard_core/antenna_structures.py",
+      "size_bytes": 38068,
+      "sha256": "32715342ff318bb3fab419e0dc7e8bc93bd9c080885159093f60c8f91494d174"
+    },
+    {
+      "path": "standard_core/api_hardening.py",
+      "size_bytes": 18084,
+      "sha256": "1854a43523ec93d13e4d7f9f441c5ad7422fc1ef8fbe522ffd914d1c2628b107"
+    },
+    {
+      "path": "standard_core/axial_members.py",
+      "size_bytes": 42706,
+      "sha256": "72736b6e7a62e64bdc495dc340fbc55bf2db59d69c7c51fc1889e277341818c0"
+    },
+    {
+      "path": "standard_core/axial_workflows.py",
+      "size_bytes": 34875,
+      "sha256": "19cfcd2091e418b3149b5b62779cd91885676eec149a873315d5e7ec0126f072"
+    },
+    {
+      "path": "standard_core/base_plates_and_combined_force_strength.py",
+      "size_bytes": 59977,
+      "sha256": "d17e5e49031de8b8ff05a69e24f2bd85c79cd36f28a72476306b9da415c7527b"
+    },
+    {
+      "path": "standard_core/beam_column_stability.py",
+      "size_bytes": 124790,
+      "sha256": "5549b2e6e148bdb78df1764149e7059b353f26de1fc82e35c3636314b340836a"
+    },
+    {
+      "path": "standard_core/beam_column_workflows.py",
+      "size_bytes": 19372,
+      "sha256": "5779d1e6b7803a716803321dfa72d2817237c499e5d86d7165c5ea0c0bf6f5f4"
+    },
+    {
+      "path": "standard_core/bending_member_local_stability.py",
+      "size_bytes": 110293,
+      "sha256": "11f32c7534cb067708cd0cb762c1a1a87b014c1773d88af72f2e59df4164deb8"
+    },
+    {
+      "path": "standard_core/bending_members.py",
+      "size_bytes": 130011,
+      "sha256": "028cbb7c6f428bb3712abb919a1d91d0d966ea5decedd1bd05f7f03d1d26652c"
+    },
+    {
+      "path": "standard_core/bending_workflows.py",
+      "size_bytes": 23041,
+      "sha256": "dd63c6b24f3ca16ebb6c80676ff085452e6ff7902f4e970f14308cedd4725389"
+    },
+    {
+      "path": "standard_core/bolted_and_friction_connections.py",
+      "size_bytes": 65023,
+      "sha256": "ef080ad926c53da03ba792d362e72a5c14b55a0e17667d475451e842a8450408"
+    },
+    {
+      "path": "standard_core/brittle_fracture_and_welded_connections.py",
+      "size_bytes": 121118,
+      "sha256": "14a2c90c471759ee7da8833345efdff4a8c4d91bffafd466a6cf1acd727d2a76"
+    },
+    {
+      "path": "standard_core/brittle_fracture_workflows.py",
+      "size_bytes": 13044,
+      "sha256": "d52e222b8cf6bfc17dcc38dbb7bc50a66ebfc4993c2d5d9dba83c5f866942563"
+    },
+    {
+      "path": "standard_core/built_up_axial_members.py",
+      "size_bytes": 80887,
+      "sha256": "a8a8dad8dda9911990d234b5aa88b1f2d6b45401f44fc40d9be283f74fc6a96b"
+    },
+    {
+      "path": "standard_core/built_up_beam_column_workflows.py",
+      "size_bytes": 22675,
+      "sha256": "931050bec2a168adf12c8dec46cf39d0002c3ac116fd3ffc15078b5c4fe146e4"
+    },
+    {
+      "path": "standard_core/built_up_beam_columns_and_combined_local_stability.py",
+      "size_bytes": 108282,
+      "sha256": "04d93d0714a128de7b10a3504d46276c08efd155ad346714678b1a97b15d8888"
+    },
+    {
+      "path": "standard_core/built_up_beam_flange_connections.py",
+      "size_bytes": 46029,
+      "sha256": "f66b2288262e0ff33fd0b68dd3069effcdeb8dab46f44726178392241702be73"
+    },
+    {
+      "path": "standard_core/crane_runway_and_bending_stability.py",
+      "size_bytes": 132346,
+      "sha256": "b29d67787a459a30db08506ec19e73b213a3f61e3e745c661d51971e967a38f5"
+    },
+    {
+      "path": "standard_core/effective_length_workflows.py",
+      "size_bytes": 18572,
+      "sha256": "ae0d21c3884bb9622fab92ddebeb6cf3c59d87ab4c9c5e5dd8a0dba9048e89b8"
+    },
+    {
+      "path": "standard_core/effective_lengths_and_limiting_slenderness.py",
+      "size_bytes": 100995,
+      "sha256": "6bfa8d679460fd3155d6340cc5c90913207f2aee222dca8473f8c843c706d464"
+    },
+    {
+      "path": "standard_core/equations.py",
+      "size_bytes": 29098,
+      "sha256": "60f16ec232021f398c0f1d4166e765445fa5d11294bba054e67a33a4d975b26c"
+    },
+    {
+      "path": "standard_core/fatigue_design.py",
+      "size_bytes": 40812,
+      "sha256": "720abdb8addc43d13ff9c56389fc6e1dd2ca8c503af85b2a8f4f6d5d0c3b4452"
+    },
+    {
+      "path": "standard_core/fatigue_workflows.py",
+      "size_bytes": 12463,
+      "sha256": "fa68e56153fd1137db74d478f81a1e73a9e62674ec2f7835a1213eb4686b1313"
+    },
+    {
+      "path": "standard_core/final_audit.py",
+      "size_bytes": 39947,
+      "sha256": "59c1f438a114e55ce6b942c360044d7b9b9b0108dd110824e7d90ab9ca1bad1c"
+    },
+    {
+      "path": "standard_core/fire_sp554_assessment.py",
+      "size_bytes": 17787,
+      "sha256": "ec8a564d3e2ff05217e42f1c1a0342a91fdfa6f67caf086a9d1c1874c76e46e9"
+    },
+    {
+      "path": "standard_core/fire_sp554_bridge.py",
+      "size_bytes": 11320,
+      "sha256": "9324ca5c230987e8d6a95f62aee08e24996eb8988c1002dc077e21073c3fa39a"
+    },
+    {
+      "path": "standard_core/fire_sp554_runtime.py",
+      "size_bytes": 34244,
+      "sha256": "c2cdee87e3c519e73165a8d7e6cf4c869083082d65f79c1703081265f7922b52"
+    },
+    {
+      "path": "standard_core/fire_sp554_thermal.py",
+      "size_bytes": 49996,
+      "sha256": "4d805ee7f092d299b0c179c7a3ed5bee727e407968f3ff8c6fa6b9824ba6c097"
+    },
+    {
+      "path": "standard_core/fire_ui0.py",
+      "size_bytes": 59022,
+      "sha256": "433cf8565ff20de0625d31bf8189b6e838543df7a0b235f7de2f233090e4025d"
+    },
+    {
+      "path": "standard_core/fire_ui0_integrated.py",
+      "size_bytes": 3601,
+      "sha256": "91bc8e051a950d8805266476aa1f8cbe559e2d71c3d61b011f88e641fec5b98a"
+    },
+    {
+      "path": "standard_core/fire_ui12_section_geometry.py",
+      "size_bytes": 20355,
+      "sha256": "92b3568fd07582dde72bf69f70ac0605490a57bd6b137bcdac61e69e3e4871c2"
+    },
+    {
+      "path": "standard_core/fire_ui13_material_strength.py",
+      "size_bytes": 16447,
+      "sha256": "155d0d85ed49c9e63aa27983659088a67034898d958743e812f852ed3e9bd2cd"
+    },
+    {
+      "path": "standard_core/fire_ui14_section_weakening.py",
+      "size_bytes": 12799,
+      "sha256": "92966e70a8071c9f8a1360b92fb287355ac03e56b423f7a7243de88cbb931640"
+    },
+    {
+      "path": "standard_core/fire_ui16_declarative.py",
+      "size_bytes": 32550,
+      "sha256": "e1892a22b6a7336f763a4f47472e0033db59715844ae807a7c30e6ead6ef08ce"
+    },
+    {
+      "path": "standard_core/fire_ui16_workflow.py",
+      "size_bytes": 14394,
+      "sha256": "76a82994ff6f654b09a9ac658baa6ea8ac048145ed903e0985609df5074e6748"
+    },
+    {
+      "path": "standard_core/fire_ui17_workflow.py",
+      "size_bytes": 4403,
+      "sha256": "20fbde4b4d919516540dc78a3b1b18275799c60d06e8a7ce3bfec17f5d2c937b"
+    },
+    {
+      "path": "standard_core/fire_ui18_workflow.py",
+      "size_bytes": 3373,
+      "sha256": "4c81b212f7a48ce857a7ef2603253e62cbddf6356e79a095fe313f7faaaca588"
+    },
+    {
+      "path": "standard_core/fire_ui19_heated_perimeter.py",
+      "size_bytes": 8605,
+      "sha256": "f9c058ae2528e249364cb20e04a7399e2bfb71777dc25d38fae282fd47507261"
+    },
+    {
+      "path": "standard_core/fire_ui1_http.py",
+      "size_bytes": 21998,
+      "sha256": "62697540ff14f32c26bdf5ac42e9d26b5060e0f101ebd1b8a7f94d117ae70317"
+    },
+    {
+      "path": "standard_core/fire_ui20_remediation.py",
+      "size_bytes": 8149,
+      "sha256": "56e3bbc7b3b41d448b75dd8167c6a3ad2e245eeadfc0ac778dc029388e1d6594"
+    },
+    {
+      "path": "standard_core/fire_ui21_ui_hardening.py",
+      "size_bytes": 2139,
+      "sha256": "d22ad89dada0b7039304ac85af24740d7829f145b47cccfb87b888d87b80b3f3"
+    },
+    {
+      "path": "standard_core/fire_ui22_routing_protection.py",
+      "size_bytes": 16318,
+      "sha256": "bde7dca8f87f22eeabcc890b7cf189684065610956fa003f875dc5b507c07c28"
+    },
+    {
+      "path": "standard_core/fire_ui23_protection_route.py",
+      "size_bytes": 14037,
+      "sha256": "883425d1157c33cd4a4e6e34e647068d6939ecf8a836c0cb1765300226276fa8"
+    },
+    {
+      "path": "standard_core/fire_ui24_val1_remediation.py",
+      "size_bytes": 2847,
+      "sha256": "1a1cb6b125c2027b0663d72c8f5560b5679ce299ca65c2518c33eb61a2bad334"
+    },
+    {
+      "path": "standard_core/function_level_validation.py",
+      "size_bytes": 21565,
+      "sha256": "f44ba5ff9441366dfdad34a2e1b75f19ad28af4f65c98e83c98e79e2124f57e6"
+    },
+    {
+      "path": "standard_core/general_requirements.py",
+      "size_bytes": 3149,
+      "sha256": "4221cb99865bae86c51f6bceca10e7a4a2a87eb44b93da58944f3c20e3bfed36"
+    },
+    {
+      "path": "standard_core/independent_validation.py",
+      "size_bytes": 28595,
+      "sha256": "6b479da655f9d03eb2e6f614feb56a271840fb326a39fec56d4ef9d39299ec32"
+    },
+    {
+      "path": "standard_core/inventory.py",
+      "size_bytes": 4660,
+      "sha256": "3b223da238714f19b7cfb1cd03d85dddc3e071a15b60b7e2c10bb882734ee69e"
+    },
+    {
+      "path": "standard_core/local_stability.py",
+      "size_bytes": 89726,
+      "sha256": "5d935c56cb1174aadf6971a0225b2242ec7405904b233d9988aa29d0566d0ac3"
+    },
+    {
+      "path": "standard_core/material_resistance.py",
+      "size_bytes": 70937,
+      "sha256": "baaafb1b7008eba2f4f8680f24041347d85ea9ad966d41062edddc5e30818048"
+    },
+    {
+      "path": "standard_core/normative_rebaseline.py",
+      "size_bytes": 17634,
+      "sha256": "a3d31f1d0ca7baabfdd0ca279b977c1c13555212252c13ee3cb26d258a46a06a"
+    },
+    {
+      "path": "standard_core/overhead_line_and_switchyard_supports.py",
+      "size_bytes": 39928,
+      "sha256": "57427ba6974c15d71f2b3db9582e6265082998a1c724a462c42acd8627a52aa3"
+    },
+    {
+      "path": "standard_core/phase_0_25_validation.py",
+      "size_bytes": 24395,
+      "sha256": "1a9497262297a0764d109588636d85990e8ed46dc9ab35a46c2bea4576c0952d"
+    },
+    {
+      "path": "standard_core/profile_catalog.py",
+      "size_bytes": 25638,
+      "sha256": "d9f66fcb39d0578f25a5a6403e170f5de326bfe36a61c087bbec057bc190f3f4"
+    },
+    {
+      "path": "standard_core/reconstruction_assessment.py",
+      "size_bytes": 56857,
+      "sha256": "313bd1dc260ba7a5b80059ef3cb3573c08887aa8f8610475d088a5759605a902"
+    },
+    {
+      "path": "standard_core/release_metadata.py",
+      "size_bytes": 17046,
+      "sha256": "d833ac99b2946b33e2c36d531747c83fe3f6f5cd7a7e8b29621e660e2ec0fd40"
+    },
+    {
+      "path": "standard_core/runner.py",
+      "size_bytes": 178108,
+      "sha256": "ff6d19c4be73ea210a7b7ed8b3611f7f49c83a83587f8aaf5b72a1e86b73c919"
+    },
+    {
+      "path": "standard_core/schema_validation.py",
+      "size_bytes": 6896,
+      "sha256": "81551e61f8af2dadda56c2a84c879358dbf237b2a105493b84c0d8426859e1f5"
+    },
+    {
+      "path": "standard_core/section_model.py",
+      "size_bytes": 16462,
+      "sha256": "590d95d9908ee37af718fcb2f517f1275e17e6d3953a1c48c0b9fa93284590f2"
+    },
+    {
+      "path": "standard_core/sheet_structure_workflows.py",
+      "size_bytes": 20751,
+      "sha256": "cab8861171bcd8c107872647ee120bddcc3994ff5e917cdb8723f6a5774306f1"
+    },
+    {
+      "path": "standard_core/sheet_structures_strength_and_stability.py",
+      "size_bytes": 99639,
+      "sha256": "f09c0f04fa92a9faae1cd4e332c1b91c5687f5f7a7581dc9b12572f960c79bb1"
+    },
+    {
+      "path": "standard_core/sp16_mech1_canonical_actions.py",
+      "size_bytes": 9686,
+      "sha256": "635bb98f1213a5059706f87bc96fa0dce397620e5c0084ecd105b64dd5c29bbc"
+    },
+    {
+      "path": "standard_core/sp16_mech2_load_cases.py",
+      "size_bytes": 14793,
+      "sha256": "c5784ea87c4df029c63220561a068fd0a6ca12e03b530ec59320d1273e480638"
+    },
+    {
+      "path": "standard_core/sp16_mech3_axis_shear.py",
+      "size_bytes": 26047,
+      "sha256": "29e471bdc81a1dc5219878150b3d9c5750ac813b32280f1ac8f6e9f7c4d733b4"
+    },
+    {
+      "path": "standard_core/sp16_mech4_torsion.py",
+      "size_bytes": 21001,
+      "sha256": "a2bab6e3262f49a8d46164d8fa8a2213fcb26c57d77fca227d82fb00aa7d26eb"
+    },
+    {
+      "path": "standard_core/sp16_mech5_bimoment.py",
+      "size_bytes": 15086,
+      "sha256": "13f07fba710bf2d57bfe1bf6e73bb3dffdab4f38103a63456b9f9e081decee5e"
+    },
+    {
+      "path": "standard_core/structural_detailing_and_support_bearings.py",
+      "size_bytes": 27674,
+      "sha256": "c4428f57220e8acc84de2ebfd0bb9e5b4779b1e82d1f1db4be87f0cb62e463e5"
+    },
+    {
+      "path": "standard_core/tables.py",
+      "size_bytes": 5898,
+      "sha256": "64605ca1ef0f7f055bfc0a8f5261d239c6f89e3668942cbeffbc205c64622c53"
+    },
+    {
+      "path": "standard_core/validation.py",
+      "size_bytes": 111699,
+      "sha256": "5ac3eea57518e11e6dbd77f681186051b0cdded4a189c8d7e8a0d7b68b5435b0"
+    },
+    {
+      "path": "start_fire_ui1.sh",
+      "size_bytes": 84,
+      "sha256": "f92a3229f9d24d4bac28ee9c229639d3af889dd589f3e3e6309a89039c5e6cb2"
+    },
+    {
+      "path": "tests/test_antenna_structures.py",
+      "size_bytes": 7924,
+      "sha256": "c26a391ad0e5c7ebb701b7b21db6c07e58d745ab345fb613a6bef0fdcc7c8b7d"
+    },
+    {
+      "path": "tests/test_axial_members.py",
+      "size_bytes": 5990,
+      "sha256": "8034289d5e692b6ad705f1ad2c55e5e126f34eff3fe679ecf7eb452d61ecfd55"
+    },
+    {
+      "path": "tests/test_base_plates_and_combined_force_strength.py",
+      "size_bytes": 7905,
+      "sha256": "a240364098d303854f7e8838c059c1a4f1783a62e381ef58f0f4b2f963f25fdd"
+    },
+    {
+      "path": "tests/test_beam_column_stability.py",
+      "size_bytes": 10512,
+      "sha256": "db025adfef37d7eef4d288acb33adcb4f296f3856c8ca6b1b7bb094698ed786c"
+    },
+    {
+      "path": "tests/test_bending_member_local_stability.py",
+      "size_bytes": 9827,
+      "sha256": "f7f792ad235d61ff172da863462fbb97385b1aff0e59d0a2cc57cbda80a60396"
+    },
+    {
+      "path": "tests/test_bending_members.py",
+      "size_bytes": 11147,
+      "sha256": "9bbbcd0f72d4077274ee119079aa29acfa37a730ea5aba0aae3d918ba5dc4a96"
+    },
+    {
+      "path": "tests/test_bolted_and_friction_connections.py",
+      "size_bytes": 5480,
+      "sha256": "25c77252fc69e0d6ac22d32e9f8db5396e731807fe3fee8a931eea13d63dfc6d"
+    },
+    {
+      "path": "tests/test_brittle_fracture_and_welded_connections.py",
+      "size_bytes": 11426,
+      "sha256": "2cd82602f9903261380a26c2344005ed8f944b64534440a15ee593b51d0f2ff3"
+    },
+    {
+      "path": "tests/test_built_up_axial_members.py",
+      "size_bytes": 9563,
+      "sha256": "c62ee59c2c96f8239d302859f7564bdb48cd46cf30ba0d25ba857a88b34a59a1"
+    },
+    {
+      "path": "tests/test_built_up_beam_columns_and_combined_local_stability.py",
+      "size_bytes": 7119,
+      "sha256": "daa5fc5167e04e7a8d83d6d5a6b71c8e728a1d22ad9267ac59d459281b5cefa7"
+    },
+    {
+      "path": "tests/test_built_up_beam_flange_connections.py",
+      "size_bytes": 3874,
+      "sha256": "239ded99a6fa0b2a8cefbf24114f425642c3538f339663a44eb8bcca14aa4b10"
+    },
+    {
+      "path": "tests/test_crane_runway_and_bending_stability.py",
+      "size_bytes": 13297,
+      "sha256": "b233f3c0c6298a9f8ef52ed31e2378f4e88be25fb644df27c28f180407fca9a7"
+    },
+    {
+      "path": "tests/test_docstrings.py",
+      "size_bytes": 342,
+      "sha256": "2208640cbdeda82cb197cab5ddd93e1d21ef1d2458b4834b10020a3f11c44bf9"
+    },
+    {
+      "path": "tests/test_effective_lengths_and_limiting_slenderness.py",
+      "size_bytes": 4943,
+      "sha256": "4ff6d9b2c55b2b43593d2b3b7b76429e225f9a97aaec2db4671ba7bd68df0331"
+    },
+    {
+      "path": "tests/test_equations.py",
+      "size_bytes": 1782,
+      "sha256": "d3bf4e7cb0a20a76dbfea6821cbca335440392e5196945523a0bb429db955c6a"
+    },
+    {
+      "path": "tests/test_fatigue_design.py",
+      "size_bytes": 7182,
+      "sha256": "053a736a93471af15915b921559ff4af826b447b2e6cc9cafef94d9e4b858ec3"
+    },
+    {
+      "path": "tests/test_final_annex_and_release_consolidation.py",
+      "size_bytes": 2713,
+      "sha256": "53fda574c28af22a0ed6a0e4f2502168411e15fe10a43291365f3f7bc34b7c7a"
+    },
+    {
+      "path": "tests/test_final_audit.py",
+      "size_bytes": 1204,
+      "sha256": "361ad6c0d7ddcf96519d2515095f9374fb174169e6a0dcf5e0c33446d70b6db8"
+    },
+    {
+      "path": "tests/test_fire_d1_dag.py",
+      "size_bytes": 2536,
+      "sha256": "d9e6981ee69a17a45db3d166e611968e1bab85c735903c6a2c37d13f43fcc2df"
+    },
+    {
+      "path": "tests/test_fire_d1_sp554_sp16_bridge.py",
+      "size_bytes": 2808,
+      "sha256": "debf9fd829c6876c28a88678a41b81ac3f99d266933fc3df5024c811b4d9cbf7"
+    },
+    {
+      "path": "tests/test_fire_d2_dag.py",
+      "size_bytes": 3604,
+      "sha256": "6e67a7e6b31163844df3819f9b2e2367291e405f5578f7bbbe011cc2cf52d437"
+    },
+    {
+      "path": "tests/test_fire_d2_sp554_runtime.py",
+      "size_bytes": 13667,
+      "sha256": "eadd9e2e82d0f53405c0116b40986ffcc62936ef67b9096e4f436ccdfa672b77"
+    },
+    {
+      "path": "tests/test_fire_d31_dag.py",
+      "size_bytes": 2222,
+      "sha256": "f3b277637d698f38a8167c0f78770bb9929482b09e85243e6ac7732106f761b4"
+    },
+    {
+      "path": "tests/test_fire_d31_section12_reconciliation.py",
+      "size_bytes": 4178,
+      "sha256": "bee92658a830d341b266fc89458fe65237038ab073a0067f00fa756e85d43848"
+    },
+    {
+      "path": "tests/test_fire_d3_dag.py",
+      "size_bytes": 1857,
+      "sha256": "8b76c770be03598c0b1d2aa98c0dba1b506f36ceba10cc4f291c1ac00c4f1c02"
+    },
+    {
+      "path": "tests/test_fire_d3_sp554_thermal.py",
+      "size_bytes": 10710,
+      "sha256": "0d0a71153f50aa9a1a6839863325b27de1e03942e50b91bfddbbd5dc1f633d3d"
+    },
+    {
+      "path": "tests/test_fire_d4_dag.py",
+      "size_bytes": 2497,
+      "sha256": "7dfc0965ea7f141b262192a088ecc494dab1539c5bdeb63af18b0b4b71f391d4"
+    },
+    {
+      "path": "tests/test_fire_d4_sp554_section13.py",
+      "size_bytes": 5180,
+      "sha256": "50404c5ea95dc206424f7a532cdf7737b12373e394e403bbdcb5b12beb375d9c"
+    },
+    {
+      "path": "tests/test_fire_ui0_architecture.py",
+      "size_bytes": 9553,
+      "sha256": "81c674a0c3836be4765cbce31f39caa4fc922683fdd801f702bf6eca9312da28"
+    },
+    {
+      "path": "tests/test_fire_ui14_section_weakening.py",
+      "size_bytes": 11863,
+      "sha256": "f4ef47001abed5e7f3ba61a5f10582b965e9a022990eb0fc00cd6a189cbbc19b"
+    },
+    {
+      "path": "tests/test_fire_ui16_signed_load_parallel_scheduler.py",
+      "size_bytes": 8715,
+      "sha256": "ca272b7d54f50d4fd3d07e7b8ef6585355f7230442e1e7947c6842b21f87c614"
+    },
+    {
+      "path": "tests/test_fire_ui17_critical_temperature_restraint_ux.py",
+      "size_bytes": 4515,
+      "sha256": "953ea8c8377967ae65dbb8aaebe5ea048ddfe1196c3d3a5fbcfbb7cb1c85d2f7"
+    },
+    {
+      "path": "tests/test_fire_ui18_fire_d2_to_d3_handoff.py",
+      "size_bytes": 5156,
+      "sha256": "36f4ba152bccfcb01114581fe1714767bea9d254b1230d1cdb3da5ac859fdddd"
+    },
+    {
+      "path": "tests/test_fire_ui19_heated_perimeter.py",
+      "size_bytes": 5417,
+      "sha256": "f86af64b1eb5a534fa9e3f19edf483b525b2009055be0222a5447c089d7e2ea4"
+    },
+    {
+      "path": "tests/test_fire_ui1_frontend.py",
+      "size_bytes": 19539,
+      "sha256": "4e8093adde201d759ea58335191a506085dee328ac02e0493ebadc98bc2aa9b1"
+    },
+    {
+      "path": "tests/test_fire_ui20_remediation.py",
+      "size_bytes": 6825,
+      "sha256": "023edfefe35848c709d5fe4f322a2060d082375a15d3567facb829f047584186"
+    },
+    {
+      "path": "tests/test_fire_ui21_selector_hardening.py",
+      "size_bytes": 4550,
+      "sha256": "7758b2efc38748de414576ac28a037101cc13b63667798210e48a712c01d3c43"
+    },
+    {
+      "path": "tests/test_fire_ui22_result_continuation_hotfix.py",
+      "size_bytes": 2629,
+      "sha256": "0d4da947dbf72f68b088a0c383e3ebe5e03f40d71f35ee0fa4a209ddf75d1752"
+    },
+    {
+      "path": "tests/test_fire_ui22_routing_protection_library.py",
+      "size_bytes": 10681,
+      "sha256": "a07b5e8317b9402418bcda85f09c7bd8e61eab7a46e222a53cc80dd05dc5937b"
+    },
+    {
+      "path": "tests/test_fire_ui23_protection_route_closure.py",
+      "size_bytes": 9132,
+      "sha256": "9f2d2ccca30f126ae6b1ac3e8634d963e82a0a84373b5ab71679b9c97d1677b7"
+    },
+    {
+      "path": "tests/test_fire_ui24_val1_remediation.py",
+      "size_bytes": 5372,
+      "sha256": "edb6296803ac0a5b53e3258e7aa9c0a9f0832fd436e7d0d55f3de90340581140"
+    },
+    {
+      "path": "tests/test_local_stability.py",
+      "size_bytes": 8371,
+      "sha256": "d0f3538fa58e4da9dfd072c08a5b7fe44c318b7524fa60ca01429c35463da5df"
+    },
+    {
+      "path": "tests/test_material_resistance.py",
+      "size_bytes": 7540,
+      "sha256": "c7ebfa18dd8aca0e7169dfd8b053b669a0fc7f703bbff938cebe4190bf06596c"
+    },
+    {
+      "path": "tests/test_overhead_line_and_switchyard_supports.py",
+      "size_bytes": 7943,
+      "sha256": "0d9507cd277a9eff13ef1ed726e3eecfeec30d55bb4f16ca0b5d93ad4c6bf586"
+    },
+    {
+      "path": "tests/test_phase_0_23_independent_normative_rebaseline.py",
+      "size_bytes": 2737,
+      "sha256": "e43e3f1cf917a06438fffa7a11c59d99a96354b84bc959e89e399a15f7c1e8e9"
+    },
+    {
+      "path": "tests/test_phase_0_24_direct_function_coverage.py",
+      "size_bytes": 1937,
+      "sha256": "6c712c6081f7ffbd88b814c898c2e1ff5d255bed3a4b0695038a4aa1df6389af"
+    },
+    {
+      "path": "tests/test_phase_0_24_release_api_hardening.py",
+      "size_bytes": 2815,
+      "sha256": "9815783cc3755ca5ea0f9e4c44791328aa70497b38de1c5a730e371757eb5708"
+    },
+    {
+      "path": "tests/test_phase_0_25_validation.py",
+      "size_bytes": 3028,
+      "sha256": "6e9c16329da741f5fc5b749f57e7d731788a4c57bd9203f2a084e54ad8c31fbf"
+    },
+    {
+      "path": "tests/test_reconstruction_assessment.py",
+      "size_bytes": 10054,
+      "sha256": "62725417a4b14104731e3ca172aae6f6922781f85f23e20ed9fc018d90029a9d"
+    },
+    {
+      "path": "tests/test_release_manifest.py",
+      "size_bytes": 1286,
+      "sha256": "da91a5efcd7728fb2a887f2e1cd557b7e10063c362566677caaa6c7ff6b6f7b7"
+    },
+    {
+      "path": "tests/test_schemas.py",
+      "size_bytes": 19315,
+      "sha256": "303a076e4cfcbc479144567b857b5af3095db7e6d30b190f2d15ccaba4bf1018"
+    },
+    {
+      "path": "tests/test_sheet_structures_strength_and_stability.py",
+      "size_bytes": 13970,
+      "sha256": "389ac1ecbdfbdd6fb94d1e1666ebe6824ba142f80694283e600758954c4e1656"
+    },
+    {
+      "path": "tests/test_sp16_d3_interpolation_hotfix_dag.py",
+      "size_bytes": 1343,
+      "sha256": "b94e9431d7dcc40aef2346be61e47c4bc1f25c1972775325ca72b58bf8208dde"
+    },
+    {
+      "path": "tests/test_sp16_mech1_canonical_axes.py",
+      "size_bytes": 4919,
+      "sha256": "1b34ae985c3ed0b83c58b2baf8c4c26d85c3535f0625ffbd7548f9d9a41a67f5"
+    },
+    {
+      "path": "tests/test_sp16_mech2_load_cases_census.py",
+      "size_bytes": 6935,
+      "sha256": "b7f74b6bc53b3ef2b7bb23a8879e8d9d4a41970bd16f4256dc85484f12d93634"
+    },
+    {
+      "path": "tests/test_sp16_mech3_axis_shear.py",
+      "size_bytes": 5042,
+      "sha256": "10c52448a4caeaae3578adf2469f7d5c36b19e4230706e03618ff93521063628"
+    },
+    {
+      "path": "tests/test_sp16_mech4_torsion.py",
+      "size_bytes": 6206,
+      "sha256": "184c8aa2f6d57928468143611d7b033cfea60c105e962e4872c00730d591d825"
+    },
+    {
+      "path": "tests/test_sp16_mech5_bimoment.py",
+      "size_bytes": 6225,
+      "sha256": "ffcbab5c64d492cb39dad4994134dc2dc9aef40e0bf8144f4e9b8c937f050e87"
+    },
+    {
+      "path": "tests/test_sp554_applicability_routing_hotfix.py",
+      "size_bytes": 6386,
+      "sha256": "8a2c2af33b5c1caf2b4b23dd479fb2b7eabaca08c687693bf40ad2065a3f916a"
+    },
+    {
+      "path": "tests/test_stage_n10_brittle_fracture_workflows.py",
+      "size_bytes": 6025,
+      "sha256": "236d85328b8dac869c17c46bb837ef6f0925472a6970b996db03853923141f5b"
+    },
+    {
+      "path": "tests/test_stage_n10_dag.py",
+      "size_bytes": 3901,
+      "sha256": "f95a1404b69a95afc9a910267e3f1087d04339b61e76941bc6fba1eb8e5f59bb"
+    },
+    {
+      "path": "tests/test_stage_n1_boundaries_exhaustive.py",
+      "size_bytes": 4030,
+      "sha256": "4a68c0b2949aa559c4ff8f5073756498b98efa8ffe392b44fdae4dd57d6c5eb5"
+    },
+    {
+      "path": "tests/test_stage_n1_dag.py",
+      "size_bytes": 2378,
+      "sha256": "ad1be272e25e6b5574410807f340c13f8c40f54c5102dfd7d77909b359fd795f"
+    },
+    {
+      "path": "tests/test_stage_n1_material_strength.py",
+      "size_bytes": 8759,
+      "sha256": "b540ca8d23793b015335910302632d91b083d18504ffd9fa975b47ae88f796e0"
+    },
+    {
+      "path": "tests/test_stage_n2_interim_profile_catalog.py",
+      "size_bytes": 12297,
+      "sha256": "e19976df32f236cf12a05241d0aec6e16197015b9f59bd5f93a56ff9305ee791"
+    },
+    {
+      "path": "tests/test_stage_n2_section_model.py",
+      "size_bytes": 9698,
+      "sha256": "2aeb8a73139cb040265a185c4451815a77ab185ab5a5d5c4d0c1bc96bd62395c"
+    },
+    {
+      "path": "tests/test_stage_n3_axial_workflows.py",
+      "size_bytes": 14100,
+      "sha256": "86c0815f56310d99c9f37fe9fb183d17e79caf7d5cba071f83e5fb016b7f5615"
+    },
+    {
+      "path": "tests/test_stage_n3_dag.py",
+      "size_bytes": 2296,
+      "sha256": "fd1b69761cbacc7d9ee041173183442184a3750dde5afd0f025f2fd471601f66"
+    },
+    {
+      "path": "tests/test_stage_n4_bending_workflows.py",
+      "size_bytes": 6413,
+      "sha256": "cfd1418305dfdaf8c9ac617a3e081de5155f7ac0023d89c7ae819c097a29200c"
+    },
+    {
+      "path": "tests/test_stage_n4_dag.py",
+      "size_bytes": 2232,
+      "sha256": "a61e039a48de50884079c5cecd9beb4bfaf463cdf844aa4a91ce43e7c4dc10b1"
+    },
+    {
+      "path": "tests/test_stage_n5_beam_column_workflows.py",
+      "size_bytes": 6863,
+      "sha256": "3352f8054a85e4c490d83d7a44c03a1f6438bde94e9c88191c9095d88d70110f"
+    },
+    {
+      "path": "tests/test_stage_n5_dag.py",
+      "size_bytes": 1963,
+      "sha256": "c5b2036c6ebe4c6420840b69520c3ba059713f626e002fa652e2d8be05d71ddd"
+    },
+    {
+      "path": "tests/test_stage_n6_built_up_beam_column_workflows.py",
+      "size_bytes": 14640,
+      "sha256": "a102ec16b5a4ae6e7219147b12f5c672ad6393c837462fa03299668c1a487c6d"
+    },
+    {
+      "path": "tests/test_stage_n6_dag.py",
+      "size_bytes": 2854,
+      "sha256": "cd6d26a3fba8cabf8ad9f73e5611333cff468976790642d4b3b041bce044564e"
+    },
+    {
+      "path": "tests/test_stage_n7_dag.py",
+      "size_bytes": 2159,
+      "sha256": "7852fe776089e8d1a83204cb16d56dc441402a019be07a3c4b59c9d137479a62"
+    },
+    {
+      "path": "tests/test_stage_n7_effective_length_workflows.py",
+      "size_bytes": 13452,
+      "sha256": "96696cfb9d7d899b81700672cce154264a546c63938c6f7ebbc985d4d72d3e7f"
+    },
+    {
+      "path": "tests/test_stage_n8_dag.py",
+      "size_bytes": 2814,
+      "sha256": "68299d8be1122cfd9cd257c5135090e08030dd812544f3f5d2293283b38fd23f"
+    },
+    {
+      "path": "tests/test_stage_n8_sheet_structure_workflows.py",
+      "size_bytes": 15270,
+      "sha256": "45e5adac4ed3da4e69548d308dda021293fa57672db9548fd3017f8f9336ea81"
+    },
+    {
+      "path": "tests/test_stage_n9_dag.py",
+      "size_bytes": 2899,
+      "sha256": "65f95fc3519ee83d4be0d4aed39d45cd14cacc38009490c0918e9db0ea5dcf7f"
+    },
+    {
+      "path": "tests/test_stage_n9_fatigue_workflows.py",
+      "size_bytes": 8428,
+      "sha256": "1e7aa07a3fe0f6be13c5c2fb282054a6c43abed8346202a067dec334af07ddd1"
+    },
+    {
+      "path": "tests/test_structural_detailing_and_support_bearings.py",
+      "size_bytes": 4786,
+      "sha256": "1e9654af72340481030abed3c6cb36fa587c5ebb0506bfe29afd4a0e6f62a11b"
+    },
+    {
+      "path": "tests/test_tables.py",
+      "size_bytes": 4347,
+      "sha256": "db70e3a6affb1aa0d23078d82b0a8e58d6283e7af845ad535e7aaaf21829c45a"
+    },
+    {
+      "path": "tests/test_validation_campaign_v0_26.py",
+      "size_bytes": 8963,
+      "sha256": "c54a7dabf7062434bc5da6906be947158181049caadec8706d6fefde27ff2f71"
+    },
+    {
+      "path": "tests/test_validation_corpus_case_0001_beam.py",
+      "size_bytes": 3297,
+      "sha256": "2ae786037a5047af9d5f5f4bd0b1c959ec2e2216a9a1806c8b8f45ddcb884e38"
+    },
+    {
+      "path": "tests/test_validation_examples.py",
+      "size_bytes": 4174,
+      "sha256": "efa562e1449d6e68c36a41dac37279587e992992021c8143288e7edf0dc62e71"
+    },
+    {
+      "path": "validation/README.md",
+      "size_bytes": 671,
+      "sha256": "12091843a43b4f40b061c8342307c26aea2b1f5522818c69f913821165407eda"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEAM-0001/README.md",
+      "size_bytes": 1240,
+      "sha256": "84cacb0a17f2d7ee2d4a9b91501cd008b8016472750162a5d3c81b1bb47c0af2"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEAM-0001/case.json",
+      "size_bytes": 5696,
+      "sha256": "b85d87f4d627c51d23a60a715fb2b5053f8cc12eca80f0826918c339dd1fa791"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEAM-0001/comparison.json",
+      "size_bytes": 981,
+      "sha256": "70f4218183d85648d48cf942a016b7881371a13fca617f14cb3d17a604f923f6"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEAM-0001/expected.json",
+      "size_bytes": 586,
+      "sha256": "7dcd19b3ede39abf69099b04da0b8add26bd4c97028d5b7eef434146dfb1eff2"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEAM-0001/production_result.json",
+      "size_bytes": 910,
+      "sha256": "eab74c970345fa3f3965ef2feb6c623ea0e3940b087cef377bdacd7f9b318ef6"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEAM-0001/source/source_report_original.docx",
+      "size_bytes": 31981,
+      "sha256": "c0b23def395cfa9f7d1b524a504da8570b782661780de54b62a42fb5759f42ea"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEAMCOL-0008/README.md",
+      "size_bytes": 397,
+      "sha256": "bbf2583ebf52e602e6cc4c9b66687b1d3e0394cd46445fbfa3bed6193f104deb"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEAMCOL-0008/case.json",
+      "size_bytes": 3173,
+      "sha256": "d3112579383ac15dd63cdce1e8463400b4e469d8d67dfbe2a0ed80cf10452b35"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEAMCOL-0008/comparison.json",
+      "size_bytes": 2393,
+      "sha256": "6e85efa59ac1c4b56f86af7ee18ba7bcbea3fdedd07f6dce44ada7fec9988d60"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEAMCOL-0008/expected.json",
+      "size_bytes": 1295,
+      "sha256": "8d0a928f29b6fa6fa1bbd10e04132bf8e16eee158f30e3abc39ed8ef9cbe557e"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEAMCOL-0008/production_result.json",
+      "size_bytes": 828,
+      "sha256": "229d1dc93395b237aa76193b6dbb9e74aa614a311cbe435dfbf8563b02e9b1c0"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEAMCOL-0008/source/source_report_original.txt",
+      "size_bytes": 16470,
+      "sha256": "9b61b77851887b4a98a27efb5cfb80b148324d40709b90384be8ea818b15dd6c"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEND-0006/README.md",
+      "size_bytes": 444,
+      "sha256": "60eeeb8c1371d00d2c4a7806fc14ed511d7dcf9fe1b27e1ca0f2b5823ba9e45a"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEND-0006/case.json",
+      "size_bytes": 2606,
+      "sha256": "e94d21f31ac6a244c979b30621b08d33a189908deaf47eb6b921b1888b5db35f"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEND-0006/comparison.json",
+      "size_bytes": 1667,
+      "sha256": "0b05ff1063d0fe1a66c5c3c7eba24ef600bc17fbbdf4775418aa33dba213046b"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEND-0006/expected.json",
+      "size_bytes": 820,
+      "sha256": "613cb9db954cf98572448dc4b41832408a4def0e4f661370838a962ee5a6ea8b"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEND-0006/production_result.json",
+      "size_bytes": 621,
+      "sha256": "7a36b605f5ad51a0b2b9d17e538e765a7fb479565f5ea2fb86472ae0d31339ab"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEND-0006/source/source_report_transcribed_from_conversation.txt",
+      "size_bytes": 640,
+      "sha256": "94a4edea2effc93c30c5fc0bb15bc50f7e8362a279a5c52d267b5bec17fea6a4"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEND-0007/README.md",
+      "size_bytes": 470,
+      "sha256": "379d63ebfe16a0552daa4a177f7afa680f9647ef1412abe761ef46526d2a0ddb"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEND-0007/case.json",
+      "size_bytes": 2531,
+      "sha256": "8f3033dc4d1f223a566f365edc5ee0fdd4c57090a275a4a7e19e895425d15357"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEND-0007/comparison.json",
+      "size_bytes": 1594,
+      "sha256": "134597dac23cc74fa88f0a52d7d9cc8f113a8ca4f717af85ec75922a1679cec1"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEND-0007/expected.json",
+      "size_bytes": 825,
+      "sha256": "9ed6a6eb3f01513ef8ea85b95a061a4d188ea14cc2f0c4fa6b85432f4a849341"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEND-0007/production_result.json",
+      "size_bytes": 595,
+      "sha256": "714611df21134feb52c108802f4375f5a0acade792df84e7ea0413eee7a3f4a9"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BEND-0007/source/source_report_transcribed_from_conversation.txt",
+      "size_bytes": 734,
+      "sha256": "78e16e6ab75300ab874d62026bb5592db7c73160b43fcfcc742c6c7bf0d96be0"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BOLT-0003/README.md",
+      "size_bytes": 461,
+      "sha256": "752652eba55a9318478c1a3faa6a7de9b7cac4db73ef0c67bc451b01d6d42e07"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BOLT-0003/case.json",
+      "size_bytes": 2886,
+      "sha256": "b8535f75efcf7f9ae6e781bd60936140d4dc1def4c086eaf2ed1c7fa8bee925c"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BOLT-0003/comparison.json",
+      "size_bytes": 2070,
+      "sha256": "ff7fa546584bbcd2bfb595ab39fce5fadadb6d22802b2fb0a6368661cadb467a"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BOLT-0003/expected.json",
+      "size_bytes": 1129,
+      "sha256": "506a20b2304153c6d716e93c0d1ab3f67927806ef0df5b6068092fa1d8a5e6d6"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BOLT-0003/production_result.json",
+      "size_bytes": 742,
+      "sha256": "929170231f5d03339eada10632a0d639d73f63f8bca2854f0e61840f94293cf7"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BOLT-0003/source/source_report_transcribed_from_conversation.txt",
+      "size_bytes": 808,
+      "sha256": "c2d00e026e739526b6adfaa566016636d7eab455ef7e026c36362a9aff3c4ee9"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BOLT-0005/README.md",
+      "size_bytes": 460,
+      "sha256": "4b0e446eaa222833997096fa8012e5413becc48ee2cb91456d31d944f6eb4e97"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BOLT-0005/case.json",
+      "size_bytes": 2710,
+      "sha256": "3aa5da49802453de55114fa0542f8a6d675a38a977415c87493aab020682c8b3"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BOLT-0005/comparison.json",
+      "size_bytes": 1518,
+      "sha256": "8789f0ca913a9d16e808c51dc6aa23bfb23124601ec411fb7801a9e257f32f17"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BOLT-0005/expected.json",
+      "size_bytes": 805,
+      "sha256": "f3879d2fbc243b7dce479f00e09a9d84fb08f72adcde76acc47a97b4e4aa43b5"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BOLT-0005/production_result.json",
+      "size_bytes": 580,
+      "sha256": "a55069248245f6fb6384492379fc1c7cdc5940c5e8306c9087760d6ead50b4de"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BOLT-0005/source/source_report_transcribed_from_conversation.txt",
+      "size_bytes": 737,
+      "sha256": "4ca1a49168b971555242fe14d2e5fe1bdc647d0ec046b8e143fd5b8a26c3da60"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BUILTUP-0009/README.md",
+      "size_bytes": 489,
+      "sha256": "4873db3e4e7656ba078080a53d5680bb7ff9eecbe5065f20c3f2191ad63b95fe"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BUILTUP-0009/case.json",
+      "size_bytes": 2486,
+      "sha256": "60a9241548017df9058a25a1e8b2a1dbc15ccadbe2591eb67c13516103d0e8fc"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BUILTUP-0009/comparison.json",
+      "size_bytes": 1639,
+      "sha256": "f6dfde4565e3105d0e063adf91ea854c648579d9f7c0db39e5f78c923d80f735"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BUILTUP-0009/expected.json",
+      "size_bytes": 861,
+      "sha256": "91ca5d28ef33eff64840bb32148f962e71e1b9ac2efcece86a5531e3315d4f63"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BUILTUP-0009/production_result.json",
+      "size_bytes": 657,
+      "sha256": "5acbaa25e6f1edb6b9f3a17757126d3a7fafa309d6c99519c5aec207bd7c686e"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-BUILTUP-0009/source/source_report_transcribed_from_conversation.txt",
+      "size_bytes": 750,
+      "sha256": "466be09cda878bd2715804389cf492867ddbf29c194513a183ff0df8d4f6d278"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-WELD-0002/README.md",
+      "size_bytes": 540,
+      "sha256": "81bb0e472a9f1c32b3a9b4a55feea56933f1194020bdbbf287019057175666ca"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-WELD-0002/case.json",
+      "size_bytes": 2340,
+      "sha256": "c47053aee0e0d62c7c28cae9974d34b42db5efffdb1559b886c759f6ae9af933"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-WELD-0002/comparison.json",
+      "size_bytes": 1436,
+      "sha256": "e0398a545eb407c6a9de4c7373491671228f9b18db65716635d3d2b7d4a10e0e"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-WELD-0002/expected.json",
+      "size_bytes": 822,
+      "sha256": "9119914e6a7a7078ed2c36a2384c5d8a6809c320e60c693949f7d1d928532f92"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-WELD-0002/production_result.json",
+      "size_bytes": 590,
+      "sha256": "0cbb2415981d049d805cece96aae09f5bdb8f8eecd8bcd223ace054cd3f64314"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-WELD-0002/source/source_report_transcribed_from_conversation.txt",
+      "size_bytes": 714,
+      "sha256": "862381c2f95f542f70bccc9a7e450c5115ac998528497b0b64939593b826155b"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-WELD-0004/README.md",
+      "size_bytes": 472,
+      "sha256": "f33bdbc56cc0c3033857602b0d262d6b7cc5b8615465589d0cf8963160b8909a"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-WELD-0004/case.json",
+      "size_bytes": 2717,
+      "sha256": "fe3d9ca4d0f038009ffa998b8ec9677f747a0a43030b1d08a5997a8eb998896c"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-WELD-0004/comparison.json",
+      "size_bytes": 1996,
+      "sha256": "76f843418259a1ac608c2e34c72d4c333db516e8ec03fba7ad688206dcede52a"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-WELD-0004/expected.json",
+      "size_bytes": 1126,
+      "sha256": "d73f11174354574b4d0d76aa5ee6c1a6de82ec1efbcd5296f63824eefef9d187"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-WELD-0004/production_result.json",
+      "size_bytes": 737,
+      "sha256": "4b29a37db359065c832ad60e92c4592b2460354a1853bb2b13ad6b6f94453361"
+    },
+    {
+      "path": "validation/cases/VAL-SP16-WELD-0004/source/source_report_transcribed_from_conversation.txt",
+      "size_bytes": 738,
+      "sha256": "f0b6bd96091ff284af0de3c18edd981e213c059bc7dc13c1f5e20774d5fb2206"
+    },
+    {
+      "path": "validation/registry/validation_registry.json",
+      "size_bytes": 4819,
+      "sha256": "55f31e29edbcab0c2c5c1af43d5ae29a22641a77c7ab69aba81e1ccebafcfb3e"
+    },
+    {
+      "path": "validation/schemas/validation_case.schema.json",
+      "size_bytes": 1310,
+      "sha256": "b54ed70465cd4a9d5cf55ca1bdfec19d3bbd98f70ec6b9db6497d7051c524965"
+    },
+    {
+      "path": "validation/stage_n1/README.md",
+      "size_bytes": 2411,
+      "sha256": "4b793728dcfbecfa85b636a17a7466aaa1c81cdae4038594fca98f37efc73043"
+    },
+    {
+      "path": "validation/stage_n1/boundary_probe_matrix_stage_n1.json",
+      "size_bytes": 389996,
+      "sha256": "d116a744753045de51270dd24399836dc93c6016935f6edc0c0de75cee97d649"
+    },
+    {
+      "path": "validation/stage_n1/crosswalk_stage_n1.json",
+      "size_bytes": 7211,
+      "sha256": "3ac66dae13bf55f17612d8d1eeaf216d101ce8e3bd047943726d469f94fcad0f"
+    },
+    {
+      "path": "validation/stage_n1/current_sp16_source_capture_stage_n1.json",
+      "size_bytes": 59881,
+      "sha256": "fde69de4c61863cf655dd183f23359e25883619c57dc7e6e282e7489ff5c2331"
+    },
+    {
+      "path": "validation/stage_n1/discrepancy_register_stage_n1.json",
+      "size_bytes": 10117,
+      "sha256": "7866f66c62e9ff887adda5e3fc4af162e6b7e7e2329aa324d162b840628e877e"
+    },
+    {
+      "path": "validation/stage_n1/normcad_capture/Прочность листовой стали.json",
+      "size_bytes": 30817,
+      "sha256": "af26b16baa6ca1c17a51dde73201e5f31ff88e01d632f69c51334dacd8f0c5ca"
+    },
+    {
+      "path": "validation/stage_n1/normcad_capture/Прочность труб.json",
+      "size_bytes": 3511,
+      "sha256": "dcf2f49707fe6556f9fc1b2e0a52b0582d052b378aa0160950074b7aebdcf121"
+    },
+    {
+      "path": "validation/stage_n1/normcad_capture/Прочность фасонной стали.json",
+      "size_bytes": 37909,
+      "sha256": "181095fe1a5aa6632336915458113caeacb2aeb0c8a8412f9c55c6de733aab6a"
+    },
+    {
+      "path": "validation/stage_n1/normcad_capture_NC-N1-PHYSICAL-0001.json",
+      "size_bytes": 2563,
+      "sha256": "47d6b92a2172d63f2eebc2be37e492a22a06b63e9e620d7c84e1637cfab27099"
+    },
+    {
+      "path": "validation/stage_n1/normcad_static_evidence_stage_n1.json",
+      "size_bytes": 4253,
+      "sha256": "965af29fdfbaf0e6116a064944171999db47db65086c80e9802709aa2c29d35e"
+    },
+    {
+      "path": "validation/stage_n1/normcad_strength_crosswalk_stage_n1.json",
+      "size_bytes": 172649,
+      "sha256": "d9bf10cdbf8e329590304a9745bb99ae0ce959405aa62c3fc2a8534f16a1a6b8"
+    },
+    {
+      "path": "validation/stage_n1/selected_validation_cases_stage_n1.json",
+      "size_bytes": 7186,
+      "sha256": "d9347ebbe9fdc9972824e967bb55bc535fcd013deb62cf6e555cbd027057a620"
+    },
+    {
+      "path": "validation/stage_n1/source_vs_package_verification_stage_n1.json",
+      "size_bytes": 3859,
+      "sha256": "69e01368913c8c1bd9622a40835b1348587200509712ea9760542941b3ce847d"
+    },
+    {
+      "path": "validation/stage_n1/stage_n1_census.json",
+      "size_bytes": 2820,
+      "sha256": "a866da306a492a47ca09129951903b6d842c1b6317dcbba7d29e6c3019da44ee"
+    },
+    {
+      "path": "validation/stage_n1/tools/build_n1_boundary_matrix.py",
+      "size_bytes": 6081,
+      "sha256": "93ffb6b1ca865f0e985f6d1a77a10fbef2044f0d0a6d55ad5eabeaf73b5c6b70"
+    },
+    {
+      "path": "validation/stage_n1/tools/build_n1_normcad_crosswalk.py",
+      "size_bytes": 11467,
+      "sha256": "aaf9c1ef80351aac71f0d5ab964876bd1d5a62a94852b3a358cef31c6094851c"
+    },
+    {
+      "path": "validation/stage_n1/tools/build_n1_source_verification.py",
+      "size_bytes": 3906,
+      "sha256": "122da08b77882560e03f3d956bc1d073900e2152a270a5fc0b9b4ca96f940917"
+    },
+    {
+      "path": "validation/stage_n1/tools/extract_current_sp16_stage_n1.py",
+      "size_bytes": 11523,
+      "sha256": "1bb5d0970d7c6f779771a9d6843325b5d981a879720b634bfff0d886b2ca1a08"
+    },
+    {
+      "path": "validation/stage_n1/tools/extract_normcad_strength_mdb.py",
+      "size_bytes": 5436,
+      "sha256": "f5641d49708f7cc80e6790ac07a71a398858e6d19867f5573b64afa63ba6b1a4"
+    },
+    {
+      "path": "validation/stage_n2/evidence/n2_discrepancy_register.json",
+      "size_bytes": 4362,
+      "sha256": "c40ed4660bd56cfef8b7f0f2be8518538e33f17c7f630b19baf25f817ea5eca4"
+    },
+    {
+      "path": "validation/stage_n2/evidence/n2_runtime_integration_summary.json",
+      "size_bytes": 2176,
+      "sha256": "d64bafcca84e8d303d322751edf78a3f4ff0c1c8ae956e95c1a06a7e885000f6"
+    },
+    {
+      "path": "validation/stage_n2/evidence/n2_source_scope.json",
+      "size_bytes": 3063,
+      "sha256": "ed82d7d219bccc505a781b1600c2aa1466eed6899e195de31e4fb6c8f5536de7"
+    },
+    {
+      "path": "validation/stage_n2/evidence/normcad_runtime_observation_15K4.json",
+      "size_bytes": 959,
+      "sha256": "6f1de2032cbfe47e21f5de7b8e013b604855ac55863c3de9404e59c6edc0ab73"
+    },
+    {
+      "path": "validation/stage_n2/normcad_capture/normcad_profile_catalog_audit.json",
+      "size_bytes": 17139,
+      "sha256": "14c3813e838ffa021660e6739416383c261b17c6d4d1deff641429657861c3dc"
+    },
+    {
+      "path": "validation/stage_n2/normcad_capture/normcad_profile_catalog_historical.json",
+      "size_bytes": 3694998,
+      "sha256": "ebbc3062f4a9382d61e84301885bc8ed9a3687c63b2cde7f1abf513b1887aecd"
+    },
+    {
+      "path": "validation/stage_n2/tools/audit_normcad_profile_capture.py",
+      "size_bytes": 10708,
+      "sha256": "14ae1c0862d42cf65757c4c9b32de9a6eac557036cf579b6dfb918330d572069"
+    },
+    {
+      "path": "validation/stage_n2/tools/extract_normcad_profile_mdb.py",
+      "size_bytes": 8689,
+      "sha256": "ae89044657d8a5f034a16f29eeeca8345a1a35c29334b30810e8ec2760d97215"
+    },
+    {
+      "path": "validation/stage_n3/evidence/n3_discrepancy_register.json",
+      "size_bytes": 4346,
+      "sha256": "18df6ee0981cc3f015806ee461daada734cda4ab3e75b26fd4fddc05433ecd20"
+    },
+    {
+      "path": "validation/stage_n3/evidence/n3_runtime_integration_summary.json",
+      "size_bytes": 1207,
+      "sha256": "962ef6b1494a52470fdd4f5f3e8395c6a63a7d758d3140fdbfbdd44946a15364"
+    },
+    {
+      "path": "validation/stage_n3/evidence/normcad_static_axial_evidence.json",
+      "size_bytes": 1999,
+      "sha256": "0b66b4d532a9742023de497145620c36618ce82156cf1356fc231114d1b4eba7"
+    },
+    {
+      "path": "validation/stage_n3/tools/build_stage_n3_dag.py",
+      "size_bytes": 24672,
+      "sha256": "34660e92fe736608402e61112b667f45c0d40959a7fc7fc724f031fe2de07aea"
+    },
+    {
+      "path": "validation/stage_n4/evidence/n4_discrepancy_register.json",
+      "size_bytes": 5701,
+      "sha256": "4de838fe18af4f74b5f010bb9a578248c0070b440421894a283e5d472041f51c"
+    },
+    {
+      "path": "validation/stage_n4/evidence/n4_runtime_integration_summary.json",
+      "size_bytes": 1684,
+      "sha256": "785de5f9ba6735df9169c635e14069610adf6656bd9ff8020b6a030a816dc021"
+    },
+    {
+      "path": "validation/stage_n4/evidence/normcad_static_bending_evidence.json",
+      "size_bytes": 786,
+      "sha256": "536f5b7f42453bf7557e04758db54a5a06f50301981e4fd26df762191a9ba61c"
+    },
+    {
+      "path": "validation/stage_n4/tools/build_stage_n4_dag.py",
+      "size_bytes": 16797,
+      "sha256": "1d8b14f4e1e94b637f758c7223404fdb404f4bd0bc506fb60112246e52b290bd"
+    },
+    {
+      "path": "validation/stage_n5/evidence/n5_discrepancy_register.json",
+      "size_bytes": 2195,
+      "sha256": "7ef8e73cbdc73aaecc87cba92072ea8d84d564b3bea39e63e2a86c23de90d2cb"
+    },
+    {
+      "path": "validation/stage_n5/evidence/normcad_static_beam_column_evidence.json",
+      "size_bytes": 1994,
+      "sha256": "a28bc0f4da4c50db91785d12dc80e57241bc66725dc649220fc0b6b2b147f716"
+    },
+    {
+      "path": "validation/stage_n5/hotfix_d3_interpolation/fire_ui1_20k1_cold_result.json",
+      "size_bytes": 2068,
+      "sha256": "aa975fd0d8bed912b2663b7fa337da724b6d404857dd8d215cb4e61c29e2c78b"
+    },
+    {
+      "path": "validation/stage_n5/hotfix_d3_interpolation/fire_ui1_20k1_full_fire_result.json",
+      "size_bytes": 9497,
+      "sha256": "d330cec573cd99b5df2973867e84ba0fd22d50e2825f46583fcc1fa9bc93f527"
+    },
+    {
+      "path": "validation/stage_n5/hotfix_d3_interpolation/fire_ui1_20k1_interpolation_walkthrough.json",
+      "size_bytes": 1693,
+      "sha256": "4dd57c930f627ba2dda2e82ac36d4fe9a310d1b19e1d1990b8480fdaf8d9bace"
+    },
+    {
+      "path": "validation/stage_n5/tools/build_stage_n5_dag.py",
+      "size_bytes": 12301,
+      "sha256": "709d1387e2eca99ae34abf58c7957fb9b01ab04ec06f942289ccf71ba580f900"
+    }
+  ]
+}

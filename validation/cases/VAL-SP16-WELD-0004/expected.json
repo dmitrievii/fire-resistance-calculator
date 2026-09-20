@@ -1,0 +1,47 @@
+{
+  "case_id": "VAL-SP16-WELD-0004",
+  "checks": [
+    {
+      "check_id": "kf_max",
+      "published_value": 7.2,
+      "absolute_tolerance": 1e-12,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "beta_f",
+      "published_value": 1.1,
+      "absolute_tolerance": 1e-12,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "beta_z",
+      "published_value": 1.15,
+      "absolute_tolerance": 1e-12,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "14.1.8_upper",
+      "published_value": 174.0681818,
+      "absolute_tolerance": 1e-08,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "14.1.8_source_pass_claim",
+      "published_value": 1,
+      "absolute_tolerance": 0,
+      "expected_comparison_status": "FAIL"
+    },
+    {
+      "check_id": "lw_calc",
+      "published_value": 9.75549,
+      "absolute_tolerance": 1e-05,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "lw_min",
+      "published_value": 40,
+      "absolute_tolerance": 0,
+      "expected_comparison_status": "PASS"
+    }
+  ]
+}

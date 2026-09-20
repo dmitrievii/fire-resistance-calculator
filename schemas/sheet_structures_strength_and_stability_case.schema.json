@@ -1,0 +1,231 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sheet_structures_strength_and_stability_case.schema.json",
+  "title": "SP 16.13330.2017 Section 11 sheet-structure case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "standard",
+    "action",
+    "working_condition_factor",
+    "design_yield_resistance_n_mm2",
+    "elastic_modulus_n_mm2",
+    "sigma_x_n_mm2",
+    "sigma_y_n_mm2",
+    "tau_xy_n_mm2",
+    "tension_design_resistance_n_mm2",
+    "compression_design_resistance_n_mm2",
+    "projected_pressure_force_n",
+    "pressure_n_mm2",
+    "shell_radius_mm",
+    "shell_thickness_mm",
+    "beta_degrees",
+    "meridional_radius_mm",
+    "circumferential_radius_mm",
+    "cylinder_axial_compressive_stress_n_mm2",
+    "cylinder_minimum_signed_stress_n_mm2",
+    "cylinder_shear_stress_n_mm2",
+    "tube_axial_force_n",
+    "tube_relative_slenderness",
+    "tube_area_mm2",
+    "tube_relative_eccentricity_m",
+    "tube_radius_mm",
+    "tube_thickness_mm",
+    "panel_width_mm",
+    "panel_compressive_stress_n_mm2",
+    "external_cylinder_radius_mm",
+    "external_cylinder_thickness_mm",
+    "external_cylinder_length_mm",
+    "external_pressure_n_mm2",
+    "ring_spacing_mm",
+    "cone_top_radius_mm",
+    "cone_bottom_radius_mm",
+    "cone_height_mm",
+    "cone_thickness_mm",
+    "cone_axial_force_n",
+    "cone_external_pressure_n_mm2",
+    "sphere_radius_mm",
+    "sphere_thickness_mm",
+    "sphere_external_pressure_n_mm2",
+    "has_geometry_thickness_or_load_discontinuity",
+    "arbitrary_configuration_or_spatial_state",
+    "tube_axial_critical_stress_n_mm2"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "standard": {
+      "const": "СП 16.13330.2017"
+    },
+    "action": {
+      "const": "sheet_structures_strength_and_stability"
+    },
+    "working_condition_factor": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "design_yield_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "elastic_modulus_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "sigma_x_n_mm2": {
+      "type": "number"
+    },
+    "sigma_y_n_mm2": {
+      "type": "number"
+    },
+    "tau_xy_n_mm2": {
+      "type": "number"
+    },
+    "tension_design_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "compression_design_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "projected_pressure_force_n": {
+      "type": "number"
+    },
+    "pressure_n_mm2": {
+      "type": "number"
+    },
+    "shell_radius_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "shell_thickness_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "beta_degrees": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 60
+    },
+    "meridional_radius_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "circumferential_radius_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "cylinder_axial_compressive_stress_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "cylinder_minimum_signed_stress_n_mm2": {
+      "type": "number"
+    },
+    "cylinder_shear_stress_n_mm2": {
+      "type": "number"
+    },
+    "tube_axial_force_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "tube_relative_slenderness": {
+      "type": "number",
+      "minimum": 0.65
+    },
+    "tube_area_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "tube_relative_eccentricity_m": {
+      "type": "number",
+      "minimum": 0
+    },
+    "tube_radius_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "tube_thickness_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "panel_width_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "panel_compressive_stress_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "external_cylinder_radius_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "external_cylinder_thickness_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "external_cylinder_length_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "external_pressure_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "ring_spacing_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "cone_top_radius_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "cone_bottom_radius_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "cone_height_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "cone_thickness_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "cone_axial_force_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "cone_external_pressure_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "sphere_radius_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "sphere_thickness_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "sphere_external_pressure_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "has_geometry_thickness_or_load_discontinuity": {
+      "type": "boolean"
+    },
+    "arbitrary_configuration_or_spatial_state": {
+      "type": "boolean"
+    },
+    "tube_axial_critical_stress_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.1.0",
+  "case_id": "VAL-SP16-BEND-0006",
+  "title": "Двухосный изгиб 36ДБ1 — прочность стенки и Eq.(43)/(44)",
+  "evidence_class": "external_user_supplied_calculation_report",
+  "source": {
+    "original_filename": "chat_paste.txt",
+    "stored_path": "validation/cases/VAL-SP16-BEND-0006/source/source_report_transcribed_from_conversation.txt",
+    "sha256": "94a4edea2effc93c30c5fc0bb15bc50f7e8362a279a5c52d267b5bec17fea6a4",
+    "page_count": 0,
+    "preservation": "structured_transcription_from_conversation; no original file attachment was supplied"
+  },
+  "source_reported_inputs": {
+    "note": "Calculation-grade inputs are encoded in the source transcript and expected/comparison records for this validation campaign."
+  },
+  "source_reported_checks": [
+    {
+      "check_id": "alpha",
+      "published_value": 1.05263
+    },
+    {
+      "check_id": "sigma_x",
+      "published_value": 168.11338
+    },
+    {
+      "check_id": "sigma_y",
+      "published_value": 3.47222
+    },
+    {
+      "check_id": "eq44",
+      "published_value": 0.51008
+    },
+    {
+      "check_id": "eq43",
+      "published_value": 0.64822
+    }
+  ],
+  "source_consistency_findings": [
+    {
+      "finding_id": "SOURCE-WNET-CONFLICT",
+      "description": "The source properties list gross Wx=766400 and Wy=86600 mm3, but the checks use Wxn=70000 and Wyn=700000 mm3 without derivation; Wyn is over eight times the listed gross Wy."
+    },
+    {
+      "finding_id": "SOURCE-SECTION-TYPE-CONFLICT",
+      "description": "36DB1 is an open I-section, while the report later labels the section closed."
+    },
+    {
+      "finding_id": "SOURCE-DOUBLE-ALPHA-DIAGNOSTIC",
+      "description": "One source line multiplies alpha a second time after tau was already alpha-adjusted."
+    },
+    {
+      "finding_id": "RUNNER-EQ44-HOLE-FACTOR-REMEDIATED",
+      "description": "Phase 0.26 recomputes the full Eq.(44) equivalent stress with adjusted tau, not only the separate shear utilization."
+    }
+  ],
+  "validation_classification": {
+    "overall_status": "PARTIAL_MATCH_SOURCE_AND_RUNNER_REMEDIATED",
+    "count_as_full_end_to_end_golden_case": false,
+    "count_as_scalar_external_replay": true,
+    "directly_comparable_production_functions": [
+      "standard_core.*.bolt_hole_factor_eq45",
+      "standard_core.*.elastic_web_equivalent_stress_checks_eq44",
+      "standard_core.*.elastic_combined_normal_utilization_eq43"
+    ],
+    "reason": "This campaign preserves source discrepancies and only promotes directly comparable scalar/procedure evidence."
+  }
+}

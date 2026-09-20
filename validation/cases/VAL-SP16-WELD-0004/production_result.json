@@ -1,0 +1,35 @@
+{
+  "case_id": "VAL-SP16-WELD-0004",
+  "release_stage": "v0.26_validation_campaign_remediation_and_corpus_0001_0009_reconstructed_r1",
+  "checks": [
+    {
+      "check_id": "kf_max",
+      "actual_value": 7.2
+    },
+    {
+      "check_id": "beta_f",
+      "actual_value": 1.1
+    },
+    {
+      "check_id": "beta_z",
+      "actual_value": 1.15
+    },
+    {
+      "check_id": "14.1.8_upper",
+      "actual_value": 174.068181818
+    },
+    {
+      "check_id": "14.1.8_source_pass_claim",
+      "actual_value": 0
+    },
+    {
+      "check_id": "lw_calc",
+      "actual_value": 9.755495
+    },
+    {
+      "check_id": "lw_min",
+      "actual_value": 40
+    }
+  ],
+  "remediation_state": "current_v0.26_code_for_directly_comparable_routes"
+}

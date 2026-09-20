@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "release_stage": "v0.33_stage_n7_effective_lengths_limiting_slenderness_current_sp16_closed_reconstructed_r1",
+  "package_version": "0.33.0",
+  "parent_release": "v0.32_stage_n6_built_up_beam_columns_local_stability_current_sp16_closed_reconstructed_r1",
+  "stage": "N7",
+  "verdict": "STAGE_N7_EFFECTIVE_LENGTHS_LIMITING_SLENDERNESS_CURRENT_SP16_CLOSED",
+  "engineering_use_ready": false,
+  "full_change_6_rebaseline_complete": false,
+  "original_gost_profile_audit_complete": false,
+  "authoritative_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "scope": {
+    "clauses_10_1_10_4_guided_route": true,
+    "tables_24_33": true,
+    "equations_136_147": true,
+    "eq138_eq139_current_bounds": true,
+    "eq141_official_fcs_correction": true,
+    "selected_effective_length_route": true,
+    "limiting_slenderness_tables_32_33": true,
+    "n1_n2_n3_n4_n5_n6_frozen_dependencies": true
+  },
+  "normative_policy": {
+    "table29": "linear interpolation only where explicitly printed for 2<=n<=6",
+    "eq141": "official FAU FCS clarification No. Исх-8076 dated 10.11.2023",
+    "external_routes": "10.1.3 special crossing brace, 10.3.7 and 10.3.11 require explicit external provenance/assumptions"
+  },
+  "normcad": {
+    "role": "HISTORICAL_SECONDARY_ORACLE_NOT_NORMATIVE",
+    "dedicated_stage_n7_effective_length_case_found": false,
+    "synthetic_golden_case_created": false
+  },
+  "dag": {
+    "file": "normative_graph/dag_v0.3.36_stage_n7.json",
+    "sha256": "83df0991cc709ca22d9d345bf4049a6dd2a7d97844310788e06e659930d9aa16",
+    "schema_validation": "PASS",
+    "quantities": 694,
+    "nodes": 618,
+    "edges": 1054,
+    "datasets": 29
+  },
+  "tests": {
+    "stage_n7_focused": "45/45 PASS",
+    "cumulative_excluding_release_manifest": "751/751 PASS",
+    "full_pytest_with_release_manifest": "752/752 PASS (after manifest generation)",
+    "release_manifest": "1/1 PASS (after manifest generation)",
+    "main_py_release_audit": "PASS",
+    "generated_outputs": "27/27 current release identity",
+    "legacy_validation_cases": "1876/1876 PASS",
+    "independent_function_oracles": "60/581 retained",
+    "external_golden_cases": "6/6 retained"
+  },
+  "reconciliation": {
+    "items": 8,
+    "open_package_or_dag_defects": 0,
+    "runtime_unresolved_in_declared_closed_routes": 0
+  },
+  "deferred_final_gates": [
+    "full package-wide Change 6 rebaseline",
+    "original/effective GOST/GOST R audit of interim imported profile catalog",
+    "final external engineering certification/qualification"
+  ],
+  "inventory": {
+    "equations": "241 total / 240 implemented / 1 no-code explanatory",
+    "tables": "88 total / 67 implemented-as-data / 20 external-reference-required / 1 no-code explanatory",
+    "procedures": "304 total / 303 implemented / 1 no-code explanatory"
+  }
+}

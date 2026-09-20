@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "N7",
+  "release_stage": "v0.33_stage_n7_effective_lengths_limiting_slenderness_current_sp16_closed_reconstructed_r1",
+  "role": "CURRENT_SP16_PRIMARY_WITH_OFFICIAL_CORRECTION_AND_HISTORICAL_SECONDARY_ORACLES_ONLY",
+  "items": [
+    {
+      "id": "N7-R01",
+      "topic": "Equation (138) lower bound",
+      "classification": "CURRENT_SP16_REMEDIATION_CLOSED",
+      "resolution": "legacy 0.61*l transcription replaced by the current printed 0.6*l lower bound"
+    },
+    {
+      "id": "N7-R02",
+      "topic": "Equation (139) lower bound",
+      "classification": "CURRENT_SP16_REMEDIATION_CLOSED",
+      "resolution": "legacy 0.51*l1 transcription replaced by the current printed 0.5*l1 lower bound"
+    },
+    {
+      "id": "N7-R03",
+      "topic": "Equation (141) printed typo",
+      "classification": "OFFICIAL_CLARIFICATION_APPLIED",
+      "resolution": "execute mu=2*sqrt(1+0.38/n) per FAU FCS letter No. Исх-8076 dated 10.11.2023; printed typo is retained as source history only"
+    },
+    {
+      "id": "N7-R04",
+      "topic": "Table 29 interpolation",
+      "classification": "NORMATIVE_RULE_IMPLEMENTED",
+      "resolution": "linear interpolation is used only for the explicitly printed interval 2<=n<=6; end-connection adjustments follow the printed notes"
+    },
+    {
+      "id": "N7-R05",
+      "topic": "Clause 10.3.7 stepped columns",
+      "classification": "APPLICABILITY_FAIL_CLOSED",
+      "resolution": "Annex И or an analysis reflecting actual restraints is required; no implicit stepped-column formula is fabricated"
+    },
+    {
+      "id": "N7-R06",
+      "topic": "Clause 10.3.11 certified software route",
+      "classification": "EXTERNAL_ANALYSIS_ASSUMPTIONS_EXPLICIT",
+      "resolution": "certified software, elastic steel and undeformed-scheme assumptions must be confirmed and the resulting effective length must carry provenance"
+    },
+    {
+      "id": "N7-R07",
+      "topic": "Historical NormCAD Table 32 check",
+      "classification": "HISTORICAL_SECONDARY_EVIDENCE_ONLY",
+      "resolution": "old NormCAD Table-32/SP16.13330.2010 calculation is retained for triangulation but cannot override current-SP16 routing"
+    },
+    {
+      "id": "N7-R08",
+      "topic": "Dedicated NormCAD Section-10 effective-length case",
+      "classification": "NO_DEDICATED_N7_GOLDEN_CASE_FOUND",
+      "resolution": "no synthetic NormCAD golden case was created for clauses 10.1-10.3"
+    }
+  ],
+  "open_package_or_dag_defects": 0,
+  "runtime_unresolved_in_declared_closed_routes": 0
+}

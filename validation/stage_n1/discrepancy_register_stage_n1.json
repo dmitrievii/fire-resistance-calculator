@@ -1,0 +1,287 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "N1 — Material / Strength",
+  "authority": "Current locked СП16 only",
+  "discrepancies": [
+    {
+      "id": "N1-D-001",
+      "first_divergent_atomic_node": "physical_material_constants.E",
+      "primary_class": "DEFAULT_MISMATCH",
+      "secondary_classes": [
+        "NORMCAD_OUTDATED_OR_NONCONFORMING"
+      ],
+      "owner": "NormCAD historical oracle",
+      "normative_expected": 206000.0,
+      "observed": 210000.0,
+      "unit": "MPa",
+      "status": "EXPLAINED_NO_PRODUCTION_PATCH"
+    },
+    {
+      "id": "N1-D-002",
+      "first_divergent_atomic_node": "physical_material_constants.G",
+      "primary_class": "DEFAULT_MISMATCH",
+      "secondary_classes": [
+        "NORMCAD_OUTDATED_OR_NONCONFORMING"
+      ],
+      "owner": "NormCAD historical oracle",
+      "normative_expected": 79000.0,
+      "observed": 78500.0,
+      "unit": "MPa",
+      "status": "EXPLAINED_NO_PRODUCTION_PATCH"
+    },
+    {
+      "id": "N1-D-003",
+      "first_divergent_atomic_node": "SP16_K_MATERIAL_ROUTE[tube]",
+      "primary_class": "BRANCH_LOGIC_MISMATCH",
+      "secondary_classes": [
+        "DAG_DEFECT"
+      ],
+      "owner": "atomic DAG v0.3.29",
+      "normative_expected": "В.3",
+      "observed": "external",
+      "status": "FIXED_IN_DAG_v0.3.30_STAGE_N1"
+    },
+    {
+      "id": "N1-D-004",
+      "first_divergent_atomic_node": "SP16_TABLE_V3_RYN[С355;100<t<=160]",
+      "primary_class": "TABLE_LOOKUP_MISMATCH",
+      "secondary_classes": [
+        "DAG_DEFECT"
+      ],
+      "owner": "atomic DAG v0.3.29",
+      "normative_expected": {
+        "Ryn": 295,
+        "Run": 470,
+        "Ry": 285,
+        "Ru": 460
+      },
+      "observed": "missing row",
+      "status": "FIXED_IN_DAG_v0.3.30_STAGE_N1"
+    },
+    {
+      "id": "N1-D-005",
+      "first_divergent_atomic_node": "SP16_TABLE_V3_RYN aliases С355-1/С355-К",
+      "primary_class": "TABLE_LOOKUP_MISMATCH",
+      "secondary_classes": [
+        "DAG_DEFECT"
+      ],
+      "owner": "atomic DAG v0.3.29",
+      "normative_expected": "three thickness rows available to both grades",
+      "observed": "not materialized as exact selector rows",
+      "status": "FIXED_IN_DAG_v0.3.30_STAGE_N1"
+    },
+    {
+      "id": "N1-D-006",
+      "first_divergent_atomic_node": "package Annex Б.1/В.3/В.4/В.5 material lookup coverage",
+      "primary_class": "PACKAGE_DEFECT",
+      "secondary_classes": [
+        "MISSING_INTERMEDIATE_EVIDENCE"
+      ],
+      "owner": "user package v0.26",
+      "normative_expected": "machine-evaluable current-source material lookup for fire/SP16 workflow",
+      "observed": "four tables classified external_reference_required; no numeric resolver",
+      "status": "FIXED_IN_v0.27_STAGE_N1"
+    },
+    {
+      "id": "N1-D-007",
+      "first_divergent_atomic_node": "DAG Annex strength lookup outputs",
+      "primary_class": "DAG_DEFECT",
+      "secondary_classes": [
+        "MISSING_INTERMEDIATE_EVIDENCE"
+      ],
+      "owner": "atomic DAG v0.3.29",
+      "normative_expected": "Ryn, Run, Ry, Ru preserved from row",
+      "observed": "only Ryn exposed as fy_norm",
+      "status": "FIXED_IN_DAG_v0.3.30_STAGE_N1"
+    },
+    {
+      "id": "N1-D-008",
+      "first_divergent_atomic_node": "NormCAD V.3 C345K strength row",
+      "primary_class": "TABLE_LOOKUP_MISMATCH",
+      "secondary_classes": [
+        "NORMCAD_OUTDATED_OR_NONCONFORMING"
+      ],
+      "owner": "NormCAD historical oracle",
+      "normative_expected": {
+        "band": "2<=t<=10 mm",
+        "Ryn": 355,
+        "Run": 470,
+        "Ry": 350,
+        "Ru": 460
+      },
+      "observed": {
+        "static_later_family": "4<=t<=10 mm",
+        "Ryn": 345,
+        "Run": 470,
+        "Ry": 340,
+        "Ru": 460
+      },
+      "status": "EXPLAINED_NO_PRODUCTION_PATCH"
+    },
+    {
+      "id": "N1-D-009",
+      "first_divergent_atomic_node": "NormCAD V.3 C355/C355-1/C355-К/C355П stored strength families",
+      "primary_class": "TABLE_LOOKUP_MISMATCH",
+      "secondary_classes": [
+        "NORMCAD_OUTDATED_OR_NONCONFORMING"
+      ],
+      "owner": "NormCAD historical oracle",
+      "normative_expected": "current V.3 rows from locked СП16",
+      "observed": "historical Run/Ru values and/or reduced thickness coverage; row-level evidence in normcad_strength_crosswalk_stage_n1.json",
+      "status": "EXPLAINED_NO_PRODUCTION_PATCH"
+    },
+    {
+      "id": "N1-D-010",
+      "first_divergent_atomic_node": "NormCAD V.3 C390/C390-1/C440 thickness routing",
+      "primary_class": "TABLE_LOOKUP_MISMATCH",
+      "secondary_classes": [
+        "NORMCAD_OUTDATED_OR_NONCONFORMING"
+      ],
+      "owner": "NormCAD historical oracle",
+      "normative_expected": "current V.3 split thickness bands through 160 mm where specified",
+      "observed": "historical broad bands and missing higher-thickness routes; selected values also diverge at later bands",
+      "status": "EXPLAINED_NO_PRODUCTION_PATCH"
+    },
+    {
+      "id": "N1-D-011",
+      "first_divergent_atomic_node": "NormCAD V.3 current grade coverage C390P/C690",
+      "primary_class": "PROFILE_DATABASE_MISMATCH",
+      "secondary_classes": [
+        "NORMCAD_OUTDATED_OR_NONCONFORMING"
+      ],
+      "owner": "NormCAD historical oracle",
+      "normative_expected": "C390P current row present; C690 current V.3 has Ryn/Run but no tabulated Ry/Ru",
+      "observed": "C390P absent from preferred current-like family; legacy C690 stores design Ry/Ru values",
+      "status": "EXPLAINED_NO_PRODUCTION_PATCH"
+    },
+    {
+      "id": "N1-D-012",
+      "first_divergent_atomic_node": "NormCAD tube material database taxonomy",
+      "primary_class": "PROFILE_DATABASE_MISMATCH",
+      "secondary_classes": [
+        "NORMCAD_OUTDATED_OR_NONCONFORMING"
+      ],
+      "owner": "NormCAD historical oracle",
+      "normative_expected": "current СП16 6.1/V.3 tube route using current steel-grade/product-thickness data",
+      "observed": "ВСт3кп/ВСт3пс/ВСт3сп and steel 20 under obsolete ГОСТ 10705-80/10706-76/8731-87 taxonomy",
+      "status": "EXPLAINED_NO_PRODUCTION_PATCH"
+    },
+    {
+      "id": "N1-D-013",
+      "first_divergent_atomic_node": "NormCAD V.4 C355B 40<t<=60 Ryn",
+      "primary_class": "TABLE_LOOKUP_MISMATCH",
+      "secondary_classes": [
+        "NORMCAD_OUTDATED_OR_NONCONFORMING"
+      ],
+      "owner": "NormCAD historical oracle",
+      "normative_expected": {
+        "Ryn": 340,
+        "Run": 470,
+        "Ry": 325,
+        "Ru": 460
+      },
+      "observed": {
+        "Ryn": 335,
+        "Run": 470,
+        "Ry": 325,
+        "Ru": 460
+      },
+      "status": "EXPLAINED_NO_PRODUCTION_PATCH"
+    },
+    {
+      "id": "N1-D-014",
+      "first_divergent_atomic_node": "NormCAD V.4 C390B t<=30 route",
+      "primary_class": "TABLE_LOOKUP_MISMATCH",
+      "secondary_classes": [
+        "NORMCAD_OUTDATED_OR_NONCONFORMING"
+      ],
+      "owner": "NormCAD historical oracle",
+      "normative_expected": {
+        "band": "t<=30 mm",
+        "Ryn": 390,
+        "Run": 520,
+        "Ry": 380,
+        "Ru": 505
+      },
+      "observed": "static NormCAD C390B family starts at >30 to 60 mm",
+      "status": "EXPLAINED_NO_PRODUCTION_PATCH"
+    },
+    {
+      "id": "N1-D-015",
+      "first_divergent_atomic_node": "NormCAD V.5 C345K Run/Ru",
+      "primary_class": "TABLE_LOOKUP_MISMATCH",
+      "secondary_classes": [
+        "NORMCAD_OUTDATED_OR_NONCONFORMING"
+      ],
+      "owner": "NormCAD historical oracle",
+      "normative_expected": {
+        "Ryn": 345,
+        "Run": 480,
+        "Ry": 340,
+        "Ru": 470
+      },
+      "observed": {
+        "Ryn": 345,
+        "Run": 470,
+        "Ry": 340,
+        "Ru": 460
+      },
+      "status": "EXPLAINED_NO_PRODUCTION_PATCH"
+    },
+    {
+      "id": "N1-D-016",
+      "first_divergent_atomic_node": "NormCAD V.5 C355/C355-1 strength and thickness families",
+      "primary_class": "TABLE_LOOKUP_MISMATCH",
+      "secondary_classes": [
+        "NORMCAD_OUTDATED_OR_NONCONFORMING"
+      ],
+      "owner": "NormCAD historical oracle",
+      "normative_expected": "current V.5 5–16, >16–40, >40–60 bands and current Run/Ru",
+      "observed": "historical family starts at 8 mm, uses lower Run/Ru in first bands, and lacks >40–60 current row",
+      "status": "EXPLAINED_NO_PRODUCTION_PATCH"
+    },
+    {
+      "id": "N1-D-017",
+      "first_divergent_atomic_node": "NormCAD V.5 C390 thickness coverage",
+      "primary_class": "TABLE_LOOKUP_MISMATCH",
+      "secondary_classes": [
+        "NORMCAD_OUTDATED_OR_NONCONFORMING"
+      ],
+      "owner": "NormCAD historical oracle",
+      "normative_expected": "current V.5 starts at 5 mm and includes >40–60 mm",
+      "observed": "preferred static family starts at 8 mm and lacks current edge ranges",
+      "status": "EXPLAINED_NO_PRODUCTION_PATCH"
+    },
+    {
+      "id": "N1-D-018",
+      "first_divergent_atomic_node": "NormCAD V.5 C440 grade coverage",
+      "primary_class": "PROFILE_DATABASE_MISMATCH",
+      "secondary_classes": [
+        "NORMCAD_OUTDATED_OR_NONCONFORMING"
+      ],
+      "owner": "NormCAD historical oracle",
+      "normative_expected": "four current V.5 C440 bands from 5 to 60 mm",
+      "observed": "C440 absent from captured later/general V.5 family",
+      "status": "EXPLAINED_NO_PRODUCTION_PATCH"
+    },
+    {
+      "id": "N1-D-019",
+      "first_divergent_atomic_node": "NormCAD static strength-table exact-boundary semantics",
+      "primary_class": "BRANCH_LOGIC_MISMATCH",
+      "secondary_classes": [
+        "MISSING_INTERMEDIATE_EVIDENCE"
+      ],
+      "owner": "NormCAD historical oracle",
+      "normative_expected": "current-SP deterministic interval ownership used by production resolver",
+      "observed": "some static MDB labels overlap at exact lower/upper boundaries; runtime UI evaluator selection order was not executed",
+      "status": "EXPLAINED_STATIC_CAPTURE_RUNTIME_BOUNDARY_NOT_CLAIMED"
+    }
+  ],
+  "summary": {
+    "total": 19,
+    "package_or_dag_defects_found": 5,
+    "package_or_dag_defects_unresolved": 0,
+    "normcad_explained_divergences": 14,
+    "unresolved_total": 0
+  }
+}

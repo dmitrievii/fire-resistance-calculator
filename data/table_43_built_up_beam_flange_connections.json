@@ -1,0 +1,62 @@
+{
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "version": "Supplied consolidated text with corrections through 2024 and Amendments No. 1-5",
+  "clause": "14.4.1",
+  "table": "43",
+  "title": "Flange connections in built-up beams",
+  "page": 96,
+  "rows": [
+    {
+      "load_character": "stationary",
+      "connection": "welded",
+      "equations": [
+        "193",
+        "194"
+      ],
+      "requirements": {
+        "weld_line_count": "n=2 for two-sided welds; n=1 for one-sided welds"
+      }
+    },
+    {
+      "load_character": "stationary",
+      "connection": "friction",
+      "equations": [
+        "195"
+      ]
+    },
+    {
+      "load_character": "moving",
+      "connection": "welded_two_sided",
+      "equations": [
+        "196",
+        "197"
+      ]
+    },
+    {
+      "load_character": "moving",
+      "connection": "friction",
+      "equations": [
+        "198"
+      ]
+    }
+  ],
+  "definitions": {
+    "T": "Q*S/I, flange shear flow per unit length using gross flange static moment and gross section moment of inertia",
+    "V": "gamma_f*gamma_f1*F_n/l_ef; gamma_f1=1 for stationary loads",
+    "Q_bh": "Capacity of one friction plane tightened by one bolt under clause 14.3.3",
+    "k": "Number of friction planes under clauses 14.3.3-14.3.4",
+    "s": "Pitch of flange bolts",
+    "alpha": {
+      "0.4": "Load on the upper flange when the web edge is planed to that flange",
+      "1.0": "No web-edge planing or load on the lower flange"
+    }
+  },
+  "routing": {
+    "stationary_upper_without_transverse_stiffener": "use moving-load formulas",
+    "stationary_lower_regardless_of_stiffener": "use moving-load formulas"
+  },
+  "notes": [
+    "A weld penetrating the full web thickness is treated as equal-strength with the web.",
+    "No interpolation is involved in Table 43."
+  ]
+}

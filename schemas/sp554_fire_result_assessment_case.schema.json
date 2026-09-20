@@ -1,0 +1,279 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FIRE-D4 SP554 Section 13 result assessment case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "standard",
+    "action",
+    "thermal_route",
+    "critical_temperature_c",
+    "required_fire_resistance_min",
+    "fire_regime",
+    "requirement_provenance"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "standard": {
+      "const": "SP554_2026"
+    },
+    "action": {
+      "const": "sp554_fire_result_assessment"
+    },
+    "thermal_route": {
+      "enum": [
+        "UNPROTECTED_STEP_12_2",
+        "UNPROTECTED_FIGURE1_12_2",
+        "PROTECTED_MATRIX_12_10",
+        "PROTECTED_FDM_12_5"
+      ]
+    },
+    "critical_temperature_c": {
+      "type": "number"
+    },
+    "reduced_thickness_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "area_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "heated_perimeter_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "initial_temperature_c": {
+      "type": "number"
+    },
+    "time_step_min": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 0.1
+    },
+    "max_time_min": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "steel_properties_source": {
+      "enum": [
+        "sp554_12_2_defaults",
+        "explicit"
+      ]
+    },
+    "steel_density_kg_m3": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "steel_heat_capacity_base_j_kgk": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "steel_heat_capacity_temp_coeff_per_c": {
+      "type": "number",
+      "minimum": 0
+    },
+    "furnace_emissivity": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "steel_emissivity": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "protected_task_mode": {
+      "enum": [
+        "verify_given_thickness",
+        "determine_minimum_thickness"
+      ]
+    },
+    "protection_thickness_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "required_fire_resistance_min": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "validation_reference_times_min": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      }
+    },
+    "protection_model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "thickness_mm",
+        "layer_count",
+        "density_kg_m3",
+        "conductivity_A_w_mk",
+        "conductivity_B_w_mk2",
+        "heat_capacity_C_j_kgk",
+        "heat_capacity_D_j_kgk2",
+        "initial_moisture_percent"
+      ],
+      "properties": {
+        "thickness_mm": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "layer_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "density_kg_m3": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "conductivity_A_w_mk": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "conductivity_B_w_mk2": {
+          "type": "number"
+        },
+        "heat_capacity_C_j_kgk": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "heat_capacity_D_j_kgk2": {
+          "type": "number"
+        },
+        "initial_moisture_percent": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "performance_dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "product_id",
+        "source_kind",
+        "critical_temperature_c",
+        "steel_group",
+        "fire_regime",
+        "technical_documentation_12_7_9_confirmed",
+        "reduced_thickness_axis_mm",
+        "protection_thickness_axis_mm",
+        "time_matrix_min"
+      ],
+      "properties": {
+        "product_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_kind": {
+          "enum": [
+            "technical_documentation_12_7_9",
+            "fire_tests_12_4",
+            "validated_model_12_5"
+          ]
+        },
+        "critical_temperature_c": {
+          "type": "number"
+        },
+        "steel_group": {
+          "enum": [
+            "ordinary",
+            "increased",
+            "high",
+            "fire_resistant"
+          ]
+        },
+        "fire_regime": {
+          "const": "standard"
+        },
+        "technical_documentation_12_7_9_confirmed": {
+          "type": "boolean"
+        },
+        "validation_12_6_confirmed": {
+          "type": "boolean"
+        },
+        "allow_greater_delta_carry_forward": {
+          "type": "boolean"
+        },
+        "reduced_thickness_axis_mm": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          }
+        },
+        "protection_thickness_axis_mm": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          }
+        },
+        "time_matrix_min": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "fire_regime": {
+      "const": "standard"
+    },
+    "requirement_provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_kind",
+        "source_document",
+        "source_reference",
+        "value_min"
+      ],
+      "properties": {
+        "source_kind": {
+          "enum": [
+            "external_normative_requirement",
+            "project_requirement_with_normative_source"
+          ]
+        },
+        "source_document": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_reference": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value_min": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "source_date": {
+          "type": "string",
+          "minLength": 1
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

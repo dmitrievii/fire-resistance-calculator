@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "N10",
+  "release_stage": "v0.36_stage_n10_brittle_fracture_current_sp16_closed_reconstructed_r1",
+  "role": "CURRENT_SP16_PRIMARY_WITH_EXPLICIT_ENGINEERING_EVIDENCE_GATES_AND_HISTORICAL_SECONDARY_ORACLES_ONLY",
+  "items": [
+    {
+      "id": "N10-R01",
+      "topic": "Clause 13.1 adverse-factor register",
+      "classification": "CURRENT_FACTOR_REGISTER_REBASELINE_CLOSED",
+      "resolution": "Legacy seven-category top-level register is not used by the current route. The guided layer exposes exactly the four adverse factor groups printed in current clause 13.1."
+    },
+    {
+      "id": "N10-R02",
+      "topic": "Clause 13.2 legacy partial checklist",
+      "classification": "COMPLETE_CONDITIONAL_REQUIREMENT_ROUTING_CLOSED",
+      "resolution": "A partial supplied subset can no longer imply Section-13 prevention PASS. Every represented current 13.2 requirement is explicit and conditionally mandatory."
+    },
+    {
+      "id": "N10-R03",
+      "topic": "Enhanced weld NDT threshold",
+      "classification": "STRICT_BOUNDARY_CLOSED",
+      "resolution": "Enhanced NDT is triggered only when tensile weld-zone stress is strictly greater than 0.4Ry; equality does not trigger the printed greater-than condition."
+    },
+    {
+      "id": "N10-R04",
+      "topic": "Cover-plate splice flank-weld termination",
+      "classification": "GEOMETRIC_BOUNDARY_CLOSED",
+      "resolution": "The current 25 mm minimum distance on each side of the splice axis is verified from an explicit provided dimension; geometry is not inferred."
+    },
+    {
+      "id": "N10-R05",
+      "topic": "Clause 13.3 lamellar-tearing applicability",
+      "classification": "ENGINEERING_CLASSIFICATION_FAIL_CLOSED",
+      "resolution": "Applicability requires explicit engineering review. A positive conservative screen cannot be suppressed by setting the assessment route false."
+    },
+    {
+      "id": "N10-R06",
+      "topic": "Clause 13.4 through-thickness evidence",
+      "classification": "EXTERNAL_TEST_AND_CERTIFICATE_GATE_CLOSED",
+      "resolution": "Missing through-thickness tensile-test evidence or selected rolled-product Z certificate yields INCOMPLETE_FAIL_CLOSED; neither is inferred from steel grade/designation."
+    },
+    {
+      "id": "N10-R07",
+      "topic": "Equation (174), Table 37 and Z-quality adequacy",
+      "classification": "CURRENT_NUMERIC_ROUTE_CLOSED",
+      "resolution": "Five printed factors are summed algebraically; printed 0.5/1.1 modifiers are explicit. Selected Z quality must independently satisfy both the minimum Z15/Z25/Z35 route and psi_zr<=psi_zn."
+    },
+    {
+      "id": "N10-R08",
+      "topic": "Dedicated NormCAD Section-13 brittle/lamellar case",
+      "classification": "NO_DEDICATED_N10_GOLDEN_CASE_FOUND",
+      "resolution": "Library search found the current normative source but no dedicated NormCAD Section-13 end-to-end oracle. No synthetic golden case was created."
+    }
+  ],
+  "open_package_or_dag_defects": 0,
+  "runtime_unresolved_in_declared_closed_routes": 0
+}

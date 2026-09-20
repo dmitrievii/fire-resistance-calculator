@@ -1,0 +1,37 @@
+{
+  "report_id": "FIRE-D1-CLOSURE-1",
+  "release_stage": "v0.37_fire_d1_sp554_sp16_mechanical_dependency_closure_r1",
+  "verdict": "FIRE_D1_SP554_SP16_MEMBER_MECHANICAL_DEPENDENCY_CLOSED",
+  "member_mechanical_dependency_closure_pass": true,
+  "normative_strength_basis_pass": true,
+  "stage_gate_pass": true,
+  "all_interface_groups_pass": true,
+  "missing_required_producers": [],
+  "prohibited_design_resistance_fire_bindings": [],
+  "not_claimed": [
+    "Execution of SP554 fire-side formulas 8.1-11.10",
+    "Appendix B critical-temperature inversion",
+    "Fire resistance of joints/connections (requires later qualified connection scope)",
+    "SP554 Section 12 thermal calculation and fire-protection heating solver",
+    "Full engineering certification"
+  ],
+  "next_stage": "FIRE-D2 — execute SP554 fire mechanical formulas and critical-temperature inversion over frozen SP16 producers",
+  "engineering_use_ready": false,
+  "source_pre_manifest_tests": {
+    "passed": 844,
+    "total": 844,
+    "status": "PASS",
+    "evidence_policy": "completed_non_overlapping_pytest_groups"
+  },
+  "source_manifest_test": {
+    "passed": 1,
+    "total": 1,
+    "status": "PASS"
+  },
+  "source_complete_tests": {
+    "passed": 845,
+    "total": 845,
+    "status": "PASS",
+    "evidence_policy": "844 pre-manifest completed non-overlapping groups + final manifest test"
+  }
+}

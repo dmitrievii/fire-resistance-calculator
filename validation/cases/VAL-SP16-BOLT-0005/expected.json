@@ -1,0 +1,35 @@
+{
+  "case_id": "VAL-SP16-BOLT-0005",
+  "checks": [
+    {
+      "check_id": "n",
+      "published_value": 50,
+      "absolute_tolerance": 0,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "hmax",
+      "published_value": 1080,
+      "absolute_tolerance": 0,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "N1",
+      "published_value": 4011.79646,
+      "absolute_tolerance": 1e-06,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "Nbmax",
+      "published_value": 802.3592,
+      "absolute_tolerance": 0.0001,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "14.2.14_adjusted_count",
+      "published_value": 55,
+      "absolute_tolerance": 0,
+      "expected_comparison_status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "fire_ui1_frontend_closure_v1",
+  "release_stage": "v0.43_fire_ui1_guided_wizard_live_calculation_ledger_frontend_r1",
+  "package_version": "0.43.0",
+  "parent_release": "v0.42_fire_ui0_dag_driven_guided_calculation_architecture_r1",
+  "dag": {
+    "graph_id": "sp16_sp554_dag_v0-3-44_fire_d4",
+    "graph_sha256": "3412d024275363bfdc79ccf142077aecee93d918d9687bae9a0766dbd4939922",
+    "quantities": 748,
+    "nodes": 657,
+    "edges": 1108,
+    "interactive_nodes": 139,
+    "result_nodes": 48
+  },
+  "closed": {
+    "local_loopback_http_adapter": true,
+    "guided_wizard_frontend": true,
+    "live_quantity_ledger_frontend": true,
+    "trace_view": true,
+    "edit_replay_invalidation_frontend": true,
+    "external_provenance_ui": true,
+    "session_json_save_restore": true,
+    "offline_static_resources": true,
+    "frontend_normative_formula_duplication": false
+  },
+  "deferred": {
+    "full_sp16_to_fire_d4_executor_binding": "FIRE-UI2",
+    "automatic_report_renderer": "FIRE-UI4",
+    "fire_protection_design": "FIRE-D5",
+    "connections_and_bolts": "later explicit scope",
+    "nonstandard_fire": "FIRE-D7"
+  },
+  "acceptance": {
+    "focused_ui0_ui1_fire_d1_d4_and_release_identity_tests": "100/100 PASS",
+    "main_release_audit": "PASS",
+    "validation_cases": "1876 PASS",
+    "retained_phase_0_25": "PASS",
+    "independent_function_oracles": "60/581",
+    "external_golden": "6/6 PASS",
+    "unresolved_equations_tables": "0/0",
+    "typescript_compile": "PASS",
+    "loopback_http_api_walkthrough": "PASS",
+    "headless_browser_smoke": "NOT RUN — environment policy blocks loopback navigation in Chromium (ERR_BLOCKED_BY_ADMINISTRATOR)"
+  },
+  "engineering_use_ready": false
+}

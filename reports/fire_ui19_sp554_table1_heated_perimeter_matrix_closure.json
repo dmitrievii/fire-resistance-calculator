@@ -1,0 +1,56 @@
+{
+  "closed": {
+    "annex_a_uses_protected_perimeter_and_delta_pr": true,
+    "four_side_matrix": true,
+    "heated_sides_separated_from_protection_geometry": true,
+    "protected_box_table1_perimeter": true,
+    "protected_contour_table1_perimeter": true,
+    "protected_delta_pr_separate_from_unprotected": true,
+    "protected_section12_consumers_rebound": true,
+    "three_side_matrix": true,
+    "unprotected_table1_automatic_perimeter": true,
+    "unsupported_geometry_manual_fail_closed": true
+  },
+  "dag_counts": {
+    "datasets": 38,
+    "edges": 1143,
+    "nodes": 672,
+    "quantities": 783
+  },
+  "dag_path": "normative_graph/dag_v0.3.55_fire_ui19_sp554_table1_heated_perimeter_matrix.json",
+  "dag_sha256": "431a2a4345af544edf644625b9b22bdd57929cedefefb9117e4d0e93efca581f",
+  "engineering_use_ready": false,
+  "i_section_regression_20K1": {
+    "A_mm2": 5269.0,
+    "B_mm": 199.0,
+    "D_mm": 196.0,
+    "box_3_P_m": 0.591,
+    "box_4_P_m": 0.79,
+    "box_4_delta_pr_mm": 6.669620253164557,
+    "contour_3_P_m": 0.976,
+    "contour_4_P_m": 1.175,
+    "contour_4_delta_pr_mm": 4.484255319148936,
+    "t_mm": 6.5
+  },
+  "normative_basis": {
+    "delta_pr": "A/P",
+    "section": "12.2",
+    "standard": "SP554 locked 2026 source",
+    "table": "Table 1"
+  },
+  "package_version": "0.52.0",
+  "parent_release": "v0.51_fire_ui18_fire_d2_to_d3_handoff_hotfix_r1",
+  "qualification": {
+    "fire_d2_d3_group_a": "36/36 PASS",
+    "fire_d3_d31_group_b": "31/31 PASS",
+    "fire_ui0_architecture": "11/11 PASS",
+    "fire_ui19_plus_prior_ui_group": "69/69 PASS",
+    "main_release_audit": "PASS",
+    "phase_0_23_plus_0_24": "10/10 PASS",
+    "phase_0_25": "6/6 PASS individually",
+    "public_api_docstrings": "658/658 PASS",
+    "validation_cases": "1876 PASS"
+  },
+  "release_stage": "v0.52_fire_ui19_sp554_table1_heated_perimeter_matrix_r1",
+  "schema": "fire_ui19_sp554_table1_heated_perimeter_matrix_closure_v1"
+}

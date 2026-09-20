@@ -1,0 +1,34 @@
+{
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "version": "Supplied consolidated text with Changes No. 1-6 through 09.12.2024",
+  "table_number": "23",
+  "clause": "9.4.7",
+  "page": 57,
+  "topic": "Limiting relative flange outstand or flange-plate slenderness of beam-columns",
+  "section_types": {
+    "1": {
+      "equation": 132,
+      "base_domain": "0 <= m_x <= 5",
+      "reference_limit": "central-compression flange limit from 7.3.8 or 7.3.9"
+    },
+    "2": {
+      "equation": 133,
+      "base_domain": "0 <= m_x <= 5",
+      "reference_limit": "central-compression flange-plate limit from 7.3.8 or 7.3.9"
+    },
+    "3": {
+      "equation": 134,
+      "base_domain": "member slenderness 0.8 to 4"
+    },
+    "4": {
+      "equation": 135,
+      "base_domain": "member slenderness 0.8 to 4"
+    }
+  },
+  "notes": [
+    "For 5<m_x<=20, interpolate linearly to the corresponding bending-member limit at m=20 from 8.5.18 or 8.5.19.",
+    "Member slenderness below 0.8 or above 4 is taken as 0.8 or 4 respectively.",
+    "Clause 9.4.8 multiplies the resulting limit by 1.5 for qualifying edge returns."
+  ],
+  "copyright_note": "Only formulas, identifiers, domains, and short descriptions are stored; no large reproduced standard text."
+}

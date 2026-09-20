@@ -1,0 +1,28 @@
+{
+  "package_version": "0.24.0",
+  "release_stage": "v0.24_release_api_hardening_and_function_level_validation_expansion_reconstructed_r1",
+  "release_qualification": "research_grade_release_api_hardening_and_function_level_validation_expansion",
+  "parent_release": "v0.23_independent_normative_rebaseline_and_adversarial_audit_reconstructed_r1",
+  "engineering_use_ready": false,
+  "gates": {
+    "baseline_regression_excluding_manifest": "509/509 PASS",
+    "final_cumulative_audit_pass": true,
+    "independent_normative_rebaseline_pass": true,
+    "phase_0_23_independent_route_scope_pass": true,
+    "api_hardening_pass": true,
+    "v0_22_call_shape_compatibility_pass": true,
+    "parent_v0_23_call_shape_compatibility_pass": true,
+    "engineering_parameter_and_return_annotations_complete": true,
+    "engineering_audit_id_trace_complete": true,
+    "engineering_direct_named_test_binding": "581/581",
+    "engineering_executable_body_evidence": "581/581",
+    "independent_direct_function_oracles": "40/40 PASS across 40/581 functions",
+    "public_api_docstrings": "598/598 PASS",
+    "legacy_validation_self_checks": "1876/1876 PASS",
+    "external_annex_boundaries": 24,
+    "external_cross_implementation_complete": false,
+    "independent_public_function_validation_complete": false
+  },
+  "verdict": "PASS_FOR_PHASE_0_24_DECLARED_SCOPE",
+  "qualification_statement": "Release/API hardening and function-level evidence expansion are complete for the declared Phase 0.24 scope. Engineering-use certification is not claimed because independent function-oracle coverage is partial, 24 annex tables remain external boundaries, and external cross-implementation validation is open."
+}

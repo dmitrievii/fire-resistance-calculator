@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "release_stage": "v0.30_stage_n4_bending_members_current_sp16_closed_reconstructed_r1",
+  "package_version": "0.30.0",
+  "parent_release": "v0.29_stage_n3_axial_members_current_sp16_closed_reconstructed_r1",
+  "stage": "N4",
+  "verdict": "STAGE_N4_BENDING_MEMBERS_CURRENT_SP16_CLOSED",
+  "engineering_use_ready": false,
+  "full_change_6_rebaseline_complete": false,
+  "original_gost_profile_audit_complete": false,
+  "authoritative_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "scope": {
+    "section_8_guided_bending_route": true,
+    "class_1_strength_equations_41_42_43": true,
+    "class_2_3_strength_routing_50_51_53": true,
+    "equation_61_current_sp16_remediated": true,
+    "annex_zh_current_sp16_ry_route": true,
+    "rolled_i_phi_b_equation_69_route": true,
+    "lateral_stability_exemption_routing_8_4_4": true,
+    "local_stability_screen_8_5_1_8_5_9": true,
+    "detailed_local_stability_action_retained": true,
+    "n1_n2_n3_frozen_dependencies": true
+  },
+  "current_source_specific_findings": {
+    "equation_61_expression": "(alpha_f*r + 0.25 - 0.0833/r^2)/(alpha_f + 0.167)",
+    "annex_zh_strength_basis": "design Ry for direct current-SP16 ambient route",
+    "equation_92_denominator": "lambda_a^2",
+    "guided_local_stability_scope": "SCREEN_ONLY_FULL_8_5_INTERACTION_REMAINS_SEPARATE"
+  },
+  "normcad": {
+    "role": "HISTORICAL_SECONDARY_ORACLE_NOT_NORMATIVE",
+    "equation_92_static_denominator_divergence_classified": true,
+    "historical_annex_zh_behavior_not_imported": true
+  },
+  "dag": {
+    "file": "normative_graph/dag_v0.3.33_stage_n4.json",
+    "sha256": "4de76fe047e435baff34a03db8496200f37be75993623af770548081ee4064fc",
+    "schema_validation": "PASS",
+    "quantities": 649,
+    "nodes": 587,
+    "edges": 1029
+  },
+  "tests": {
+    "stage_n4_focused": "20/20 PASS",
+    "full_pytest_excluding_release_manifest": "665/665 PASS",
+    "main_py_release_audit": "PASS",
+    "generated_outputs": "24/24 current release identity",
+    "legacy_validation_cases": "1876/1876 PASS",
+    "independent_function_oracles": "60/581 retained",
+    "external_golden_cases": "6/6 retained",
+    "full_pytest_with_release_manifest": "666/666 PASS",
+    "release_manifest": "1/1 PASS"
+  },
+  "inventory": {
+    "equations": "241 total / 240 implemented / 1 no-code explanatory",
+    "tables": "88 total / 67 implemented-as-data / 20 external-reference-required / 1 no-code explanatory",
+    "procedures": "304 total / 303 implemented / 1 no-code explanatory"
+  },
+  "discrepancies": {
+    "total": 7,
+    "open_package_or_dag_defects": 0,
+    "runtime_unresolved": 0
+  },
+  "deferred_final_gates": [
+    "full package-wide Change 6 rebaseline",
+    "original/effective GOST/GOST R audit of interim imported profile catalog",
+    "final external engineering certification/qualification"
+  ],
+  "release_gate_note": "Stage N4 is closed only for the declared Section 8 bending-member runtime/DAG scope. Full detailed 8.5 interaction remains available in its dedicated action and is not silently claimed by the guided screen. This does not make the cumulative package engineering-use ready."
+}

@@ -1,0 +1,7 @@
+Источник: пользовательский расчетный отчет, вставленный в чат (12.08.2026 17:18:26).
+
+lefy=3000 mm; Mx=11767936.29624 N mm; My=7453026.32095 N mm; Qx=6472.389 N; Qy=7845.32001 N.
+25DB4 per GOST R 57837-2017, h=258,b=146,tw=6.1,tf=9.1,Ix=48875000,Iy=4725800,Jt=91491,Wx=378900,Wy=64740. Source S345 Ry=330, gamma_c=.95.
+Source Eq41=0.0990691; Eq42=0.0307623; Eq44=0.0902695 / 0.0886911.
+lambda_b=0.81455. Plastic route: cx=1.0792; delta Eq76=0.4; source Table11 lower-flange limit=0.38911 after delta, so stability check proceeds.
+Source then incorrectly states section=welded and applies Annex Zh Eq.(Zh.5), alpha=5.67424; psi=2.6472; phi1=1.2047; phi_b=0.93299; Eq70=0.4734 PASS.

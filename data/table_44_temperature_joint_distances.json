@@ -1,0 +1,87 @@
+{
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "version": "Supplied consolidated text with corrections through 2024 and Amendments No. 1-5",
+  "clause": "15.1",
+  "table": "44",
+  "title": "Maximum distances between temperature joints",
+  "pages": [
+    97,
+    98
+  ],
+  "temperature_branches": {
+    "at_or_above_minus_45_c": {
+      "condition": "t >= -45 °C"
+    },
+    "below_minus_45_c": {
+      "condition": "t < -45 °C"
+    }
+  },
+  "rows": [
+    {
+      "building_type": "heated_building",
+      "direction": "between_joints_along_block",
+      "at_or_above_minus_45_c_m": 230.0,
+      "below_minus_45_c_m": 160.0
+    },
+    {
+      "building_type": "heated_building",
+      "direction": "between_joints_across_block",
+      "at_or_above_minus_45_c_m": 150.0,
+      "below_minus_45_c_m": 110.0
+    },
+    {
+      "building_type": "heated_building",
+      "direction": "joint_or_end_to_nearest_vertical_bracing_axis",
+      "at_or_above_minus_45_c_m": 90.0,
+      "below_minus_45_c_m": 60.0
+    },
+    {
+      "building_type": "unheated_building_or_hot_shop",
+      "direction": "between_joints_along_block",
+      "at_or_above_minus_45_c_m": 200.0,
+      "below_minus_45_c_m": 140.0
+    },
+    {
+      "building_type": "unheated_building_or_hot_shop",
+      "direction": "between_joints_across_block",
+      "at_or_above_minus_45_c_m": 120.0,
+      "below_minus_45_c_m": 90.0
+    },
+    {
+      "building_type": "unheated_building_or_hot_shop",
+      "direction": "joint_or_end_to_nearest_vertical_bracing_axis",
+      "at_or_above_minus_45_c_m": 75.0,
+      "below_minus_45_c_m": 50.0
+    },
+    {
+      "building_type": "open_trestle",
+      "direction": "between_joints_along_block",
+      "at_or_above_minus_45_c_m": 130.0,
+      "below_minus_45_c_m": 100.0
+    },
+    {
+      "building_type": "open_trestle",
+      "direction": "joint_or_end_to_nearest_vertical_bracing_axis",
+      "at_or_above_minus_45_c_m": 50.0,
+      "below_minus_45_c_m": 40.0
+    }
+  ],
+  "note": {
+    "applies_when": "two vertical bracing systems occur between temperature joints",
+    "building_axis_spacing_m": {
+      "at_or_above_minus_45_c": 50.0,
+      "below_minus_45_c": 40.0
+    },
+    "open_trestle_axis_spacing_m": {
+      "at_or_above_minus_45_c": 30.0,
+      "below_minus_45_c": 25.0
+    },
+    "printed_ranges": "buildings 40-50 m; open trestles 25-30 m; use the smaller value when t < -45 °C"
+  },
+  "rules": [
+    "The tabulated value is a maximum, not a 5 percent tolerance.",
+    "When the distance exceeds the tabulated value by more than 5 percent, climatic temperature effects, inelastic deformations, and joint flexibility must be included in analysis.",
+    "The same enhanced analysis is required when frame stiffness is increased by walls or other structures."
+  ],
+  "interpolation": "not applicable; temperature branch changes at -45 °C and no interpolation is stated"
+}

@@ -1,0 +1,61 @@
+{
+  "normcad_case_id": "NC-N1-PHYSICAL-0001",
+  "normcad_version": "archive build / SP16 module dated 2019 evidence; exact executable build not required for static N1 finding",
+  "module": "СП 16.13330.2017___Стальные конструкции.nrb",
+  "module_sha256": "046159913feb8dad28c1cdb98f25980c1dbc327c3d5ac56eb5858e895e78f2cc",
+  "dialog_sequence": [],
+  "inputs": {
+    "material_family": "rolled steel / physical characteristics"
+  },
+  "defaults": {
+    "E_MPa": {
+      "value": 210000.0,
+      "state": "static Nrb default",
+      "evidence": "CP1251-readable Nrb field",
+      "text_offset_cp1251": 167812
+    },
+    "G_MPa": {
+      "value": 78500.0,
+      "state": "static Nrb default",
+      "evidence": "CP1251-readable Nrb field",
+      "text_offset_cp1251": 167756
+    },
+    "gamma_u": {
+      "value": 1.3,
+      "state": "static Nrb default",
+      "evidence": "CP1251-readable Nrb field",
+      "text_offset_cp1251": 168468
+    }
+  },
+  "manual_overrides": {},
+  "intermediate_outputs": {},
+  "final_outputs": {},
+  "screenshots": [],
+  "report_export": null,
+  "observed_branching": [],
+  "observed_rounding": {},
+  "observed_interpolation": {},
+  "messages_or_warnings": [],
+  "notes": "Current СП16 Table Б.1 requires E=206000 MPa and G=79000 MPa, while NormCAD stores E=210000 MPa and G=78500 MPa. NormCAD gamma_u=1.3 matches current clause 4.3.2. The three strength MDB files have now been statically decoded; decoded rows are preserved separately and triangulated against the current source.",
+  "strength_database_evidence": {
+    "Прочность листовой стали.mdb": {
+      "sha256": "99fec3db69eb21dfeac80ba53fc1af318c5a4e73352b0fde7655e5b824a97958",
+      "status": "STATIC_DECODE_COMPLETE",
+      "decoded_strength_rows": 62,
+      "capture_json": "normcad_capture/Прочность листовой стали.json"
+    },
+    "Прочность труб.mdb": {
+      "sha256": "42ca4e3b3b7afc9dd70275c5ff019ac97eb0e9cfecc776f20358b686ea7f31f6",
+      "status": "STATIC_DECODE_COMPLETE",
+      "decoded_strength_rows": 6,
+      "capture_json": "normcad_capture/Прочность труб.json"
+    },
+    "Прочность фасонной стали.mdb": {
+      "sha256": "04f46199e7a582531b8cae4cfab143ff046fbbd571b6c412ffff476a6082e1d7",
+      "status": "STATIC_DECODE_COMPLETE",
+      "decoded_strength_rows": 72,
+      "capture_json": "normcad_capture/Прочность фасонной стали.json"
+    }
+  },
+  "runtime_boundary_capture_status": "NOT_CLAIMED_STATIC_MDB_ONLY"
+}

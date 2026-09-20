@@ -1,0 +1,50 @@
+{
+  "standard": "СП 16.13330.2017",
+  "clause": "14.3.3",
+  "table": "42",
+  "surface_treatments": {
+    "shot_blast_no_preservation": {
+      "mu": 0.58,
+      "gamma_h_large_clearance": 1.35,
+      "gamma_h_small_clearance": 1.12
+    },
+    "flame_cleaned_no_preservation": {
+      "mu": 0.42,
+      "gamma_h_large_clearance": 1.35,
+      "gamma_h_small_clearance": 1.12
+    },
+    "steel_brushed_no_preservation": {
+      "mu": 0.35,
+      "gamma_h_large_clearance": 1.35,
+      "gamma_h_small_clearance": 1.17
+    },
+    "untreated": {
+      "mu": 0.25,
+      "gamma_h_large_clearance": 1.7,
+      "gamma_h_small_clearance": 1.3
+    }
+  },
+  "routes": {
+    "large_clearance": {
+      "dynamic_mm": [
+        3,
+        6
+      ],
+      "static_mm": [
+        5,
+        6
+      ]
+    },
+    "small_clearance": {
+      "dynamic_mm": [
+        1,
+        1
+      ],
+      "static_mm": [
+        1,
+        4
+      ]
+    }
+  },
+  "nut_rotation_multiplier": 0.9
+}

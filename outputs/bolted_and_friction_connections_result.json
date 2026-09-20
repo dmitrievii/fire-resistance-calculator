@@ -1,0 +1,210 @@
+{
+  "case_id": "V16-DEMO-001",
+  "standard": "СП 16.13330.2017",
+  "release_stage": "v0.67_fire_bridge2_qualified_sp16_complex_state_handoff_r1",
+  "action": "bolted_and_friction_connections",
+  "engineering_calculation_performed": true,
+  "inputs": {
+    "case_id": "V16-DEMO-001",
+    "standard": "СП 16.13330.2017",
+    "action": "bolted_and_friction_connections",
+    "sections_14_2_and_14_3_applicability_confirmed": true,
+    "bolt_diameter_mm": 20,
+    "accuracy_class": "B",
+    "special_class_b_structure": false,
+    "hole_clearance_mm": 2,
+    "outer_element_thickness_mm": 12,
+    "connected_steel_normative_yield_resistance_n_mm2": 355,
+    "connected_steel_ultimate_resistance_n_mm2": 510,
+    "layout_is_friction_connection": false,
+    "layout_friction_planes": 2,
+    "edge_type": "cut",
+    "stress_state": "tension",
+    "row_location": "middle_or_edge_with_angles",
+    "transverse_row_spacing_mm": 50,
+    "actual_center_spacing_mm": 60,
+    "actual_edge_along_force_mm": 50,
+    "actual_edge_transverse_force_mm": 40,
+    "multi_bolt_connection": true,
+    "bearing_geometry": "standard",
+    "bearing_interpolation_fraction": 0.0,
+    "bolt_shear_resistance_n_mm2": 240,
+    "bearing_resistance_n_mm2": 450,
+    "bolt_tension_resistance_n_mm2": 360,
+    "gross_bolt_area_mm2": 245,
+    "net_thread_area_mm2": 190,
+    "shear_planes": 2,
+    "summed_bearing_thickness_mm": 24,
+    "working_condition_factor": 1.0,
+    "joint_length_along_shear_mm": 440,
+    "load_applied_over_full_joint_length": false,
+    "bolted_connection_design_force_n": 300000,
+    "bolted_applicable_modes": [
+      "shear",
+      "bearing"
+    ],
+    "bolt_coordinates_mm": [
+      [
+        -50,
+        -40
+      ],
+      [
+        50,
+        -40
+      ],
+      [
+        -50,
+        40
+      ],
+      [
+        50,
+        40
+      ]
+    ],
+    "group_force_x_n": 100000,
+    "group_force_y_n": 0,
+    "group_moment_z_n_mm": 5000000,
+    "combined_bolt_shear_force_n": 40000,
+    "combined_bolt_tension_force_n": 30000,
+    "connection_detail": "packing_or_single_cover_plate",
+    "surface_treatment": "shot_blast_no_preservation",
+    "tightening_control": "torque",
+    "friction_load_type": "static",
+    "friction_hole_clearance_mm": 2,
+    "friction_design_shear_force_n": 200000,
+    "friction_planes": 2,
+    "friction_tension_force_per_bolt_n": 10000,
+    "friction_summed_shifted_thickness_mm": 60,
+    "enlarged_head_and_nut": true,
+    "gross_connected_area_mm2": 1000,
+    "net_connected_area_mm2": 800
+  },
+  "results": {
+    "table_40_hole_diameter_mm": 22.0,
+    "table_40_requirements": {
+      "minimum_center_spacing_mm": 55.0,
+      "maximum_center_spacing_mm": 288.0,
+      "minimum_edge_along_force_mm": 44.0,
+      "minimum_edge_transverse_force_mm": 33.0,
+      "maximum_edge_distance_mm": 88.0,
+      "minimum_friction_edge_distance_mm": 28.6,
+      "minimum_staggered_longitudinal_spacing_mm": 83.0
+    },
+    "table_40_layout_check": {
+      "checks": {
+        "center_min": true,
+        "center_max": true,
+        "edge_along_min": true,
+        "edge_along_max": true,
+        "edge_transverse_min": true,
+        "edge_transverse_max": true
+      },
+      "pass": true
+    },
+    "table_41_gamma_b": 0.9,
+    "equation_186_shear_capacity_n": 105840.0,
+    "equation_187_bearing_capacity_n": 194400.0,
+    "equation_188_tension_capacity_n": 68400.0,
+    "long_joint_beta": 0.98,
+    "equation_189_bolt_count": {
+      "governing_mode": "shear",
+      "governing_capacity_n": 105840.0,
+      "continuous_required_bolts": 2.89231338794021,
+      "required_bolts": 3
+    },
+    "bolt_group_distribution": {
+      "centroid_mm": [
+        0.0,
+        0.0
+      ],
+      "bolt_forces": [
+        {
+          "index": 0,
+          "x_from_centroid_mm": -50.0,
+          "y_from_centroid_mm": -40.0,
+          "force_x_n": 37195.12195121951,
+          "force_y_n": -15243.90243902439,
+          "resultant_n": 40197.68225329148
+        },
+        {
+          "index": 1,
+          "x_from_centroid_mm": 50.0,
+          "y_from_centroid_mm": -40.0,
+          "force_x_n": 37195.12195121951,
+          "force_y_n": 15243.90243902439,
+          "resultant_n": 40197.68225329148
+        },
+        {
+          "index": 2,
+          "x_from_centroid_mm": -50.0,
+          "y_from_centroid_mm": 40.0,
+          "force_x_n": 12804.878048780487,
+          "force_y_n": -15243.90243902439,
+          "resultant_n": 19908.326484529887
+        },
+        {
+          "index": 3,
+          "x_from_centroid_mm": 50.0,
+          "y_from_centroid_mm": 40.0,
+          "force_x_n": 12804.878048780487,
+          "force_y_n": 15243.90243902439,
+          "resultant_n": 19908.326484529887
+        }
+      ],
+      "maximum_resultant_n": 40197.68225329148,
+      "governing_bolt_index": 0
+    },
+    "equation_190_utilization": 0.578962151509107,
+    "equation_190_pass": true,
+    "clause_14_2_14_adjusted_count": {
+      "factor": 1.1,
+      "adjusted_bolt_count": 4
+    },
+    "table_42_parameters": {
+      "friction_coefficient": 0.58,
+      "gamma_h": 1.12,
+      "clearance_route": "small",
+      "tightening_control": "torque"
+    },
+    "equation_191_capacity_per_friction_plane_n": 35421.428571428565,
+    "equation_192_friction_bolt_count": {
+      "required_bolts": 4,
+      "connection_factor_gamma_b": 0.8,
+      "continuous_required_bolts_at_governing_factor": 3.5289372857430936,
+      "total_design_capacity_n": 226697.14285714284
+    },
+    "clause_14_3_6_tension_reduction": {
+      "bolt_pretension_n": 68400.0,
+      "reduction_factor": 0.8538011695906433,
+      "adjusted_connection_factor_gamma_b": 0.6830409356725147
+    },
+    "clause_14_3_7_diameter_check": {
+      "summed_thickness_mm": 60.0,
+      "maximum_summed_thickness_mm": 80.0,
+      "utilization": 0.75,
+      "pass": true
+    },
+    "clause_14_3_10_washer": {
+      "one_washer_under_nut_permitted": true,
+      "required_arrangement": "one_washer_under_nut"
+    },
+    "clause_14_3_11_selected_area": {
+      "selected_area_mm2": 944.0,
+      "area_type": "effective_1_18_net",
+      "net_to_gross_ratio": 0.8
+    },
+    "external_requirements": {
+      "bolt_product_standards": "Tables G.3-G.7 and G.9 are external data dependencies",
+      "washers_and_installation": "SP 70.13330",
+      "anchor_bolts": "SP 43.13330",
+      "anti_loosening": "Project drawings must specify the adopted measure",
+      "friction_project_data": [
+        "bolt, nut, and washer grades and mechanical properties",
+        "surface treatment",
+        "bolt pretension P_b"
+      ],
+      "access_requirement": "Free access for installation, package clamping, and controlled tightening is required"
+    }
+  },
+  "scope_note": "Clauses 14.2-14.3, equations (186)-(192), and Tables 40-42 are implemented. Product standards, anchor design, installation verification, CAD recognition, and global load derivation remain external boundaries."
+}

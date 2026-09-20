@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "profile_catalog_case.schema.json",
+  "title": "SP16 Stage N2 interim profile catalog resolution case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["case_id", "standard", "action", "family_id", "designation", "axis"],
+  "properties": {
+    "case_id": {"type": "string"},
+    "standard": {"type": "string", "const": "СП 16.13330.2017"},
+    "action": {"type": "string", "const": "profile_catalog_resolve"},
+    "family_id": {"type": "integer", "minimum": 1, "maximum": 38},
+    "designation": {"type": "string", "minLength": 1},
+    "source_row_id": {"type": "integer", "minimum": 1},
+    "axis": {"type": "string", "enum": ["x", "y"]}
+  }
+}

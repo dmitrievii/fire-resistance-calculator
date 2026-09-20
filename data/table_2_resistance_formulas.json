@@ -1,0 +1,42 @@
+{
+  "standard_reference": "Clause 6.1, Table 2, PDF page 11",
+  "units": "N/mm2",
+  "formulas": {
+    "design_yield_resistance": {
+      "symbol": "Ry",
+      "input_symbol": "Ryn",
+      "coefficient": 1.0,
+      "divide_by": "gamma_m"
+    },
+    "design_ultimate_resistance": {
+      "symbol": "Ru",
+      "input_symbol": "Run",
+      "coefficient": 1.0,
+      "divide_by": "gamma_m"
+    },
+    "design_shear_resistance": {
+      "symbol": "Rs",
+      "input_symbol": "Ryn",
+      "coefficient": 0.58,
+      "divide_by": "gamma_m"
+    },
+    "design_end_bearing_resistance": {
+      "symbol": "Rp",
+      "input_symbol": "Run",
+      "coefficient": 1.0,
+      "divide_by": "gamma_m"
+    },
+    "design_pin_local_bearing_resistance": {
+      "symbol": "Rlp",
+      "input_symbol": "Run",
+      "coefficient": 0.5,
+      "divide_by": "gamma_m"
+    },
+    "design_roller_diametral_compression_resistance": {
+      "symbol": "Rcd",
+      "input_symbol": "Run",
+      "coefficient": 0.025,
+      "divide_by": "gamma_m"
+    }
+  }
+}

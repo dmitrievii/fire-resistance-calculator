@@ -1,0 +1,80 @@
+{
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "version": "Supplied consolidated text with Changes No. 1-6 through 09.12.2024",
+  "table_number": "22",
+  "clause": "9.4.2",
+  "page": 55,
+  "topic": "Limiting relative web slenderness of eccentrically compressed and beam-column members",
+  "section_types": {
+    "1": {
+      "equations": [
+        125,
+        126
+      ],
+      "forms": [
+        "I-section symmetric or asymmetric in the bending plane",
+        "box section"
+      ],
+      "base_domain": "1 <= m_x <= 10",
+      "notes": [
+        "0<m_x<1 interpolates from central-compression limit at m_x=0",
+        "10<m_x<=20 interpolates to bending-member limit at m_x=20"
+      ]
+    },
+    "2": {
+      "equations": [
+        127
+      ],
+      "forms": [
+        "I-section with eccentricity in flange plane"
+      ],
+      "base_domain": "1 <= alpha <= 2",
+      "notes": [
+        "alpha<=0.5 requires two checks",
+        "0.5<alpha<1 uses linear interpolation"
+      ]
+    },
+    "3": {
+      "equations": [
+        128
+      ],
+      "forms": [
+        "channel-type open section"
+      ],
+      "base_domain": "1 <= alpha <= 2",
+      "notes": []
+    },
+    "4": {
+      "equations": [
+        129
+      ],
+      "forms": [
+        "tee section"
+      ],
+      "base_domain": "1 <= b_f/h_eff <= 2; 0.8 <= lambda_x_bar <= 4",
+      "notes": [
+        "lambda_x_bar is clamped to 0.8 or 4 outside the interval"
+      ]
+    },
+    "5": {
+      "equations": [
+        130
+      ],
+      "forms": [
+        "channel-like section bent about the y-axis"
+      ],
+      "base_domain": "m_y >= 1",
+      "notes": [
+        "0<m_y<1 interpolates from central-compression limit at m_y=0"
+      ]
+    }
+  },
+  "symbol_definitions": {
+    "alpha": "(sigma_1-sigma_2)/sigma_1",
+    "beta": "0.15*c_cr*tau/sigma_1",
+    "tau_box": "Q/(2*t_w*h_w)",
+    "tau_other": "Q/(t_w*h_w)",
+    "c_cr": "Table 17 coefficient selected as a function of alpha"
+  },
+  "copyright_note": "Only formulas, identifiers, domains, and short descriptions are stored; no large reproduced standard text."
+}

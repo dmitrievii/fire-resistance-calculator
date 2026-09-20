@@ -1,0 +1,63 @@
+{
+  "case_id": "N7-EFFECTIVE-LENGTH-GUIDED-001",
+  "standard": "СП 16.13330.2017",
+  "release_stage": "v0.67_fire_bridge2_qualified_sp16_complex_state_handoff_r1",
+  "action": "effective_length_guided",
+  "engineering_calculation_performed": true,
+  "inputs": {
+    "case_id": "N7-EFFECTIVE-LENGTH-GUIDED-001",
+    "standard": "СП 16.13330.2017",
+    "action": "effective_length_guided",
+    "effective_length_route": {
+      "kind": "eq138_built_up_branch_in_plane",
+      "segment_length_mm": 1000.0,
+      "adjacent_force_ratio_alpha": 0.0
+    },
+    "radius": {
+      "mode": "explicit",
+      "value_mm": 20.0
+    },
+    "limiting_slenderness": {
+      "mode": "compressed_table32",
+      "group_4_applies": false,
+      "same_stability_case_confirmed": true,
+      "axial_force_n": 100000.0,
+      "stability_coefficient_phi": 0.8,
+      "gross_area_mm2": 4000.0,
+      "design_yield_resistance_n_mm2": 240.0,
+      "working_condition_factor": 1.0,
+      "table32_row": "1a"
+    }
+  },
+  "results": {
+    "status": "COMPLETE",
+    "effective_length": {
+      "status": "RESOLVED",
+      "route": "eq138_built_up_branch_in_plane",
+      "effective_length_mm": 600.0,
+      "equation": "138"
+    },
+    "radius": {
+      "selector": "explicit",
+      "radius_mm": 20.0
+    },
+    "actual_slenderness": 30.0,
+    "limiting_slenderness": {
+      "status": "RESOLVED",
+      "table": "32",
+      "alpha": 0.5,
+      "limit": 150.0,
+      "group4_factor_applied": false,
+      "check": {
+        "actual_slenderness": 30.0,
+        "limiting_slenderness": 150.0,
+        "utilization": 0.2,
+        "pass": true,
+        "unlimited": false
+      }
+    },
+    "required_unresolved": [],
+    "pass": true
+  },
+  "scope_note": "Stage N7 implements applicability-selected current-SP16 Section 10 routes. Annex И, specified crossing-brace external rules, and certified-program global analysis remain explicit provenance-gated boundaries rather than inferred formulas."
+}

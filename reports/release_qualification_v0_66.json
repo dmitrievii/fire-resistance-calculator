@@ -1,0 +1,44 @@
+{
+  "schema": "release_qualification_v1",
+  "release_stage": "v0.67_fire_bridge2_qualified_sp16_complex_state_handoff_r1",
+  "package_version": "0.66.0",
+  "parent_release": "v0.65_sp16_mech8_mq_interaction_torsion_scope_r1",
+  "active_dag": "normative_graph/dag_v0.3.69_sp16_mech9_remaining_ambient_closure.json",
+  "engineering_use_ready": false,
+  "closed_scope": {
+    "class3_one_plane_mx_qx": true,
+    "ordinary_fatigue_12_1_2_primary_auto_execution": true,
+    "crane_runway_fatigue_12_2_primary_auto_execution": false,
+    "low_cycle_lt_1e5_external_boundary": true,
+    "section13_primary_auto_execution": true,
+    "universal_arbitrary_t_resistance": false,
+    "sp554_nonzero_fire_qy_t_complex_handoff": false
+  },
+  "source_tree_evidence": {
+    "sp16_mech1_mech9": "60/60 PASS",
+    "affected_fire_ui": "104/104 PASS",
+    "sp16_core_a": "170/170 PASS",
+    "sp16_core_b_validation": "294/294 PASS",
+    "n1_n10_workflows": "243/243 PASS",
+    "fire_d1_d4_runtime": "68/68 PASS",
+    "adjacent_dag_applicability": "11/11 PASS",
+    "phase_0_23": "5/5 PASS",
+    "phase_0_24": "5/5 PASS",
+    "phase_0_25": "6/6 PASS",
+    "docstrings": "1/1 PASS",
+    "schemas": "53/53 PASS",
+    "final_audit": "3/3 PASS"
+  },
+  "active_dag_sha256": "34e47facdcd3a6bd362e82e2f8c39d1c70bffb1b38ff4784ee630099224f906e",
+  "active_dag_counts": {
+    "quantities": 918,
+    "datasets": 39,
+    "nodes": 732,
+    "edges": 1242
+  },
+  "ui_contract_counts": {
+    "interactive_nodes": 176,
+    "result_nodes": 54
+  },
+  "dag_deterministic_rebuild_pass": true
+}

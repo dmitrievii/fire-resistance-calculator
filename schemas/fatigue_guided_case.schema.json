@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fatigue_guided_case.schema.json",
+  "title": "SP16 Stage N9 guided Section 12 fatigue case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["case_id", "standard", "action", "route"],
+  "properties": {
+    "case_id": {"type":"string","minLength":1},
+    "standard": {"const":"СП 16.13330.2017"},
+    "action": {"const":"fatigue_guided"},
+    "route": {
+      "type":"object",
+      "additionalProperties": false,
+      "required":["kind","load_cycles","resonant_vortex_excitation"],
+      "properties": {
+        "kind": {"enum":["ordinary_fatigue_12_1_2","crane_runway_12_2","low_cycle_lt_1e5_12_1_1"]},
+        "load_cycles":{"type":"number","minimum":0},
+        "resonant_vortex_excitation":{"type":"boolean"},
+        "sp20_load_basis_confirmed":{"type":"boolean"},
+        "net_section_stress_without_dynamic_and_stability_coefficients_confirmed":{"type":"boolean"},
+        "same_loading_for_extreme_stresses_confirmed":{"type":"boolean"},
+        "annex_k_case_selection_confirmed":{"type":"boolean"},
+        "annex_k_case_id":{"type":"string","minLength":1},
+        "normative_ultimate_resistance_n_mm2":{"type":"number","exclusiveMinimum":0},
+        "design_ultimate_resistance_n_mm2":{"type":"number","exclusiveMinimum":0},
+        "ultimate_resistance_safety_factor":{"type":"number","exclusiveMinimum":0},
+        "maximum_signed_stress_n_mm2":{"type":"number"},
+        "minimum_signed_stress_n_mm2":{"type":"number"},
+        "crane_loads_sp20_confirmed":{"type":"boolean"},
+        "crane_group":{"type":"string","minLength":1},
+        "crane_in_metallurgical_shop":{"type":"boolean"},
+        "built_up_crane_runway_beam":{"type":"boolean"},
+        "equation_67_stresses_confirmed":{"type":"boolean"},
+        "crane_flange_connection_type":{"enum":["welded","friction"]},
+        "crane_web_zone_state":{"enum":["compression","tension"]},
+        "crane_sigma_x_n_mm2":{"type":"number","minimum":0},
+        "crane_sigma_xy_n_mm2":{"type":"number","minimum":0},
+        "crane_local_sigma_y_n_mm2":{"type":"number","minimum":0},
+        "crane_flange_sigma_y_n_mm2":{"type":"number","minimum":0}
+      }
+    }
+  }
+}

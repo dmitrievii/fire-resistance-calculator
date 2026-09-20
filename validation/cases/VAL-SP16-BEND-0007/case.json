@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.1.0",
+  "case_id": "VAL-SP16-BEND-0007",
+  "title": "25ДБ4 — изгиб и общая устойчивость многопролетной балки",
+  "evidence_class": "external_user_supplied_calculation_report",
+  "source": {
+    "original_filename": "chat_paste.txt",
+    "stored_path": "validation/cases/VAL-SP16-BEND-0007/source/source_report_transcribed_from_conversation.txt",
+    "sha256": "78e16e6ab75300ab874d62026bb5592db7c73160b43fcfcc742c6c7bf0d96be0",
+    "page_count": 0,
+    "preservation": "structured_transcription_from_conversation; no original file attachment was supplied"
+  },
+  "source_reported_inputs": {
+    "note": "Calculation-grade inputs are encoded in the source transcript and expected/comparison records for this validation campaign."
+  },
+  "source_reported_checks": [
+    {
+      "check_id": "eq41",
+      "published_value": 0.0990691
+    },
+    {
+      "check_id": "eq42",
+      "published_value": 0.0307623
+    },
+    {
+      "check_id": "lambda_b",
+      "published_value": 0.81455
+    },
+    {
+      "check_id": "delta",
+      "published_value": 0.4
+    },
+    {
+      "check_id": "reduced_limit",
+      "published_value": 0.38911
+    }
+  ],
+  "source_consistency_findings": [
+    {
+      "finding_id": "SOURCE-ANNEX-ZH-WRONG-BRANCH",
+      "description": "GOST R 57837-2017 identifies a hot-rolled I-section; the report uses the built-up/welded Eq.(Zh.5) route instead of rolled Eq.(Zh.4)."
+    },
+    {
+      "finding_id": "SOURCE-MY-STRENGTH-OMISSION",
+      "description": "My is nonzero but is omitted in the initial strength route, then used later in Eq.(70)."
+    },
+    {
+      "finding_id": "RUNNER-8.4.6-DELTA-REMEDIATED",
+      "description": "Phase 0.26 applies delta*Table11 limit to the exemption decision when the class-2/3 plastic-region flag is explicit."
+    }
+  ],
+  "validation_classification": {
+    "overall_status": "PARTIAL_MATCH_SOURCE_ROUTING_ERROR_AND_RUNNER_REMEDIATED",
+    "count_as_full_end_to_end_golden_case": false,
+    "count_as_scalar_external_replay": true,
+    "directly_comparable_production_functions": [
+      "standard_core.*.compressed_flange_relative_slenderness",
+      "standard_core.*.table_11_limit",
+      "standard_core.*.class_2_3_stability_reduction_eq76",
+      "standard_core.*.lateral_stability_check_exemption",
+      "standard_core.*.annex_zh_alpha_rolled_eq_zh4"
+    ],
+    "reason": "This campaign preserves source discrepancies and only promotes directly comparable scalar/procedure evidence."
+  }
+}

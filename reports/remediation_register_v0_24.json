@@ -1,0 +1,61 @@
+{
+  "package_version": "0.24.0",
+  "release_stage": "v0.24_release_api_hardening_and_function_level_validation_expansion_reconstructed_r1",
+  "closed_findings": [
+    {
+      "id": "V024-API-001",
+      "severity": "P1",
+      "finding": "62 engineering public functions lacked explicit return annotations.",
+      "resolution": "Added return annotations; invocation call shapes remain unchanged against v0.22 and immediate-parent v0.23 freezes.",
+      "status": "closed"
+    },
+    {
+      "id": "V024-API-002",
+      "severity": "P1",
+      "finding": "14 engineering public functions were executed indirectly but had no explicit named test reference.",
+      "resolution": "Added direct Phase 0.24 test binding; engineering direct named-test coverage is 581/581.",
+      "status": "closed"
+    },
+    {
+      "id": "V024-TRACE-001",
+      "severity": "P1",
+      "finding": "10 engineering functions lacked a resolvable direct/doc or implementation-map Audit-ID trace.",
+      "resolution": "Added normative Audit-ID trace without changing numerical bodies.",
+      "status": "closed"
+    },
+    {
+      "id": "V024-COMPAT-001",
+      "severity": "P1",
+      "finding": "No immediate-parent v0.23 API freeze had been materialized.",
+      "resolution": "Reconstructed the v0.23 freeze from the materialized parent package and added dual v0.22/v0.23 backward call-shape gates.",
+      "status": "closed"
+    },
+    {
+      "id": "V024-VALID-001",
+      "severity": "P2",
+      "finding": "Phase 0.23 independent evidence was route-level rather than public-function indexed.",
+      "resolution": "Added a 581-function evidence matrix and 40 independent direct function oracles; execution/test-binding is complete while independent arithmetic remains explicitly partial.",
+      "status": "closed_for_phase_scope"
+    }
+  ],
+  "open_findings": [
+    {
+      "id": "OPEN-FUNCTION-ORACLE",
+      "severity": "P1",
+      "finding": "541/581 engineering public functions do not yet have a dedicated independent direct arithmetic oracle.",
+      "required_next": "Expand golden/function-level independent oracle corpus; do not treat named tests or execution coverage as independent evidence."
+    },
+    {
+      "id": "OPEN-ANNEX-24",
+      "severity": "P1",
+      "finding": "24 Annex Б/В/Г/И tables remain external_reference_required.",
+      "required_next": "Digitize only where source semantics and lookup/interpolation rules are unambiguous; otherwise retain explicit external boundary."
+    },
+    {
+      "id": "OPEN-CROSS-IMPLEMENTATION",
+      "severity": "P1",
+      "finding": "No systematic external cross-implementation comparison is completed.",
+      "required_next": "Build matched SP16 cases against an independent implementation where outputs and modelling assumptions can be aligned."
+    }
+  ]
+}

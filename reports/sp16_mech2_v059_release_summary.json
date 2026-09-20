@@ -1,0 +1,21 @@
+{
+  "schema": "sp16_mech2_release_summary_v1",
+  "release_stage": "v0.59_sp16_mech2_load_cases_applicability_census_r1",
+  "package_version": "0.59.0",
+  "parent_release": "v0.58_sp16_mech1_canonical_axes_mechanical_state_contract_r1",
+  "active_dag": "normative_graph/dag_v0.3.62_sp16_mech2_load_cases_applicability_census.json",
+  "ambient_fire_load_cases_separated": true,
+  "silent_ambient_to_fire_copy_forbidden": true,
+  "applicability_census_closed": true,
+  "full_ambient_gate_closed": false,
+  "qy_runtime_closed": false,
+  "torsion_runtime_closed": false,
+  "bimoment_policy": "conditional direct signed input independently per load case",
+  "active_dag_sha256": "941e673b71e274d2f3d18bd21164a20c39648bd7cdcc29672f5831138a4f69b1",
+  "dag_counts": {
+    "quantities": 821,
+    "datasets": 39,
+    "nodes": 702,
+    "edges": 1190
+  }
+}

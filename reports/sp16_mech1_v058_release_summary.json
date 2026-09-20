@@ -1,0 +1,35 @@
+{
+  "schema": "sp16_mech1_release_summary_v1",
+  "release_stage": "v0.58_sp16_mech1_canonical_axes_mechanical_state_contract_r1",
+  "package_version": "0.58.0",
+  "parent_release": "v0.57_fire_ui24_fire_val1_routing_remediation_r1",
+  "active_dag": "normative_graph/dag_v0.3.61_sp16_mech1_canonical_axes.json",
+  "dag_counts": {
+    "quantities": 805,
+    "nodes": 692,
+    "edges": 1178,
+    "interactive_nodes": 157,
+    "result_nodes": 51
+  },
+  "closed": {
+    "canonical_sp16_axes": true,
+    "member_axis_s": true,
+    "v057_axis_adapter": true,
+    "conditional_direct_bimoment_input": true,
+    "legacy_Q_shear_equals_Qx_only": true
+  },
+  "deferred": {
+    "Qy_axis_specific_runtime": true,
+    "torsion_T_runtime": true,
+    "restrained_torsion_B_derivation": true,
+    "full_ambient_SP16_gate": true
+  },
+  "bimoment_policy": "question -> direct signed B input when required; explicit B=0 otherwise",
+  "legacy_mapping": {
+    "load_My_local": "M_x",
+    "load_Mz_local": "M_y",
+    "load_Qz_local": "Q_x",
+    "load_Qy_local": "Q_y"
+  },
+  "signs_preserved": true
+}

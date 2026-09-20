@@ -1,0 +1,142 @@
+{
+  "schema": "fire_ui12_presentation_policy_v1",
+  "release_stage": "v0.45_fire_ui12_section_model_executor_binding_r1",
+  "entry_node_id": "SP554_D_LOAD_BEARING",
+  "primary_mode": "engineering_guided",
+  "hidden_normative_nodes": [
+    "SP554_I_BUILDING_USE",
+    "SP554_D_METHOD",
+    "SP554_D_SOFTWARE",
+    "SP554_D_SOFTWARE_VALIDATED",
+    "SP554_D_SOFTWARE_REPORT"
+  ],
+  "auto_answers": {
+    "SP554_D_METHOD": "calculation_analytical",
+    "SP554_D_SOFTWARE": true,
+    "SP554_D_SOFTWARE_VALIDATED": true,
+    "SP554_D_SOFTWARE_REPORT": true
+  },
+  "deferred_nodes": {
+    "SP554_H_REQUIRED_R": "post_actual_fire_resistance",
+    "SP554_D_FIRE_REGIME": "thermal_after_critical_temperature",
+    "SP554_D_SEISMIC": "fire_protection_design",
+    "SP554_H_SP14": "fire_protection_design"
+  },
+  "navigation_overrides": {
+    "SP554_D_PRODUCT_ROUTE": [
+      {
+        "when": {
+          "quantity_id": "section_product_route",
+          "value": "hot_rolled_section"
+        },
+        "to_node_id": "SP554_D_METHOD",
+        "id": "UI11_OVR_PRODUCT_ROLLED_TO_METHOD"
+      },
+      {
+        "when": {
+          "quantity_id": "section_product_route",
+          "value": "welded_from_hot_rolled_product"
+        },
+        "to_node_id": "SP554_D_METHOD",
+        "id": "UI11_OVR_PRODUCT_WELDED_TO_METHOD"
+      }
+    ],
+    "SP554_D_METHOD": [
+      {
+        "when": {
+          "quantity_id": "determination_method",
+          "value": "calculation_analytical"
+        },
+        "to_node_id": "SP554_D_SOFTWARE",
+        "id": "UI11_OVR_METHOD_TO_SOFTWARE"
+      }
+    ]
+  },
+  "node_presentation": {
+    "SP554_D_GEOMETRY_MODE": {
+      "component": "section_editor_entry",
+      "stage": "section",
+      "title": "Основные характеристики сечения"
+    },
+    "SP554_I_CATALOG": {
+      "component": "profile_catalog_selector",
+      "stage": "section"
+    },
+    "SP554_I_PARAMETRIC": {
+      "component": "parametric_section_editor",
+      "stage": "section"
+    },
+    "SP554_I_ARBITRARY": {
+      "component": "manual_section_properties_editor",
+      "stage": "section"
+    },
+    "SP554_I_SECTION_WEAKENING": {
+      "component": "section_weakening_editor",
+      "stage": "section_weakening"
+    },
+    "SP554_H_REQUIRED_R": {
+      "component": "required_r_selector",
+      "stage": "post_actual_fire_resistance",
+      "provenance_mode": "optional"
+    },
+    "SP554_D_FIRE_REGIME": {
+      "stage": "thermal_after_critical_temperature"
+    },
+    "SP554_D_SEISMIC": {
+      "stage": "fire_protection_design"
+    },
+    "SP554_I_DOUBLE_BRANCH": {
+      "component": "double_branch_section_editor",
+      "stage": "section"
+    }
+  },
+  "section_editor": {
+    "composition_modes": [
+      {
+        "value": "single_branch",
+        "label": "Одноветвевое",
+        "status": "active"
+      },
+      {
+        "value": "double_branch",
+        "label": "Двухветвевое",
+        "status": "active",
+        "note": "Две одинаковые ветви из сортамента; решётка/планки задаются последующими вопросами СП16."
+      },
+      {
+        "value": "arbitrary",
+        "label": "Произвольное",
+        "status": "active",
+        "note": "Ручной ввод готовых характеристик; 2D-контур не используется."
+      }
+    ],
+    "single_branch_sources": [
+      "catalog_section",
+      "parametric_section"
+    ]
+  },
+  "provenance_policy": {
+    "required_primary_source_types": [
+      "EXTERNAL_STANDARD_RESULT"
+    ],
+    "user_entry_source_types": [
+      "USER_INPUT",
+      "GEOMETRY_INPUT",
+      "LOAD_INPUT"
+    ],
+    "rreq_provenance_optional_in_primary_ui": true
+  },
+  "technical_copy": {
+    "show_downstream_invalidation_message": false,
+    "show_node_ids_in_primary_ui": false,
+    "show_dag_terms_in_primary_ui": false
+  },
+  "deferred_engineering_features": {
+    "seismic_load_combination_sp14_mtr": "planned_separate_SP14_load_route",
+    "seismic_fire_protection_sp554_5_6": "planned_FIRE_D5_protection_route",
+    "double_branch_visual_section_editor": "planned_next_UI_binding",
+    "arbitrary_2d_section_editor": "planned_next_UI_binding",
+    "arbitrary_2d_editor": "REMOVED_BY_USER_DECISION_USE_MANUAL_PROPERTIES",
+    "double_branch_visual_editor": "CLOSED_TWO_IDENTICAL_CATALOG_BRANCHES_V1"
+  }
+}

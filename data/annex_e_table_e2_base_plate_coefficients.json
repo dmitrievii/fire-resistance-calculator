@@ -1,0 +1,32 @@
+{
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "version": "Supplied consolidated text with corrections through 2024 and Amendments No. 1-5",
+  "annex": "Е",
+  "table": "Е.2",
+  "page": 163,
+  "title": "Коэффициенты alpha_1, alpha_2, alpha_3 для расчета на изгиб прямоугольных плит, опертых по четырем и трем сторонам",
+  "interpolation_rule": "not_specified_exact_nodes_only",
+  "four_sides": {
+    "ratio_name": "b_over_a",
+    "ratio_nodes": [1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0],
+    "coefficients": {
+      "alpha_1": [0.048, 0.055, 0.063, 0.069, 0.075, 0.081, 0.086, 0.091, 0.094, 0.098, 0.100],
+      "alpha_2": [0.048, 0.049, 0.050, 0.050, 0.050, 0.050, 0.049, 0.048, 0.048, 0.047, 0.046]
+    },
+    "terminal_gt_2": {"alpha_1": 0.125, "alpha_2": 0.037}
+  },
+  "three_sides": {
+    "ratio_name": "a1_over_d1",
+    "ratio_nodes": [0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.4, 2.0],
+    "coefficients": {
+      "alpha_3": [0.060, 0.074, 0.088, 0.097, 0.107, 0.112, 0.120, 0.126, 0.132]
+    },
+    "terminal_gt_2": {"alpha_3": 0.133}
+  },
+  "symbols": {
+    "b": "long side",
+    "a": "short side",
+    "d1": "free-side length",
+    "a1": "side perpendicular to the free side"
+  }
+}

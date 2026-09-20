@@ -1,0 +1,53 @@
+{
+  "case_id": "VAL-SP16-WELD-0002",
+  "overall_validation_status": "PARTIAL_MATCH_SOURCE_STOPS_BEFORE_LENGTH",
+  "checks": [
+    {
+      "check_id": "kf_max",
+      "published_or_source_value": 6.0,
+      "production_or_independent_value": 6.0,
+      "absolute_error": 0.0,
+      "absolute_tolerance": 1e-12,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "kf_min",
+      "published_or_source_value": 4.0,
+      "production_or_independent_value": 4.0,
+      "absolute_error": 0.0,
+      "absolute_tolerance": 1e-12,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "R_wz",
+      "published_or_source_value": 166.5,
+      "production_or_independent_value": 166.5,
+      "absolute_error": 0.0,
+      "absolute_tolerance": 1e-12,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "manual_lower_bound",
+      "published_or_source_value": 183.15,
+      "production_or_independent_value": 183.15,
+      "absolute_error": 0.0,
+      "absolute_tolerance": 1e-12,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "compatibility_pass",
+      "published_or_source_value": 0,
+      "production_or_independent_value": 0,
+      "absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "comparison_status": "PASS"
+    }
+  ],
+  "end_to_end_gate": {
+    "status": "NOT_ACCEPTED",
+    "reason_codes": [
+      "SOURCE-STOPS-BEFORE-LENGTH",
+      "VENDOR-KF-ROUNDING-POLICY"
+    ]
+  }
+}

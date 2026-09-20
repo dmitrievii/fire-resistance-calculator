@@ -1,0 +1,160 @@
+{
+  "case_id": "V19-DEMO-001",
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "release_stage": "v0.67_fire_bridge2_qualified_sp16_complex_state_handoff_r1",
+  "action": "overhead_line_and_switchyard_supports",
+  "engineering_calculation_performed": true,
+  "inputs": {
+    "case_id": "V19-DEMO-001",
+    "standard": "СП 16.13330.2017 «Стальные конструкции»",
+    "action": "overhead_line_and_switchyard_supports",
+    "section_16_applicability_confirmed": true,
+    "structure_case": "GROUP_2_WELDED_VL_OR_HIGH_VOLTAGE_ORU_OR_KS_TENSION",
+    "table_45_case_id": "FREE_STANDING_FIRST_TWO_PANELS_BOLTED_CHORD",
+    "table_45_applied_to_node_connection": false,
+    "length_mm": 12000.0,
+    "chord_axis_spacing_mm": 2000.0,
+    "height_mm": 30000.0,
+    "upper_spacing_mm": 1000.0,
+    "lower_spacing_mm": 3000.0,
+    "moment_n_mm": 100000000.0,
+    "axial_force_n": 1000000.0,
+    "connection_beta": 1.2,
+    "first_order_midspan_moment_n_mm": 80000000.0,
+    "first_order_max_shear_n": 45000.0,
+    "transverse_deflection_mm": 12.0,
+    "area_mm2": 8000.0,
+    "reduced_slenderness": 120.0,
+    "elastic_modulus_n_mm2": 206000.0,
+    "moment_x_n_mm": 100000000.0,
+    "moment_y_n_mm": 50000000.0,
+    "angle_member": "chord",
+    "angle_connection": "bolted",
+    "c_over_b": 0.6,
+    "n_md_over_n_m": 0.3,
+    "brace_bolt_line_ratio": 0.57,
+    "figure_15_g_or_d": false,
+    "welded_centering": "centroids",
+    "broken_wire_combination": false,
+    "table_46_row_id": "SWITCHYARD_SUPPORT_ALONG_WIRES",
+    "table_46_measure": "top_deviation",
+    "actual_relative_deformation": 0.008,
+    "table_46_load_mode": "normal",
+    "traverse_member": "chord_primary",
+    "panel_length_mm": 3000.0,
+    "alternate_chord_length_mm": 2500.0,
+    "actual_first_lower_brace_slenderness": 140.0,
+    "support_system": "free_standing",
+    "actual_diaphragm_spacing_m": 20.0,
+    "diaphragm_at_concentrated_loads": true,
+    "diaphragm_at_chord_breaks": true,
+    "edge_distance_mm": 40.0,
+    "bolt_diameter_mm": 20.0,
+    "permanently_tensioned_single_bolt_element": true,
+    "braces_on_both_sides_of_chord_leg": true,
+    "splice_total_bolts": 8,
+    "splice_bolts_per_leg_each_side": 4,
+    "splice_rows_per_leg_each_side": 4,
+    "use_seven_bolt_exception": false,
+    "polygonal_face_count": 10,
+    "polygonal_face_width_mm": 500.0,
+    "polygonal_wall_thickness_mm": 10.0,
+    "maximum_compressive_stress_n_mm2": 100.0,
+    "minimum_stress_n_mm2": -20.0,
+    "design_yield_resistance_n_mm2": 345.0,
+    "working_condition_factor": 1.0,
+    "external_loads_and_combinations_confirmed": true
+  },
+  "results": {
+    "section_16_applicability_route": {
+      "group": 2,
+      "material_route": "Section 5 and Annex V",
+      "bolt_route": "Table G.3 fatigue route for flange joints and VL supports over 60 m; otherwise non-fatigue route",
+      "clause_16_3_status": "excluded_by_amendment_2",
+      "external_loads_required": true
+    },
+    "table_45_working_condition_factor": 0.9,
+    "equation_201_maximum_slenderness": 12.0,
+    "equation_202_maximum_slenderness": 15.0,
+    "clause_16_5_pyramidal_mu": 2.7222222222222223,
+    "equation_203_maximum_slenderness": 54.44444444444445,
+    "equation_204_relative_eccentricity": 0.2076,
+    "equation_205_relative_eccentricity": 0.17999999999999997,
+    "clauses_16_8_to_16_9_auxiliaries": {
+      "initial_bow_mm": 15.6,
+      "equivalent_inertia_mm4": 80000000.0,
+      "delta": 0.12621359223300976
+    },
+    "equation_206_amplified_moment_n_mm": 342412307.6923076,
+    "equation_207_design_shear_n": 113664.55384615382,
+    "equation_208_additional_chord_force": {
+      "candidate_1_n": 57999.99999999999,
+      "candidate_2_n": 54000.0,
+      "governing_n": 57999.99999999999
+    },
+    "equations_209_to_212_angle_factors": {
+      "route": "equation_209",
+      "alpha_m": 1.04125,
+      "alpha_d": null
+    },
+    "table_46_deformation_check": {
+      "applicable": true,
+      "status": "checked",
+      "limit_denominator": 100.0,
+      "limit_relative_deformation": 0.01,
+      "utilization": 0.8,
+      "pass": true
+    },
+    "clauses_16_13_to_16_19_detailing": {
+      "clause_16_13_effective_length_route": {
+        "effective_length_mm": 3000.0,
+        "radius": "i_min"
+      },
+      "clause_16_14_first_lower_brace": {
+        "limit": 160.0,
+        "actual": 140.0,
+        "utilization": 0.875,
+        "pass": true
+      },
+      "clause_16_16_diaphragms": {
+        "maximum_spacing_m": 25.0,
+        "actual_spacing_m": 20.0,
+        "spacing_pass": true,
+        "concentrated_load_locations_pass": true,
+        "chord_break_locations_pass": true,
+        "pass": true
+      },
+      "clause_16_17_single_bolt_edge": {
+        "required_minimum_edge_distance_mm": 40.0,
+        "actual_edge_distance_mm": 40.0,
+        "bearing_note_2_table_40_required": false,
+        "pass": true
+      },
+      "clause_16_18_brace_arrangement": {
+        "pass": true
+      },
+      "clause_16_19_splice": {
+        "even_total_bolt_count_pass": true,
+        "maximum_per_leg_each_side": 5,
+        "gamma_b_multiplier": 1.0,
+        "pass": true
+      }
+    },
+    "equations_213_to_214_polygonal_tube_wall": {
+      "face_count": 10,
+      "relative_wall_slenderness": 2.0461899237078396,
+      "relative_wall_slenderness_used": 2.0461899237078396,
+      "beta": 8.158276699029125,
+      "psi": 1.0810291209788305,
+      "raw_critical_stress_n_mm2": 388.46480725803025,
+      "critical_stress_n_mm2": 345.0,
+      "equation_213_utilization": 0.2898550724637681,
+      "equation_213_pass": true,
+      "linked_round_tube_requirements": [
+        "11.2.1",
+        "11.2.2"
+      ]
+    }
+  },
+  "scope_note": "Section 16 equations (201)-(214), Tables 45-46, and executable clauses 16.1-16.20 are implemented. Loads, combinations, global second-order analysis, section classification, complete node design, and evidence from drawings remain explicit external boundaries. Equation (215) and Table 47 are implemented in the Section 17 antenna-structure route; equations (216)-(224) and Table 48 belong to Section 18 and remain outside v0.20."
+}

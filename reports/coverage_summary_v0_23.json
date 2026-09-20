@@ -1,0 +1,13 @@
+{
+  "package_version": "0.23.0",
+  "release_stage": "v0.23_independent_normative_rebaseline_and_adversarial_audit_reconstructed_r1",
+  "qualification": "measured diagnostic baseline; package-wide coverage is not a normative correctness or release-readiness proof",
+  "tests_executed_excluding_manifest_test": 503,
+  "statements": 5905,
+  "covered_lines": 5372,
+  "statement_coverage_percent": 90.97375105842507,
+  "branches": 1948,
+  "covered_branches": 1390,
+  "branch_coverage_percent": 71.35523613963039,
+  "manifest_test_exclusion_reason": "Release manifest is generated after release contents stabilize."
+}

@@ -1,0 +1,43 @@
+{
+  "case_id": "N4-GUIDED-BEAM-001",
+  "standard": "СП 16.13330.2017",
+  "action": "bending_member_guided",
+  "beam_category": "ordinary",
+  "member_class": 1,
+  "load_is_static": true,
+  "section_weakening": "none",
+  "moment_x_n_mm": 120000000.0,
+  "moment_y_n_mm": 0.0,
+  "bimoment_n_mm2": 0.0,
+  "shear_force_x_n": 120000.0,
+  "shear_force_y_n": 0.0,
+  "web_has_bolt_holes": false,
+  "working_condition_factor": 1.0,
+  "lateral_stability": {
+    "mode": "calculate_phi_b",
+    "effective_length_mm": 3000.0,
+    "compression_flange_braced_in_span": true,
+    "annex_zh_table": "zh1",
+    "case_id": "two_or_more_braces",
+    "load_flange": "compressed"
+  },
+  "local_stability": {
+    "mode": "geometry_and_stiffener_screen",
+    "moving_flange_load_present": false,
+    "plastic_deformation_region": false,
+    "local_stress_present": false,
+    "double_sided_flange_welds": true
+  },
+  "profile_ref": {
+    "family_id": 35,
+    "designation": "15К4",
+    "axis": "x"
+  },
+  "material_ref": {
+    "product_form": "parallel_flange_i",
+    "steel_grade": "C355Б",
+    "thickness_mm": 15.0,
+    "material_safety_category": "other_conforming",
+    "design_resistance_source": "annex_tabulated"
+  }
+}

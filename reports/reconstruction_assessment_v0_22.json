@@ -1,0 +1,42 @@
+{
+  "release_stage": "v0.22_final_annex_and_release_consolidation_reconstructed_r1",
+  "reconstruction": true,
+  "byte_identical_to_historical_v0_22": false,
+  "baseline_v0_21_sha256": "140868b2ebafcb430f7cfd40727a642b79d54d1fff423a48c10f35c057c8b15e",
+  "restored": [
+    "SP16-EQ-010",
+    "SP16-EQ-011",
+    "SP16-TBL-1"
+  ],
+  "corrected_infrastructure": [
+    "recursive schema validation",
+    "non-finite-number rejection"
+  ],
+  "external_annex_table_boundaries": [
+    "SP16-TBL-Б-1",
+    "SP16-TBL-Б-2",
+    "SP16-TBL-В-1",
+    "SP16-TBL-В-2",
+    "SP16-TBL-В-3",
+    "SP16-TBL-В-4",
+    "SP16-TBL-В-5",
+    "SP16-TBL-В-6",
+    "SP16-TBL-В-7",
+    "SP16-TBL-В-8",
+    "SP16-TBL-В-9",
+    "SP16-TBL-Г-1",
+    "SP16-TBL-Г-2",
+    "SP16-TBL-Г-3",
+    "SP16-TBL-Г-4",
+    "SP16-TBL-Г-5",
+    "SP16-TBL-Г-6",
+    "SP16-TBL-Г-7",
+    "SP16-TBL-Г-9",
+    "SP16-TBL-И-1",
+    "SP16-TBL-И-2",
+    "SP16-TBL-И-3",
+    "SP16-TBL-И-4",
+    "SP16-TBL-И-5"
+  ],
+  "claim_policy": "implemented_or_explicitly_classified; external-reference rows are not claimed as automated numeric implementation"
+}

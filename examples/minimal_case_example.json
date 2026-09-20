@@ -1,0 +1,14 @@
+{
+  "case_id": "CORE-RUN-001",
+  "standard": "СП 16.13330.2017",
+  "action": "material_resistance_bundle",
+  "material_control_category": "other_conforming",
+  "normative_yield_resistance_n_mm2": 355.0,
+  "normative_ultimate_resistance_n_mm2": 510.0,
+  "normative_weld_metal_ultimate_resistance_n_mm2": 490.0,
+  "normative_bolt_ultimate_resistance_n_mm2": 800.0,
+  "bolt_strength_class": "8.8",
+  "bolt_hole_accuracy_class": "A",
+  "connected_steel_yield_strength_n_mm2": 355.0,
+  "rope_breaking_force_n": 1600000.0
+}

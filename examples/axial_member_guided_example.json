@@ -1,0 +1,25 @@
+{
+  "case_id": "N3-GUIDED-SOLID-001",
+  "standard": "СП 16.13330.2017",
+  "action": "axial_member_guided",
+  "force_state": "compression",
+  "axial_force_n": 600000.0,
+  "section_weakening": "none",
+  "working_condition_factor": 1.0,
+  "post_yield_service_possible": false,
+  "effective_length_mm": 4000.0,
+  "local_stability_prerequisites_satisfied": true,
+  "stability_formula": "both",
+  "profile_ref": {
+    "family_id": 35,
+    "designation": "15К4",
+    "axis": "x"
+  },
+  "material_ref": {
+    "product_form": "parallel_flange_i",
+    "steel_grade": "C355Б",
+    "thickness_mm": 15.0,
+    "material_safety_category": "other_conforming",
+    "design_resistance_source": "annex_tabulated"
+  }
+}

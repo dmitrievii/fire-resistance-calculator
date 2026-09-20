@@ -1,0 +1,412 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Antenna structure case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "standard",
+    "action",
+    "section_17_applicability_confirmed",
+    "structure_height_m",
+    "component_group",
+    "steel_grade",
+    "is_pipe",
+    "annex_v_grade_selection_confirmed",
+    "rope_design_force_kn",
+    "rope_environment",
+    "rope_construction",
+    "rope_core_type",
+    "built_in_nut_insulator",
+    "radio_allows_nonmetallic_core",
+    "round_wire_rope_capacity_kn",
+    "end_binding_length_increased_25_percent",
+    "selected_rope_end_alloy",
+    "annex_b_table_b2_selection_confirmed",
+    "copper_wire_used",
+    "technological_necessity_confirmed",
+    "wire_breaking_force_n",
+    "wire_type",
+    "wire_nominal_area_mm2",
+    "table_47_case_id",
+    "actual_support_deviation_mm",
+    "support_height_mm",
+    "support_deviation_load_case",
+    "erection_accuracy_class",
+    "erection_bolt_strength_class",
+    "sign_changing_force",
+    "controlled_pretension_confirmed",
+    "erection_weld_used",
+    "installer_agreement_confirmed",
+    "cross_brace_slenderness",
+    "cross_braces_tied_at_intersection",
+    "platform_vertical_deflection_mm",
+    "platform_horizontal_deflection_mm",
+    "platform_span_mm",
+    "actual_diaphragm_spacing_mm",
+    "mean_support_section_size_mm",
+    "diaphragm_at_concentrated_loads",
+    "diaphragm_at_chord_breaks",
+    "flange_bolts_on_one_circle",
+    "flange_bolt_circle_minimum_diameter",
+    "flange_bolts_equally_spaced",
+    "members_centered_on_chord_axis",
+    "node_eccentricity_mm",
+    "chord_cross_section_size_mm",
+    "node_moment_analysis_performed",
+    "slot_end_hole_diameter_mm",
+    "round_brace_diameter_mm",
+    "guy_centered_at_chord_strut_intersection",
+    "eye_plate_stiffened_against_bending",
+    "attachment_exceeds_transport_envelope",
+    "separate_rigid_insert_provided",
+    "flexible_insert_clear_length_mm",
+    "rope_diameter_mm",
+    "standard_mechanical_detail_used",
+    "mechanical_detail_strength_tested",
+    "mechanical_detail_fatigue_tested",
+    "threaded_tension_element",
+    "rounded_thread_root_confirmed",
+    "rope_pretension_n",
+    "rope_mass_per_length_kg_m",
+    "rope_span_m",
+    "low_frequency_damper_hz",
+    "high_frequency_damper_hz",
+    "paired_sequential_dampers",
+    "low_frequency_selected_from_fundamental_mode",
+    "high_frequency_damper_above_low_at_distance_s",
+    "dampers_installed",
+    "galloping_risk_present",
+    "free_length_modified_with_leashes",
+    "obstruction_marking_and_lighting_confirmed",
+    "guy_mechanical_details_galvanized",
+    "insulator_fittings_galvanized",
+    "fasteners_galvanized",
+    "external_loads_and_combinations_confirmed"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "standard": {
+      "type": "string",
+      "const": "СП 16.13330.2017 «Стальные конструкции»"
+    },
+    "action": {
+      "type": "string",
+      "const": "antenna_structures"
+    },
+    "section_17_applicability_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "structure_height_m": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 500
+    },
+    "component_group": {
+      "type": "integer",
+      "enum": [
+        1,
+        2,
+        3
+      ]
+    },
+    "steel_grade": {
+      "type": "string",
+      "minLength": 1
+    },
+    "is_pipe": {
+      "type": "boolean"
+    },
+    "annex_v_grade_selection_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "rope_design_force_kn": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "rope_environment": {
+      "type": "string",
+      "enum": [
+        "non_aggressive",
+        "mild",
+        "medium",
+        "strong"
+      ]
+    },
+    "rope_construction": {
+      "type": "string",
+      "enum": [
+        "spiral_nonspinning",
+        "round_strand_nonspinning_double_cross",
+        "locked_coil",
+        "spinning"
+      ]
+    },
+    "rope_core_type": {
+      "type": "string",
+      "enum": [
+        "metallic",
+        "nonmetallic"
+      ]
+    },
+    "built_in_nut_insulator": {
+      "type": "boolean"
+    },
+    "radio_allows_nonmetallic_core": {
+      "type": "boolean"
+    },
+    "round_wire_rope_capacity_kn": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "end_binding_length_increased_25_percent": {
+      "type": "boolean"
+    },
+    "selected_rope_end_alloy": {
+      "type": "string"
+    },
+    "annex_b_table_b2_selection_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "copper_wire_used": {
+      "type": "boolean"
+    },
+    "technological_necessity_confirmed": {
+      "type": "boolean"
+    },
+    "wire_breaking_force_n": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "wire_type": {
+      "type": "string",
+      "enum": [
+        "aluminium",
+        "copper",
+        "steel_aluminium",
+        "bimetal_steel_copper"
+      ]
+    },
+    "wire_nominal_area_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "table_47_case_id": {
+      "type": "string",
+      "enum": [
+        "PRESTRESSED_LATTICE_MEMBER",
+        "RING_TYPE_FLANGE",
+        "OTHER_FLANGE_TYPE",
+        "GUY_OR_ANTENNA_ELEMENT_COUNT_3_TO_5",
+        "GUY_COUNT_6_TO_8",
+        "GUY_COUNT_9_OR_MORE",
+        "THIMBLE_CLAMPS_OR_POINT_CRIMP",
+        "ROPE_SPLICE_ON_THIMBLE_OR_INSULATOR",
+        "GUY_OR_ANTENNA_ATTACHMENT_ELEMENT",
+        "ANCHOR_ROD_TENSION_WITH_BENDING_NO_THREAD",
+        "EYE_PLATE_IN_TENSION",
+        "ROPE_ATTACHMENT_MECHANICAL_DETAIL_EXCEPT_HINGE_PIN",
+        "HINGE_PIN_IN_BEARING"
+      ]
+    },
+    "actual_support_deviation_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "support_height_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "support_deviation_load_case": {
+      "type": "string",
+      "enum": [
+        "wind_or_ice",
+        "unilateral_antenna_no_wind"
+      ]
+    },
+    "erection_accuracy_class": {
+      "type": "string",
+      "enum": [
+        "A",
+        "B"
+      ]
+    },
+    "erection_bolt_strength_class": {
+      "type": "string",
+      "enum": [
+        "8.8",
+        "10.9"
+      ]
+    },
+    "sign_changing_force": {
+      "type": "boolean"
+    },
+    "controlled_pretension_confirmed": {
+      "type": "boolean"
+    },
+    "erection_weld_used": {
+      "type": "boolean"
+    },
+    "installer_agreement_confirmed": {
+      "type": "boolean"
+    },
+    "cross_brace_slenderness": {
+      "type": "number",
+      "minimum": 0
+    },
+    "cross_braces_tied_at_intersection": {
+      "type": "boolean"
+    },
+    "platform_vertical_deflection_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "platform_horizontal_deflection_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "platform_span_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "actual_diaphragm_spacing_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "mean_support_section_size_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "diaphragm_at_concentrated_loads": {
+      "type": "boolean"
+    },
+    "diaphragm_at_chord_breaks": {
+      "type": "boolean"
+    },
+    "flange_bolts_on_one_circle": {
+      "type": "boolean"
+    },
+    "flange_bolt_circle_minimum_diameter": {
+      "type": "boolean"
+    },
+    "flange_bolts_equally_spaced": {
+      "type": "boolean"
+    },
+    "members_centered_on_chord_axis": {
+      "type": "boolean"
+    },
+    "node_eccentricity_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "chord_cross_section_size_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "node_moment_analysis_performed": {
+      "type": "boolean"
+    },
+    "slot_end_hole_diameter_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "round_brace_diameter_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "guy_centered_at_chord_strut_intersection": {
+      "type": "boolean"
+    },
+    "eye_plate_stiffened_against_bending": {
+      "type": "boolean"
+    },
+    "attachment_exceeds_transport_envelope": {
+      "type": "boolean"
+    },
+    "separate_rigid_insert_provided": {
+      "type": "boolean"
+    },
+    "flexible_insert_clear_length_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "rope_diameter_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "standard_mechanical_detail_used": {
+      "type": "boolean"
+    },
+    "mechanical_detail_strength_tested": {
+      "type": "boolean"
+    },
+    "mechanical_detail_fatigue_tested": {
+      "type": "boolean"
+    },
+    "threaded_tension_element": {
+      "type": "boolean"
+    },
+    "rounded_thread_root_confirmed": {
+      "type": "boolean"
+    },
+    "rope_pretension_n": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "rope_mass_per_length_kg_m": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "rope_span_m": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "low_frequency_damper_hz": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "high_frequency_damper_hz": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "paired_sequential_dampers": {
+      "type": "boolean"
+    },
+    "low_frequency_selected_from_fundamental_mode": {
+      "type": "boolean"
+    },
+    "high_frequency_damper_above_low_at_distance_s": {
+      "type": "boolean"
+    },
+    "dampers_installed": {
+      "type": "boolean"
+    },
+    "galloping_risk_present": {
+      "type": "boolean"
+    },
+    "free_length_modified_with_leashes": {
+      "type": "boolean"
+    },
+    "obstruction_marking_and_lighting_confirmed": {
+      "type": "boolean"
+    },
+    "guy_mechanical_details_galvanized": {
+      "type": "boolean"
+    },
+    "insulator_fittings_galvanized": {
+      "type": "boolean"
+    },
+    "fasteners_galvanized": {
+      "type": "boolean"
+    },
+    "external_loads_and_combinations_confirmed": {
+      "type": "boolean",
+      "const": true
+    }
+  }
+}

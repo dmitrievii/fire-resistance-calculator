@@ -1,0 +1,27 @@
+{
+  "schema": "fire_ui18_fire_d2_to_d3_handoff_hotfix_closure_v1",
+  "release_stage": "v0.51_fire_ui18_fire_d2_to_d3_handoff_hotfix_r1",
+  "package_version": "0.51.0",
+  "parent_release": "v0.50_fire_ui17_critical_temperature_restraint_ux_hotfix_r1",
+  "dag": "normative_graph/dag_v0.3.54_fire_ui18_fire_d2_to_d3_handoff_hotfix.json",
+  "presentation_policy": "data/fire_ui18_presentation_policy.json",
+  "closed": {
+    "exact_tcr_result_continues_to_section12": true,
+    "dedicated_two_output_fire_d3_handoff_executor": true,
+    "mechanical_queue_drained_before_thermal_entry": true,
+    "ambient_capacity_failure_remains_terminal": true,
+    "bounded_without_exact_tcr_remains_fail_closed": true,
+    "user_tcr_638_011628_regression": true
+  },
+  "user_regression": {
+    "critical_temperature_c": 638.011628,
+    "expected_next_node": "SP554_I_EXPOSURE",
+    "expected_prompt": "Схема обогрева"
+  },
+  "dag_counts": {
+    "quantities": 777,
+    "datasets": 38,
+    "nodes": 666,
+    "edges": 1136
+  }
+}

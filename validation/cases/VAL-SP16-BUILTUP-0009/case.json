@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.1.0",
+  "case_id": "VAL-SP16-BUILTUP-0009",
+  "title": "Центрально-сжатая двухветвевая составная колонна с планками",
+  "evidence_class": "external_user_supplied_calculation_report",
+  "source": {
+    "original_filename": "chat_paste.txt",
+    "stored_path": "validation/cases/VAL-SP16-BUILTUP-0009/source/source_report_transcribed_from_conversation.txt",
+    "sha256": "466be09cda878bd2715804389cf492867ddbf29c194513a183ff0df8d4f6d278",
+    "page_count": 0,
+    "preservation": "structured_transcription_from_conversation; no original file attachment was supplied"
+  },
+  "source_reported_inputs": {
+    "note": "Calculation-grade inputs are encoded in the source transcript and expected/comparison records for this validation campaign."
+  },
+  "source_reported_checks": [
+    {
+      "check_id": "n",
+      "published_value": 0.00219
+    },
+    {
+      "check_id": "eq12_lambda_eff",
+      "published_value": 40.08873
+    },
+    {
+      "check_id": "lambda_bar_branch",
+      "published_value": 1.50974
+    },
+    {
+      "check_id": "branch_limit_pass_source_omitted",
+      "published_value": 1
+    },
+    {
+      "check_id": "phi_x_low_slenderness",
+      "published_value": 1
+    }
+  ],
+  "source_consistency_findings": [
+    {
+      "finding_id": "SOURCE-CLAUSE7.2.3-FAIL-OMITTED",
+      "description": "The report calculates branch lambda_bar=1.50974 but omits the mandatory <=1.4 rejection."
+    },
+    {
+      "finding_id": "TABLE8-EQ12-14-REMEDIATED",
+      "description": "Phase 0.26 removes the erroneous square on (1+n) factors in equations (12)-(14)."
+    },
+    {
+      "finding_id": "MATERIAL-PHYSICAL-PROPERTY-SOURCE-MISMATCH",
+      "description": "The report uses its own C255 resistance and E/G values; current SP16-source values are not silently substituted into this scalar replay."
+    }
+  ],
+  "validation_classification": {
+    "overall_status": "PARTIAL_MATCH_PRODUCTION_REMEDIATED_SOURCE_MISSES_BRANCH_FAIL",
+    "count_as_full_end_to_end_golden_case": false,
+    "count_as_scalar_external_replay": true,
+    "directly_comparable_production_functions": [
+      "standard_core.*.battened_effective_slenderness_type_1",
+      "standard_core.*.batten_branch_slenderness_check",
+      "standard_core.*.central_compression_stability_coefficient"
+    ],
+    "reason": "This campaign preserves source discrepancies and only promotes directly comparable scalar/procedure evidence."
+  }
+}

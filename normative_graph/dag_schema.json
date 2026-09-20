@@ -1,0 +1,2912 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:steel-fire-resistance:normative-calculation-dag:schema:1.0.0",
+  "title": "Steel Fire Resistance Normative Calculation DAG Schema v1.0.0",
+  "description": "Строгая схема данных для машиночитаемого нормативно-расчётного DAG по огнестойкости стальных конструкций.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "graph_id",
+    "graph_title",
+    "graph_type",
+    "engine_contract",
+    "standards",
+    "quantities",
+    "datasets",
+    "nodes",
+    "edges",
+    "semantic_validation",
+    "presentation"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "graph_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_\\-]{2,127}$"
+    },
+    "graph_title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "graph_type": {
+      "const": "normative_calculation_dag"
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "engine_contract": {
+      "$ref": "#/$defs/engineContract"
+    },
+    "standards": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/standard"
+      }
+    },
+    "quantities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/quantity"
+      }
+    },
+    "datasets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/dataset"
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/node"
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/edge"
+      }
+    },
+    "semantic_validation": {
+      "$ref": "#/$defs/semanticValidation"
+    },
+    "presentation": {
+      "$ref": "#/$defs/presentation"
+    }
+  },
+  "$defs": {
+    "idString": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_.:\\-]{1,127}$"
+    },
+    "sourceFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "filename",
+        "sha256"
+      ],
+      "properties": {
+        "filename": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-fA-F0-9]{64}$"
+        },
+        "page_count": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "library_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "standard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "designation",
+        "title",
+        "edition_year",
+        "status",
+        "role",
+        "language",
+        "source_file"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "designation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "edition_year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2100
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "approved",
+            "draft_source_version",
+            "superseded",
+            "national_adoption",
+            "translation",
+            "reference_only"
+          ]
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "master_standard",
+            "supporting_standard",
+            "supplementary_standard"
+          ]
+        },
+        "language": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(-[A-Z]{2})?$"
+        },
+        "source_file": {
+          "$ref": "#/$defs/sourceFile"
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "normativeRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "standard_id",
+        "reference_kind"
+      ],
+      "properties": {
+        "standard_id": {
+          "$ref": "#/$defs/idString"
+        },
+        "reference_kind": {
+          "type": "string",
+          "enum": [
+            "section",
+            "clause",
+            "subclause",
+            "formula",
+            "table",
+            "figure",
+            "annex",
+            "definition",
+            "general_requirement",
+            "derived_graph_logic"
+          ]
+        },
+        "section": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "clause": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "subclause": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "formula_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "table_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "figure_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "annex_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "page": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "quote_or_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "reference_kind": {
+                "const": "formula"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "formula_ref"
+            ],
+            "properties": {
+              "formula_ref": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "reference_kind": {
+                "const": "table"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "table_ref"
+            ],
+            "properties": {
+              "table_ref": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "valueConstraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min_inclusive": {
+          "type": "number"
+        },
+        "min_exclusive": {
+          "type": "number"
+        },
+        "max_inclusive": {
+          "type": "number"
+        },
+        "max_exclusive": {
+          "type": "number"
+        },
+        "multiple_of": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "pattern": {
+          "type": "string"
+        }
+      }
+    },
+    "sourcePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary_source_type",
+        "allowed_source_types",
+        "override_policy"
+      ],
+      "properties": {
+        "primary_source_type": {
+          "type": "string",
+          "enum": [
+            "USER_INPUT",
+            "GEOMETRY_INPUT",
+            "LOAD_INPUT",
+            "STANDARD_CONSTANT",
+            "STANDARD_TABLE",
+            "FORMULA_RESULT",
+            "CLASSIFICATION_RESULT",
+            "EXTERNAL_STANDARD_RESULT",
+            "GEOMETRY_ENGINE_RESULT",
+            "ASSUMPTION"
+          ]
+        },
+        "allowed_source_types": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "USER_INPUT",
+              "GEOMETRY_INPUT",
+              "LOAD_INPUT",
+              "STANDARD_CONSTANT",
+              "STANDARD_TABLE",
+              "FORMULA_RESULT",
+              "CLASSIFICATION_RESULT",
+              "EXTERNAL_STANDARD_RESULT",
+              "GEOMETRY_ENGINE_RESULT",
+              "ASSUMPTION"
+            ]
+          }
+        },
+        "override_policy": {
+          "type": "string",
+          "enum": [
+            "forbidden",
+            "allowed_with_explicit_trace",
+            "required_explicit"
+          ]
+        }
+      }
+    },
+    "enumItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "label"
+      ],
+      "properties": {
+        "value": {
+          "type": [
+            "string",
+            "number",
+            "integer",
+            "boolean"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "quantity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "symbol",
+        "name_ru",
+        "data_type",
+        "role",
+        "physical_dimension",
+        "canonical_unit",
+        "allowed_units",
+        "source_policy"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "symbol": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name_ru": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "data_type": {
+          "type": "string",
+          "enum": [
+            "number",
+            "integer",
+            "boolean",
+            "string",
+            "enum",
+            "geometry2d",
+            "object"
+          ]
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "input",
+            "geometry_input",
+            "derived_geometry",
+            "intermediate",
+            "classification",
+            "decision_state",
+            "result",
+            "diagnostic"
+          ]
+        },
+        "physical_dimension": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "canonical_unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "allowed_units": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "value_constraints": {
+          "$ref": "#/$defs/valueConstraints"
+        },
+        "enum_values": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/enumItem"
+          }
+        },
+        "source_policy": {
+          "$ref": "#/$defs/sourcePolicy"
+        },
+        "tags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "data_type": {
+                "const": "enum"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "enum_values"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "data_type": {
+                "enum": [
+                  "number",
+                  "integer"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "canonical_unit": {
+                "type": "string",
+                "minLength": 1
+              },
+              "physical_dimension": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "datasetAxis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field",
+        "quantity_id",
+        "selector_type"
+      ],
+      "properties": {
+        "field": {
+          "type": "string",
+          "minLength": 1
+        },
+        "quantity_id": {
+          "$ref": "#/$defs/idString"
+        },
+        "selector_type": {
+          "type": "string",
+          "enum": [
+            "exact",
+            "interval",
+            "nearest",
+            "categorical",
+            "boolean"
+          ]
+        },
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "interpolationSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method",
+        "extrapolation"
+      ],
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "none",
+            "linear",
+            "step_lower",
+            "step_upper",
+            "nearest",
+            "bilinear"
+          ]
+        },
+        "axis": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "extrapolation": {
+          "type": "string",
+          "enum": [
+            "forbidden",
+            "clamp",
+            "linear",
+            "standard_defined"
+          ]
+        },
+        "standard_rule_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "dataset_type",
+        "owner_standard_id",
+        "normative_refs",
+        "output_quantity_ids",
+        "storage"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "dataset_type": {
+          "type": "string",
+          "enum": [
+            "normative_table",
+            "normative_constant",
+            "normative_curve",
+            "section_catalog",
+            "mapping",
+            "external_reference"
+          ]
+        },
+        "owner_standard_id": {
+          "$ref": "#/$defs/idString"
+        },
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "normative_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/normativeRef"
+          }
+        },
+        "axes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/datasetAxis"
+          }
+        },
+        "output_quantity_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
+        },
+        "interpolation": {
+          "$ref": "#/$defs/interpolationSpec"
+        },
+        "storage": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "mode",
+                "rows"
+              ],
+              "properties": {
+                "mode": {
+                  "const": "inline"
+                },
+                "rows": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "mode",
+                "uri",
+                "sha256",
+                "format"
+              ],
+              "properties": {
+                "mode": {
+                  "const": "external"
+                },
+                "uri": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-fA-F0-9]{64}$"
+                },
+                "format": {
+                  "type": "string",
+                  "enum": [
+                    "json",
+                    "csv",
+                    "parquet"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "condition": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/comparisonCondition"
+        },
+        {
+          "$ref": "#/$defs/allOfCondition"
+        },
+        {
+          "$ref": "#/$defs/anyOfCondition"
+        },
+        {
+          "$ref": "#/$defs/notCondition"
+        }
+      ]
+    },
+    "comparisonCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "quantity_id",
+        "operator"
+      ],
+      "properties": {
+        "type": {
+          "const": "comparison"
+        },
+        "quantity_id": {
+          "$ref": "#/$defs/idString"
+        },
+        "operator": {
+          "type": "string",
+          "enum": [
+            "eq",
+            "neq",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "in",
+            "not_in",
+            "between",
+            "exists",
+            "matches"
+          ]
+        },
+        "value": {},
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "operator": {
+                "enum": [
+                  "eq",
+                  "neq",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operator": {
+                "enum": [
+                  "in",
+                  "not_in"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value"
+            ],
+            "properties": {
+              "value": {
+                "type": "array",
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operator": {
+                "const": "between"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value"
+            ],
+            "properties": {
+              "value": {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ],
+                "minItems": 2,
+                "maxItems": 2
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operator": {
+                "const": "matches"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value"
+            ],
+            "properties": {
+              "value": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "allOfCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "conditions"
+      ],
+      "properties": {
+        "type": {
+          "const": "all_of"
+        },
+        "conditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/condition"
+          }
+        }
+      }
+    },
+    "anyOfCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "conditions"
+      ],
+      "properties": {
+        "type": {
+          "const": "any_of"
+        },
+        "conditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/condition"
+          }
+        }
+      }
+    },
+    "notCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "condition"
+      ],
+      "properties": {
+        "type": {
+          "const": "not"
+        },
+        "condition": {
+          "$ref": "#/$defs/condition"
+        }
+      }
+    },
+    "quantityBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "quantity_id",
+        "required"
+      ],
+      "properties": {
+        "quantity_id": {
+          "$ref": "#/$defs/idString"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "unit_override": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "binding_role": {
+          "type": "string",
+          "enum": [
+            "input",
+            "selector",
+            "condition",
+            "output",
+            "diagnostic"
+          ]
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "commonNode": {
+      "type": "object",
+      "required": [
+        "id",
+        "node_type",
+        "owner_standard_id",
+        "title",
+        "normative_refs",
+        "consumes",
+        "produces",
+        "applicability",
+        "notes"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "node_type": {
+          "type": "string",
+          "enum": [
+            "input",
+            "geometry_provider",
+            "decision",
+            "applicability_check",
+            "classification",
+            "lookup",
+            "calculation",
+            "standard_handoff",
+            "compliance_check",
+            "result",
+            "unsupported"
+          ]
+        },
+        "owner_standard_id": {
+          "$ref": "#/$defs/idString"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "normative_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/normativeRef"
+          }
+        },
+        "consumes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/quantityBinding"
+          }
+        },
+        "produces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/quantityBinding"
+          }
+        },
+        "applicability": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/condition"
+            }
+          ]
+        },
+        "notes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "engineering_meaning",
+            "limitations",
+            "normative_warning"
+          ],
+          "properties": {
+            "engineering_meaning": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "limitations": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "normative_warning": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "inputSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_method",
+        "required",
+        "user_prompt"
+      ],
+      "properties": {
+        "input_method": {
+          "type": "string",
+          "enum": [
+            "user_number",
+            "user_integer",
+            "user_boolean",
+            "user_text",
+            "user_selection",
+            "imported_value",
+            "external_system"
+          ]
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "user_prompt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "default_value": {},
+        "allow_default_without_confirmation": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "inputNode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/commonNode"
+        },
+        {
+          "type": "object",
+          "required": [
+            "input_spec"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "input"
+            },
+            "input_spec": {
+              "$ref": "#/$defs/inputSpec"
+            },
+            "consumes": {
+              "type": "array",
+              "minItems": 0,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            },
+            "produces": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "catalogGeometrySpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "catalog_dataset_id",
+        "selection_quantity_ids",
+        "catalog_override_policy",
+        "derived_property_quantity_ids"
+      ],
+      "properties": {
+        "mode": {
+          "const": "catalog_section"
+        },
+        "catalog_dataset_id": {
+          "$ref": "#/$defs/idString"
+        },
+        "selection_quantity_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
+        },
+        "catalog_override_policy": {
+          "type": "string",
+          "enum": [
+            "forbidden",
+            "allowed_with_explicit_trace"
+          ]
+        },
+        "derived_property_quantity_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
+        }
+      }
+    },
+    "parametricGeometrySpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "section_family_quantity_id",
+        "dimension_quantity_ids",
+        "geometry_engine_algorithm_id",
+        "derived_property_quantity_ids"
+      ],
+      "properties": {
+        "mode": {
+          "const": "parametric_section"
+        },
+        "section_family_quantity_id": {
+          "$ref": "#/$defs/idString"
+        },
+        "dimension_quantity_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
+        },
+        "geometry_engine_algorithm_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "derived_property_quantity_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
+        }
+      }
+    },
+    "arbitraryGeometrySpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "geometry_quantity_id",
+        "representation",
+        "geometry_engine_algorithm_id",
+        "derived_property_quantity_ids",
+        "geometry_validation"
+      ],
+      "properties": {
+        "mode": {
+          "const": "arbitrary_section"
+        },
+        "geometry_quantity_id": {
+          "$ref": "#/$defs/idString"
+        },
+        "representation": {
+          "type": "string",
+          "enum": [
+            "polygon2d",
+            "polyline_loops",
+            "cad_profile"
+          ]
+        },
+        "geometry_engine_algorithm_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "derived_property_quantity_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
+        },
+        "geometry_validation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "closed_contours_required",
+            "self_intersections_forbidden",
+            "positive_area_required"
+          ],
+          "properties": {
+            "closed_contours_required": {
+              "const": true
+            },
+            "self_intersections_forbidden": {
+              "const": true
+            },
+            "positive_area_required": {
+              "const": true
+            }
+          }
+        }
+      }
+    },
+    "geometryProviderNode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/commonNode"
+        },
+        {
+          "type": "object",
+          "required": [
+            "geometry_spec"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "geometry_provider"
+            },
+            "geometry_spec": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/catalogGeometrySpec"
+                },
+                {
+                  "$ref": "#/$defs/parametricGeometrySpec"
+                },
+                {
+                  "$ref": "#/$defs/arbitraryGeometrySpec"
+                }
+              ]
+            },
+            "consumes": {
+              "type": "array",
+              "minItems": 0,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            },
+            "produces": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "decisionOption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "label"
+      ],
+      "properties": {
+        "value": {
+          "type": [
+            "string",
+            "number",
+            "integer",
+            "boolean"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "decisionNode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/commonNode"
+        },
+        {
+          "type": "object",
+          "required": [
+            "question",
+            "decision_quantity_id",
+            "options"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "decision"
+            },
+            "question": {
+              "type": "string",
+              "minLength": 1
+            },
+            "decision_quantity_id": {
+              "$ref": "#/$defs/idString"
+            },
+            "options": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "$ref": "#/$defs/decisionOption"
+              }
+            },
+            "consumes": {
+              "type": "array",
+              "minItems": 0,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            },
+            "produces": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "applicabilityCheckNode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/commonNode"
+        },
+        {
+          "type": "object",
+          "required": [
+            "question",
+            "check_condition",
+            "result_quantity_id"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "applicability_check"
+            },
+            "question": {
+              "type": "string",
+              "minLength": 1
+            },
+            "check_condition": {
+              "$ref": "#/$defs/condition"
+            },
+            "result_quantity_id": {
+              "$ref": "#/$defs/idString"
+            },
+            "consumes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            },
+            "produces": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "classificationRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "when",
+        "output_value"
+      ],
+      "properties": {
+        "when": {
+          "$ref": "#/$defs/condition"
+        },
+        "output_value": {},
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "classificationNode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/commonNode"
+        },
+        {
+          "type": "object",
+          "required": [
+            "output_quantity_id",
+            "classification_rules"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "classification"
+            },
+            "output_quantity_id": {
+              "$ref": "#/$defs/idString"
+            },
+            "classification_rules": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/classificationRule"
+              }
+            },
+            "fallback_behavior": {
+              "type": "string",
+              "enum": [
+                "error",
+                "unsupported",
+                "explicit_value"
+              ]
+            },
+            "fallback_value": {},
+            "consumes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            },
+            "produces": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "lookupBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset_field",
+        "quantity_id"
+      ],
+      "properties": {
+        "dataset_field": {
+          "type": "string",
+          "minLength": 1
+        },
+        "quantity_id": {
+          "$ref": "#/$defs/idString"
+        }
+      }
+    },
+    "lookupNode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/commonNode"
+        },
+        {
+          "type": "object",
+          "required": [
+            "lookup_spec"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "lookup"
+            },
+            "lookup_spec": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "dataset_id",
+                "selector_bindings",
+                "output_bindings",
+                "interpolation"
+              ],
+              "properties": {
+                "dataset_id": {
+                  "$ref": "#/$defs/idString"
+                },
+                "selector_bindings": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "$ref": "#/$defs/lookupBinding"
+                  }
+                },
+                "output_bindings": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "$ref": "#/$defs/lookupBinding"
+                  }
+                },
+                "interpolation": {
+                  "$ref": "#/$defs/interpolationSpec"
+                }
+              }
+            },
+            "normative_refs": {
+              "contains": {
+                "type": "object",
+                "properties": {
+                  "reference_kind": {
+                    "const": "table"
+                  }
+                },
+                "required": [
+                  "reference_kind"
+                ]
+              }
+            },
+            "consumes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            },
+            "produces": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "formulaBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "variable",
+        "quantity_id"
+      ],
+      "properties": {
+        "variable": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+        },
+        "quantity_id": {
+          "$ref": "#/$defs/idString"
+        }
+      }
+    },
+    "simpleFormulaSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "formula_type",
+        "formula_latex",
+        "expression",
+        "expression_language",
+        "bindings",
+        "rounding"
+      ],
+      "properties": {
+        "formula_type": {
+          "const": "simple"
+        },
+        "formula_latex": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expression": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expression_language": {
+          "const": "expr_v1"
+        },
+        "bindings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/formulaBinding"
+          }
+        },
+        "rounding": {
+          "$ref": "#/$defs/roundingSpec"
+        }
+      }
+    },
+    "piecewiseCase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "when",
+        "formula_latex",
+        "expression"
+      ],
+      "properties": {
+        "when": {
+          "$ref": "#/$defs/condition"
+        },
+        "formula_latex": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expression": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "piecewiseFormulaSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "formula_type",
+        "formula_latex",
+        "expression_language",
+        "bindings",
+        "cases",
+        "rounding"
+      ],
+      "properties": {
+        "formula_type": {
+          "const": "piecewise"
+        },
+        "formula_latex": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expression_language": {
+          "const": "expr_v1"
+        },
+        "bindings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/formulaBinding"
+          }
+        },
+        "cases": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/piecewiseCase"
+          }
+        },
+        "rounding": {
+          "$ref": "#/$defs/roundingSpec"
+        }
+      }
+    },
+    "iterativeFormulaSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "formula_type",
+        "formula_latex",
+        "expression_language",
+        "bindings",
+        "initialization",
+        "update_expression",
+        "convergence",
+        "rounding"
+      ],
+      "properties": {
+        "formula_type": {
+          "const": "iterative"
+        },
+        "formula_latex": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expression_language": {
+          "const": "expr_v1"
+        },
+        "bindings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/formulaBinding"
+          }
+        },
+        "initialization": {
+          "type": "string",
+          "minLength": 1
+        },
+        "update_expression": {
+          "type": "string",
+          "minLength": 1
+        },
+        "convergence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "criterion_expression",
+            "tolerance",
+            "max_iterations"
+          ],
+          "properties": {
+            "criterion_expression": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tolerance": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "max_iterations": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "rounding": {
+          "$ref": "#/$defs/roundingSpec"
+        }
+      }
+    },
+    "roundingSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode"
+      ],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "none",
+            "nearest",
+            "floor",
+            "ceil",
+            "standard_defined"
+          ]
+        },
+        "digits": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "significant_digits": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "normative_ref": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/normativeRef"
+            }
+          ]
+        }
+      }
+    },
+    "calculationNode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/commonNode"
+        },
+        {
+          "type": "object",
+          "required": [
+            "calculation_spec"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "calculation"
+            },
+            "calculation_spec": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/simpleFormulaSpec"
+                },
+                {
+                  "$ref": "#/$defs/piecewiseFormulaSpec"
+                },
+                {
+                  "$ref": "#/$defs/iterativeFormulaSpec"
+                }
+              ]
+            },
+            "normative_refs": {
+              "contains": {
+                "type": "object",
+                "properties": {
+                  "reference_kind": {
+                    "const": "formula"
+                  }
+                },
+                "required": [
+                  "reference_kind"
+                ]
+              }
+            },
+            "consumes": {
+              "type": "array",
+              "minItems": 0,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            },
+            "produces": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "standardHandoffNode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/commonNode"
+        },
+        {
+          "type": "object",
+          "required": [
+            "target_standard_id",
+            "reason",
+            "required_output_quantity_ids"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "standard_handoff"
+            },
+            "target_standard_id": {
+              "$ref": "#/$defs/idString"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required_output_quantity_ids": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/idString"
+              }
+            },
+            "return_to_standard_id": {
+              "oneOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "$ref": "#/$defs/idString"
+                }
+              ]
+            },
+            "consumes": {
+              "type": "array",
+              "minItems": 0,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            },
+            "produces": {
+              "type": "array",
+              "minItems": 0,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "complianceCheckNode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/commonNode"
+        },
+        {
+          "type": "object",
+          "required": [
+            "check_spec",
+            "result_quantity_id"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "compliance_check"
+            },
+            "check_spec": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "formula_latex",
+                "expression",
+                "expression_language",
+                "bindings"
+              ],
+              "properties": {
+                "formula_latex": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "expression": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "expression_language": {
+                  "const": "expr_v1"
+                },
+                "bindings": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/formulaBinding"
+                  }
+                }
+              }
+            },
+            "result_quantity_id": {
+              "$ref": "#/$defs/idString"
+            },
+            "pass_message": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "fail_message": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "consumes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            },
+            "produces": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "resultNode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/commonNode"
+        },
+        {
+          "type": "object",
+          "required": [
+            "result_quantity_ids",
+            "result_kind"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "result"
+            },
+            "result_quantity_ids": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/idString"
+              }
+            },
+            "result_kind": {
+              "type": "string",
+              "enum": [
+                "numeric",
+                "boolean_compliance",
+                "classification",
+                "required_fire_resistance",
+                "critical_temperature",
+                "fire_resistance_time",
+                "design_resistance",
+                "diagnostic"
+              ]
+            },
+            "consumes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            },
+            "produces": {
+              "type": "array",
+              "minItems": 0,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "unsupportedNode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/commonNode"
+        },
+        {
+          "type": "object",
+          "required": [
+            "status",
+            "reason",
+            "planned_resolution"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "unsupported"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "not_covered_by_standard",
+                "not_implemented_yet",
+                "requires_external_standard"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "planned_resolution": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "standard_id",
+                "status"
+              ],
+              "properties": {
+                "standard_id": {
+                  "oneOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "#/$defs/idString"
+                    }
+                  ]
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "planned",
+                    "not_planned",
+                    "unknown"
+                  ]
+                },
+                "note": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            },
+            "consumes": {
+              "type": "array",
+              "minItems": 0,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            },
+            "produces": {
+              "type": "array",
+              "minItems": 0,
+              "items": {
+                "$ref": "#/$defs/quantityBinding"
+              }
+            }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "node": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/inputNode"
+        },
+        {
+          "$ref": "#/$defs/geometryProviderNode"
+        },
+        {
+          "$ref": "#/$defs/decisionNode"
+        },
+        {
+          "$ref": "#/$defs/applicabilityCheckNode"
+        },
+        {
+          "$ref": "#/$defs/classificationNode"
+        },
+        {
+          "$ref": "#/$defs/lookupNode"
+        },
+        {
+          "$ref": "#/$defs/calculationNode"
+        },
+        {
+          "$ref": "#/$defs/standardHandoffNode"
+        },
+        {
+          "$ref": "#/$defs/complianceCheckNode"
+        },
+        {
+          "$ref": "#/$defs/resultNode"
+        },
+        {
+          "$ref": "#/$defs/unsupportedNode"
+        }
+      ]
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "from_node_id",
+        "to_node_id",
+        "edge_type",
+        "label",
+        "condition",
+        "quantity_ids"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idString"
+        },
+        "from_node_id": {
+          "$ref": "#/$defs/idString"
+        },
+        "to_node_id": {
+          "$ref": "#/$defs/idString"
+        },
+        "edge_type": {
+          "type": "string",
+          "enum": [
+            "control",
+            "data",
+            "branch",
+            "handoff"
+          ]
+        },
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "condition": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/condition"
+            }
+          ]
+        },
+        "quantity_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/idString"
+          }
+        },
+        "standard_transition": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "from_standard_id",
+            "to_standard_id"
+          ],
+          "properties": {
+            "from_standard_id": {
+              "$ref": "#/$defs/idString"
+            },
+            "to_standard_id": {
+              "$ref": "#/$defs/idString"
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "edge_type": {
+                "const": "data"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "quantity_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "edge_type": {
+                "const": "branch"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "condition": {
+                "$ref": "#/$defs/condition"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "edge_type": {
+                "const": "handoff"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "standard_transition"
+            ]
+          }
+        }
+      ]
+    },
+    "engineContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expression_language",
+        "unit_system",
+        "null_policy",
+        "numeric_policy",
+        "geometry_policy",
+        "provenance_required"
+      ],
+      "properties": {
+        "expression_language": {
+          "const": "expr_v1"
+        },
+        "unit_system": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "canonical_system",
+            "dimensional_validation_required"
+          ],
+          "properties": {
+            "canonical_system": {
+              "const": "SI_engineering"
+            },
+            "dimensional_validation_required": {
+              "const": true
+            }
+          }
+        },
+        "null_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "unknown_value",
+            "zero_may_mean_unknown"
+          ],
+          "properties": {
+            "unknown_value": {
+              "const": null
+            },
+            "zero_may_mean_unknown": {
+              "const": false
+            }
+          }
+        },
+        "numeric_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "internal_precision",
+            "implicit_rounding_forbidden",
+            "nan_forbidden",
+            "infinity_forbidden"
+          ],
+          "properties": {
+            "internal_precision": {
+              "const": "float64_or_higher"
+            },
+            "implicit_rounding_forbidden": {
+              "const": true
+            },
+            "nan_forbidden": {
+              "const": true
+            },
+            "infinity_forbidden": {
+              "const": true
+            }
+          }
+        },
+        "geometry_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "primary_mode",
+            "allowed_modes",
+            "derived_properties_require_trace"
+          ],
+          "properties": {
+            "primary_mode": {
+              "const": "catalog_section"
+            },
+            "allowed_modes": {
+              "type": "array",
+              "uniqueItems": true,
+              "minItems": 3,
+              "maxItems": 3,
+              "allOf": [
+                {
+                  "contains": {
+                    "const": "catalog_section"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "parametric_section"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "arbitrary_section"
+                  }
+                }
+              ],
+              "items": {
+                "enum": [
+                  "catalog_section",
+                  "parametric_section",
+                  "arbitrary_section"
+                ]
+              }
+            },
+            "derived_properties_require_trace": {
+              "const": true
+            }
+          }
+        },
+        "provenance_required": {
+          "const": true
+        }
+      }
+    },
+    "semanticValidation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_checks",
+        "fail_on_warning"
+      ],
+      "properties": {
+        "required_checks": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "UNIQUE_STANDARD_IDS",
+              "UNIQUE_QUANTITY_IDS",
+              "UNIQUE_DATASET_IDS",
+              "UNIQUE_NODE_IDS",
+              "UNIQUE_EDGE_IDS",
+              "REFERENCES_EXIST",
+              "DAG_ACYCLIC",
+              "EVERY_REQUIRED_INPUT_HAS_UPSTREAM_PRODUCER",
+              "NO_IMPLICIT_QUANTITIES",
+              "EVERY_CALCULATION_HAS_NORMATIVE_FORMULA_REFERENCE",
+              "EVERY_LOOKUP_HAS_DATASET",
+              "EVERY_BRANCH_TERMINATES",
+              "NO_UNRESOLVED_ACTIVE_OUTPUTS",
+              "UNITS_DIMENSIONALLY_COMPATIBLE",
+              "FORMULA_BINDINGS_COMPLETE",
+              "OUTPUT_PROVENANCE_COMPLETE",
+              "NO_AMBIGUOUS_PRODUCER_ON_ACTIVE_PATH",
+              "NORMATIVE_APPLICABILITY_COVERED",
+              "SECTION_GEOMETRY_SOURCE_EXPLICIT",
+              "CATALOG_GEOMETRY_IS_PRIMARY_PATH",
+              "UNSUPPORTED_BRANCHES_ARE_EXPLICIT",
+              "DECISION_OPTIONS_HAVE_BRANCH_EDGES",
+              "DECISION_QUANTITY_IS_PRODUCED_BY_DECISION_NODE",
+              "RESULT_QUANTITIES_ARE_AVAILABLE_UPSTREAM",
+              "PRESENTATION_STYLE_FOR_EVERY_STANDARD",
+              "PRESENTATION_STYLE_FOR_EVERY_NODE_TYPE",
+              "GEOMETRY_PROVIDER_OUTPUT_INTERFACE_COMPLETE",
+              "PARAMETRIC_DIMENSIONS_ARE_EXPLICIT_QUANTITIES",
+              "ARBITRARY_GEOMETRY_IS_VALIDATED_BEFORE_SECTION_PROPERTIES"
+            ]
+          }
+        },
+        "fail_on_warning": {
+          "type": "boolean"
+        }
+      },
+      "allOf": [
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "UNIQUE_STANDARD_IDS"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "UNIQUE_QUANTITY_IDS"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "UNIQUE_DATASET_IDS"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "UNIQUE_NODE_IDS"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "UNIQUE_EDGE_IDS"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "REFERENCES_EXIST"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "DAG_ACYCLIC"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "EVERY_REQUIRED_INPUT_HAS_UPSTREAM_PRODUCER"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "NO_IMPLICIT_QUANTITIES"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "EVERY_CALCULATION_HAS_NORMATIVE_FORMULA_REFERENCE"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "EVERY_LOOKUP_HAS_DATASET"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "EVERY_BRANCH_TERMINATES"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "NO_UNRESOLVED_ACTIVE_OUTPUTS"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "UNITS_DIMENSIONALLY_COMPATIBLE"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "FORMULA_BINDINGS_COMPLETE"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "OUTPUT_PROVENANCE_COMPLETE"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "NO_AMBIGUOUS_PRODUCER_ON_ACTIVE_PATH"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "NORMATIVE_APPLICABILITY_COVERED"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "SECTION_GEOMETRY_SOURCE_EXPLICIT"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "CATALOG_GEOMETRY_IS_PRIMARY_PATH"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "UNSUPPORTED_BRANCHES_ARE_EXPLICIT"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "DECISION_OPTIONS_HAVE_BRANCH_EDGES"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "DECISION_QUANTITY_IS_PRODUCED_BY_DECISION_NODE"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "RESULT_QUANTITIES_ARE_AVAILABLE_UPSTREAM"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "PRESENTATION_STYLE_FOR_EVERY_STANDARD"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "PRESENTATION_STYLE_FOR_EVERY_NODE_TYPE"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "GEOMETRY_PROVIDER_OUTPUT_INTERFACE_COMPLETE"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "PARAMETRIC_DIMENSIONS_ARE_EXPLICIT_QUANTITIES"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "required_checks": {
+              "contains": {
+                "const": "ARBITRARY_GEOMETRY_IS_VALIDATED_BEFORE_SECTION_PROPERTIES"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ownerStyle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "standard_id",
+        "fill",
+        "border",
+        "text"
+      ],
+      "properties": {
+        "standard_id": {
+          "$ref": "#/$defs/idString"
+        },
+        "fill": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        },
+        "border": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        },
+        "text": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        }
+      }
+    },
+    "nodeTypeStyle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "node_type",
+        "shape",
+        "line_style"
+      ],
+      "properties": {
+        "node_type": {
+          "type": "string",
+          "enum": [
+            "input",
+            "geometry_provider",
+            "decision",
+            "applicability_check",
+            "classification",
+            "lookup",
+            "calculation",
+            "standard_handoff",
+            "compliance_check",
+            "result",
+            "unsupported"
+          ]
+        },
+        "shape": {
+          "type": "string",
+          "enum": [
+            "rectangle",
+            "roundrectangle",
+            "diamond",
+            "hexagon",
+            "database",
+            "ellipse",
+            "tag"
+          ]
+        },
+        "line_style": {
+          "type": "string",
+          "enum": [
+            "solid",
+            "dashed",
+            "dotted"
+          ]
+        }
+      }
+    },
+    "presentation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "owner_styles",
+        "node_type_styles",
+        "edge_label_mode"
+      ],
+      "properties": {
+        "owner_styles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ownerStyle"
+          }
+        },
+        "node_type_styles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nodeTypeStyle"
+          }
+        },
+        "edge_label_mode": {
+          "type": "string",
+          "enum": [
+            "quantities_and_conditions",
+            "quantities_only",
+            "conditions_only"
+          ]
+        }
+      }
+    }
+  }
+}

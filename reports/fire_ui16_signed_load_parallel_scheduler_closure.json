@@ -1,0 +1,69 @@
+{
+  "schema": "fire_ui16_signed_load_parallel_scheduler_closure_v1",
+  "release_stage": "v0.49_fire_ui16_signed_load_verification_plan_parallel_dag_r1",
+  "package_version": "0.49.0",
+  "parent_release": "v0.48_fire_ui15_weakening_continuation_hotfix_r1",
+  "dag": "normative_graph/dag_v0.3.52_fire_ui16_signed_load_parallel_scheduler.json",
+  "presentation_policy": "data/fire_ui16_presentation_policy.json",
+  "ui_contract": "data/fire_ui0_ui_contract_v1.json",
+  "dag_counts": {
+    "quantities": 772,
+    "datasets": 38,
+    "nodes": 664,
+    "edges": 1123
+  },
+  "architecture_closure": [
+    "signed local-load menu replaces manual stress-state selection",
+    "automatic verification plan",
+    "active parallel branch queue",
+    "dependency producer call/return",
+    "queued-node applicability recheck",
+    "branch-complete distinct from session-complete",
+    "mechanical-to-thermal stage barrier",
+    "restricted declarative DAG execution runtime"
+  ],
+  "weakening_policy": {
+    "net_area": "A_n = A - d*t_h",
+    "area_only_mode": "gross I/W/Wpl retained by explicit user assumption",
+    "manual_net_mode_required": [
+      "I_xn",
+      "I_yn",
+      "W_xn_min",
+      "W_yn_min",
+      "W_pl_x_eff",
+      "W_pl_y_eff"
+    ],
+    "manual_area_input": false,
+    "tee_regression": "10КТ1"
+  },
+  "signed_loads": [
+    "N_force",
+    "load_My_local",
+    "load_Mz_local",
+    "load_Qy_local",
+    "load_Qz_local",
+    "T_torsion"
+  ],
+  "sign_convention": {
+    "N_positive": "tension",
+    "N_negative": "compression"
+  },
+  "supported_qualification_routes": [
+    "tension",
+    "compression",
+    "My",
+    "Mz",
+    "biaxial",
+    "Qz",
+    "MyQz",
+    "NcMy",
+    "NtMy",
+    "general_N_My_Mz_Qz"
+  ],
+  "explicit_deferred_routes": [
+    "shear_Qy",
+    "torsion_T"
+  ],
+  "end_to_end_cases": 16,
+  "engineering_use_ready": false
+}

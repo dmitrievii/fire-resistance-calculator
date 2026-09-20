@@ -1,0 +1,488 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "built_up_beam_column_guided_case.schema.json",
+  "title": "SP16 Stage N6 guided built-up beam-column and local-stability case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "standard",
+    "action",
+    "member_topology",
+    "same_load_combination_confirmed",
+    "built_up_geometry_classified_confirmed",
+    "axial_force_n",
+    "moment_x_n_mm",
+    "moment_y_n_mm",
+    "gross_area_mm2",
+    "normative_yield_resistance_n_mm2",
+    "design_yield_resistance_n_mm2",
+    "design_ultimate_resistance_n_mm2",
+    "design_shear_resistance_n_mm2",
+    "elastic_modulus_n_mm2",
+    "ultimate_resistance_safety_factor",
+    "working_condition_factor",
+    "whole_member",
+    "branch",
+    "local_stability",
+    "stability"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "standard": {
+      "type": "string",
+      "const": "СП 16.13330.2017"
+    },
+    "action": {
+      "type": "string",
+      "const": "built_up_beam_column_guided"
+    },
+    "same_load_combination_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "built_up_geometry_classified_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "axial_force_n": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "moment_x_n_mm": {
+      "type": "number"
+    },
+    "moment_y_n_mm": {
+      "type": "number"
+    },
+    "gross_area_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "normative_yield_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "design_yield_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "design_ultimate_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "design_shear_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "elastic_modulus_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "ultimate_resistance_safety_factor": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "working_condition_factor": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "whole_member": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "panel_count",
+        "connector_system",
+        "built_up_section_type",
+        "table8_data",
+        "free_axis_moment_n_mm",
+        "compressed_branch_axis_distance_mm",
+        "free_axis_inertia_mm4",
+        "actual_shear_force_n"
+      ],
+      "properties": {
+        "panel_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "connector_system": {
+          "type": "string",
+          "enum": [
+            "battens",
+            "lattice"
+          ]
+        },
+        "built_up_section_type": {
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            3
+          ]
+        },
+        "table8_data": {
+          "type": "object"
+        },
+        "free_axis_moment_n_mm": {
+          "type": "number"
+        },
+        "compressed_branch_axis_distance_mm": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "free_axis_inertia_mm4": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "actual_shear_force_n": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "branch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "base_branch_axial_force_n",
+        "gross_area_mm2",
+        "relative_slenderness",
+        "table7_section_type"
+      ],
+      "properties": {
+        "base_branch_axial_force_n": {
+          "type": "number",
+          "minimum": 0
+        },
+        "gross_area_mm2": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "relative_slenderness": {
+          "type": "number",
+          "minimum": 0
+        },
+        "table7_section_type": {
+          "type": "string",
+          "enum": [
+            "a",
+            "b",
+            "c"
+          ]
+        },
+        "spacing_b_mm": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "spacing_b1_mm": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "spacing_b2_mm": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "external_additional_force_n": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "basis"
+          ],
+          "properties": {
+            "value": {
+              "type": "number",
+              "minimum": 0
+            },
+            "basis": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "stability": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "external_phi_e_d4": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "basis"
+          ],
+          "properties": {
+            "value": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1
+            },
+            "basis": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "local_stability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enabled",
+        "two_plane_condition_governing",
+        "web",
+        "flange"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "two_plane_condition_governing": {
+          "type": "boolean"
+        },
+        "stability_coefficients": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 1
+          }
+        },
+        "transverse_stiffener": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "arrangement",
+            "provided_outstand_mm",
+            "geometrically_nonlinear_design",
+            "solid_branch_of_built_up_column",
+            "provided_thickness_mm",
+            "provided_spacing_mm"
+          ],
+          "properties": {
+            "arrangement": {
+              "type": "string",
+              "enum": [
+                "paired_symmetric",
+                "one_sided"
+              ]
+            },
+            "provided_outstand_mm": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "geometrically_nonlinear_design": {
+              "type": "boolean"
+            },
+            "solid_branch_of_built_up_column": {
+              "type": "boolean"
+            },
+            "provided_thickness_mm": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "provided_spacing_mm": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          }
+        },
+        "web": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "section_type",
+            "effective_height_mm",
+            "thickness_mm",
+            "member_relative_slenderness_x",
+            "relative_eccentricity_mx",
+            "central_compression_limit_m0",
+            "bending_member_limit_m20",
+            "apply_clause_9_4_3"
+          ],
+          "properties": {
+            "section_type": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            },
+            "effective_height_mm": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "thickness_mm": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "member_relative_slenderness_x": {
+              "type": "number",
+              "minimum": 0
+            },
+            "relative_eccentricity_mx": {
+              "type": "number",
+              "minimum": 0
+            },
+            "relative_eccentricity_my": {
+              "type": "number",
+              "minimum": 0
+            },
+            "central_compression_limit_m0": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "bending_member_limit_m20": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "apply_clause_9_4_3": {
+              "type": "boolean"
+            },
+            "type_2_limit_for_eq131": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "sigma_1_n_mm2": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "sigma_2_n_mm2": {
+              "type": "number"
+            },
+            "average_shear_stress_n_mm2": {
+              "type": "number",
+              "minimum": 0
+            },
+            "c_cr": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "central_compression_limit_at_alpha_0_5": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "flange_width_mm": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          }
+        },
+        "flange": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "section_type",
+            "effective_outstand_mm",
+            "thickness_mm",
+            "central_compression_limit",
+            "member_relative_slenderness_x",
+            "member_relative_slenderness_y",
+            "relative_eccentricity_mx",
+            "bending_member_limit_m20",
+            "edge_return_qualified"
+          ],
+          "properties": {
+            "section_type": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4
+            },
+            "effective_outstand_mm": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "thickness_mm": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "central_compression_limit": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "member_relative_slenderness_x": {
+              "type": "number",
+              "minimum": 0
+            },
+            "member_relative_slenderness_y": {
+              "type": "number",
+              "minimum": 0
+            },
+            "relative_eccentricity_mx": {
+              "type": "number",
+              "minimum": 0
+            },
+            "bending_member_limit_m20": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "edge_return_qualified": {
+              "type": "boolean"
+            }
+          }
+        },
+        "longitudinal_stiffener": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "provided_inertia_mm4",
+            "most_loaded_half_web_table22_check",
+            "clause_7_3_4_design_confirmation"
+          ],
+          "properties": {
+            "provided_inertia_mm4": {
+              "type": "number",
+              "minimum": 0
+            },
+            "most_loaded_half_web_table22_check": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "pass",
+                "basis"
+              ],
+              "properties": {
+                "pass": {
+                  "type": "boolean"
+                },
+                "basis": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "clause_7_3_4_design_confirmation": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "confirmed",
+                "basis"
+              ],
+              "properties": {
+                "confirmed": {
+                  "type": "boolean"
+                },
+                "basis": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "member_topology": {
+      "type": "string",
+      "enum": [
+        "general_built_up",
+        "three_sided_equilateral",
+        "two_solid_branches"
+      ]
+    }
+  }
+}

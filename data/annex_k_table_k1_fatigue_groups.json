@@ -1,0 +1,331 @@
+{
+  "standard": "СП 16.13330.2017",
+  "standard_reference": "Annex K, Table K.1, supplied PDF pages 177-181",
+  "title": "Element and connection groups for fatigue design",
+  "classification_mode": "explicit audited case identifier; no automatic image or geometry recognition",
+  "entries": [
+    {
+      "case_id": "K1-01-ROLLED_OR_MACHINED_EDGE",
+      "group": 1,
+      "page": 177,
+      "diagram": "1",
+      "description": "Base metal with rolled or mechanically machined edges",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-01-MACHINE_GAS_CUT_EDGE",
+      "group": 2,
+      "page": 177,
+      "diagram": "1",
+      "description": "Base metal with edges cut by machine gas cutting",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-02-RADIUS_200",
+      "group": 1,
+      "page": 177,
+      "diagram": "2",
+      "description": "Base metal with mechanically machined transition between different widths; transition radius r=200 mm",
+      "conditions": {
+        "transition_radius_mm": 200
+      }
+    },
+    {
+      "case_id": "K1-02-RADIUS_10",
+      "group": 4,
+      "page": 177,
+      "diagram": "2",
+      "description": "Base metal with mechanically machined transition between different widths; transition radius r=10 mm",
+      "conditions": {
+        "transition_radius_mm": 10
+      }
+    },
+    {
+      "case_id": "K1-03-FRICTION_CONNECTION",
+      "group": 1,
+      "page": 177,
+      "diagram": "3",
+      "description": "Base metal in friction connections",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-04-PAIRED_COVER_PLATES",
+      "group": 4,
+      "page": 177,
+      "diagram": "4a",
+      "description": "Base metal in class-A bolt connection at the hole section with paired cover plates",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-04-ONE_SIDED_COVER_PLATE",
+      "group": 5,
+      "page": 177,
+      "diagram": "4b",
+      "description": "Base metal in class-A bolt connection at the hole section with one-sided cover plates",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-05-SMOOTH_TRANSITION",
+      "group": 2,
+      "page": 177,
+      "diagram": "5",
+      "description": "Transition and rounding made by gas cutting cleanliness class 1 or milling",
+      "conditions": {
+        "alpha_degrees_min": 72,
+        "radius_to_width_min": 0.5
+      }
+    },
+    {
+      "case_id": "K1-06-RECTANGULAR_GUSSET",
+      "group": 7,
+      "page": 178,
+      "diagram": "6",
+      "description": "Rectangular gussets butt- or T-welded to members without mechanical treatment of the transition",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-07-GUSSET_ALPHA_LE_45",
+      "group": 4,
+      "page": 178,
+      "diagram": "7",
+      "description": "Gussets butt- or T-welded to beam webs/flanges or truss members",
+      "conditions": {
+        "alpha_degrees_max": 45
+      }
+    },
+    {
+      "case_id": "K1-08-LAP_GUSSET_PERIMETER_WELD",
+      "group": 7,
+      "page": 178,
+      "diagram": "8",
+      "description": "Rectangular or trapezoidal gussets lap-welded to beam flanges around the overlap perimeter without mechanical weld treatment",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-09-UNTREATED_BUTT_SAME",
+      "group": 4,
+      "page": 178,
+      "diagram": "9",
+      "description": "Untreated butt weld, load perpendicular to weld, joined members of equal width and thickness",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-10-UNTREATED_BUTT_DIFFERENT",
+      "group": 5,
+      "page": 178,
+      "diagram": "10",
+      "description": "Untreated butt weld, joined members of different width or thickness",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-11-GROUND_FLUSH_SAME",
+      "group": 2,
+      "page": 178,
+      "diagram": "11a",
+      "description": "Base metal at transition to butt weld with reinforcement removed mechanically; equal thickness and width",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-11-GROUND_FLUSH_DIFFERENT",
+      "group": 3,
+      "page": 179,
+      "diagram": "11b",
+      "description": "Base metal at transition to butt weld with reinforcement removed mechanically; different thickness and width",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-12-SHEET_ON_BACKING",
+      "group": 4,
+      "page": 179,
+      "diagram": "12a",
+      "description": "Butt-welded sheet on backing plate; load perpendicular to weld",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-12-PIPE_ON_BACKING_RING",
+      "group": 4,
+      "page": 179,
+      "diagram": "12b",
+      "description": "Butt-welded pipe on backing ring",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-12-ROLLED_PROFILE_BUTT",
+      "group": 4,
+      "page": 179,
+      "diagram": "12c",
+      "description": "Butt-welded rolled sections",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-13-CONTINUOUS_LONGITUDINAL_WELDS",
+      "group": 2,
+      "page": 179,
+      "diagram": "13",
+      "description": "Welded I-, T-, or other section with continuous longitudinal welds; force acts along weld axis",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-14-AUXILIARY_ALPHA_LE_45",
+      "group": 4,
+      "page": 179,
+      "diagram": "14a",
+      "description": "Base metal with auxiliary element attached by longitudinal welds",
+      "conditions": {
+        "alpha_degrees_max": 45
+      }
+    },
+    {
+      "case_id": "K1-14-AUXILIARY_ALPHA_90",
+      "group": 7,
+      "page": 179,
+      "diagram": "14b",
+      "description": "Base metal with auxiliary element attached by longitudinal welds",
+      "conditions": {
+        "alpha_degrees_exact": 90
+      }
+    },
+    {
+      "case_id": "K1-15-COVER_PLATE_TERMINATION",
+      "group": 7,
+      "page": 179,
+      "diagram": "15",
+      "description": "Flange cover-plate termination without mechanical treatment of transverse end weld",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-16-TRANSVERSE_WELD_SMOOTH",
+      "group": 4,
+      "page": 180,
+      "diagram": "16",
+      "description": "Base metal with transverse weld; double-sided weld with smooth transition to base metal",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-17-DIAPHRAGM_OR_RIB",
+      "group": 5,
+      "page": 180,
+      "diagram": "17",
+      "description": "Base metal of tension beam flanges and truss members near diaphragms or ribs attached by fillet welds",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-18-FIGURE_TOP",
+      "group": 6,
+      "page": 180,
+      "diagram": "18-top",
+      "description": "Base metal at transition to transverse end fillet weld; upper printed scheme",
+      "conditions": {
+        "mapping_note": "The two groups are mapped by vertical order because the row has no separate textual subcase labels."
+      }
+    },
+    {
+      "case_id": "K1-18-FIGURE_BOTTOM",
+      "group": 5,
+      "page": 180,
+      "diagram": "18-bottom",
+      "description": "Base metal at transition to transverse end fillet weld; lower printed scheme",
+      "conditions": {
+        "mapping_note": "The two groups are mapped by vertical order because the row has no separate textual subcase labels."
+      }
+    },
+    {
+      "case_id": "K1-19-DOUBLE_FLANK_WELDS",
+      "group": 8,
+      "page": 180,
+      "diagram": "19a",
+      "description": "Base metal in connection with longitudinal flank welds at their ends; double flank welds",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-19-FLANK_AND_END_WELDS",
+      "group": 7,
+      "page": 180,
+      "diagram": "19b",
+      "description": "Base metal in connection with longitudinal flank welds at their ends; flank and end welds",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-19-FORCE_THROUGH_BASE_METAL",
+      "group": 7,
+      "page": 180,
+      "diagram": "19c",
+      "description": "Base metal in connection with longitudinal flank welds; force transferred through base metal",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-19-STEEL_ROPE_ANCHOR_CHEEKS",
+      "group": 8,
+      "page": 180,
+      "diagram": "19d",
+      "description": "Anchor cheeks for fastening steel ropes",
+      "conditions": {}
+    },
+    {
+      "case_id": "K1-20-TM_DM_GE_1_14",
+      "group": 7,
+      "page": 181,
+      "diagram": "20a",
+      "description": "Base metal of tension brace tube; chord thickness/outside-diameter ratio at least 1/14",
+      "conditions": {
+        "tm_dm_min_inclusive": "1/14"
+      }
+    },
+    {
+      "case_id": "K1-20-TM_DM_1_20_TO_1_14",
+      "group": 8,
+      "page": 181,
+      "diagram": "20b",
+      "description": "Base metal of tension brace tube; chord thickness/outside-diameter ratio from 1/20 inclusive to 1/14 exclusive",
+      "conditions": {
+        "tm_dm_min_inclusive": "1/20",
+        "tm_dm_max_exclusive": "1/14"
+      }
+    },
+    {
+      "case_id": "K1-21-TM_DM_GE_1_14",
+      "group": 6,
+      "page": 181,
+      "diagram": "21a",
+      "description": "Tubular tension-brace joint with brace/chord diameter ratio 0.4-0.7; chord thickness ratio at least 1/14",
+      "conditions": {
+        "dd_dm_min_inclusive": 0.4,
+        "dd_dm_max_inclusive": 0.7,
+        "tm_dm_min_inclusive": "1/14"
+      }
+    },
+    {
+      "case_id": "K1-21-TM_DM_1_20_TO_1_14",
+      "group": 7,
+      "page": 181,
+      "diagram": "21b",
+      "description": "Tubular tension-brace joint with brace/chord diameter ratio 0.4-0.7; chord thickness ratio from 1/20 inclusive to 1/14 exclusive",
+      "conditions": {
+        "dd_dm_min_inclusive": 0.4,
+        "dd_dm_max_inclusive": 0.7,
+        "tm_dm_min_inclusive": "1/20",
+        "tm_dm_max_exclusive": "1/14"
+      }
+    },
+    {
+      "case_id": "K1-21-TM_DM_1_35_TO_1_20",
+      "group": 8,
+      "page": 181,
+      "diagram": "21c",
+      "description": "Tubular tension-brace joint with brace/chord diameter ratio 0.4-0.7; chord thickness ratio from 1/35 inclusive to 1/20 exclusive",
+      "conditions": {
+        "dd_dm_min_inclusive": 0.4,
+        "dd_dm_max_inclusive": 0.7,
+        "tm_dm_min_inclusive": "1/35",
+        "tm_dm_max_exclusive": "1/20"
+      }
+    }
+  ],
+  "limitations": [
+    "Table K.1 is diagram-driven; the user must select the matching case.",
+    "Intermediate radii or angles are not interpolated unless expressly printed.",
+    "Figure 18 subcase names are implementation labels based on vertical order, not standard wording."
+  ],
+  "source_edition": "СП 16.13330.2017, Changes No. 1-6 through 09.12.2024",
+  "source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873"
+}

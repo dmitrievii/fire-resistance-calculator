@@ -1,0 +1,37 @@
+{
+  "schema": "fire_val1_v057_remediation_summary_v1",
+  "release_stage": "v0.57_fire_ui24_fire_val1_routing_remediation_r1",
+  "dag_path": "normative_graph/dag_v0.3.60_fire_ui24_fire_val1_routing_remediation.json",
+  "dag_sha256": "c0187dc0b0865040482a251abb3eb129d51f87b29499104c302ab06aa289b352",
+  "initial_campaign_unexpected_blocked_frontiers": 46,
+  "remediation_rerun": {
+    "processed_unique_states": 500,
+    "queue_remaining": 620,
+    "decision_attempts": 1096,
+    "covered_decision_outcomes": 126,
+    "covered_navigation_edges": 151,
+    "visited_nodes": 146,
+    "interactive_nodes_exercised": 42,
+    "unexpected_blocked_frontiers": 0,
+    "explorer_exceptions": 0
+  },
+  "curated_seed_routes": {
+    "count": 18,
+    "result_terminal_count": 18,
+    "with_branch_failures": 0
+  },
+  "closed_defects": [
+    "D001 static-stress compression route now resolves gamma_e before critical-temperature inversion",
+    "D002 strength-only static-stress branch now continues to Tcr",
+    "D003 unsupported gamma_c=other dead selector removed",
+    "D004 local-stress branch authors sp16_local_load_F before Eq. (47)",
+    "D005 gamma_T/gamma_e dependency and compression-control continuation reconciled",
+    "D006 internal required-R provenance object excluded from guided authoring",
+    "follow-up: unsupported SP16 Table-7 curve=other dead selector removed"
+  ],
+  "open_scope": {
+    "Qy_axis_specific_shear_runtime_closed": false,
+    "torsion_T_runtime_closed": false,
+    "engineering_use_ready": false
+  }
+}

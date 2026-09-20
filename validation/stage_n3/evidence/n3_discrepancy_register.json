@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "N3",
+  "items": [
+    {
+      "id": "N3-D-001",
+      "primary_class": "PACKAGE_COVERAGE_GAP",
+      "status": "REMEDIATED",
+      "subject": "Guided applicability-safe axial workflow",
+      "finding": "The N2 parent had scalar axial functions but no guided 7.1/7.2 orchestration that suppresses inapplicable branches and preserves a stepwise trace.",
+      "remediation": "Added standard_core.axial_workflows with solid and built-up guided routes plus schemas/examples."
+    },
+    {
+      "id": "N3-D-002",
+      "primary_class": "PACKAGE_DEFECT",
+      "secondary_class": "MISSING_CURRENT_BRANCH",
+      "status": "REMEDIATED_CURRENT_SOURCE",
+      "subject": "Current equation (7a) and gamma_res",
+      "finding": "The N2 equation inventory/code did not contain the current rolled-I equation (7a) and its gamma_res rule.",
+      "remediation": "Added SP16-EQ-007A, literal current-source gamma_res endpoint rules and Ry interpolation, plus boundary tests."
+    },
+    {
+      "id": "N3-D-003",
+      "primary_class": "NORMCAD_OUTDATED_OR_NONCONFORMING",
+      "secondary_class": "MISSING_CURRENT_BRANCH",
+      "status": "CLASSIFIED_STATIC_EVIDENCE",
+      "subject": "NormCAD current equation (7a)",
+      "finding": "The inspected historical NormCAD SP16 DSL contains the old 7.1.3 equation-(7) route but no current equation-(7a)/gamma_res branch.",
+      "remediation": "NormCAD remains secondary evidence only; production follows the current SP16 source."
+    },
+    {
+      "id": "N3-D-004",
+      "primary_class": "BRANCH_LOGIC_MISMATCH",
+      "status": "REMEDIATED",
+      "subject": "Table 8 dispatch",
+      "finding": "The legacy built-up runner could evaluate multiple Table 8 formula producers rather than selecting only the applicable section-type/connector branch.",
+      "remediation": "selected_table8_effective_slenderness dispatches exactly one of equations (12)-(17)."
+    },
+    {
+      "id": "N3-D-005",
+      "primary_class": "APPLICABILITY_MISMATCH",
+      "status": "REMEDIATED",
+      "subject": "Table 8 minimum six-panel applicability",
+      "finding": "Table 8 applies to members with at least six panels; a generic route must not silently apply it below six.",
+      "remediation": "For panel_count<6, battens return an external frame-analysis requirement and lattice redirects to the 7.2.5 route/fails closed if required lambda_ef is not externally available."
+    },
+    {
+      "id": "N3-D-006",
+      "primary_class": "SOURCE_AMBIGUITY",
+      "status": "CLASSIFIED_CURRENT_SOURCE",
+      "subject": "Phi cap at exact 3.8/4.4/5.8 boundary",
+      "finding": "Clause 7.1.3 wording applies the 7.6/lambda_bar^2 cap at values above the thresholds, while exact printed Annex D.1 boundary nodes reflect capped values at some threshold nodes.",
+      "remediation": "No silent normative rewrite. Formula workflow preserves the established exact-table-boundary policy and records the conflict explicitly; the source ambiguity remains visible in trace/evidence."
+    },
+    {
+      "id": "N3-D-007",
+      "primary_class": "FORMULA_MISMATCH",
+      "secondary_class": "NORMCAD_OUTDATED_OR_NONCONFORMING",
+      "status": "CLASSIFIED_STATIC_EVIDENCE",
+      "subject": "NormCAD static Table 8 equation (14)",
+      "finding": "The inspected NormCAD DSL expression for equation (14) uses a multiplicative term sequence under SQRT, whereas current SP16 Table 8 has lambda_max^2 + 0.82(1+3n3)lambda_b3^2.",
+      "remediation": "Production formula (14) is source-based and independently tested; the historical NormCAD expression is not reused."
+    },
+    {
+      "id": "N3-D-008",
+      "primary_class": "DAG_DEFECT",
+      "status": "REMEDIATED",
+      "subject": "Current-SP16 axial lambda_bar basis and Stage N3 nodes",
+      "finding": "The pre-N3 graph had an SP554-context lambda_bar producer using Ryn, which must not be reused for current SP16 clause 7.1.3 where lambda_bar uses Ry.",
+      "remediation": "DAG v0.3.32 adds a dedicated Stage N3 lambda_bar producer using Ry and explicit equation (7a), gamma_res, Table 8 and Qfic nodes."
+    }
+  ],
+  "summary": {
+    "total": 8,
+    "remediated_package_or_dag": 5,
+    "classified_normcad": 2,
+    "classified_source_ambiguity": 1,
+    "open_package_or_dag_defects": 0,
+    "stage_n3_runtime_unresolved": 0
+  }
+}

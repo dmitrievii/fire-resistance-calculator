@@ -1,0 +1,74 @@
+{
+  "schema": "fire_ui14_section_weakening_simplification_closure_v1",
+  "release": "v0.47_fire_ui14_section_weakening_simplification_r1",
+  "package_version": "0.47.0",
+  "parent": "v0.46_fire_ui13_material_strength_editor_r1",
+  "dag": "normative_graph/dag_v0.3.50_fire_ui14_section_weakening_simplification.json",
+  "dag_counts": {
+    "quantities": 756,
+    "datasets": 38,
+    "nodes": 660,
+    "edges": 1118
+  },
+  "defect_closed": "single object-valued produces binding was misclassified as a multi-field payload",
+  "ui_contract": {
+    "choices": [
+      "no_holes",
+      "bolted_web_holes"
+    ],
+    "user_inputs": [
+      "hole_diameter_mm",
+      "hole_pitch_mm"
+    ],
+    "removed_inputs": [
+      "weakening_type",
+      "zone",
+      "count",
+      "active_transverse_section_id",
+      "cutout_geometry"
+    ]
+  },
+  "supported_model": {
+    "model": "central_web_bolt_hole_formula45_v1",
+    "section": "doubly_symmetric_I",
+    "net_active_hole_center": "gross_centroidal_axes",
+    "removed_cross_section_area": "d*t_w",
+    "formula45_pitch_semantics": "pitch in one vertical row",
+    "formula45": "s/(s-d)",
+    "constraint": "s>d"
+  },
+  "smoke_case_20K1": {
+    "d_mm": 20.0,
+    "s_mm": 80.0,
+    "t_w_mm": 6.5,
+    "A_gross_mm2": 5269.0,
+    "A_removed_mm2": 130.0,
+    "A_net_mm2": 5139.0,
+    "alpha45": 1.3333333333333333
+  },
+  "qualification": {
+    "main_release_audit": "PASS",
+    "implemented_equations": 240,
+    "unresolved_equations": 0,
+    "implemented_tables": 67,
+    "unresolved_tables": 0,
+    "implemented_procedures": 303,
+    "unresolved_procedures": 0,
+    "validation_cases": 1876,
+    "validation_status": "PASS",
+    "public_api_docstrings": "646/646 PASS",
+    "normative_rebaseline": "PASS",
+    "focused_fire_ui14_and_frontend": "31/31 PASS",
+    "phase_0_23_normative_rebaseline_tests": "5/5 PASS",
+    "full_tree_pytest": "NOT CLAIMED — execution-time cap; no failures observed before cap"
+  },
+  "engineering_use_ready": false,
+  "deferred": [
+    "flange holes",
+    "multiple active transverse-section holes",
+    "arbitrary cut-outs",
+    "staggered net paths",
+    "arbitrary weakening geometry",
+    "full SP16-to-FIRE-D4 guided executor closure"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "release_stage": "v0.29_stage_n3_axial_members_current_sp16_closed_reconstructed_r1",
+  "qualification": "research_grade_stage_n3_axial_members_closed_current_sp16_triangulated",
+  "stage_n3_closed": true,
+  "engineering_use_ready": false,
+  "full_change_6_rebaselined": false,
+  "original_gost_profile_audit_complete": false,
+  "tests": "645/645 pre-manifest + 35/35 focused",
+  "dag_sha256": "226c04a36dded941a8176bed2e258cfc4cc76f157f5000ad6e4cef10c6738aab"
+}

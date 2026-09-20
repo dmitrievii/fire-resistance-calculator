@@ -1,0 +1,295 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "built_up_axial_member_case.schema.json",
+  "title": "СП 16.13330.2017 built-up axial member case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "standard",
+    "action",
+    "clause_7_2_applicability_confirmed",
+    "axial_force_n",
+    "total_net_area_mm2",
+    "gross_area_mm2",
+    "design_yield_resistance_n_mm2",
+    "design_ultimate_resistance_n_mm2",
+    "ultimate_resistance_safety_factor",
+    "working_condition_factor",
+    "elastic_modulus_n_mm2",
+    "equation_5_resistance_branch",
+    "panel_count",
+    "connector_system",
+    "whole_member_slenderness_y",
+    "whole_member_max_slenderness",
+    "branch_slenderness_1",
+    "branch_slenderness_2",
+    "branch_slenderness_3",
+    "branch_inertia_axis_1_mm4",
+    "branch_inertia_axis_2_mm4",
+    "branch_inertia_axis_3_mm4",
+    "branch_axis_spacing_b_mm",
+    "branch_axis_spacing_b1_mm",
+    "branch_axis_spacing_b2_mm",
+    "batten_inertia_mm4",
+    "batten_inertia_plane_1_mm4",
+    "batten_inertia_plane_2_mm4",
+    "batten_pitch_mm",
+    "panel_length_mm",
+    "diagonal_area_plane_1_mm2",
+    "diagonal_area_plane_2_mm2",
+    "diagonal_area_one_face_mm2",
+    "diagonal_length_d_mm",
+    "diagonal_length_d1_mm",
+    "diagonal_length_d2_mm",
+    "batten_branch_relative_slenderness",
+    "lattice_branch_relative_slenderness",
+    "clause_7_2_5_check_performed",
+    "branch_section_type",
+    "connection_spacing_mm",
+    "selected_radius_of_gyration_mm",
+    "close_contact_force_state",
+    "intermediate_connection_count",
+    "fictitious_shear_distribution_mode",
+    "connector_system_count",
+    "lattice_force_coefficient_alpha_1",
+    "one_branch_force_n",
+    "one_diagonal_area_mm2",
+    "one_branch_area_mm2",
+    "column_branch_force_1_n",
+    "column_branch_force_2_n"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "standard": {
+      "type": "string",
+      "const": "СП 16.13330.2017"
+    },
+    "action": {
+      "type": "string",
+      "const": "built_up_axial_members"
+    },
+    "clause_7_2_applicability_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "axial_force_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "total_net_area_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "gross_area_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "design_yield_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "design_ultimate_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "ultimate_resistance_safety_factor": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "working_condition_factor": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "elastic_modulus_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "equation_5_resistance_branch": {
+      "type": "string",
+      "enum": [
+        "yield",
+        "ultimate"
+      ]
+    },
+    "panel_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "connector_system": {
+      "type": "string",
+      "enum": [
+        "battens",
+        "lattice"
+      ]
+    },
+    "whole_member_slenderness_y": {
+      "type": "number",
+      "minimum": 0
+    },
+    "whole_member_max_slenderness": {
+      "type": "number",
+      "minimum": 0
+    },
+    "branch_slenderness_1": {
+      "type": "number",
+      "minimum": 0
+    },
+    "branch_slenderness_2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "branch_slenderness_3": {
+      "type": "number",
+      "minimum": 0
+    },
+    "branch_inertia_axis_1_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "branch_inertia_axis_2_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "branch_inertia_axis_3_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "branch_axis_spacing_b_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "branch_axis_spacing_b1_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "branch_axis_spacing_b2_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "batten_inertia_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "batten_inertia_plane_1_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "batten_inertia_plane_2_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "batten_pitch_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "panel_length_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "diagonal_area_plane_1_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "diagonal_area_plane_2_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "diagonal_area_one_face_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "diagonal_length_d_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "diagonal_length_d1_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "diagonal_length_d2_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "batten_branch_relative_slenderness": {
+      "type": "number",
+      "minimum": 0
+    },
+    "lattice_branch_relative_slenderness": {
+      "type": "number",
+      "minimum": 0
+    },
+    "clause_7_2_5_check_performed": {
+      "type": "boolean",
+      "const": true
+    },
+    "branch_section_type": {
+      "type": "string",
+      "enum": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "connection_spacing_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "selected_radius_of_gyration_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "close_contact_force_state": {
+      "type": "string",
+      "enum": [
+        "compression",
+        "tension"
+      ]
+    },
+    "intermediate_connection_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "fictitious_shear_distribution_mode": {
+      "type": "string",
+      "enum": [
+        "connectors_only",
+        "solid_sheet_and_connectors",
+        "equilateral_three_sided"
+      ]
+    },
+    "connector_system_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "lattice_force_coefficient_alpha_1": {
+      "type": "number",
+      "enum": [
+        0.5,
+        1.0
+      ]
+    },
+    "one_branch_force_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "one_diagonal_area_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "one_branch_area_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "column_branch_force_1_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "column_branch_force_2_n": {
+      "type": "number",
+      "minimum": 0
+    }
+  }
+}

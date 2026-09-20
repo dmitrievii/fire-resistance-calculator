@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "N5",
+  "status": "CLOSED_WITH_EXPLICIT_SCOPE_BOUNDARIES",
+  "items": [
+    {
+      "id": "N5-D-001",
+      "topic": "guided Section 9 orchestration gap",
+      "classification": "REMEDIATED",
+      "resolution": "beam_column_guided now composes N1/N2 hydration and frozen Section 9 primitives with branch-safe routing."
+    },
+    {
+      "id": "N5-D-002",
+      "topic": "historical NormCAD C255 material values",
+      "classification": "HISTORICAL_ORACLE_DIVERGENCE",
+      "resolution": "Production uses current Ryn=245 MPa, Ry=240 MPa, E=206000 MPa; historical 255/250/210000 is retained only as evidence."
+    },
+    {
+      "id": "N5-D-003",
+      "topic": "NormCAD lefy=2.95 mm",
+      "classification": "SOURCE_ANOMALY_PRESERVED",
+      "resolution": "No silent unit repair; case remains partial evidence."
+    },
+    {
+      "id": "N5-D-004",
+      "topic": "15K4 torsional inertia",
+      "classification": "HISTORICAL_CATALOG_DIVERGENCE",
+      "resolution": "Historical It=385333 mm4 is not used; current Annex-D runtime policy resolves 497080 mm4."
+    },
+    {
+      "id": "N5-D-005",
+      "topic": "Table D.3 arbitrary-point interpolation",
+      "classification": "REMEDIATED_BY_EXPLICIT_DIGITAL_INTERPOLATION_POLICY",
+      "resolution": "Table D.3 now uses deterministic bilinear interpolation for arbitrary in-domain lambda_bar/m_eff coordinates, preserves exact printed nodes, forbids extrapolation, and applies the phi_e<=phi cap. Historical NormCAD VAL-SP16-BEAMCOL-0008 reproduces the policy: 1.61095/6.67245 -> 0.187708 ~= 0.18771."
+    },
+    {
+      "id": "N5-D-006",
+      "topic": "9.2.9 meff_y>20 mixed trigger",
+      "classification": "RETAINED_REMEDIATION",
+      "resolution": "Eq.(116) suppressed while independent lambda_x>lambda_y trigger for Eq.(109) ey=0 remains active."
+    },
+    {
+      "id": "N5-D-007",
+      "topic": "box and built-up beam-columns",
+      "classification": "NO_DUPLICATION_ROUTE",
+      "resolution": "Guided action routes these to existing detailed beam_column_stability / built_up_beam_columns_and_combined_local_stability actions."
+    }
+  ],
+  "unresolved_in_declared_n5_scope": []
+}

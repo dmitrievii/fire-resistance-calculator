@@ -1,0 +1,170 @@
+{
+  "case_id": "SECTION15-RUN-001",
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "release_stage": "v0.67_fire_bridge2_qualified_sp16_complex_state_handoff_r1",
+  "action": "structural_detailing_and_support_bearings",
+  "engineering_calculation_performed": true,
+  "inputs": {
+    "case_id": "SECTION15-RUN-001",
+    "standard": "СП 16.13330.2017 «Стальные конструкции»",
+    "action": "structural_detailing_and_support_bearings",
+    "section_15_applicability_confirmed": true,
+    "building_type": "heated_building",
+    "direction": "between_joints_along_block",
+    "design_air_temperature_c": -30.0,
+    "actual_temperature_block_distance_m": 220.0,
+    "frame_stiffness_increased_by_walls_or_other_structures": false,
+    "paired_vertical_braces_present": true,
+    "paired_vertical_brace_axis_spacing_m": 45.0,
+    "strict_uniform_pressure_distribution_required": true,
+    "reaction_class": "very_large",
+    "relieve_substructure_from_horizontal_forces": true,
+    "movable_bearing_type": "roller",
+    "support_force_n": 1200000.0,
+    "hinge_contact_central_angle_deg": 100.0,
+    "hinge_radius_mm": 150.0,
+    "hinge_length_mm": 300.0,
+    "local_bearing_design_resistance_n_mm2": 242.85714285714286,
+    "roller_count": 4,
+    "roller_diameter_mm": 120.0,
+    "roller_length_mm": 300.0,
+    "roller_diametral_compression_resistance_n_mm2": 12.142857142857142,
+    "working_condition_factor": 1.0
+  },
+  "results": {
+    "temperature_joint_spacing_assessment": {
+      "maximum_table_44_distance_m": 230.0,
+      "actual_distance_m": 220.0,
+      "utilization": 0.9565217391304348,
+      "table_compliance_pass": true,
+      "exceeds_table_value": false,
+      "exceeds_table_value_by_more_than_five_percent": false,
+      "frame_stiffness_increased_by_walls_or_other_structures": false,
+      "climatic_temperature_effects_inelastic_deformations_and_joint_flexibility_analysis_required": false
+    },
+    "paired_vertical_bracing_spacing_assessment": {
+      "applicable": true,
+      "maximum_axis_spacing_m": 50.0,
+      "actual_axis_spacing_m": 45.0,
+      "pass": true
+    },
+    "support_bearing_selection": {
+      "fixed_support_category": "balancing_fixed_hinged_support",
+      "movable_support_category": "flat_sliding_or_roller_movable_support",
+      "strict_uniform_pressure_distribution_required": true,
+      "reaction_class": "very_large",
+      "relieve_substructure_from_horizontal_forces": true,
+      "detailed_geometry_material_product_and_anchor_design_required": true
+    },
+    "movable_bearing_friction_coefficient": 0.03,
+    "equation_199_cylindrical_hinge": {
+      "contact_central_angle_deg": 100.0,
+      "equation_199_applicable": true,
+      "equation_199_utilization": 0.08784313725490196,
+      "equation_199_pass": true
+    },
+    "equation_200_roller_bearing": {
+      "equation_200_utilization": 0.6862745098039217,
+      "equation_200_capacity_n": 1748571.4285714282,
+      "equation_200_pass": true
+    },
+    "table_44_catalog": {
+      "standard": "СП 16.13330.2017 «Стальные конструкции»",
+      "version": "Supplied consolidated text with corrections through 2024 and Amendments No. 1-5",
+      "clause": "15.1",
+      "table": "44",
+      "title": "Maximum distances between temperature joints",
+      "pages": [
+        97,
+        98
+      ],
+      "temperature_branches": {
+        "at_or_above_minus_45_c": {
+          "condition": "t >= -45 °C"
+        },
+        "below_minus_45_c": {
+          "condition": "t < -45 °C"
+        }
+      },
+      "rows": [
+        {
+          "building_type": "heated_building",
+          "direction": "between_joints_along_block",
+          "at_or_above_minus_45_c_m": 230.0,
+          "below_minus_45_c_m": 160.0
+        },
+        {
+          "building_type": "heated_building",
+          "direction": "between_joints_across_block",
+          "at_or_above_minus_45_c_m": 150.0,
+          "below_minus_45_c_m": 110.0
+        },
+        {
+          "building_type": "heated_building",
+          "direction": "joint_or_end_to_nearest_vertical_bracing_axis",
+          "at_or_above_minus_45_c_m": 90.0,
+          "below_minus_45_c_m": 60.0
+        },
+        {
+          "building_type": "unheated_building_or_hot_shop",
+          "direction": "between_joints_along_block",
+          "at_or_above_minus_45_c_m": 200.0,
+          "below_minus_45_c_m": 140.0
+        },
+        {
+          "building_type": "unheated_building_or_hot_shop",
+          "direction": "between_joints_across_block",
+          "at_or_above_minus_45_c_m": 120.0,
+          "below_minus_45_c_m": 90.0
+        },
+        {
+          "building_type": "unheated_building_or_hot_shop",
+          "direction": "joint_or_end_to_nearest_vertical_bracing_axis",
+          "at_or_above_minus_45_c_m": 75.0,
+          "below_minus_45_c_m": 50.0
+        },
+        {
+          "building_type": "open_trestle",
+          "direction": "between_joints_along_block",
+          "at_or_above_minus_45_c_m": 130.0,
+          "below_minus_45_c_m": 100.0
+        },
+        {
+          "building_type": "open_trestle",
+          "direction": "joint_or_end_to_nearest_vertical_bracing_axis",
+          "at_or_above_minus_45_c_m": 50.0,
+          "below_minus_45_c_m": 40.0
+        }
+      ],
+      "note": {
+        "applies_when": "two vertical bracing systems occur between temperature joints",
+        "building_axis_spacing_m": {
+          "at_or_above_minus_45_c": 50.0,
+          "below_minus_45_c": 40.0
+        },
+        "open_trestle_axis_spacing_m": {
+          "at_or_above_minus_45_c": 30.0,
+          "below_minus_45_c": 25.0
+        },
+        "printed_ranges": "buildings 40-50 m; open trestles 25-30 m; use the smaller value when t < -45 °C"
+      },
+      "rules": [
+        "The tabulated value is a maximum, not a 5 percent tolerance.",
+        "When the distance exceeds the tabulated value by more than 5 percent, climatic temperature effects, inelastic deformations, and joint flexibility must be included in analysis.",
+        "The same enhanced analysis is required when frame stiffness is increased by walls or other structures."
+      ],
+      "interpolation": "not applicable; temperature branch changes at -45 °C and no interpolation is stated"
+    },
+    "section_15_requirement_classification_summary": {
+      "section_heading": 11,
+      "implemented_table_and_decision_route": 1,
+      "linked_normative_calculation_required": 11,
+      "direct_detailing_check_candidate": 10,
+      "design_detailing_or_evidence_requirement": 31,
+      "external_structural_analysis_or_nonlinear_model_required": 13,
+      "implemented_selection_and_fixed_coefficients": 1,
+      "implemented_formula": 2
+    }
+  },
+  "scope_note": "Section 15 requirements are classified by execution route. Table 44, clause 15.12.1 fixed coefficients, and equations (199)-(200) are executable. The remaining detailing clauses require drawing evidence, linked checks, or external structural analysis as recorded in the Section 15 catalogue."
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "N3",
+  "source": "NormCAD historical SP16 DSL static extraction",
+  "source_sha256": "6838a1551e13b7d26fdab56ad2b6f91d8173e8cffed82d4a21f53181e9fc7ac7",
+  "runtime_execution_used": false,
+  "current_equation_7a_token_search": {
+    "patterns": [
+      "7a",
+      "7а",
+      "gamma_res",
+      "γres"
+    ],
+    "found_current_7a_route": false,
+    "note": "Static search found the historical 7.1.3 equation-(7) route but no current equation-(7a)/gamma_res route."
+  },
+  "selected_static_lines": [
+    "7.1.3___7ќПроверка устойчивости:",
+    "7.1.3___7\t7Ќ=N_/(gr_f*A*m__kp_*R__y__*gr_g__c)<=1ЏN_&gr_f&A&m__kp_&R__y__&gr_g__c",
+    "7.1.3___7ћgr_a___1џ= N_/(gr_f*A*m__kp_*R__y__*gr_g__c) ЏN_&gr_f&A&m__kp_&R__y__&gr_g__c",
+    "7.1.3___7Џћ10.4.1___c",
+    "табл. 8\t12ќgr_l__efџ= SQRT(gr_l__y___1^2+0,82*gr_l__1^2*(1+n___1)) Џgr_l__y___1&gr_l__1&n___1",
+    "табл. 8\t15ќgr_l__efџ= SQRT(gr_l__y___1^2+gr_a__1*A___1/A__d1) Џgr_l__y___1&gr_a__1&A___1&A__d1",
+    "табл. 8\t13ќgr_l__efџ= SQRT(gr_l___1^2+0,82*(gr_l__1^2*(1+n__1)+gr_l__2^2*(1+n__2))) Џgr_l___1&gr_l__1&n__1&gr_l__2&n__2",
+    "табл. 8\t16ќgr_l__efџ= SQRT(gr_l___1^2+A___1*(gr_a__1/A__d1+gr_a__2/A__d2)) Џgr_l___1&A___1&gr_a__1&A__d1&gr_a__2&A__d2",
+    "табл. 8\t14ќgr_l__efџ= SQRT(gr_l___1^2*0,82*gr_l__3^2*(1+3*n__3)) Џgr_l___1&gr_l__3&n__3",
+    "табл. 8\t17ќgr_l__efџ= SQRT(gr_l___1^2+gr_a__1*(2*A___1)/(3*A__d)) Џgr_l___1&gr_a__1&A___1&A__d",
+    "7.2Џћ7.1.3___7",
+    "7.2Џћ7.1.3___7",
+    "9.2.2Џћ7.1.3___7",
+    "9.2.2Џћ7.1.3___7",
+    "9.2.2Џћ7.1.3___7",
+    "7.1.3Џћ7.1.3___7"
+  ],
+  "table8_findings": {
+    "equations_12_17_present": true,
+    "equation_14_static_expression_suspicious": true,
+    "equation_14_note": "The inspected NormCAD DSL line for (14) multiplies terms where the current SP16 formula is a sum under the square root; production does not follow this historical line."
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "release_stage": "v0.32_stage_n6_built_up_beam_columns_local_stability_current_sp16_closed_reconstructed_r1",
+  "package_version": "0.32.0",
+  "parent_release": "v0.31_stage_n5_beam_columns_current_sp16_closed_reconstructed_r1",
+  "stage": "N6",
+  "verdict": "STAGE_N6_BUILT_UP_BEAM_COLUMNS_LOCAL_STABILITY_CURRENT_SP16_CLOSED",
+  "engineering_use_ready": false,
+  "full_change_6_rebaseline_complete": false,
+  "original_gost_profile_audit_complete": false,
+  "authoritative_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "scope": {
+    "clauses_9_3_9_4_guided_route": true,
+    "equation_123_and_table_d4": true,
+    "branch_force_9_3_3_and_eq124_selected_route": true,
+    "connector_shear_9_3_7": true,
+    "tables_22_23_and_eq125_135": true,
+    "transverse_stiffener_9_4_4": true,
+    "longitudinal_stiffener_9_4_5": true,
+    "reduced_area_9_4_6_fail_closed_recheck": true,
+    "n1_n2_n3_n4_n5_frozen_dependencies": true
+  },
+  "normative_policy": {
+    "d4": "exact-grid only; no hidden interpolation; external coefficient requires provenance and cap by central phi",
+    "tables_22_23": "explicit printed interpolation rules retained",
+    "biaxial_type3": "fail-closed unless explicit external branch-force producer with provenance"
+  },
+  "normcad": {
+    "role": "HISTORICAL_SECONDARY_ORACLE_NOT_NORMATIVE",
+    "dedicated_stage_n6_case_found": false,
+    "synthetic_golden_case_created": false
+  },
+  "dag": {
+    "file": "normative_graph/dag_v0.3.35_stage_n6.json",
+    "sha256": "3a7c8dbb4c1e0fb8dc251eaba570ea4b1eb50c86130d25e93c778e0cca64144b",
+    "schema_validation": "PASS",
+    "quantities": 682,
+    "nodes": 612,
+    "edges": 1049,
+    "datasets": 27
+  },
+  "tests": {
+    "stage_n6_focused": "33/33 PASS",
+    "cumulative_excluding_release_manifest": "718/718 PASS",
+    "full_pytest_with_release_manifest": "719/719 PASS (after manifest generation)",
+    "release_manifest": "1/1 PASS (after manifest generation)",
+    "main_py_release_audit": "PASS",
+    "generated_outputs": "26/26 current release identity",
+    "legacy_validation_cases": "1876/1876 PASS",
+    "independent_function_oracles": "60/581 retained",
+    "external_golden_cases": "6/6 retained"
+  },
+  "inventory": {
+    "equations": "241 total / 240 implemented / 1 no-code explanatory",
+    "tables": "88 total / 67 implemented-as-data / 20 external-reference-required / 1 no-code explanatory",
+    "procedures": "304 total / 303 implemented / 1 no-code explanatory"
+  },
+  "reconciliation": {
+    "items": 7,
+    "open_package_or_dag_defects": 0,
+    "runtime_unresolved_in_declared_closed_routes": 0
+  },
+  "deferred_final_gates": [
+    "full package-wide Change 6 rebaseline",
+    "original/effective GOST/GOST R audit of interim imported profile catalog",
+    "final external engineering certification/qualification"
+  ]
+}

@@ -1,0 +1,301 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "crane_runway_and_bending_stability_case.schema.json",
+  "title": "СП 16.13330.2017 crane-runway and bending-stability case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "standard",
+    "action",
+    "crane_beta_case",
+    "crane_load_factor",
+    "wheel_dynamic_factor",
+    "normative_wheel_load_n",
+    "rail_eccentricity_mm",
+    "transverse_horizontal_load_n",
+    "rail_height_mm",
+    "crane_bending_moment_n_mm",
+    "crane_net_section_modulus_mm3",
+    "effective_load_length_mm",
+    "web_thickness_mm",
+    "stiffener_spacing_mm",
+    "rail_and_flange_torsional_inertia_mm4",
+    "web_height_mm",
+    "crane_shear_force_n",
+    "design_yield_resistance_n_mm2",
+    "design_shear_resistance_n_mm2",
+    "torsional_inertia_mm4",
+    "minor_axis_inertia_mm4",
+    "major_axis_inertia_mm4",
+    "stability_effective_length_mm",
+    "section_height_mm",
+    "compression_flange_braced_in_span",
+    "annex_zh_table_1_case",
+    "annex_zh_load_flange",
+    "elastic_modulus_n_mm2",
+    "stability_major_moment_n_mm",
+    "stability_minor_moment_n_mm",
+    "stability_bimoment_n_mm2",
+    "compressed_major_section_modulus_mm3",
+    "compressed_minor_section_modulus_mm3",
+    "compressed_sectorial_section_modulus_mm4",
+    "working_condition_factor",
+    "compressed_flange_width_mm",
+    "compressed_flange_thickness_mm",
+    "flange_axis_spacing_mm",
+    "table_11_load_position",
+    "friction_flange_connections",
+    "compressed_flange_design_resistance_n_mm2",
+    "compressed_flange_stress_n_mm2",
+    "rigid_continuous_deck",
+    "tension_to_compression_flange_width_ratio",
+    "compressed_flange_area_mm2",
+    "web_area_mm2",
+    "web_design_resistance_n_mm2",
+    "compressed_flange_radius_of_gyration_mm",
+    "beam_span_mm",
+    "class_2_3_moment_n_mm",
+    "class_2_3_net_section_modulus_mm3",
+    "class_2_3_shear_reduction_beta",
+    "class_2_3_plastic_coefficient_cx"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "standard": {
+      "type": "string",
+      "const": "СП 16.13330.2017"
+    },
+    "action": {
+      "type": "string",
+      "const": "crane_runway_and_bending_stability"
+    },
+    "crane_beta_case": {
+      "type": "string",
+      "enum": [
+        "simply_supported",
+        "continuous_support"
+      ]
+    },
+    "crane_load_factor": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "wheel_dynamic_factor": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "normative_wheel_load_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "rail_eccentricity_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "transverse_horizontal_load_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "rail_height_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "crane_bending_moment_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "crane_net_section_modulus_mm3": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "effective_load_length_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "web_thickness_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "stiffener_spacing_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "rail_and_flange_torsional_inertia_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "web_height_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "crane_shear_force_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "design_yield_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "design_shear_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "torsional_inertia_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "minor_axis_inertia_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "major_axis_inertia_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "stability_effective_length_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "section_height_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "compression_flange_braced_in_span": {
+      "type": "boolean"
+    },
+    "annex_zh_table_1_case": {
+      "type": "string",
+      "enum": [
+        "unbraced_point_midspan",
+        "unbraced_point_quarter",
+        "unbraced_two_points_thirds",
+        "unbraced_point_midspan_equal_end_moments",
+        "unbraced_uniform",
+        "unbraced_uniform_equal_end_moments",
+        "unbraced_pure_bending",
+        "unbraced_triangular_moment",
+        "unbraced_reverse_linear_moment",
+        "two_or_more_braces",
+        "one_mid_brace_point_midspan",
+        "one_mid_brace_point_quarter",
+        "one_mid_brace_uniform"
+      ]
+    },
+    "annex_zh_load_flange": {
+      "type": "string",
+      "enum": [
+        "compressed",
+        "tension"
+      ]
+    },
+    "elastic_modulus_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "stability_major_moment_n_mm": {
+      "type": "number"
+    },
+    "stability_minor_moment_n_mm": {
+      "type": "number"
+    },
+    "stability_bimoment_n_mm2": {
+      "type": "number"
+    },
+    "compressed_major_section_modulus_mm3": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "compressed_minor_section_modulus_mm3": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "compressed_sectorial_section_modulus_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "working_condition_factor": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "compressed_flange_width_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "compressed_flange_thickness_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "flange_axis_spacing_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "table_11_load_position": {
+      "type": "string",
+      "enum": [
+        "upper_flange",
+        "lower_flange",
+        "between_braces_or_pure_bending"
+      ]
+    },
+    "friction_flange_connections": {
+      "type": "boolean"
+    },
+    "compressed_flange_design_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "compressed_flange_stress_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "rigid_continuous_deck": {
+      "type": "boolean"
+    },
+    "tension_to_compression_flange_width_ratio": {
+      "type": "number",
+      "minimum": 0
+    },
+    "compressed_flange_area_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "web_area_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "web_design_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "compressed_flange_radius_of_gyration_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "beam_span_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "class_2_3_moment_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "class_2_3_net_section_modulus_mm3": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "class_2_3_shear_reduction_beta": {
+      "type": "number",
+      "minimum": 0
+    },
+    "class_2_3_plastic_coefficient_cx": {
+      "type": "number",
+      "minimum": 1
+    },
+    "class_2_3_plastic_region_applies": {
+      "type": "boolean"
+    }
+  }
+}

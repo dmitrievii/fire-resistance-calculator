@@ -1,0 +1,527 @@
+{
+  "schema": "fire_ui_session_v1",
+  "graph_id": "sp16_sp554_dag_v0-3-44_fire_d4",
+  "graph_sha256": "3412d024275363bfdc79ccf142077aecee93d918d9687bae9a0766dbd4939922",
+  "entry_node_id": "SP554_I_BUILDING_USE",
+  "current_node_id": "SP554_D_SOFTWARE",
+  "status": "AWAITING_INPUT",
+  "values": {
+    "building_use_type": {
+      "quantity_id": "building_use_type",
+      "value": "industrial",
+      "unit": null,
+      "source_kind": "USER_INPUT",
+      "producer_node_id": "SP554_I_BUILDING_USE",
+      "sequence": 1,
+      "provenance": null
+    },
+    "determination_method": {
+      "quantity_id": "determination_method",
+      "value": "calculation_analytical",
+      "unit": null,
+      "source_kind": "USER_INPUT",
+      "producer_node_id": "SP554_D_METHOD",
+      "sequence": 6,
+      "provenance": null
+    },
+    "fire_temperature_regime": {
+      "quantity_id": "fire_temperature_regime",
+      "value": "standard",
+      "unit": null,
+      "source_kind": "USER_INPUT",
+      "producer_node_id": "SP554_D_FIRE_REGIME",
+      "sequence": 7,
+      "provenance": null
+    },
+    "is_enclosing_membrane_shell": {
+      "quantity_id": "is_enclosing_membrane_shell",
+      "value": false,
+      "unit": null,
+      "source_kind": "USER_INPUT",
+      "producer_node_id": "SP554_D_ENCLOSING",
+      "sequence": 3,
+      "provenance": null
+    },
+    "is_seismic_region": {
+      "quantity_id": "is_seismic_region",
+      "value": false,
+      "unit": null,
+      "source_kind": "USER_INPUT",
+      "producer_node_id": "SP554_D_SEISMIC",
+      "sequence": 8,
+      "provenance": null
+    },
+    "loss_affects_global_safety": {
+      "quantity_id": "loss_affects_global_safety",
+      "value": true,
+      "unit": null,
+      "source_kind": "USER_INPUT",
+      "producer_node_id": "SP554_D_LOAD_BEARING",
+      "sequence": 2,
+      "provenance": null
+    },
+    "required_fire_resistance_min": {
+      "quantity_id": "required_fire_resistance_min",
+      "value": 15.0,
+      "unit": "min",
+      "source_kind": "EXTERNAL_STANDARD_RESULT",
+      "producer_node_id": "SP554_H_REQUIRED_R",
+      "sequence": 5,
+      "provenance": {
+        "source_document": "UI0 demonstration project requirement",
+        "source_reference": "R15"
+      }
+    },
+    "section_product_route": {
+      "quantity_id": "section_product_route",
+      "value": "hot_rolled_section",
+      "unit": null,
+      "source_kind": "USER_INPUT",
+      "producer_node_id": "SP554_D_PRODUCT_ROUTE",
+      "sequence": 4,
+      "provenance": null
+    }
+  },
+  "ledger": [
+    {
+      "quantity_id": "building_use_type",
+      "value": "industrial",
+      "unit": null,
+      "source_kind": "USER_INPUT",
+      "producer_node_id": "SP554_I_BUILDING_USE",
+      "sequence": 1,
+      "provenance": null,
+      "symbol": null,
+      "name_ru": "Назначение здания/сооружения",
+      "role": "input",
+      "read_only": false,
+      "normative_refs": [
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "1",
+          "clause": "1.1"
+        }
+      ]
+    },
+    {
+      "quantity_id": "loss_affects_global_safety",
+      "value": true,
+      "unit": null,
+      "source_kind": "USER_INPUT",
+      "producer_node_id": "SP554_D_LOAD_BEARING",
+      "sequence": 2,
+      "provenance": null,
+      "symbol": null,
+      "name_ru": "Потеря элемента влияет на общую прочность/устойчивость/прогрессирующее разрушение",
+      "role": "decision_state",
+      "read_only": false,
+      "normative_refs": [
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "4",
+          "clause": "4.4"
+        }
+      ]
+    },
+    {
+      "quantity_id": "is_enclosing_membrane_shell",
+      "value": false,
+      "unit": null,
+      "source_kind": "USER_INPUT",
+      "producer_node_id": "SP554_D_ENCLOSING",
+      "sequence": 3,
+      "provenance": null,
+      "symbol": null,
+      "name_ru": "Конструкция является ограждающей мембраной/оболочкой",
+      "role": "decision_state",
+      "read_only": false,
+      "normative_refs": [
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "1",
+          "clause": "1.2"
+        }
+      ]
+    },
+    {
+      "quantity_id": "section_product_route",
+      "value": "hot_rolled_section",
+      "unit": null,
+      "source_kind": "USER_INPUT",
+      "producer_node_id": "SP554_D_PRODUCT_ROUTE",
+      "sequence": 4,
+      "provenance": null,
+      "symbol": null,
+      "name_ru": "Тип получения стального сечения",
+      "role": "decision_state",
+      "read_only": false,
+      "normative_refs": [
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "1",
+          "clause": "1.1"
+        },
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "1",
+          "clause": "1.2"
+        }
+      ]
+    },
+    {
+      "quantity_id": "required_fire_resistance_min",
+      "value": 15.0,
+      "unit": "min",
+      "source_kind": "EXTERNAL_STANDARD_RESULT",
+      "producer_node_id": "SP554_H_REQUIRED_R",
+      "sequence": 5,
+      "provenance": {
+        "source_document": "UI0 demonstration project requirement",
+        "source_reference": "R15"
+      },
+      "symbol": "R_req",
+      "name_ru": "Требуемый предел огнестойкости",
+      "role": "input",
+      "read_only": false,
+      "normative_refs": [
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "4",
+          "clause": "4.2"
+        },
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "4",
+          "clause": "4.3"
+        }
+      ]
+    },
+    {
+      "quantity_id": "determination_method",
+      "value": "calculation_analytical",
+      "unit": null,
+      "source_kind": "USER_INPUT",
+      "producer_node_id": "SP554_D_METHOD",
+      "sequence": 6,
+      "provenance": null,
+      "symbol": null,
+      "name_ru": "Способ определения предела огнестойкости",
+      "role": "decision_state",
+      "read_only": false,
+      "normative_refs": [
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "4",
+          "clause": "4.5"
+        },
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "5",
+          "clause": "5.7"
+        }
+      ]
+    },
+    {
+      "quantity_id": "fire_temperature_regime",
+      "value": "standard",
+      "unit": null,
+      "source_kind": "USER_INPUT",
+      "producer_node_id": "SP554_D_FIRE_REGIME",
+      "sequence": 7,
+      "provenance": null,
+      "symbol": null,
+      "name_ru": "Температурный режим пожара",
+      "role": "decision_state",
+      "read_only": false,
+      "normative_refs": [
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "4",
+          "clause": "4.6"
+        }
+      ]
+    },
+    {
+      "quantity_id": "is_seismic_region",
+      "value": false,
+      "unit": null,
+      "source_kind": "USER_INPUT",
+      "producer_node_id": "SP554_D_SEISMIC",
+      "sequence": 8,
+      "provenance": null,
+      "symbol": null,
+      "name_ru": "Район повышенной сейсмичности",
+      "role": "decision_state",
+      "read_only": false,
+      "normative_refs": [
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "5",
+          "clause": "5.6"
+        }
+      ]
+    }
+  ],
+  "trace": [
+    {
+      "schema": "fire_ui_trace_v1",
+      "sequence": 1,
+      "node_id": "SP554_I_BUILDING_USE",
+      "node_type": "input",
+      "event_kind": "answer",
+      "status": "COMPLETE",
+      "inputs": {},
+      "outputs": {
+        "building_use_type": "industrial"
+      },
+      "selected_edge_id": "E0001",
+      "normative_refs": [
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "1",
+          "clause": "1.1"
+        }
+      ],
+      "message": null
+    },
+    {
+      "schema": "fire_ui_trace_v1",
+      "sequence": 2,
+      "node_id": "SP554_D_LOAD_BEARING",
+      "node_type": "decision",
+      "event_kind": "answer",
+      "status": "COMPLETE",
+      "inputs": {},
+      "outputs": {
+        "loss_affects_global_safety": true
+      },
+      "selected_edge_id": "E0002",
+      "normative_refs": [
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "4",
+          "clause": "4.4"
+        }
+      ],
+      "message": null
+    },
+    {
+      "schema": "fire_ui_trace_v1",
+      "sequence": 3,
+      "node_id": "SP554_D_ENCLOSING",
+      "node_type": "decision",
+      "event_kind": "answer",
+      "status": "COMPLETE",
+      "inputs": {},
+      "outputs": {
+        "is_enclosing_membrane_shell": false
+      },
+      "selected_edge_id": "E0005",
+      "normative_refs": [
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "1",
+          "clause": "1.2"
+        }
+      ],
+      "message": null
+    },
+    {
+      "schema": "fire_ui_trace_v1",
+      "sequence": 4,
+      "node_id": "SP554_D_PRODUCT_ROUTE",
+      "node_type": "decision",
+      "event_kind": "answer",
+      "status": "COMPLETE",
+      "inputs": {},
+      "outputs": {
+        "section_product_route": "hot_rolled_section"
+      },
+      "selected_edge_id": "E0006",
+      "normative_refs": [
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "1",
+          "clause": "1.1"
+        },
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "1",
+          "clause": "1.2"
+        }
+      ],
+      "message": null
+    },
+    {
+      "schema": "fire_ui_trace_v1",
+      "sequence": 5,
+      "node_id": "SP554_H_REQUIRED_R",
+      "node_type": "standard_handoff",
+      "event_kind": "answer",
+      "status": "COMPLETE",
+      "inputs": {},
+      "outputs": {
+        "required_fire_resistance_min": 15.0
+      },
+      "selected_edge_id": "E0010",
+      "normative_refs": [
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "4",
+          "clause": "4.2"
+        },
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "4",
+          "clause": "4.3"
+        }
+      ],
+      "message": null
+    },
+    {
+      "schema": "fire_ui_trace_v1",
+      "sequence": 6,
+      "node_id": "SP554_D_METHOD",
+      "node_type": "decision",
+      "event_kind": "answer",
+      "status": "COMPLETE",
+      "inputs": {},
+      "outputs": {
+        "determination_method": "calculation_analytical"
+      },
+      "selected_edge_id": "E0011",
+      "normative_refs": [
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "4",
+          "clause": "4.5"
+        },
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "5",
+          "clause": "5.7"
+        }
+      ],
+      "message": null
+    },
+    {
+      "schema": "fire_ui_trace_v1",
+      "sequence": 7,
+      "node_id": "SP554_D_FIRE_REGIME",
+      "node_type": "decision",
+      "event_kind": "answer",
+      "status": "COMPLETE",
+      "inputs": {},
+      "outputs": {
+        "fire_temperature_regime": "standard"
+      },
+      "selected_edge_id": "E0013",
+      "normative_refs": [
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "4",
+          "clause": "4.6"
+        }
+      ],
+      "message": null
+    },
+    {
+      "schema": "fire_ui_trace_v1",
+      "sequence": 8,
+      "node_id": "SP554_D_SEISMIC",
+      "node_type": "decision",
+      "event_kind": "answer",
+      "status": "COMPLETE",
+      "inputs": {},
+      "outputs": {
+        "is_seismic_region": false
+      },
+      "selected_edge_id": "E0017",
+      "normative_refs": [
+        {
+          "standard_id": "SP554_2026",
+          "reference_kind": "clause",
+          "section": "5",
+          "clause": "5.6"
+        }
+      ],
+      "message": null
+    }
+  ],
+  "interaction_history": [
+    {
+      "node_id": "SP554_I_BUILDING_USE",
+      "payload": "industrial",
+      "provenance": null
+    },
+    {
+      "node_id": "SP554_D_LOAD_BEARING",
+      "payload": true,
+      "provenance": null
+    },
+    {
+      "node_id": "SP554_D_ENCLOSING",
+      "payload": false,
+      "provenance": null
+    },
+    {
+      "node_id": "SP554_D_PRODUCT_ROUTE",
+      "payload": "hot_rolled_section",
+      "provenance": null
+    },
+    {
+      "node_id": "SP554_H_REQUIRED_R",
+      "payload": 15.0,
+      "provenance": {
+        "source_document": "UI0 demonstration project requirement",
+        "source_reference": "R15"
+      }
+    },
+    {
+      "node_id": "SP554_D_METHOD",
+      "payload": "calculation_analytical",
+      "provenance": null
+    },
+    {
+      "node_id": "SP554_D_FIRE_REGIME",
+      "payload": "standard",
+      "provenance": null
+    },
+    {
+      "node_id": "SP554_D_SEISMIC",
+      "payload": false,
+      "provenance": null
+    }
+  ],
+  "visited_node_ids": [
+    "SP554_I_BUILDING_USE",
+    "SP554_D_LOAD_BEARING",
+    "SP554_D_ENCLOSING",
+    "SP554_D_PRODUCT_ROUTE",
+    "SP554_H_REQUIRED_R",
+    "SP554_D_METHOD",
+    "SP554_D_FIRE_REGIME",
+    "SP554_D_SEISMIC"
+  ]
+}

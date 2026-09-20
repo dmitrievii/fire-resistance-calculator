@@ -1,0 +1,13 @@
+{
+  "standard": "СП 16.13330.2017",
+  "table": "13",
+  "clause": "8.5.4",
+  "page": 38,
+  "cases": {
+    "crane_rail_not_welded": 2.0,
+    "crane_rail_welded": "infinity",
+    "other_continuous_slab_support": "infinity",
+    "other_case": 0.8,
+    "crane_tension_flange_note": 0.8
+  }
+}

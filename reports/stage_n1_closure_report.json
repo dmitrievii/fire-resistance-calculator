@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "N1 — Material / Strength",
+  "closure_status": "N1_CLOSED_DECLARED_SCOPE",
+  "release_stage": "v0.27_stage_n1_material_strength_closed_reconstructed_r1",
+  "qualification": "research_grade_stage_n1_closed_current_source_triangulated",
+  "engineering_use_ready": false,
+  "authority": {
+    "current_sp16_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+    "precedence": "current locked SP16 > package/DAG/NormCAD"
+  },
+  "frozen_inputs": {
+    "parent_v0_26_zip_sha256": "7f71fe4dba176b8f6c653bc7013b2b323e0a3901f58f3fb8daa3e268d941c0d8",
+    "handoff_zip_sha256": "462b2016655d756c685a66eaa9e5e838af7998e6bfe02f8af0dce5046659c8c5",
+    "normcad_archive_sha256": "adb974f9f0b4d7dd9f2209b88346a02dea965e0f959d3561da825f3196796904",
+    "dag_parent_sha256": "0b7ba0151ffd5fc2dd442bdbdfb70c5fd2686dc8e2f75ec0f61957051c1dfa27",
+    "dag_stage_n1_sha256": "230a7332fee87d18dec5f975ec96c9259c62112d56cc7123e61282d34c5e48ce"
+  },
+  "normative_source_verification": {
+    "checks": {
+      "checks": 7,
+      "passed": 7,
+      "failed": 0,
+      "strength_table_rows_exactly_verified": 95
+    },
+    "verdict": "PASS",
+    "evidence_sha256": "69e01368913c8c1bd9622a40835b1348587200509712ea9760542941b3ce847d"
+  },
+  "boundary_regression": {
+    "probe_count": 981,
+    "expected_resolved": 866,
+    "expected_fail_closed": 115,
+    "by_table": {
+      "В.3": 708,
+      "В.4": 157,
+      "В.5": 116
+    },
+    "by_probe_kind": {
+      "BOUNDARY_ABOVE_NEXTAFTER": 256,
+      "BOUNDARY_BELOW_NEXTAFTER": 256,
+      "BOUNDARY_EXACT": 256,
+      "INTERIOR": 205,
+      "LOW_POSITIVE": 8
+    },
+    "focused_stage_n1_pytest": "43/43 PASS",
+    "full_pytest_excluding_release_manifest": "579/579 PASS",
+    "matrix_sha256": "d116a744753045de51270dd24399836dc93c6016935f6edc0c0de75cee97d649"
+  },
+  "normcad_static_crosswalk": {
+    "summary": {
+      "current_grade_rows_compared": 111,
+      "by_status": {
+        "MATCH_STATIC_ROW_AND_BOUNDARY_LABEL": 50,
+        "VALUE_MISMATCH": 23,
+        "VALUES_MATCH_BOUNDARY_LABEL_DIFFERS_OR_UNCERTAIN": 15,
+        "NORMCAD_THICKNESS_ROUTE_MISSING": 18,
+        "NORMCAD_GRADE_MISSING": 5
+      },
+      "by_primary_class": {
+        "PASS_ALL": 50,
+        "TABLE_LOOKUP_MISMATCH": 46,
+        "BRANCH_LOGIC_MISMATCH": 15
+      }
+    },
+    "mdb_source_hashes": {
+      "sheet_strength": {
+        "file": "Прочность листовой стали.mdb",
+        "sha256": "99fec3db69eb21dfeac80ba53fc1af318c5a4e73352b0fde7655e5b824a97958"
+      },
+      "shaped_strength": {
+        "file": "Прочность фасонной стали.mdb",
+        "sha256": "04f46199e7a582531b8cae4cfab143ff046fbbd571b6c412ffff476a6082e1d7"
+      },
+      "tube_strength": {
+        "file": "Прочность труб.mdb",
+        "sha256": "42ca4e3b3b7afc9dd70275c5ff019ac97eb0e9cfecc776f20358b686ea7f31f6"
+      }
+    },
+    "evidence_sha256": "d9bf10cdbf8e329590304a9745bb99ae0ce959405aa62c3fc2a8534f16a1a6b8",
+    "runtime_boundary_note": "Exact NormCAD UI/runtime boundary selection is not claimed where static labels are ambiguous; NormCAD is not normative authority."
+  },
+  "discrepancy_closure": {
+    "registered": 19,
+    "unresolved": 0,
+    "package_or_dag_fixed": 5,
+    "normcad_explained": 14,
+    "register_sha256": "7866f66c62e9ff887adda5e3fc4af162e6b7e7e2329aa324d162b840628e877e"
+  },
+  "cumulative_audit": {
+    "main_py": "PASS",
+    "implemented_equations": 239,
+    "implemented_tables": 67,
+    "implemented_procedures": 303,
+    "legacy_validation_cases": "1876/1876 PASS",
+    "independent_function_oracles": "60/581 retained",
+    "external_golden_cases": "6/6 PASS retained",
+    "unresolved_equations_tables": "0/0"
+  },
+  "not_claimed": [
+    "full SP16 validation",
+    "full package-wide Change 6 rebaseline",
+    "engineering-use readiness",
+    "exact NormCAD UI/runtime boundary semantics where static evidence is ambiguous"
+  ],
+  "release_manifest_gate": "performed after manifest generation; see external package verification artifact"
+}

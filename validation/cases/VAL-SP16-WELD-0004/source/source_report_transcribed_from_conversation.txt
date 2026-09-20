@@ -1,0 +1,7 @@
+Источник: пользовательский расчетный отчет, вставленный в чат (12.08.2026 15:48:39).
+
+N=11767.98001 N; Mx=11767936.29624 N mm; Qy=6864.655 N. Steel C255 (source values): Ryn=235, Run=370, Ry=225, Ru=350, Rs=130 MPa; gamma_c=0.9.
+Weld t=8 mm, tmax=9 mm; electrode E60; Rwf=240 MPa; Rwz=166.5 MPa.
+Rounded rolled edge -> kf,max=0.9*8=7.2 mm. One-sided T-joint, automatic welding; Table 38 kf,min=5 mm; selected kf=7 mm.
+Table 39: beta_f=1.1, beta_z=1.15. Source declares Rwf>Rwz and PASS.
+Source then selects fusion boundary from beta_f*Rwf/(beta_z*Rwz)=1.37877>1 and calculates required lw=N/(beta_z*kf*Rwz*gamma_c)=9.75549 mm, applies minimum lw=max(4*kf,40)=40 mm, and total l=50 mm.

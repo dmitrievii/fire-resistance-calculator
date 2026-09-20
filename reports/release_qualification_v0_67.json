@@ -1,0 +1,38 @@
+{
+  "schema": "release_qualification_v1",
+  "release_stage": "v0.67_fire_bridge2_qualified_sp16_complex_state_handoff_r1",
+  "package_version": "0.67.0",
+  "parent_release": "v0.66_sp16_mech9_remaining_ambient_applicability_closure_r1",
+  "active_dag": "normative_graph/dag_v0.3.70_fire_bridge2_qualified_sp16_complex_state_handoff.json",
+  "engineering_use_ready": false,
+  "closed_scope": {
+    "typed_sp16_to_sp554_handoff": true,
+    "sp16_mechanical_pass_required_by_production_topology": true,
+    "explicit_sections_9_11_handoff_preserved": true,
+    "internal_clause_8_7_pointwise_normal_stress_route": true,
+    "bimoment_normal_stress_handoff_when_upstream_complete": true,
+    "qy_full_fire_handoff": false,
+    "t_full_fire_handoff": false,
+    "clause_8_7_universal_shear_torsion_bypass": false
+  },
+  "source_tree_evidence": {
+    "mech1_mech9_fire_bridge2_affected_fire_ui": "171/171 PASS",
+    "n1_n10_workflows": "243/243 PASS",
+    "fire_d1_d4_runtime": "68/68 PASS",
+    "phase_0_23_0_24": "10/10 PASS",
+    "phase_0_25": "6/6 PASS (split completed processes)",
+    "docstrings_schemas_ui0_final_audit": "68/68 PASS"
+  },
+  "active_dag_sha256": "9026346f32219084eadd0d2f4352322ec41f6a8c5e38ae674c4086d8da882312",
+  "active_dag_counts": {
+    "quantities": 922,
+    "datasets": 39,
+    "nodes": 734,
+    "edges": 1246
+  },
+  "ui_contract_counts": {
+    "interactive_nodes": 176,
+    "result_nodes": 54
+  },
+  "dag_deterministic_rebuild_pass": true
+}

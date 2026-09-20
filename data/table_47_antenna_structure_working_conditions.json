@@ -1,0 +1,23 @@
+{
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "table": "47",
+  "clause": "17.6",
+  "page": 116,
+  "title": "Коэффициенты условий работы элементов конструкций антенных сооружений",
+  "lookup_policy": "exact categorical lookup; no interpolation",
+  "rows": [
+    {"case_id": "PRESTRESSED_LATTICE_MEMBER", "description_ru": "Предварительно напряженные элементы решетки", "gamma_c": 0.90},
+    {"case_id": "RING_TYPE_FLANGE", "description_ru": "Фланцы кольцевого типа", "gamma_c": 1.10},
+    {"case_id": "OTHER_FLANGE_TYPE", "description_ru": "Фланцы остальных типов", "gamma_c": 0.90},
+    {"case_id": "GUY_OR_ANTENNA_ELEMENT_COUNT_3_TO_5", "description_ru": "Стальные канаты оттяжек мачт или элементы антенных полотен при количестве 3-5", "gamma_c": 0.80},
+    {"case_id": "GUY_COUNT_6_TO_8", "description_ru": "Стальные канаты оттяжек мачт при количестве 6-8 в ярусе", "gamma_c": 0.90},
+    {"case_id": "GUY_COUNT_9_OR_MORE", "description_ru": "Стальные канаты оттяжек мачт при количестве 9 и более в ярусе", "gamma_c": 0.95},
+    {"case_id": "THIMBLE_CLAMPS_OR_POINT_CRIMP", "description_ru": "Заделка концов на коуше зажимами или точечное опрессование во втулке", "gamma_c": 0.75},
+    {"case_id": "ROPE_SPLICE_ON_THIMBLE_OR_INSULATOR", "description_ru": "Оплетка каната на коуше или изоляторе", "gamma_c": 0.55},
+    {"case_id": "GUY_OR_ANTENNA_ATTACHMENT_ELEMENT", "description_ru": "Элементы крепления оттяжек, антенных полотен, проводов и подкосов", "gamma_c": 0.90},
+    {"case_id": "ANCHOR_ROD_TENSION_WITH_BENDING_NO_THREAD", "description_ru": "Анкерные тяжи без резьбовых соединений при растяжении с изгибом", "gamma_c": 0.65},
+    {"case_id": "EYE_PLATE_IN_TENSION", "description_ru": "Проушины при работе на растяжение", "gamma_c": 0.65},
+    {"case_id": "ROPE_ATTACHMENT_MECHANICAL_DETAIL_EXCEPT_HINGE_PIN", "description_ru": "Механические детали креплений и соединений канатов, кроме осей шарниров", "gamma_c": 0.80},
+    {"case_id": "HINGE_PIN_IN_BEARING", "description_ru": "Оси шарниров при смятии", "gamma_c": 0.90}
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "release_stage": "v0.53_fire_ui20_conditional_signed_moments_thermal_bindings_r1",
+  "package_version": "0.53.0",
+  "parent_release": "v0.52_fire_ui19_sp554_table1_heated_perimeter_matrix_r1",
+  "qualification": "research_grade_fire_ui20_conditional_signed_moments_thermal_bindings_r1",
+  "engineering_use_ready": false,
+  "authoritative_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "authoritative_sp554_source_sha256": "86a3c010ee74e469670f7aff5b95c807ffcff81bc81cbebe16f994af477507e3",
+  "dag": {
+    "path": "normative_graph/dag_v0.3.56_fire_ui20_conditional_signed_moments_thermal_bindings.json",
+    "sha256": "b452b4fac5976560c94cc704904e53b77fc7f4d9991b758bc6d666037bd3755d",
+    "quantities": 783,
+    "datasets": 38,
+    "nodes": 675,
+    "edges": 1142,
+    "deterministic_rebuild_x2": true
+  },
+  "closure": {
+    "boolean_selectors": true,
+    "raw_beam_ltb_context_removed": true,
+    "sp16_9_2_3_branch_conditional_signed_moments": true,
+    "sp16_9_2_6_branch_conditional_signed_moments": true,
+    "signed_moment_provenance_preserved": true,
+    "repeat_signed_moment_input_removed": true,
+    "table21_explanatory_selector": true,
+    "gost30247_standard_fire_curve_binding": true,
+    "sp554_figure1_interpolation_binding": true,
+    "sp554_unprotected_step_binding": true,
+    "incomplete_mechanical_diagnostic": true
+  },
+  "explicit_open_scope": {
+    "Qy_axis_specific_shear_runtime_closed": false,
+    "torsion_T_runtime_closed": false,
+    "policy": "fail_closed_no_Qy_to_Qz_no_T_to_B_substitution"
+  },
+  "tests": {
+    "pytest_collected_total": 1029,
+    "non_manifest_tests_passed": 1028,
+    "non_manifest_tests_total": 1028,
+    "release_manifest_test": "1/1 PASS",
+    "focused_fire_ui20": "8/8 PASS",
+    "main_release_audit": "PASS",
+    "validation_cases": "1876 PASS",
+    "phase_0_25_validation": "PASS",
+    "external_golden_cases": "6/6 PASS",
+    "unresolved_equations_tables": "0/0",
+    "execution_note": "The source-tree pytest suite was executed file-sharded because a single long-running shell invocation exceeded the execution wrapper timeout; every non-manifest test file passed.",
+    "pytest_total_after_manifest": "1029/1029 PASS (file-sharded source-tree qualification)"
+  }
+}

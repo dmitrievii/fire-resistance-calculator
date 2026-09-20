@@ -1,0 +1,55 @@
+{
+  "case_id": "VAL-SP16-BEND-0006",
+  "overall_validation_status": "PARTIAL_MATCH_SOURCE_AND_RUNNER_REMEDIATED",
+  "checks": [
+    {
+      "check_id": "alpha",
+      "published_or_source_value": 1.05263,
+      "production_or_independent_value": 1.0526315789473684,
+      "absolute_error": 1.5789473684080235e-06,
+      "absolute_tolerance": 5e-06,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "sigma_x",
+      "published_or_source_value": 168.11338,
+      "production_or_independent_value": 168.11337566057142,
+      "absolute_error": 4.339428585353744e-06,
+      "absolute_tolerance": 1e-05,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "sigma_y",
+      "published_or_source_value": 3.47222,
+      "production_or_independent_value": 3.4722222222222223,
+      "absolute_error": 2.2222222222367805e-06,
+      "absolute_tolerance": 1e-05,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "eq44",
+      "published_or_source_value": 0.51008,
+      "production_or_independent_value": 0.51008002,
+      "absolute_error": 1.9999999989472883e-08,
+      "absolute_tolerance": 1e-05,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "eq43",
+      "published_or_source_value": 0.64822,
+      "production_or_independent_value": 0.64822041,
+      "absolute_error": 4.0999999995072756e-07,
+      "absolute_tolerance": 1e-05,
+      "comparison_status": "PASS"
+    }
+  ],
+  "end_to_end_gate": {
+    "status": "NOT_ACCEPTED",
+    "reason_codes": [
+      "SOURCE-WNET-CONFLICT",
+      "SOURCE-SECTION-TYPE-CONFLICT",
+      "SOURCE-DOUBLE-ALPHA-DIAGNOSTIC",
+      "RUNNER-EQ44-HOLE-FACTOR-REMEDIATED"
+    ]
+  }
+}

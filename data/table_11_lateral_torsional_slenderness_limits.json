@@ -1,0 +1,13 @@
+{
+  "standard": "СП 16.13330.2017",
+  "table": "11",
+  "clause": "8.4.4",
+  "page": 35,
+  "formula_rows": {
+    "upper_flange": "0.35 + 0.0032*b/t + (0.76 - 0.02*b/t)*b/h",
+    "lower_flange": "0.57 + 0.0032*b/t + (0.92 - 0.02*b/t)*b/h",
+    "between_braces_or_pure_bending": "0.41 + 0.0032*b/t + (0.73 - 0.016*b/t)*b/h"
+  },
+  "applicability": {"h_over_b_min": 1.0, "h_over_b_max": 6.0, "b_over_t_min_for_formula": 15.0, "b_over_t_max": 35.0},
+  "notes": {"friction_flange_connection_multiplier": 1.2, "stress_multiplier": "sqrt(Ryf/sigma)"}
+}

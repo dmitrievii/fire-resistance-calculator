@@ -1,0 +1,35 @@
+{
+  "case_id": "VAL-SP16-BOLT-0003",
+  "release_stage": "v0.26_validation_campaign_remediation_and_corpus_0001_0009_reconstructed_r1",
+  "checks": [
+    {
+      "check_id": "n",
+      "actual_value": 28
+    },
+    {
+      "check_id": "hmax",
+      "actual_value": 840
+    },
+    {
+      "check_id": "N1",
+      "actual_value": 9006.073696
+    },
+    {
+      "check_id": "Ns",
+      "actual_value": 2264.82708
+    },
+    {
+      "check_id": "eq190",
+      "actual_value": 0.0277942441
+    },
+    {
+      "check_id": "staggered_min_mm",
+      "actual_value": 170
+    },
+    {
+      "check_id": "staggered_layout_pass_source_claim",
+      "actual_value": 0
+    }
+  ],
+  "remediation_state": "current_v0.26_code_for_directly_comparable_routes"
+}

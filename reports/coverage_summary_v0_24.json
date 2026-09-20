@@ -1,0 +1,17 @@
+{
+  "package_version": "0.24.0",
+  "release_stage": "v0.24_release_api_hardening_and_function_level_validation_expansion_reconstructed_r1",
+  "measurement": "coverage.py branch run over 509 tests excluding release-manifest self-hash test",
+  "overall_combined_percent_covered": 89.98109640831758,
+  "engineering_statement_coverage_percent": 90.53815615350683,
+  "engineering_branch_coverage_percent": 69.70443349753694,
+  "engineering_totals": {
+    "num_statements": 4534,
+    "covered_lines": 4105,
+    "missing_lines": 429,
+    "num_branches": 1624,
+    "covered_branches": 1132,
+    "missing_branches": 492
+  },
+  "interpretation": "Coverage is diagnostic/execution evidence only and is not promoted to normative correctness evidence."
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sp554_sp16_fire_dependency_bridge_case.schema.json",
+  "title": "FIRE-D1 SP554 to SP16 member mechanical dependency bridge audit",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["case_id", "standard", "action", "require_connection_scope"],
+  "properties": {
+    "case_id": {"type": "string", "minLength": 1},
+    "standard": {"const": "СП 554.1311500.2026 (project)"},
+    "action": {"const": "sp554_sp16_fire_dependency_bridge"},
+    "require_connection_scope": {"type": "boolean"}
+  }
+}

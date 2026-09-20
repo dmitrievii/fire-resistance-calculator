@@ -1,0 +1,54 @@
+{
+  "case_id": "VAL-SP16-BUILTUP-0009",
+  "overall_validation_status": "PARTIAL_MATCH_PRODUCTION_REMEDIATED_SOURCE_MISSES_BRANCH_FAIL",
+  "checks": [
+    {
+      "check_id": "n",
+      "published_or_source_value": 0.00219,
+      "production_or_independent_value": 0.0021880064829821718,
+      "absolute_error": 1.9935170178283362e-06,
+      "absolute_tolerance": 5e-06,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "eq12_lambda_eff",
+      "published_or_source_value": 40.08873,
+      "production_or_independent_value": 40.0886929963,
+      "absolute_error": 3.700370000103703e-05,
+      "absolute_tolerance": 5e-05,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "lambda_bar_branch",
+      "published_or_source_value": 1.50974,
+      "production_or_independent_value": 1.5097413224,
+      "absolute_error": 1.3223999999478764e-06,
+      "absolute_tolerance": 5e-06,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "branch_limit_pass_source_omitted",
+      "published_or_source_value": 1,
+      "production_or_independent_value": 0,
+      "absolute_error": 1.0,
+      "absolute_tolerance": 0,
+      "comparison_status": "FAIL"
+    },
+    {
+      "check_id": "phi_x_low_slenderness",
+      "published_or_source_value": 1,
+      "production_or_independent_value": 1,
+      "absolute_error": 0.0,
+      "absolute_tolerance": 0,
+      "comparison_status": "PASS"
+    }
+  ],
+  "end_to_end_gate": {
+    "status": "NOT_ACCEPTED",
+    "reason_codes": [
+      "SOURCE-CLAUSE7.2.3-FAIL-OMITTED",
+      "TABLE8-EQ12-14-REMEDIATED",
+      "MATERIAL-PHYSICAL-PROPERTY-SOURCE-MISMATCH"
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "N8",
+  "release_stage": "v0.34_stage_n8_sheet_structures_current_sp16_closed_reconstructed_r1",
+  "role": "CURRENT_SP16_PRIMARY_WITH_FAIL_CLOSED_EXTERNAL_BOUNDARIES_AND_HISTORICAL_SECONDARY_ORACLES_ONLY",
+  "items": [
+    {
+      "id": "N8-R01",
+      "topic": "Legacy Section-11 source metadata",
+      "classification": "CURRENT_SP16_REBASELINE_CLOSED",
+      "resolution": "Section-11 scalar producers and Table 34 provenance are rebaselined from Amendments 1-5 wording to the locked current source with Changes 1-6 through 09.12.2024."
+    },
+    {
+      "id": "N8-R02",
+      "topic": "Legacy all-routes Section-11 wrapper",
+      "classification": "APPLICABILITY_ORCHESTRATION_CLOSED",
+      "resolution": "new sheet_structure_guided selects exactly one applicable 11.1/11.2 route; the old all-routes demo action is retained only for backward compatibility."
+    },
+    {
+      "id": "N8-R03",
+      "topic": "Table 34 non-node c values",
+      "classification": "EXACT_GRID_FAIL_CLOSED",
+      "resolution": "printed nodes are exact lookup only; no hidden interpolation or extrapolation. A non-node c requires an explicit external value and provenance."
+    },
+    {
+      "id": "N8-R04",
+      "topic": "Printed interpolation rules in 11.2.3 and 11.2.4",
+      "classification": "NORMATIVE_RULES_IMPLEMENTED",
+      "resolution": "linear interpolation is encoded only for 0.8Ry<sigma<Ry in the cylindrical-panel limit and for 10<l/r<20 in external-pressure critical stress."
+    },
+    {
+      "id": "N8-R05",
+      "topic": "Clauses 11.1.4 and 11.1.5",
+      "classification": "EXTERNAL_ANALYSIS_FAIL_CLOSED",
+      "resolution": "local edge effects and arbitrary/spatial shell analysis are not inferred; required local analysis, certified software, and linked clause compliance must be explicitly confirmed."
+    },
+    {
+      "id": "N8-R06",
+      "topic": "Clause 11.2.2 equation (156) below first Table-34 printed node",
+      "classification": "EXTERNAL_PROVENANCE_BOUNDARY",
+      "resolution": "when the direct tube route needs axial shell critical stress at an r/t not printed in Table 34, the package requires explicit c provenance rather than extrapolating the table."
+    },
+    {
+      "id": "N8-R07",
+      "topic": "Clause 11.2.4 ring-stiffened shell",
+      "classification": "ACTUAL_SECTION_CHECK_CLOSED",
+      "resolution": "ring spacing substitution is coupled to actual effective area/radius of gyration/section type, equation-(7) branch stability, relative slenderness <=6.5, and one-sided inertia-axis confirmation where applicable."
+    },
+    {
+      "id": "N8-R08",
+      "topic": "Dedicated NormCAD Section-11 shell case",
+      "classification": "NO_DEDICATED_N8_GOLDEN_CASE_FOUND",
+      "resolution": "no dedicated NormCAD Section-11 end-to-end oracle was found; no synthetic golden case was created."
+    }
+  ],
+  "open_package_or_dag_defects": 0,
+  "runtime_unresolved_in_declared_closed_routes": 0
+}

@@ -1,0 +1,5 @@
+Источник: пользовательский расчетный отчет, вставленный в чат (12.08.2026 16:23:33).
+
+Mx=11767936.29624 N mm; My=11277605.61723 N mm; Qx=9414.38401 N; Qy=10787.31501 N; q=25 N/mm.
+36DB1 source gross properties: Ix=138000000 mm4, Iy=6276000 mm4, Wx=766400 mm3, Wy=86600 mm3, Sx=434100 mm3, Sy=66830 mm3, tw=7.2, tf=12.3.
+Source later substitutes Wxn=70000 mm3 and Wyn=700000 mm3. Holes s=400,d=20 -> alpha=1.05263. sigma_x=168.11338 MPa; sigma_y=3.47222 MPa; raw tau=4.71294 MPa. Eq.(44) with alpha*tau gives 0.51008 PASS. Eq.(43) with the source-substituted W values gives 0.64822 PASS.

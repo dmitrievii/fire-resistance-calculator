@@ -1,0 +1,449 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Reconstruction assessment case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "standard",
+    "action",
+    "section_18_applicability_confirmed",
+    "defects_or_damage_present",
+    "local_character_only",
+    "restricts_normal_operation",
+    "requires_monitoring_or_strengthening",
+    "sudden_failure_or_global_instability_risk",
+    "monitoring_program_confirmed",
+    "smooth_load_transfer_to_strengthening_confirmed",
+    "construction_stage_capacity_confirmed",
+    "years_in_service",
+    "operating_conditions_worsened",
+    "loads_increased",
+    "main_member_strengthening_required",
+    "factory_certificate_available",
+    "sample_tests_completed",
+    "executive_documentation_complete",
+    "metal_quality_doubt_present",
+    "steel_process",
+    "chemical_composition_tested",
+    "tensile_properties_tested",
+    "stress_strain_diagram_obtained",
+    "impact_toughness_tested_if_required",
+    "macro_microstructure_tested_if_required",
+    "sulfur_percent",
+    "phosphorus_percent",
+    "manufacture_period",
+    "specialized_research_institute_confirmed",
+    "steel_production_method_identified",
+    "steel_resistance_route",
+    "normative_or_test_yield_n_mm2",
+    "normative_or_test_ultimate_n_mm2",
+    "weld_construction_period",
+    "rivet_limit_state",
+    "rivet_connection_group",
+    "rivet_steel",
+    "rivet_countersunk_or_semicountersunk_head",
+    "rivet_diameter_mm",
+    "rivet_shear_planes",
+    "rivet_connected_thickness_sum_mm",
+    "rivet_working_condition_factor",
+    "brittle_steel_temperature_condition_triggered",
+    "post_reconstruction_stress_not_above_existing_confirmed",
+    "actual_geometry_supports_and_defects_in_model_confirmed",
+    "mandatory_code_checks_pass",
+    "serviceability_exceedance_blocks_operation",
+    "slenderness_exceedance_acceptable_by_test_or_calculation",
+    "additional_holes_and_welding_effects_included",
+    "load_state_during_work_defined",
+    "intermittent_flange_weld_used",
+    "structure_group",
+    "design_temperature_c",
+    "environment",
+    "combined_connection_type",
+    "existing_design_resistance_n_mm2",
+    "reinforcement_design_resistance_n_mm2",
+    "welding_used_for_strengthening",
+    "initial_design_stress_n_mm2",
+    "axial_force_n",
+    "strengthened_area_mm2",
+    "working_condition_factor",
+    "moment_x_n_mm",
+    "inertia_x_mm4",
+    "point_y_mm",
+    "moment_y_n_mm",
+    "inertia_y_mm4",
+    "point_x_mm",
+    "phi_e",
+    "compressed_fiber_section_modulus_mm3",
+    "axial_force_eccentricity_mm",
+    "initial_deflection_mm",
+    "euler_critical_force_n",
+    "initial_axial_force_n",
+    "reinforcement_own_centroidal_inertia_sum_mm4",
+    "original_inertia_mm4",
+    "strengthened_inertia_mm4",
+    "original_area_mm2",
+    "average_weld_continuity_factor",
+    "effective_length_for_weld_deflection",
+    "weld_leg_cm",
+    "weld_terms",
+    "listed_deviation_only",
+    "damage_caused_by_deviation_absent",
+    "adverse_operating_change_excluded",
+    "capacity_and_stiffness_justified",
+    "fatigue_and_brittle_fracture_measures_confirmed"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "standard": {
+      "type": "string"
+    },
+    "action": {
+      "const": "reconstruction_assessment"
+    },
+    "section_18_applicability_confirmed": {
+      "const": true
+    },
+    "defects_or_damage_present": {
+      "type": "boolean"
+    },
+    "local_character_only": {
+      "type": "boolean"
+    },
+    "restricts_normal_operation": {
+      "type": "boolean"
+    },
+    "requires_monitoring_or_strengthening": {
+      "type": "boolean"
+    },
+    "sudden_failure_or_global_instability_risk": {
+      "type": "boolean"
+    },
+    "monitoring_program_confirmed": {
+      "type": "boolean"
+    },
+    "smooth_load_transfer_to_strengthening_confirmed": {
+      "type": "boolean"
+    },
+    "construction_stage_capacity_confirmed": {
+      "type": "boolean"
+    },
+    "years_in_service": {
+      "type": "number",
+      "minimum": 0
+    },
+    "operating_conditions_worsened": {
+      "type": "boolean"
+    },
+    "loads_increased": {
+      "type": "boolean"
+    },
+    "main_member_strengthening_required": {
+      "type": "boolean"
+    },
+    "factory_certificate_available": {
+      "type": "boolean"
+    },
+    "sample_tests_completed": {
+      "type": "boolean"
+    },
+    "executive_documentation_complete": {
+      "type": "boolean"
+    },
+    "metal_quality_doubt_present": {
+      "type": "boolean"
+    },
+    "steel_process": {
+      "enum": [
+        "puddled",
+        "bessemer",
+        "thomas",
+        "open_hearth",
+        "electric",
+        "unknown_carbon"
+      ]
+    },
+    "chemical_composition_tested": {
+      "type": "boolean"
+    },
+    "tensile_properties_tested": {
+      "type": "boolean"
+    },
+    "stress_strain_diagram_obtained": {
+      "type": "boolean"
+    },
+    "impact_toughness_tested_if_required": {
+      "type": "boolean"
+    },
+    "macro_microstructure_tested_if_required": {
+      "type": "boolean"
+    },
+    "sulfur_percent": {
+      "type": "number",
+      "minimum": 0
+    },
+    "phosphorus_percent": {
+      "type": "number",
+      "minimum": 0
+    },
+    "manufacture_period": {
+      "enum": [
+        "before_1950",
+        "after_1950"
+      ]
+    },
+    "specialized_research_institute_confirmed": {
+      "type": "boolean"
+    },
+    "steel_production_method_identified": {
+      "type": "boolean"
+    },
+    "steel_resistance_route": {
+      "enum": [
+        "before_1950_tests",
+        "before_1982_certificate",
+        "after_1982_certificate",
+        "after_1988_statistical_certificate",
+        "no_certificate_grade_identified",
+        "steel_unidentified_tests"
+      ]
+    },
+    "normative_or_test_yield_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "normative_or_test_ultimate_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "weld_construction_period": {
+      "enum": [
+        "before_1972",
+        "after_1972"
+      ]
+    },
+    "rivet_limit_state": {
+      "enum": [
+        "shear",
+        "tension_head_pull_off",
+        "bearing"
+      ]
+    },
+    "rivet_connection_group": {
+      "enum": [
+        "B",
+        "C"
+      ]
+    },
+    "rivet_steel": {
+      "enum": [
+        "St2_St3",
+        "09G2"
+      ]
+    },
+    "rivet_countersunk_or_semicountersunk_head": {
+      "type": "boolean"
+    },
+    "rivet_diameter_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "rivet_shear_planes": {
+      "type": "number",
+      "minimum": 0
+    },
+    "rivet_connected_thickness_sum_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "rivet_working_condition_factor": {
+      "type": "number",
+      "minimum": 0
+    },
+    "brittle_steel_temperature_condition_triggered": {
+      "type": "boolean"
+    },
+    "post_reconstruction_stress_not_above_existing_confirmed": {
+      "type": "boolean"
+    },
+    "actual_geometry_supports_and_defects_in_model_confirmed": {
+      "type": "boolean"
+    },
+    "mandatory_code_checks_pass": {
+      "type": "boolean"
+    },
+    "serviceability_exceedance_blocks_operation": {
+      "type": "boolean"
+    },
+    "slenderness_exceedance_acceptable_by_test_or_calculation": {
+      "type": "boolean"
+    },
+    "additional_holes_and_welding_effects_included": {
+      "type": "boolean"
+    },
+    "load_state_during_work_defined": {
+      "type": "boolean"
+    },
+    "intermittent_flange_weld_used": {
+      "type": "boolean"
+    },
+    "structure_group": {
+      "type": "number",
+      "minimum": 0
+    },
+    "design_temperature_c": {
+      "type": "number"
+    },
+    "environment": {
+      "enum": [
+        "non_aggressive",
+        "mild",
+        "medium",
+        "strong"
+      ]
+    },
+    "combined_connection_type": {
+      "enum": [
+        "none",
+        "rivets_plus_friction",
+        "rivets_plus_accuracy_A_bolts"
+      ]
+    },
+    "existing_design_resistance_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "reinforcement_design_resistance_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "welding_used_for_strengthening": {
+      "type": "boolean"
+    },
+    "initial_design_stress_n_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "axial_force_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "strengthened_area_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "working_condition_factor": {
+      "type": "number",
+      "minimum": 0
+    },
+    "moment_x_n_mm": {
+      "type": "number"
+    },
+    "inertia_x_mm4": {
+      "type": "number",
+      "minimum": 0
+    },
+    "point_y_mm": {
+      "type": "number"
+    },
+    "moment_y_n_mm": {
+      "type": "number"
+    },
+    "inertia_y_mm4": {
+      "type": "number",
+      "minimum": 0
+    },
+    "point_x_mm": {
+      "type": "number"
+    },
+    "phi_e": {
+      "type": "number",
+      "minimum": 0
+    },
+    "compressed_fiber_section_modulus_mm3": {
+      "type": "number",
+      "minimum": 0
+    },
+    "axial_force_eccentricity_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "initial_deflection_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "euler_critical_force_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "initial_axial_force_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "reinforcement_own_centroidal_inertia_sum_mm4": {
+      "type": "number",
+      "minimum": 0
+    },
+    "original_inertia_mm4": {
+      "type": "number",
+      "minimum": 0
+    },
+    "strengthened_inertia_mm4": {
+      "type": "number",
+      "minimum": 0
+    },
+    "original_area_mm2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "average_weld_continuity_factor": {
+      "type": "number",
+      "minimum": 0
+    },
+    "effective_length_for_weld_deflection": {
+      "type": "number",
+      "minimum": 0
+    },
+    "weld_leg_cm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "weld_terms": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "n_i",
+          "y_i"
+        ],
+        "properties": {
+          "n_i": {
+            "type": "number"
+          },
+          "y_i": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "listed_deviation_only": {
+      "type": "boolean"
+    },
+    "damage_caused_by_deviation_absent": {
+      "type": "boolean"
+    },
+    "adverse_operating_change_excluded": {
+      "type": "boolean"
+    },
+    "capacity_and_stiffness_justified": {
+      "type": "boolean"
+    },
+    "fatigue_and_brittle_fracture_measures_confirmed": {
+      "type": "boolean"
+    }
+  }
+}

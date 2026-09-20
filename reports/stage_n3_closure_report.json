@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "release_stage": "v0.29_stage_n3_axial_members_current_sp16_closed_reconstructed_r1",
+  "package_version": "0.29.0",
+  "parent_release": "v0.28_stage_n2_section_model_profile_catalog_runtime_closed_reconstructed_r1",
+  "stage": "N3",
+  "verdict": "STAGE_N3_AXIAL_MEMBERS_CURRENT_SP16_CLOSED",
+  "engineering_use_ready": false,
+  "full_change_6_rebaseline_complete": false,
+  "original_gost_profile_audit_complete": false,
+  "authoritative_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "scope": {
+    "central_tension_strength_7_1_1": true,
+    "single_angle_7_1_2_optional_route": true,
+    "central_compression_7_1_3": true,
+    "current_equation_7a_gamma_res": true,
+    "table7_phi_chain": true,
+    "built_up_axial_7_2_1_to_7_2_10": true,
+    "table8_selected_equations_12_to_17": true,
+    "fewer_than_six_panel_branch": true,
+    "qfic_and_connector_force_chain": true,
+    "n1_material_strength_frozen_dependency": true,
+    "n2_section_profile_runtime_frozen_dependency": true
+  },
+  "current_source_specific_findings": {
+    "equation_7a_added_to_inventory": true,
+    "equation_inventory_total": 241,
+    "implemented_equations": 240,
+    "no_code_explanatory_equations": 1,
+    "lambda_bar_basis": "lambda*sqrt(Ry/E)",
+    "gamma_res_390_literal_branch": "0.2*lambda_bar+0.9 for lambda_bar>5 as printed in locked current source",
+    "phi_cap_boundary_ambiguity": "CLASSIFIED_CURRENT_SOURCE_TEXT_VS_TABLE_D1; not silently normalized"
+  },
+  "normcad": {
+    "role": "HISTORICAL_SECONDARY_ORACLE_NOT_NORMATIVE",
+    "current_equation_7a_present_in_static_module": false,
+    "table8_present": true,
+    "static_equation_14_divergence_classified": true
+  },
+  "dag": {
+    "file": "normative_graph/dag_v0.3.32_stage_n3.json",
+    "sha256": "226c04a36dded941a8176bed2e258cfc4cc76f157f5000ad6e4cef10c6738aab",
+    "schema_validation": "PASS",
+    "quantities": 620,
+    "nodes": 574,
+    "edges": 1024
+  },
+  "tests": {
+    "stage_n3_focused": "35/35 PASS",
+    "full_pytest_excluding_release_manifest": "645/645 PASS",
+    "main_py_release_audit": "PASS",
+    "generated_outputs": "23/23 current release identity",
+    "legacy_validation_cases": "1876/1876 PASS",
+    "independent_function_oracles": "60/581 retained",
+    "external_golden_cases": "6/6 retained"
+  },
+  "discrepancies": {
+    "total": 8,
+    "remediated_package_or_dag": 5,
+    "classified_normcad": 2,
+    "classified_current_source_ambiguity": 1,
+    "open_package_or_dag_defects": 0,
+    "runtime_unresolved": 0
+  },
+  "deferred_final_gates": [
+    "full package-wide Change 6 rebaseline",
+    "original/effective GOST/GOST R audit of interim imported profile catalog",
+    "final external engineering certification/qualification"
+  ],
+  "release_gate_note": "Stage N3 is closed only for the declared central tension/compression and built-up axial-member scope. This does not make the cumulative package engineering-use ready."
+}

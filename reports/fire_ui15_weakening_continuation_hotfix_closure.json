@@ -1,0 +1,29 @@
+{
+  "schema": "fire_ui15_weakening_continuation_closure_v1",
+  "release_stage": "v0.48_fire_ui15_weakening_continuation_hotfix_r1",
+  "parent_release": "v0.47_fire_ui14_section_weakening_simplification_r1",
+  "dag": "normative_graph/dag_v0.3.51_fire_ui15_weakening_continuation_hotfix.json",
+  "presentation_policy": "data/fire_ui15_presentation_policy.json",
+  "defects_closed": [
+    {
+      "id": "FIRE-UI15-01",
+      "symptom": "current node SP554_G_NET_SECTION_PROPERTIES is not interactive",
+      "resolution": "derived net producer remains auto-executed and is not a presentation stop; frontend duplicate-submit guard added"
+    },
+    {
+      "id": "FIRE-UI15-02",
+      "symptom": "guided route reported COMPLETE immediately after weakening",
+      "resolution": "alpha identity/formula45 presentation routes continue to SP554_D_GOST27751_GAMMA_CT"
+    },
+    {
+      "id": "FIRE-UI15-03",
+      "symptom": "tee/no-hole path was not regression-qualified",
+      "resolution": "no-hole identity qualified independently of section symmetry; all 18 catalog tee rows swept"
+    }
+  ],
+  "normative_change": false,
+  "no_hole_identity_scope": "any section with resolved positive gross A, Ix, Iy, Wx+/-, Wy+/-",
+  "hole_present_scope": "unchanged FIRE-UI1.4 central web hole in doubly symmetric I-section only",
+  "next_interactive_node_after_weakening": "SP554_D_GOST27751_GAMMA_CT",
+  "engineering_use_ready": false
+}

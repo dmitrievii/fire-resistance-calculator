@@ -1,0 +1,365 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "beam_column_stability_case.schema.json",
+  "title": "СП 16.13330.2017 beam-column stability case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "standard",
+    "action",
+    "clause_9_2_applicability_confirmed",
+    "same_load_combination_confirmed",
+    "section_classification_confirmed",
+    "required_reduced_area_confirmed",
+    "axial_force_n",
+    "gross_or_reduced_area_mm2",
+    "design_yield_resistance_n_mm2",
+    "working_condition_factor",
+    "relative_slenderness_x",
+    "relative_slenderness_y",
+    "relative_eccentricity_x",
+    "relative_eccentricity_y",
+    "annex_d2_section_type_x",
+    "annex_d2_section_type_y",
+    "annex_d2_flange_to_web_area_ratio_x",
+    "annex_d2_flange_to_web_area_ratio_y",
+    "annex_d2_offset_ratio_a1_to_h_x",
+    "annex_d2_offset_ratio_a1_to_h_y",
+    "central_compression_phi_x",
+    "central_compression_phi_y",
+    "central_compression_phi_at_3_14",
+    "section_is_box",
+    "bending_in_one_plane",
+    "bending_in_two_planes",
+    "table_21_section_type",
+    "table_21_smaller_to_larger_flange_inertia_ratio",
+    "bending_stability_phi_b",
+    "annex_d_c_max",
+    "eccentricity_x_mm",
+    "eccentricity_y_mm",
+    "compressed_section_modulus_x_mm3",
+    "compressed_section_modulus_y_mm3",
+    "maximum_moment_n_mm",
+    "middle_third_moment_n_mm",
+    "auxiliary_moment_m2_n_mm",
+    "maximum_relative_eccentricity",
+    "end_moment_ratio_delta",
+    "geometric_slenderness_for_d5",
+    "reference_effective_eccentricity_d5",
+    "major_stiffness_plane_coincides_with_symmetry_plane",
+    "box_bending_in_major_stiffness_plane",
+    "box_minor_axis_moment_is_zero",
+    "box_major_axis_moment_n_mm",
+    "box_minor_axis_moment_n_mm",
+    "box_plastic_coefficient_cx",
+    "box_plastic_coefficient_cy",
+    "box_minimum_section_modulus_x_mm3",
+    "box_minimum_section_modulus_y_mm3",
+    "open_section_alpha_ratio",
+    "open_section_beta_parameter",
+    "major_axis_inertia_mm4",
+    "minor_axis_inertia_mm4",
+    "sectorial_inertia_mm6",
+    "torsional_inertia_mm4",
+    "geometric_slenderness_y",
+    "section_height_mm",
+    "major_axis_radius_mm",
+    "minor_axis_radius_mm",
+    "annex_zh_alpha_parameter",
+    "annex_d6_section_type"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "standard": {
+      "type": "string",
+      "const": "СП 16.13330.2017"
+    },
+    "action": {
+      "type": "string",
+      "const": "beam_column_stability"
+    },
+    "clause_9_2_applicability_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "same_load_combination_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "section_classification_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "required_reduced_area_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "section_is_box": {
+      "type": "boolean"
+    },
+    "bending_in_one_plane": {
+      "type": "boolean"
+    },
+    "bending_in_two_planes": {
+      "type": "boolean"
+    },
+    "major_stiffness_plane_coincides_with_symmetry_plane": {
+      "type": "boolean"
+    },
+    "box_bending_in_major_stiffness_plane": {
+      "type": "boolean"
+    },
+    "box_minor_axis_moment_is_zero": {
+      "type": "boolean"
+    },
+    "annex_d2_section_type_x": {
+      "type": "string",
+      "enum": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ]
+    },
+    "annex_d2_section_type_y": {
+      "type": "string",
+      "enum": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ]
+    },
+    "table_21_section_type": {
+      "type": "string",
+      "enum": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    "annex_d6_section_type": {
+      "type": "string",
+      "enum": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    "gross_or_reduced_area_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "design_yield_resistance_n_mm2": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "working_condition_factor": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "central_compression_phi_x": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "central_compression_phi_y": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "central_compression_phi_at_3_14": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "table_21_smaller_to_larger_flange_inertia_ratio": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "bending_stability_phi_b": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 1
+    },
+    "annex_d_c_max": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "compressed_section_modulus_x_mm3": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "compressed_section_modulus_y_mm3": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "box_plastic_coefficient_cx": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "box_plastic_coefficient_cy": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "box_minimum_section_modulus_x_mm3": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "box_minimum_section_modulus_y_mm3": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "major_axis_inertia_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "minor_axis_inertia_mm4": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "section_height_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "major_axis_radius_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "minor_axis_radius_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "axial_force_n": {
+      "type": "number",
+      "minimum": 0
+    },
+    "relative_slenderness_x": {
+      "type": "number",
+      "minimum": 0
+    },
+    "relative_slenderness_y": {
+      "type": "number",
+      "minimum": 0
+    },
+    "relative_eccentricity_x": {
+      "type": "number",
+      "minimum": 0
+    },
+    "relative_eccentricity_y": {
+      "type": "number",
+      "minimum": 0
+    },
+    "annex_d2_flange_to_web_area_ratio_x": {
+      "type": "number",
+      "minimum": 0
+    },
+    "annex_d2_flange_to_web_area_ratio_y": {
+      "type": "number",
+      "minimum": 0
+    },
+    "annex_d2_offset_ratio_a1_to_h_x": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 0.15
+    },
+    "annex_d2_offset_ratio_a1_to_h_y": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 0.15
+    },
+    "eccentricity_x_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "eccentricity_y_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "maximum_moment_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "middle_third_moment_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "auxiliary_moment_m2_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "maximum_relative_eccentricity": {
+      "type": "number",
+      "minimum": 0
+    },
+    "geometric_slenderness_for_d5": {
+      "type": "number",
+      "minimum": 0
+    },
+    "reference_effective_eccentricity_d5": {
+      "type": "number",
+      "minimum": 0
+    },
+    "box_major_axis_moment_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "box_minor_axis_moment_n_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "open_section_alpha_ratio": {
+      "type": "number",
+      "minimum": 0
+    },
+    "open_section_beta_parameter": {
+      "type": "number",
+      "minimum": 0
+    },
+    "sectorial_inertia_mm6": {
+      "type": "number",
+      "minimum": 0
+    },
+    "torsional_inertia_mm4": {
+      "type": "number",
+      "minimum": 0
+    },
+    "geometric_slenderness_y": {
+      "type": "number",
+      "minimum": 0
+    },
+    "annex_zh_alpha_parameter": {
+      "type": "number",
+      "minimum": 0
+    },
+    "end_moment_ratio_delta": {
+      "type": "number",
+      "enum": [
+        -1.0,
+        -0.5,
+        0.0,
+        0.5
+      ]
+    }
+  }
+}

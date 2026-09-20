@@ -1,0 +1,20 @@
+{
+  "case_id": "EX-STAGE-N8-CYL-AXIAL-001",
+  "standard": "СП 16.13330.2017",
+  "action": "sheet_structure_guided",
+  "material_ref": {
+    "product_form": "plate_sheet_strip",
+    "steel_grade": "C355",
+    "thickness_mm": 10.0,
+    "material_safety_category": "other_conforming",
+    "design_resistance_source": "annex_tabulated"
+  },
+  "working_condition_factor": 1.0,
+  "route": {
+    "kind": "cylinder_axial_11_2_1",
+    "radius_mm": 1000.0,
+    "thickness_mm": 10.0,
+    "axial_compressive_stress_n_mm2": 80.0,
+    "eccentric_compression_or_pure_bending": false
+  }
+}

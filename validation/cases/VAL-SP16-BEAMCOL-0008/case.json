@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.1.0",
+  "case_id": "VAL-SP16-BEAMCOL-0008",
+  "title": "Сжато-изогнутый 15К4 при изгибе в двух направлениях",
+  "evidence_class": "external_user_supplied_calculation_report",
+  "source": {
+    "original_filename": "Вставленный текст(2).txt",
+    "stored_path": "validation/cases/VAL-SP16-BEAMCOL-0008/source/source_report_original.txt",
+    "sha256": "9b61b77851887b4a98a27efb5cfb80b148324d40709b90384be8ea818b15dd6c",
+    "page_count": 0,
+    "preservation": "verbatim_file_copy"
+  },
+  "source_reported_inputs": {
+    "note": "Calculation-grade inputs are encoded in the source transcript and expected/comparison records for this validation campaign."
+  },
+  "source_reported_checks": [
+    {
+      "check_id": "An",
+      "published_value": 5064
+    },
+    {
+      "check_id": "eq106",
+      "published_value": 0.2034003
+    },
+    {
+      "check_id": "lambda_x",
+      "published_value": 46.6898
+    },
+    {
+      "check_id": "lambda_y",
+      "published_value": 0.07681
+    },
+    {
+      "check_id": "eta_x",
+      "published_value": 1.37863
+    },
+    {
+      "check_id": "meff_x",
+      "published_value": 6.67245
+    },
+    {
+      "check_id": "phi_y_low_slenderness",
+      "published_value": 1
+    },
+    {
+      "check_id": "eq109_given_phi_e",
+      "published_value": 0.0442602
+    }
+  ],
+  "source_consistency_findings": [
+    {
+      "finding_id": "SOURCE-LEFY-UNIT-ANOMALY",
+      "description": "The source states lefy=2.95 mm and consistently calculates lambda_y=0.07681. This is preserved as written; possible 2.95 m intent is not silently assumed."
+    },
+    {
+      "finding_id": "D3-INTERPOLATION-POLICY-OPEN",
+      "description": "The source value phi_e=0.18771 is reproduced by bilinear interpolation of Table D.3 nodes, but the standard text does not uniquely state that interpolation policy; production remains fail-closed for non-node lookup."
+    },
+    {
+      "finding_id": "D2-COEFFICIENT-REMEDIATED",
+      "description": "Phase 0.26 corrects the type-5 Af/Aw>=1 coefficient from 0.012 to 0.02."
+    },
+    {
+      "finding_id": "LOW-SLENDERNESS-REMEDIATED",
+      "description": "Phase 0.26 applies phi=1 for a/b when lambda_bar<0.6 before the Table D.1 lower-node guard."
+    },
+    {
+      "finding_id": "CLAUSE9.2.9-MIXED-ROUTE-REMEDIATED",
+      "description": "Phase 0.26 suppresses Eq.(116) when meff_y>20 while preserving the independent lambda_x>lambda_y trigger for Eq.(109) with ey=0."
+    }
+  ],
+  "validation_classification": {
+    "overall_status": "PARTIAL_MATCH_PRODUCTION_REMEDIATED_WITH_OPEN_D3_POLICY",
+    "count_as_full_end_to_end_golden_case": false,
+    "count_as_scalar_external_replay": true,
+    "directly_comparable_production_functions": [
+      "standard_core.*.annex_d2_shape_influence_coefficient",
+      "standard_core.*.central_compression_stability_coefficient",
+      "standard_core.*.biaxial_additional_checks_clause_9_2_9",
+      "standard_core.*.annex_d3_stability_coefficient"
+    ],
+    "reason": "This campaign preserves source discrepancies and only promotes directly comparable scalar/procedure evidence."
+  }
+}

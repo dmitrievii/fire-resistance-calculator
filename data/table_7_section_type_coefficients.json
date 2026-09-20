@@ -1,0 +1,25 @@
+{
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "standard_reference": "Clause 7.1.3, Table 7, PDF pages 15-16",
+  "audit_id": "SP16-TBL-7",
+  "section_types": {
+    "a": {
+      "alpha": 0.03,
+      "beta": 0.06,
+      "classification_note": "Use only for cross-sections shown under type a in Table 7. Rolled I-sections deeper than 500 mm checked in the web plane are assigned type a by Note 1."
+    },
+    "b": {
+      "alpha": 0.04,
+      "beta": 0.09,
+      "classification_note": "Use only for cross-sections and calculation planes shown under type b in Table 7."
+    },
+    "c": {
+      "alpha": 0.04,
+      "beta": 0.14,
+      "classification_note": "Use only for cross-sections and calculation planes shown under type c in Table 7."
+    }
+  },
+  "axis_note": "Table 7 axes x-x and y-y identify sections normal to the calculation plane used in equation (8); for other shown sections the coefficients are independent of calculation plane.",
+  "classification_policy": "Arbitrary user geometry remains fail-closed: type a/b/c is not inferred without a mapped section family or explicit normative classification. Stage N2 imported profile families use profile_family_registry_v0_28_stage_n2.json to supply the current Table 7 coefficient set and mapped x/y type so existing member-stability branches can run. The coefficient values are current-SP16 values; imported legacy family/product-standard mapping remains tagged for the deferred final original-GOST/profile audit.",
+  "stage_n2_runtime_registry": "data/profile_family_registry_v0_28_stage_n2.json"
+}

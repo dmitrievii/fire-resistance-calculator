@@ -1,0 +1,36 @@
+{
+  "report_id": "FIRE-D2-CLOSURE-1",
+  "release_stage": "v0.38_fire_d2_sp554_critical_temperature_runtime_r1",
+  "verdict": "FIRE_D2_SP554_MEMBER_CRITICAL_TEMPERATURE_RUNTIME_CLOSED",
+  "member_fire_runtime_closure_pass": true,
+  "appendix_b_inverse_closure_pass": true,
+  "governing_temperature_reconciliation_pass": true,
+  "fire_d1_dependency_gate_pass": true,
+  "stage_gate_pass": true,
+  "governing_policy": "INVERT_EACH_APPLICABLE_REDUCTION_CURVE_THEN_SELECT_MINIMUM_CRITICAL_TEMPERATURE",
+  "not_claimed": [
+    "SP554 Section 12 thermal calculation and fire-protection heating solver",
+    "Fire resistance of joints/connections",
+    "Coupled time-to-critical-temperature fire-resistance duration result",
+    "Full engineering certification"
+  ],
+  "next_stage": "FIRE-D3 — SP554 Section 12 thermal calculation and time-to-critical-temperature coupling",
+  "engineering_use_ready": false,
+  "source_pre_manifest_tests": {
+    "passed": 876,
+    "total": 876,
+    "status": "PASS",
+    "evidence_policy": "completed_non_overlapping_pytest_groups"
+  },
+  "source_manifest_test": {
+    "passed": 1,
+    "total": 1,
+    "status": "PASS"
+  },
+  "source_complete_tests": {
+    "passed": 877,
+    "total": 877,
+    "status": "PASS",
+    "evidence_policy": "876 pre-manifest completed non-overlapping groups + final manifest test"
+  }
+}

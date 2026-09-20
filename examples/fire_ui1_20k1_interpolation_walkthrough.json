@@ -1,0 +1,51 @@
+{
+  "case_id": "UI-D3-HF-20K1-001",
+  "standard": "СП 16.13330.2017",
+  "action": "beam_column_guided",
+  "member_form": "solid_open",
+  "section_weakening": "explicit_net_properties",
+  "same_load_combination_confirmed": true,
+  "section_classification_confirmed": true,
+  "major_stiffness_plane_coincides_with_symmetry_plane": true,
+  "axial_force_n": 1000.0,
+  "moment_x_n_mm": 300000.0,
+  "moment_y_n_mm": 0.0,
+  "bimoment_n_mm2": 0.0,
+  "effective_length_x_mm": 2100.0,
+  "effective_length_y_mm": 2100.0,
+  "working_condition_factor": 1.0,
+  "net_area_mm2": 5074.0,
+  "minimum_net_section_modulus_x_mm3": 392305.86734693876,
+  "minimum_net_section_modulus_y_mm3": 132100.63756281408,
+  "net_inertia_x_mm4": 38445975.0,
+  "net_inertia_y_mm4": 13144013.4375,
+  "minimum_net_sectorial_section_modulus_mm4": 1000000000.0,
+  "annex_d2_section_type_x": "5",
+  "annex_d2_section_type_y": "5",
+  "annex_d2_flange_to_web_area_ratio_x": 1.74,
+  "annex_d2_flange_to_web_area_ratio_y": 0.287,
+  "table_21_section_type": "1",
+  "strength": {
+    "method": "auto",
+    "direct_dynamic_load": false,
+    "shear_stress_n_mm2": 0.0,
+    "clause_8_5_8_confirmed": true,
+    "clause_8_5_18_confirmed": true,
+    "annex_e1_section_type": "1",
+    "annex_e1_flange_to_web_area_ratio": 1.74,
+    "section_is_asymmetric_about_axis_perpendicular_to_bending_plane": false
+  },
+  "stability": {},
+  "profile_ref": {
+    "family_id": 35,
+    "designation": "20К1",
+    "axis": "x"
+  },
+  "material_ref": {
+    "product_form": "parallel_flange_i",
+    "steel_grade": "C255Б-1",
+    "thickness_mm": 10.0,
+    "material_safety_category": "other_conforming",
+    "design_resistance_source": "annex_tabulated"
+  }
+}

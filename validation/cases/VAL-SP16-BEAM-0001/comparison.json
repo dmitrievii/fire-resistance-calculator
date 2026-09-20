@@ -1,0 +1,36 @@
+{
+  "case_id": "VAL-SP16-BEAM-0001",
+  "overall_validation_status": "PARTIAL_SOURCE_INCONSISTENT",
+  "scalar_replay_summary": {
+    "passed": 2,
+    "failed": 0,
+    "total": 2
+  },
+  "checks": [
+    {
+      "check_id": "SRC-EQ45",
+      "published": 1.0274,
+      "actual": 1.0273972602739727,
+      "absolute_error": 2.7397260273787083e-06,
+      "absolute_tolerance": 5e-05,
+      "comparison_status": "PASS"
+    },
+    {
+      "check_id": "SRC-EQ41",
+      "published": 3.37069,
+      "actual": 3.3706942488330043,
+      "absolute_error": 4.248833004094621e-06,
+      "absolute_tolerance": 5e-06,
+      "comparison_status": "PASS",
+      "source_and_production_engineering_verdict": "FAIL"
+    }
+  ],
+  "end_to_end_gate": {
+    "status": "NOT_ACCEPTED",
+    "reason_codes": [
+      "SRC-CONFLICT-001",
+      "SRC-CONFLICT-002"
+    ],
+    "note": "The two printed scalar equations reproduce, but the report is internally inconsistent in section modulus and section type."
+  }
+}

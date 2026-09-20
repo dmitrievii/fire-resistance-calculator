@@ -1,0 +1,49 @@
+{
+  "package_version": "0.26.0",
+  "release_stage": "v0.26_validation_campaign_remediation_and_corpus_0001_0009_reconstructed_r1",
+  "corpus_revision": "0009",
+  "case_count": 9,
+  "case_ids": [
+    "VAL-SP16-BEAM-0001",
+    "VAL-SP16-BEAMCOL-0008",
+    "VAL-SP16-BEND-0006",
+    "VAL-SP16-BEND-0007",
+    "VAL-SP16-BOLT-0003",
+    "VAL-SP16-BOLT-0005",
+    "VAL-SP16-BUILTUP-0009",
+    "VAL-SP16-WELD-0002",
+    "VAL-SP16-WELD-0004"
+  ],
+  "status_counts": {
+    "PARTIAL_SOURCE_INCONSISTENT": 1,
+    "PARTIAL_MATCH_PRODUCTION_REMEDIATED_WITH_OPEN_D3_POLICY": 1,
+    "PARTIAL_MATCH_SOURCE_AND_RUNNER_REMEDIATED": 1,
+    "PARTIAL_MATCH_SOURCE_ROUTING_ERROR_AND_RUNNER_REMEDIATED": 1,
+    "PARTIAL_MATCH_SOURCE_NORMATIVE_FAIL": 3,
+    "PARTIAL_MATCH_PRODUCTION_REMEDIATED_SOURCE_MISSES_BRANCH_FAIL": 1,
+    "PARTIAL_MATCH_SOURCE_STOPS_BEFORE_LENGTH": 1
+  },
+  "full_end_to_end_golden_count": 0,
+  "phase_0_26_regression_gate": "12/12 PASS",
+  "closed_package_findings": [
+    "V026-T8-001",
+    "V026-AXIAL-001",
+    "V026-D2-001",
+    "V026-WELD-001",
+    "V026-WELD-002",
+    "V026-BOLT-001",
+    "V026-BOLT-002",
+    "V026-BEND-001",
+    "V026-STAB-001",
+    "V026-BCOL-001"
+  ],
+  "open_package_boundaries": [
+    "OPEN-D3-INTERPOLATION",
+    "OPEN-ANNEX-24",
+    "OPEN-CHANGE6-REBASELINE",
+    "OPEN-END2END-VALIDATION"
+  ],
+  "qualification": "Validation cases are evidence-bearing reproductions. Source-report defects are retained and are not normalized away to force agreement.",
+  "full_pytest_gate": "537/537 PASS",
+  "final_cumulative_audit": "PASS"
+}

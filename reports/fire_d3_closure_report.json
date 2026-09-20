@@ -1,0 +1,28 @@
+{
+  "report_id": "FIRE-D3-CLOSURE-1",
+  "release_stage": "v0.39_fire_d3_sp554_section12_thermal_runtime_r1",
+  "package_version": "0.39.0",
+  "parent_release": "v0.38_fire_d2_sp554_critical_temperature_runtime_r1",
+  "verdict": "FIRE_D3_SP554_SECTION12_PRIMARY_RUNTIME_CLOSED_WITH_WET_FDM_FAIL_CLOSED",
+  "closed": {
+    "unprotected_step_12_2": true,
+    "unprotected_figure1_12_2": true,
+    "protected_matrix_12_10": true,
+    "protected_inverse_thickness_12_10": true,
+    "protected_fdm_12_5_dry": true,
+    "validation_gate_12_6": true,
+    "confirmed_errata_overlay": true,
+    "fire_d2_to_fire_d3_handoff": true,
+    "dag_v0_3_42": true
+  },
+  "open": {
+    "protected_fdm_12_5_wet_w_gt_0": true,
+    "connection_fire_resistance": true,
+    "engineering_use_ready": false
+  },
+  "control": {
+    "critical_temperature_c": 525.0192844353662,
+    "reduced_thickness_mm": 10.0,
+    "actual_fire_resistance_min": 14.326394173167056
+  }
+}

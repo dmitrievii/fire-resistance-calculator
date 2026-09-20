@@ -1,0 +1,10 @@
+{
+  "release_stage": "v0.33_stage_n7_effective_lengths_limiting_slenderness_current_sp16_closed_reconstructed_r1",
+  "qualification": "research_grade_stage_n7_effective_lengths_limiting_slenderness_closed_current_sp16",
+  "stage_n7_closed": false,
+  "engineering_use_ready": false,
+  "full_change_6_rebaselined": false,
+  "original_gost_profile_audit_complete": false,
+  "tests": "PENDING final cumulative release gates",
+  "dag_sha256": "83df0991cc709ca22d9d345bf4049a6dd2a7d97844310788e06e659930d9aa16"
+}

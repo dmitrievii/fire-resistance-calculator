@@ -1,0 +1,26 @@
+{
+  "package_version": "0.26.0",
+  "release_stage": "v0.26_validation_campaign_remediation_and_corpus_0001_0009_reconstructed_r1",
+  "release_qualification": "research_grade_validation_campaign_remediation_with_user_supplied_case_corpus",
+  "parent_release": "v0.25_validation_corpus_update_0001_val_sp16_beam_0001",
+  "engineering_use_ready": false,
+  "remediation_source_edition": "СП 16.13330.2017, Amendments No. 1-6, through 09.12.2024",
+  "full_change_6_rebaselined": false,
+  "gates": {
+    "validation_corpus_registered": "9/9",
+    "phase_0_26_focused_regressions": "12/12 PASS (pre-package run)",
+    "legacy_validation_self_checks": "1876/1876 PASS",
+    "retained_independent_function_oracles": "60/581",
+    "retained_external_published_comparators": "6/6 PASS across 5 functions",
+    "engineering_api_call_shape_compatibility_with_v0_25": "PASS",
+    "external_annex_boundaries": 24,
+    "full_change_6_rebaseline_complete": false,
+    "engineering_use_ready": false,
+    "full_pytest_gate": "537/537 PASS",
+    "final_cumulative_audit": "PASS",
+    "statement_coverage_percent": 93.97085,
+    "branch_coverage_percent": 72.483537
+  },
+  "verdict": "PASS_FOR_PHASE_0_26_DECLARED_SCOPE",
+  "qualification_statement": "Phase 0.26 closes validation-discovered implementation defects and integrates a 9-case user corpus. It remains research-grade and does not claim complete Amendment No. 6 reconciliation or full engineering certification."
+}

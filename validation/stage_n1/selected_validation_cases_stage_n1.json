@@ -1,0 +1,260 @@
+{
+  "schema_version": "1.0.0",
+  "cases": [
+    {
+      "case_id": "SP16-N1-B1-0001",
+      "title": "Rolled steel physical constants",
+      "scope": {
+        "sp16_section": "5",
+        "clause": "5.1",
+        "formula": null,
+        "table": "Б.1",
+        "dag_node_ids": [
+          "SP16_L_E"
+        ]
+      },
+      "normative_source": {
+        "designation": "СП 16.13330.2017, Changes 1–6",
+        "sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873"
+      },
+      "inputs": {},
+      "normative_expected": {
+        "E_MPa": 206000,
+        "G_MPa": 79000,
+        "rho_kg_m3": 7850,
+        "alpha_per_C": 1.2e-05,
+        "nu": 0.3
+      },
+      "normcad": {
+        "version": "historical archive",
+        "module": "СП 16.13330.2017___Стальные конструкции.nrb",
+        "defaults": {
+          "E_MPa": 210000,
+          "G_MPa": 78500
+        },
+        "result": {}
+      },
+      "package": {
+        "version": "0.27.0",
+        "result": {
+          "E_MPa": 206000,
+          "G_MPa": 79000
+        }
+      },
+      "dag": {
+        "version": "v0.3.30 Stage N1",
+        "sha256": "230a7332fee87d18dec5f975ec96c9259c62112d56cc7123e61282d34c5e48ce",
+        "result": {
+          "E_MPa": 206000,
+          "G_MPa": 79000
+        }
+      },
+      "comparison": {
+        "first_divergent_atomic_step": "physical_material_constants.E",
+        "primary_discrepancy_class": "DEFAULT_MISMATCH",
+        "secondary_classes": [
+          "NORMCAD_OUTDATED_OR_NONCONFORMING"
+        ],
+        "tolerances": {
+          "absolute": 0
+        },
+        "verdict": "SP_PACKAGE_DAG_PASS_NORMCAD_FAIL",
+        "required_action": "Preserve NormCAD divergence; no production adoption."
+      }
+    },
+    {
+      "case_id": "SP16-N1-C255-SHAPED-008",
+      "title": "C255 shaped rolled, flange thickness 8 mm",
+      "scope": {
+        "sp16_section": "6",
+        "clause": "6.1",
+        "formula": null,
+        "table": "В.5",
+        "dag_node_ids": [
+          "SP16_K_MATERIAL_ROUTE",
+          "SP16_L_RYN_V5"
+        ]
+      },
+      "normative_source": {
+        "designation": "СП 16.13330.2017, Changes 1–6",
+        "sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873"
+      },
+      "inputs": {
+        "product_form": "shaped_rolled",
+        "steel_grade": "С255",
+        "thickness_mm": 8.0
+      },
+      "normative_expected": {
+        "Ryn_MPa": 255,
+        "Run_MPa": 380,
+        "Ry_MPa": 250,
+        "Ru_MPa": 370
+      },
+      "normcad": {
+        "version": "historical archive",
+        "module": "Прочность фасонной стали.mdb",
+        "result": {},
+        "intermediates": {}
+      },
+      "package": {
+        "version": "0.27.0",
+        "result": {
+          "Ryn_MPa": 255,
+          "Run_MPa": 380,
+          "Ry_MPa": 250,
+          "Ru_MPa": 370
+        }
+      },
+      "dag": {
+        "version": "v0.3.30 Stage N1",
+        "sha256": "230a7332fee87d18dec5f975ec96c9259c62112d56cc7123e61282d34c5e48ce",
+        "result": {
+          "Ryn_MPa": 255,
+          "Run_MPa": 380,
+          "Ry_MPa": 250,
+          "Ru_MPa": 370
+        }
+      },
+      "comparison": {
+        "first_divergent_atomic_step": null,
+        "primary_discrepancy_class": "MISSING_INTERMEDIATE_EVIDENCE",
+        "secondary_classes": [],
+        "tolerances": {
+          "absolute": 0
+        },
+        "verdict": "SP_PACKAGE_DAG_PASS_NORMCAD_STRENGTH_PENDING",
+        "required_action": "Capture the same row from NormCAD UI/report or decode MDB; do not infer."
+      }
+    },
+    {
+      "case_id": "SP16-N1-V3-C355-0002",
+      "title": "C355 V.3 omitted old-DAG thickness band",
+      "scope": {
+        "sp16_section": "6",
+        "clause": "6.1",
+        "formula": null,
+        "table": "В.3",
+        "dag_node_ids": [
+          "SP16_L_RYN_V3"
+        ]
+      },
+      "normative_source": {
+        "designation": "СП 16.13330.2017, Changes 1–6",
+        "sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873"
+      },
+      "inputs": {
+        "product_form": "plate_sheet_strip",
+        "steel_grade": "С355",
+        "thickness_mm": 120.0
+      },
+      "normative_expected": {
+        "Ryn_MPa": 295,
+        "Run_MPa": 470,
+        "Ry_MPa": 285,
+        "Ru_MPa": 460
+      },
+      "normcad": {
+        "version": "historical archive",
+        "result": {}
+      },
+      "package": {
+        "version": "0.27.0",
+        "result": {
+          "Ryn_MPa": 295,
+          "Run_MPa": 470,
+          "Ry_MPa": 285,
+          "Ru_MPa": 460
+        }
+      },
+      "dag": {
+        "version": "v0.3.30 Stage N1",
+        "sha256": "230a7332fee87d18dec5f975ec96c9259c62112d56cc7123e61282d34c5e48ce",
+        "result": {
+          "Ryn_MPa": 295,
+          "Run_MPa": 470,
+          "Ry_MPa": 285,
+          "Ru_MPa": 460
+        },
+        "prior_v0.3.29": "missing row"
+      },
+      "comparison": {
+        "first_divergent_atomic_step": "SP16_TABLE_V3_RYN[С355;100<t<=160] in old DAG",
+        "primary_discrepancy_class": "TABLE_LOOKUP_MISMATCH",
+        "secondary_classes": [
+          "DAG_DEFECT"
+        ],
+        "tolerances": {
+          "absolute": 0
+        },
+        "verdict": "DAG_DEFECT_REMEDIATED",
+        "required_action": "Regression locked."
+      }
+    },
+    {
+      "case_id": "SP16-N1-V3-ROUTE-0001",
+      "title": "Tube route to Table V.3",
+      "scope": {
+        "sp16_section": "6",
+        "clause": "6.1",
+        "formula": null,
+        "table": "В.3",
+        "dag_node_ids": [
+          "SP16_K_MATERIAL_ROUTE"
+        ]
+      },
+      "normative_source": {
+        "designation": "СП 16.13330.2017, Changes 1–6",
+        "sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873"
+      },
+      "inputs": {
+        "product_form": "tube",
+        "steel_grade": "С255",
+        "thickness_mm": 4.0
+      },
+      "normative_expected": {
+        "route": "В.3",
+        "Ryn_MPa": 245,
+        "Run_MPa": 380,
+        "Ry_MPa": 240,
+        "Ru_MPa": 370
+      },
+      "normcad": {
+        "version": "historical archive",
+        "module": "Прочность труб.mdb",
+        "result": {}
+      },
+      "package": {
+        "version": "0.27.0",
+        "result": {
+          "route": "В.3",
+          "Ryn_MPa": 245,
+          "Run_MPa": 380,
+          "Ry_MPa": 240,
+          "Ru_MPa": 370
+        }
+      },
+      "dag": {
+        "version": "v0.3.30 Stage N1",
+        "sha256": "230a7332fee87d18dec5f975ec96c9259c62112d56cc7123e61282d34c5e48ce",
+        "result": {
+          "route": "В.3"
+        },
+        "prior_v0.3.29": {
+          "route": "external"
+        }
+      },
+      "comparison": {
+        "first_divergent_atomic_step": "SP16_K_MATERIAL_ROUTE[tube] in old DAG",
+        "primary_discrepancy_class": "BRANCH_LOGIC_MISMATCH",
+        "secondary_classes": [
+          "DAG_DEFECT"
+        ],
+        "tolerances": {
+          "absolute": 0
+        },
+        "verdict": "DAG_DEFECT_REMEDIATED",
+        "required_action": "Regression locked; NormCAD numerical row still pending."
+      }
+    }
+  ]
+}

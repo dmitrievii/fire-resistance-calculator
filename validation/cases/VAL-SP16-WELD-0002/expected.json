@@ -1,0 +1,35 @@
+{
+  "case_id": "VAL-SP16-WELD-0002",
+  "checks": [
+    {
+      "check_id": "kf_max",
+      "published_value": 6.0,
+      "absolute_tolerance": 1e-12,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "kf_min",
+      "published_value": 4.0,
+      "absolute_tolerance": 1e-12,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "R_wz",
+      "published_value": 166.5,
+      "absolute_tolerance": 1e-12,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "manual_lower_bound",
+      "published_value": 183.15,
+      "absolute_tolerance": 1e-12,
+      "expected_comparison_status": "PASS"
+    },
+    {
+      "check_id": "compatibility_pass",
+      "published_value": 0,
+      "absolute_tolerance": 0,
+      "expected_comparison_status": "PASS"
+    }
+  ]
+}

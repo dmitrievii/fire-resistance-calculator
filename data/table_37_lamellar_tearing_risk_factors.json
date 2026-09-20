@@ -1,0 +1,55 @@
+{
+  "standard": "СП 16.13330.2017",
+  "clause": "13.5",
+  "table": "37",
+  "audit_id": "SP16-TBL-37",
+  "connection_form_factors_percent": {
+    "no_z_direction_stress": -25.0,
+    "symmetric_corner_fillet": -10.0,
+    "intermediate_buttering_layer": -5.0,
+    "ordinary_t_fillet": 0.0,
+    "t_full_or_partial_penetration": 3.0,
+    "fillet_near_free_plate_edge": 5.0,
+    "corner_full_penetration": 8.0
+  },
+  "plate_thickness_factor": {
+    "formula": "psi_zt = 0.2*S",
+    "thickness_unit": "mm",
+    "factor_unit": "percent"
+  },
+  "fillet_weld_leg_factor": {
+    "formula": "psi_zsh = 0.3*a",
+    "weld_leg_unit": "mm",
+    "factor_unit": "percent"
+  },
+  "restraint_factors_percent": {
+    "low_free_shrinkage": 0.0,
+    "medium_partial_shrinkage": 3.0,
+    "high_rigid_no_shrinkage": 5.0
+  },
+  "welding_technology_factors_percent": {
+    "pass_count": {
+      "one": 0.0,
+      "multiple": -2.0
+    },
+    "sequence": {
+      "alternating_sides": -2.0,
+      "one_side_then_other": 0.0
+    },
+    "preheat": {
+      "without_preheat": 0.0,
+      "with_preheat": -8.0
+    }
+  },
+  "quality_group_thresholds_percent": {
+    "Z15": 15.0,
+    "Z25": 25.0,
+    "Z35": 35.0
+  },
+  "notes": [
+    "Equation (174) sums the five factors.",
+    "The calculated risk may be multiplied by 0.5 for static through-thickness compression or by 1.1 for dynamic/vibratory through-thickness action.",
+    "The geometry diagrams remain an explicit engineering classification input."
+  ],
+  "source_edition": "СП 16.13330.2017, Changes No. 1-6 through 09.12.2024"
+}

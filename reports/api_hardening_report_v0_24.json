@@ -1,0 +1,814 @@
+{
+  "package_version": "0.24.0",
+  "release_stage": "v0.24_release_api_hardening_and_function_level_validation_expansion_reconstructed_r1",
+  "release_qualification": "research_grade_release_api_hardening_and_function_level_validation_expansion",
+  "parent_release": "v0.23_independent_normative_rebaseline_and_adversarial_audit_reconstructed_r1",
+  "engineering_use_ready": false,
+  "scope": "Release/API hardening; no claim of full engineering certification.",
+  "public_api": {
+    "total_functions": 598,
+    "engineering_functions": 581,
+    "tooling_functions": 17,
+    "missing_parameter_annotations": [],
+    "missing_return_annotations": [],
+    "varargs_or_varkw": [],
+    "mutable_defaults": [],
+    "incomplete_docstring_contract": [],
+    "functions_without_audit_id": []
+  },
+  "compatibility_with_v0_22_freeze": {
+    "baseline_file": "data/api_freeze_v0_22_reconstructed_r1.json",
+    "baseline_sha256": "0aed64fdbb04b89b725c00ca6f1c2e69f0bc8d4c628918852bdfa15ba5056a91",
+    "baseline_object_count": 590,
+    "removed_objects": [],
+    "added_objects": [
+      "standard_core.api_hardening.run_api_hardening",
+      "standard_core.api_hardening.write_api_hardening_reports",
+      "standard_core.function_level_validation.run_function_level_validation",
+      "standard_core.function_level_validation.write_function_level_validation_reports",
+      "standard_core.independent_validation.run_independent_validation",
+      "standard_core.independent_validation.write_independent_validation_reports",
+      "standard_core.normative_rebaseline.run_normative_rebaseline",
+      "standard_core.normative_rebaseline.write_normative_rebaseline_reports"
+    ],
+    "added_engineering_objects": [],
+    "incompatible_call_shape_changes": [],
+    "annotation_only_changes": [
+      {
+        "object": "standard_core.bolted_and_friction_connections.bolt_bearing_capacity_eq187",
+        "baseline_signature": "(bearing_resistance_n_mm2: 'float', bolt_diameter_mm: 'float', summed_bearing_thickness_mm: 'float', connection_factor: 'float', working_condition_factor: 'float')",
+        "current_signature": "(bearing_resistance_n_mm2: 'float', bolt_diameter_mm: 'float', summed_bearing_thickness_mm: 'float', connection_factor: 'float', working_condition_factor: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.bolt_count_detailing_adjustment_14_2_14",
+        "baseline_signature": "(calculated_bolt_count: 'int', connection_detail: 'str')",
+        "current_signature": "(calculated_bolt_count: 'int', connection_detail: 'str') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.bolt_group_force_distribution_14_2_11_12",
+        "baseline_signature": "(bolt_coordinates_mm: 'Sequence[Sequence[float]]', force_x_n: 'float', force_y_n: 'float', moment_z_n_mm: 'float')",
+        "current_signature": "(bolt_coordinates_mm: 'Sequence[Sequence[float]]', force_x_n: 'float', force_y_n: 'float', moment_z_n_mm: 'float') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.bolt_shear_capacity_eq186",
+        "baseline_signature": "(bolt_shear_resistance_n_mm2: 'float', gross_bolt_area_mm2: 'float', shear_planes: 'int', connection_factor: 'float', working_condition_factor: 'float')",
+        "current_signature": "(bolt_shear_resistance_n_mm2: 'float', gross_bolt_area_mm2: 'float', shear_planes: 'int', connection_factor: 'float', working_condition_factor: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.bolt_shear_tension_interaction_eq190",
+        "baseline_signature": "(bolt_shear_force_n: 'float', bolt_tension_force_n: 'float', shear_capacity_n: 'float', tension_capacity_n: 'float')",
+        "current_signature": "(bolt_shear_force_n: 'float', bolt_tension_force_n: 'float', shear_capacity_n: 'float', tension_capacity_n: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.bolt_tension_capacity_eq188",
+        "baseline_signature": "(bolt_tension_resistance_n_mm2: 'float', net_thread_area_mm2: 'float', working_condition_factor: 'float')",
+        "current_signature": "(bolt_tension_resistance_n_mm2: 'float', net_thread_area_mm2: 'float', working_condition_factor: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.bolted_and_friction_external_requirements",
+        "baseline_signature": "()",
+        "current_signature": "() -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.friction_bolt_diameter_check_14_3_7",
+        "baseline_signature": "(summed_shifted_thickness_mm: 'float', bolt_diameter_mm: 'float')",
+        "current_signature": "(summed_shifted_thickness_mm: 'float', bolt_diameter_mm: 'float') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.friction_connection_effective_area_14_3_11",
+        "baseline_signature": "(gross_area_mm2: 'float', net_area_mm2: 'float', load_type: 'str')",
+        "current_signature": "(gross_area_mm2: 'float', net_area_mm2: 'float', load_type: 'str') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.friction_connection_washer_requirement_14_3_10",
+        "baseline_signature": "(hole_bolt_clearance_mm: 'float', steel_ultimate_resistance_n_mm2: 'float', *, enlarged_head_and_nut: 'bool')",
+        "current_signature": "(hole_bolt_clearance_mm: 'float', steel_ultimate_resistance_n_mm2: 'float', *, enlarged_head_and_nut: 'bool') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.friction_connection_working_factor_14_3_4",
+        "baseline_signature": "(bolt_count: 'int')",
+        "current_signature": "(bolt_count: 'int') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.friction_plane_capacity_eq191",
+        "baseline_signature": "(bolt_tension_resistance_n_mm2: 'float', net_thread_area_mm2: 'float', friction_coefficient: 'float', reliability_factor_gamma_h: 'float')",
+        "current_signature": "(bolt_tension_resistance_n_mm2: 'float', net_thread_area_mm2: 'float', friction_coefficient: 'float', reliability_factor_gamma_h: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.friction_tension_reduction_14_3_6",
+        "baseline_signature": "(connection_factor_gamma_b: 'float', tensile_force_per_bolt_n: 'float', bolt_tension_resistance_n_mm2: 'float', net_thread_area_mm2: 'float')",
+        "current_signature": "(connection_factor_gamma_b: 'float', tensile_force_per_bolt_n: 'float', bolt_tension_resistance_n_mm2: 'float', net_thread_area_mm2: 'float') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.long_joint_reduction_factor_14_2_10",
+        "baseline_signature": "(joint_length_along_shear_mm: 'float', hole_diameter_mm: 'float', *, load_applied_over_full_length: 'bool' = False)",
+        "current_signature": "(joint_length_along_shear_mm: 'float', hole_diameter_mm: 'float', *, load_applied_over_full_length: 'bool' = False) -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.required_bolt_count_eq189",
+        "baseline_signature": "(design_force_n: 'float', shear_capacity_n: 'float', bearing_capacity_n: 'float', tension_capacity_n: 'float', *, applicable_modes: 'Sequence[str]' = ('shear', 'bearing'), long_joint_reduction_factor: 'float' = 1.0)",
+        "current_signature": "(design_force_n: 'float', shear_capacity_n: 'float', bearing_capacity_n: 'float', tension_capacity_n: 'float', *, applicable_modes: 'Sequence[str]' = ('shear', 'bearing'), long_joint_reduction_factor: 'float' = 1.0) -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.required_friction_bolt_count_eq192",
+        "baseline_signature": "(design_shear_force_n: 'float', friction_plane_capacity_n: 'float', friction_planes: 'int', working_condition_factor: 'float', *, maximum_search_bolts: 'int' = 10000)",
+        "current_signature": "(design_shear_force_n: 'float', friction_plane_capacity_n: 'float', friction_planes: 'int', working_condition_factor: 'float', *, maximum_search_bolts: 'int' = 10000) -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.table_40_catalog",
+        "baseline_signature": "()",
+        "current_signature": "() -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.table_40_check_layout",
+        "baseline_signature": "(actual_center_spacing_mm: 'float', actual_edge_along_force_mm: 'float', actual_edge_transverse_force_mm: 'float', requirements: 'dict[str, float]', *, friction_connection: 'bool' = False)",
+        "current_signature": "(actual_center_spacing_mm: 'float', actual_edge_along_force_mm: 'float', actual_edge_transverse_force_mm: 'float', requirements: 'dict[str, float]', *, friction_connection: 'bool' = False) -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.table_40_distance_requirements",
+        "baseline_signature": "(hole_diameter_mm: 'float', outer_element_thickness_mm: 'float', normative_yield_resistance_n_mm2: 'float', *, friction_connection: 'bool' = False, friction_planes: 'int' = 2, edge_type: 'str' = 'cut', stress_state: 'str' = 'tension', row_location: 'str' = 'middle_or_edge_with_angles', transverse_row_spacing_mm: 'float' = 0.0)",
+        "current_signature": "(hole_diameter_mm: 'float', outer_element_thickness_mm: 'float', normative_yield_resistance_n_mm2: 'float', *, friction_connection: 'bool' = False, friction_planes: 'int' = 2, edge_type: 'str' = 'cut', stress_state: 'str' = 'tension', row_location: 'str' = 'middle_or_edge_with_angles', transverse_row_spacing_mm: 'float' = 0.0) -> 'dict[str, float]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.table_40_hole_diameter",
+        "baseline_signature": "(bolt_diameter_mm: 'float', accuracy_class: 'str', *, overhead_line_switchyard_or_contact_network: 'bool' = False, clearance_mm: 'float | None' = None)",
+        "current_signature": "(bolt_diameter_mm: 'float', accuracy_class: 'str', *, overhead_line_switchyard_or_contact_network: 'bool' = False, clearance_mm: 'float | None' = None) -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.table_41_catalog",
+        "baseline_signature": "()",
+        "current_signature": "() -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.table_41_connection_factor",
+        "baseline_signature": "(accuracy_class: 'str', *, multi_bolt: 'bool', bearing_geometry: 'str' = 'standard', interpolation_fraction: 'float | None' = None)",
+        "current_signature": "(accuracy_class: 'str', *, multi_bolt: 'bool', bearing_geometry: 'str' = 'standard', interpolation_fraction: 'float | None' = None) -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.table_42_catalog",
+        "baseline_signature": "()",
+        "current_signature": "() -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.table_42_friction_parameters",
+        "baseline_signature": "(surface_treatment: 'str', tightening_control: 'str', load_type: 'str', hole_bolt_clearance_mm: 'float')",
+        "current_signature": "(surface_treatment: 'str', tightening_control: 'str', load_type: 'str', hole_bolt_clearance_mm: 'float') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.battened_branch_check_route_clause_9_3_4",
+        "baseline_signature": "(additional_force_n: 'float', local_bending_moment_n_mm: 'float', actual_or_fictitious_shear_n: 'float')",
+        "current_signature": "(additional_force_n: 'float', local_bending_moment_n_mm: 'float', actual_or_fictitious_shear_n: 'float') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.biaxial_branch_additional_force_eq124",
+        "baseline_signature": "(moment_y_n_mm: 'float', spacing_b1_mm: 'float', moment_x_n_mm: 'float', spacing_b2_mm: 'float')",
+        "current_signature": "(moment_y_n_mm: 'float', spacing_b1_mm: 'float', moment_x_n_mm: 'float', spacing_b2_mm: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.branch_additional_force_x_type_2",
+        "baseline_signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float')",
+        "current_signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.branch_additional_force_x_type_3",
+        "baseline_signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float')",
+        "current_signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.branch_additional_force_y_type_2",
+        "baseline_signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float')",
+        "current_signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.branch_additional_force_y_types_1_3",
+        "baseline_signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float')",
+        "current_signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.branch_force_with_additional_component",
+        "baseline_signature": "(base_branch_axial_force_n: 'float', additional_force_n: 'float')",
+        "current_signature": "(base_branch_axial_force_n: 'float', additional_force_n: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.built_up_relative_eccentricity_eq123",
+        "baseline_signature": "(eccentricity_mm: 'float', gross_area_mm2: 'float', compressed_branch_axis_distance_mm: 'float', free_axis_inertia_mm4: 'float')",
+        "current_signature": "(eccentricity_mm: 'float', gross_area_mm2: 'float', compressed_branch_axis_distance_mm: 'float', free_axis_inertia_mm4: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.built_up_whole_member_stability_clause_9_3_2",
+        "baseline_signature": "(relative_effective_slenderness: 'float', relative_eccentricity_m: 'float', central_compression_phi: 'float')",
+        "current_signature": "(relative_effective_slenderness: 'float', relative_eccentricity_m: 'float', central_compression_phi: 'float') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.combined_flange_relative_slenderness",
+        "baseline_signature": "(effective_flange_outstand_mm: 'float', flange_thickness_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float')",
+        "current_signature": "(effective_flange_outstand_mm: 'float', flange_thickness_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.combined_web_relative_slenderness",
+        "baseline_signature": "(effective_web_height_mm: 'float', web_thickness_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float')",
+        "current_signature": "(effective_web_height_mm: 'float', web_thickness_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.connector_design_shear_clause_9_3_7",
+        "baseline_signature": "(actual_shear_force_n: 'float', fictitious_shear_force_n: 'float')",
+        "current_signature": "(actual_shear_force_n: 'float', fictitious_shear_force_n: 'float') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.edge_return_flange_limit_clause_9_4_8",
+        "baseline_signature": "(base_flange_limit: 'float', edge_return_applicable: 'bool')",
+        "current_signature": "(base_flange_limit: 'float', edge_return_applicable: 'bool') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.flange_limit_eq132",
+        "baseline_signature": "(central_compression_flange_limit: 'float', member_relative_slenderness_x: 'float', relative_eccentricity_mx: 'float')",
+        "current_signature": "(central_compression_flange_limit: 'float', member_relative_slenderness_x: 'float', relative_eccentricity_mx: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.flange_limit_eq133",
+        "baseline_signature": "(central_compression_flange_limit: 'float', member_relative_slenderness_x: 'float', relative_eccentricity_mx: 'float')",
+        "current_signature": "(central_compression_flange_limit: 'float', member_relative_slenderness_x: 'float', relative_eccentricity_mx: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.flange_limit_eq134",
+        "baseline_signature": "(member_relative_slenderness_x: 'float')",
+        "current_signature": "(member_relative_slenderness_x: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.flange_limit_eq135",
+        "baseline_signature": "(member_relative_slenderness_y: 'float')",
+        "current_signature": "(member_relative_slenderness_y: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.longitudinal_stiffener_route_clause_9_4_5",
+        "baseline_signature": "(longitudinal_stiffener_inertia_mm4: 'float', effective_web_height_mm: 'float', web_thickness_mm: 'float')",
+        "current_signature": "(longitudinal_stiffener_inertia_mm4: 'float', effective_web_height_mm: 'float', web_thickness_mm: 'float') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.reduced_area_route_clause_9_4_6",
+        "baseline_signature": "(section_type: 'int', alpha: 'float', actual_web_slenderness: 'float', limiting_web_slenderness: 'float')",
+        "current_signature": "(section_type: 'int', alpha: 'float', actual_web_slenderness: 'float', limiting_web_slenderness: 'float') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.table_22_catalog",
+        "baseline_signature": "()",
+        "current_signature": "() -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.table_22_stress_parameters",
+        "baseline_signature": "(sigma_1_n_mm2: 'float', sigma_2_n_mm2: 'float', average_shear_stress_n_mm2: 'float', c_cr: 'float')",
+        "current_signature": "(sigma_1_n_mm2: 'float', sigma_2_n_mm2: 'float', average_shear_stress_n_mm2: 'float', c_cr: 'float') -> 'dict[str, float]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.table_22_type_1_limit",
+        "baseline_signature": "(member_relative_slenderness_x: 'float', relative_eccentricity_mx: 'float', central_compression_limit_m0: 'float', bending_member_limit_m20: 'float')",
+        "current_signature": "(member_relative_slenderness_x: 'float', relative_eccentricity_mx: 'float', central_compression_limit_m0: 'float', bending_member_limit_m20: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.table_22_type_2_limit",
+        "baseline_signature": "(alpha: 'float', type_1_limit_at_alpha_0_5: 'float', central_compression_limit_at_alpha_0_5: 'float', beta: 'float', c_cr: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', sigma_1_n_mm2: 'float')",
+        "current_signature": "(alpha: 'float', type_1_limit_at_alpha_0_5: 'float', central_compression_limit_at_alpha_0_5: 'float', beta: 'float', c_cr: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', sigma_1_n_mm2: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.table_22_type_5_limit",
+        "baseline_signature": "(relative_eccentricity_my: 'float', central_compression_limit_m0: 'float', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', axial_force_n: 'float')",
+        "current_signature": "(relative_eccentricity_my: 'float', central_compression_limit_m0: 'float', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', axial_force_n: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.table_23_catalog",
+        "baseline_signature": "()",
+        "current_signature": "() -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.table_23_limit",
+        "baseline_signature": "(section_type: 'int', central_compression_flange_limit: 'float', member_relative_slenderness_x: 'float', member_relative_slenderness_y: 'float', relative_eccentricity_mx: 'float', bending_member_limit_m20: 'float')",
+        "current_signature": "(section_type: 'int', central_compression_flange_limit: 'float', member_relative_slenderness_x: 'float', member_relative_slenderness_y: 'float', relative_eccentricity_mx: 'float', bending_member_limit_m20: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.tension_member_local_stability_route_clause_9_4_10",
+        "baseline_signature": "(compressive_stress_present: 'bool')",
+        "current_signature": "(compressive_stress_present: 'bool') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.three_sided_built_up_route_clause_9_3_5",
+        "baseline_signature": "(equilateral_constant_section_confirmed: 'bool')",
+        "current_signature": "(equilateral_constant_section_confirmed: 'bool') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.transverse_stiffener_route_clause_9_4_4",
+        "baseline_signature": "(wall_relative_slenderness_value: 'float', effective_web_height_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float', stiffener_arrangement: 'str', provided_stiffener_outstand_mm: 'float', geometrically_nonlinear_design: 'bool', solid_branch_of_built_up_column: 'bool')",
+        "current_signature": "(wall_relative_slenderness_value: 'float', effective_web_height_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float', stiffener_arrangement: 'str', provided_stiffener_outstand_mm: 'float', geometrically_nonlinear_design: 'bool', solid_branch_of_built_up_column: 'bool') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.two_plane_limit_increase_clause_9_4_9",
+        "baseline_signature": "(stability_coefficients: 'list[float]', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', axial_force_n: 'float')",
+        "current_signature": "(stability_coefficients: 'list[float]', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', axial_force_n: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.two_solid_branch_route_clause_9_3_6",
+        "baseline_signature": "(moment_x_n_mm: 'float', branch_axial_force_n: 'float', branch_eccentricity_x_mm: 'float', moment_acts_in_one_branch_plane: 'bool')",
+        "current_signature": "(moment_x_n_mm: 'float', branch_axial_force_n: 'float', branch_eccentricity_x_mm: 'float', moment_acts_in_one_branch_plane: 'bool') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.web_limit_adjustment_eq131",
+        "baseline_signature": "(web_limit_type_1: 'float', web_limit_type_2: 'float', axial_stability_utilization: 'float')",
+        "current_signature": "(web_limit_type_1: 'float', web_limit_type_2: 'float', axial_stability_utilization: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.web_limit_eq125",
+        "baseline_signature": "(member_relative_slenderness_x: 'float')",
+        "current_signature": "(member_relative_slenderness_x: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.web_limit_eq126",
+        "baseline_signature": "(member_relative_slenderness_x: 'float')",
+        "current_signature": "(member_relative_slenderness_x: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.web_limit_eq127",
+        "baseline_signature": "(alpha: 'float', beta: 'float', c_cr: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', sigma_1_n_mm2: 'float')",
+        "current_signature": "(alpha: 'float', beta: 'float', c_cr: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', sigma_1_n_mm2: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.web_limit_eq128",
+        "baseline_signature": "(type_2_web_limit: 'float', alpha: 'float')",
+        "current_signature": "(type_2_web_limit: 'float', alpha: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.web_limit_eq129",
+        "baseline_signature": "(member_relative_slenderness_x: 'float', flange_width_mm: 'float', effective_web_height_mm: 'float')",
+        "current_signature": "(member_relative_slenderness_x: 'float', flange_width_mm: 'float', effective_web_height_mm: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.web_limit_eq130",
+        "baseline_signature": "(gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', axial_force_n: 'float')",
+        "current_signature": "(gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', axial_force_n: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      }
+    ],
+    "unchanged_full_signatures": 528,
+    "backward_call_compatibility_pass": true
+  },
+  "compatibility_with_parent_v0_23_freeze": {
+    "baseline_file": "data/api_freeze_v0_23_parent_reconstructed_from_parent_package.json",
+    "baseline_sha256": "001516e2f60a23264aeab1c10f00b76e5f14641d44b9e48da6f92c0d2915a015",
+    "baseline_object_count": 594,
+    "removed_objects": [],
+    "added_objects": [
+      "standard_core.api_hardening.run_api_hardening",
+      "standard_core.api_hardening.write_api_hardening_reports",
+      "standard_core.function_level_validation.run_function_level_validation",
+      "standard_core.function_level_validation.write_function_level_validation_reports"
+    ],
+    "added_engineering_objects": [],
+    "incompatible_call_shape_changes": [],
+    "annotation_only_changes": [
+      {
+        "object": "standard_core.bolted_and_friction_connections.bolt_bearing_capacity_eq187",
+        "baseline_signature": "(bearing_resistance_n_mm2: 'float', bolt_diameter_mm: 'float', summed_bearing_thickness_mm: 'float', connection_factor: 'float', working_condition_factor: 'float')",
+        "current_signature": "(bearing_resistance_n_mm2: 'float', bolt_diameter_mm: 'float', summed_bearing_thickness_mm: 'float', connection_factor: 'float', working_condition_factor: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.bolt_count_detailing_adjustment_14_2_14",
+        "baseline_signature": "(calculated_bolt_count: 'int', connection_detail: 'str')",
+        "current_signature": "(calculated_bolt_count: 'int', connection_detail: 'str') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.bolt_group_force_distribution_14_2_11_12",
+        "baseline_signature": "(bolt_coordinates_mm: 'Sequence[Sequence[float]]', force_x_n: 'float', force_y_n: 'float', moment_z_n_mm: 'float')",
+        "current_signature": "(bolt_coordinates_mm: 'Sequence[Sequence[float]]', force_x_n: 'float', force_y_n: 'float', moment_z_n_mm: 'float') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.bolt_shear_capacity_eq186",
+        "baseline_signature": "(bolt_shear_resistance_n_mm2: 'float', gross_bolt_area_mm2: 'float', shear_planes: 'int', connection_factor: 'float', working_condition_factor: 'float')",
+        "current_signature": "(bolt_shear_resistance_n_mm2: 'float', gross_bolt_area_mm2: 'float', shear_planes: 'int', connection_factor: 'float', working_condition_factor: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.bolt_shear_tension_interaction_eq190",
+        "baseline_signature": "(bolt_shear_force_n: 'float', bolt_tension_force_n: 'float', shear_capacity_n: 'float', tension_capacity_n: 'float')",
+        "current_signature": "(bolt_shear_force_n: 'float', bolt_tension_force_n: 'float', shear_capacity_n: 'float', tension_capacity_n: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.bolt_tension_capacity_eq188",
+        "baseline_signature": "(bolt_tension_resistance_n_mm2: 'float', net_thread_area_mm2: 'float', working_condition_factor: 'float')",
+        "current_signature": "(bolt_tension_resistance_n_mm2: 'float', net_thread_area_mm2: 'float', working_condition_factor: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.bolted_and_friction_external_requirements",
+        "baseline_signature": "()",
+        "current_signature": "() -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.friction_bolt_diameter_check_14_3_7",
+        "baseline_signature": "(summed_shifted_thickness_mm: 'float', bolt_diameter_mm: 'float')",
+        "current_signature": "(summed_shifted_thickness_mm: 'float', bolt_diameter_mm: 'float') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.friction_connection_effective_area_14_3_11",
+        "baseline_signature": "(gross_area_mm2: 'float', net_area_mm2: 'float', load_type: 'str')",
+        "current_signature": "(gross_area_mm2: 'float', net_area_mm2: 'float', load_type: 'str') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.friction_connection_washer_requirement_14_3_10",
+        "baseline_signature": "(hole_bolt_clearance_mm: 'float', steel_ultimate_resistance_n_mm2: 'float', *, enlarged_head_and_nut: 'bool')",
+        "current_signature": "(hole_bolt_clearance_mm: 'float', steel_ultimate_resistance_n_mm2: 'float', *, enlarged_head_and_nut: 'bool') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.friction_connection_working_factor_14_3_4",
+        "baseline_signature": "(bolt_count: 'int')",
+        "current_signature": "(bolt_count: 'int') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.friction_plane_capacity_eq191",
+        "baseline_signature": "(bolt_tension_resistance_n_mm2: 'float', net_thread_area_mm2: 'float', friction_coefficient: 'float', reliability_factor_gamma_h: 'float')",
+        "current_signature": "(bolt_tension_resistance_n_mm2: 'float', net_thread_area_mm2: 'float', friction_coefficient: 'float', reliability_factor_gamma_h: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.friction_tension_reduction_14_3_6",
+        "baseline_signature": "(connection_factor_gamma_b: 'float', tensile_force_per_bolt_n: 'float', bolt_tension_resistance_n_mm2: 'float', net_thread_area_mm2: 'float')",
+        "current_signature": "(connection_factor_gamma_b: 'float', tensile_force_per_bolt_n: 'float', bolt_tension_resistance_n_mm2: 'float', net_thread_area_mm2: 'float') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.long_joint_reduction_factor_14_2_10",
+        "baseline_signature": "(joint_length_along_shear_mm: 'float', hole_diameter_mm: 'float', *, load_applied_over_full_length: 'bool' = False)",
+        "current_signature": "(joint_length_along_shear_mm: 'float', hole_diameter_mm: 'float', *, load_applied_over_full_length: 'bool' = False) -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.required_bolt_count_eq189",
+        "baseline_signature": "(design_force_n: 'float', shear_capacity_n: 'float', bearing_capacity_n: 'float', tension_capacity_n: 'float', *, applicable_modes: 'Sequence[str]' = ('shear', 'bearing'), long_joint_reduction_factor: 'float' = 1.0)",
+        "current_signature": "(design_force_n: 'float', shear_capacity_n: 'float', bearing_capacity_n: 'float', tension_capacity_n: 'float', *, applicable_modes: 'Sequence[str]' = ('shear', 'bearing'), long_joint_reduction_factor: 'float' = 1.0) -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.required_friction_bolt_count_eq192",
+        "baseline_signature": "(design_shear_force_n: 'float', friction_plane_capacity_n: 'float', friction_planes: 'int', working_condition_factor: 'float', *, maximum_search_bolts: 'int' = 10000)",
+        "current_signature": "(design_shear_force_n: 'float', friction_plane_capacity_n: 'float', friction_planes: 'int', working_condition_factor: 'float', *, maximum_search_bolts: 'int' = 10000) -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.table_40_catalog",
+        "baseline_signature": "()",
+        "current_signature": "() -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.table_40_check_layout",
+        "baseline_signature": "(actual_center_spacing_mm: 'float', actual_edge_along_force_mm: 'float', actual_edge_transverse_force_mm: 'float', requirements: 'dict[str, float]', *, friction_connection: 'bool' = False)",
+        "current_signature": "(actual_center_spacing_mm: 'float', actual_edge_along_force_mm: 'float', actual_edge_transverse_force_mm: 'float', requirements: 'dict[str, float]', *, friction_connection: 'bool' = False) -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.table_40_distance_requirements",
+        "baseline_signature": "(hole_diameter_mm: 'float', outer_element_thickness_mm: 'float', normative_yield_resistance_n_mm2: 'float', *, friction_connection: 'bool' = False, friction_planes: 'int' = 2, edge_type: 'str' = 'cut', stress_state: 'str' = 'tension', row_location: 'str' = 'middle_or_edge_with_angles', transverse_row_spacing_mm: 'float' = 0.0)",
+        "current_signature": "(hole_diameter_mm: 'float', outer_element_thickness_mm: 'float', normative_yield_resistance_n_mm2: 'float', *, friction_connection: 'bool' = False, friction_planes: 'int' = 2, edge_type: 'str' = 'cut', stress_state: 'str' = 'tension', row_location: 'str' = 'middle_or_edge_with_angles', transverse_row_spacing_mm: 'float' = 0.0) -> 'dict[str, float]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.table_40_hole_diameter",
+        "baseline_signature": "(bolt_diameter_mm: 'float', accuracy_class: 'str', *, overhead_line_switchyard_or_contact_network: 'bool' = False, clearance_mm: 'float | None' = None)",
+        "current_signature": "(bolt_diameter_mm: 'float', accuracy_class: 'str', *, overhead_line_switchyard_or_contact_network: 'bool' = False, clearance_mm: 'float | None' = None) -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.table_41_catalog",
+        "baseline_signature": "()",
+        "current_signature": "() -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.table_41_connection_factor",
+        "baseline_signature": "(accuracy_class: 'str', *, multi_bolt: 'bool', bearing_geometry: 'str' = 'standard', interpolation_fraction: 'float | None' = None)",
+        "current_signature": "(accuracy_class: 'str', *, multi_bolt: 'bool', bearing_geometry: 'str' = 'standard', interpolation_fraction: 'float | None' = None) -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.table_42_catalog",
+        "baseline_signature": "()",
+        "current_signature": "() -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.bolted_and_friction_connections.table_42_friction_parameters",
+        "baseline_signature": "(surface_treatment: 'str', tightening_control: 'str', load_type: 'str', hole_bolt_clearance_mm: 'float')",
+        "current_signature": "(surface_treatment: 'str', tightening_control: 'str', load_type: 'str', hole_bolt_clearance_mm: 'float') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.battened_branch_check_route_clause_9_3_4",
+        "baseline_signature": "(additional_force_n: 'float', local_bending_moment_n_mm: 'float', actual_or_fictitious_shear_n: 'float')",
+        "current_signature": "(additional_force_n: 'float', local_bending_moment_n_mm: 'float', actual_or_fictitious_shear_n: 'float') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.biaxial_branch_additional_force_eq124",
+        "baseline_signature": "(moment_y_n_mm: 'float', spacing_b1_mm: 'float', moment_x_n_mm: 'float', spacing_b2_mm: 'float')",
+        "current_signature": "(moment_y_n_mm: 'float', spacing_b1_mm: 'float', moment_x_n_mm: 'float', spacing_b2_mm: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.branch_additional_force_x_type_2",
+        "baseline_signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float')",
+        "current_signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.branch_additional_force_x_type_3",
+        "baseline_signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float')",
+        "current_signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.branch_additional_force_y_type_2",
+        "baseline_signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float')",
+        "current_signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.branch_additional_force_y_types_1_3",
+        "baseline_signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float')",
+        "current_signature": "(bending_moment_n_mm: 'float', branch_axis_spacing_mm: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.branch_force_with_additional_component",
+        "baseline_signature": "(base_branch_axial_force_n: 'float', additional_force_n: 'float')",
+        "current_signature": "(base_branch_axial_force_n: 'float', additional_force_n: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.built_up_relative_eccentricity_eq123",
+        "baseline_signature": "(eccentricity_mm: 'float', gross_area_mm2: 'float', compressed_branch_axis_distance_mm: 'float', free_axis_inertia_mm4: 'float')",
+        "current_signature": "(eccentricity_mm: 'float', gross_area_mm2: 'float', compressed_branch_axis_distance_mm: 'float', free_axis_inertia_mm4: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.built_up_whole_member_stability_clause_9_3_2",
+        "baseline_signature": "(relative_effective_slenderness: 'float', relative_eccentricity_m: 'float', central_compression_phi: 'float')",
+        "current_signature": "(relative_effective_slenderness: 'float', relative_eccentricity_m: 'float', central_compression_phi: 'float') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.combined_flange_relative_slenderness",
+        "baseline_signature": "(effective_flange_outstand_mm: 'float', flange_thickness_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float')",
+        "current_signature": "(effective_flange_outstand_mm: 'float', flange_thickness_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.combined_web_relative_slenderness",
+        "baseline_signature": "(effective_web_height_mm: 'float', web_thickness_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float')",
+        "current_signature": "(effective_web_height_mm: 'float', web_thickness_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.connector_design_shear_clause_9_3_7",
+        "baseline_signature": "(actual_shear_force_n: 'float', fictitious_shear_force_n: 'float')",
+        "current_signature": "(actual_shear_force_n: 'float', fictitious_shear_force_n: 'float') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.edge_return_flange_limit_clause_9_4_8",
+        "baseline_signature": "(base_flange_limit: 'float', edge_return_applicable: 'bool')",
+        "current_signature": "(base_flange_limit: 'float', edge_return_applicable: 'bool') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.flange_limit_eq132",
+        "baseline_signature": "(central_compression_flange_limit: 'float', member_relative_slenderness_x: 'float', relative_eccentricity_mx: 'float')",
+        "current_signature": "(central_compression_flange_limit: 'float', member_relative_slenderness_x: 'float', relative_eccentricity_mx: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.flange_limit_eq133",
+        "baseline_signature": "(central_compression_flange_limit: 'float', member_relative_slenderness_x: 'float', relative_eccentricity_mx: 'float')",
+        "current_signature": "(central_compression_flange_limit: 'float', member_relative_slenderness_x: 'float', relative_eccentricity_mx: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.flange_limit_eq134",
+        "baseline_signature": "(member_relative_slenderness_x: 'float')",
+        "current_signature": "(member_relative_slenderness_x: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.flange_limit_eq135",
+        "baseline_signature": "(member_relative_slenderness_y: 'float')",
+        "current_signature": "(member_relative_slenderness_y: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.longitudinal_stiffener_route_clause_9_4_5",
+        "baseline_signature": "(longitudinal_stiffener_inertia_mm4: 'float', effective_web_height_mm: 'float', web_thickness_mm: 'float')",
+        "current_signature": "(longitudinal_stiffener_inertia_mm4: 'float', effective_web_height_mm: 'float', web_thickness_mm: 'float') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.reduced_area_route_clause_9_4_6",
+        "baseline_signature": "(section_type: 'int', alpha: 'float', actual_web_slenderness: 'float', limiting_web_slenderness: 'float')",
+        "current_signature": "(section_type: 'int', alpha: 'float', actual_web_slenderness: 'float', limiting_web_slenderness: 'float') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.table_22_catalog",
+        "baseline_signature": "()",
+        "current_signature": "() -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.table_22_stress_parameters",
+        "baseline_signature": "(sigma_1_n_mm2: 'float', sigma_2_n_mm2: 'float', average_shear_stress_n_mm2: 'float', c_cr: 'float')",
+        "current_signature": "(sigma_1_n_mm2: 'float', sigma_2_n_mm2: 'float', average_shear_stress_n_mm2: 'float', c_cr: 'float') -> 'dict[str, float]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.table_22_type_1_limit",
+        "baseline_signature": "(member_relative_slenderness_x: 'float', relative_eccentricity_mx: 'float', central_compression_limit_m0: 'float', bending_member_limit_m20: 'float')",
+        "current_signature": "(member_relative_slenderness_x: 'float', relative_eccentricity_mx: 'float', central_compression_limit_m0: 'float', bending_member_limit_m20: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.table_22_type_2_limit",
+        "baseline_signature": "(alpha: 'float', type_1_limit_at_alpha_0_5: 'float', central_compression_limit_at_alpha_0_5: 'float', beta: 'float', c_cr: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', sigma_1_n_mm2: 'float')",
+        "current_signature": "(alpha: 'float', type_1_limit_at_alpha_0_5: 'float', central_compression_limit_at_alpha_0_5: 'float', beta: 'float', c_cr: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', sigma_1_n_mm2: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.table_22_type_5_limit",
+        "baseline_signature": "(relative_eccentricity_my: 'float', central_compression_limit_m0: 'float', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', axial_force_n: 'float')",
+        "current_signature": "(relative_eccentricity_my: 'float', central_compression_limit_m0: 'float', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', axial_force_n: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.table_23_catalog",
+        "baseline_signature": "()",
+        "current_signature": "() -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.table_23_limit",
+        "baseline_signature": "(section_type: 'int', central_compression_flange_limit: 'float', member_relative_slenderness_x: 'float', member_relative_slenderness_y: 'float', relative_eccentricity_mx: 'float', bending_member_limit_m20: 'float')",
+        "current_signature": "(section_type: 'int', central_compression_flange_limit: 'float', member_relative_slenderness_x: 'float', member_relative_slenderness_y: 'float', relative_eccentricity_mx: 'float', bending_member_limit_m20: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.tension_member_local_stability_route_clause_9_4_10",
+        "baseline_signature": "(compressive_stress_present: 'bool')",
+        "current_signature": "(compressive_stress_present: 'bool') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.three_sided_built_up_route_clause_9_3_5",
+        "baseline_signature": "(equilateral_constant_section_confirmed: 'bool')",
+        "current_signature": "(equilateral_constant_section_confirmed: 'bool') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.transverse_stiffener_route_clause_9_4_4",
+        "baseline_signature": "(wall_relative_slenderness_value: 'float', effective_web_height_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float', stiffener_arrangement: 'str', provided_stiffener_outstand_mm: 'float', geometrically_nonlinear_design: 'bool', solid_branch_of_built_up_column: 'bool')",
+        "current_signature": "(wall_relative_slenderness_value: 'float', effective_web_height_mm: 'float', design_yield_resistance_n_mm2: 'float', elastic_modulus_n_mm2: 'float', stiffener_arrangement: 'str', provided_stiffener_outstand_mm: 'float', geometrically_nonlinear_design: 'bool', solid_branch_of_built_up_column: 'bool') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.two_plane_limit_increase_clause_9_4_9",
+        "baseline_signature": "(stability_coefficients: 'list[float]', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', axial_force_n: 'float')",
+        "current_signature": "(stability_coefficients: 'list[float]', gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', axial_force_n: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.two_solid_branch_route_clause_9_3_6",
+        "baseline_signature": "(moment_x_n_mm: 'float', branch_axial_force_n: 'float', branch_eccentricity_x_mm: 'float', moment_acts_in_one_branch_plane: 'bool')",
+        "current_signature": "(moment_x_n_mm: 'float', branch_axial_force_n: 'float', branch_eccentricity_x_mm: 'float', moment_acts_in_one_branch_plane: 'bool') -> 'dict[str, Any]'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.web_limit_adjustment_eq131",
+        "baseline_signature": "(web_limit_type_1: 'float', web_limit_type_2: 'float', axial_stability_utilization: 'float')",
+        "current_signature": "(web_limit_type_1: 'float', web_limit_type_2: 'float', axial_stability_utilization: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.web_limit_eq125",
+        "baseline_signature": "(member_relative_slenderness_x: 'float')",
+        "current_signature": "(member_relative_slenderness_x: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.web_limit_eq126",
+        "baseline_signature": "(member_relative_slenderness_x: 'float')",
+        "current_signature": "(member_relative_slenderness_x: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.web_limit_eq127",
+        "baseline_signature": "(alpha: 'float', beta: 'float', c_cr: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', sigma_1_n_mm2: 'float')",
+        "current_signature": "(alpha: 'float', beta: 'float', c_cr: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', sigma_1_n_mm2: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.web_limit_eq128",
+        "baseline_signature": "(type_2_web_limit: 'float', alpha: 'float')",
+        "current_signature": "(type_2_web_limit: 'float', alpha: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.web_limit_eq129",
+        "baseline_signature": "(member_relative_slenderness_x: 'float', flange_width_mm: 'float', effective_web_height_mm: 'float')",
+        "current_signature": "(member_relative_slenderness_x: 'float', flange_width_mm: 'float', effective_web_height_mm: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      },
+      {
+        "object": "standard_core.built_up_beam_columns_and_combined_local_stability.web_limit_eq130",
+        "baseline_signature": "(gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', axial_force_n: 'float')",
+        "current_signature": "(gross_area_mm2: 'float', design_yield_resistance_n_mm2: 'float', working_condition_factor: 'float', axial_force_n: 'float') -> 'float'",
+        "classification": "nonbreaking_return_annotation_hardening"
+      }
+    ],
+    "unchanged_full_signatures": 532,
+    "backward_call_compatibility_pass": true
+  },
+  "checks": {
+    "engineering_parameter_annotations_complete": true,
+    "engineering_return_annotations_complete": true,
+    "engineering_has_no_varargs_or_varkw": true,
+    "engineering_has_no_mutable_defaults": true,
+    "engineering_docstring_contract_complete": true,
+    "engineering_normative_audit_id_trace_complete": true,
+    "v0_22_public_call_shapes_backward_compatible": true,
+    "parent_v0_23_public_call_shapes_backward_compatible": true
+  },
+  "api_hardening_pass": true
+}

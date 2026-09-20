@@ -1,0 +1,17 @@
+{
+  "standard": "СП 16.13330.2017",
+  "table": "12",
+  "clause": "8.5.4",
+  "page": 38,
+  "welded_nodes": {
+    "le_0.8": 30.0,
+    "1.0": 31.5,
+    "2.0": 33.3,
+    "4.0": 34.6,
+    "6.0": 34.8,
+    "10.0": 35.1,
+    "ge_30.0": 35.5
+  },
+  "friction_constant": 35.2,
+  "interpolation_rule": "not stated; exact nodes only in this release"
+}

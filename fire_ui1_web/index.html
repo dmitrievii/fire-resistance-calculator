@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>FIRE Resistance Calculator — СП16 ↔ СП554</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+  <div id="app" class="app-shell" aria-live="polite">
+    <header class="topbar">
+      <div class="brand-block">
+        <div class="brand-mark" aria-hidden="true">R</div>
+        <div>
+          <div class="brand-title">FIRE Resistance Calculator</div>
+          <div class="brand-subtitle">СП 16 ↔ СП 554 · Engineering guided calculation · FIRE-UI1.1</div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button id="new-session" class="button button-ghost" type="button">Новый расчёт</button>
+        <button id="save-session" class="button button-ghost" type="button">Сохранить JSON</button>
+        <label class="button button-ghost file-button" for="load-session">Загрузить JSON</label>
+        <input id="load-session" type="file" accept="application/json,.json" hidden>
+      </div>
+    </header>
+
+    <div class="status-strip">
+      <div id="status-pill" class="status-pill">Подключение…</div>
+      <div id="step-label" class="step-label">Шаг —</div>
+      <div class="graph-lock" title="Расчётная сессия привязана к точному snapshot DAG">
+        <span class="lock-dot"></span>
+        <span id="graph-id">DAG —</span>
+      </div>
+    </div>
+
+    <main class="workspace">
+      <section class="guided-column" aria-label="Последовательный расчёт">
+        <nav id="history-bar" class="history-bar" aria-label="Пройденные шаги"></nav>
+
+        <article id="question-card" class="question-card">
+          <div class="skeleton-line wide"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-box"></div>
+        </article>
+
+        <div class="wizard-actions">
+          <button id="back-button" class="button button-secondary" type="button" disabled>Назад</button>
+          <div id="edit-indicator" class="edit-indicator" hidden>Просмотр предыдущего шага</div>
+          <button id="cancel-edit" class="button button-ghost" type="button" hidden>К текущему вопросу</button>
+          <button id="next-button" class="button button-primary" type="button" disabled>Далее</button>
+        </div>
+
+        <section id="message-area" class="message-area" aria-live="assertive"></section>
+      </section>
+
+      <aside class="ledger-column" aria-label="Расчётные величины">
+        <div class="panel-head">
+          <div>
+            <h2>Расчётные величины</h2>
+            <p>Обновляются после каждого ответа и producer execution</p>
+          </div>
+          <div class="panel-tabs" role="tablist" aria-label="Правая панель">
+            <button class="panel-tab active" data-tab="ledger" role="tab" aria-selected="true">Величины</button>
+            <button class="panel-tab" data-tab="trace" role="tab" aria-selected="false">Trace</button>
+          </div>
+        </div>
+
+        <div id="ledger-toolbar" class="ledger-toolbar">
+          <input id="ledger-search" class="compact-input" type="search" placeholder="Поиск величины…" aria-label="Поиск расчётной величины">
+          <select id="ledger-filter" class="compact-select" aria-label="Фильтр источника">
+            <option value="all">Все</option>
+            <option value="CALCULATED">Расчётные</option>
+            <option value="USER_INPUT">Исходные</option>
+            <option value="EXTERNAL_STANDARD_RESULT">Внешний норматив</option>
+            <option value="AUTO_RESOLVED">Автоматически</option>
+          </select>
+        </div>
+
+        <div id="ledger-view" class="ledger-view"></div>
+        <div id="trace-view" class="trace-view" hidden></div>
+      </aside>
+    </main>
+
+    <footer class="footerbar">
+      <div id="normative-footer">Нормативная ссылка появится после загрузки текущего узла.</div>
+      <div class="scope-note">UI1.1 · local-only · полный опросник в разработке · без болтов/узлов · без FIRE-D5</div>
+    </footer>
+  </div>
+  <script type="module" src="/assets/app.js"></script>
+</body>
+</html>

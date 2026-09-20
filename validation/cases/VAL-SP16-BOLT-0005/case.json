@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.1.0",
+  "case_id": "VAL-SP16-BOLT-0005",
+  "title": "Болтовая группа на момент — 50 болтов, односторонняя накладка",
+  "evidence_class": "external_user_supplied_calculation_report",
+  "source": {
+    "original_filename": "chat_paste.txt",
+    "stored_path": "validation/cases/VAL-SP16-BOLT-0005/source/source_report_transcribed_from_conversation.txt",
+    "sha256": "4ca1a49168b971555242fe14d2e5fe1bdc647d0ec046b8e143fd5b8a26c3da60",
+    "page_count": 0,
+    "preservation": "structured_transcription_from_conversation; no original file attachment was supplied"
+  },
+  "source_reported_inputs": {
+    "note": "Calculation-grade inputs are encoded in the source transcript and expected/comparison records for this validation campaign."
+  },
+  "source_reported_checks": [
+    {
+      "check_id": "n",
+      "published_value": 50
+    },
+    {
+      "check_id": "hmax",
+      "published_value": 1080
+    },
+    {
+      "check_id": "N1",
+      "published_value": 4011.79646
+    },
+    {
+      "check_id": "Nbmax",
+      "published_value": 802.3592
+    },
+    {
+      "check_id": "14.2.14_adjusted_count",
+      "published_value": 55
+    }
+  ],
+  "source_consistency_findings": [
+    {
+      "finding_id": "SOURCE-HOLE-DIAMETER-M20-B-PLUS6",
+      "description": "The report uses d0=26 mm for M20 class B; the ordinary Table 40 route permits db+(1,2,3) mm and therefore requires explicit exceptional applicability if any."
+    },
+    {
+      "finding_id": "SOURCE-EQ189-USED-AFTER-MOMENT-DISTRIBUTION",
+      "description": "Eq.(189) cannot size a moment-loaded bolt group by reusing Nb,max derived from the geometry of a 50-bolt group; the group geometry must be iterated."
+    },
+    {
+      "finding_id": "SOURCE-14.2.14-FORCE-SCALING",
+      "description": "Clause 14.2.14 increases bolt count, not the already-derived force per bolt."
+    },
+    {
+      "finding_id": "SP385-CROSS-STANDARD-RBP",
+      "description": "The source bearing-resistance route after the SP385 multiplier is retained as an unresolved cross-standard dependency, not tuned into SP16 core."
+    }
+  ],
+  "validation_classification": {
+    "overall_status": "PARTIAL_MATCH_SOURCE_NORMATIVE_FAIL",
+    "count_as_full_end_to_end_golden_case": false,
+    "count_as_scalar_external_replay": true,
+    "directly_comparable_production_functions": [
+      "standard_core.*.bolt_group_force_distribution_14_2_11_12",
+      "standard_core.*.required_bolt_count_eq189",
+      "standard_core.*.bolt_count_detailing_adjustment_14_2_14"
+    ],
+    "reason": "This campaign preserves source discrepancies and only promotes directly comparable scalar/procedure evidence."
+  }
+}

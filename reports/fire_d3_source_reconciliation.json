@@ -1,0 +1,35 @@
+{
+  "report_id": "FIRE-D3-SOURCE-RECONCILIATION-1",
+  "release_stage": "v0.39_fire_d3_sp554_section12_thermal_runtime_r1",
+  "parent_release": "v0.38_fire_d2_sp554_critical_temperature_runtime_r1",
+  "authoritative_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "locked_sp554_source_sha256": "86a3c010ee74e469670f7aff5b95c807ffcff81bc81cbebe16f994af477507e3",
+  "errata_overlay": [
+    {
+      "equation": "12.5",
+      "source_literal": "+ t_n - t_phi",
+      "production": "+ t_0 - t_phi",
+      "status": "confirmed_erratum_applied"
+    },
+    {
+      "equation": "12.6",
+      "source_literal": "C + D*t_0",
+      "production": "C + D*t_n",
+      "status": "confirmed_erratum_applied"
+    }
+  ],
+  "policies": {
+    "critical_temperature_matrix_interpolation": false,
+    "figure1_extrapolation": false,
+    "protection_thickness_extrapolation": false,
+    "matrix_smoothing": false,
+    "nonmonotonic_matrix_values_preserved": true,
+    "wet_fdm_w_gt_0": "fail_closed"
+  },
+  "control": {
+    "critical_temperature_c": 525.0192844353662,
+    "reduced_thickness_mm": 10.0,
+    "actual_fire_resistance_min": 14.326394173167056,
+    "crossing_bracket_min": [14.3, 14.4]
+  }
+}

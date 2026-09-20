@@ -1,0 +1,27 @@
+{
+  "case_id": "VAL-SP16-BUILTUP-0009",
+  "release_stage": "v0.26_validation_campaign_remediation_and_corpus_0001_0009_reconstructed_r1",
+  "checks": [
+    {
+      "check_id": "n",
+      "actual_value": 0.0021880064829821718
+    },
+    {
+      "check_id": "eq12_lambda_eff",
+      "actual_value": 40.0886929963
+    },
+    {
+      "check_id": "lambda_bar_branch",
+      "actual_value": 1.5097413224
+    },
+    {
+      "check_id": "branch_limit_pass_source_omitted",
+      "actual_value": 0
+    },
+    {
+      "check_id": "phi_x_low_slenderness",
+      "actual_value": 1
+    }
+  ],
+  "remediation_state": "current_v0.26_code_for_directly_comparable_routes"
+}

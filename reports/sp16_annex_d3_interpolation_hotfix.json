@@ -1,0 +1,52 @@
+{
+  "schema": "sp16_annex_d3_interpolation_hotfix_report_v1",
+  "release_stage": "v0.43.1_fire_ui1_sp16_annex_d3_interpolation_hotfix_r1",
+  "package_version": "0.43.1",
+  "parent_release": "v0.43_fire_ui1_guided_wizard_live_calculation_ledger_frontend_r1",
+  "scope": "SP16 Annex D Table D.3 digital interpolation policy and UI walkthrough blocker closure",
+  "authoritative_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "policy": {
+    "printed_table_is_normative": true,
+    "explicit_printed_interpolation_formula_present": false,
+    "digital_policy": "bilinear interpolation between four surrounding printed nodes; 1D linear interpolation if one coordinate is exact; exact-node preservation",
+    "extrapolation": "forbidden",
+    "post_cap": "phi_e <= central_compression_phi",
+    "normcad_role": "secondary oracle only; never overrides SP16"
+  },
+  "normcad_secondary_oracle": {
+    "case_id": "VAL-SP16-BEAMCOL-0008",
+    "lambda_bar": 1.61095,
+    "m_eff": 6.67245,
+    "normcad_phi_e": 0.18771,
+    "interpolated_phi_e": 0.18770813331,
+    "absolute_difference": 1.8666899999908448e-06
+  },
+  "20K1_low_load_case": {
+    "lambda_bar_x": 0.856272034981208,
+    "m_eff_x": 5.893855863949761,
+    "phi_e_x": 0.23212198342349993,
+    "d3_status": "D3_BILINEAR_INTERPOLATED",
+    "cold_governing_utilization": 0.003270510290155035,
+    "cold_pass": true,
+    "previous_blocker": "EXTERNAL_D3_COEFFICIENT_REQUIRED",
+    "current_status": "CLOSED_FOR_IN_DOMAIN_D3_POINTS"
+  },
+  "20K1_full_fire_acceptance_case": {
+    "N_kN": 58.0,
+    "M_x_kNm": 17.4,
+    "load_scale_factor": 58,
+    "gamma_T_required": 0.2076742437450637,
+    "gamma_E_required": 0.009570815374603399,
+    "critical_temperature_c": 697.2591986624773,
+    "reduced_thickness_mm": 4.484255319148936,
+    "actual_fire_resistance_min": 15.169253707893384,
+    "required_fire_resistance_min": 15.0,
+    "compliance": "PASS",
+    "margin_min": 0.16925370789338423
+  },
+  "closure": {
+    "table_d3_interpolation_blocker_closed": true,
+    "out_of_domain_points_fail_closed": true,
+    "engineering_use_ready": false
+  }
+}

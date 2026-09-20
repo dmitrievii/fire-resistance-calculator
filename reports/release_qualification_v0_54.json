@@ -1,0 +1,56 @@
+{
+  "release_stage": "v0.54_fire_ui21_selector_hardening_qy_t_lock_r1",
+  "package_version": "0.54.0",
+  "parent_release": "v0.53_fire_ui20_conditional_signed_moments_thermal_bindings_r1",
+  "qualification": "research_grade_fire_ui21_selector_hardening_qy_t_lock_r1",
+  "engineering_use_ready": false,
+  "authoritative_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "authoritative_sp554_source_sha256": "86a3c010ee74e469670f7aff5b95c807ffcff81bc81cbebe16f994af477507e3",
+  "dag": {
+    "path": "normative_graph/dag_v0.3.57_fire_ui21_selector_hardening_qy_t_lock.json",
+    "sha256": "68a36f8ea58eae76a393d5e5a7ce25bfb5e701fc4a8fc4e571e7af9f2c9f1ec5",
+    "quantities": 783,
+    "datasets": 38,
+    "nodes": 675,
+    "edges": 1142,
+    "deterministic_rebuild_x2": true
+  },
+  "closure": {
+    "global_boolean_choices_materialized": true,
+    "generic_selector_option_audit": true,
+    "reported_blank_boolean_dropdowns_fixed": true,
+    "dynamic_profile_selector_source_audited": true,
+    "dynamic_material_selector_source_audited": true,
+    "Qy_primary_ui_locked_zero": true,
+    "torsion_T_primary_ui_locked_zero": true
+  },
+  "explicit_open_scope": {
+    "Qy_axis_specific_shear_runtime_closed": false,
+    "torsion_T_runtime_closed": false,
+    "policy": "primary UI locked zero; external nonzero remains fail-closed; no Qy_to_Qz/no T_to_B substitution"
+  },
+  "selector_audit": {
+    "status": "PASS",
+    "generic_selector_fields": 129,
+    "boolean_selector_fields": 41,
+    "enum_selector_fields": 88,
+    "decision_selector_fields": 66,
+    "empty_option_sets": 0,
+    "missing_value_or_label_entries": [],
+    "duplicate_value_sets": []
+  },
+  "tests": {
+    "pytest_collected_total": 1035,
+    "non_manifest_tests_passed": 1034,
+    "non_manifest_tests_total": 1034,
+    "focused_fire_ui21": "6/6 PASS",
+    "main_release_audit": "PASS",
+    "validation_cases": "1876 PASS",
+    "phase_0_25_validation": "PASS",
+    "external_golden_cases": "6/6 PASS",
+    "unresolved_equations_tables": "0/0",
+    "execution_note": "One monolithic pytest invocation exceeded the shell wrapper timeout; the suite was then executed in deterministic file shards. All 1034 non-manifest tests passed. Release-manifest replay is qualified after manifest generation.",
+    "release_manifest_test": "1/1 PASS",
+    "pytest_total_after_manifest": "1035/1035 PASS (file-sharded source-tree qualification)"
+  }
+}

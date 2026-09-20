@@ -1,0 +1,69 @@
+{
+  "package_version": "0.23.0",
+  "release_stage": "v0.23_independent_normative_rebaseline_and_adversarial_audit_reconstructed_r1",
+  "findings": [
+    {
+      "finding_id": "V023-TRACE-001",
+      "severity": "P1",
+      "status": "closed",
+      "description": "Runtime provenance in the reconstructed v0.22 baseline still emitted v0.21 release identity.",
+      "resolution": "Central release_metadata contract; regenerated outputs carry Phase 0.23 identity."
+    },
+    {
+      "finding_id": "V023-FAILCLOSED-001",
+      "severity": "P1",
+      "status": "closed",
+      "description": "Table 46 blank cells could silently default to not_limited when explicit audited semantics were absent.",
+      "resolution": "Missing/unknown blank-cell semantics now raise ValueError."
+    },
+    {
+      "finding_id": "V023-VAL-001",
+      "severity": "P1",
+      "status": "closed_for_declared_scope",
+      "description": "Primary packaged calculation routes lacked separately classified independent arithmetic evidence.",
+      "resolution": "21/21 primary routes, 25 arithmetic oracle cases total, all passing."
+    },
+    {
+      "finding_id": "V023-BOUND-001",
+      "severity": "P1",
+      "status": "closed_for_selected_scope",
+      "description": "High-risk domain and branch transitions required adversarial boundary probes.",
+      "resolution": "24 selected boundary/domain cases added and passing."
+    },
+    {
+      "finding_id": "V023-MUT-001",
+      "severity": "P1",
+      "status": "closed_for_targeted_scope",
+      "description": "No mutation-sensitivity evidence in reconstructed baseline.",
+      "resolution": "42 analytical coefficient/scale probes detected; not exhaustive source mutation testing."
+    },
+    {
+      "finding_id": "V023-SCHEMA-001",
+      "severity": "P1",
+      "status": "closed_for_selected_scope",
+      "description": "Recursive schema integrity needed explicit adversarial release evidence.",
+      "resolution": "6 malformed/nested/non-finite schema probes added and passing."
+    },
+    {
+      "finding_id": "V023-VAL-002",
+      "severity": "P1",
+      "status": "open",
+      "description": "Independent validation is not complete for every public calculation function.",
+      "target_release": "future_validation_expansion"
+    },
+    {
+      "finding_id": "V023-XIMPL-001",
+      "severity": "P1",
+      "status": "open",
+      "description": "External cross-implementation comparison has not been completed.",
+      "target_release": "future_validation_expansion"
+    },
+    {
+      "finding_id": "V023-ANNEX-001",
+      "severity": "P1",
+      "status": "open_explicit_boundary",
+      "description": "24 Annex Б/В/Г/И tables remain external-reference boundaries in this reconstructed lineage.",
+      "target_release": "audited_normative_data_expansion"
+    }
+  ]
+}

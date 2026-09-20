@@ -1,0 +1,37 @@
+{
+  "standard": "СП 16.13330.2017",
+  "clause": "14.2.2, 14.2.8",
+  "table": "40",
+  "units": "mm",
+  "center_spacing": {
+    "minimum_below_540_d": 2.5,
+    "minimum_at_or_above_540_d": 3.0,
+    "maximum_edge_no_angles_d": 8.0,
+    "maximum_edge_no_angles_t": 12.0,
+    "maximum_middle_tension_d": 16.0,
+    "maximum_middle_tension_t": 24.0,
+    "maximum_middle_compression_d": 12.0,
+    "maximum_middle_compression_t": 18.0
+  },
+  "edge_distance": {
+    "minimum_along_below_540_d": 2.0,
+    "minimum_along_at_or_above_540_d": 2.5,
+    "minimum_transverse_cut_d": 1.5,
+    "minimum_transverse_rolled_d": 1.2,
+    "maximum_d": 4.0,
+    "maximum_t": 8.0,
+    "minimum_friction_d": 1.3
+  },
+  "staggered_spacing": "u+1.5d",
+  "notes": {
+    "single_bolt_lattice_special_edge_d": 1.35,
+    "one_friction_plane_high_strength_center_d": 3.0,
+    "class_A_hole": "d=db",
+    "class_B_special_clearance_mm": 1,
+    "class_B_other_clearance_mm": [
+      1,
+      2,
+      3
+    ]
+  }
+}

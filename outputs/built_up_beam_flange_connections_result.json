@@ -1,0 +1,144 @@
+{
+  "case_id": "SP16-V17-DEMO-001",
+  "standard": "СП 16.13330.2017 «Стальные конструкции»",
+  "release_stage": "v0.67_fire_bridge2_qualified_sp16_complex_state_handoff_r1",
+  "action": "built_up_beam_flange_connections",
+  "engineering_calculation_performed": true,
+  "inputs": {
+    "case_id": "SP16-V17-DEMO-001",
+    "standard": "СП 16.13330.2017 «Стальные конструкции»",
+    "action": "built_up_beam_flange_connections",
+    "clause_14_4_applicability_confirmed": true,
+    "transverse_shear_force_n": 240000.0,
+    "flange_static_moment_mm3": 1200000.0,
+    "gross_section_moment_inertia_mm4": 800000000.0,
+    "concentrated_load_n": 100000.0,
+    "load_factor_gamma_f": 1.2,
+    "local_load_factor_gamma_f1": 1.1,
+    "effective_distribution_length_mm": 250.0,
+    "nominal_load_character": "stationary",
+    "loaded_flange": "upper",
+    "transverse_stiffener_at_load": false,
+    "web_edge_planed_to_loaded_upper_flange": true,
+    "weld_line_count": 2,
+    "weld_coefficient_beta_f": 0.8,
+    "weld_coefficient_beta_z": 1.0,
+    "weld_leg_mm": 8.0,
+    "weld_metal_design_resistance_n_mm2": 240.0,
+    "fusion_boundary_design_resistance_n_mm2": 215.0,
+    "working_condition_factor": 1.0,
+    "bolt_pitch_mm": 80.0,
+    "friction_plane_capacity_n": 25000.0,
+    "friction_plane_count": 2,
+    "full_penetration_through_web_thickness": false,
+    "sheet_section_force_capacity_n": 500000.0,
+    "attachment_segment": "beyond_theoretical_cutoff"
+  },
+  "results": {
+    "table_43_route": {
+      "nominal_load_character": "stationary",
+      "effective_load_character": "moving",
+      "reason": "stationary_upper_flange_load_without_transverse_stiffener_is_checked_as_moving"
+    },
+    "table_43_alpha": 0.4,
+    "flange_shear_flow_t_n_mm": 360.0,
+    "local_pressure_v_n_mm": 528.0,
+    "equation_193_utilization": 0.1171875,
+    "equation_193_pass": true,
+    "equation_194_utilization": 0.10465116279069768,
+    "equation_194_pass": true,
+    "equation_195_utilization": 0.576,
+    "equation_195_pass": true,
+    "equation_196_utilization": 0.2080238586827242,
+    "equation_196_pass": true,
+    "equation_197_utilization": 0.18577014356782812,
+    "equation_197_pass": true,
+    "equation_198_utilization": 0.6678068031998476,
+    "equation_198_pass": true,
+    "applicable_weld_equations": [
+      "196",
+      "197"
+    ],
+    "applicable_friction_equations": [
+      "198"
+    ],
+    "governing_applicable_weld_utilization": 0.2080238586827242,
+    "governing_applicable_weld_pass": true,
+    "governing_applicable_friction_utilization": 0.6678068031998476,
+    "governing_applicable_friction_pass": true,
+    "full_penetration_weld_classification": {
+      "full_penetration_through_web_thickness": false,
+      "equal_strength_with_web": false,
+      "evidence_required": "weld_detail_procedure_and_quality_control"
+    },
+    "multilayer_flange_sheet_attachment": {
+      "attachment_segment": "beyond_theoretical_cutoff",
+      "force_fraction": 0.5,
+      "sheet_section_force_capacity_n": 500000.0,
+      "required_attachment_force_n": 250000.0
+    },
+    "table_43_catalog": {
+      "standard": "СП 16.13330.2017 «Стальные конструкции»",
+      "version": "Supplied consolidated text with corrections through 2024 and Amendments No. 1-5",
+      "clause": "14.4.1",
+      "table": "43",
+      "title": "Flange connections in built-up beams",
+      "page": 96,
+      "rows": [
+        {
+          "load_character": "stationary",
+          "connection": "welded",
+          "equations": [
+            "193",
+            "194"
+          ],
+          "requirements": {
+            "weld_line_count": "n=2 for two-sided welds; n=1 for one-sided welds"
+          }
+        },
+        {
+          "load_character": "stationary",
+          "connection": "friction",
+          "equations": [
+            "195"
+          ]
+        },
+        {
+          "load_character": "moving",
+          "connection": "welded_two_sided",
+          "equations": [
+            "196",
+            "197"
+          ]
+        },
+        {
+          "load_character": "moving",
+          "connection": "friction",
+          "equations": [
+            "198"
+          ]
+        }
+      ],
+      "definitions": {
+        "T": "Q*S/I, flange shear flow per unit length using gross flange static moment and gross section moment of inertia",
+        "V": "gamma_f*gamma_f1*F_n/l_ef; gamma_f1=1 for stationary loads",
+        "Q_bh": "Capacity of one friction plane tightened by one bolt under clause 14.3.3",
+        "k": "Number of friction planes under clauses 14.3.3-14.3.4",
+        "s": "Pitch of flange bolts",
+        "alpha": {
+          "0.4": "Load on the upper flange when the web edge is planed to that flange",
+          "1.0": "No web-edge planing or load on the lower flange"
+        }
+      },
+      "routing": {
+        "stationary_upper_without_transverse_stiffener": "use moving-load formulas",
+        "stationary_lower_regardless_of_stiffener": "use moving-load formulas"
+      },
+      "notes": [
+        "A weld penetrating the full web thickness is treated as equal-strength with the web.",
+        "No interpolation is involved in Table 43."
+      ]
+    }
+  },
+  "scope_note": "Clause 14.4, equations (193)-(198), and Table 43 are implemented. Global force derivation, weld inspection, transverse-stiffener capacity, bolt-layout design, cutoff-point location, and CAD/BIM recognition remain external boundaries."
+}

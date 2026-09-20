@@ -1,0 +1,48 @@
+{
+  "release_stage": "v0.57_fire_ui24_fire_val1_routing_remediation_r1",
+  "package_version": "0.57.0",
+  "parent_release": "v0.56_fire_ui23_protection_route_closure_r1",
+  "qualification": "research_grade_fire_ui24_fire_val1_routing_remediation_r1",
+  "engineering_use_ready": false,
+  "authoritative_sp16_source_sha256": "302c2c45dacc3947a07dbf8eb676e99673899d60ca053ec137207dbca41ed873",
+  "authoritative_sp554_source_sha256": "86a3c010ee74e469670f7aff5b95c807ffcff81bc81cbebe16f994af477507e3",
+  "dag": {
+    "path": "normative_graph/dag_v0.3.60_fire_ui24_fire_val1_routing_remediation.json",
+    "sha256": "c0187dc0b0865040482a251abb3eb129d51f87b29499104c302ab06aa289b352",
+    "quantities": 801,
+    "datasets": 39,
+    "nodes": 689,
+    "edges": 1174,
+    "deterministic_rebuild_x2": true
+  },
+  "closure": {
+    "fire_val1_d001_static_stress_compression_gammae_closed": true,
+    "fire_val1_d002_strength_only_continuation_closed": true,
+    "fire_val1_d003_gamma_c_dead_other_removed": true,
+    "fire_val1_d004_local_load_f_authoring_closed": true,
+    "fire_val1_d005_gamma_t_dependency_reconciled": true,
+    "fire_val1_d006_internal_provenance_guided_excluded": true,
+    "sp16_table7_dead_other_removed": true,
+    "fire_val1_500_state_unexpected_blocked_frontiers": 0,
+    "fire_val1_curated_seed_routes": "18/18 expected RESULT"
+  },
+  "explicit_open_scope": {
+    "Qy_axis_specific_shear_runtime_closed": false,
+    "torsion_T_runtime_closed": false,
+    "policy": "primary UI locked to zero; nonzero external values fail closed; no Qy->Qz or T->B substitution"
+  },
+  "tests": {
+    "collected_total": 1066,
+    "non_manifest_file_sharded": "1065/1065 PASS",
+    "release_manifest_replay": "1/1 PASS",
+    "focused_fire_ui24": "7/7 PASS",
+    "public_docstrings": "PASS",
+    "main_release_audit": "PASS",
+    "validation_cases": "1876 PASS",
+    "phase_0_25_validation": "PASS",
+    "external_golden_cases": "6/6 PASS",
+    "unresolved_equations_tables": "0/0",
+    "monolithic_pytest_note": "execution wrapper timed out during monolithic run; all non-manifest test files were executed file-sharded and passed",
+    "full_file_sharded_cumulative": "1066/1066 PASS"
+  }
+}

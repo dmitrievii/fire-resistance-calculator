@@ -1,0 +1,24 @@
+{
+  "package_version": "0.25.0",
+  "release_stage": "v0.25_independent_function_oracle_expansion_and_golden_cross_implementation_validation_reconstructed_r1",
+  "release_qualification": "research_grade_independent_function_oracle_expansion_and_external_golden_validation",
+  "parent_release": "v0.24_release_api_hardening_and_function_level_validation_expansion_reconstructed_r1",
+  "engineering_use_ready": false,
+  "gates": {
+    "final_cumulative_audit_pass": true,
+    "legacy_validation_self_checks": "1876/1876 PASS",
+    "phase_0_23_independent_route_scope": "PASS",
+    "phase_0_24_parent_function_oracles": "40/40 PASS",
+    "phase_0_25_added_source_rederived_function_oracles": "20/20 PASS",
+    "combined_independently_oracled_functions": "60/581",
+    "external_scad_kristall_published_cases": "6/6 PASS across 5 functions",
+    "golden_contract_adversarial_probes": "8/8 PASS",
+    "v0_24_engineering_api_call_shape_compatibility": "PASS",
+    "external_annex_boundaries": 24,
+    "full_independent_public_function_validation_complete": false,
+    "full_external_cross_implementation_validation_complete": false,
+    "live_vendor_replay_performed": false
+  },
+  "verdict": "PASS_FOR_PHASE_0_25_DECLARED_SCOPE",
+  "qualification_statement": "Phase 0.25 expands independently re-derived function-level oracles and begins external golden cross-implementation validation using vendor-published SCAD/KRISTALL examples. This is partial validation evidence, not complete engineering certification or a live SCAD replay."
+}

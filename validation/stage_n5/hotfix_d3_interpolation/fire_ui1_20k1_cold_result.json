@@ -1,0 +1,73 @@
+{
+  "status": "COMPLETE",
+  "derived": {
+    "geometric_slenderness_x": 24.57963143462627,
+    "geometric_slenderness_y": 42.04438987982087,
+    "relative_slenderness_x": 0.856272034981208,
+    "relative_slenderness_y": 1.464685724750979,
+    "central_phi_x": 0.9616162662640445,
+    "central_phi_y": 0.8322863284814596,
+    "relative_eccentricity_x": 4.027261146496816,
+    "relative_eccentricity_y": 0.0
+  },
+  "d2_d3_x": {
+    "status": "D3_BILINEAR_INTERPOLATED",
+    "eta": 1.463489863098805,
+    "m_eff": 5.893855863949761,
+    "phi_e": 0.23212198342349993,
+    "source": "table_D.3_bilinear_digital_policy_no_extrapolation",
+    "exact_lookup_error": "row_value must equal a printed table node: [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 8.0, 9.0]"
+  },
+  "d2_d3_y": {
+    "status": "CENTRAL_COMPRESSION_LIMITING_CASE",
+    "eta": null,
+    "m_eff": 0.0,
+    "phi_e": 0.8322863284814596,
+    "source": "clause_7.1.3_limit_M_equals_0"
+  },
+  "coefficient_c": {
+    "status": "RESOLVED",
+    "alpha": 0.8513630573248409,
+    "beta": 1.0,
+    "phi_at_3_14": 0.5370345356854724,
+    "branch": "equation_112",
+    "c_raw": 0.22580186611390457,
+    "c_max": 1.0,
+    "c": 0.3
+  },
+  "stability_branch": {
+    "route": "9.2.1_9.2.2_9.2.4_ONE_PLANE_MAJOR"
+  },
+  "stability_checks": [
+    {
+      "equation": "109",
+      "utilization": 0.003270510290155035,
+      "pass": true
+    },
+    {
+      "equation": "111",
+      "utilization": 0.003040449379733962,
+      "pass": true
+    }
+  ],
+  "strength": {
+    "route": "9.1.1_EQ105",
+    "applicability_eq105": {
+      "permitted": true,
+      "axial_stress_n_mm2": 0.1970831690973591,
+      "low_axial_stress_branch": true,
+      "reasons": []
+    },
+    "annex_e1": {
+      "c_x": 1.0478,
+      "c_y": 1.47,
+      "n": 1.5
+    },
+    "utilization": 0.002941429660408222,
+    "pass": true
+  },
+  "required_unresolved": [],
+  "governing_utilization": 0.003270510290155035,
+  "pass": true,
+  "trace_policy": "FIRST_APPLICABLE_BRANCH_WITH_EXPLICIT_D3_BILINEAR_INTERPOLATION_NO_EXTRAPOLATION"
+}
