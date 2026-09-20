@@ -104,6 +104,10 @@ def _render_block(core: Any, block: Mapping[str, Any], *, expanded: bool = False
 
 def install(core: Any) -> None:
     """Add the live report as the primary right-side diagnostic view."""
+    if getattr(core, "_fire_report_ui_installed", False):
+        return
+    core._fire_report_ui_installed = True
+
     st = core.st
     original = core._render_ledger_trace
 
