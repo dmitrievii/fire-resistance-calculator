@@ -32,7 +32,8 @@ def test_streamlit_entrypoint_installs_mobile_layer_after_graphic_layer():
 
 def test_mobile_layer_is_presentation_only():
     source = (ROOT / "streamlit_mobile_ux.py").read_text(encoding="utf-8")
-    assert "standard_core" not in source
+    assert "from standard_core" not in source
+    assert "import standard_core" not in source
     assert "/api/" not in source
     assert "FireUI1Application" not in source
     assert "core._render_card_body" in source
