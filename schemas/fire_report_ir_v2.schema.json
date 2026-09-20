@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fire_report_ir_v2.schema.json",
+  "title": "FIRE REPORT-IR2/3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "contract",
+    "source_report_schema",
+    "source_report_sha256",
+    "graph_id",
+    "graph_sha256",
+    "session_schema",
+    "session_status",
+    "entry_node_id",
+    "current_node_id",
+    "block_count",
+    "blocks",
+    "dag_census",
+    "audit",
+    "report_sha256"
+  ],
+  "properties": {
+    "schema": {"const": "fire_report_ir_v2"},
+    "contract": {"const": "dag_trace_binding_evidence_v2"},
+    "source_report_schema": {"const": "fire_report_ir_v1"},
+    "source_report_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "graph_id": {"type": ["string", "null"]},
+    "graph_sha256": {"type": ["string", "null"]},
+    "session_schema": {"type": ["string", "null"]},
+    "session_status": {"type": ["string", "null"]},
+    "entry_node_id": {"type": ["string", "null"]},
+    "current_node_id": {"type": ["string", "null"]},
+    "block_count": {"type": "integer", "minimum": 0},
+    "blocks": {"type": "array", "items": {"$ref": "#/$defs/reportBlock"}},
+    "dag_census": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "graph_id",
+        "graph_sha256",
+        "node_count",
+        "quantity_count",
+        "dataset_count",
+        "report_kind_counts",
+        "node_type_counts",
+        "execution_spec_mode_counts",
+        "nodes_without_normative_refs",
+        "nodes_without_normative_refs_count",
+        "explicit_report_spec_nodes",
+        "explicit_report_spec_count",
+        "projection_policy"
+      ],
+      "properties": {
+        "graph_id": {"type": ["string", "null"]},
+        "graph_sha256": {"type": ["string", "null"]},
+        "node_count": {"type": "integer", "minimum": 0},
+        "quantity_count": {"type": "integer", "minimum": 0},
+        "dataset_count": {"type": "integer", "minimum": 0},
+        "report_kind_counts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "node_type_counts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "execution_spec_mode_counts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "nodes_without_normative_refs": {"type": "array", "items": {"type": "string"}},
+        "nodes_without_normative_refs_count": {"type": "integer", "minimum": 0},
+        "explicit_report_spec_nodes": {"type": "array", "items": {"type": "string"}},
+        "explicit_report_spec_count": {"type": "integer", "minimum": 0},
+        "projection_policy": {"type": "string"}
+      }
+    },
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calculation_values_recomputed_by_report",
+        "table_interpolation_recomputed_by_report",
+        "formula_bindings_are_trace_values",
+        "dag_metadata_is_authoritative",
+        "runtime_selected_dataset_rows_captured",
+        "runtime_lookup_block_count",
+        "runtime_lookup_blocks_with_rows",
+        "runtime_selected_dataset_rows_limitation"
+      ],
+      "properties": {
+        "calculation_values_recomputed_by_report": {"const": false},
+        "table_interpolation_recomputed_by_report": {"const": false},
+        "formula_bindings_are_trace_values": {"const": true},
+        "dag_metadata_is_authoritative": {"const": true},
+        "runtime_selected_dataset_rows_captured": {"type": "boolean"},
+        "runtime_lookup_block_count": {"type": "integer", "minimum": 0},
+        "runtime_lookup_blocks_with_rows": {"type": "integer", "minimum": 0},
+        "runtime_selected_dataset_rows_limitation": {"type": "string"}
+      }
+    },
+    "report_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  },
+  "$defs": {
+    "reportValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "quantity_id",
+        "symbol",
+        "name_ru",
+        "raw_value",
+        "canonical_unit",
+        "data_type",
+        "source_kind",
+        "producer_node_id",
+        "execution_sequence",
+        "provenance"
+      ],
+      "properties": {
+        "quantity_id": {"type": "string"},
+        "symbol": {"type": ["string", "null"]},
+        "name_ru": {"type": "string"},
+        "raw_value": {},
+        "canonical_unit": {"type": ["string", "null"]},
+        "data_type": {"type": ["string", "null"]},
+        "source_kind": {"type": ["string", "null"]},
+        "producer_node_id": {"type": "string"},
+        "execution_sequence": {"type": "integer"},
+        "provenance": {"type": ["object", "null"]}
+      }
+    },
+    "reportBlock": {
+      "type": "object",
+      "required": [
+        "schema",
+        "report_block_id",
+        "owner_node_id",
+        "owner_standard_id",
+        "sequence",
+        "event_kind",
+        "kind",
+        "section_key",
+        "title",
+        "normative_refs",
+        "inputs",
+        "outputs",
+        "selected_edge_id",
+        "execution_spec",
+        "presentation",
+        "message",
+        "execution_evidence"
+      ],
+      "properties": {
+        "schema": {"const": "fire_report_block_v1"},
+        "report_block_id": {"type": "string"},
+        "owner_node_id": {"type": "string"},
+        "owner_standard_id": {"type": ["string", "null"]},
+        "sequence": {"type": "integer"},
+        "event_kind": {"type": ["string", "null"]},
+        "kind": {"type": "string"},
+        "section_key": {"type": "string"},
+        "title": {"type": "string"},
+        "normative_refs": {"type": "array", "items": {"type": "object"}},
+        "inputs": {"type": "array", "items": {"$ref": "#/$defs/reportValue"}},
+        "outputs": {"type": "array", "items": {"$ref": "#/$defs/reportValue"}},
+        "selected_edge_id": {"type": ["string", "null"]},
+        "execution_spec": {"type": "object"},
+        "presentation": {"type": "object"},
+        "message": {"type": ["string", "null"]},
+        "failure": {"type": "object"},
+        "execution_evidence": {"type": "object"}
+      },
+      "additionalProperties": false
+    }
+  }
+}
