@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fire_report_ir_v4.schema.json",
+  "title": "FIRE REPORT-IR5 conservative engineering summary",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "contract",
+    "source_report_schema",
+    "source_report_sha256",
+    "graph_id",
+    "graph_sha256",
+    "session_schema",
+    "session_status",
+    "entry_node_id",
+    "current_node_id",
+    "block_count",
+    "blocks",
+    "sections",
+    "selected_route",
+    "dag_census",
+    "summary",
+    "audit",
+    "report_sha256"
+  ],
+  "properties": {
+    "schema": {"const": "fire_report_ir_v4"},
+    "contract": {"const": "conservative_engineering_summary_v4"},
+    "source_report_schema": {"const": "fire_report_ir_v3"},
+    "source_report_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "graph_id": {"type": ["string", "null"]},
+    "graph_sha256": {"type": ["string", "null"]},
+    "session_schema": {"type": ["string", "null"]},
+    "session_status": {"type": ["string", "null"]},
+    "entry_node_id": {"type": ["string", "null"]},
+    "current_node_id": {"type": ["string", "null"]},
+    "block_count": {"type": "integer", "minimum": 0},
+    "blocks": {"type": "array", "items": {"type": "object"}},
+    "sections": {"type": "array", "items": {"type": "object"}},
+    "selected_route": {"type": "array", "items": {"type": "object"}},
+    "dag_census": {"type": "object"},
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "summary_status",
+        "summary_status_scope",
+        "session_status",
+        "executed_block_count",
+        "executed_route_edge_count",
+        "check_count",
+        "check_counts",
+        "checks",
+        "result_block_count",
+        "results",
+        "fail_closed_count",
+        "fail_closed",
+        "governing"
+      ],
+      "properties": {
+        "summary_status": {
+          "enum": [
+            "FAIL_CLOSED",
+            "EXECUTED_CHECK_FAILED",
+            "CHECK_VERDICT_NOT_EXPLICIT",
+            "EXECUTED_BOOLEAN_CHECKS_PASS",
+            "NO_COMPLETED_CHECKS_YET"
+          ]
+        },
+        "summary_status_scope": {"const": "report_execution_state_not_global_engineering_certification"},
+        "session_status": {"type": ["string", "null"]},
+        "executed_block_count": {"type": "integer", "minimum": 0},
+        "executed_route_edge_count": {"type": "integer", "minimum": 0},
+        "check_count": {"type": "integer", "minimum": 0},
+        "check_counts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["PASS", "FAIL", "UNRESOLVED"],
+          "properties": {
+            "PASS": {"type": "integer", "minimum": 0},
+            "FAIL": {"type": "integer", "minimum": 0},
+            "UNRESOLVED": {"type": "integer", "minimum": 0}
+          }
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["report_block_id", "owner_node_id", "title", "verdict", "verdict_source", "outputs"],
+            "properties": {
+              "verdict": {"enum": ["PASS", "FAIL", "UNRESOLVED"]},
+              "outputs": {"type": "array"}
+            },
+            "additionalProperties": true
+          }
+        },
+        "result_block_count": {"type": "integer", "minimum": 0},
+        "results": {"type": "array", "items": {"type": "object"}},
+        "fail_closed_count": {"type": "integer", "minimum": 0},
+        "fail_closed": {"type": "array", "items": {"type": "object"}},
+        "governing": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "reason", "candidates"],
+          "properties": {
+            "status": {"const": "NOT_DECLARED_BY_DAG"},
+            "reason": {"type": "string"},
+            "candidates": {"type": "array", "maxItems": 0}
+          }
+        }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "required": [
+        "calculation_values_recomputed_by_report",
+        "formula_expressions_evaluated_by_report",
+        "table_interpolation_recomputed_by_report",
+        "route_conditions_recomputed_by_report",
+        "summary_recomputed_engineering_checks",
+        "summary_inferred_numeric_check_verdicts",
+        "summary_inferred_governing_result"
+      ],
+      "properties": {
+        "calculation_values_recomputed_by_report": {"const": false},
+        "formula_expressions_evaluated_by_report": {"const": false},
+        "table_interpolation_recomputed_by_report": {"const": false},
+        "route_conditions_recomputed_by_report": {"const": false},
+        "summary_recomputed_engineering_checks": {"const": false},
+        "summary_inferred_numeric_check_verdicts": {"const": false},
+        "summary_inferred_governing_result": {"const": false}
+      },
+      "additionalProperties": true
+    },
+    "report_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}
