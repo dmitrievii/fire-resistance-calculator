@@ -31,10 +31,25 @@ MOBILE_STYLES = r"""
   color: var(--fire-muted);
 }
 @media (max-width: 768px) {
-  /* Streamlit Cloud keeps its app toolbar fixed above the document.  The
-     content container therefore needs an explicit mobile safe area; reducing
-     this to the desktop-like compact value makes Share/GitHub/menu overlap
-     the FIRE title on real phones. */
+  /* Streamlit's own base stylesheet makes the header transparent. On a real
+     phone this lets scrolling calculation content remain visible underneath
+     Share/GitHub/menu. Keep the Cloud toolbar as a real opaque fixed header. */
+  [data-testid="stHeader"] {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    background: var(--background-color, #ffffff) !important;
+    border-bottom: 1px solid rgba(49, 51, 63, 0.12) !important;
+    z-index: 1000000 !important;
+  }
+  [data-testid="stToolbar"] {
+    position: relative !important;
+    z-index: 1000001 !important;
+  }
+
+  /* Reserve the fixed toolbar height plus any device safe-area inset. */
   .block-container {
     padding-top: calc(3.85rem + env(safe-area-inset-top, 0px)) !important;
     padding-left: 1rem !important;
