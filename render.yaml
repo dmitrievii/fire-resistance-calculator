@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: dmitrievii-fire-resistance-calculator-api
+    runtime: python
+    plan: free
+    buildCommand: python -m compileall -q standard_core fire_ui1_web_service.py
+    startCommand: python fire_ui1_web_service.py
+    healthCheckPath: /api/health
+    autoDeployTrigger: commit
+    envVars:
+      - key: FIRE_ALLOWED_ORIGINS
+        value: https://dmitrievii.github.io
