@@ -20,6 +20,7 @@ on:
       - 'tools/export_governing_candidates.py'
       - 'tools/export_tension_report_route.py'
       - 'tools/export_tension_golden_contract.py'
+      - 'tools/audit_tension_gamma_ct.py'
       - 'streamlit_report_ui.py'
       - 'streamlit_report_summary.py'
       - 'streamlit_app.py'
@@ -52,6 +53,7 @@ on:
       - 'tools/export_governing_candidates.py'
       - 'tools/export_tension_report_route.py'
       - 'tools/export_tension_golden_contract.py'
+      - 'tools/audit_tension_gamma_ct.py'
       - 'streamlit_report_ui.py'
       - 'streamlit_report_summary.py'
       - 'streamlit_app.py'
@@ -97,6 +99,7 @@ jobs:
             tools/export_governing_candidates.py \
             tools/export_tension_report_route.py \
             tools/export_tension_golden_contract.py \
+            tools/audit_tension_gamma_ct.py \
             streamlit_report_ui.py \
             streamlit_report_summary.py \
             streamlit_app.py
@@ -118,6 +121,8 @@ jobs:
         run: python -m tools.export_tension_report_route
       - name: Export exact central-tension golden contract
         run: python -m tools.export_tension_golden_contract
+      - name: Audit gamma_ct semantics in central tension
+        run: python -m tools.audit_tension_gamma_ct
       - name: Upload active-DAG report audits
         uses: actions/upload-artifact@v4
         with:
@@ -127,6 +132,7 @@ jobs:
             artifacts/governing_candidates_active_dag.json
             artifacts/tension_report_route_active_dag.json
             artifacts/tension_golden_contract_active_dag.json
+            artifacts/tension_gamma_ct_audit.json
           if-no-files-found: error
       - name: Validate REPORT-IR schemas
         run: |
