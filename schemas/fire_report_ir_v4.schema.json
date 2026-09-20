@@ -104,9 +104,34 @@
           "additionalProperties": false,
           "required": ["status", "reason", "candidates"],
           "properties": {
-            "status": {"const": "NOT_DECLARED_BY_DAG"},
+            "status": {
+              "enum": [
+                "NOT_DECLARED_BY_DAG",
+                "DECLARED_BY_DAG_NOT_EXECUTED",
+                "EXECUTED_DECLARATIONS"
+              ]
+            },
             "reason": {"type": "string"},
-            "candidates": {"type": "array", "maxItems": 0}
+            "candidates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["scope", "owner_node_id", "quantity", "source"],
+                "properties": {
+                  "scope": {"type": "string", "minLength": 1},
+                  "scope_title_ru": {"type": ["string", "null"]},
+                  "report_block_id": {"type": ["string", "null"]},
+                  "sequence": {"type": ["integer", "null"]},
+                  "owner_node_id": {"type": ["string", "null"]},
+                  "owner_standard_id": {"type": ["string", "null"]},
+                  "title": {"type": ["string", "null"]},
+                  "normative_refs": {"type": "array"},
+                  "quantity": {"type": "object"},
+                  "source": {"const": "explicit_dag_bound_report_metadata_plus_execution_trace"}
+                },
+                "additionalProperties": true
+              }
+            }
           }
         }
       }
