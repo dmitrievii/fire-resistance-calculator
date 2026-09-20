@@ -15,6 +15,14 @@ def test_mobile_styles_define_compact_phone_layout():
     assert ".fire-tech-footer { display: none; }" in css
 
 
+def test_mobile_styles_reserve_streamlit_toolbar_safe_area():
+    css = mobile.MOBILE_STYLES
+    assert "padding-top: calc(3.85rem + env(safe-area-inset-top, 0px)) !important;" in css
+    assert "margin-top: .15rem;" in css
+    assert ".fire-title { font-size: 1.44rem;" in css
+    assert "padding-top: .55rem !important;" not in css
+
+
 def test_mobile_composition_collapses_administration_and_diagnostics():
     source = (ROOT / "streamlit_mobile_ux.py").read_text(encoding="utf-8")
     assert 'st.expander("Расчёт · файл · история", expanded=False)' in source
