@@ -1,9 +1,10 @@
-"""REPORT-IR2: richer DAG-bound report evidence without a second calculation path.
+"""REPORT-IR2/3: DAG-bound report evidence without a second calculation path.
 
-IR2 is a deterministic enrichment over REPORT-IR1.  It does not evaluate
-engineering formulae, perform table interpolation, or derive replacement
-results.  It binds the values already present in completed trace records back to
-the immutable DAG bindings that owned those values.
+The report layer never evaluates engineering formulae and never interpolates a
+normative table. It binds values already present in completed trace records back
+to immutable DAG metadata. For declarative lookup nodes it may additionally read
+row-selection evidence captured by the runtime instrumentation immediately after
+the successful production lookup.
 """
 from __future__ import annotations
 
@@ -14,6 +15,7 @@ from hashlib import sha256
 from typing import Any, Mapping
 
 from .report_ir import build_report_ir
+from .declarative_runtime_evidence import get_lookup_runtime_evidence
 
 REPORT_IR2_SCHEMA = "fire_report_ir_v2"
 REPORT_IR2_CONTRACT = "dag_trace_binding_evidence_v2"
@@ -29,6 +31,14 @@ def _value_index(block: Mapping[str, Any]) -> dict[str, Mapping[str, Any]]:
         for row in block.get(side) or []:
             if isinstance(row, Mapping) and isinstance(row.get("quantity_id"), str):
                 out[str(row["quantity_id"])] = row
+    return out
+
+
+def _raw_value_map(rows: Any) -> dict[str, Any]:
+    out: dict[str, Any] = {}
+    for row in rows or []:
+        if isinstance(row, Mapping) and isinstance(row.get("quantity_id"), str):
+            out[str(row["quantity_id"])] = _deep(row.get("raw_value"))
     return out
 
 
@@ -71,7 +81,11 @@ def _formula_binding_evidence(block: Mapping[str, Any], spec: Mapping[str, Any])
     }
 
 
-def _lookup_binding_evidence(block: Mapping[str, Any], spec: Mapping[str, Any]) -> dict[str, Any]:
+def _lookup_binding_evidence(
+    block: Mapping[str, Any],
+    spec: Mapping[str, Any],
+    runtime_evidence: Mapping[str, Any] | None,
+) -> dict[str, Any]:
     index = _value_index(block)
     selectors = []
     for binding in spec.get("selector_bindings") or []:
@@ -89,14 +103,17 @@ def _lookup_binding_evidence(block: Mapping[str, Any], spec: Mapping[str, Any]) 
         row = _bound_value(index, qid)
         row.update({"dataset_field": binding.get("dataset_field")})
         outputs.append(row)
+
+    captured = isinstance(runtime_evidence, Mapping) and runtime_evidence.get("capture_status") == "CAPTURED"
     return {
-        "evidence_mode": "trace_bound_lookup_io",
+        "evidence_mode": "trace_bound_lookup_io_with_runtime_row_evidence" if captured else "trace_bound_lookup_io",
         "dataset_id": spec.get("dataset_id"),
         "selectors": selectors,
         "output_bindings": outputs,
         "interpolation": _deep(spec.get("interpolation") or {}),
-        "selected_dataset_rows": None,
-        "selected_dataset_rows_status": "NOT_CAPTURED_BY_RUNTIME_YET",
+        "selected_dataset_rows": _deep(runtime_evidence.get("selected_rows")) if captured else None,
+        "selected_dataset_rows_status": "CAPTURED_BY_RUNTIME_AUDIT" if captured else "NOT_CAPTURED_BY_RUNTIME",
+        "runtime_lookup_evidence": _deep(runtime_evidence) if runtime_evidence is not None else None,
         "report_recomputed_lookup": False,
     }
 
@@ -118,13 +135,19 @@ def _geometry_evidence(block: Mapping[str, Any], spec: Mapping[str, Any]) -> dic
     }
 
 
-def _execution_evidence_for_block(block: Mapping[str, Any]) -> dict[str, Any]:
+def _execution_evidence_for_block(model: Any, block: Mapping[str, Any]) -> dict[str, Any]:
     spec = block.get("execution_spec") or {}
     mode = spec.get("mode") if isinstance(spec, Mapping) else None
     if mode in {"calculation_spec", "check_spec"}:
         return _formula_binding_evidence(block, spec)
     if mode == "lookup_spec":
-        return _lookup_binding_evidence(block, spec)
+        runtime_evidence = get_lookup_runtime_evidence(
+            model,
+            str(block.get("owner_node_id") or ""),
+            _raw_value_map(block.get("inputs")),
+            _raw_value_map(block.get("outputs")),
+        )
+        return _lookup_binding_evidence(block, spec, runtime_evidence)
     if mode == "geometry_spec":
         return _geometry_evidence(block, spec.get("geometry_spec") or {})
     if block.get("kind") == "BRANCH_DECISION":
@@ -180,11 +203,18 @@ def build_report_ir2(model: Any, session_or_snapshot: Any) -> dict[str, Any]:
     """Build REPORT-IR2 by enriching REPORT-IR1 with trace-bound DAG evidence."""
     ir1 = build_report_ir(model, session_or_snapshot)
     blocks = []
+    lookup_blocks = 0
+    lookup_blocks_with_rows = 0
     for block in ir1.get("blocks") or []:
         row = _deep(block)
-        row["execution_evidence"] = _execution_evidence_for_block(row)
+        row["execution_evidence"] = _execution_evidence_for_block(model, row)
+        if (row.get("execution_spec") or {}).get("mode") == "lookup_spec":
+            lookup_blocks += 1
+            if row["execution_evidence"].get("selected_dataset_rows_status") == "CAPTURED_BY_RUNTIME_AUDIT":
+                lookup_blocks_with_rows += 1
         blocks.append(row)
 
+    all_executed_lookup_rows_captured = lookup_blocks == lookup_blocks_with_rows
     report = {
         "schema": REPORT_IR2_SCHEMA,
         "contract": REPORT_IR2_CONTRACT,
@@ -204,8 +234,14 @@ def build_report_ir2(model: Any, session_or_snapshot: Any) -> dict[str, Any]:
             "table_interpolation_recomputed_by_report": False,
             "formula_bindings_are_trace_values": True,
             "dag_metadata_is_authoritative": True,
-            "runtime_selected_dataset_rows_captured": False,
-            "runtime_selected_dataset_rows_limitation": "REPORT-IR2 does not infer interpolation brackets; runtime capture is a later gate.",
+            "runtime_selected_dataset_rows_captured": all_executed_lookup_rows_captured,
+            "runtime_lookup_block_count": lookup_blocks,
+            "runtime_lookup_blocks_with_rows": lookup_blocks_with_rows,
+            "runtime_selected_dataset_rows_limitation": (
+                "All executed declarative lookups have runtime audit rows."
+                if all_executed_lookup_rows_captured
+                else "At least one executed lookup has no matching runtime row-selection evidence; report remains fail-transparent and does not reconstruct it."
+            ),
         },
     }
     canonical = json.dumps(report, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode("utf-8")
