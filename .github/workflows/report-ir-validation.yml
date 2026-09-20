@@ -12,10 +12,12 @@ on:
       - 'standard_core/report_ir2.py'
       - 'standard_core/report_ir4.py'
       - 'standard_core/report_ir5.py'
+      - 'standard_core/report_equations.py'
       - 'standard_core/report_markdown.py'
       - 'standard_core/report_readiness.py'
       - 'standard_core/report_metadata.py'
       - 'normative_graph/report_metadata_v0.3.71_report_meta1.json'
+      - 'normative_graph/report_metadata_v0.3.72_tension_golden.json'
       - 'tools/export_report_readiness.py'
       - 'tools/export_governing_candidates.py'
       - 'tools/export_tension_report_route.py'
@@ -35,6 +37,7 @@ on:
       - 'tests/test_report_markdown.py'
       - 'tests/test_report_readiness.py'
       - 'tests/test_report_metadata.py'
+      - 'tests/test_report_tension_golden.py'
       - '.github/workflows/report-ir-validation.yml'
   pull_request:
     paths:
@@ -45,10 +48,12 @@ on:
       - 'standard_core/report_ir2.py'
       - 'standard_core/report_ir4.py'
       - 'standard_core/report_ir5.py'
+      - 'standard_core/report_equations.py'
       - 'standard_core/report_markdown.py'
       - 'standard_core/report_readiness.py'
       - 'standard_core/report_metadata.py'
       - 'normative_graph/report_metadata_v0.3.71_report_meta1.json'
+      - 'normative_graph/report_metadata_v0.3.72_tension_golden.json'
       - 'tools/export_report_readiness.py'
       - 'tools/export_governing_candidates.py'
       - 'tools/export_tension_report_route.py'
@@ -68,6 +73,7 @@ on:
       - 'tests/test_report_markdown.py'
       - 'tests/test_report_readiness.py'
       - 'tests/test_report_metadata.py'
+      - 'tests/test_report_tension_golden.py'
       - '.github/workflows/report-ir-validation.yml'
   workflow_dispatch:
 
@@ -92,6 +98,7 @@ jobs:
             standard_core/report_ir2.py \
             standard_core/report_ir4.py \
             standard_core/report_ir5.py \
+            standard_core/report_equations.py \
             standard_core/report_markdown.py \
             standard_core/report_readiness.py \
             standard_core/report_metadata.py \
@@ -113,6 +120,7 @@ jobs:
           tests/test_report_markdown.py
           tests/test_report_readiness.py
           tests/test_report_metadata.py
+          tests/test_report_tension_golden.py
       - name: Export active-DAG readiness census
         run: python -m tools.export_report_readiness
       - name: Export active-DAG governing candidates
