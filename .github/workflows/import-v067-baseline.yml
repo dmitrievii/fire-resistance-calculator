@@ -1,0 +1,71 @@
+name: Import v0.67 baseline
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/import-v067-baseline.yml'
+      - 'standard_package_v0.67_FIRE_BRIDGE2_QUALIFIED_SP16_COMPLEX_STATE_HANDOFF_r1.zip'
+
+permissions:
+  contents: write
+
+jobs:
+  import-baseline:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Unpack cumulative baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          ZIP='standard_package_v0.67_FIRE_BRIDGE2_QUALIFIED_SP16_COMPLEX_STATE_HANDOFF_r1.zip'
+          test -f "$ZIP"
+
+          rm -rf .baseline_import
+          mkdir .baseline_import
+          unzip -q "$ZIP" -d .baseline_import
+
+          # Flatten exactly one wrapper directory, otherwise preserve archive root layout.
+          shopt -s dotglob nullglob
+          entries=(.baseline_import/*)
+          SRC='.baseline_import'
+          if [ "${#entries[@]}" -eq 1 ] && [ -d "${entries[0]}" ]; then
+            SRC="${entries[0]}"
+          fi
+
+          rsync -a --exclude='.git/' --exclude='.github/workflows/import-v067-baseline.yml' "$SRC"/ ./
+
+          mkdir -p _baseline
+          mv "$ZIP" "_baseline/$ZIP"
+          rm -rf .baseline_import
+
+      - name: Record import manifest
+        shell: bash
+        run: |
+          {
+            echo '# Imported baseline'
+            echo
+            echo '- Source package: `standard_package_v0.67_FIRE_BRIDGE2_QUALIFIED_SP16_COMPLEX_STATE_HANDOFF_r1.zip`'
+            echo '- Imported by GitHub Actions from the user-uploaded cumulative package.'
+            echo '- Original ZIP retained unchanged under `_baseline/`.'
+            echo
+            echo '## Verification'
+            echo
+            echo '```text'
+            sha256sum _baseline/standard_package_v0.67_FIRE_BRIDGE2_QUALIFIED_SP16_COMPLEX_STATE_HANDOFF_r1.zip
+            unzip -t _baseline/standard_package_v0.67_FIRE_BRIDGE2_QUALIFIED_SP16_COMPLEX_STATE_HANDOFF_r1.zip | tail -n 2
+            echo '```'
+          } > BASELINE_IMPORT.md
+
+      - name: Commit imported source tree
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Import v0.67 cumulative baseline'
+          git push
