@@ -31,14 +31,21 @@ MOBILE_STYLES = r"""
   color: var(--fire-muted);
 }
 @media (max-width: 768px) {
+  /* Streamlit Cloud keeps its app toolbar fixed above the document.  The
+     content container therefore needs an explicit mobile safe area; reducing
+     this to the desktop-like compact value makes Share/GitHub/menu overlap
+     the FIRE title on real phones. */
   .block-container {
-    padding-top: .55rem !important;
+    padding-top: calc(3.85rem + env(safe-area-inset-top, 0px)) !important;
     padding-left: 1rem !important;
     padding-right: 1rem !important;
     padding-bottom: 1.5rem !important;
   }
-  .fire-hero { padding: .05rem 0 .42rem 0; }
-  .fire-title { font-size: 1.52rem; line-height: 1.14; }
+  .fire-hero {
+    padding: .05rem 0 .42rem 0;
+    margin-top: .15rem;
+  }
+  .fire-title { font-size: 1.44rem; line-height: 1.14; }
   .fire-subtitle { font-size: .84rem; line-height: 1.35; }
   .fire-status { padding: .24rem .5rem; font-size: .72rem; }
   .fire-card { padding: .78rem .82rem; border-radius: 13px; }
