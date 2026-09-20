@@ -7,6 +7,7 @@ import pytest
 from standard_core.fire_ui0 import FireDAGModel
 from standard_core.fire_ui16_declarative import execute_declarative
 from standard_core.fire_ui17_workflow import _critical_temperature_selection
+from standard_core.fire_ui18_workflow import _fire_d2_to_d3_exact_tcr_handoff
 from standard_core.fire_ui19_heated_perimeter import _protected_perimeter
 from standard_core.report_equations import build_trace_bound_equation
 from standard_core.report_ir5 import build_report_ir5
@@ -72,8 +73,11 @@ def _production_trace_prefix(model):
     traces.append(_trace(seq, nt, t_inputs, outt))
 
     nh = model.nodes["SP554_FIRE_D3_C_D2_TCR_HANDOFF"]
-    h_inputs = {"fire_d2_critical_temperature_c": outt["fire_d2_critical_temperature_c"]}
-    outh = execute_declarative(model, nh, h_inputs)
+    h_inputs = {
+        "fire_d2_critical_temperature_status": outt["fire_d2_critical_temperature_status"],
+        "fire_d2_critical_temperature_c": outt["fire_d2_critical_temperature_c"],
+    }
+    outh = _fire_d2_to_d3_exact_tcr_handoff(h_inputs, nh)
     seq += 1
     traces.append(_trace(seq, nh, h_inputs, outh))
 
@@ -153,7 +157,7 @@ def test_tension_golden_prefix_runs_production_gamma_t_tcr_perimeter_and_reduced
 
     assert outg["gamma_T_required"] == pytest.approx(out9["gamma_T_9_1"])
     assert isinstance(outt["fire_d2_critical_temperature_c"], float)
-    assert outt["fire_d2_critical_temperature_c"] > 0.0
+    assert outt["fire_d2_critical_temperature_c"] > 20.0
     assert outp["P_heated_protected"] == pytest.approx(0.908)
     assert outd["delta_pr_protected"] == pytest.approx(5964.0 / (0.908 * 1000.0))
 
