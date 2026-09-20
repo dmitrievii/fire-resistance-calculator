@@ -55,6 +55,10 @@ def previous_answered_node_id(
 
 def install(core: Any) -> None:
     """Install explicit navigation in place of the hidden history-only editor."""
+    if getattr(core, "_fire_navigation_installed", False):
+        return
+    core._fire_navigation_installed = True
+
     st = core.st
 
     def _open_node(node_id: str) -> None:
