@@ -6,15 +6,21 @@ on:
       - 'feature/v0.68-streamlit-*'
       - 'feature/v0.69-streamlit-*'
       - 'feature/v0.69.*-streamlit-*'
+      - 'feature/report-ir1-dag'
     paths:
       - 'streamlit_app.py'
       - 'streamlit_app_core.py'
       - 'streamlit_graphic_selectors.py'
       - 'streamlit_mobile_ux.py'
+      - 'streamlit_navigation.py'
+      - 'streamlit_report_ui.py'
+      - 'standard_core/report_ir.py'
+      - 'standard_core/report_ir2.py'
       - 'requirements.txt'
       - '.streamlit/**'
       - 'tests/test_streamlit_ui.py'
       - 'tests/test_streamlit_mobile_ux.py'
+      - 'tests/test_streamlit_navigation.py'
       - 'standard_core/**'
       - 'data/**'
       - 'normative_graph/**'
@@ -25,10 +31,15 @@ on:
       - 'streamlit_app_core.py'
       - 'streamlit_graphic_selectors.py'
       - 'streamlit_mobile_ux.py'
+      - 'streamlit_navigation.py'
+      - 'streamlit_report_ui.py'
+      - 'standard_core/report_ir.py'
+      - 'standard_core/report_ir2.py'
       - 'requirements.txt'
       - '.streamlit/**'
       - 'tests/test_streamlit_ui.py'
       - 'tests/test_streamlit_mobile_ux.py'
+      - 'tests/test_streamlit_navigation.py'
       - 'standard_core/**'
       - 'data/**'
       - 'normative_graph/**'
@@ -48,9 +59,9 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt pytest
       - name: Compile Streamlit presentation layers
-        run: python -m py_compile streamlit_app.py streamlit_app_core.py streamlit_graphic_selectors.py streamlit_mobile_ux.py
+        run: python -m py_compile streamlit_app.py streamlit_app_core.py streamlit_graphic_selectors.py streamlit_mobile_ux.py streamlit_navigation.py streamlit_report_ui.py standard_core/report_ir.py standard_core/report_ir2.py
       - name: Run Streamlit contract and UI smoke tests
-        run: python -m pytest -q tests/test_streamlit_ui.py tests/test_streamlit_mobile_ux.py
+        run: python -m pytest -q tests/test_streamlit_ui.py tests/test_streamlit_mobile_ux.py tests/test_streamlit_navigation.py
       - name: Re-run existing FIRE-UI regression
         run: python -m pytest -q tests/test_fire_ui1_frontend.py tests/test_fire_ui1_public_http.py
       - name: Boot real Streamlit server
