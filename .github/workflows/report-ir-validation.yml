@@ -1,0 +1,46 @@
+name: REPORT-IR1 validation
+
+on:
+  push:
+    branches:
+      - 'feature/report-ir1-dag'
+    paths:
+      - 'standard_core/report_ir.py'
+      - 'schemas/fire_report_ir_v1.schema.json'
+      - 'tests/test_report_ir.py'
+      - '.github/workflows/report-ir-validation.yml'
+  pull_request:
+    paths:
+      - 'standard_core/report_ir.py'
+      - 'schemas/fire_report_ir_v1.schema.json'
+      - 'tests/test_report_ir.py'
+      - '.github/workflows/report-ir-validation.yml'
+  workflow_dispatch:
+
+jobs:
+  report-ir1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install tests
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pytest jsonschema
+      - name: Compile report runtime
+        run: python -m py_compile standard_core/report_ir.py
+      - name: Run REPORT-IR1 focused regression
+        run: python -m pytest -q tests/test_report_ir.py
+      - name: Validate REPORT-IR1 schema JSON
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema.validators import validator_for
+          schema = json.loads(Path('schemas/fire_report_ir_v1.schema.json').read_text(encoding='utf-8'))
+          cls = validator_for(schema)
+          cls.check_schema(schema)
+          print('REPORT-IR1 schema: PASS')
+          PY
