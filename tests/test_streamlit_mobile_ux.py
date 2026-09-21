@@ -34,11 +34,19 @@ def test_mobile_streamlit_header_is_fixed_and_opaque_while_scrolling():
     assert "z-index: 1000001 !important;" in css
 
 
-def test_mobile_composition_collapses_administration_and_diagnostics():
+def test_mobile_composition_keeps_file_admin_collapsed_and_history_after_active_step():
     source = (ROOT / "streamlit_mobile_ux.py").read_text(encoding="utf-8")
-    assert 'st.expander("Расчёт · файл · история", expanded=False)' in source
-    assert 'st.expander("Расчётные величины · Trace", expanded=False)' in source
-    assert source.count("core._render_history(app, env)") == 1
+    file_admin = 'st.expander("Расчёт · файл", expanded=False)'
+    trace = 'st.expander("Расчётные величины · Trace", expanded=False)'
+    render = "core._render_card_body("
+    submit = "core._submit(app, sid, card, payload, provenance, editing)"
+    history = "core._render_history(app, env)"
+
+    assert file_admin in source
+    assert trace in source
+    assert source.count(history) == 1
+    assert source.index(file_admin) < source.index(render)
+    assert source.index(render) < source.index(submit) < source.index(history)
     assert "DAG: {contract.get" in source
 
 
