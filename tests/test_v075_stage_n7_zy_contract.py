@@ -5,12 +5,15 @@ from pathlib import Path
 
 import pytest
 
-from standard_core.fire_ui0 import FireDAGModel
+from standard_core.fire_ui0 import ExecutionRegistry, FireDAGModel
 from standard_core.profile_catalog import InterimProfileCatalog
-from standard_core.sp16_mech7_v075_effective_length_contract import (
+from standard_core.sp16_mech7_v075_zy_runtime import (
+    BINDER_NODE_ID,
     GRAPH_SUFFIX,
+    bind_primary_ambient_evidence_zy,
     build_model,
     effective_length_state,
+    install_registry_remediation,
     transform_graph,
 )
 
@@ -51,7 +54,7 @@ def test_v075_active_graph_inserts_missing_length_and_restraint_cards_before_mec
 def test_v075_binder_contract_uses_z_y_and_no_principal_x_alias():
     base = FireDAGModel.load(DAG, presentation_policy_path=POLICY)
     model = build_model(base)
-    binder = model.nodes["SP16_C_MECH7_PRIMARY_EVIDENCE_BINDER"]
+    binder = model.nodes[BINDER_NODE_ID]
     qids = {row["quantity_id"] for row in binder["consumes"]}
 
     assert "phi_z_sp16" in qids
@@ -108,9 +111,11 @@ def test_v075_table30_state_is_canonical_zy_and_lambda_bar_uses_design_Ry():
     assert out["sp16_lambda_y_geom"] == pytest.approx(expected_ly)
     assert out["lambda_bar_z"] == pytest.approx(expected_lz * math.sqrt(240.0 / 206000.0))
     assert out["lambda_bar_y"] == pytest.approx(expected_ly * math.sqrt(240.0 / 206000.0))
-    assert out["sp16_v075_axis_contract"]["legacy_principal_x_semantics_active"] is False
-    assert out["sp16_v075_axis_contract"]["principal_strong_axis"] == "z"
-    assert out["sp16_v075_axis_contract"]["principal_weak_axis"] == "y"
+    axis = out["sp16_v075_axis_contract"]
+    assert axis["legacy_principal_x_semantics_active"] is False
+    assert axis["principal_x_transport_alias_used"] is False
+    assert axis["principal_strong_axis"] == "z"
+    assert axis["principal_weak_axis"] == "y"
 
 
 def test_v075_verified_effective_length_requires_basis_and_does_not_invent_mu():
@@ -138,6 +143,55 @@ def test_v075_verified_effective_length_requires_basis_and_does_not_invent_mu():
     bad["sp16_verified_l_eff_z_basis"] = ""
     with pytest.raises(Exception, match="basis"):
         effective_length_state(bad, catalog)
+
+
+def test_v075_registry_does_not_feed_principal_x_aliases_into_binder():
+    seen = []
+
+    def legacy_executor(values, node):
+        seen.append(dict(values))
+        return {"sp16_mech7_primary_evidence": {"evidence": {}}, "sp16_mech7_primary_binding_complete": True}
+
+    registry = ExecutionRegistry({BINDER_NODE_ID: legacy_executor})
+    catalog = InterimProfileCatalog()
+    install_registry_remediation(registry, catalog)
+    executor = registry.executors[BINDER_NODE_ID]
+
+    # The canonical executor replaces the legacy one.  It must never call it or
+    # create principal-axis x compatibility quantities.
+    assert executor is not legacy_executor
+    assert getattr(executor, "_sp16_v075_zy_remediated", False) is True
+    assert seen == []
+
+
+def test_v075_canonical_binder_reads_z_y_for_central_compression():
+    values = {
+        "sp16_applicability_census": {
+            "active_checks": [
+                {"id": "member_compression_stability"},
+                {"id": "effective_length_slenderness"},
+            ],
+            "context_driven_checks": [],
+        },
+        "ambient_N_force": -100000.0,
+        "ambient_M_x": 0.0,
+        "ambient_M_y": 0.0,
+        "A_gross": 2000.0,
+        "Ry_formula": 240.0,
+        "gamma_c_compression": 1.0,
+        "phi_z_sp16": 0.8,
+        "phi_y_sp16": 0.7,
+        "sp16_lambda_z_geom": 50.0,
+        "sp16_lambda_y_geom": 75.0,
+        "sp16_mech7_table32_row": "3",
+        "sp16_mech7_group4_slenderness_increase": False,
+    }
+    out = bind_primary_ambient_evidence_zy(values)
+    evidence = out["sp16_mech7_primary_evidence"]["evidence"]
+    assert evidence["member_compression_stability"]["status"] in {"PASS", "FAIL"}
+    assert evidence["effective_length_slenderness"]["status"] in {"PASS", "FAIL"}
+    assert "phi_x_sp16" not in str(out)
+    assert "lambda_x" not in str(out)
 
 
 def test_v075_ui_contract_hides_legacy_n7_axis_cards_and_exposes_new_zy_cards():
