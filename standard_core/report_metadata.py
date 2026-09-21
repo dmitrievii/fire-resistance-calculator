@@ -2,12 +2,16 @@
 
 The sidecar is presentation/report semantics only. It cannot alter quantities,
 edges, datasets, calculations, routing, applicability or executor behavior. The
-loader verifies the exact base ``graph_id`` and ``graph_sha256`` before exposing
-any metadata to REPORT-IR.
+loader verifies the exact frozen source ``graph_id`` and ``graph_sha256`` before
+exposing any metadata to REPORT-IR.  An in-memory guided overlay may change the
+active graph identity, but it does not retarget the sidecar: validation remains
+anchored to the immutable DAG file named by ``model.source_path`` and all report
+spec references are still checked against the active model.
 """
 from __future__ import annotations
 
 import copy
+from hashlib import sha256
 import json
 from functools import lru_cache
 from pathlib import Path
@@ -65,19 +69,46 @@ def _is_boolean_quantity(model: Any, quantity_id: str) -> bool:
     return str(row.get("data_type") or row.get("type") or "").lower() in {"bool", "boolean"}
 
 
+def _canonical_graph_sha256(graph: Mapping[str, Any]) -> str:
+    canonical = json.dumps(graph, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return sha256(canonical).hexdigest()
+
+
+def _frozen_source_identity(model: Any) -> tuple[Any, Any]:
+    """Return the immutable file-backed DAG identity used by report metadata.
+
+    ``FireDAGModel.source_path`` continues to name the frozen parent DAG even
+    when the active guided model is an in-memory overlay.  Re-reading that file
+    keeps REPORT-IR anchored to the same evidence source instead of accepting a
+    synthetic overlay hash as though it were a new normative release.
+    """
+    source = getattr(model, "source_path", None)
+    if not source:
+        graph = getattr(model, "graph", {})
+        graph_id = graph.get("graph_id") if isinstance(graph, Mapping) else None
+        return graph_id, getattr(model, "graph_sha256", None)
+
+    source_path = Path(source).resolve()
+    if not source_path.is_file():
+        raise ValueError(f"report metadata source DAG does not exist: {source_path}")
+    graph = _read_json(str(source_path))
+    graph_id = graph.get("graph_id")
+    if not isinstance(graph_id, str) or not graph_id:
+        raise ValueError("report metadata source DAG has no valid graph_id")
+    return graph_id, _canonical_graph_sha256(graph)
+
+
 def _validate(model: Any, payload: Mapping[str, Any], *, source_path: Path) -> dict[str, Any]:
     if payload.get("schema") != REPORT_METADATA_SCHEMA:
         raise ValueError(f"unsupported report metadata schema in {source_path}")
 
-    graph = getattr(model, "graph", {})
-    graph_id = graph.get("graph_id") if isinstance(graph, Mapping) else None
-    graph_sha256 = getattr(model, "graph_sha256", None)
-    if payload.get("base_graph_id") != graph_id:
+    base_graph_id, base_graph_sha256 = _frozen_source_identity(model)
+    if payload.get("base_graph_id") != base_graph_id:
         raise ValueError(
-            f"report metadata base_graph_id mismatch: {payload.get('base_graph_id')!r} != {graph_id!r}"
+            f"report metadata base_graph_id mismatch: {payload.get('base_graph_id')!r} != {base_graph_id!r}"
         )
-    if payload.get("base_graph_sha256") != graph_sha256:
-        raise ValueError("report metadata base_graph_sha256 does not match the loaded frozen DAG")
+    if payload.get("base_graph_sha256") != base_graph_sha256:
+        raise ValueError("report metadata base_graph_sha256 does not match the loaded frozen source DAG")
 
     specs = payload.get("node_report_specs") or {}
     if not isinstance(specs, Mapping):
@@ -119,7 +150,9 @@ def report_metadata_for_model(model: Any) -> dict[str, Any]:
 
     Models without ``source_path`` intentionally fall back to inline
     ``node.report_spec`` metadata only; this keeps unit tests and synthetic DAGs
-    independent of package files.
+    independent of package files.  For in-memory guided overlays, the sidecar is
+    validated against the frozen DAG at ``source_path`` while every referenced
+    node/output is validated against the active overlay model.
     """
     source = getattr(model, "source_path", None)
     if not source:
