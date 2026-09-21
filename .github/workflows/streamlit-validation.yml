@@ -136,33 +136,53 @@ jobs:
           standard_core/report_markdown_impl.py
           standard_core/report_readiness.py
           standard_core/report_metadata.py
-      - name: Run existing Streamlit contract and UI smoke tests
-        run: >-
-          python -m pytest -q
-          tests/test_streamlit_ui.py
-          tests/test_streamlit_guided_ux.py
-          tests/test_streamlit_mobile_ux.py
-          tests/test_streamlit_navigation.py
-          tests/test_report_tension_golden.py
-          tests/test_v073_existing_session_remediation.py
-          tests/test_v074_sp16_b1_physical_hydration.py
+      - name: Existing Streamlit UI
+        if: always()
+        run: python -m pytest -q tests/test_streamlit_ui.py
+      - name: Existing guided UX
+        if: always()
+        run: python -m pytest -q tests/test_streamlit_guided_ux.py
+      - name: Existing mobile UX
+        if: always()
+        run: python -m pytest -q tests/test_streamlit_mobile_ux.py
+      - name: Existing navigation
+        if: always()
+        run: python -m pytest -q tests/test_streamlit_navigation.py
+      - name: Existing report golden
+        if: always()
+        run: python -m pytest -q tests/test_report_tension_golden.py
+      - name: Existing v0.73 session remediation
+        if: always()
+        run: python -m pytest -q tests/test_v073_existing_session_remediation.py
+      - name: Existing v0.74 physical hydration
+        if: always()
+        run: python -m pytest -q tests/test_v074_sp16_b1_physical_hydration.py
       - name: v0.75 graph insertion
+        if: always()
         run: python -m pytest -q tests/test_v075_stage_n7_zy_contract.py::test_v075_active_graph_inserts_missing_length_and_restraint_cards_before_mech7_binder
       - name: v0.75 binder contract z-y only
+        if: always()
         run: python -m pytest -q tests/test_v075_stage_n7_zy_contract.py::test_v075_binder_contract_uses_z_y_and_no_principal_x_alias
       - name: v0.75 Table 30 canonical state
+        if: always()
         run: python -m pytest -q tests/test_v075_stage_n7_zy_contract.py::test_v075_table30_state_is_canonical_zy_and_lambda_bar_uses_design_Ry
       - name: v0.75 verified effective length basis
+        if: always()
         run: python -m pytest -q tests/test_v075_stage_n7_zy_contract.py::test_v075_verified_effective_length_requires_basis_and_does_not_invent_mu
       - name: v0.75 no x transport aliases
+        if: always()
         run: python -m pytest -q tests/test_v075_stage_n7_zy_contract.py::test_v075_registry_does_not_feed_principal_x_aliases_into_binder
       - name: v0.75 canonical compression binder
+        if: always()
         run: python -m pytest -q tests/test_v075_stage_n7_zy_contract.py::test_v075_canonical_binder_reads_z_y_for_central_compression
       - name: v0.75 UI contract
+        if: always()
         run: python -m pytest -q tests/test_v075_stage_n7_zy_contract.py::test_v075_ui_contract_hides_legacy_n7_axis_cards_and_exposes_new_zy_cards
       - name: Re-run existing FIRE-UI regression
+        if: always()
         run: python -m pytest -q tests/test_fire_ui1_frontend.py tests/test_fire_ui1_public_http.py
       - name: Boot real Streamlit server
+        if: always()
         shell: bash
         run: |
           set -euo pipefail
