@@ -12,7 +12,7 @@ from streamlit_mobile_ux import install as _install_mobile_ux
 from streamlit_navigation import install as _install_navigation
 from streamlit_report_ui import install as _install_report_ui
 from streamlit_report_summary import install as _install_report_summary
-from streamlit_guided_ux import install as _install_guided_ux
+from streamlit_guided_ux_v071 import install as _install_guided_ux
 
 # Presentation adapters use the same Streamlit module object as the core UI;
 # this does not enter standard_core or normative runtime code.
