@@ -75,7 +75,7 @@ def test_v075_table30_state_is_canonical_zy_and_lambda_bar_uses_design_Ry():
         source_row_id=profile_ref["source_row_id"],
     )
     raw = bundle["catalog_properties_interim"]
-    derived = bundle["derived"]
+    derived = bundle["derived_properties"]
 
     values = {
         "profile_ref": profile_ref,
