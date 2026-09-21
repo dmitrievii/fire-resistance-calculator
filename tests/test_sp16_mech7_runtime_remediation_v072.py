@@ -5,7 +5,7 @@ import math
 import pytest
 
 from standard_core.sp16_mech7_primary_workflow import bind_primary_ambient_evidence
-from standard_core.sp16_mech7_runtime_remediation import hydrate_mech_prerequisites
+from standard_core.sp16_mech7_v072_remediation import normalize_mech7_inputs
 
 
 def _census(active=(), contextual=()):
@@ -37,6 +37,10 @@ def _census(active=(), contextual=()):
     }
 
 
+def _trace(values):
+    return list(values.get("_sp16_v072_hydration_trace") or [])
+
+
 def test_v072_hydrates_only_qualified_material_and_slenderness_aliases():
     values = {
         "fy_norm": 255.0,
@@ -46,21 +50,32 @@ def test_v072_hydrates_only_qualified_material_and_slenderness_aliases():
         "lambda_bar_x": 1.0,
         "lambda_bar_y": 1.2,
     }
-    hydrated, trace = hydrate_mech_prerequisites(values)
+    hydrated = normalize_mech7_inputs(values)
 
     assert hydrated["Ry_formula"] == pytest.approx(255.0 / 1.025)
     assert hydrated["Ru_formula"] == pytest.approx(380.0 / 1.025)
     assert hydrated["Rs_formula"] == pytest.approx(0.58 * 255.0 / 1.025)
     assert hydrated["sp16_lambda_x_geom"] == pytest.approx(math.sqrt(206000.0 / 255.0))
     assert hydrated["sp16_lambda_y_geom"] == pytest.approx(1.2 * math.sqrt(206000.0 / 255.0))
-    qids = {row["quantity_id"] for row in trace}
+    qids = {row["quantity_id"] for row in _trace(hydrated)}
     assert {"Ry_formula", "Ru_formula", "Rs_formula", "sp16_lambda_x_geom", "sp16_lambda_y_geom"} <= qids
 
 
-def test_v072_does_not_invent_ry_without_gamma_m():
-    hydrated, trace = hydrate_mech_prerequisites({"fy_norm": 255.0, "E_norm": 206000.0})
+def test_v072_does_not_invent_ry_without_gamma_m_or_explicit_table3_category():
+    hydrated = normalize_mech7_inputs({"fy_norm": 255.0, "E_norm": 206000.0})
     assert "Ry_formula" not in hydrated
-    assert all(row["quantity_id"] != "Ry_formula" for row in trace)
+    assert all(row["quantity_id"] != "Ry_formula" for row in _trace(hydrated))
+
+
+def test_v072_explicit_table3_category_can_materialize_gamma_m_and_ry():
+    hydrated = normalize_mech7_inputs({
+        "fy_norm": 255.0,
+        "fu_norm": 380.0,
+        "material_safety_category": "statistical_control",
+    })
+    assert hydrated["gamma_m"] == pytest.approx(1.025)
+    assert hydrated["Ry_formula"] == pytest.approx(255.0 / 1.025)
+    assert any(row["quantity_id"] == "gamma_m" for row in _trace(hydrated))
 
 
 def test_v072_adapts_catalog_i_geometry_without_changing_catalog_dimensions():
@@ -72,8 +87,7 @@ def test_v072_adapts_catalog_i_geometry_without_changing_catalog_dimensions():
         "source_row_id": 7,
         "dimensions": {"h_mm": 200.0, "b_mm": 200.0, "tw_mm": 6.5, "tf_mm": 10.0, "r_mm": 13.0},
     }
-    values = {"section_geometry_2d_normalized": original}
-    hydrated, trace = hydrate_mech_prerequisites(values)
+    hydrated = normalize_mech7_inputs({"section_geometry_2d_normalized": original})
     geom = hydrated["section_geometry_2d_normalized"]
 
     assert geom["template"] == "i_section"
@@ -83,7 +97,7 @@ def test_v072_adapts_catalog_i_geometry_without_changing_catalog_dimensions():
     assert geom["tf_mm"] == 10.0
     assert geom["dimensions"] == original["dimensions"]
     assert original.get("template") is None
-    assert any(row["source"] == "catalog_geometry_contract_adapter" for row in trace)
+    assert any(row["source"] == "catalog_geometry_contract_adapter" for row in _trace(hydrated))
 
 
 def test_v072_closes_table32_slenderness_when_only_relative_slenderness_is_materialized():
@@ -106,7 +120,7 @@ def test_v072_closes_table32_slenderness_when_only_relative_slenderness_is_mater
         "sp16_mech7_table32_row": "4",
         "sp16_mech7_group4_slenderness_increase": False,
     }
-    hydrated, _ = hydrate_mech_prerequisites(values)
+    hydrated = normalize_mech7_inputs(values)
     ev = bind_primary_ambient_evidence(hydrated)["sp16_mech7_primary_evidence"]["evidence"]
     assert ev["effective_length_slenderness"]["status"] in {"PASS", "FAIL"}
     assert ev["effective_length_slenderness"].get("reason") is None
@@ -134,7 +148,7 @@ def test_v072_catalog_i_local_stability_no_longer_defers_on_geometry_contract():
         "sp16_mech7_table10_group": "group_1",
         "sp16_mech7_flange_edge_stiffened": False,
     }
-    hydrated, _ = hydrate_mech_prerequisites(values)
+    hydrated = normalize_mech7_inputs(values)
     ev = bind_primary_ambient_evidence(hydrated)["sp16_mech7_primary_evidence"]["evidence"]
 
     assert ev["local_stability_web"]["status"] in {"PASS", "FAIL"}
