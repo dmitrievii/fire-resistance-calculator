@@ -20,6 +20,7 @@ from typing import Any, Mapping
 from .fire_ui0 import ExecutionRegistry, FireUIError
 from .profile_catalog import InterimProfileCatalog
 from .sp16_mech9_remaining_ambient import build_sp16_mech9_registry
+from .sp16_mech7_runtime_remediation import install_sp16_mech7_v072_remediation
 
 _EPS = 1.0e-12
 
@@ -220,6 +221,7 @@ def _build_fire_bridge2_registry(catalog: InterimProfileCatalog, registry: Execu
         Existing external ``software_static_stress`` clause-8.7 authoring remains available alongside the new internally derived qualified SP16 pointwise-stress option.
     """
     reg = build_sp16_mech9_registry(catalog, registry)
+    install_sp16_mech7_v072_remediation(reg)
     reg.register("SP554_FIRE_BRIDGE2_C_QUALIFIED_STATE", _bridge_executor)
     reg.register("SP554_FIRE_BRIDGE2_C_INTERNAL_8_7_STRESS", _internal_8_7_executor)
     return reg
