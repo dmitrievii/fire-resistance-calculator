@@ -41,7 +41,13 @@ def install(core: Any) -> None:
         # registry was already wrapped by v0.72-v0.74.
         install_registry_remediation(registry, app.profile_catalog)
 
-        if graph_id.endswith(GRAPH_SUFFIX):
+        # A later overlay (v0.76+) keeps the v0.75 suffix in its graph identity.
+        # Treat that as already upgraded.  Using endswith() here caused every
+        # Streamlit rerun of a descendant graph to rebuild/replay the whole
+        # session through v0.75 and then v0.76 again, which could discard
+        # explicit out-of-band UI quantities such as the Table-3 material
+        # safety category and stop the guided flow without a visible reason.
+        if GRAPH_SUFFIX in graph_id:
             return app
 
         old_sessions = dict(app.service.sessions)
