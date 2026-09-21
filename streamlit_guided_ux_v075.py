@@ -15,7 +15,7 @@ def install(core: Any) -> None:
         return
 
     from standard_core.fire_ui0 import GuidedCalculationService
-    from standard_core.sp16_mech7_v075_effective_length_contract import (
+    from standard_core.sp16_mech7_v075_zy_runtime import (
         GRAPH_SUFFIX,
         build_model,
         install_registry_remediation,
@@ -37,8 +37,8 @@ def install(core: Any) -> None:
         graph_id = str(app.model.graph.get("graph_id", ""))
         registry = app.service.registry
 
-        # Always enforce the canonical binder wrapper, including retained apps
-        # whose registry was already wrapped by v0.72-v0.74.
+        # Always enforce the canonical binder, including retained apps whose
+        # registry was already wrapped by v0.72-v0.74.
         install_registry_remediation(registry, app.profile_catalog)
 
         if graph_id.endswith(GRAPH_SUFFIX):
