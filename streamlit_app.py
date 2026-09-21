@@ -12,12 +12,12 @@ from streamlit_mobile_ux import install as _install_mobile_ux
 from streamlit_navigation import install as _install_navigation
 from streamlit_report_ui import install as _install_report_ui
 from streamlit_report_summary import install as _install_report_summary
-from streamlit_guided_ux_v076 import install as _install_guided_ux
+from streamlit_guided_ux_v077 import install as _install_guided_ux
 
 # Presentation adapters use the same Streamlit module object as the core UI.
-# v0.76 preserves the v0.75 canonical z/y stability runtime while consolidating
-# the Stage-N7 effective-length authoring into one source-traced card and
-# removing synthetic profile_ref as a production prerequisite.
+# v0.77 preserves the v0.76 consolidated z/y effective-length contract, stops
+# descendant-overlay replay on every Streamlit rerun, and keeps the explicit
+# SP16 Table-3 material category stable through history edits.
 _core._st = lambda: _streamlit
 
 _install_graphic_selectors(_core)
