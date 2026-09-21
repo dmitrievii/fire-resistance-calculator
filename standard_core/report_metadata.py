@@ -74,13 +74,27 @@ def _canonical_graph_sha256(graph: Mapping[str, Any]) -> str:
     return sha256(canonical).hexdigest()
 
 
+@lru_cache(maxsize=8)
+def _frozen_source_identity_from_path(path_text: str) -> tuple[str, str]:
+    """Return one cached immutable DAG identity for a resolved source path."""
+    source_path = Path(path_text)
+    if not source_path.is_file():
+        raise ValueError(f"report metadata source DAG does not exist: {source_path}")
+    graph = _read_json(str(source_path))
+    graph_id = graph.get("graph_id")
+    if not isinstance(graph_id, str) or not graph_id:
+        raise ValueError("report metadata source DAG has no valid graph_id")
+    return graph_id, _canonical_graph_sha256(graph)
+
+
 def _frozen_source_identity(model: Any) -> tuple[Any, Any]:
     """Return the immutable file-backed DAG identity used by report metadata.
 
     ``FireDAGModel.source_path`` continues to name the frozen parent DAG even
-    when the active guided model is an in-memory overlay.  Re-reading that file
-    keeps REPORT-IR anchored to the same evidence source instead of accepting a
-    synthetic overlay hash as though it were a new normative release.
+    when the active guided model is an in-memory overlay.  The file identity is
+    cached by resolved path because REPORT-IR asks for node metadata many times
+    during one render; re-hashing the multi-megabyte DAG for every node would be
+    both unnecessary and slow.
     """
     source = getattr(model, "source_path", None)
     if not source:
@@ -89,13 +103,7 @@ def _frozen_source_identity(model: Any) -> tuple[Any, Any]:
         return graph_id, getattr(model, "graph_sha256", None)
 
     source_path = Path(source).resolve()
-    if not source_path.is_file():
-        raise ValueError(f"report metadata source DAG does not exist: {source_path}")
-    graph = _read_json(str(source_path))
-    graph_id = graph.get("graph_id")
-    if not isinstance(graph_id, str) or not graph_id:
-        raise ValueError("report metadata source DAG has no valid graph_id")
-    return graph_id, _canonical_graph_sha256(graph)
+    return _frozen_source_identity_from_path(str(source_path))
 
 
 def _validate(model: Any, payload: Mapping[str, Any], *, source_path: Path) -> dict[str, Any]:
