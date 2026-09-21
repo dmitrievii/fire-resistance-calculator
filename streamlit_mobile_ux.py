@@ -37,8 +37,13 @@ MOBILE_STYLES = r"""
     left: 0 !important;
     right: 0 !important;
     width: 100% !important;
-    background: var(--background-color, #ffffff) !important;
-    border-bottom: 1px solid rgba(49, 51, 63, 0.12) !important;
+    /* Streamlit does not guarantee a public --background-color CSS variable.
+       The previous white fallback therefore forced a white mobile header in
+       dark mode.  The header is a child of the themed app view container, so
+       inheriting its computed background follows light/dark/custom themes. */
+    background-color: inherit !important;
+    background-image: none !important;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.24) !important;
     z-index: 1000000 !important;
   }
   [data-testid="stToolbar"] {
