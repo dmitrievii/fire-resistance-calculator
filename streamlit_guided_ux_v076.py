@@ -1,7 +1,6 @@
 """Streamlit installer for v0.76 consolidated Stage-N7 effective-length authoring."""
 from __future__ import annotations
 
-import json
 from typing import Any, Mapping
 
 import streamlit_guided_ux_v075 as _v075
@@ -140,7 +139,10 @@ def install(core: Any) -> None:
         registry = app.service.registry
         install_registry_remediation(registry, app.profile_catalog)
         graph_id = str(app.model.graph.get("graph_id", ""))
-        if graph_id.endswith(GRAPH_SUFFIX):
+        # Descendant overlays retain the v0.76 suffix in their graph identity.
+        # Do not replay a live calculation merely because a later release suffix
+        # follows it.
+        if GRAPH_SUFFIX in graph_id:
             return app
 
         old_sessions = dict(app.service.sessions)

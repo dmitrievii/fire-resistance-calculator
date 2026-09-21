@@ -23,13 +23,15 @@ def test_mobile_styles_reserve_streamlit_toolbar_safe_area():
     assert "padding-top: .55rem !important;" not in css
 
 
-def test_mobile_streamlit_header_is_fixed_and_opaque_while_scrolling():
+def test_mobile_streamlit_header_is_fixed_opaque_and_theme_aware_while_scrolling():
     css = mobile.MOBILE_STYLES
     assert '[data-testid="stHeader"]' in css
     assert "position: fixed !important;" in css
-    assert "background: var(--background-color, #ffffff) !important;" in css
+    assert "background-color: inherit !important;" in css
+    assert "background-image: none !important;" in css
+    assert "var(--background-color, #ffffff)" not in css
     assert "z-index: 1000000 !important;" in css
-    assert "border-bottom: 1px solid rgba(49, 51, 63, 0.12) !important;" in css
+    assert "border-bottom: 1px solid rgba(128, 128, 128, 0.24) !important;" in css
     assert '[data-testid="stToolbar"]' in css
     assert "z-index: 1000001 !important;" in css
 
