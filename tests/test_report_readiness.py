@@ -113,7 +113,7 @@ def test_readiness_rejects_governing_quantity_not_produced_by_declaring_node():
     assert "GOVERNING_RESULT_SEMANTICS" in kinds
 
 
-def test_active_v0370_dag_uses_v0371_report_metadata_sidecar_without_execution_changes():
+def test_active_v0370_dag_uses_v0372_tension_report_metadata_without_execution_changes():
     root = Path(__file__).resolve().parents[1]
     model = FireDAGModel.load(root / "normative_graph" / ACTIVE_DAG)
 
@@ -131,8 +131,9 @@ def test_active_v0370_dag_uses_v0371_report_metadata_sidecar_without_execution_c
         "sp554_section_10_bending_gamma_T",
         "sp554_section_11_axial_bending_gamma_T",
     }
-    assert report["report_metadata"]["revision_id"] == "v0.3.71_REPORT_META1"
+    assert report["report_metadata"]["revision_id"] == "v0.3.72_REPORT_META2_TENSION_GOLDEN"
     assert report["report_metadata"]["base_graph_sha256"] == report["graph_sha256"]
+    assert report["report_metadata"]["node_report_spec_count"] >= 18
     assert report["audit"]["executes_dag_nodes"] is False
     assert report["audit"]["reads_session_values"] is False
     assert report["audit"]["infers_numeric_pass_fail"] is False

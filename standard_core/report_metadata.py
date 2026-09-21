@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Any, Mapping
 
 REPORT_METADATA_SCHEMA = "fire_dag_report_metadata_v1"
-ACTIVE_REPORT_METADATA_FILENAME = "report_metadata_v0.3.71_report_meta1.json"
+ACTIVE_REPORT_METADATA_FILENAME = "report_metadata_v0.3.72_tension_golden.json"
 
 _ALLOWED_REPORT_SPEC_KEYS = frozenset(
     {
