@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 from pathlib import Path
+from types import SimpleNamespace
 
 import streamlit_guided_ux as ux
+import streamlit_guided_ux_v071 as ux71
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -70,6 +72,73 @@ def test_table9_table10_cards_explain_manual_engineering_classification():
     assert "явной инженерной классификации" in guidance
     assert "не записывает" in guidance
     assert "автоматически" in guidance
+
+
+def test_v071_catalog_labels_cover_indexed_section_properties_without_interpreting_index():
+    core = SimpleNamespace(_fmt=lambda value: str(value))
+
+    cases = {
+        "Wx1_mm3": ("Момент сопротивления", "Wx1", "mm³"),
+        "Wy2_mm3": ("Момент сопротивления", "Wy2", "mm³"),
+        "Ix1_mm4": ("Момент инерции", "Ix1", "mm⁴"),
+        "Sx1_mm3": ("Статический момент", "Sx1", "mm³"),
+        "ix1_mm": ("Радиус инерции", "ix1", "mm"),
+    }
+    for key, expected in cases.items():
+        line = ux71._profile_line(core, key, 123.4)
+        for token in expected:
+            assert token in line
+        assert f"`{key}`" not in line
+
+    assert "`unknown_property`" in ux71._profile_line(core, "unknown_property", 1.0)
+
+
+def test_v071_gamma_ct_preflight_is_visible_before_special_route_and_preserves_field():
+    card = _card(_field("gost27751_special_check", "boolean"))
+
+    patched = ux71._humanize_card(card)
+    warning = str((patched.get("notes") or {}).get("normative_warning") or "")
+
+    assert "γct = 1,1" in warning
+    assert "формулами (9)–(11) СП 554" in warning
+    assert "fail-closed" in warning
+    assert "вручную не вводится" in warning
+    assert patched["fields"] == card["fields"]
+
+
+def test_v071_guided_install_is_idempotent_across_streamlit_reruns():
+    def generic(*args, **kwargs):
+        return args, kwargs
+
+    def options(*args, **kwargs):
+        return []
+
+    def noninteractive(*args, **kwargs):
+        return None
+
+    core = SimpleNamespace(
+        _render_generic=generic,
+        _generic_options=options,
+        _render_noninteractive=noninteractive,
+        _render_profile_catalog=generic,
+        _render_material=generic,
+    )
+
+    ux71.install(core)
+    first = {
+        "generic": core._render_generic,
+        "options": core._generic_options,
+        "noninteractive": core._render_noninteractive,
+        "profile": core._render_profile_catalog,
+        "material": core._render_material,
+    }
+    ux71.install(core)
+
+    assert core._render_generic is first["generic"]
+    assert core._generic_options is first["options"]
+    assert core._render_noninteractive is first["noninteractive"]
+    assert core._render_profile_catalog is first["profile"]
+    assert core._render_material is first["material"]
 
 
 def test_sp16_completion_diagnostics_exposes_exact_unresolved_rows():
@@ -150,7 +219,9 @@ def test_sp16_completion_diagnostics_keeps_fail_separate_from_incomplete():
 
 
 def test_guided_ux_does_not_invent_gamma_ct_or_normative_formula():
-    source = (ROOT / "streamlit_guided_ux.py").read_text(encoding="utf-8")
+    base_source = (ROOT / "streamlit_guided_ux.py").read_text(encoding="utf-8")
+    hotfix_source = (ROOT / "streamlit_guided_ux_v071.py").read_text(encoding="utf-8")
 
-    assert "gamma_ct" not in source.lower()
-    assert "SP554_C_GAMMA_CT_8_1" not in source
+    assert "gamma_ct" not in base_source.lower()
+    assert "SP554_C_GAMMA_CT_8_1" not in base_source
+    assert "SP554_C_GAMMA_CT_8_1" not in hotfix_source
