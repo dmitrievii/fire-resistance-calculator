@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from types import SimpleNamespace
 
 from standard_core.fire_ui0 import ExecutionRegistry, FireDAGModel, GuidedCalculationSession
 from standard_core.sp16_mech7_v073_session_remediation import (
@@ -8,7 +9,11 @@ from standard_core.sp16_mech7_v073_session_remediation import (
     MATERIAL_SAFETY_INPUT_NODE_ID,
     MATERIAL_SAFETY_QUANTITY_ID,
 )
-from streamlit_guided_ux_v077 import _edit_with_material_safety_anchor
+from streamlit_guided_ux_v072 import _category_state_key
+from streamlit_guided_ux_v077 import (
+    _edit_with_material_safety_anchor,
+    _repair_missing_table3_from_widget,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -121,6 +126,26 @@ def test_v077_history_edit_preserves_explicit_table3_category():
     assert migrated.plain_values()[MATERIAL_SAFETY_QUANTITY_ID] == "statistical_control"
     assert migrated.plain_values()["later_value"] == 2.0
     assert [row["node_id"] for row in migrated.interaction_history] == [MATERIAL_EDITOR_NODE_ID, "LATER_INPUT"]
+
+
+def test_v077_repairs_already_open_replayed_session_from_surviving_explicit_widget_value():
+    model = _model()
+    broken = GuidedCalculationSession(model, entry_node_id=MATERIAL_EDITOR_NODE_ID, registry=ExecutionRegistry())
+    broken.submit(355.0)
+    broken.submit(1.0)
+    assert MATERIAL_SAFETY_QUANTITY_ID not in broken.plain_values()
+
+    app = SimpleNamespace(service=SimpleNamespace(sessions={"fire-000001": broken}))
+    state = {_category_state_key(MATERIAL_EDITOR_NODE_ID): "statistical_control"}
+    core = SimpleNamespace(_st=lambda: SimpleNamespace(session_state=state))
+
+    repaired_app = _repair_missing_table3_from_widget(core, app)
+    repaired = repaired_app.service.sessions["fire-000001"]
+
+    assert repaired is not broken
+    assert repaired.status == "RESULT"
+    assert repaired.plain_values()[MATERIAL_SAFETY_QUANTITY_ID] == "statistical_control"
+    assert repaired.interaction_history == broken.interaction_history
 
 
 def test_v077_parent_overlay_installers_are_descendant_aware():
