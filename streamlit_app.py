@@ -12,11 +12,11 @@ from streamlit_mobile_ux import install as _install_mobile_ux
 from streamlit_navigation import install as _install_navigation
 from streamlit_report_ui import install as _install_report_ui
 from streamlit_report_summary import install as _install_report_summary
-from streamlit_guided_ux_v073 import install as _install_guided_ux
+from streamlit_guided_ux_v074 import install as _install_guided_ux
 
 # Presentation adapters use the same Streamlit module object as the core UI;
-# the v0.73 guided adapter preserves v0.72 and additionally remediates retained
-# FireUI1Application/session objects created before the current code was loaded.
+# v0.74 preserves the v0.73 legacy-session migration and additionally upgrades
+# fresh/retained MECH7 registries with source-backed SP16 Table Б.1 E_norm.
 _core._st = lambda: _streamlit
 
 _install_graphic_selectors(_core)
