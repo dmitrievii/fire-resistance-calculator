@@ -31,9 +31,6 @@ MOBILE_STYLES = r"""
   color: var(--fire-muted);
 }
 @media (max-width: 768px) {
-  /* Streamlit's own base stylesheet makes the header transparent. On a real
-     phone this lets scrolling calculation content remain visible underneath
-     Share/GitHub/menu. Keep the Cloud toolbar as a real opaque fixed header. */
   [data-testid="stHeader"] {
     position: fixed !important;
     top: 0 !important;
@@ -48,8 +45,6 @@ MOBILE_STYLES = r"""
     position: relative !important;
     z-index: 1000001 !important;
   }
-
-  /* Reserve the fixed toolbar height plus any device safe-area inset. */
   .block-container {
     padding-top: calc(3.85rem + env(safe-area-inset-top, 0px)) !important;
     padding-left: 1rem !important;
@@ -75,6 +70,10 @@ MOBILE_STYLES = r"""
 </style>
 """
 
+_SUPPRESSED_SUBTITLES = {
+    "do not assume ambient and fire combinations are identical unless explicitly selected later.",
+}
+
 
 def _status_label(status: str) -> str:
     if status == "AWAITING_INPUT":
@@ -86,6 +85,11 @@ def _status_label(status: str) -> str:
     if status.startswith("BLOCKED"):
         return "Остановлено"
     return status or "—"
+
+
+def _show_subtitle(value: Any) -> bool:
+    text = str(value or "").strip()
+    return bool(text) and text.lower() not in _SUPPRESSED_SUBTITLES
 
 
 def install(core: Any) -> None:
@@ -128,9 +132,9 @@ def install(core: Any) -> None:
             unsafe_allow_html=True,
         )
 
-        # Utility operations are deliberately collapsed: on a phone the active
-        # engineering question must remain above file/session administration.
-        with st.expander("Расчёт · файл · история", expanded=False):
+        # File/session administration stays above the active step, but history
+        # and back-navigation live below the current question and its submit button.
+        with st.expander("Расчёт · файл", expanded=False):
             st.markdown(
                 f'<div class="fire-graph-id">DAG: {contract.get("graph_id") or "—"}</div>',
                 unsafe_allow_html=True,
@@ -156,7 +160,6 @@ def install(core: Any) -> None:
             )
             if uploaded is not None and st.button("Восстановить JSON", key="fire:restore"):
                 core._load_snapshot(app, uploaded)
-            core._render_history(app, env)
 
         left, right = st.columns([1.65, 1], gap="large")
         with left:
@@ -176,8 +179,9 @@ def install(core: Any) -> None:
                     f'<h3>{card.get("prompt") or card.get("title") or card["node_id"]}</h3>',
                     unsafe_allow_html=True,
                 )
-                if presentation.get("subtitle"):
-                    st.caption(str(presentation["subtitle"]))
+                subtitle = presentation.get("subtitle")
+                if _show_subtitle(subtitle):
+                    st.caption(str(subtitle))
                 notes = card.get("notes") or {}
                 if notes.get("normative_warning"):
                     st.warning(str(notes["normative_warning"]))
@@ -198,6 +202,10 @@ def install(core: Any) -> None:
                     core._submit(app, sid, card, payload, provenance, editing)
             else:
                 core._render_noninteractive(env, card)
+
+            # Request UX contract: Back / previous-question selector / history
+            # follows the active calculation step rather than preceding it.
+            core._render_history(app, env)
 
         with right:
             with st.expander("Расчётные величины · Trace", expanded=False):
