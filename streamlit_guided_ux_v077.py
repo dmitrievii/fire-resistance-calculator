@@ -22,9 +22,18 @@ from standard_core.sp16_mech7_v073_session_remediation import (
     MATERIAL_EDITOR_NODE_ID,
     MATERIAL_SAFETY_INPUT_NODE_ID,
     MATERIAL_SAFETY_QUANTITY_ID,
+    replay_with_material_safety_category,
 )
 
 _INSTALLED = "_fire_v077_session_replay_remediation_installed"
+
+
+def _material_widget_category(core: Any) -> str | None:
+    key = _v072._category_state_key(MATERIAL_EDITOR_NODE_ID)
+    value = core._st().session_state.get(key)
+    if isinstance(value, str) and value in _v072._MATERIAL_SAFETY_LABELS:
+        return value
+    return None
 
 
 def _material_category_for_edit(core: Any, session: GuidedCalculationSession) -> str | None:
@@ -32,11 +41,26 @@ def _material_category_for_edit(core: Any, session: GuidedCalculationSession) ->
     current = session.plain_values().get(MATERIAL_SAFETY_QUANTITY_ID)
     if isinstance(current, str) and current in _v072._MATERIAL_SAFETY_LABELS:
         return current
-    key = _v072._category_state_key(MATERIAL_EDITOR_NODE_ID)
-    widget_value = core._st().session_state.get(key)
-    if isinstance(widget_value, str) and widget_value in _v072._MATERIAL_SAFETY_LABELS:
-        return widget_value
-    return None
+    return _material_widget_category(core)
+
+
+def _repair_missing_table3_from_widget(core: Any, app: Any) -> Any:
+    """Repair a v0.76-replayed live session only when its explicit widget value survives."""
+    category = _material_widget_category(core)
+    if category is None:
+        return app
+    for sid, session in list(app.service.sessions.items()):
+        if MATERIAL_SAFETY_QUANTITY_ID in session.plain_values():
+            continue
+        if not any(str(row.get("node_id") or "") == MATERIAL_EDITOR_NODE_ID for row in session.interaction_history):
+            continue
+        try:
+            app.service.sessions[sid] = replay_with_material_safety_category(session, category)
+        except FireUIError:
+            # Keep fail-closed legacy migration UI available if replay cannot be
+            # proven on the current graph.  Never substitute or infer a category.
+            continue
+    return app
 
 
 def _edit_with_material_safety_anchor(
@@ -97,12 +121,16 @@ def _edit_with_material_safety_anchor(
 
 
 def install(core: Any) -> None:
-    """Install v0.76, then make history replay preserve the explicit Table-3 anchor."""
+    """Install v0.76, then stabilize retained-session and history replay behavior."""
     _v076.install(core)
     if getattr(core, _INSTALLED, False):
         return
 
+    previous_ensure_app = core._ensure_app
     previous_submit = core._submit
+
+    def _ensure_app():
+        return _repair_missing_table3_from_widget(core, previous_ensure_app())
 
     def _submit(app, sid, card, payload, provenance, editing):
         if not editing:
@@ -110,12 +138,13 @@ def install(core: Any) -> None:
 
         session = app.service.get_session(sid)
         node_id = str(card.get("node_id") or "")
+        target_index = next(
+            (i for i, row in enumerate(session.interaction_history) if row.get("node_id") == node_id),
+            len(session.interaction_history),
+        )
         material_in_replay = node_id == MATERIAL_EDITOR_NODE_ID or any(
             str(row.get("node_id") or "") == MATERIAL_EDITOR_NODE_ID
-            for row in session.interaction_history[: next(
-                (i for i, row in enumerate(session.interaction_history) if row.get("node_id") == node_id),
-                len(session.interaction_history),
-            )]
+            for row in session.interaction_history[:target_index]
         )
         if not material_in_replay:
             return previous_submit(app, sid, card, payload, provenance, editing)
@@ -145,8 +174,13 @@ def install(core: Any) -> None:
         core._st().rerun()
         return None
 
+    core._ensure_app = _ensure_app
     core._submit = _submit
     setattr(core, _INSTALLED, True)
 
 
-__all__ = ["_edit_with_material_safety_anchor", "install"]
+__all__ = [
+    "_edit_with_material_safety_anchor",
+    "_repair_missing_table3_from_widget",
+    "install",
+]
