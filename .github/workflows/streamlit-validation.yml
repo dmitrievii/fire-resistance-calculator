@@ -7,12 +7,17 @@ on:
       - 'feature/v0.69-streamlit-*'
       - 'feature/v0.69.*-streamlit-*'
       - 'feature/v0.70-*'
+      - 'feature/v0.73-*'
       - 'feature/report-ir*'
     paths:
       - 'streamlit_app.py'
       - 'streamlit_app_core.py'
       - 'streamlit_guided_ux.py'
+      - 'streamlit_guided_ux_v071.py'
+      - 'streamlit_guided_ux_v072.py'
+      - 'streamlit_guided_ux_v073.py'
       - 'streamlit_graphic_selectors.py'
+      - 'streamlit_graphic_selectors_v072.py'
       - 'streamlit_mobile_ux.py'
       - 'streamlit_navigation.py'
       - 'streamlit_report_ui.py'
@@ -27,6 +32,7 @@ on:
       - 'standard_core/report_markdown_impl.py'
       - 'standard_core/report_readiness.py'
       - 'standard_core/report_metadata.py'
+      - 'standard_core/**'
       - 'requirements.txt'
       - '.streamlit/**'
       - 'tests/test_streamlit_ui.py'
@@ -34,7 +40,7 @@ on:
       - 'tests/test_streamlit_mobile_ux.py'
       - 'tests/test_streamlit_navigation.py'
       - 'tests/test_report_tension_golden.py'
-      - 'standard_core/**'
+      - 'tests/test_v073_existing_session_remediation.py'
       - 'data/**'
       - 'normative_graph/**'
       - '.github/workflows/streamlit-validation.yml'
@@ -43,7 +49,11 @@ on:
       - 'streamlit_app.py'
       - 'streamlit_app_core.py'
       - 'streamlit_guided_ux.py'
+      - 'streamlit_guided_ux_v071.py'
+      - 'streamlit_guided_ux_v072.py'
+      - 'streamlit_guided_ux_v073.py'
       - 'streamlit_graphic_selectors.py'
+      - 'streamlit_graphic_selectors_v072.py'
       - 'streamlit_mobile_ux.py'
       - 'streamlit_navigation.py'
       - 'streamlit_report_ui.py'
@@ -58,6 +68,7 @@ on:
       - 'standard_core/report_markdown_impl.py'
       - 'standard_core/report_readiness.py'
       - 'standard_core/report_metadata.py'
+      - 'standard_core/**'
       - 'requirements.txt'
       - '.streamlit/**'
       - 'tests/test_streamlit_ui.py'
@@ -65,7 +76,7 @@ on:
       - 'tests/test_streamlit_mobile_ux.py'
       - 'tests/test_streamlit_navigation.py'
       - 'tests/test_report_tension_golden.py'
-      - 'standard_core/**'
+      - 'tests/test_v073_existing_session_remediation.py'
       - 'data/**'
       - 'normative_graph/**'
       - '.github/workflows/streamlit-validation.yml'
@@ -89,12 +100,18 @@ jobs:
           streamlit_app.py
           streamlit_app_core.py
           streamlit_guided_ux.py
+          streamlit_guided_ux_v071.py
+          streamlit_guided_ux_v072.py
+          streamlit_guided_ux_v073.py
           streamlit_graphic_selectors.py
+          streamlit_graphic_selectors_v072.py
           streamlit_mobile_ux.py
           streamlit_navigation.py
           streamlit_report_ui.py
           streamlit_report_ui_impl.py
           streamlit_report_summary.py
+          standard_core/sp16_mech7_v072_remediation.py
+          standard_core/sp16_mech7_v073_session_remediation.py
           standard_core/report_ir.py
           standard_core/report_ir2.py
           standard_core/report_ir4.py
@@ -112,6 +129,7 @@ jobs:
           tests/test_streamlit_mobile_ux.py
           tests/test_streamlit_navigation.py
           tests/test_report_tension_golden.py
+          tests/test_v073_existing_session_remediation.py
       - name: Re-run existing FIRE-UI regression
         run: python -m pytest -q tests/test_fire_ui1_frontend.py tests/test_fire_ui1_public_http.py
       - name: Boot real Streamlit server
