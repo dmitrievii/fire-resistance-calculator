@@ -15,7 +15,7 @@ from __future__ import annotations
 import math
 from typing import Any, Mapping
 
-from . import sp16_mech7_v075_effective_length_contract as _graph
+from . import sp16_mech7_v075_graph_overlay as _graph
 from .axial_members import central_compression_stability_coefficient, central_compression_stability_utilization, relative_slenderness
 from .effective_lengths_and_limiting_slenderness import (
     column_effective_length_eq140,
@@ -90,8 +90,8 @@ def _profile_axis_state(values: Mapping[str, Any], catalog: InterimProfileCatalo
     if min(source_i_1, source_i_2, source_r_1, source_r_2) <= 0.0:
         raise FireUIError("selected profile has invalid principal inertias or radii")
 
-    # Ix/Iy are only frozen catalog-column names here.  They are not active
-    # structural-axis names.  Physical major/minor inertia determines z/y.
+    # Ix/Iy are frozen catalog-column names only; they are not active axes.
+    # Physical major/minor inertia determines the canonical z/y mapping.
     if source_i_1 >= source_i_2:
         return {
             "i_z": source_r_1,
@@ -303,7 +303,7 @@ def bind_primary_ambient_evidence_zy(values: Mapping[str, Any]) -> dict[str, Any
             evidence["effective_length_slenderness"] = _ev("DEFERRED", source="SP16-MECH7 z/y Table 32", scope=["SP16 10.4.1"], reason=str(exc))
 
     # These active checks still depend on the historical action/property x
-    # vocabulary.  Do not silently identify that x with canonical z.
+    # vocabulary. Do not silently identify that x with canonical z.
     for cid, scope in (
         ("bending_x", ["SP16 8.2.1 Eq.(43)"]),
         ("bending_y", ["SP16 8.2.1 Eq.(43)"]),
@@ -391,8 +391,7 @@ def install_registry_remediation(registry: ExecutionRegistry, catalog: InterimPr
         normalized = _hydrate_source_backed_n1_prerequisites(values)
         _material_formula_inputs(values, normalized)
         _geometry_inputs(values, normalized)
-        result = bind_primary_ambient_evidence_zy(normalized)
-        return result
+        return bind_primary_ambient_evidence_zy(normalized)
 
     setattr(canonical, "_sp16_v072_remediated", True)
     setattr(canonical, "_sp16_v074_remediated", True)
