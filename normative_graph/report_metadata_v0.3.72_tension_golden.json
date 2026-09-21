@@ -1,0 +1,149 @@
+{
+  "schema": "fire_dag_report_metadata_v1",
+  "revision_id": "v0.3.72_REPORT_META2_TENSION_GOLDEN",
+  "title": "REPORT-META2 central-tension golden presentation over frozen DAG v0.3.70",
+  "base_graph_id": "sp16_sp554_dag_v0-3-70_fire_bridge2_qualified_sp16_complex_state_handoff",
+  "base_graph_sha256": "49228df2c374fdaf7db1924be580f14919d0195290d59cbc433def1862306d68",
+  "scope": "presentation_and_report_semantics_only",
+  "execution_semantics_changed": false,
+  "node_report_specs": {
+    "SP554_C_10_GOV": {
+      "kind": "FORMULA",
+      "title_ru": "Управляющий температурный коэффициент для изгиба",
+      "formula_latex": "\\gamma_{T,gov}=\\max(\\gamma_{T,i}\\;\\text{ для всех применимых проверок})",
+      "display_precision": 3,
+      "governing_scope": "sp554_section_10_bending_gamma_T",
+      "governing_scope_title_ru": "СП 554, раздел 10 — изгиб",
+      "governing_quantity_id": "gamma_T_bending_governing"
+    },
+    "SP554_C_11_GOV": {
+      "kind": "FORMULA",
+      "title_ru": "Управляющий температурный коэффициент для N+M",
+      "formula_latex": "\\gamma_{T,gov}=\\max(\\gamma_{T,i}\\;\\text{ для всех применимых проверок})",
+      "display_precision": 3,
+      "governing_scope": "sp554_section_11_axial_bending_gamma_T",
+      "governing_scope_title_ru": "СП 554, раздел 11 — продольная сила с изгибом",
+      "governing_quantity_id": "gamma_T_nm_governing"
+    },
+    "SP554_C_9_1": {
+      "section_key": "critical_temperature_strength",
+      "kind": "FORMULA",
+      "title_ru": "Температурный коэффициент при центральном растяжении",
+      "formula_latex": "\\gamma_T=\\frac{|N|}{A_n R_{yn}\\gamma_c}",
+      "substitution_template_latex": "\\gamma_T=\\frac{|{N_force}|}{{A_net}\\cdot {fy_norm}\\cdot {gamma_c_tension}}",
+      "display_precision": 3
+    },
+    "SP554_C_GAMMAT_FROM_9_1": {
+      "section_key": "critical_temperature_strength",
+      "kind": "FORMULA",
+      "title_ru": "Передача коэффициента γT для определения критической температуры",
+      "formula_latex": "\\gamma_T=\\gamma_{T,9.1}",
+      "substitution_template_latex": "\\gamma_T={gamma_T_9_1}",
+      "display_precision": 3
+    },
+    "SP554_C_GAMMA_CT_8_1": {
+      "section_key": "routing_and_assumptions",
+      "kind": "FORMULA",
+      "title_ru": "Дополнительный коэффициент особого предельного состояния γct",
+      "formula_latex": "\\gamma_{ct}=1.1",
+      "display_precision": 2
+    },
+    "SP554_D_GOST27751_GAMMA_CT": {
+      "section_key": "routing_and_assumptions",
+      "kind": "BRANCH_DECISION",
+      "title_ru": "Применимость дополнительной проверки по ГОСТ 27751"
+    },
+    "SP554_R_GAMMA_CT_APPLICATION_INTERPRETATION_REQUIRED": {
+      "section_key": "routing_and_assumptions",
+      "kind": "WARNING",
+      "title_ru": "γct=1,1: требуется нормативное толкование правила композиции"
+    },
+    "SP554_FIRE_UI17_C_TCR_STRENGTH_ONLY": {
+      "section_key": "critical_temperature",
+      "kind": "RESULT",
+      "title_ru": "Критическая температура стали по приложению Б",
+      "display_precision": 1
+    },
+    "SP554_FIRE_D3_C_D2_TCR_HANDOFF": {
+      "section_key": "critical_temperature",
+      "kind": "RESULT",
+      "title_ru": "Критическая температура, принятая для теплотехнического расчёта",
+      "display_precision": 1
+    },
+    "SP554_H_REQUIRED_R": {
+      "section_key": "fire_resistance_requirement",
+      "kind": "INPUT",
+      "title_ru": "Требуемый предел огнестойкости"
+    },
+    "SP554_C_PROTECTED_HEATED_PERIMETER_TABLE1": {
+      "section_key": "thermal_geometry",
+      "kind": "GEOMETRY",
+      "title_ru": "Обогреваемый периметр защищённого сечения по таблице 1"
+    },
+    "SP554_C_DELTA_PR_PROTECTED_12_2": {
+      "section_key": "thermal_geometry",
+      "kind": "FORMULA",
+      "title_ru": "Приведённая толщина металла защищённого элемента",
+      "formula_latex": "\\delta_{pr}=\\frac{A}{P}",
+      "substitution_template_latex": "\\delta_{pr}=\\frac{{A_mm2}}{{P_m}\\cdot 1000}",
+      "display_precision": 3
+    },
+    "SP554_D_12_10_MODE": {
+      "section_key": "fire_protection_design",
+      "kind": "BRANCH_DECISION",
+      "title_ru": "Режим расчёта по 12.10"
+    },
+    "SP554_C_12_10_DOMAIN_INVERSE": {
+      "section_key": "fire_protection_design",
+      "kind": "CHECK",
+      "title_ru": "Проверка области применимости матрицы для подбора толщины"
+    },
+    "SP554_C_12_10_MINIMUM_THICKNESS": {
+      "section_key": "fire_protection_design",
+      "kind": "RESULT",
+      "title_ru": "Минимальная расчётная толщина огнезащиты",
+      "display_precision": 2
+    },
+    "SP554_C_12_10_DOMAIN": {
+      "section_key": "fire_resistance_verification",
+      "kind": "CHECK",
+      "title_ru": "Проверка области применимости выбранной толщины огнезащиты"
+    },
+    "SP554_C_12_10_PROTECTED_TIME": {
+      "section_key": "fire_resistance_verification",
+      "kind": "RESULT",
+      "title_ru": "Расчётное время достижения критической температуры",
+      "display_precision": 2
+    },
+    "SP554_Q_PROTECTED": {
+      "section_key": "fire_resistance_verification",
+      "kind": "CHECK",
+      "title_ru": "Проверка требуемого предела огнестойкости защищённого элемента",
+      "formula_latex": "R_{fact}\\ge R_{req}",
+      "substitution_template_latex": "{protected_fire_resistance_min}\\ge {required_fire_resistance_min}",
+      "verdict_quantity_id": "protected_compliance"
+    },
+    "SP554_C_R_DESIGNATION_PROTECTED": {
+      "section_key": "results",
+      "kind": "RESULT",
+      "title_ru": "Обозначение обеспеченного предела огнестойкости"
+    },
+    "SP554_R_PROTECTED_CALCULATION_COMPLETE": {
+      "section_key": "results",
+      "kind": "RESULT",
+      "title_ru": "Результат расчёта огнезащищённого элемента"
+    },
+    "SP554_R_FINAL_PROTECTED": {
+      "section_key": "results",
+      "kind": "RESULT",
+      "title_ru": "Итоговая огнестойкость защищённой конструкции"
+    }
+  },
+  "notes": [
+    "The frozen v0.3.70 execution graph is not modified.",
+    "The SP554 9.1 presentation formula mirrors the frozen execution expression and deliberately does not inject gamma_ct.",
+    "Substitution templates are text-only placeholders populated from execution-trace bindings; they do not evaluate arithmetic.",
+    "SP554 clause 8.1 gamma_ct=1.1 is reported separately; automatic composition with Sections 9-11 remains forbidden by the frozen interpretation-required route.",
+    "No report-side engineering formula, interpolation, PASS/FAIL inference or global governing selection is introduced."
+  ]
+}
