@@ -45,7 +45,7 @@ def _census(active=(), contextual=()):
     }
 
 
-def test_v074_hydrates_enorm_from_qualified_sp16_table_b1():
+def test_v074_hydrates_source_backed_sp16_n1_prerequisites():
     out = normalize_mech7_inputs(
         {
             "fy_norm": 255.0,
@@ -55,28 +55,36 @@ def test_v074_hydrates_enorm_from_qualified_sp16_table_b1():
     )
 
     assert out["E_norm"] == pytest.approx(206000.0)
+    assert out["gamma_u"] == pytest.approx(1.3)
     assert out["Ry_formula"] == pytest.approx(255.0 / 1.025)
-    trace = out["_sp16_v074_hydration_trace"]
-    assert len(trace) == 1
-    assert trace[0]["quantity_id"] == "E_norm"
-    assert trace[0]["source_quantity"] == "E_MPa"
-    assert trace[0]["source_table"] == "Б.1"
-    assert trace[0]["source_sha256"]
+
+    trace = {row["quantity_id"]: row for row in out["_sp16_v074_hydration_trace"]}
+    assert set(trace) == {"E_norm", "gamma_u"}
+    assert trace["E_norm"]["source_quantity"] == "E_MPa"
+    assert trace["E_norm"]["source_table"] == "Б.1"
+    assert trace["E_norm"]["source_sha256"]
+    assert trace["gamma_u"]["source_clause"] == "4.3.2"
+    assert trace["gamma_u"]["source_sha256"]
 
 
-def test_v074_never_overwrites_an_explicit_enorm_producer():
-    explicit = normalize_mech7_inputs({"E_norm": 199000.0})
+def test_v074_never_overwrites_explicit_prerequisite_producers():
+    explicit = normalize_mech7_inputs({"E_norm": 199000.0, "gamma_u": 1.25})
     assert explicit["E_norm"] == pytest.approx(199000.0)
+    assert explicit["gamma_u"] == pytest.approx(1.25)
     assert "_sp16_v074_hydration_trace" not in explicit
 
-    malformed = normalize_mech7_inputs({"E_norm": "upstream-invalid"})
+    malformed = normalize_mech7_inputs(
+        {"E_norm": "upstream-invalid", "gamma_u": "upstream-invalid"}
+    )
     assert malformed["E_norm"] == "upstream-invalid"
+    assert malformed["gamma_u"] == "upstream-invalid"
     assert "_sp16_v074_hydration_trace" not in malformed
 
 
-def test_v074_user_step16_central_compression_no_longer_requires_enorm():
+def test_v074_user_step16_central_compression_closes_source_backed_prerequisite_gaps():
     # Regression of the production screenshot: this is the same MECH7 path as
-    # the v0.72 regression, deliberately WITHOUT a manually supplied E_norm.
+    # the v0.72 regression, deliberately WITHOUT manually supplied E_norm or
+    # gamma_u. Both must come from qualified SP16 datasets.
     values = {
         "sp16_applicability_census": _census(
             ["section_compression", "member_compression_stability", "effective_length_slenderness"],
@@ -114,7 +122,9 @@ def test_v074_user_step16_central_compression_no_longer_requires_enorm():
 
     normalized = normalize_mech7_inputs(values)
     assert "E_norm" not in values
+    assert "gamma_u" not in values
     assert normalized["E_norm"] == pytest.approx(206000.0)
+    assert normalized["gamma_u"] == pytest.approx(1.3)
 
     evidence = bind_primary_ambient_evidence(normalized)["sp16_mech7_primary_evidence"]["evidence"]
     for cid in (
@@ -127,6 +137,7 @@ def test_v074_user_step16_central_compression_no_longer_requires_enorm():
         assert evidence[cid]["status"] in {"PASS", "FAIL"}, (cid, evidence[cid])
         reason = str(evidence[cid].get("reason") or "")
         assert "requires E_norm" not in reason
+        assert "requires gamma_u" not in reason
         assert "requires Ry_formula" not in reason
 
 
@@ -154,7 +165,13 @@ def test_v074_registry_wrapper_is_strictly_idempotent_across_streamlit_reruns():
 
     result = first({"fy_norm": 255.0, "material_safety_category": "statistical_control"}, {})
     assert seen[-1]["E_norm"] == pytest.approx(206000.0)
-    assert result["sp16_mech7_primary_evidence"]["v074_prerequisite_hydration"][0]["source_table"] == "Б.1"
+    assert seen[-1]["gamma_u"] == pytest.approx(1.3)
+    trace = {
+        row["quantity_id"]: row
+        for row in result["sp16_mech7_primary_evidence"]["v074_prerequisite_hydration"]
+    }
+    assert trace["E_norm"]["source_table"] == "Б.1"
+    assert trace["gamma_u"]["source_clause"] == "4.3.2"
 
 
 def test_v074_retained_application_upgrades_service_and_detached_session_once():
