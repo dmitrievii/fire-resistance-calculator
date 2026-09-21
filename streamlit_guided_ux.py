@@ -3,7 +3,8 @@ from __future__ import annotations
 """Presentation-only guided UX refinements for the Streamlit calculator.
 
 This module does not change normative equations, DAG routing, or PASS/FAIL gates.
-It only supplies explicit UI defaults, human-readable labels and compact summaries.
+It only supplies explicit UI defaults, human-readable labels, diagnostics and
+compact summaries.
 """
 
 from copy import deepcopy
@@ -95,13 +96,16 @@ def _ledger_value(core: Any, qid: str) -> Any:
 
 
 def _with_guided_defaults(core: Any, card: Mapping[str, Any], old_payload: Any) -> Any:
+    """Apply only non-normative, explicitly approved convenience defaults.
+
+    Table 9/10 diagram groups and the flange-edge-stiffener flag are
+    intentionally excluded. Their bundled normative catalogues require
+    explicit engineering classification and do not provide an automatic
+    geometry classifier.
+    """
     fields = list(card.get("fields") or [])
     scalar = card.get("submit_shape") == "scalar"
     out = old_payload if scalar else dict(old_payload or {})
-
-    section_family = _ledger_value(core, "section_family")
-    symmetry = _ledger_value(core, "sp16_i_symmetry_class")
-    qualified_i = section_family == "i_section" and symmetry == "double_symmetric"
 
     for field in fields:
         qid = str(field.get("quantity_id") or "")
@@ -112,15 +116,6 @@ def _with_guided_defaults(core: Any, card: Mapping[str, Any], old_payload: Any) 
         default: Any = None
         if field.get("data_type") == "boolean":
             default = _bool_default(card, qid)
-
-        # Qualified rolled/doubly-symmetric I-section mapping is deterministic
-        # for the currently executable central-compression MECH7 route.
-        if qualified_i and qid == "sp16_mech7_table9_group":
-            default = "group_1_i_section"
-        elif qualified_i and qid == "sp16_mech7_table10_group":
-            default = "group_1"
-        elif qualified_i and qid == "sp16_mech7_flange_edge_stiffened":
-            default = False
 
         if default is not None:
             if scalar:
@@ -150,19 +145,109 @@ def _humanize_mech7_card(card: Mapping[str, Any]) -> dict[str, Any]:
     patched["fields"] = fields
 
     qids = {str(f.get("quantity_id") or "") for f in fields}
+    guidance = list((patched.get("presentation") or {}).get("guidance") or [])
+
     if "sp16_mech7_group4_slenderness_increase" in qids:
-        presentation = deepcopy(dict(patched.get("presentation") or {}))
         note = (
             "Важно: «группа 4» здесь — классификация конструкции для таблицы 32, "
             "а не группа поперечного сечения. Её нельзя определять только по тому, "
             "что выбран двутавр, швеллер или другой профиль."
         )
-        guidance = list(presentation.get("guidance") or [])
         if note not in guidance:
             guidance.append(note)
+
+    if qids & {
+        "sp16_mech7_table9_group",
+        "sp16_mech7_table10_group",
+        "sp16_mech7_flange_edge_stiffened",
+    }:
+        note = (
+            "Таблицы 9 и 10 требуют явной инженерной классификации по схемам СП16. "
+            "Выбранный профиль помогает сузить варианты, но приложение не записывает "
+            "группу диаграммы или наличие краевого подкрепления автоматически."
+        )
+        if note not in guidance:
+            guidance.append(note)
+
+    if guidance:
+        presentation = deepcopy(dict(patched.get("presentation") or {}))
         presentation["guidance"] = guidance
         patched["presentation"] = presentation
     return patched
+
+
+def _sp16_completion_diagnostics(env: Mapping[str, Any]) -> dict[str, Any] | None:
+    """Extract an auditable UI-only SP16 completion diagnosis from the ledger."""
+    state = env.get("state")
+    if not isinstance(state, Mapping):
+        return None
+
+    report = None
+    for row in state.get("ledger", []) or []:
+        if isinstance(row, Mapping) and row.get("quantity_id") == "sp16_mechanical_verification":
+            report = row.get("value")
+            break
+    if not isinstance(report, Mapping):
+        return None
+
+    gate_status = str(report.get("gate_status") or "")
+    rows = [dict(row) for row in report.get("rows", []) or [] if isinstance(row, Mapping)]
+    unresolved = [
+        row for row in rows
+        if row.get("status") in {"DEFERRED", "CONTEXT_UNRESOLVED"}
+    ]
+    failed = [row for row in rows if row.get("status") == "FAIL"]
+    return {
+        "gate_status": gate_status,
+        "unresolved": unresolved,
+        "failed": failed,
+        "unresolved_check_ids": list(report.get("unresolved_check_ids") or []),
+        "failed_check_ids": list(report.get("failed_check_ids") or []),
+    }
+
+
+def _render_sp16_completion_diagnostics(core: Any, env: Mapping[str, Any]) -> None:
+    diag = _sp16_completion_diagnostics(env)
+    if not diag:
+        return
+    gate_status = diag["gate_status"]
+    if gate_status not in {"INCOMPLETE_FAIL_CLOSED", "FAIL"}:
+        return
+
+    st = core._st()
+    if gate_status == "INCOMPLETE_FAIL_CLOSED":
+        rows = diag["unresolved"]
+        st.warning(
+            "СП16 не завершён: ниже показаны конкретные незакрытые проверки. "
+            "Переход к СП554 остаётся fail-closed до их разрешения."
+        )
+    else:
+        rows = diag["failed"]
+        st.error("СП16 завершён с непройденными проверками. Переход к СП554 запрещён.")
+
+    if not rows:
+        ids = diag["unresolved_check_ids"] if gate_status == "INCOMPLETE_FAIL_CLOSED" else diag["failed_check_ids"]
+        if ids:
+            st.markdown("**Проверки:** " + ", ".join(f"`{item}`" for item in ids))
+        return
+
+    for row in rows:
+        check_id = str(row.get("id") or "unknown")
+        label = str(row.get("label") or check_id)
+        status = str(row.get("status") or "")
+        st.markdown(f"- **{label}** (`{check_id}`) — `{status}`")
+        reason = row.get("reason")
+        if reason:
+            st.caption(str(reason))
+        source = row.get("evidence_source")
+        scope = row.get("normative_scope") or row.get("evidence_scope") or []
+        details = []
+        if source:
+            details.append(f"evidence: {source}")
+        if scope:
+            details.append("scope: " + ", ".join(str(item) for item in scope))
+        if details:
+            st.caption(" · ".join(details))
 
 
 def _profile_line(core: Any, key: str, value: Any) -> str:
@@ -170,7 +255,6 @@ def _profile_line(core: Any, key: str, value: Any) -> str:
     if label:
         name, symbol, unit = label
         return f"- {name} **{symbol} = {core._fmt(value)} {unit}**"
-    # Keep every catalog parameter available without pretending an unknown symbol/meaning.
     return f"- `{key}` = **{core._fmt(value)}**"
 
 
@@ -299,6 +383,7 @@ def _render_material(core: Any, app: Any, sid: str, card: Mapping[str, Any], old
 def install(core: Any) -> None:
     original_generic = core._render_generic
     original_options = core._generic_options
+    original_noninteractive = core._render_noninteractive
 
     def guided_options(card: Mapping[str, Any], field: Mapping[str, Any]):
         qid = str(field.get("quantity_id") or "")
@@ -324,7 +409,12 @@ def install(core: Any) -> None:
     def guided_material(app: Any, sid: str, card: Mapping[str, Any], old: Any, mode_key: str):
         return _render_material(core, app, sid, card, old, mode_key)
 
+    def guided_noninteractive(env: Mapping[str, Any], card: Mapping[str, Any] | None):
+        original_noninteractive(env, card)
+        _render_sp16_completion_diagnostics(core, env)
+
     core._generic_options = guided_options
     core._render_generic = guided_generic
     core._render_profile_catalog = guided_profile
     core._render_material = guided_material
+    core._render_noninteractive = guided_noninteractive
