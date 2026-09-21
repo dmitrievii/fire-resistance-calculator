@@ -7,7 +7,7 @@ layers plus the qualified guided-runtime integration adapter.
 
 import streamlit as _streamlit
 import streamlit_app_core as _core
-from streamlit_graphic_selectors import install as _install_graphic_selectors
+from streamlit_graphic_selectors_v072 import install as _install_graphic_selectors
 from streamlit_mobile_ux import install as _install_mobile_ux
 from streamlit_navigation import install as _install_navigation
 from streamlit_report_ui import install as _install_report_ui
