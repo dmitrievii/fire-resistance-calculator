@@ -88,7 +88,7 @@ def _section_fire_coefficients(report: Mapping[str, Any]) -> list[str]:
         if _known_gamma_t_formula(formula_raw):
             lines.extend([
                 "В инженерных обозначениях отчёта расчётная зависимость имеет вид:", "",
-                "$$ \\gamma_T=\\frac{|N|}{\\varphi\,A\,f_y\,\\gamma_c} $$", "",
+                r"$$ \gamma_T=\frac{|N|}{\varphi\,A\,f_y\,\gamma_c} $$", "",
                 "где $N$ — продольная сила; $\\varphi$ — коэффициент продольного изгиба для активной ветви; "
                 "$A$ — площадь сечения; $f_y$ — принятое расчётное значение прочности стали; "
                 "$\\gamma_c$ — коэффициент условий работы.", "",
@@ -97,8 +97,6 @@ def _section_fire_coefficients(report: Mapping[str, Any]) -> list[str]:
             if pretty_subst:
                 lines.extend(["Подстановка значений выполненного расчёта:", "", f"$$ {pretty_subst} $$", ""])
         else:
-            # Preserve trace-bound evidence when the active branch differs from the
-            # known central-compression expression; do not invent a replacement.
             _v089._append_formula_evidence(lines, gt_block)
         lines.extend([
             f"Получено **$γ_T={_v089._fmt_number(gt_raw)}$**. Это требуемый уровень сохранения прочности стали: "
@@ -118,11 +116,7 @@ def _section_fire_coefficients(report: Mapping[str, Any]) -> list[str]:
             "Для потери устойчивости дополнительно контролируется снижение жёсткости стали. "
             f"По выполненной нормативной ветви получено **$γ_e={_v089._fmt_number(ge_raw)}$**.", "",
         ])
-        if ge_formula:
-            # Use existing trace-bound evidence only; unlike gamma_T, no synthetic
-            # closed-form expression is introduced when the runtime did not emit one.
-            _v089._append_formula_evidence(lines, ge_block)
-        elif ge_subst:
+        if ge_formula or ge_subst:
             _v089._append_formula_evidence(lines, ge_block)
         lines.extend([
             "Значение $γ_e$ используется при определении температуры, при которой уменьшение модуля упругости "
@@ -147,8 +141,6 @@ def render_expertise_narrative_markdown_v090_fire_coeffs(report: Mapping[str, An
     start = markdown.find(_START_HEADING)
     end = markdown.find(_END_HEADING, start if start >= 0 else 0)
     if start < 0 or end < 0 or end <= start:
-        # Fail closed in presentation: if the base report layout changed, return it
-        # unchanged rather than deleting unrelated engineering evidence.
         return markdown
     replacement = "\n".join(_section_fire_coefficients(report)).rstrip() + "\n\n"
     return markdown[:start] + replacement + markdown[end:]
