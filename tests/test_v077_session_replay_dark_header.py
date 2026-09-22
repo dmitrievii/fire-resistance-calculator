@@ -163,6 +163,9 @@ def test_v077_mobile_header_has_no_forced_white_dark_mode_fallback():
     assert "var(--background-color, #ffffff)" not in css
 
 
-def test_v077_entrypoint_installs_v077_layer():
-    source = (ROOT / "streamlit_app.py").read_text(encoding="utf-8")
-    assert "from streamlit_guided_ux_v077 import install as _install_guided_ux" in source
+def test_v077_layer_remains_in_descendant_installer_chain():
+    entrypoint = (ROOT / "streamlit_app.py").read_text(encoding="utf-8")
+    descendant = (ROOT / "streamlit_guided_ux_v078.py").read_text(encoding="utf-8")
+    assert "from streamlit_guided_ux_v078 import install as _install_guided_ux" in entrypoint
+    assert "import streamlit_guided_ux_v077 as _v077" in descendant
+    assert "_v077.install(core)" in descendant
