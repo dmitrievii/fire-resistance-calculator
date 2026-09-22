@@ -1,0 +1,73 @@
+name: V090 MECH9 UX REPORT4 validation
+
+on:
+  push:
+    branches:
+      - 'fix/v0.90-*'
+      - 'feature/v0.90-*'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  mech9-ux-report-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install runtime and tests
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt pytest
+      - name: Compile v0.90 and retained report layers
+        run: >-
+          python -W error::SyntaxWarning -m py_compile
+          streamlit_app.py
+          streamlit_mech9_v090.py
+          streamlit_ui_polish_v090.py
+          streamlit_expertise_report_v090.py
+          streamlit_expertise_report_v090_fire_coeffs.py
+          streamlit_expertise_report_v090_thermal_refinement.py
+          streamlit_expertise_report_v090_install.py
+          streamlit_expertise_report_v089.py
+          standard_core/sp16_mech9_v090_ux_overlay.py
+          standard_core/sp16_mech9_remaining_ambient.py
+          standard_core/brittle_fracture_workflows.py
+          standard_core/fatigue_workflows.py
+      - name: v0.90 focused regression
+        run: >-
+          python -m pytest -q
+          tests/test_v090_mech9_ux_report.py
+          tests/test_v090_report_install_isolation.py
+          tests/test_v090_fire_coeffs_report.py
+          tests/test_v090_thermal_report_polish.py
+          tests/test_stage_n9_fatigue_workflows.py
+          tests/test_brittle_fracture_and_welded_connections.py
+      - name: Retained guided and report regression
+        run: >-
+          python -m pytest -q
+          tests/test_v089_expertise_narrative.py
+          tests/test_v088_expertise_live_report.py
+          tests/test_report_ir5.py
+          tests/test_streamlit_ui.py
+          tests/test_streamlit_guided_ux.py
+          tests/test_v086_fvm_ux_search.py
+      - name: Boot real Streamlit server
+        shell: bash
+        run: |
+          set -euo pipefail
+          streamlit run streamlit_app.py --server.headless true --server.address 127.0.0.1 --server.port 8501 >/tmp/fire-streamlit-v090.log 2>&1 &
+          pid=$!
+          trap 'kill $pid 2>/dev/null || true' EXIT
+          for i in $(seq 1 45); do
+            if curl --fail --silent http://127.0.0.1:8501/_stcore/health >/tmp/health-v090.txt; then
+              cat /tmp/health-v090.txt
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/fire-streamlit-v090.log
+          exit 1
