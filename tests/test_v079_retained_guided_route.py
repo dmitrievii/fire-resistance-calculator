@@ -193,9 +193,12 @@ def test_v079_semantic_replay_retains_tail_across_new_question_and_skips_retired
     assert migrated.plain_values()["qb"] == "old-b"
 
 
-def test_v079_entrypoint_and_graphic_crash_remediation_are_active():
+def test_v079_repairs_remain_active_below_v080():
     app_source = (ROOT / "streamlit_app.py").read_text(encoding="utf-8")
-    assert "streamlit_guided_ux_v079" in app_source
+    v080 = (ROOT / "streamlit_guided_ux_v080.py").read_text(encoding="utf-8")
+    assert "streamlit_guided_ux_v080" in app_source
+    assert "import streamlit_guided_ux_v079 as _v079" in v080
+    assert "_v079.install(core)" in v080
     assert "streamlit_graphic_selectors_v079" in app_source
 
     graphic = (ROOT / "streamlit_graphic_selectors_v079.py").read_text(encoding="utf-8")
