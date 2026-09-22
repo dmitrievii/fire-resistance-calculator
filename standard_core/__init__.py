@@ -14,3 +14,11 @@ __release_stage__ = RELEASE_STAGE
 # execution used.  Neither hook recalculates engineering outputs.
 _install_declarative_runtime_evidence()
 _install_declarative_case_evidence()
+
+# v0.91 final-SP554 normative remediation.  This is an engineering-runtime
+# overlay, not report post-processing: central-compression fire slenderness is
+# rebuilt from geometric lambda, Ryn and E and the published Appendix-B values
+# supersede the earlier pre-publication rows.
+from .fire_sp554_runtime_v091 import install as _install_fire_sp554_runtime_v091
+
+_install_fire_sp554_runtime_v091()
