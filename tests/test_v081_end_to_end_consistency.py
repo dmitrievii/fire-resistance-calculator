@@ -3,6 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 
 from standard_core.fire_ui0 import ExecutionRegistry, FireDAGModel
+from standard_core.sp16_mech7_v075_graph_overlay import build_model as build_v075_model
+from standard_core.sp16_mech7_v076_graph_overlay import build_model as build_v076_model
 from standard_core.sp16_mech7_v081_end_to_end_overlay import (
     GOVERNING_AXIS_QID,
     GRAPH_SUFFIX,
@@ -20,7 +22,10 @@ POLICY = ROOT / "data" / "fire_bridge2_presentation_policy.json"
 
 def _active_model() -> FireDAGModel:
     base = FireDAGModel.load(DAG, presentation_policy_path=POLICY)
-    return build_model(base)
+    # Reproduce the production installer ancestry. v0.78+ overlays consume the
+    # canonical Stage-N7 nodes introduced by v0.75/v0.76; applying them directly
+    # to the frozen v0.67 DAG would create a deliberately invalid dangling edge.
+    return build_model(build_v076_model(build_v075_model(base)))
 
 
 def test_v081_scalar_chain_is_preserved_as_evidence_but_unschedulable():
