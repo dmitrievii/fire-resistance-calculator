@@ -12,12 +12,12 @@ from streamlit_mobile_ux import install as _install_mobile_ux
 from streamlit_navigation import install as _install_navigation
 from streamlit_report_ui import install as _install_report_ui
 from streamlit_report_summary import install as _install_report_summary
-from streamlit_guided_ux_v077 import install as _install_guided_ux
+from streamlit_guided_ux_v078 import install as _install_guided_ux
 
 # Presentation adapters use the same Streamlit module object as the core UI.
-# v0.77 preserves the v0.76 consolidated z/y effective-length contract, stops
-# descendant-overlay replay on every Streamlit rerun, and keeps the explicit
-# SP16 Table-3 material category stable through history edits.
+# v0.78 preserves the v0.77 retained-session safeguards and inserts one explicit
+# SP16 Table-1 working-condition classification before compression verification;
+# gamma_c is never inferred or silently defaulted.
 _core._st = lambda: _streamlit
 
 _install_graphic_selectors(_core)
