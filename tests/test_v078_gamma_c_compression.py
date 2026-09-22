@@ -152,9 +152,12 @@ def test_v078_amendment6_table1_text_includes_lambda_profiles():
 
 def test_v078_layer_remains_in_active_descendant_chain():
     source = (ROOT / "streamlit_app.py").read_text(encoding="utf-8")
+    v081 = (ROOT / "streamlit_guided_ux_v081.py").read_text(encoding="utf-8")
     v080 = (ROOT / "streamlit_guided_ux_v080.py").read_text(encoding="utf-8")
     v079 = (ROOT / "streamlit_guided_ux_v079.py").read_text(encoding="utf-8")
-    assert "from streamlit_guided_ux_v080 import install as _install_guided_ux" in source
+    assert "from streamlit_guided_ux_v081 import install as _install_guided_ux" in source
+    assert "import streamlit_guided_ux_v080 as _v080" in v081
+    assert "_v080.install(core)" in v081
     assert "import streamlit_guided_ux_v079 as _v079" in v080
     assert "_v079.install(core)" in v080
     assert "import streamlit_guided_ux_v078 as _v078_ui" in v079
