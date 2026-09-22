@@ -19,10 +19,28 @@ from standard_core.sp16_mech7_v080_guided_cleanup_overlay import (
 
 _INSTALLED = "_fire_v080_guided_cleanup_installed"
 _RETAINED_ATTR = "_v079_retained_interaction_history"
+_RETAINED_GAMMA_ATTR = "_v080_retained_gamma_c_case_id"
+
+
+def _validated_gamma_case(value: Any) -> str | None:
+    if not isinstance(value, str) or not value:
+        return None
+    try:
+        resolve_gamma_c_compression(value)
+    except FireUIError:
+        return None
+    return value
 
 
 def _semantic_replay(source: Any, model: Any, registry: Any):
-    """Reuse v0.79 semantic replay while dropping retired scalar-lambda rows."""
+    """Reuse v0.79 semantic replay while dropping retired scalar-lambda rows.
+
+    An already explicit Table-1 case is retained separately across migration so
+    it can be re-applied only if the exact same Table-1 input node is reached
+    again.  It is not injected into the new quantity state ahead of that node.
+    """
+    retained_gamma = _validated_gamma_case(source.plain_values().get(GAMMA_CASE_QID))
+
     class FilteredSource:
         entry_node_id = source.entry_node_id
         interaction_history = [
@@ -42,6 +60,8 @@ def _semantic_replay(source: Any, model: Any, registry: Any):
         if str(row.get("node_id") or "") not in LEGACY_SCALAR_EFFECTIVE_LENGTH_NODES
     ]
     setattr(migrated, _RETAINED_ATTR, retained)
+    if retained_gamma is not None:
+        setattr(migrated, _RETAINED_GAMMA_ATTR, retained_gamma)
     return migrated
 
 
@@ -55,12 +75,10 @@ def _reuse_gamma_c_case(session: Any) -> bool:
     if session.current_node_id != GAMMA_INPUT_NODE_ID:
         return False
 
-    case_id = session.plain_values().get(GAMMA_CASE_QID)
-    if not isinstance(case_id, str) or not case_id:
-        return False
-    try:
-        resolve_gamma_c_compression(case_id)
-    except FireUIError:
+    case_id = _validated_gamma_case(session.plain_values().get(GAMMA_CASE_QID))
+    if case_id is None:
+        case_id = _validated_gamma_case(getattr(session, _RETAINED_GAMMA_ATTR, None))
+    if case_id is None:
         return False
 
     session.submit(
@@ -72,6 +90,8 @@ def _reuse_gamma_c_case(session: Any) -> bool:
             "rule": "exact reuse only; no inference from numeric gamma_c",
         },
     )
+    if hasattr(session, _RETAINED_GAMMA_ATTR):
+        delattr(session, _RETAINED_GAMMA_ATTR)
     return True
 
 
@@ -85,7 +105,7 @@ def _consume_exact_reuse(session: Any) -> None:
         if after == before:
             break
         if not reused_gamma:
-            # v0.79 retained replay already runs until the next mismatch.  If
+            # v0.79 retained replay already runs until the next mismatch. If
             # that mismatch is not an exact duplicate gamma question, stop.
             break
 
