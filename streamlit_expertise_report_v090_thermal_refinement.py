@@ -79,8 +79,16 @@ def _mechanical_fire_result(report: Mapping[str, Any]) -> Mapping[str, Any] | No
     strength = _row_mapping(report, "strength_curve_inversion")
     modulus = _row_mapping(report, "modulus_curve_inversion")
     if strength or modulus:
-        branch_hit = _v089._find_row(report, qids=("critical_temperature_controlling_kind",), names=("определяющая температурная ветвь",))
-        tcr_hit = _v089._find_row(report, qids=("critical_temperature_c",), names=("критическая температура стали", "управляющая критическая температура"))
+        branch_hit = _v089._find_row(
+            report,
+            qids=("critical_temperature_controlling_kind",),
+            names=("определяющая температурная ветвь",),
+        )
+        tcr_hit = _v089._find_row(
+            report,
+            qids=("critical_temperature_c",),
+            names=("критическая температура стали", "управляющая критическая температура"),
+        )
         return {
             "critical_temperature_c": _v089._row_raw(tcr_hit),
             "critical_temperature_controlling_kind": _v089._row_raw(branch_hit),
@@ -91,10 +99,26 @@ def _mechanical_fire_result(report: Mapping[str, Any]) -> Mapping[str, Any] | No
 
 
 def _critical_temperature_section(report: Mapping[str, Any]) -> list[str]:
-    gamma_t = _v089._find_row(report, symbols=("γ_T",), names=("температурный коэффициент по формуле 9.2", "требуемый температурный коэффициент снижения прочности"))
-    gamma_e = _v089._find_row(report, symbols=("γ_e",), names=("требуемый температурный коэффициент снижения модуля упругости", "γe по потере устойчивости"))
-    tcr_hit = _v089._find_row(report, qids=("critical_temperature_c",), names=("критическая температура стали", "управляющая критическая температура"))
-    branch_hit = _v089._find_row(report, qids=("critical_temperature_controlling_kind",), names=("определяющая температурная ветвь",))
+    gamma_t = _v089._find_row(
+        report,
+        symbols=("γ_T",),
+        names=("температурный коэффициент по формуле 9.2", "требуемый температурный коэффициент снижения прочности"),
+    )
+    gamma_e = _v089._find_row(
+        report,
+        symbols=("γ_e",),
+        names=("требуемый температурный коэффициент снижения модуля упругости", "γe по потере устойчивости"),
+    )
+    tcr_hit = _v089._find_row(
+        report,
+        qids=("critical_temperature_c",),
+        names=("критическая температура стали", "управляющая критическая температура"),
+    )
+    branch_hit = _v089._find_row(
+        report,
+        qids=("critical_temperature_controlling_kind",),
+        names=("определяющая температурная ветвь",),
+    )
     result = _mechanical_fire_result(report) or {}
     strength = result.get("strength_curve_inversion")
     modulus = result.get("modulus_curve_inversion")
@@ -111,55 +135,93 @@ def _critical_temperature_section(report: Mapping[str, Any]) -> list[str]:
     }
 
     lines = [
-        _CRITICAL_HEADING, "",
+        _CRITICAL_HEADING,
+        "",
         "Критическая температура определяется не непосредственно из одного коэффициента, а отдельной инверсией "
         "температурных зависимостей прочности и модуля упругости. Для каждого применимого критерия определяется "
         "собственная предельная температура; в теплотехнический расчёт передаётся результат определяющей ветви, "
-        "зафиксированный механическим runtime.", "",
+        "зафиксированный механическим runtime.",
+        "",
     ]
     if gamma_t:
         gt = _v089._row_raw(gamma_t)
         if t_strength is not None:
             lines.extend([
-                "#### По критерию прочности", "",
+                "#### По критерию прочности",
+                "",
                 f"Требуемому коэффициенту **$γ_T={_fmt(gt)}$** по приложению Б соответствует критическая температура "
-                f"**$T_{{cr,T}}={_fmt(t_strength)}\ ^\circ\mathrm{{C}}$**.", "",
+                f"**$T_{{cr,T}}={_fmt(t_strength)}\,{{^\circ}}\mathrm{{C}}$**.",
+                "",
             ])
         else:
-            lines.extend(["#### По критерию прочности", "", f"Для **$γ_T={_fmt(gt)}$** точная температура инверсии в текущем REPORT-IR не опубликована; presentation-слой её не восстанавливает самостоятельно.", ""])
+            lines.extend([
+                "#### По критерию прочности",
+                "",
+                f"Для **$γ_T={_fmt(gt)}$** точная температура инверсии в текущем REPORT-IR не опубликована; "
+                "presentation-слой её не восстанавливает самостоятельно.",
+                "",
+            ])
     if gamma_e:
         ge = _v089._row_raw(gamma_e)
         if t_modulus is not None:
             lines.extend([
-                "#### По критерию устойчивости", "",
+                "#### По критерию устойчивости",
+                "",
                 f"Требуемому коэффициенту **$γ_e={_fmt(ge)}$** по температурной зависимости модуля упругости соответствует "
-                f"**$T_{{cr,e}}={_fmt(t_modulus)}\ ^\circ\mathrm{{C}}$**.", "",
+                f"**$T_{{cr,e}}={_fmt(t_modulus)}\,{{^\circ}}\mathrm{{C}}$**.",
+                "",
             ])
         elif modulus is None:
-            lines.extend(["#### По критерию устойчивости", "", "Для данного маршрута отдельная инверсия по $γ_e$ не применялась.", ""])
+            lines.extend([
+                "#### По критерию устойчивости",
+                "",
+                "Для данного маршрута отдельная инверсия по $γ_e$ не применялась.",
+                "",
+            ])
         else:
-            lines.extend(["#### По критерию устойчивости", "", f"Для **$γ_e={_fmt(ge)}$** точная температура инверсии в текущем REPORT-IR не опубликована; presentation-слой не выполняет экстраполяцию.", ""])
+            lines.extend([
+                "#### По критерию устойчивости",
+                "",
+                f"Для **$γ_e={_fmt(ge)}$** точная температура инверсии в текущем REPORT-IR не опубликована; "
+                "presentation-слой не выполняет экстраполяцию.",
+                "",
+            ])
 
     if tcr is not None:
         branch_text = labels.get(str(controlling), "определяющий критерий, сохранённый runtime")
         lines.extend([
-            "#### Принятая критическая температура", "",
-            f"Определяющим является **{branch_text}**. Для дальнейшего теплотехнического расчёта принято:", "",
-            f"$$ T_{{cr}}={_fmt(tcr)}\ ^\circ\mathrm{{C}} $$", "",
+            "#### Принятая критическая температура",
+            "",
+            f"Определяющим является **{branch_text}**. Для дальнейшего теплотехнического расчёта принято:",
+            "",
+            f"$$ T_{{cr}}={_fmt(tcr)}\,{{^\circ}}\mathrm{{C}} $$",
+            "",
             "Именно достижение этой температуры сталью используется как момент наступления предельного состояния "
-            "при последующем расчёте прогрева.", "",
+            "при последующем расчёте прогрева.",
+            "",
         ])
     else:
-        lines.extend(["#### Принятая критическая температура", "", "**PENDING:** механический runtime ещё не сформировал точную критическую температуру; теплотехнический результат не считается завершённым.", ""])
+        lines.extend([
+            "#### Принятая критическая температура",
+            "",
+            "**PENDING:** механический runtime ещё не сформировал точную критическую температуру; теплотехнический результат не считается завершённым.",
+            "",
+        ])
     lines.extend([
-        "*Нормативное основание: СП 554.1311500.2026, п. 8.6; для активной механической ветви — соответствующая формула разделов 9–11; приложение Б, таблица Б.1 и рисунки Б.1–Б.8.*", "",
+        "*Нормативное основание: СП 554.1311500.2026, п. 8.6; для активной механической ветви — соответствующая формула разделов 9–11; приложение Б, таблица Б.1 и рисунки Б.1–Б.8.*",
+        "",
     ])
     return lines
 
 
 def _find_unprotected_result(report: Mapping[str, Any]) -> Mapping[str, Any] | None:
     for mapping in _report_mappings(report):
-        if "actual_fire_resistance_min" in mapping and "reduced_emissivity" in mapping and "material_parameters" in mapping and "validation_12_6" not in mapping:
+        if (
+            "actual_fire_resistance_min" in mapping
+            and "reduced_emissivity" in mapping
+            and "material_parameters" in mapping
+            and "validation_12_6" not in mapping
+        ):
             return mapping
     return None
 
@@ -176,7 +238,12 @@ def _thermal_section(report: Mapping[str, Any]) -> list[str]:
     A = _row(report, symbols=("A",), names=("площадь сечения брутто",))
     P = _row(report, symbols=("P",), names=("обогреваемый периметр",))
     delta = _row(report, symbols=("δ_pr",), names=("приведенная толщина металла", "приведённая толщина металла"))
-    eps = _row(report, qids=("sp554_eps_reduced_12_4",), symbols=("ε_pr",), names=("приведенная степень черноты", "приведённая степень черноты"))
+    eps = _row(
+        report,
+        qids=("sp554_eps_reduced_12_4",),
+        symbols=("ε_pr",),
+        names=("приведенная степень черноты", "приведённая степень черноты"),
+    )
     t0 = _row(report, symbols=("T0",), names=("начальная температура печи",))
     tcr = _row(report, qids=("critical_temperature_c",), names=("критическая температура стали", "управляющая критическая температура"))
     runprot = _row(report, symbols=("R_unprot",), names=("фактический предел без огнезащиты",))
@@ -189,36 +256,58 @@ def _thermal_section(report: Mapping[str, Any]) -> list[str]:
     lines = [_THERMAL_HEADING, "", "### 5.1 Незащищённый стальной элемент", ""]
     lines.extend([
         "Расчёт выполняется до момента, когда температура стали достигает принятой критической температуры $T_{cr}$. "
-        "В основном отчёте приведена расчётная схема; пошаговый температурный trace остаётся в Audit.", "",
-        "#### Геометрический параметр прогрева", "",
-        "Приведённая толщина металла определяется по формуле (12.2):", "",
-        r"$$ \delta_{pr}=\frac{A}{P}. $$", "",
+        "В основном отчёте приведена расчётная схема; пошаговый температурный trace остаётся в Audit.",
+        "",
+        "#### Геометрический параметр прогрева",
+        "",
+        "Приведённая толщина металла определяется по формуле (12.2):",
+        "",
+        r"$$ \delta_{pr}=\frac{A}{P}. $$",
+        "",
     ])
     if A and P:
         a_raw = _number(_v089._row_raw(A))
         p_raw = _number(_v089._row_raw(P))
         lines.extend([f"Исходные значения: $A$ = **{_v089._display(A)}**, $P$ = **{_v089._display(P)}**.", ""])
         if a_raw is not None and p_raw is not None and str(P[0].get("canonical_unit")) == "m" and delta:
-            lines.extend([f"Для согласования единиц $P={_fmt(p_raw)}\,\mathrm{{m}}={_fmt(p_raw*1000.0)}\,\mathrm{{mm}}$; по выполненному runtime получено **$δ_{{pr}}={_v089._display(delta)}$**.", ""])
+            lines.extend([
+                f"Для согласования единиц $P={_fmt(p_raw)}$ м = ${_fmt(p_raw * 1000.0)}$ мм; "
+                f"по выполненному runtime получено **$δ_{{pr}}={_v089._display(delta)}$**.",
+                "",
+            ])
         elif delta:
             lines.extend([f"По выполненному runtime получено **$δ_{{pr}}={_v089._display(delta)}$**.", ""])
     elif delta:
         lines.extend([f"По выполненному runtime получено **$δ_{{pr}}={_v089._display(delta)}$**.", ""])
 
-    lines.extend(["#### Лучистый теплообмен", "", "Приведённая степень чёрноты определяется выражением:", "", r"$$ \varepsilon_{pr}=\frac{1}{1/\varepsilon_f+1/\varepsilon_s-1}. $$", ""])
+    lines.extend([
+        "#### Лучистый теплообмен",
+        "",
+        "Приведённая степень чёрноты определяется выражением:",
+        "",
+        r"$$ \varepsilon_{pr}=\frac{1}{1/\varepsilon_f+1/\varepsilon_s-1}. $$",
+        "",
+    ])
     ef = _number(_v089._row_raw(eps_fire)) if eps_fire else _number(params.get("eps_fire"))
     es = _number(_v089._row_raw(eps_steel)) if eps_steel else _number(params.get("eps_steel"))
     eps_value = _number(_v089._row_raw(eps)) if eps else _number(unprotected.get("reduced_emissivity"))
     if ef is not None and es is not None and eps_value is not None:
-        lines.extend([f"Подстановка выполненного расчёта: $ε_f={_fmt(ef)}$, $ε_s={_fmt(es)}$; результат **$ε_{{pr}}={_fmt(eps_value)}$**.", ""])
+        lines.extend([
+            f"Подстановка выполненного расчёта: $ε_f={_fmt(ef)}$, $ε_s={_fmt(es)}$; результат **$ε_{{pr}}={_fmt(eps_value)}$**.",
+            "",
+        ])
     elif eps_value is not None:
         lines.extend([f"По выполненному расчёту **$ε_{{pr}}={_fmt(eps_value)}$**.", ""])
 
     lines.extend([
-        "#### Температурный режим и пошаговый прогрев", "",
-        "Для стандартного температурного режима используется зависимость ГОСТ 30247.0-94:", "",
-        r"$$ T_g(t)=T_0+345\log_{10}(8t+1), $$", "",
-        "где $t$ задаётся в минутах.", "",
+        "#### Температурный режим и пошаговый прогрев",
+        "",
+        "Для стандартного температурного режима используется зависимость ГОСТ 30247.0-94:",
+        "",
+        r"$$ T_g(t)=T_0+345\log_{10}(8t+1), $$",
+        "",
+        "где $t$ задаётся в минутах.",
+        "",
     ])
     if t0:
         lines.extend([f"Начальная температура: $T_0$ = **{_v089._display(t0)}**.", ""])
@@ -226,19 +315,32 @@ def _thermal_section(report: Mapping[str, Any]) -> list[str]:
     if dt_value is not None:
         lines.extend([f"Шаг численного интегрирования: $Δt$ = **{_fmt(dt_value)} мин**.", ""])
     lines.extend([
-        "На каждом шаге температура стали обновляется из теплового баланса:", "",
-        r"$$ T_{s,n+1}=T_{s,n}+\frac{\Delta t_s\,\alpha_n\,(T_{g,n+1}-T_{s,n})}{\rho_s\,\delta_{pr}\,c_s(T_{s,n})}, $$", "",
-        r"$$ c_s(T_s)=c_0(1+k_cT_s), $$", "",
-        "а коэффициент теплоотдачи включает конвективную и лучистую составляющие:", "",
-        r"$$ \alpha=29+5.77\,\varepsilon_{pr}\,\frac{[(T_g+273.15)/100]^4-[(T_s+273.15)/100]^4}{T_g-T_s}. $$", "",
+        "На каждом шаге температура стали обновляется из теплового баланса:",
+        "",
+        r"$$ T_{s,n+1}=T_{s,n}+\frac{\Delta t_s\,\alpha_n\,(T_{g,n+1}-T_{s,n})}{\rho_s\,\delta_{pr}\,c_s(T_{s,n})}, $$",
+        "",
+        r"$$ c_s(T_s)=c_0(1+k_cT_s), $$",
+        "",
+        "а коэффициент теплоотдачи включает конвективную и лучистую составляющие:",
+        "",
+        r"$$ \alpha=29+5.77\,\varepsilon_{pr}\,\frac{[(T_g+273.15)/100]^4-[(T_s+273.15)/100]^4}{T_g-T_s}. $$",
+        "",
         "Здесь $Δt_s$ — шаг времени в секундах. Расчёт прекращается при первом достижении $T_s=T_{cr}$; "
-        "момент пересечения уточняется внутри последнего временного шага.", "",
+        "момент пересечения уточняется внутри последнего временного шага.",
+        "",
     ])
     if tcr:
         lines.extend([f"Для данного расчёта целевая температура: **$T_{{cr}}={_v089._display(tcr)}$**.", ""])
     if runprot:
-        lines.extend([f"**Результат:** критическая температура достигается через **{_v089._display(runprot)}**. Это фактический предел огнестойкости незащищённого элемента для выполненного маршрута.", ""])
-    lines.extend(["*Нормативное основание: СП 554.1311500.2026, пп. 12.1–12.4, в том числе формула (12.2); ГОСТ 30247.0-94, п. 6.1, формула (1).*", ""])
+        lines.extend([
+            f"**Результат:** критическая температура достигается через **{_v089._display(runprot)}**. "
+            "Это фактический предел огнестойкости незащищённого элемента для выполненного маршрута.",
+            "",
+        ])
+    lines.extend([
+        "*Нормативное основание: СП 554.1311500.2026, пп. 12.1–12.4, в том числе формула (12.2); ГОСТ 30247.0-94, п. 6.1, формула (1).*
+",
+    ])
 
     lines.extend(["### 5.2 Защищённый элемент", ""])
     df = _row(report, symbols=("δ_f",), names=("толщина огнезащитного покрытия", "проверяемая толщина огнезащиты"))
@@ -258,14 +360,21 @@ def _thermal_section(report: Mapping[str, Any]) -> list[str]:
     if props:
         lines.extend(["Расчётные теплофизические параметры: " + ";  ".join(props) + ".", ""])
     lines.extend([
-        "Температурные зависимости свойств огнезащиты задаются в виде:", "",
-        r"$$ \lambda_f(T)=A_\lambda+B_\lambda T,\qquad c_f(T)=C_c+D_cT. $$", "",
+        "Температурные зависимости свойств огнезащиты задаются в виде:",
+        "",
+        r"$$ \lambda_f(T)=A_\lambda+B_\lambda T,\qquad c_f(T)=C_c+D_cT. $$",
+        "",
         "Толщина огнезащиты разбивается на одномерную расчётную сетку. Для внутренних узлов используется явная "
-        "дискретизация уравнения теплопроводности с температурно-зависимыми $λ_f$ и $c_f$:", "",
-        r"$$ T_i^{n+1}=T_i^n+\frac{\Delta t}{\rho_f\Delta x^2c_f(T_i^n)}\left[A_\lambda(T_{i-1}^n-2T_i^n+T_{i+1}^n)+\frac{B_\lambda}{2}\left((T_{i-1}^n)^2-2(T_i^n)^2+(T_{i+1}^n)^2\right)\right]. $$", "",
-        "На границе «огнезащита–сталь» применяется баланс теплоёмкостей защитного слоя и приведённого стального сечения по формуле (12.7):", "",
-        r"$$ T_s^{n+1}=T_s^n+\frac{2\Delta t\left[A_\lambda(T_p^n-T_s^n)+\frac{B_\lambda}{2}\left((T_p^n)^2-(T_s^n)^2\right)\right]}{\Delta x\left[\rho_f\Delta x\,c_f(T_s^n)+2\rho_s\delta_{pr}c_s(T_s^n)\right]}. $$", "",
-        "Расчёт ведётся до достижения сталью принятой критической температуры; подробный узловой trace и контроль устойчивости временного шага остаются в Audit.", "",
+        "дискретизация уравнения теплопроводности с температурно-зависимыми $λ_f$ и $c_f$:",
+        "",
+        r"$$ T_i^{n+1}=T_i^n+\frac{\Delta t}{\rho_f\Delta x^2c_f(T_i^n)}\left[A_\lambda(T_{i-1}^n-2T_i^n+T_{i+1}^n)+\frac{B_\lambda}{2}\left((T_{i-1}^n)^2-2(T_i^n)^2+(T_{i+1}^n)^2\right)\right]. $$",
+        "",
+        "На границе «огнезащита–сталь» применяется баланс теплоёмкостей защитного слоя и приведённого стального сечения по формуле (12.7):",
+        "",
+        r"$$ T_s^{n+1}=T_s^n+\frac{2\Delta t\left[A_\lambda(T_p^n-T_s^n)+\frac{B_\lambda}{2}\left((T_p^n)^2-(T_s^n)^2\right)\right]}{\Delta x\left[\rho_f\Delta x\,c_f(T_s^n)+2\rho_s\delta_{pr}c_s(T_s^n)\right]}. $$",
+        "",
+        "Расчёт ведётся до достижения сталью принятой критической температуры; подробный узловой trace и контроль устойчивости временного шага остаются в Audit.",
+        "",
     ])
     validation = protected.get("validation_12_6") if isinstance(protected.get("validation_12_6"), Mapping) else None
     if rprot:
@@ -284,14 +393,24 @@ def _thermal_section(report: Mapping[str, Any]) -> list[str]:
             suffix = f"; максимальное подтверждённое отклонение **{_fmt(max_dev)} %**" if max_dev is not None else ""
             lines.extend([f"**Валидация п. 12.6:** условие допустимого отклонения **{text}**{suffix}.", ""])
     else:
-        validation_row = _row(report, names=("отклонение расчета от испытаний не более 20", "отклонение расчёта от испытаний не более 20"))
+        validation_row = _row(
+            report,
+            names=("отклонение расчета от испытаний не более 20", "отклонение расчёта от испытаний не более 20"),
+        )
         if validation_row and isinstance(_v089._row_raw(validation_row), bool):
-            lines.extend(["**Валидация п. 12.6:** условие допустимого отклонения **" + ("выполняется" if _v089._row_raw(validation_row) else "не выполняется") + "**.", ""])
+            lines.extend([
+                "**Валидация п. 12.6:** условие допустимого отклонения **"
+                + ("выполняется" if _v089._row_raw(validation_row) else "не выполняется")
+                + "**.",
+                "",
+            ])
     lines.extend([
         "В production-модели используются зафиксированные проектом исправления подтверждённых опечаток п. 12.5: "
         "в формуле (12.5) применяется член $+t_0-t_φ$, а теплоёмкость локального узла в (12.6) определяется при его текущей температуре. "
-        "Ошибочные буквальные варианты в расчёте не исполняются.", "",
-        "*Нормативное основание: СП 554.1311500.2026, пп. 12.5–12.6 и формула (12.7); результат предела огнестойкости — по п. 13.2.*", "",
+        "Ошибочные буквальные варианты в расчёте не исполняются.",
+        "",
+        "*Нормативное основание: СП 554.1311500.2026, пп. 12.5–12.6 и формула (12.7); результат предела огнестойкости — по п. 13.2.*",
+        "",
     ])
     return lines
 
