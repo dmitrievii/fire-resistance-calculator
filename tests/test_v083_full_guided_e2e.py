@@ -197,9 +197,9 @@ def test_v083_new_calculation_reaches_terminal_fire_result_without_internal_quan
     assert "SP554_I_COMPRESSION_CONTEXT" not in history_ids
 
     _submit(app, sid, "SP554_I_EXPOSURE", "four_sides")
-    _submit(app, sid, "SP554_D_UNPROTECTED_METHOD", "step_calculation")
+    # Descendant v0.84 auto-executes the former method selector and the combined
+    # thermal card submits the visible T0 field together with the standard regime.
     _submit(app, sid, "SP554_D_FIRE_REGIME", "standard")
-    _submit(app, sid, "GOST30247_I_INITIAL_FURNACE_TEMPERATURE", 20.0)
     _submit(app, sid, "SP554_D_AFTER_UNPROTECTED", "check_requirement")
     _submit(app, sid, "SP554_H_REQUIRED_R", 5.0)
 
