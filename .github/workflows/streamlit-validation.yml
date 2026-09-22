@@ -18,6 +18,7 @@ on:
       - 'feature/v0.81-*'
       - 'feature/v0.82-*'
       - 'feature/v0.83-*'
+      - 'feature/v0.84-*'
       - 'feature/report-ir*'
     paths:
       - 'streamlit_app.py'
@@ -36,6 +37,7 @@ on:
       - 'streamlit_guided_ux_v081.py'
       - 'streamlit_guided_ux_v082.py'
       - 'streamlit_guided_ux_v083.py'
+      - 'streamlit_guided_ux_v084.py'
       - 'streamlit_graphic_selectors.py'
       - 'streamlit_graphic_selectors_v072.py'
       - 'streamlit_graphic_selectors_v079.py'
@@ -73,6 +75,7 @@ on:
       - 'tests/test_v081_end_to_end_consistency.py'
       - 'tests/test_sp16_mech7_v082_full_guided_route_closure.py'
       - 'tests/test_v083_full_guided_e2e.py'
+      - 'tests/test_v084_thermal_visualization.py'
       - 'data/**'
       - 'normative_graph/**'
       - '.github/workflows/streamlit-validation.yml'
@@ -94,6 +97,7 @@ on:
       - 'streamlit_guided_ux_v081.py'
       - 'streamlit_guided_ux_v082.py'
       - 'streamlit_guided_ux_v083.py'
+      - 'streamlit_guided_ux_v084.py'
       - 'streamlit_graphic_selectors.py'
       - 'streamlit_graphic_selectors_v072.py'
       - 'streamlit_graphic_selectors_v079.py'
@@ -131,6 +135,7 @@ on:
       - 'tests/test_v081_end_to_end_consistency.py'
       - 'tests/test_sp16_mech7_v082_full_guided_route_closure.py'
       - 'tests/test_v083_full_guided_e2e.py'
+      - 'tests/test_v084_thermal_visualization.py'
       - 'data/**'
       - 'normative_graph/**'
       - '.github/workflows/streamlit-validation.yml'
@@ -167,6 +172,7 @@ jobs:
           streamlit_guided_ux_v081.py
           streamlit_guided_ux_v082.py
           streamlit_guided_ux_v083.py
+          streamlit_guided_ux_v084.py
           streamlit_graphic_selectors.py
           streamlit_graphic_selectors_v072.py
           streamlit_graphic_selectors_v079.py
@@ -192,6 +198,11 @@ jobs:
           standard_core/sp16_mech7_v082_runtime.py
           standard_core/sp16_mech7_v083_full_route_overlay.py
           standard_core/sp16_mech7_v083_runtime.py
+          standard_core/sp16_mech7_v084_thermal_visual_overlay.py
+          standard_core/sp16_mech7_v084_thermal_visual_runtime.py
+          standard_core/fire_sp554_thermal_v084.py
+          standard_core/fire_sp554_thermal.py
+          standard_core/fire_ui23_protection_route.py
           standard_core/report_ir.py
           standard_core/report_ir2.py
           standard_core/report_ir4.py
@@ -233,6 +244,12 @@ jobs:
         run: python -m pytest -q tests/test_sp16_mech7_v082_full_guided_route_closure.py
       - name: v0.83 full guided end-to-end regression
         run: python -m pytest -q tests/test_v083_full_guided_e2e.py
+      - name: v0.84 thermal visualization and FVM regression
+        run: >-
+          python -m pytest -q
+          tests/test_v084_thermal_visualization.py
+          tests/test_fire_d3_sp554_thermal.py
+          tests/test_fire_ui23_protection_route_closure.py
       - name: Re-run existing FIRE-UI regression
         run: python -m pytest -q tests/test_fire_ui1_frontend.py tests/test_fire_ui1_public_http.py
       - name: Boot real Streamlit server
