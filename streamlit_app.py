@@ -7,17 +7,17 @@ layers plus the qualified guided-runtime integration adapter.
 
 import streamlit as _streamlit
 import streamlit_app_core as _core
-from streamlit_graphic_selectors_v072 import install as _install_graphic_selectors
+from streamlit_graphic_selectors_v079 import install as _install_graphic_selectors
 from streamlit_mobile_ux import install as _install_mobile_ux
 from streamlit_navigation import install as _install_navigation
 from streamlit_report_ui import install as _install_report_ui
 from streamlit_report_summary import install as _install_report_summary
-from streamlit_guided_ux_v078 import install as _install_guided_ux
+from streamlit_guided_ux_v079 import install as _install_guided_ux
 
 # Presentation adapters use the same Streamlit module object as the core UI.
-# v0.78 preserves the v0.77 retained-session safeguards and inserts one explicit
-# SP16 Table-1 working-condition classification before compression verification;
-# gamma_c is never inferred or silently defaulted.
+# v0.79 retains compatible answers across the v0.78 gamma_c insertion, retires
+# duplicate legacy L/mu/Table-30 guided authoring, renders explicit string
+# decisions as dropdowns and keeps the Table-1 working-condition step explicit.
 _core._st = lambda: _streamlit
 
 _install_graphic_selectors(_core)
