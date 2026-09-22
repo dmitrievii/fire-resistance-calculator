@@ -44,7 +44,7 @@ def test_v080_retires_legacy_scalar_lambda_without_axis_alias():
     excluded = set(model.presentation_policy.get("guided_excluded_nodes") or [])
     assert "SP16_C_LAMBDA" in excluded
 
-    # The replacement contract remains explicitly two-axis.  v0.80 must not
+    # The replacement contract remains explicitly two-axis. v0.80 must not
     # collapse either canonical axis back into the old scalar l_eff contract.
     state = model.nodes[STATE_NODE_ID]
     produced = {row.get("quantity_id") for row in state.get("produces", [])}
@@ -72,6 +72,15 @@ def test_v080_reuses_only_exact_previous_table1_case():
     assert exact.submitted[0][0] == case_id
     assert exact.submitted[0][1]["rule"] == "exact reuse only; no inference from numeric gamma_c"
 
+    # Migration may reach a new question before replay gets back to the old
+    # Table-1 row. Retain the exact user-authored case id without injecting it
+    # into quantity state early; consume it only when the same node is reached.
+    retained = FakeSession({"gamma_c_compression": 0.95})
+    setattr(retained, "_v080_retained_gamma_c_case_id", case_id)
+    assert _reuse_gamma_c_case(retained) is True
+    assert retained.submitted[0][0] == case_id
+    assert not hasattr(retained, "_v080_retained_gamma_c_case_id")
+
     # A numeric gamma alone is not a unique normative classification and must
     # never be reverse-mapped to a Table-1 case.
     numeric_only = FakeSession({"gamma_c_compression": 0.95})
@@ -89,4 +98,4 @@ def test_v080_entrypoint_preserves_v079_installer_chain():
     assert "from streamlit_guided_ux_v080 import install as _install_guided_ux" in entrypoint
     assert "import streamlit_guided_ux_v079 as _v079" in v080
     assert "_v079.install(core)" in v080
-    assert "resolve_gamma_c_compression(case_id)" in v080
+    assert "resolve_gamma_c_compression(value)" in v080
