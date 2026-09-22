@@ -165,7 +165,8 @@ def test_v077_mobile_header_has_no_forced_white_dark_mode_fallback():
 
 def test_v077_layer_remains_in_descendant_installer_chain():
     entrypoint = (ROOT / "streamlit_app.py").read_text(encoding="utf-8")
-    descendant = (ROOT / "streamlit_guided_ux_v078.py").read_text(encoding="utf-8")
-    assert "from streamlit_guided_ux_v078 import install as _install_guided_ux" in entrypoint
+    descendant = (ROOT / "streamlit_guided_ux_v079.py").read_text(encoding="utf-8")
+    assert "from streamlit_guided_ux_v079 import install as _install_guided_ux" in entrypoint
     assert "import streamlit_guided_ux_v077 as _v077" in descendant
     assert "_v077.install(core)" in descendant
+    assert "_v078_ui.install(core)" not in descendant
