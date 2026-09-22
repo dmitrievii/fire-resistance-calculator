@@ -1,9 +1,9 @@
 """v0.90 REPORT4 refinement for critical-temperature and thermal sections.
 
-Presentation only.  All temperatures, fire-resistance times and validation
-verdicts are read from executed REPORT-IR5/runtime evidence.  The module removes
+Presentation only. All temperatures, fire-resistance times and validation
+verdicts are read from executed REPORT-IR5/runtime evidence. The module removes
 raw Python helper calls from the main report and presents the same evidence as an
-engineering calculation.  It never derives a new normative PASS/FAIL verdict.
+engineering calculation. It never derives a new normative PASS/FAIL verdict.
 """
 from __future__ import annotations
 
@@ -150,7 +150,7 @@ def _critical_temperature_section(report: Mapping[str, Any]) -> list[str]:
                 "#### По критерию прочности",
                 "",
                 f"Требуемому коэффициенту **$γ_T={_fmt(gt)}$** по приложению Б соответствует критическая температура "
-                f"**$T_{{cr,T}}={_fmt(t_strength)}\,{{^\circ}}\mathrm{{C}}$**.",
+                f"**$T_{{cr,T}}={_fmt(t_strength)}$ °C**.",
                 "",
             ])
         else:
@@ -168,7 +168,7 @@ def _critical_temperature_section(report: Mapping[str, Any]) -> list[str]:
                 "#### По критерию устойчивости",
                 "",
                 f"Требуемому коэффициенту **$γ_e={_fmt(ge)}$** по температурной зависимости модуля упругости соответствует "
-                f"**$T_{{cr,e}}={_fmt(t_modulus)}\,{{^\circ}}\mathrm{{C}}$**.",
+                f"**$T_{{cr,e}}={_fmt(t_modulus)}$ °C**.",
                 "",
             ])
         elif modulus is None:
@@ -194,7 +194,7 @@ def _critical_temperature_section(report: Mapping[str, Any]) -> list[str]:
             "",
             f"Определяющим является **{branch_text}**. Для дальнейшего теплотехнического расчёта принято:",
             "",
-            f"$$ T_{{cr}}={_fmt(tcr)}\,{{^\circ}}\mathrm{{C}} $$",
+            f"**$T_{{cr}}={_fmt(tcr)}$ °C**",
             "",
             "Именно достижение этой температуры сталью используется как момент наступления предельного состояния "
             "при последующем расчёте прогрева.",
@@ -204,7 +204,8 @@ def _critical_temperature_section(report: Mapping[str, Any]) -> list[str]:
         lines.extend([
             "#### Принятая критическая температура",
             "",
-            "**PENDING:** механический runtime ещё не сформировал точную критическую температуру; теплотехнический результат не считается завершённым.",
+            "**PENDING:** механический runtime ещё не сформировал точную критическую температуру; "
+            "теплотехнический результат не считается завершённым.",
             "",
         ])
     lines.extend([
@@ -338,8 +339,8 @@ def _thermal_section(report: Mapping[str, Any]) -> list[str]:
             "",
         ])
     lines.extend([
-        "*Нормативное основание: СП 554.1311500.2026, пп. 12.1–12.4, в том числе формула (12.2); ГОСТ 30247.0-94, п. 6.1, формула (1).*
-",
+        "*Нормативное основание: СП 554.1311500.2026, пп. 12.1–12.4, в том числе формула (12.2); ГОСТ 30247.0-94, п. 6.1, формула (1).*",
+        "",
     ])
 
     lines.extend(["### 5.2 Защищённый элемент", ""])
