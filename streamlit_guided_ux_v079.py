@@ -165,6 +165,38 @@ def _consume_retained_history(session: GuidedCalculationSession) -> None:
     setattr(session, _RETAINED_ATTR, retained)
 
 
+def _render_string_decision_selectbox(core: Any, card: Mapping[str, Any], old_payload: Any, mode_key: str):
+    """Render decision options as a selectbox even when the quantity type is string.
+
+    The frozen FIRE load-case decision uses data_type=string but declares an
+    explicit decision option set.  The generic renderer previously treated that
+    as free text.  Decision options are authoritative regardless of scalar dtype.
+    """
+    fields = list(card.get("fields") or [])
+    options = list(card.get("options") or [])
+    if card.get("node_type") != "decision" or len(fields) != 1 or not options:
+        return None
+    if fields[0].get("data_type") not in {"string", "text"}:
+        return None
+
+    st = core._st()
+    values = [row.get("value") for row in options]
+    labels = {row.get("value"): str(row.get("label") or row.get("value")) for row in options}
+    descriptions = {row.get("value"): str(row.get("description") or "") for row in options}
+    current = old_payload if old_payload in values else None
+    selected = st.selectbox(
+        fields[0].get("label") or "Вариант",
+        values,
+        index=values.index(current) if current in values else None,
+        placeholder="— выберите —",
+        format_func=lambda value: labels.get(value, str(value)),
+        key=core._key(mode_key, card["node_id"], fields[0].get("quantity_id") or "decision"),
+    )
+    if selected is not None and descriptions.get(selected):
+        st.caption(descriptions[selected])
+    return selected, None, selected is not None
+
+
 def install(core: Any) -> None:
     """Install v0.77 base UX and own the v0.78->v0.79 migration transactionally."""
     # Deliberately do not call v0.78.install(): its prefix-only migration is the
@@ -220,6 +252,10 @@ def install(core: Any) -> None:
                 "и повторно на этом шаге не задаются."
             )
             return _v078_ui._render_gamma_c_editor(core, card, old_payload, mode_key)
+
+        decision = _render_string_decision_selectbox(core, card, old_payload, mode_key)
+        if decision is not None:
+            return decision
         return previous_render_card_body(app, sid, env, card, old_payload, old_provenance, mode_key)
 
     core._new_application = _new_application
@@ -231,6 +267,7 @@ def install(core: Any) -> None:
 __all__ = [
     "_consume_retained_history",
     "_known_member_length_mm",
+    "_render_string_decision_selectbox",
     "_reuse_member_length_context",
     "_semantic_replay",
     "install",
