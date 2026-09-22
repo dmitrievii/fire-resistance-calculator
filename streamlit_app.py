@@ -12,12 +12,13 @@ from streamlit_mobile_ux import install as _install_mobile_ux
 from streamlit_navigation import install as _install_navigation
 from streamlit_report_ui import install as _install_report_ui
 from streamlit_report_summary import install as _install_report_summary
-from streamlit_guided_ux_v081 import install as _install_guided_ux
+from streamlit_guided_ux_v082 import install as _install_guided_ux
 
 # Presentation adapters use the same Streamlit module object as the core UI.
-# v0.81 retains all v0.79/v0.80 session and selector fixes, retires the complete
-# obsolete scalar effective-length/stability chain, and hands the governing
-# canonical z/y SP16 stability tuple to the locked scalar SP554 consumer.
+# v0.82 retains the cumulative v0.81 canonical z/y stability handoff, moves the
+# signed ambient bimoment into the ordinary-design load card, defaults the fire
+# load choice to exact ambient inheritance, reuses an exact prior SP16 Table-1
+# classification, and calculates SP554 8.6 gamma_e without a fallback value.
 _core._st = lambda: _streamlit
 
 _install_graphic_selectors(_core)
