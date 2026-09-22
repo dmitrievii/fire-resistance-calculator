@@ -17,6 +17,7 @@ from streamlit_expertise_report_v088 import install as _install_expertise_report
 from streamlit_expertise_report_v089 import install as _install_expertise_narrative
 from streamlit_expertise_report_v090_install import install as _install_expertise_mech9
 from streamlit_mech9_v090 import install as _install_mech9_ux
+from streamlit_ui_polish_v090 import install as _install_ui_polish_v090
 # Legacy installer-chain marker retained for cumulative v0.77-v0.81 regression:
 # from streamlit_guided_ux_v081 import install as _install_guided_ux
 from streamlit_guided_ux_v086 import install as _install_guided_ux
@@ -32,6 +33,9 @@ _install_navigation(_core)
 _install_report_ui(_core)
 _install_report_summary(_core)
 _install_guided_ux(_core)
+# v0.90 presentation polish is deliberately installed after v0.86 so the final
+# selector feedback and thermal-series styles are the active UI behavior.
+_install_ui_polish_v090(_core)
 # v0.90 MECH9 UX overlays the cumulative v0.86 guided application after all
 # prior graph/runtime upgrades so both fresh and retained sessions receive it.
 _install_mech9_ux(_core)
