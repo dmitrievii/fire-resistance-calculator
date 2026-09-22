@@ -14,11 +14,11 @@ from streamlit_report_ui import install as _install_report_ui
 from streamlit_report_summary import install as _install_report_summary
 # Legacy installer-chain marker retained for cumulative v0.77-v0.81 regression:
 # from streamlit_guided_ux_v081 import install as _install_guided_ux
-from streamlit_guided_ux_v085 import install as _install_guided_ux
+from streamlit_guided_ux_v086 import install as _install_guided_ux
 
 # Presentation adapters use the same Streamlit module object as the core UI.
-# v0.85 retains v0.83 and adds calculated unprotected-heating diagrams, combined
-# fire-regime/T0 authoring, thermal defaults and protected-member FVM visualizations.
+# v0.86 retains the cumulative v0.85 thermal route and adds protected-FVM legends,
+# five-minute time ticks, single-mesh interactive execution and robust bounded thickness search.
 _core._st = lambda: _streamlit
 
 _install_graphic_selectors(_core)
