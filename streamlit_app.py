@@ -14,13 +14,12 @@ from streamlit_report_ui import install as _install_report_ui
 from streamlit_report_summary import install as _install_report_summary
 # Legacy installer-chain marker retained for cumulative v0.77-v0.81 regression:
 # from streamlit_guided_ux_v081 import install as _install_guided_ux
-from streamlit_guided_ux_v082 import install as _install_guided_ux
+from streamlit_guided_ux_v083 import install as _install_guided_ux
 
 # Presentation adapters use the same Streamlit module object as the core UI.
-# v0.82 retains the cumulative v0.81 canonical z/y stability handoff, moves the
-# signed ambient bimoment into the ordinary-design load card, defaults the fire
-# load choice to exact ambient inheritance, reuses an exact prior SP16 Table-1
-# classification, and calculates SP554 8.6 gamma_e without a fallback value.
+# v0.83 retains v0.82 and closes the production central-compression route end-to-end:
+# deterministic defaults, no duplicate legacy Table-1/member-length authoring, and
+# an exact SP554 8.6 gamma_E_required handoff into FIRE-UI1.7.
 _core._st = lambda: _streamlit
 
 _install_graphic_selectors(_core)
