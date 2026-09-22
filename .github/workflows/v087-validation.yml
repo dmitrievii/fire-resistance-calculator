@@ -1,0 +1,62 @@
+name: V087 LIVE-REPORT1 validation
+
+on:
+  push:
+    branches:
+      - 'feature/v0.87-*'
+  workflow_dispatch:
+
+jobs:
+  live-report1-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install runtime and tests
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt pytest
+      - name: Compile LIVE-REPORT1 layers
+        run: >-
+          python -m py_compile
+          streamlit_app.py
+          streamlit_live_report_v087.py
+          streamlit_report_ui.py
+          streamlit_report_ui_impl.py
+          streamlit_report_summary.py
+          standard_core/report_ir5.py
+          standard_core/report_equations.py
+          standard_core/report_markdown.py
+      - name: v0.87 LIVE-REPORT1 focused regression
+        run: >-
+          python -m pytest -q
+          tests/test_v087_live_report1.py
+          tests/test_report_ir5.py
+          tests/test_report_markdown.py
+          tests/test_report_readiness.py
+      - name: Retained Streamlit UI regression
+        run: >-
+          python -m pytest -q
+          tests/test_streamlit_ui.py
+          tests/test_streamlit_guided_ux.py
+          tests/test_v086_fvm_ux_search.py
+      - name: Existing FIRE-UI regression
+        run: python -m pytest -q tests/test_fire_ui1_frontend.py tests/test_fire_ui1_public_http.py
+      - name: Boot real Streamlit server
+        shell: bash
+        run: |
+          set -euo pipefail
+          streamlit run streamlit_app.py --server.headless true --server.address 127.0.0.1 --server.port 8501 >/tmp/fire-streamlit-v087.log 2>&1 &
+          pid=$!
+          trap 'kill $pid 2>/dev/null || true' EXIT
+          for i in $(seq 1 45); do
+            if curl --fail --silent http://127.0.0.1:8501/_stcore/health >/tmp/health-v087.txt; then
+              cat /tmp/health-v087.txt
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/fire-streamlit-v087.log
+          exit 1
