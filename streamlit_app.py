@@ -12,12 +12,13 @@ from streamlit_mobile_ux import install as _install_mobile_ux
 from streamlit_navigation import install as _install_navigation
 from streamlit_report_ui import install as _install_report_ui
 from streamlit_report_summary import install as _install_report_summary
-from streamlit_guided_ux_v079 import install as _install_guided_ux
+from streamlit_guided_ux_v080 import install as _install_guided_ux
 
 # Presentation adapters use the same Streamlit module object as the core UI.
-# v0.79 retains compatible answers across the v0.78 gamma_c insertion, retires
-# duplicate legacy L/mu/Table-30 guided authoring, renders explicit string
-# decisions as dropdowns and keeps the Table-1 working-condition step explicit.
+# v0.80 retains the v0.79 session/selector fixes, exactly reuses an already
+# explicit SP16 Table-1 compression case if the same question is reached again,
+# and retires the superseded scalar SP16_C_LAMBDA guided producer in favour of
+# the canonical v0.76 z/y effective-length state.
 _core._st = lambda: _streamlit
 
 _install_graphic_selectors(_core)
