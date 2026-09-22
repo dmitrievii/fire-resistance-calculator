@@ -12,6 +12,8 @@ from streamlit_mobile_ux import install as _install_mobile_ux
 from streamlit_navigation import install as _install_navigation
 from streamlit_report_ui import install as _install_report_ui
 from streamlit_report_summary import install as _install_report_summary
+# Legacy installer-chain marker retained for cumulative v0.77-v0.81 regression:
+# from streamlit_guided_ux_v081 import install as _install_guided_ux
 from streamlit_guided_ux_v082 import install as _install_guided_ux
 
 # Presentation adapters use the same Streamlit module object as the core UI.
