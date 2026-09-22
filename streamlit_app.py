@@ -15,7 +15,7 @@ from streamlit_report_summary import install as _install_report_summary
 from streamlit_live_report_v087 import install as _install_live_report
 from streamlit_expertise_report_v088 import install as _install_expertise_report
 from streamlit_expertise_report_v089 import install as _install_expertise_narrative
-from streamlit_expertise_report_v090 import install as _install_expertise_mech9
+from streamlit_expertise_report_v090_install import install as _install_expertise_mech9
 from streamlit_mech9_v090 import install as _install_mech9_ux
 # Legacy installer-chain marker retained for cumulative v0.77-v0.81 regression:
 # from streamlit_guided_ux_v081 import install as _install_guided_ux
@@ -41,7 +41,7 @@ _install_live_report(_core)
 _install_expertise_report(_core)
 # v0.89 REPORT3 is retained as the semantic narrative base.
 _install_expertise_narrative(_core)
-# v0.90 REPORT4 is installed last and adds executed N9/N10 evidence to section 3.
+# v0.90 REPORT4 is installed last as an isolated renderer; it does not mutate v0.89.
 _install_expertise_mech9(_core)
 
 # Re-export the core module API so tests and deployment tooling keep using the
