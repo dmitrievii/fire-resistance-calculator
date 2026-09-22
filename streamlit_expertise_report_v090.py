@@ -1,14 +1,15 @@
 """v0.90 REPORT4: expose MECH9 / N9 / N10 evidence in the expertise report.
 
-Presentation only.  Every numerical value rendered here comes from REPORT-IR5
+Presentation only. Every numerical result rendered here comes from REPORT-IR5
 rows or the already executed MECH9 evidence bundle; this module evaluates no
-SP16 equation and does not infer PASS/FAIL from numbers.
+SP16 equation and does not infer PASS/FAIL from numerical comparisons.
 """
 from __future__ import annotations
 
 from typing import Any, Mapping
 
 import streamlit_expertise_report_v089 as _v089
+from standard_core.sp16_mech9_v090_ux_overlay import _ANNEX_K_LABELS
 
 _INSTALLED = "_fire_expertise_report_v090_installed"
 _BASE_SECTION_SP16 = _v089._section_sp16
@@ -45,8 +46,7 @@ def _evidence_bundle(report: Mapping[str, Any]) -> Mapping[str, Any]:
 
 
 def _required(report: Mapping[str, Any], qid: str) -> bool | None:
-    hit = _v089._find_row(report, qids=(qid,))
-    raw = _v089._row_raw(hit)
+    raw = _v089._row_raw(_v089._find_row(report, qids=(qid,)))
     return raw if isinstance(raw, bool) else None
 
 
@@ -69,21 +69,15 @@ def _fatigue_section(report: Mapping[str, Any], evidence: Mapping[str, Any]) -> 
     lines = ["### 3.3 Усталость, раздел 12 СП 16", ""]
     required = _required(report, "sp16_mech7_fatigue_required")
     if required is False:
-        lines.extend([
-            "По принятой классификации отдельная проверка усталости раздела 12 для данного расчётного случая **не требуется**.",
-            "",
-        ])
-        return lines
+        return lines + ["По принятой классификации отдельная проверка усталости раздела 12 для данного расчётного случая **не требуется**.", ""]
 
     row = evidence.get("fatigue") if isinstance(evidence.get("fatigue"), Mapping) else None
     if row is None:
-        lines.extend(["Проверка усталости требуется, но исполнимое evidence N9 в текущем расчёте ещё не сформировано.", ""])
-        return lines
+        return lines + ["Проверка усталости требуется, но исполнимое evidence N9 в текущем расчёте ещё не сформировано.", ""]
 
     details = row.get("details") if isinstance(row.get("details"), Mapping) else {}
     n9 = details.get("n9_result") if isinstance(details.get("n9_result"), Mapping) else {}
     general = n9.get("general_fatigue_check") if isinstance(n9.get("general_fatigue_check"), Mapping) else {}
-
     lines.extend([f"**Статус N9:** {_status_text(row)}.", ""])
     if row.get("reason"):
         lines.extend([f"Причина/ограничение: {row['reason']}.", ""])
@@ -93,8 +87,7 @@ def _fatigue_section(report: Mapping[str, Any], evidence: Mapping[str, Any]) -> 
     sigma_min = _input(report, "sp16_mech9_fatigue_sigma_min")
     case_id = general.get("annex_k_case_id") or _input(report, "sp16_mech9_fatigue_annex_k_case_id")
     if any(v is not None for v in (cycles, sigma_max, sigma_min, case_id)):
-        lines.append("Исходные данные активной ветви:")
-        lines.append("")
+        lines.extend(["Исходные данные активной ветви:", ""])
         if cycles is not None:
             lines.append(f"- число циклов $n$ = **{_num(cycles)}**;")
         if sigma_max is not None:
@@ -102,7 +95,7 @@ def _fatigue_section(report: Mapping[str, Any], evidence: Mapping[str, Any]) -> 
         if sigma_min is not None:
             lines.append(f"- $σ_{{min}}$ = **{_num(sigma_min)} МПа**;")
         if case_id is not None:
-            lines.append(f"- случай приложения К, таблицы К.1: **{case_id}**.")
+            lines.append(f"- случай приложения К, таблицы К.1: **{_ANNEX_K_LABELS.get(str(case_id), str(case_id))}**.")
         lines.append("")
 
     if general:
@@ -113,27 +106,20 @@ def _fatigue_section(report: Mapping[str, Any], evidence: Mapping[str, Any]) -> 
         gamma_v = general.get("table_36_asymmetry_factor_gamma_v")
         eta = general.get("equation_170_utilization")
         lines.extend([
-            f"По приложению К определена группа элемента **{_num(group)}**; по таблице 35 $R_v$ = **{_num(rv)} МПа**.",
-            "",
-            f"Коэффициент числа циклов $α$ = **{_num(alpha)}**; отношение асимметрии $ρ=σ_{{min}}/σ_{{max}}$ = **{_num(rho)}**; по таблице 36 $γ_v$ = **{_num(gamma_v)}**.",
-            "",
-            "Проверка по формуле (170):",
-            "",
-            "$$ \\eta_{170}=\\frac{|\\sigma_{max}|}{\\alpha R_v \\gamma_v} \\le 1.0 $$",
-            "",
+            f"По приложению К определена группа элемента **{_num(group)}**; по таблице 35 $R_v$ = **{_num(rv)} МПа**.", "",
+            f"Коэффициент числа циклов $α$ = **{_num(alpha)}**; отношение асимметрии $ρ=σ_{{min}}/σ_{{max}}$ = **{_num(rho)}**; по таблице 36 $γ_v$ = **{_num(gamma_v)}**.", "",
+            "Проверка по формуле (170):", "",
+            "$$ \\eta_{170}=\\frac{|\\sigma_{max}|}{\\alpha R_v \\gamma_v} \\le 1.0 $$", "",
         ])
         if all(v is not None for v in (sigma_max, alpha, rv, gamma_v, eta)):
             lines.extend([
-                f"Подстановка значений выполненного N9: $|σ_{{max}}|={_num(abs(float(sigma_max)))}$ МПа; $α={_num(alpha)}$; $R_v={_num(rv)}$ МПа; $γ_v={_num(gamma_v)}$; результат runtime $η_{{170}}$ = **{_num(eta)}**.",
-                "",
+                f"В выполненном N9 использованы $σ_{{max}}={_num(sigma_max)}$ МПа, $α={_num(alpha)}$, $R_v={_num(rv)}$ МПа и $γ_v={_num(gamma_v)}$; сохранённый результат runtime $η_{{170}}$ = **{_num(eta)}**.", "",
             ])
         cap = general.get("fatigue_resistance_cap_check")
         if isinstance(cap, Mapping):
-            cap_u = cap.get("cap_utilization")
             cap_pass = cap.get("pass")
             lines.extend([
-                f"Дополнительное ограничение п. 12.1.2 $αR_vγ_v \le R_u/γ_u$: коэффициент использования **{_num(cap_u)}**, результат **{'PASS' if cap_pass is True else 'FAIL' if cap_pass is False else '—'}**.",
-                "",
+                f"Дополнительное ограничение п. 12.1.2 $αR_vγ_v ≤ R_u/γ_u$: коэффициент использования **{_num(cap.get('cap_utilization'))}**, результат **{'PASS' if cap_pass is True else 'FAIL' if cap_pass is False else '—'}**.", "",
             ])
         if row.get("utilization") is not None:
             lines.extend([f"Определяющий коэффициент использования N9: **{_num(row.get('utilization'))}**.", ""])
@@ -145,16 +131,11 @@ def _brittle_section(report: Mapping[str, Any], evidence: Mapping[str, Any]) -> 
     lines = ["### 3.4 Требования раздела 13 и ламеллярное разрушение", ""]
     required = _required(report, "sp16_mech7_brittle_required")
     if required is False:
-        lines.extend([
-            "По принятой классификации отдельная проверка требований раздела 13 для данного расчётного случая **не требуется**.",
-            "",
-        ])
-        return lines
+        return lines + ["По принятой классификации отдельная проверка требований раздела 13 для данного расчётного случая **не требуется**.", ""]
 
     row = evidence.get("brittle_fracture") if isinstance(evidence.get("brittle_fracture"), Mapping) else None
     if row is None:
-        lines.extend(["Проверка раздела 13 требуется, но исполнимое evidence N10 в текущем расчёте ещё не сформировано.", ""])
-        return lines
+        return lines + ["Проверка раздела 13 требуется, но исполнимое evidence N10 в текущем расчёте ещё не сформировано.", ""]
 
     details = row.get("details") if isinstance(row.get("details"), Mapping) else {}
     n10 = details.get("n10_result") if isinstance(details.get("n10_result"), Mapping) else {}
@@ -182,32 +163,23 @@ def _brittle_section(report: Mapping[str, Any], evidence: Mapping[str, Any]) -> 
     lam = n10.get("lamellar_tearing") if isinstance(n10.get("lamellar_tearing"), Mapping) else None
     if lam is not None:
         if lam.get("required") is False:
-            lines.extend([
-                "По подтверждённому screening §13.3 отдельный расчёт ламеллярного разрушения **не требуется**.",
-                "",
-            ])
+            lines.extend(["По подтверждённому screening §13.3 отдельный расчёт ламеллярного разрушения **не требуется**.", ""])
         elif lam.get("required") is True:
             lines.extend(["**Ламеллярное разрушение, §13.3–13.5**", ""])
             factors = lam.get("table_37_factors_percent") if isinstance(lam.get("table_37_factors_percent"), Mapping) else {}
             if factors:
                 lines.extend([
-                    "Коэффициенты риска по таблице 37 из выполненного N10:",
-                    "",
-                    ";  ".join(f"${k}$ = **{_num(v)} %**" for k, v in factors.items()) + ".",
-                    "",
-                    "Формула (174) представлена в отчёте без повторного вычисления presentation-слоем:",
-                    "",
-                    "$$ \\psi_z=\\psi_{zf}+\\psi_{zt}+\\psi_{zsh}+\\psi_{zj}+\\psi_{zs} $$",
-                    "",
-                    f"Результат Eq.(174) из runtime: **{_num(lam.get('equation_174_base_risk_percent'))} %**; после применимого воздействия по толщине: **{_num(lam.get('adjusted_risk_percent'))} %**.",
-                    "",
+                    "Коэффициенты риска по таблице 37 из выполненного N10:", "",
+                    ";  ".join(f"${k}$ = **{_num(v)} %**" for k, v in factors.items()) + ".", "",
+                    "Формула (174) представлена в отчёте без повторного вычисления presentation-слоем:", "",
+                    "$$ \\psi_z=\\psi_{zf}+\\psi_{zt}+\\psi_{zsh}+\\psi_{zj}+\\psi_{zs} $$", "",
+                    f"Результат Eq.(174) из runtime: **{_num(lam.get('equation_174_base_risk_percent'))} %**; после применимого воздействия по толщине: **{_num(lam.get('adjusted_risk_percent'))} %**.", "",
                 ])
             required_z = lam.get("required_z_quality_group")
             selected_z = lam.get("selected_z_quality_group")
             if required_z is not None or selected_z is not None:
                 lines.extend([
-                    f"Требуемая Z-группа: **{_num(required_z)}**; принятая по сертификату: **{_num(selected_z)}**; достаточность группы: **{'PASS' if lam.get('selected_quality_meets_minimum_group') is True else 'FAIL' if lam.get('selected_quality_meets_minimum_group') is False else '—'}**.",
-                    "",
+                    f"Требуемая Z-группа: **{_num(required_z)}**; принятая по сертификату: **{_num(selected_z)}**; достаточность группы: **{'PASS' if lam.get('selected_quality_meets_minimum_group') is True else 'FAIL' if lam.get('selected_quality_meets_minimum_group') is False else '—'}**.", "",
                 ])
             if lam.get("governing_utilization") is not None:
                 lines.extend([f"Определяющий коэффициент использования проверки ламеллярного разрушения: **{_num(lam.get('governing_utilization'))}**.", ""])

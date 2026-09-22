@@ -84,7 +84,7 @@ def _report(values):
     }
 
 
-def test_v090_fatigue_report_exposes_executed_n9_values():
+def test_v090_fatigue_report_exposes_executed_n9_values_and_localized_case():
     report = _report({
         "sp16_mech7_fatigue_required": True,
         "sp16_mech9_fatigue_load_cycles": 1_000_000,
@@ -115,7 +115,9 @@ def test_v090_fatigue_report_exposes_executed_n9_values():
     text = "\n".join(_fatigue_section(report, evidence))
     assert "формуле (170)" in text
     assert "коэффициент использования N9" in text
-    assert "приложения К" in text
+    assert "По приложению К" in text
+    assert "фрикционное соединение" in text
+    assert "K1-03-FRICTION_CONNECTION" not in text
     assert "PASS" in text
 
 
@@ -156,5 +158,5 @@ def test_v090_section13_report_shows_only_applicable_checks_and_lamellar_result(
     text = "\n".join(_brittle_section(report, evidence))
     assert "Исключение пересечений сварных швов" in text
     assert "Минимальная толщина при гильотинной" not in text
-    assert "формула (174)" in text
+    assert "Формула (174)" in text
     assert "Z15" in text and "Z25" in text
