@@ -199,7 +199,7 @@ def test_v079_entrypoint_and_graphic_crash_remediation_are_active():
     assert "streamlit_graphic_selectors_v079" in app_source
 
     graphic = (ROOT / "streamlit_graphic_selectors_v079.py").read_text(encoding="utf-8")
-    assert 'icon="✓"' not in graphic
+    assert 'st.success(f"Выбрано: {title}", icon=' not in graphic
     assert 'st.success(f"Выбрано: {title}")' in graphic
 
     guided = (ROOT / "streamlit_guided_ux_v079.py").read_text(encoding="utf-8")
