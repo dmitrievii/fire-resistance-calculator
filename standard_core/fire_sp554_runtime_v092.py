@@ -21,6 +21,7 @@ translation.
 """
 from __future__ import annotations
 
+import copy
 from typing import Any, Mapping
 
 from . import fire_sp554_runtime as _runtime
@@ -28,10 +29,17 @@ from .fire_sp554_runtime_v091 import (
     GAMMA_CT,
     SP16_STEEL_E_N_MM2,
     SP16_STEEL_E_NORMATIVE_BASIS,
+    _number_from_values,
 )
 
 
 GAMMA_CT_NORMATIVE_BASIS = "SP 554.1311500.2026 §8.1"
+TENSION_NODE_ID = "SP554_C_9_1"
+TENSION_TRACE_QID = "sp554_9_1_central_tension_trace"
+TENSION_TRACE_SCHEMA = "sp554_v092_central_tension_trace_v1"
+TENSION_FORMULA_ID = "SP554_9_1_GAMMA_T_FINAL"
+TENSION_EXPRESSION = "abs(N_force)/(A_net*fy_norm*1.1*gamma_c_tension)"
+TENSION_FORMULA_LATEX = r"\gamma_T=\frac{|N|}{A_n R_{yn}\gamma_{ct}\gamma_c}"
 CANONICAL_ACTION_CONTRACT = {
     "strong_axis_bending": "M_z",
     "weak_axis_bending": "M_y",
@@ -70,34 +78,136 @@ SP554_V092_ROUTE_CENSUS: dict[str, dict[str, Any]] = {
 }
 
 
+def _central_tension_trace(
+    *,
+    n_force_n: float,
+    area_net_mm2: float,
+    ryn_n_mm2: float,
+    gamma_c: float,
+    gamma_t: float,
+) -> dict[str, Any]:
+    """Build one typed §9.1 evidence object shared by standalone and guided routes."""
+    n_abs = abs(float(n_force_n))
+    area = float(area_net_mm2)
+    ryn = float(ryn_n_mm2)
+    gamma_c_value = float(gamma_c)
+    gamma_t_value = float(gamma_t)
+    return {
+        "schema": TENSION_TRACE_SCHEMA,
+        "route": "central_tension",
+        "standard": "SP 554.1311500.2026",
+        "clause": "9.1",
+        "formula_id": TENSION_FORMULA_ID,
+        "formula_latex": TENSION_FORMULA_LATEX,
+        "expression": TENSION_EXPRESSION,
+        "inputs": {
+            "N_force": {"value": float(n_force_n), "absolute_value": n_abs, "unit": "N"},
+            "A_net": {"value": area, "unit": "mm2"},
+            "fy_norm": {"value": ryn, "unit": "N/mm2"},
+            "gamma_ct": {
+                "value": GAMMA_CT,
+                "unit": "1",
+                "source": "mandatory_normative_constant",
+                "normative_basis": GAMMA_CT_NORMATIVE_BASIS,
+            },
+            "gamma_c_tension": {"value": gamma_c_value, "unit": "1"},
+        },
+        "substitution_latex": (
+            rf"\gamma_T=\frac{{|{float(n_force_n):.12g}|}}"
+            rf"{{{area:.12g}\cdot {ryn:.12g}\cdot {GAMMA_CT:.12g}\cdot {gamma_c_value:.12g}}}"
+        ),
+        "result": {
+            "quantity_id": "gamma_T_9_1",
+            "value": gamma_t_value,
+            "unit": "1",
+        },
+        "normative_basis": "final_SP554_8.1_and_9.1",
+        "report_contract": "formula_equals_substitution_equals_result",
+    }
+
+
 def _central_tension_final(
     case: Mapping[str, Any], route: Mapping[str, Any]
 ) -> tuple[list[dict[str, Any]], float | None, dict[str, Any]]:
     """Final SP554 §9.1 with mandatory gamma_ct=1.1."""
-    n = abs(_runtime._number(route, "N_n", positive=True))
+    n_signed = _runtime._number(route, "N_n")
+    n = abs(n_signed)
+    if n <= 0.0:
+        raise ValueError("N_n must be non-zero for SP554 §9.1 central tension")
     area = _runtime._number(route, "A_net_mm2", positive=True)
     ryn = _runtime._number(case, "fy_norm_n_mm2", positive=True)
     gamma_c = _runtime._number(route, "gamma_c", positive=True)
     gamma_t = n / (area * ryn * GAMMA_CT * gamma_c)
+    calculation_trace = _central_tension_trace(
+        n_force_n=n_signed,
+        area_net_mm2=area,
+        ryn_n_mm2=ryn,
+        gamma_c=gamma_c,
+        gamma_t=gamma_t,
+    )
     details = {
         "rule": "FINAL_SP554_9_1_WITH_MANDATORY_GAMMA_CT",
         "Ryn_n_mm2": float(ryn),
         "gamma_ct": GAMMA_CT,
         "gamma_ct_normative_basis": GAMMA_CT_NORMATIVE_BASIS,
         "gamma_c": float(gamma_c),
+        "calculation_trace": copy.deepcopy(calculation_trace),
         "legacy_user_gamma_ct_ignored": route.get("gamma_ct"),
     }
+    trace = copy.deepcopy(calculation_trace)
+    trace.update(
+        {
+            "Ryn_n_mm2": float(ryn),
+            "gamma_ct": GAMMA_CT,
+            "gamma_ct_normative_basis": GAMMA_CT_NORMATIVE_BASIS,
+            "gamma_c": float(gamma_c),
+            "legacy_user_gamma_ct_ignored": route.get("gamma_ct"),
+        }
+    )
     return [
         _runtime._strength_candidate("9.1", gamma_t, details)
-    ], None, {
-        "route": "central_tension",
-        "Ryn_n_mm2": float(ryn),
-        "gamma_ct": GAMMA_CT,
-        "gamma_ct_normative_basis": GAMMA_CT_NORMATIVE_BASIS,
-        "gamma_c": float(gamma_c),
-        "normative_basis": "final_SP554_8.1_and_9.1",
-        "legacy_user_gamma_ct_ignored": route.get("gamma_ct"),
-    }
+    ], None, trace
+
+
+def _central_tension_guided_final(
+    values: Mapping[str, Any], node: Mapping[str, Any] | None = None
+) -> Mapping[str, Any]:
+    """Final guided §9.1 producer using the same mandatory-γct equation as standalone."""
+    n_signed = _number_from_values(values, "N_force")
+    n = abs(n_signed)
+    if n <= 0.0:
+        raise ValueError("N_force must be non-zero for SP554 §9.1 central tension")
+    area = _number_from_values(values, "A_net", positive=True)
+    ryn = _number_from_values(values, "fy_norm", positive=True)
+    gamma_c = _number_from_values(values, "gamma_c_tension", positive=True)
+    gamma_t = n / (area * ryn * GAMMA_CT * gamma_c)
+    trace = _central_tension_trace(
+        n_force_n=n_signed,
+        area_net_mm2=area,
+        ryn_n_mm2=ryn,
+        gamma_c=gamma_c,
+        gamma_t=gamma_t,
+    )
+
+    declared: set[str] | None = None
+    if isinstance(node, Mapping) and node.get("produces"):
+        declared = {
+            str(row["quantity_id"])
+            for row in node.get("produces") or []
+            if isinstance(row, Mapping) and row.get("quantity_id")
+        }
+    result: dict[str, Any] = {}
+    if declared is None or "gamma_T_9_1" in declared:
+        result["gamma_T_9_1"] = float(gamma_t)
+    if declared is None or TENSION_TRACE_QID in declared:
+        result[TENSION_TRACE_QID] = trace
+    return result
+
+
+def install_guided_registry_remediation_v092(registry: Any) -> Any:
+    """Bind final-SP554 guided §9.1 to the same v0.92 producer used by standalone."""
+    registry.register(TENSION_NODE_ID, _central_tension_guided_final)
+    return registry
 
 
 def _finalize_central_tension(case: Mapping[str, Any]) -> dict[str, Any]:
@@ -217,7 +327,16 @@ __all__ = [
     "CANONICAL_ACTION_CONTRACT",
     "GAMMA_CT_NORMATIVE_BASIS",
     "SP554_V092_ROUTE_CENSUS",
+    "TENSION_EXPRESSION",
+    "TENSION_FORMULA_ID",
+    "TENSION_FORMULA_LATEX",
+    "TENSION_NODE_ID",
+    "TENSION_TRACE_QID",
+    "TENSION_TRACE_SCHEMA",
     "_central_tension_final",
+    "_central_tension_guided_final",
+    "_central_tension_trace",
     "install",
+    "install_guided_registry_remediation_v092",
     "sp554_fire_mechanical_guided_workflow_v092",
 ]
