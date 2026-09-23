@@ -1,8 +1,10 @@
-"""Isolated installer for v0.90 REPORT4 with v0.91 SP554 refinement.
+"""Isolated installer for v0.90 REPORT4 with v0.91/v0.92 SP554 refinement.
 
 The v0.90 narrative renderer is installed into ``streamlit_app_core`` without
 mutating the retained v0.89 module.  v0.91 adds presentation-only final-SP554
-§9.2 governing-axis evidence while keeping the same REPORT-IR5 source.
+§9.2 governing-axis evidence.  v0.92 reconciles the active §9.1 report formula
+with the mandatory-gamma_ct runtime trace while preserving the frozen DAG and
+its historical sidecar for audit reproducibility.
 """
 from __future__ import annotations
 
@@ -12,7 +14,7 @@ from typing import Any, Mapping
 import streamlit_expertise_report_v088 as _v088
 import streamlit_expertise_report_v089 as _v089
 import streamlit_live_report_v087 as _v087
-from standard_core.report_ir5 import build_report_ir5
+from standard_core.report_ir_v092 import build_report_ir_v092
 from streamlit_expertise_report_v091 import render_expertise_narrative_markdown_v091
 
 _INSTALLED = "_fire_expertise_report_v090_isolated_installed"
@@ -39,7 +41,7 @@ def _render_export(core: Any, report: Mapping[str, Any]) -> None:
         on_click="ignore",
         key="fire:expertise-report-v090:download:ir",
     )
-    st.caption("Экранный и Markdown-отчёт строятся из одного REPORT-IR5. Численные результаты не пересчитываются presentation-слоем.")
+    st.caption("Экранный и Markdown-отчёт строятся из одного REPORT-IR5/v0.92 projection. Численные результаты не пересчитываются presentation-слоем.")
 
 
 def render_expertise_report_v090(core: Any, env: Mapping[str, Any]) -> None:
@@ -50,7 +52,7 @@ def render_expertise_report_v090(core: Any, env: Mapping[str, Any]) -> None:
         st.info("Расчётная сессия ещё не создана.")
         return
     session = app.service.get_session(sid)
-    report = build_report_ir5(app.service.model, session)
+    report = build_report_ir_v092(app.service.model, session)
     markdown = render_expertise_narrative_markdown_v091(report)
 
     st.markdown("### Расчётный отчёт")
