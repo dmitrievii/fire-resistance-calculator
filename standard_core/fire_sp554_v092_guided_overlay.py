@@ -1,4 +1,4 @@
-"""v0.92 guided-SP554 overlay: remove the obsolete user gamma_ct branch.
+"""v0.92 guided-SP554 overlay: mandatory gamma_ct and final §9.1 contract.
 
 Final SP 554.1311500.2026 uses the mandatory special-limit-state coefficient
 ``gamma_ct = 1.1`` in the migrated fire-mechanics runtime.  The historical
@@ -18,6 +18,8 @@ module transforms only the active in-memory application:
 * presentation ``navigation_overrides`` that historically targeted any removed
   gamma_ct node are redirected to that same continuation;
 * no historical true/false answer is copied into the new ledger;
+* active ``SP554_C_9_1`` is remediated to the final denominator including
+  mandatory ``gamma_ct=1.1`` and publishes typed calculation evidence;
 * ``gamma_ct = 1.1`` is owned by the final-publication mechanical runtime, not
   by a hidden or synthetic guided answer.
 
@@ -32,6 +34,12 @@ import copy
 from typing import Any, Mapping
 
 from .fire_ui0 import ExecutionRegistry, FireDAGModel, GuidedCalculationSession, FireUIError
+from .fire_sp554_runtime_v092 import (
+    TENSION_EXPRESSION,
+    TENSION_FORMULA_LATEX,
+    TENSION_NODE_ID,
+    TENSION_TRACE_QID,
+)
 
 OBSOLETE_GAMMA_CT_NODE_ID = "SP554_D_GOST27751_GAMMA_CT"
 OBSOLETE_GAMMA_CT_CALC_NODE_ID = "SP554_C_GAMMA_CT_8_1"
@@ -45,6 +53,91 @@ OBSOLETE_GAMMA_CT_SUBGRAPH = frozenset(
     }
 )
 GRAPH_SUFFIX = "_v092_gamma_ct_guided_bypass"
+TENSION_ALGORITHM_ID = "sp554_v092_9_1_mandatory_gamma_ct_typed_trace_v1"
+
+
+def _binding(qid: str, role: str, *, required: bool = True) -> dict[str, Any]:
+    return {"quantity_id": qid, "required": required, "binding_role": role}
+
+
+def _trace_quantity() -> dict[str, Any]:
+    return {
+        "id": TENSION_TRACE_QID,
+        "symbol": None,
+        "name_ru": "Расчётный trace центрального растяжения по СП 554 п. 9.1",
+        "data_type": "object",
+        "role": "calculation_evidence",
+        "physical_dimension": None,
+        "canonical_unit": None,
+        "allowed_units": [],
+        "source_policy": {"primary_source_type": "CALCULATED"},
+    }
+
+
+def _remediate_tension_node(graph: dict[str, Any]) -> None:
+    """Patch only the active §9.1 node; the frozen source file remains untouched."""
+    nodes = {
+        str(row.get("id")): row
+        for row in graph.get("nodes", [])
+        if isinstance(row, dict) and row.get("id")
+    }
+    tension = nodes.get(TENSION_NODE_ID)
+    if tension is None:
+        # Synthetic bypass-only graphs used by migration tests legitimately omit
+        # the later fire-mechanics branch.
+        return
+
+    qids = {
+        str(row.get("id"))
+        for row in graph.get("quantities", [])
+        if isinstance(row, Mapping) and row.get("id")
+    }
+    if TENSION_TRACE_QID not in qids:
+        graph.setdefault("quantities", []).append(_trace_quantity())
+
+    produced = {
+        str(row.get("quantity_id"))
+        for row in tension.get("produces", [])
+        if isinstance(row, Mapping) and row.get("quantity_id")
+    }
+    if TENSION_TRACE_QID not in produced:
+        tension.setdefault("produces", []).append(_binding(TENSION_TRACE_QID, "output"))
+
+    spec = dict(tension.get("calculation_spec") or {})
+    spec.update(
+        {
+            "formula_type": "simple",
+            "formula_latex": TENSION_FORMULA_LATEX,
+            "expression": TENSION_EXPRESSION,
+            "expression_language": "expr_v1",
+            "algorithm_id": TENSION_ALGORITHM_ID,
+        }
+    )
+    # Preserve the established quantity bindings: gamma_ct is a normative
+    # literal constant, not a ledger/user quantity.
+    spec["bindings"] = [
+        {"variable": "N_force", "quantity_id": "N_force"},
+        {"variable": "A_net", "quantity_id": "A_net"},
+        {"variable": "fy_norm", "quantity_id": "fy_norm"},
+        {"variable": "gamma_c_tension", "quantity_id": "gamma_c_tension"},
+    ]
+    spec["rounding"] = {"mode": "none"}
+    tension["calculation_spec"] = spec
+
+    notes = dict(tension.get("notes") or {})
+    notes.update(
+        {
+            "engineering_meaning": (
+                "Final SP554 §9.1 central tension uses gamma_ct=1.1 as a mandatory "
+                "normative constant in the resistance denominator."
+            ),
+            "normative_warning": (
+                "The frozen pre-v0.92 expression without gamma_ct is superseded "
+                "only in the active v0.92 overlay; user override is forbidden."
+            ),
+        }
+    )
+    tension["notes"] = notes
 
 
 def _produced_quantity_ids(node: Mapping[str, Any]) -> set[str]:
@@ -139,9 +232,11 @@ def _transform_presentation_policy(policy: Mapping[str, Any] | None) -> dict[str
 
 
 def transform_graph(graph: Mapping[str, Any]) -> dict[str, Any]:
-    """Remove the historical gamma_ct diagnostic subgraph from the active DAG."""
+    """Remove obsolete gamma_ct routing and remediate active §9.1."""
     out = copy.deepcopy(dict(graph))
-    if str(out.get("graph_id", "")).endswith(GRAPH_SUFFIX):
+    already_bypassed = str(out.get("graph_id", "")).endswith(GRAPH_SUFFIX)
+    if already_bypassed:
+        _remediate_tension_node(out)
         return out
 
     nodes = [row for row in out.get("nodes", []) if isinstance(row, Mapping)]
@@ -151,6 +246,7 @@ def transform_graph(graph: Mapping[str, Any]) -> dict[str, Any]:
         None,
     )
     if obsolete is None:
+        _remediate_tension_node(out)
         out["graph_id"] = str(out.get("graph_id") or "") + GRAPH_SUFFIX
         if isinstance(out.get("presentation_policy"), Mapping):
             out["presentation_policy"] = _transform_presentation_policy(out["presentation_policy"])
@@ -234,22 +330,25 @@ def transform_graph(graph: Mapping[str, Any]) -> dict[str, Any]:
             if row.get("id") not in removable
         ]
 
+    _remediate_tension_node(out)
+
     if isinstance(out.get("presentation_policy"), Mapping):
         out["presentation_policy"] = _transform_presentation_policy(out["presentation_policy"])
 
     out["graph_id"] = str(out.get("graph_id") or "") + GRAPH_SUFFIX
     out["description"] = str(out.get("description") or "") + (
         " v0.92: obsolete guided gamma_ct decision/calculation/interpretation "
-        "subgraph removed; gamma_ct=1.1 is a mandatory final-runtime constant."
+        "subgraph removed; gamma_ct=1.1 is a mandatory final-runtime constant; "
+        "active SP554_C_9_1 is remediated to final §8.1+§9.1 with typed evidence."
     )
     return out
 
 
 def build_model(model: FireDAGModel) -> FireDAGModel:
-    if str(model.graph.get("graph_id", "")).endswith(GRAPH_SUFFIX):
-        return model
     graph = transform_graph(model.graph)
     presentation = _transform_presentation_policy(model.presentation_policy)
+    if graph == model.graph and presentation == model.presentation_policy:
+        return model
     return FireDAGModel(
         graph,
         source_path=model.source_path,
@@ -288,6 +387,7 @@ __all__ = [
     "OBSOLETE_GAMMA_CT_NODE_ID",
     "OBSOLETE_GAMMA_CT_RESULT_NODE_ID",
     "OBSOLETE_GAMMA_CT_SUBGRAPH",
+    "TENSION_ALGORITHM_ID",
     "build_model",
     "replay_without_obsolete_gamma_ct",
     "transform_graph",
