@@ -8,13 +8,15 @@ with Sections 9-11 requires interpretation.  That diagnostic subgraph belongs
 to the pre-final-publication implementation and must not remain in the active
 v0.92 guided route.
 
-The frozen DAG file remains unchanged.  This module transforms only the active
-in-memory graph:
+The frozen DAG and presentation-policy files remain unchanged on disk.  This
+module transforms only the active in-memory application:
 
 * the obsolete decision, historical gamma_ct calculation and interpretation
-  result are removed;
+  result are removed from the active DAG;
 * predecessors of the obsolete decision continue to the normal ambient-load
   workflow node ``SP16_I_AMBIENT_LOADS``;
+* presentation ``navigation_overrides`` that historically targeted any removed
+  gamma_ct node are redirected to that same continuation;
 * no historical true/false answer is copied into the new ledger;
 * ``gamma_ct = 1.1`` is owned by the final-publication mechanical runtime, not
   by a hidden or synthetic guided answer.
@@ -88,6 +90,54 @@ def _referenced_quantity_ids(graph: Mapping[str, Any]) -> set[str]:
     return refs
 
 
+def _transform_presentation_policy(policy: Mapping[str, Any] | None) -> dict[str, Any]:
+    """Remove/redirect presentation references to the obsolete gamma_ct subgraph."""
+    out = copy.deepcopy(dict(policy or {}))
+
+    table = out.get("node_presentation")
+    if isinstance(table, dict):
+        for node_id in OBSOLETE_GAMMA_CT_SUBGRAPH:
+            table.pop(node_id, None)
+
+    hidden = out.get("hidden_normative_nodes")
+    if isinstance(hidden, list):
+        out["hidden_normative_nodes"] = [
+            node_id for node_id in hidden if node_id not in OBSOLETE_GAMMA_CT_SUBGRAPH
+        ]
+
+    excluded = out.get("guided_excluded_nodes")
+    if isinstance(excluded, list):
+        out["guided_excluded_nodes"] = [
+            node_id for node_id in excluded if node_id not in OBSOLETE_GAMMA_CT_SUBGRAPH
+        ]
+
+    deferred = out.get("deferred_nodes")
+    if isinstance(deferred, dict):
+        for node_id in OBSOLETE_GAMMA_CT_SUBGRAPH:
+            deferred.pop(node_id, None)
+
+    overrides = out.get("navigation_overrides")
+    if isinstance(overrides, dict):
+        remediated: dict[str, list[dict[str, Any]]] = {}
+        for source_node_id, rules in overrides.items():
+            if source_node_id in OBSOLETE_GAMMA_CT_SUBGRAPH:
+                continue
+            new_rules: list[dict[str, Any]] = []
+            for raw_rule in rules or []:
+                if not isinstance(raw_rule, Mapping):
+                    continue
+                rule = copy.deepcopy(dict(raw_rule))
+                if rule.get("to_node_id") in OBSOLETE_GAMMA_CT_SUBGRAPH:
+                    rule["to_node_id"] = BYPASS_SUCCESSOR_NODE_ID
+                    rule["id"] = f"{rule.get('id') or 'UI_OVR'}_V092_GAMMA_CT_BYPASS"
+                new_rules.append(rule)
+            if new_rules:
+                remediated[str(source_node_id)] = new_rules
+        out["navigation_overrides"] = remediated
+
+    return out
+
+
 def transform_graph(graph: Mapping[str, Any]) -> dict[str, Any]:
     """Remove the historical gamma_ct diagnostic subgraph from the active DAG."""
     out = copy.deepcopy(dict(graph))
@@ -101,9 +151,9 @@ def transform_graph(graph: Mapping[str, Any]) -> dict[str, Any]:
         None,
     )
     if obsolete is None:
-        # A later frozen graph may already contain the remediation.  Mark the
-        # active graph but do not attempt to manufacture historical topology.
         out["graph_id"] = str(out.get("graph_id") or "") + GRAPH_SUFFIX
+        if isinstance(out.get("presentation_policy"), Mapping):
+            out["presentation_policy"] = _transform_presentation_policy(out["presentation_policy"])
         return out
     if BYPASS_SUCCESSOR_NODE_ID not in node_ids:
         raise FireUIError(
@@ -131,10 +181,6 @@ def transform_graph(graph: Mapping[str, Any]) -> dict[str, Any]:
         and row.get("to_node_id") not in OBSOLETE_GAMMA_CT_SUBGRAPH
     ]
 
-    # The final-publication runtime owns gamma_ct=1.1.  The active guided graph
-    # therefore continues through the same normal mechanical workflow that was
-    # historically reached after the old decision, without preserving either
-    # true/false condition from that decision.
     existing_pairs = {
         (
             str(row.get("from_node_id")),
@@ -179,10 +225,6 @@ def transform_graph(graph: Mapping[str, Any]) -> dict[str, Any]:
     ]
     out["edges"] = retained_edges
 
-    # The old boolean state is no longer a normative input.  Remove it when it
-    # became a true orphan after deleting the diagnostic subgraph.  gamma_ct
-    # itself is retained if any other historical declaration still references
-    # it; the active v0.92 runtime does not read a user value from it.
     refs = _referenced_quantity_ids(out)
     removable = obsolete_qids.difference(refs)
     if removable:
@@ -192,21 +234,8 @@ def transform_graph(graph: Mapping[str, Any]) -> dict[str, Any]:
             if row.get("id") not in removable
         ]
 
-    policy = out.get("presentation_policy")
-    if isinstance(policy, dict):
-        table = policy.get("node_presentation")
-        if isinstance(table, dict):
-            for node_id in OBSOLETE_GAMMA_CT_SUBGRAPH:
-                table.pop(node_id, None)
-        hidden = policy.get("hidden_normative_nodes")
-        if isinstance(hidden, list):
-            policy["hidden_normative_nodes"] = [
-                node_id for node_id in hidden if node_id not in OBSOLETE_GAMMA_CT_SUBGRAPH
-            ]
-        deferred = policy.get("deferred_nodes")
-        if isinstance(deferred, dict):
-            for node_id in OBSOLETE_GAMMA_CT_SUBGRAPH:
-                deferred.pop(node_id, None)
+    if isinstance(out.get("presentation_policy"), Mapping):
+        out["presentation_policy"] = _transform_presentation_policy(out["presentation_policy"])
 
     out["graph_id"] = str(out.get("graph_id") or "") + GRAPH_SUFFIX
     out["description"] = str(out.get("description") or "") + (
@@ -220,21 +249,7 @@ def build_model(model: FireDAGModel) -> FireDAGModel:
     if str(model.graph.get("graph_id", "")).endswith(GRAPH_SUFFIX):
         return model
     graph = transform_graph(model.graph)
-    presentation = copy.deepcopy(model.presentation_policy)
-    if isinstance(presentation, dict):
-        table = presentation.get("node_presentation")
-        if isinstance(table, dict):
-            for node_id in OBSOLETE_GAMMA_CT_SUBGRAPH:
-                table.pop(node_id, None)
-        hidden = presentation.get("hidden_normative_nodes")
-        if isinstance(hidden, list):
-            presentation["hidden_normative_nodes"] = [
-                node_id for node_id in hidden if node_id not in OBSOLETE_GAMMA_CT_SUBGRAPH
-            ]
-        deferred = presentation.get("deferred_nodes")
-        if isinstance(deferred, dict):
-            for node_id in OBSOLETE_GAMMA_CT_SUBGRAPH:
-                deferred.pop(node_id, None)
+    presentation = _transform_presentation_policy(model.presentation_policy)
     return FireDAGModel(
         graph,
         source_path=model.source_path,
