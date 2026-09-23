@@ -94,7 +94,8 @@ def test_v091_real_guided_session_closes_through_fire_result_and_same_ledger_rep
         "holes_present": False,
         "model": "none",
     })
-    _submit(app, sid, "SP554_D_GOST27751_GAMMA_CT", False)
+    # v0.92: no SP554_D_GOST27751_GAMMA_CT user question. gamma_ct=1.1 is a
+    # mandatory normative runtime constant; the route proceeds directly to SP16 loads.
     _submit(app, sid, "SP16_I_AMBIENT_LOADS", {
         "ambient_load_combination": {"schema": "v091_closure", "kind": "ambient"},
         "ambient_N_force": -600_000.0,
@@ -131,9 +132,10 @@ def test_v091_real_guided_session_closes_through_fire_result_and_same_ledger_rep
     assert session.current_node_id == "SP554_I_EXPOSURE"
     assert values["fire_d2_critical_temperature_status"] == "COMPLETE"
 
-    # Final SP554 §9.2 must be independent of any user/manual E_norm seed.
+    # Final SP554 §9.2 must be independent of any user/manual E_norm or gamma_ct seed.
     history_ids = [row["node_id"] for row in session.interaction_history]
     assert all("E_NORM" not in node_id.upper() for node_id in history_ids)
+    assert "SP554_D_GOST27751_GAMMA_CT" not in history_ids
 
     _submit(app, sid, "SP554_I_EXPOSURE", "four_sides")
     _submit(app, sid, "SP554_D_FIRE_REGIME", "standard")
