@@ -1,6 +1,7 @@
 import pytest
 
 from standard_core import fire_sp554_runtime as runtime
+from standard_core import fire_sp554_runtime_v091 as mechanics_v091
 
 
 PUBLISHED_B1 = {
@@ -84,3 +85,9 @@ def test_published_column_order_is_modulus_then_strength():
     assert runtime._forward_b1("high", "gamma_T", 300.0) == pytest.approx(0.89)
     assert runtime._forward_b1("increased", "gamma_E", 450.0) == pytest.approx(0.85)
     assert runtime._forward_b1("increased", "gamma_T", 450.0) == pytest.approx(0.65)
+
+
+def test_published_b1_has_one_runtime_owner():
+    # §9.2 mechanics must not carry a second differential copy of Table B.1.
+    assert not hasattr(mechanics_v091, "_FINAL_B1_OVERRIDES")
+    assert not hasattr(mechanics_v091, "_install_final_b1")
