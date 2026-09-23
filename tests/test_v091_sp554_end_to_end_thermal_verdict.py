@@ -77,8 +77,8 @@ def test_v091_full_sp554_chain_recomputes_thermal_resistance_and_verdict_from_tc
         _section13_case(tcr_high_action)
     )
 
-    lower_thermal = lower_assessed["thermal_result"]
-    higher_thermal = higher_assessed["thermal_result"]
+    lower_thermal = lower_assessed["upstream_thermal_result"]
+    higher_thermal = higher_assessed["upstream_thermal_result"]
     lower_verdict = lower_assessed["assessment"]
     higher_verdict = higher_assessed["assessment"]
 
