@@ -29,6 +29,7 @@ jobs:
           python -W error::SyntaxWarning -m py_compile
           streamlit_app.py
           streamlit_mech9_v090.py
+          streamlit_fire_sp554_v091.py
           streamlit_ui_polish_v090.py
           streamlit_expertise_report_v090.py
           streamlit_expertise_report_v090_fire_coeffs.py
@@ -41,6 +42,7 @@ jobs:
           standard_core/brittle_fracture_workflows.py
           standard_core/fatigue_workflows.py
           standard_core/fire_sp554_runtime_v091.py
+          standard_core/fire_sp554_v091_guided_overlay.py
           standard_core/fire_sp554_b1_v091_final.py
           standard_core/fire_sp554_runtime_v091_workflow.py
       - name: v0.91 final SP554 remediation regression
@@ -51,6 +53,7 @@ jobs:
           tests/test_v091_sp554_workflow_e_norm_scope.py
           tests/test_v091_sp554_end_to_end_thermal_verdict.py
           tests/test_v091_sp554_report_trace.py
+          tests/test_v091_guided_axis_evidence.py
           tests/test_v091_full_guided_report_closure.py
       - name: v0.90 focused regression
         run: >-
