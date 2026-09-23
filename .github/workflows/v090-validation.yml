@@ -51,6 +51,7 @@ jobs:
           tests/test_v091_sp554_workflow_e_norm_scope.py
           tests/test_v091_sp554_end_to_end_thermal_verdict.py
           tests/test_v091_sp554_report_trace.py
+          tests/test_v091_full_guided_report_closure.py
       - name: v0.90 focused regression
         run: >-
           python -m pytest -q
