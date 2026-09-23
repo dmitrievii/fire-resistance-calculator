@@ -21,9 +21,9 @@ Existing qualified numerical executors are retained behind a one-way adapter:
 canonical ledger values are translated to the historical *local variable names*
 expected by those frozen functions and their outputs are translated back before
 they reach the active ledger.  The adapter is installed only on graph nodes
-whose contract actually crosses the changed action quantities (or the MECH2
-aggregate action-state objects).  Unrelated executors retain exact object
-identity, which preserves historical registry isolation.
+whose contract actually crosses the changed action quantities or aggregate
+MECH2 action/verification objects.  Unrelated executors retain exact object
+identity, preserving historical registry isolation.
 """
 from __future__ import annotations
 
@@ -68,14 +68,15 @@ CANONICAL_TO_LEGACY_ACTION_KEY = {
 _CHANGED_LEGACY_QIDS = frozenset(LEGACY_TO_CANONICAL_QID)
 _CHANGED_CANONICAL_QIDS = frozenset(LEGACY_TO_CANONICAL_QID.values())
 
-# These quantities do not change their top-level ids, but their nested ``actions``
-# and ``axis_convention`` payloads do.  Nodes consuming or producing them must
-# therefore cross the same compatibility adapter.
+# These quantities keep their top-level ids but contain axis-sensitive nested
+# payloads.  Consumers/producers must cross the same compatibility adapter.
 _CANONICALIZED_AGGREGATE_QIDS = frozenset(
     {
         "ambient_load_case",
         "ambient_mechanical_action_state",
+        "mechanical_action_state",
         "sp16_applicability_census",
+        "verification_plan",
         "fire_load_case",
     }
 )
@@ -142,11 +143,25 @@ _HISTORICAL_AXIS_CONVENTION = {
     "B": "bimoment; direct conditional input in current scope",
 }
 
+# Exact semantic ids emitted by historical MECH1/MECH2 aggregate objects.
+# Only exact ids are changed; arbitrary text and normative references are not
+# subject to blind substring replacement.
 _ID_VALUE_RENAMES = {
     "bending_x": "bending_z",
     "shear_x": "shear_z",
+    "bending_Mx": "bending_Mz",
+    "shear_Qx": "shear_Qz",
+    "torsion_T": "torsion_Mx",
+    "interaction_M_Qx": "interaction_M_Qz",
 }
 _CANONICAL_TO_LEGACY_ID_VALUE = {value: key for key, value in _ID_VALUE_RENAMES.items()}
+
+_BRANCH_LABEL_RENAMES = {
+    "bending_Mx": "Изгиб Mz относительно сильной главной оси z-z",
+    "shear_Qx": "Поперечная сила Qz",
+    "torsion_T": "Кручение Mx относительно продольной оси x",
+    "interaction_M_Qx": "Взаимодействие M + Qz",
+}
 
 _SCHEMA_RENAMES = {
     "sp16_mech2_load_case_v1": "sp16_mech2_load_case_v092_canonical_axes",
@@ -217,6 +232,8 @@ def _canonicalize_engineering_object(value: Any, *, parent_key: str | None = Non
     if not isinstance(value, Mapping):
         if parent_key == "schema" and isinstance(value, str):
             return _SCHEMA_RENAMES.get(value, value)
+        if parent_key == "compatibility_aliases" and value == "Q_x":
+            return "Q_z"
         return copy.deepcopy(value)
 
     if parent_key == "actions":
@@ -226,13 +243,21 @@ def _canonicalize_engineering_object(value: Any, *, parent_key: str | None = Non
         return result
     if parent_key == "axis_convention":
         return copy.deepcopy(_CANONICAL_AXIS_CONVENTION)
+    if parent_key == "compatibility_aliases":
+        return {
+            str(key): ("Q_z" if item == "Q_x" else _canonicalize_engineering_object(item))
+            for key, item in value.items()
+        }
 
-    result = {}
+    historical_id = str(value.get("id")) if isinstance(value.get("id"), str) else None
+    result: dict[str, Any] = {}
     for key, item in value.items():
         new_item = _canonicalize_engineering_object(item, parent_key=str(key))
         if key == "id" and isinstance(new_item, str):
             new_item = _ID_VALUE_RENAMES.get(new_item, new_item)
         result[key] = new_item
+    if historical_id in _BRANCH_LABEL_RENAMES and "label" in result:
+        result["label"] = _BRANCH_LABEL_RENAMES[historical_id]
     return result
 
 
@@ -243,6 +268,8 @@ def _legacy_engineering_object(value: Any, *, parent_key: str | None = None) -> 
     if not isinstance(value, Mapping):
         if parent_key == "schema" and isinstance(value, str):
             return _CANONICAL_TO_LEGACY_SCHEMA.get(value, value)
+        if parent_key == "compatibility_aliases" and value == "Q_z":
+            return "Q_x"
         return copy.deepcopy(value)
 
     if parent_key == "actions":
@@ -252,8 +279,13 @@ def _legacy_engineering_object(value: Any, *, parent_key: str | None = None) -> 
         return result
     if parent_key == "axis_convention":
         return copy.deepcopy(_HISTORICAL_AXIS_CONVENTION)
+    if parent_key == "compatibility_aliases":
+        return {
+            str(key): ("Q_x" if item == "Q_z" else _legacy_engineering_object(item))
+            for key, item in value.items()
+        }
 
-    result = {}
+    result: dict[str, Any] = {}
     for key, item in value.items():
         new_item = _legacy_engineering_object(item, parent_key=str(key))
         if key == "id" and isinstance(new_item, str):
@@ -319,11 +351,7 @@ def install_registry_remediation(
     The function also heals a retained session created by the earlier v0.92
     all-registry wrapper implementation by unwrapping now-unrelated executors.
     """
-    targets = (
-        canonical_registry_node_ids(model)
-        if model is not None
-        else set(registry.executors)
-    )
+    targets = canonical_registry_node_ids(model) if model is not None else set(registry.executors)
 
     for node_id, executor in list(registry.executors.items()):
         is_wrapped = bool(getattr(executor, "_sp16_v092_canonical_wrapper", False))
@@ -343,6 +371,7 @@ def install_registry_remediation(
                 if not isinstance(raw, Mapping):
                     raise FireUIError("v0.92 canonical registry wrapper received non-mapping executor output")
                 return _canonical_outputs(raw)
+
             setattr(wrapped, "_sp16_v092_canonical_wrapper", True)
             setattr(wrapped, "_sp16_v092_wrapped_executor", fn)
             return wrapped
@@ -400,6 +429,12 @@ def canonical_action_contract() -> dict[str, Any]:
         "weak_axis_bending": "M_y",
         "torsion": "M_x",
         "shear_components": ["Q_z", "Q_y"],
+        "verification_plan_branch_ids": {
+            "strong_axis_bending": "bending_Mz",
+            "z_shear": "shear_Qz",
+            "torsion": "torsion_Mx",
+            "bending_shear_interaction": "interaction_M_Qz",
+        },
         "legacy_old_Mx_to_new_Mz_replay_allowed": False,
         "legacy_T_to_new_Mx_replay_allowed": False,
     }
