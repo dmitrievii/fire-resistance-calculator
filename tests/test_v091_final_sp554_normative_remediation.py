@@ -160,7 +160,19 @@ def test_v091_guided_phi_executor_uses_two_qualified_axes_without_e_seed():
         ),
         {},
     )
-    assert first == second
+    trace_qid = "sp554_9_2_fire_stability_trace"
+    first_trace = first[trace_qid]
+    second_trace = second[trace_qid]
+    assert first["phi_compression_sp554"] == pytest.approx(second["phi_compression_sp554"])
+    assert first_trace["axes"] == second_trace["axes"]
+    assert first_trace["governing_strength_axis"] == second_trace["governing_strength_axis"] == "y"
+    assert first_trace["E_n_mm2"] == pytest.approx(206000.0)
+    assert second_trace["E_n_mm2"] == pytest.approx(206000.0)
+    assert first_trace["Ryn_n_mm2"] == pytest.approx(255.0)
+    assert second_trace["Ryn_n_mm2"] == pytest.approx(255.0)
+    # Audit evidence may differ because it records the actual ignored input.
+    assert first_trace["legacy_E_norm_ignored"] is None
+    assert second_trace["legacy_E_norm_ignored"] == pytest.approx(1.0)
     assert 0.0 < first["phi_compression_sp554"] < 1.0
 
 
