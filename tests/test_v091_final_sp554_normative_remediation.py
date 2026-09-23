@@ -175,7 +175,9 @@ def test_v091_published_final_appendix_b1_rows_are_active():
     assert runtime._forward_b1("increased", "gamma_E", 450.0) == pytest.approx(0.81)
     assert runtime._forward_b1("increased", "gamma_E", 500.0) == pytest.approx(0.75)
     assert runtime._forward_b1("increased", "gamma_E", 550.0) == pytest.approx(0.71)
-    assert runtime._forward_b1("high", "gamma_E", 300.0) == pytest.approx(0.89)
+    # Table B.1 tuple order is (gamma_E, gamma_T): high-strength steel at 300 C.
+    assert runtime._forward_b1("high", "gamma_E", 300.0) == pytest.approx(0.95)
+    assert runtime._forward_b1("high", "gamma_T", 300.0) == pytest.approx(0.89)
 
 
 def test_v091_shared_sp16_phi_low_slenderness_rule_is_preserved():
