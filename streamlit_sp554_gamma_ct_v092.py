@@ -35,7 +35,15 @@ def install(core: Any) -> None:
         # an already transformed graph may still carry the pre-remediation
         # executor object in memory after a hot reload.
         install_guided_registry_remediation_v092(registry)
-        new_model = build_model(app.model)
+
+        # Later v0.92 overlays append their own graph-id suffixes after this one.
+        # Presence, not endswith(), is therefore the idempotence contract.
+        graph_id = str(app.model.graph.get("graph_id") or "")
+        if GRAPH_SUFFIX in graph_id:
+            new_model = app.model
+        else:
+            new_model = build_model(app.model)
+
         graph_changed = new_model is not app.model
         if graph_changed:
             new_service = GuidedCalculationService(new_model, registry=registry)
@@ -46,7 +54,7 @@ def install(core: Any) -> None:
             app.model = new_model
             app.service = new_service
             _invalidate_contract()
-        elif not str(app.model.graph.get("graph_id") or "").endswith(GRAPH_SUFFIX):
+        elif GRAPH_SUFFIX not in str(app.model.graph.get("graph_id") or ""):
             # Defensive fail-closed guard: build_model must establish the active
             # v0.92 graph contract before the application can continue.
             raise RuntimeError("v0.92 gamma_ct guided graph remediation was not installed")
