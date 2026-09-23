@@ -21,11 +21,14 @@ _install_declarative_case_evidence()
 # published Appendix-B Table B.1 is then installed as one canonical dataset,
 # superseding both the locked-draft row and any earlier differential overrides.
 # The workflow overlay removes the residual legacy E_norm dependency from §9.2
-# only.
+# only.  Registry scoping is installed last so importing current standard_core
+# cannot silently replace executors belonging to older frozen FIRE-UI DAGs.
 from .fire_sp554_runtime_v091 import install as _install_fire_sp554_runtime_v091
 from .fire_sp554_b1_v091_final import install as _install_fire_sp554_b1_v091_final
 from .fire_sp554_runtime_v091_workflow import install as _install_fire_sp554_workflow_v091
+from .fire_sp554_v091_registry_scope import install as _install_fire_sp554_registry_scope_v091
 
 _install_fire_sp554_runtime_v091()
 _install_fire_sp554_b1_v091_final()
 _install_fire_sp554_workflow_v091()
+_install_fire_sp554_registry_scope_v091()
