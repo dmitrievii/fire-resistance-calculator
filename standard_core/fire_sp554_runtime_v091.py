@@ -5,6 +5,11 @@ classification.  It does not reuse the ambient SP16 relative slenderness or
 ambient phi, because SP554 9.2 defines the fire relative slenderness with
 Ryn/E.  The fire phi is evaluated by the same SP16 central-compression
 producer used by the ambient engine.
+
+For rolled structural steel and steel castings, E is not a user-dependent
+material selection in this route: SP 16.13330.2017 Appendix B, Table B.1 fixes
+E = 2.06e5 N/mm2.  v0.91 therefore sources this value normatively instead of
+requiring an internal/manual E_norm seed from the guided UI.
 """
 from __future__ import annotations
 
@@ -17,6 +22,8 @@ from . import fire_bridge2_qualified_state as _bridge2
 
 
 GAMMA_CT = 1.1
+SP16_STEEL_E_N_MM2 = 206000.0
+SP16_STEEL_E_NORMATIVE_BASIS = "SP16.13330.2017 Appendix B, Table B.1"
 
 # Published final Table B.1 values that differ from the pre-publication
 # dataset used by FIRE-D2.  Unlisted rows/groups remain unchanged.
@@ -153,13 +160,14 @@ def _central_compression_final(
 
     Qualified SP16 l_eff, i, geometric lambda and curve type are reused for
     both z and y.  Ambient lambda_bar / phi and raw mu/L/J inputs are ignored.
+    E is the SP16 Appendix-B Table-B.1 physical constant for structural steel.
     """
     n = abs(_runtime._number(route, "N_n", positive=True))
     area = _runtime._number(route, "A_gross_mm2", positive=True)
     # Legacy machine key kept for compatibility.  Normative meaning in SP554
     # is Ryn, not ambient design Ry and not a generic fy design resistance.
     ryn = _runtime._number(case, "fy_norm_n_mm2", positive=True)
-    elastic_modulus = _runtime._number(case, "E_norm_n_mm2", positive=True)
+    elastic_modulus = SP16_STEEL_E_N_MM2
     gamma_c = _runtime._number(route, "gamma_c", positive=True)
 
     axes = {
@@ -185,6 +193,7 @@ def _central_compression_final(
         "rule": "SP554_9_2_FIRE_SLENDERNESS_FROM_RYN_OVER_E",
         "Ryn_n_mm2": float(ryn),
         "E_n_mm2": float(elastic_modulus),
+        "E_normative_basis": SP16_STEEL_E_NORMATIVE_BASIS,
         "gamma_ct": GAMMA_CT,
         "gamma_c": float(gamma_c),
         "governing_strength_axis": governing_strength_axis,
@@ -195,17 +204,21 @@ def _central_compression_final(
         "legacy_raw_mu_ignored": route.get("mu_length_sp16"),
         "legacy_raw_member_length_ignored": route.get("member_length_mm"),
         "legacy_raw_J_min_ignored": route.get("J_min_mm4"),
+        "legacy_E_norm_n_mm2_ignored": case.get("E_norm_n_mm2"),
     }
     return [
         _runtime._strength_candidate("9.2", gamma_t, details)
     ], float(gamma_e), {
         "route": "central_compression",
         "phi": float(phi_fire),
+        "E_n_mm2": float(elastic_modulus),
+        "E_normative_basis": SP16_STEEL_E_NORMATIVE_BASIS,
         "gamma_ct": GAMMA_CT,
         "governing_strength_axis": governing_strength_axis,
         "governing_stiffness_axis": governing_stiffness_axis,
         "axes": axes,
-        "normative_basis": "final_SP554_8.1_9.2_plus_SP16_7.1.3",
+        "normative_basis": "final_SP554_8.1_9.2_plus_SP16_7.1.3_and_Appendix_B_Table_B1",
+        "legacy_E_norm_n_mm2_ignored": case.get("E_norm_n_mm2"),
     }
 
 
@@ -256,10 +269,11 @@ def _phi_9_2_declarative_final(values: Mapping[str, Any], node: Mapping[str, Any
     """Final guided phi producer from qualified SP16 z/y geometry.
 
     The frozen graph can still carry ambient lambda_bar / phi fields for saved
-    session compatibility.  They cannot govern this result.
+    session compatibility.  They cannot govern this result.  E is sourced from
+    SP16 Appendix B, Table B.1 and is therefore not a guided user input.
     """
     ryn = _number_from_values(values, "fy_norm", positive=True)
-    elastic_modulus = _number_from_values(values, "E_norm", positive=True)
+    elastic_modulus = SP16_STEEL_E_N_MM2
     states: dict[str, tuple[float, float]] = {}
     for axis in ("z", "y"):
         lambda_geom, curve = _axis_from_values(values, axis)
@@ -298,7 +312,14 @@ def install() -> None:
     _runtime._v091_final_sp554_installed = True
     _runtime._v091_normative_basis = "published final SP 554.1311500.2026"
     _runtime._v091_gamma_ct = GAMMA_CT
+    _runtime._v091_steel_E_n_mm2 = SP16_STEEL_E_N_MM2
+    _runtime._v091_steel_E_normative_basis = SP16_STEEL_E_NORMATIVE_BASIS
     _install_guided_registry_override()
 
 
-__all__ = ["GAMMA_CT", "install"]
+__all__ = [
+    "GAMMA_CT",
+    "SP16_STEEL_E_N_MM2",
+    "SP16_STEEL_E_NORMATIVE_BASIS",
+    "install",
+]
