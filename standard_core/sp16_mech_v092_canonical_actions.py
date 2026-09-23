@@ -20,8 +20,10 @@ quantity whose meaning changed; the user must then re-enter the action state.
 Existing qualified numerical executors are retained behind a one-way adapter:
 canonical ledger values are translated to the historical *local variable names*
 expected by those frozen functions and their outputs are translated back before
-they reach the active ledger.  This is not an old-Mx -> new-Mz data migration:
-no historical user value is copied across meanings.
+they reach the active ledger.  The adapter is installed only on graph nodes
+whose contract actually crosses the changed action quantities (or the MECH2
+aggregate action-state objects).  Unrelated executors retain exact object
+identity, which preserves historical registry isolation.
 """
 from __future__ import annotations
 
@@ -33,6 +35,7 @@ from .fire_ui0 import ExecutionRegistry, FireDAGModel, GuidedCalculationSession,
 
 GRAPH_SUFFIX = "_v092_canonical_actions"
 REGISTRY_MARKER = "_sp16_v092_canonical_actions_installed"
+REGISTRY_TARGETS_MARKER = "_sp16_v092_canonical_action_target_nodes"
 
 # Historical DAG quantity id -> active v0.92 quantity id.
 # Unchanged y-axis and axial quantities are intentionally absent.
@@ -58,9 +61,24 @@ LEGACY_TO_CANONICAL_ACTION_KEY = {
     "N": "N",
     "B": "B",
 }
+CANONICAL_TO_LEGACY_ACTION_KEY = {
+    canonical: legacy for legacy, canonical in LEGACY_TO_CANONICAL_ACTION_KEY.items()
+}
 
 _CHANGED_LEGACY_QIDS = frozenset(LEGACY_TO_CANONICAL_QID)
 _CHANGED_CANONICAL_QIDS = frozenset(LEGACY_TO_CANONICAL_QID.values())
+
+# These quantities do not change their top-level ids, but their nested ``actions``
+# and ``axis_convention`` payloads do.  Nodes consuming or producing them must
+# therefore cross the same compatibility adapter.
+_CANONICALIZED_AGGREGATE_QIDS = frozenset(
+    {
+        "ambient_load_case",
+        "ambient_mechanical_action_state",
+        "sp16_applicability_census",
+        "fire_load_case",
+    }
+)
 
 _CANONICAL_QUANTITY_META: dict[str, dict[str, Any]] = {
     "ambient_M_z": {
@@ -116,17 +134,26 @@ _CANONICAL_AXIS_CONVENTION = {
     "Qy": "transverse force in the canonical y direction",
     "B": "bimoment; direct conditional input in current scope",
 }
+_HISTORICAL_AXIS_CONVENTION = {
+    "member_axis": "s",
+    "section_principal_axes": ["x-x", "y-y"],
+    "N": "positive=tension; negative=compression",
+    "T": "torsional moment about member axis s",
+    "B": "bimoment; direct conditional input in current scope",
+}
 
 _ID_VALUE_RENAMES = {
     "bending_x": "bending_z",
     "shear_x": "shear_z",
 }
+_CANONICAL_TO_LEGACY_ID_VALUE = {value: key for key, value in _ID_VALUE_RENAMES.items()}
 
 _SCHEMA_RENAMES = {
     "sp16_mech2_load_case_v1": "sp16_mech2_load_case_v092_canonical_axes",
     "sp16_mech2_ambient_mechanical_action_state_v1": "sp16_mech2_ambient_mechanical_action_state_v092_canonical_axes",
     "sp16_mech2_applicability_census_v1": "sp16_mech2_applicability_census_v092_canonical_axes",
 }
+_CANONICAL_TO_LEGACY_SCHEMA = {value: key for key, value in _SCHEMA_RENAMES.items()}
 
 
 def _rename_exact(value: Any, mapping: Mapping[str, str]) -> Any:
@@ -183,21 +210,6 @@ def build_model(model: FireDAGModel) -> FireDAGModel:
     )
 
 
-def _legacy_values(values: Mapping[str, Any]) -> dict[str, Any]:
-    """Create an executor-local historical-name view from canonical ledger values."""
-    # Remove changed canonical ids first because ambient_M_x / M_x now mean
-    # torsion and must never leak into the historical bending slots.
-    out = {
-        key: value
-        for key, value in values.items()
-        if key not in _CHANGED_CANONICAL_QIDS
-    }
-    for canonical, legacy in CANONICAL_TO_LEGACY_QID.items():
-        if canonical in values:
-            out[legacy] = values[canonical]
-    return out
-
-
 def _canonicalize_engineering_object(value: Any, *, parent_key: str | None = None) -> Any:
     """Canonicalize known nested MECH2 state/census objects without changing formulas."""
     if isinstance(value, list):
@@ -224,6 +236,47 @@ def _canonicalize_engineering_object(value: Any, *, parent_key: str | None = Non
     return result
 
 
+def _legacy_engineering_object(value: Any, *, parent_key: str | None = None) -> Any:
+    """Create an executor-local historical view of canonical MECH2 aggregates."""
+    if isinstance(value, list):
+        return [_legacy_engineering_object(item, parent_key=parent_key) for item in value]
+    if not isinstance(value, Mapping):
+        if parent_key == "schema" and isinstance(value, str):
+            return _CANONICAL_TO_LEGACY_SCHEMA.get(value, value)
+        return copy.deepcopy(value)
+
+    if parent_key == "actions":
+        result: dict[str, Any] = {}
+        for key, item in value.items():
+            result[CANONICAL_TO_LEGACY_ACTION_KEY.get(str(key), str(key))] = _legacy_engineering_object(item)
+        return result
+    if parent_key == "axis_convention":
+        return copy.deepcopy(_HISTORICAL_AXIS_CONVENTION)
+
+    result = {}
+    for key, item in value.items():
+        new_item = _legacy_engineering_object(item, parent_key=str(key))
+        if key == "id" and isinstance(new_item, str):
+            new_item = _CANONICAL_TO_LEGACY_ID_VALUE.get(new_item, new_item)
+        result[key] = new_item
+    return result
+
+
+def _legacy_values(values: Mapping[str, Any]) -> dict[str, Any]:
+    """Create an executor-local historical-name view from canonical ledger values."""
+    # Remove changed canonical ids first because ambient_M_x / M_x now mean
+    # torsion and must never leak into the historical bending slots.
+    out = {
+        key: _legacy_engineering_object(value)
+        for key, value in values.items()
+        if key not in _CHANGED_CANONICAL_QIDS
+    }
+    for canonical, legacy in CANONICAL_TO_LEGACY_QID.items():
+        if canonical in values:
+            out[legacy] = _legacy_engineering_object(values[canonical])
+    return out
+
+
 def _canonical_outputs(outputs: Mapping[str, Any]) -> dict[str, Any]:
     result: dict[str, Any] = {}
     for key, value in outputs.items():
@@ -236,13 +289,51 @@ def _legacy_node(node: Mapping[str, Any]) -> dict[str, Any]:
     return _rename_exact(node, CANONICAL_TO_LEGACY_QID)
 
 
-def install_registry_remediation(registry: ExecutionRegistry) -> None:
-    """Wrap the cumulative registry so its public ledger contract is canonical."""
-    if getattr(registry, REGISTRY_MARKER, False):
-        return
+def canonical_registry_node_ids(model: FireDAGModel) -> set[str]:
+    """Return only registry nodes whose public contract crosses changed semantics."""
+    changed = _CHANGED_LEGACY_QIDS | _CHANGED_CANONICAL_QIDS | _CANONICALIZED_AGGREGATE_QIDS
+    targets: set[str] = set()
+    for node_id, node in model.nodes.items():
+        quantity_ids: set[str] = set()
+        for key in ("consumes", "produces"):
+            for row in node.get(key, []):
+                if isinstance(row, Mapping) and isinstance(row.get("quantity_id"), str):
+                    quantity_ids.add(str(row["quantity_id"]))
+        decision_qid = node.get("decision_quantity_id")
+        if isinstance(decision_qid, str):
+            quantity_ids.add(decision_qid)
+        if quantity_ids.intersection(changed):
+            targets.add(str(node_id))
+    return targets
+
+
+def install_registry_remediation(
+    registry: ExecutionRegistry,
+    model: FireDAGModel | None = None,
+) -> None:
+    """Wrap only executors whose graph contract crosses canonical action semantics.
+
+    ``model=None`` is retained for focused unit tests and explicit low-level use;
+    in that mode every registered executor is adapted.  Production installers
+    must pass the active model so unrelated executors retain exact identity.
+    The function also heals a retained session created by the earlier v0.92
+    all-registry wrapper implementation by unwrapping now-unrelated executors.
+    """
+    targets = (
+        canonical_registry_node_ids(model)
+        if model is not None
+        else set(registry.executors)
+    )
 
     for node_id, executor in list(registry.executors.items()):
-        if getattr(executor, "_sp16_v092_canonical_wrapper", False):
+        is_wrapped = bool(getattr(executor, "_sp16_v092_canonical_wrapper", False))
+        if node_id not in targets:
+            if is_wrapped:
+                original = getattr(executor, "_sp16_v092_wrapped_executor", None)
+                if original is not None:
+                    registry.executors[node_id] = original
+            continue
+        if is_wrapped:
             continue
 
         def make_wrapper(fn):
@@ -259,6 +350,7 @@ def install_registry_remediation(registry: ExecutionRegistry) -> None:
         registry.executors[node_id] = make_wrapper(executor)
 
     setattr(registry, REGISTRY_MARKER, True)
+    setattr(registry, REGISTRY_TARGETS_MARKER, frozenset(targets))
 
 
 def legacy_axis_interaction_node_ids(model: FireDAGModel) -> set[str]:
@@ -319,6 +411,7 @@ __all__ = [
     "LEGACY_TO_CANONICAL_QID",
     "build_model",
     "canonical_action_contract",
+    "canonical_registry_node_ids",
     "install_registry_remediation",
     "legacy_axis_interaction_node_ids",
     "replay_prefix_without_axis_alias",
