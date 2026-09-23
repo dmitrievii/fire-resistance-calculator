@@ -1,14 +1,18 @@
 """v0.91 presentation refinement for final-SP554 §9.2 mechanics.
 
-Presentation only.  The module consumes the already executed v0.91 mechanical
-runtime evidence and inserts the governing SP16 axes and the fire-slenderness
+Presentation only.  The module consumes already executed v0.91 mechanical
+runtime evidence and inserts the governing SP16 axes and fire-slenderness
 substitution into the engineering narrative.  It performs no independent
-capacity, temperature, thermal or compliance calculation.
+capacity, temperature, thermal, stiffness or compliance calculation.
 """
 from __future__ import annotations
 
 from typing import Any, Mapping
 
+from standard_core.fire_sp554_v091_guided_overlay import (
+    STIFFNESS_TRACE_QID,
+    STRENGTH_TRACE_QID,
+)
 from streamlit_expertise_report_v090_thermal_refinement import (
     _CRITICAL_HEADING,
     _mechanical_fire_result,
@@ -33,12 +37,64 @@ def _axis_label(axis: str) -> str:
     return {"z": "z (сильная)", "y": "y (слабая)"}.get(axis, axis)
 
 
-def _v091_axis_block(report: Mapping[str, Any]) -> str:
+def _raw_quantity(report: Mapping[str, Any], qid: str) -> Any:
+    for block in report.get("blocks") or []:
+        if not isinstance(block, Mapping):
+            continue
+        for row in block.get("outputs") or []:
+            if isinstance(row, Mapping) and row.get("quantity_id") == qid:
+                return row.get("raw_value")
+    return None
+
+
+def _axis_evidence(report: Mapping[str, Any]) -> tuple[Mapping[str, Any] | None, float | None]:
+    """Read executed axis evidence; never derive engineering values here."""
     result = _mechanical_fire_result(report)
-    if not isinstance(result, Mapping):
-        return ""
-    trace = result.get("route_trace")
-    if not isinstance(trace, Mapping) or trace.get("route") != "central_compression":
+    if isinstance(result, Mapping):
+        trace = result.get("route_trace")
+        if isinstance(trace, Mapping) and trace.get("route") == "central_compression":
+            ryn = None
+            candidates = result.get("gamma_T_candidates")
+            if isinstance(candidates, list) and candidates and isinstance(candidates[0], Mapping):
+                details = candidates[0].get("details")
+                if isinstance(details, Mapping):
+                    ryn = _num(details.get("Ryn_n_mm2"))
+            return trace, ryn
+
+    strength = _raw_quantity(report, STRENGTH_TRACE_QID)
+    stiffness = _raw_quantity(report, STIFFNESS_TRACE_QID)
+    if not isinstance(strength, Mapping) or not isinstance(stiffness, Mapping):
+        return None, None
+    if strength.get("route") != "central_compression" or stiffness.get("route") != "central_compression":
+        return None, None
+
+    strength_axes = strength.get("axes")
+    stiffness_axes = stiffness.get("axes")
+    if not isinstance(strength_axes, Mapping) or not isinstance(stiffness_axes, Mapping):
+        return None, None
+    axes: dict[str, dict[str, Any]] = {}
+    for axis in ("z", "y"):
+        s = strength_axes.get(axis)
+        e = stiffness_axes.get(axis)
+        if not isinstance(s, Mapping) or not isinstance(e, Mapping):
+            return None, None
+        axes[axis] = {**dict(s), **dict(e)}
+
+    trace = {
+        "route": "central_compression",
+        "E_n_mm2": strength.get("E_n_mm2"),
+        "E_normative_basis": strength.get("E_normative_basis"),
+        "governing_strength_axis": strength.get("governing_strength_axis"),
+        "governing_stiffness_axis": stiffness.get("governing_stiffness_axis"),
+        "axes": axes,
+        "source": "typed_guided_runtime_evidence",
+    }
+    return trace, _num(strength.get("Ryn_n_mm2"))
+
+
+def _v091_axis_block(report: Mapping[str, Any]) -> str:
+    trace, ryn = _axis_evidence(report)
+    if not isinstance(trace, Mapping):
         return ""
     axes = trace.get("axes")
     if not isinstance(axes, Mapping):
@@ -52,12 +108,6 @@ def _v091_axis_block(report: Mapping[str, Any]) -> str:
         return ""
 
     e_n = _num(trace.get("E_n_mm2"))
-    ryn = None
-    candidates = result.get("gamma_T_candidates")
-    if isinstance(candidates, list) and candidates and isinstance(candidates[0], Mapping):
-        details = candidates[0].get("details")
-        if isinstance(details, Mapping):
-            ryn = _num(details.get("Ryn_n_mm2"))
     lambda_geom = _num(strength_state.get("lambda_geom"))
     lambda_bar = _num(strength_state.get("lambda_bar_fire"))
     phi = _num(strength_state.get("phi_fire"))
