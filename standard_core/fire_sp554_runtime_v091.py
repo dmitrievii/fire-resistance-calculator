@@ -22,6 +22,16 @@ from typing import Any, Mapping
 from . import axial_members as _axial
 from . import fire_sp554_runtime as _runtime
 from . import fire_bridge2_qualified_state as _bridge2
+from .fire_sp554_v091_guided_overlay import (
+    PHI_NODE_ID,
+    STIFFNESS_TRACE_QID,
+    STRENGTH_TRACE_QID,
+)
+from .sp16_mech7_v083_full_route_overlay import (
+    GAMMA_E_INTERNAL_QID,
+    GAMMA_E_NODE_ID,
+    GAMMA_E_REQUIRED_QID,
+)
 
 
 GAMMA_CT = 1.1
@@ -36,12 +46,7 @@ def _fire_stability_state_from_geometry(
     elastic_modulus_n_mm2: float,
     curve: str,
 ) -> tuple[float, float]:
-    """Return (lambda_bar_fire, phi_fire) for final SP554 9.2.
-
-    The geometry and curve type are qualified SP16 outputs.  Only the
-    nondimensional slenderness is formed again because SP554 requires Ryn/E.
-    The phi producer itself is the shared SP16 implementation.
-    """
+    """Return (lambda_bar_fire, phi_fire) for final SP554 9.2."""
     if not math.isfinite(lambda_geom) or lambda_geom < 0.0:
         raise ValueError("geometric slenderness lambda must be finite and >= 0")
     if not math.isfinite(ryn_n_mm2) or ryn_n_mm2 <= 0.0:
@@ -75,9 +80,6 @@ def _qualified_axis(route: Mapping[str, Any], axis: str) -> dict[str, Any]:
     if curve not in {"a", "b", "c"}:
         raise ValueError(f"sp16_curve_{axis} must be a, b, or c")
 
-    # The three qualified SP16 outputs must describe the same geometry.  This
-    # is only a consistency gate; no geometry is reconstructed for engineering
-    # use in the fire branch.
     lambda_from_qualified_geometry = l_eff / radius
     tolerance = max(1e-6, 1e-5 * max(abs(lambda_geom), 1.0))
     if abs(lambda_from_qualified_geometry - lambda_geom) > tolerance:
@@ -110,9 +112,6 @@ def _fire_axis_state(
         elastic_modulus_n_mm2=elastic_modulus_n_mm2,
         curve=qualified["curve"],
     )
-
-    # J_axis = A*i_axis^2 is an identity based on the already-qualified SP16
-    # radius of gyration; it avoids returning to unqualified raw section data.
     j_axis = area_mm2 * qualified["i_mm"] * qualified["i_mm"]
     gamma_e_axis = (
         n_n
@@ -132,16 +131,9 @@ def _fire_axis_state(
 def _central_compression_final(
     case: Mapping[str, Any], route: Mapping[str, Any]
 ) -> tuple[list[dict[str, Any]], float | None, dict[str, Any]]:
-    """Final published SP554 9.2 central-compression route.
-
-    Qualified SP16 l_eff, i, geometric lambda and curve type are reused for
-    both z and y.  Ambient lambda_bar / phi and raw mu/L/J inputs are ignored.
-    E is the SP16 Appendix-B Table-B.1 physical constant for structural steel.
-    """
+    """Final published SP554 9.2 central-compression route."""
     n = abs(_runtime._number(route, "N_n", positive=True))
     area = _runtime._number(route, "A_gross_mm2", positive=True)
-    # Legacy machine key kept for compatibility.  Normative meaning in SP554
-    # is Ryn, not ambient design Ry and not a generic fy design resistance.
     ryn = _runtime._number(case, "fy_norm_n_mm2", positive=True)
     elastic_modulus = SP16_STEEL_E_N_MM2
     gamma_c = _runtime._number(route, "gamma_c", positive=True)
@@ -157,7 +149,6 @@ def _central_compression_final(
         )
         for axis in ("z", "y")
     }
-
     governing_strength_axis = min(axes, key=lambda key: axes[key]["phi_fire"])
     governing_stiffness_axis = max(axes, key=lambda key: axes[key]["gamma_e"])
     phi_fire = axes[governing_strength_axis]["phi_fire"]
@@ -200,7 +191,7 @@ def _central_compression_final(
 
 def _number_from_values(values: Mapping[str, Any], key: str, *, positive: bool = False) -> float:
     if key not in values:
-        raise ValueError(f"SP554 9.2 final runtime requires {key}")
+        raise ValueError(f"SP554 final runtime requires {key}")
     try:
         value = float(values[key])
     except (TypeError, ValueError) as exc:
@@ -241,40 +232,125 @@ def _axis_from_values(values: Mapping[str, Any], axis: str) -> tuple[float, str]
     return lambda_geom, curve
 
 
-def _phi_9_2_declarative_final(values: Mapping[str, Any], node: Mapping[str, Any]) -> Mapping[str, Any]:
-    """Final guided phi producer from qualified SP16 z/y geometry.
+def _declared_outputs(node: Mapping[str, Any] | None) -> set[str] | None:
+    if not isinstance(node, Mapping) or not node.get("produces"):
+        return None
+    return {
+        str(row["quantity_id"])
+        for row in node.get("produces") or []
+        if isinstance(row, Mapping) and row.get("quantity_id")
+    }
 
-    The frozen graph can still carry ambient lambda_bar / phi fields for saved
-    session compatibility.  They cannot govern this result.  E is sourced from
-    SP16 Appendix B, Table B.1 and is therefore not a guided user input.
-    """
+
+def _phi_9_2_declarative_final(values: Mapping[str, Any], node: Mapping[str, Any]) -> Mapping[str, Any]:
+    """Final guided phi producer from qualified SP16 z/y fire slenderness."""
     ryn = _number_from_values(values, "fy_norm", positive=True)
     elastic_modulus = SP16_STEEL_E_N_MM2
-    states: dict[str, tuple[float, float]] = {}
+    axes: dict[str, dict[str, Any]] = {}
     for axis in ("z", "y"):
         lambda_geom, curve = _axis_from_values(values, axis)
-        states[axis] = _fire_stability_state_from_geometry(
+        lambda_bar, phi = _fire_stability_state_from_geometry(
             lambda_geom=lambda_geom,
             ryn_n_mm2=ryn,
             elastic_modulus_n_mm2=elastic_modulus,
             curve=curve,
         )
-    governing_axis = min(states, key=lambda key: states[key][1])
-    return {"phi_compression_sp554": float(states[governing_axis][1])}
+        axes[axis] = {
+            "axis": axis,
+            "lambda_geom": float(lambda_geom),
+            "lambda_bar_fire": float(lambda_bar),
+            "phi_fire": float(phi),
+            "curve": curve,
+        }
+    governing_axis = min(
+        ("z", "y"),
+        key=lambda key: (axes[key]["phi_fire"], 0 if key == "z" else 1),
+    )
+    trace = {
+        "schema": "sp554_v091_strength_trace_v1",
+        "route": "central_compression",
+        "Ryn_n_mm2": float(ryn),
+        "E_n_mm2": float(elastic_modulus),
+        "E_normative_basis": SP16_STEEL_E_NORMATIVE_BASIS,
+        "governing_strength_axis": governing_axis,
+        "axes": axes,
+        "legacy_E_norm_ignored": values.get("E_norm"),
+    }
+    declared = _declared_outputs(node)
+    result: dict[str, Any] = {"phi_compression_sp554": float(axes[governing_axis]["phi_fire"])}
+    if declared is None or STRENGTH_TRACE_QID in declared:
+        result[STRENGTH_TRACE_QID] = trace
+    return result
+
+
+def _gamma_e_8_6_declarative_final(values: Mapping[str, Any], node: Mapping[str, Any]) -> Mapping[str, Any]:
+    """Final guided gamma_E producer from both qualified SP16 principal axes."""
+    n = abs(_number_from_values(values, "N_force"))
+    area = _number_from_values(values, "A_gross", positive=True)
+    elastic_modulus = SP16_STEEL_E_N_MM2
+    axes: dict[str, dict[str, Any]] = {}
+    for axis in ("z", "y"):
+        l_eff = _number_from_values(values, f"sp16_l_eff_{axis}", positive=True)
+        radius = _number_from_values(values, f"sp16_i_{axis}", positive=True)
+        inertia = area * radius * radius
+        gamma_e = n * l_eff * l_eff / (
+            math.pi * math.pi * elastic_modulus * inertia
+        )
+        if not math.isfinite(gamma_e) or gamma_e < 0.0:
+            raise ValueError(f"SP554 8.6 gamma_E for axis {axis} is invalid")
+        axes[axis] = {
+            "axis": axis,
+            "l_eff_mm": float(l_eff),
+            "i_mm": float(radius),
+            "J_from_qualified_A_i2_mm4": float(inertia),
+            "gamma_e": float(gamma_e),
+        }
+    governing_axis = max(
+        ("z", "y"),
+        key=lambda key: (axes[key]["gamma_e"], 1 if key == "z" else 0),
+    )
+    governing = float(axes[governing_axis]["gamma_e"])
+    trace = {
+        "schema": "sp554_v091_stiffness_trace_v1",
+        "route": "central_compression",
+        "E_n_mm2": float(elastic_modulus),
+        "E_normative_basis": SP16_STEEL_E_NORMATIVE_BASIS,
+        "governing_stiffness_axis": governing_axis,
+        "axes": axes,
+        "legacy_E_norm_ignored": values.get("E_norm"),
+        "legacy_ambient_governing_axis_ignored": values.get(
+            "sp16_v081_governing_stability_axis"
+        ),
+    }
+    declared = _declared_outputs(node)
+    result: dict[str, Any] = {}
+    for qid in (GAMMA_E_INTERNAL_QID, GAMMA_E_REQUIRED_QID):
+        if declared is None or qid in declared:
+            result[qid] = governing
+    if declared is None or STIFFNESS_TRACE_QID in declared:
+        result[STIFFNESS_TRACE_QID] = trace
+    return result
+
+
+def install_guided_registry_remediation(registry: Any) -> Any:
+    """Bind final-SP554 guided §9.2/§8.6 producers to an existing registry."""
+    registry.register(PHI_NODE_ID, _phi_9_2_declarative_final)
+    registry.register(GAMMA_E_NODE_ID, _gamma_e_8_6_declarative_final)
+    return registry
 
 
 def _install_guided_registry_override() -> None:
-    if getattr(_bridge2, "_v091_final_sp554_phi_installed", False):
+    if getattr(_bridge2, "_v091_final_sp554_guided_installed", False):
         return
     original_builder = _bridge2._build_fire_bridge2_registry
 
     def _build_fire_bridge2_registry_v091(catalog, registry=None):
         reg = original_builder(catalog, registry)
-        reg.register("SP554_C_PHI_9_2_RULE", _phi_9_2_declarative_final)
-        return reg
+        return install_guided_registry_remediation(reg)
 
     _bridge2._build_fire_bridge2_registry = _build_fire_bridge2_registry_v091
-    _bridge2._v091_final_sp554_phi_installed = True
+    _bridge2._v091_final_sp554_guided_installed = True
+    _bridge2._v091_final_sp554_phi_installed = True  # retained compatibility marker
     _bridge2._v091_previous_registry_builder = original_builder
 
 
@@ -296,5 +372,8 @@ __all__ = [
     "GAMMA_CT",
     "SP16_STEEL_E_N_MM2",
     "SP16_STEEL_E_NORMATIVE_BASIS",
+    "_gamma_e_8_6_declarative_final",
+    "_phi_9_2_declarative_final",
     "install",
+    "install_guided_registry_remediation",
 ]
