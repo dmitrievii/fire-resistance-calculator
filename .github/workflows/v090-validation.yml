@@ -56,6 +56,7 @@ jobs:
           tests/test_v091_sp554_report_trace.py
           tests/test_v091_guided_axis_evidence.py
           tests/test_v091_full_guided_report_closure.py
+          tests/test_v091_standalone_case_contract.py
       - name: Frozen-DAG compatibility regression
         run: >-
           python -m pytest -q
