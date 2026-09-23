@@ -22,6 +22,7 @@ from streamlit_sp554_gamma_ct_v092 import install as _install_gamma_ct_v092
 from streamlit_canonical_actions_v092 import install as _install_canonical_actions_v092
 from streamlit_effective_length_v092 import install as _install_effective_length_v092
 from streamlit_thermal_result_v092 import install as _install_thermal_result_v092
+from streamlit_section_properties_v092 import install as _install_section_properties_v092
 from streamlit_ui_polish_v090 import install as _install_ui_polish_v090
 # Legacy installer-chain marker retained for cumulative v0.77-v0.81 regression:
 # from streamlit_guided_ux_v081 import install as _install_guided_ux
@@ -38,6 +39,10 @@ _install_navigation(_core)
 _install_report_ui(_core)
 _install_report_summary(_core)
 _install_guided_ux(_core)
+# v0.92 section-property preview replaces historical catalogue x/y labels with
+# the active physical principal-axis contract: z-z strong, y-y weak. It is a
+# presentation-only adapter and does not mutate the selected catalogue row.
+_install_section_properties_v092(_core)
 # v0.90 presentation polish is deliberately installed after v0.86 so the final
 # selector feedback and thermal-series styles are the active UI behavior.
 _install_ui_polish_v090(_core)
@@ -71,7 +76,7 @@ _install_live_report(_core)
 _install_expertise_report(_core)
 # v0.89 REPORT3 is retained as the semantic narrative base.
 _install_expertise_narrative(_core)
-# v0.90 REPORT4 + v0.91 SP554 refinement are installed last as an isolated renderer.
+# v0.90 REPORT4 + v0.91/v0.92 SP554/report refinements are installed last as an isolated renderer.
 _install_expertise_mech9(_core)
 
 # Re-export the core module API so tests and deployment tooling keep using the
