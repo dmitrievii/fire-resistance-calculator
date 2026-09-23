@@ -68,6 +68,12 @@ def test_v091_public_9_2_workflow_ignores_stale_e_norm_end_to_end():
 
 
 def test_v091_non_9_2_routes_retain_legacy_e_norm_contract_fail_closed():
+    """Freeze the v0.91 behavior explicitly, not the current v0.92 public API.
+
+    v0.92 intentionally migrated §9.1 and therefore no longer requires the old
+    ambient E_norm seed for central tension.  The saved predecessor is the
+    correct subject for this historical v0.91 regression.
+    """
     tension_case = {
         "member_route": "central_tension",
         "steel_strength_group": "ordinary",
@@ -79,5 +85,6 @@ def test_v091_non_9_2_routes_retain_legacy_e_norm_contract_fail_closed():
         },
     }
 
+    v091_workflow = runtime._v092_previous_sp554_fire_mechanical_guided_workflow
     with pytest.raises(ValueError, match="E_norm_n_mm2"):
-        runtime.sp554_fire_mechanical_guided_workflow(tension_case)
+        v091_workflow(tension_case)
