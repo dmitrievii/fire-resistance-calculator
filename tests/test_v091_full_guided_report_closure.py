@@ -49,11 +49,11 @@ def _submit(app, sid: str, expected_node: str, payload) -> None:
 
 
 def test_v091_real_guided_session_closes_through_fire_result_and_same_ledger_report(monkeypatch):
-    """Production UI -> SP16 -> SP554 -> thermal -> R-check -> REPORT-IR5.
+    """Current production UI -> SP16 -> SP554 -> thermal -> R-check -> REPORT-IR5.
 
-    Every engineering input is submitted through the production Streamlit
-    adapter.  The report is then built from that exact terminal session; no
-    mechanical, thermal or verdict value is re-seeded for presentation.
+    The report assertions remain the v0.91 final-SP554 closure assertions, while
+    the active UI action input follows the cumulative v0.92 canonical contract:
+    Mz strong-axis bending, My weak-axis bending, Mx torsion, Qz/Qy shear.
     """
     fake_st = _FakeStreamlit()
     monkeypatch.setattr(core, "_st", lambda: fake_st)
@@ -98,11 +98,11 @@ def test_v091_real_guided_session_closes_through_fire_result_and_same_ledger_rep
     _submit(app, sid, "SP16_I_AMBIENT_LOADS", {
         "ambient_load_combination": {"schema": "v091_closure", "kind": "ambient"},
         "ambient_N_force": -600_000.0,
-        "ambient_M_x": 0.0,
+        "ambient_M_z": 0.0,
         "ambient_M_y": 0.0,
-        "ambient_Q_x": 0.0,
+        "ambient_Q_z": 0.0,
         "ambient_Q_y": 0.0,
-        "ambient_T_torsion": 0.0,
+        "ambient_M_x": 0.0,
         "ambient_B_bimoment": 0.0,
     })
     _submit(app, sid, "SP16_D_AMBIENT_CENSUS_CONFIRM", True)
