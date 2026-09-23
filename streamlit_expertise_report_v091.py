@@ -82,14 +82,14 @@ def _v091_axis_block(report: Mapping[str, Any]) -> str:
             "Для определяющей по прочности оси относительная гибкость при пожаре показана как "
             "«формула = подстановка = результат»: ",
             "",
-            f"$\\bar{{λ}}_{{{strength_axis}}}=λ_{{{strength_axis}}}\\sqrt{{R_{{yn}}/E}}"
-            f"={_fmt(lambda_geom)}\\sqrt{{{_fmt(ryn)}/{_fmt(e_n)}}}={_fmt(lambda_bar)}$.",
+            rf"$\bar{{λ}}_{{{strength_axis}}}=λ_{{{strength_axis}}}\sqrt{{R_{{yn}}/E}}"
+            rf"={_fmt(lambda_geom)}\sqrt{{{_fmt(ryn)}/{_fmt(e_n)}}}={_fmt(lambda_bar)}$.",
             "",
         ])
     if lambda_bar is not None and phi is not None:
         lines.extend([
-            f"$φ_{{{strength_axis}}}=φ(\\bar{{λ}}_{{{strength_axis}}},\;тип\;{curve})"
-            f"=φ({_fmt(lambda_bar)},\;{curve})={_fmt(phi)}$.",
+            rf"$φ_{{{strength_axis}}}=φ(\bar{{λ}}_{{{strength_axis}}},\;тип\;{curve})"
+            rf"=φ({_fmt(lambda_bar)},\;{curve})={_fmt(phi)}$.",
             "",
         ])
     if gamma_e is not None:
