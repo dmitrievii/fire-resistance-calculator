@@ -34,6 +34,7 @@ jobs:
           streamlit_expertise_report_v090_fire_coeffs.py
           streamlit_expertise_report_v090_thermal_refinement.py
           streamlit_expertise_report_v090_install.py
+          streamlit_expertise_report_v091.py
           streamlit_expertise_report_v089.py
           standard_core/sp16_mech9_v090_ux_overlay.py
           standard_core/sp16_mech9_remaining_ambient.py
@@ -47,6 +48,7 @@ jobs:
           tests/test_v091_final_sp554_normative_remediation.py
           tests/test_v091_sp554_workflow_e_norm_scope.py
           tests/test_v091_sp554_end_to_end_thermal_verdict.py
+          tests/test_v091_sp554_report_trace.py
       - name: v0.90 focused regression
         run: >-
           python -m pytest -q
