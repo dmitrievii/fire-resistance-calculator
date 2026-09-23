@@ -18,6 +18,7 @@ from streamlit_expertise_report_v089 import install as _install_expertise_narrat
 from streamlit_expertise_report_v090_install import install as _install_expertise_mech9
 from streamlit_mech9_v090 import install as _install_mech9_ux
 from streamlit_fire_sp554_v091 import install as _install_fire_sp554_v091
+from streamlit_canonical_actions_v092 import install as _install_canonical_actions_v092
 from streamlit_ui_polish_v090 import install as _install_ui_polish_v090
 # Legacy installer-chain marker retained for cumulative v0.77-v0.81 regression:
 # from streamlit_guided_ux_v081 import install as _install_guided_ux
@@ -44,6 +45,11 @@ _install_mech9_ux(_core)
 # DAG/runtime removes legacy E_norm/ambient-axis control from §§8.6/9.2 and
 # publishes typed calculation evidence for the report layer.
 _install_fire_sp554_v091(_core)
+# v0.92 canonical action migration is installed after v0.91.  It rewrites the
+# active graph/runtime contract to Mz strong bending, My weak bending and Mx
+# torsion only.  Historical Mx/T answers are never semantically replayed across
+# this boundary; retained sessions stop before the changed load-input state.
+_install_canonical_actions_v092(_core)
 # v0.87 LIVE-REPORT1 is retained underneath as a rollback/audit-capable presentation layer.
 _install_live_report(_core)
 # v0.88 widens the report pane and remains as the underlying expertise renderer.
