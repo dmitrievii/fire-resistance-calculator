@@ -3,7 +3,12 @@ import math
 import pytest
 
 from standard_core import fire_sp554_runtime as runtime
-from standard_core.fire_sp554_runtime_v091 import GAMMA_CT, _phi_9_2_declarative_final
+from standard_core.fire_sp554_runtime_v091 import (
+    GAMMA_CT,
+    SP16_STEEL_E_N_MM2,
+    SP16_STEEL_E_NORMATIVE_BASIS,
+    _phi_9_2_declarative_final,
+)
 
 
 def _compression_case():
@@ -11,7 +16,6 @@ def _compression_case():
         "member_route": "central_compression",
         "steel_strength_group": "ordinary",
         "fy_norm_n_mm2": 255.0,  # machine key retained; normative meaning is Ryn
-        "E_norm_n_mm2": 206000.0,
         "route": _compression_route(),
     }
 
@@ -56,6 +60,9 @@ def test_v091_fire_slenderness_uses_qualified_sp16_lambda_with_ryn_over_e():
     assert trace["axes"]["y"]["lambda_geom"] == pytest.approx(119.39)
     assert trace["governing_strength_axis"] == "y"
     assert trace["axes"]["y"]["phi_fire"] < trace["axes"]["z"]["phi_fire"]
+    assert trace["E_n_mm2"] == pytest.approx(206000.0)
+    assert trace["E_normative_basis"] == SP16_STEEL_E_NORMATIVE_BASIS
+    assert SP16_STEEL_E_N_MM2 == pytest.approx(206000.0)
 
     # SP554 9.2 final publication: gamma_ct=1.1 is an explicit denominator.
     phi = trace["axes"][trace["governing_strength_axis"]]["phi_fire"]
@@ -100,6 +107,21 @@ def test_v091_does_not_rebuild_fire_state_from_legacy_raw_geometry_or_ambient_ph
     assert first[2]["axes"] == second[2]["axes"]
 
 
+def test_v091_steel_E_is_normative_constant_not_manual_or_legacy_input():
+    baseline = runtime._central_compression(
+        _compression_case(), _compression_route()
+    )
+    stale_case = dict(_compression_case(), E_norm_n_mm2=1.0)
+    with_stale_input = runtime._central_compression(stale_case, _compression_route())
+
+    assert baseline[0][0]["gamma_T_required"] == pytest.approx(
+        with_stale_input[0][0]["gamma_T_required"]
+    )
+    assert baseline[1] == pytest.approx(with_stale_input[1])
+    assert with_stale_input[2]["E_n_mm2"] == pytest.approx(206000.0)
+    assert with_stale_input[2]["legacy_E_norm_n_mm2_ignored"] == pytest.approx(1.0)
+
+
 def test_v091_full_fire_workflow_inverts_both_criteria_and_selects_earliest_temperature():
     result = runtime.sp554_fire_mechanical_guided_workflow(_compression_case())
 
@@ -118,20 +140,25 @@ def test_v091_full_fire_workflow_inverts_both_criteria_and_selects_earliest_temp
     assert result["critical_temperature_c"] != pytest.approx(296.93268253, abs=1e-6)
 
 
-def test_v091_guided_phi_executor_uses_two_qualified_axes_and_ignores_ambient_values():
+def test_v091_guided_phi_executor_uses_two_qualified_axes_without_e_seed():
     values = {
         "sp16_lambda_z_geom": 35.28,
         "sp16_lambda_y_geom": 119.39,
         "sp16_curve_z": "b",
         "sp16_curve_y": "c",
         "fy_norm": 255.0,
-        "E_norm": 206000.0,
         "lambda_bar": 0.01,
         "phi_sp16_formula8": 0.999,
     }
     first = _phi_9_2_declarative_final(values, {})
     second = _phi_9_2_declarative_final(
-        dict(values, lambda_bar=9.0, phi_sp16_formula8=0.02), {}
+        dict(
+            values,
+            E_norm=1.0,  # stale/internal value must not override SP16 Table B.1
+            lambda_bar=9.0,
+            phi_sp16_formula8=0.02,
+        ),
+        {},
     )
     assert first == second
     assert 0.0 < first["phi_compression_sp554"] < 1.0
@@ -158,6 +185,5 @@ def test_v091_shared_sp16_phi_low_slenderness_rule_is_preserved():
         "sp16_curve_z": "b",
         "sp16_curve_y": "b",
         "fy_norm": 255.0,
-        "E_norm": 206000.0,
     }
     assert _phi_9_2_declarative_final(values, {})["phi_compression_sp554"] == pytest.approx(1.0)
