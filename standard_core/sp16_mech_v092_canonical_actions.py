@@ -69,7 +69,7 @@ _CHANGED_LEGACY_QIDS = frozenset(LEGACY_TO_CANONICAL_QID)
 _CHANGED_CANONICAL_QIDS = frozenset(LEGACY_TO_CANONICAL_QID.values())
 
 # These quantities keep their top-level ids but contain axis-sensitive nested
-# payloads.  Consumers/producers must cross the same compatibility adapter.
+# payloads. Consumers/producers must cross the same compatibility adapter.
 _CANONICALIZED_AGGREGATE_QIDS = frozenset(
     {
         "ambient_load_case",
@@ -143,6 +143,27 @@ _HISTORICAL_AXIS_CONVENTION = {
     "B": "bimoment; direct conditional input in current scope",
 }
 
+_CANONICAL_SIGN_CONVENTION = {
+    "N": "positive=tension, negative=compression",
+    "x": "member longitudinal axis",
+    "Mz": "bending about SP16 strong principal z-z",
+    "My": "bending about SP16 weak principal y-y",
+    "Mx": "torsion about longitudinal x",
+    "Qz": "SP16 Qz",
+    "Qy": "SP16 Qy",
+    "B": "bimoment, direct conditional input",
+}
+_HISTORICAL_SIGN_CONVENTION = {
+    "N": "positive=tension, negative=compression",
+    "s": "member longitudinal axis",
+    "Mx": "bending about SP16 principal x-x",
+    "My": "bending about SP16 principal y-y",
+    "Qx": "SP16 Qx",
+    "Qy": "SP16 Qy",
+    "T": "torsion about longitudinal s",
+    "B": "bimoment, direct conditional input",
+}
+
 # Exact semantic ids emitted by historical MECH1/MECH2 aggregate objects.
 # Only exact ids are changed; arbitrary text and normative references are not
 # subject to blind substring replacement.
@@ -155,15 +176,39 @@ _ID_VALUE_RENAMES = {
     "interaction_M_Qx": "interaction_M_Qz",
 }
 _CANONICAL_TO_LEGACY_ID_VALUE = {value: key for key, value in _ID_VALUE_RENAMES.items()}
+_ID_LIST_PARENT_KEYS = frozenset({"deferred_branch_ids"})
 
 _BRANCH_LABEL_RENAMES = {
     "bending_Mx": "Изгиб Mz относительно сильной главной оси z-z",
     "shear_Qx": "Поперечная сила Qz",
     "torsion_T": "Кручение Mx относительно продольной оси x",
     "interaction_M_Qx": "Взаимодействие M + Qz",
+    "biaxial_bending": "Двухосный изгиб Mz + My",
+    "interaction_N_M": "Взаимодействие N + Mz + My",
+}
+_HISTORICAL_BRANCH_LABELS = {
+    "bending_Mx": "Изгиб Mx относительно главной оси x-x",
+    "shear_Qx": "Поперечная сила Qx / текущий scalar web-shear route",
+    "torsion_T": "Кручение T относительно продольной оси s",
+    "interaction_M_Qx": "Взаимодействие M + Qx",
+    "biaxial_bending": "Двухосный изгиб Mx + My",
+    "interaction_N_M": "Взаимодействие N + Mx + My",
+}
+_BRANCH_NOTE_RENAMES = {
+    "torsion_T": (
+        "В активном контракте v0.92 Mx обозначает кручение относительно продольной оси x; "
+        "кручение не подменяется бимоментом B. Поддержка определяется последующими MECH-этапами."
+    ),
+}
+_HISTORICAL_BRANCH_NOTES = {
+    "torsion_T": (
+        "SP16-MECH1 не подменяет T бимоментом B; torsion runtime закрывается отдельным этапом."
+    ),
 }
 
 _SCHEMA_RENAMES = {
+    "sp16_mech1_canonical_mechanical_action_state_v1": "sp16_mech1_mechanical_action_state_v092_canonical_axes",
+    "sp16_mech1_verification_plan_v1": "sp16_mech1_verification_plan_v092_canonical_axes",
     "sp16_mech2_load_case_v1": "sp16_mech2_load_case_v092_canonical_axes",
     "sp16_mech2_ambient_mechanical_action_state_v1": "sp16_mech2_ambient_mechanical_action_state_v092_canonical_axes",
     "sp16_mech2_applicability_census_v1": "sp16_mech2_applicability_census_v092_canonical_axes",
@@ -226,7 +271,7 @@ def build_model(model: FireDAGModel) -> FireDAGModel:
 
 
 def _canonicalize_engineering_object(value: Any, *, parent_key: str | None = None) -> Any:
-    """Canonicalize known nested MECH2 state/census objects without changing formulas."""
+    """Canonicalize known nested MECH state/plan objects without changing formulas."""
     if isinstance(value, list):
         return [_canonicalize_engineering_object(item, parent_key=parent_key) for item in value]
     if not isinstance(value, Mapping):
@@ -234,6 +279,8 @@ def _canonicalize_engineering_object(value: Any, *, parent_key: str | None = Non
             return _SCHEMA_RENAMES.get(value, value)
         if parent_key == "compatibility_aliases" and value == "Q_x":
             return "Q_z"
+        if parent_key in _ID_LIST_PARENT_KEYS and isinstance(value, str):
+            return _ID_VALUE_RENAMES.get(value, value)
         return copy.deepcopy(value)
 
     if parent_key == "actions":
@@ -243,6 +290,8 @@ def _canonicalize_engineering_object(value: Any, *, parent_key: str | None = Non
         return result
     if parent_key == "axis_convention":
         return copy.deepcopy(_CANONICAL_AXIS_CONVENTION)
+    if parent_key == "sign_convention":
+        return copy.deepcopy(_CANONICAL_SIGN_CONVENTION)
     if parent_key == "compatibility_aliases":
         return {
             str(key): ("Q_z" if item == "Q_x" else _canonicalize_engineering_object(item))
@@ -258,11 +307,13 @@ def _canonicalize_engineering_object(value: Any, *, parent_key: str | None = Non
         result[key] = new_item
     if historical_id in _BRANCH_LABEL_RENAMES and "label" in result:
         result["label"] = _BRANCH_LABEL_RENAMES[historical_id]
+    if historical_id in _BRANCH_NOTE_RENAMES and "note" in result:
+        result["note"] = _BRANCH_NOTE_RENAMES[historical_id]
     return result
 
 
 def _legacy_engineering_object(value: Any, *, parent_key: str | None = None) -> Any:
-    """Create an executor-local historical view of canonical MECH2 aggregates."""
+    """Create an executor-local historical view of canonical MECH aggregates."""
     if isinstance(value, list):
         return [_legacy_engineering_object(item, parent_key=parent_key) for item in value]
     if not isinstance(value, Mapping):
@@ -270,6 +321,8 @@ def _legacy_engineering_object(value: Any, *, parent_key: str | None = None) -> 
             return _CANONICAL_TO_LEGACY_SCHEMA.get(value, value)
         if parent_key == "compatibility_aliases" and value == "Q_z":
             return "Q_x"
+        if parent_key in _ID_LIST_PARENT_KEYS and isinstance(value, str):
+            return _CANONICAL_TO_LEGACY_ID_VALUE.get(value, value)
         return copy.deepcopy(value)
 
     if parent_key == "actions":
@@ -279,18 +332,26 @@ def _legacy_engineering_object(value: Any, *, parent_key: str | None = None) -> 
         return result
     if parent_key == "axis_convention":
         return copy.deepcopy(_HISTORICAL_AXIS_CONVENTION)
+    if parent_key == "sign_convention":
+        return copy.deepcopy(_HISTORICAL_SIGN_CONVENTION)
     if parent_key == "compatibility_aliases":
         return {
             str(key): ("Q_x" if item == "Q_z" else _legacy_engineering_object(item))
             for key, item in value.items()
         }
 
+    canonical_id = str(value.get("id")) if isinstance(value.get("id"), str) else None
+    historical_id = _CANONICAL_TO_LEGACY_ID_VALUE.get(canonical_id, canonical_id) if canonical_id else None
     result: dict[str, Any] = {}
     for key, item in value.items():
         new_item = _legacy_engineering_object(item, parent_key=str(key))
         if key == "id" and isinstance(new_item, str):
             new_item = _CANONICAL_TO_LEGACY_ID_VALUE.get(new_item, new_item)
         result[key] = new_item
+    if historical_id in _HISTORICAL_BRANCH_LABELS and "label" in result:
+        result["label"] = _HISTORICAL_BRANCH_LABELS[historical_id]
+    if historical_id in _HISTORICAL_BRANCH_NOTES and "note" in result:
+        result["note"] = _HISTORICAL_BRANCH_NOTES[historical_id]
     return result
 
 
@@ -346,7 +407,7 @@ def install_registry_remediation(
     """Wrap only executors whose graph contract crosses canonical action semantics.
 
     ``model=None`` is retained for focused unit tests and explicit low-level use;
-    in that mode every registered executor is adapted.  Production installers
+    in that mode every registered executor is adapted. Production installers
     must pass the active model so unrelated executors retain exact identity.
     The function also heals a retained session created by the earlier v0.92
     all-registry wrapper implementation by unwrapping now-unrelated executors.
