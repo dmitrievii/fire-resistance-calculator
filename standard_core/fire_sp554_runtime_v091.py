@@ -10,6 +10,9 @@ For rolled structural steel and steel castings, E is not a user-dependent
 material selection in this route: SP 16.13330.2017 Appendix B, Table B.1 fixes
 E = 2.06e5 N/mm2.  v0.91 therefore sources this value normatively instead of
 requiring an internal/manual E_norm seed from the guided UI.
+
+Published SP554 Appendix B.1 coefficients are owned exclusively by
+``fire_sp554_b1_v091_final``; this module contains no duplicate table rows.
 """
 from __future__ import annotations
 
@@ -24,33 +27,6 @@ from . import fire_bridge2_qualified_state as _bridge2
 GAMMA_CT = 1.1
 SP16_STEEL_E_N_MM2 = 206000.0
 SP16_STEEL_E_NORMATIVE_BASIS = "SP16.13330.2017 Appendix B, Table B.1"
-
-# Published final Table B.1 values that differ from the pre-publication
-# dataset used by FIRE-D2.  Unlisted rows/groups remain unchanged.
-_FINAL_B1_OVERRIDES: dict[str, dict[float, tuple[float, float]]] = {
-    "increased": {
-        300.0: (0.96, 0.84),
-        450.0: (0.81, 0.65),
-        500.0: (0.75, 0.60),
-        550.0: (0.71, 0.55),
-    },
-    "high": {
-        300.0: (0.95, 0.89),
-    },
-}
-
-
-def _install_final_b1() -> None:
-    for group, overrides in _FINAL_B1_OVERRIDES.items():
-        current = _runtime._B1[group]
-        replaced: list[tuple[float, float, float]] = []
-        for temperature, gamma_e, gamma_t in current:
-            pair = overrides.get(float(temperature))
-            if pair is None:
-                replaced.append((float(temperature), float(gamma_e), float(gamma_t)))
-            else:
-                replaced.append((float(temperature), float(pair[0]), float(pair[1])))
-        _runtime._B1[group] = tuple(replaced)
 
 
 def _fire_stability_state_from_geometry(
@@ -307,7 +283,6 @@ def install() -> None:
     if getattr(_runtime, "_v091_final_sp554_installed", False):
         _install_guided_registry_override()
         return
-    _install_final_b1()
     _runtime._central_compression = _central_compression_final
     _runtime._v091_final_sp554_installed = True
     _runtime._v091_normative_basis = "published final SP 554.1311500.2026"
