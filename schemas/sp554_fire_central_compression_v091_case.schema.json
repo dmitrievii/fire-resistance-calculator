@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "v0.91 final-SP554 central-compression fire case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "standard",
+    "action",
+    "member_route",
+    "steel_strength_group",
+    "high_strength_gost9651_qualified",
+    "fire_resistant_gost9651_qualified",
+    "fy_norm_n_mm2",
+    "route"
+  ],
+  "properties": {
+    "case_id": {"type": "string", "minLength": 1},
+    "standard": {"const": "SP554_2026"},
+    "action": {"const": "sp554_fire_mechanical_guided"},
+    "member_route": {"const": "central_compression"},
+    "steel_strength_group": {"enum": ["ordinary", "increased", "high", "fire_resistant"]},
+    "high_strength_gost9651_qualified": {"type": "boolean"},
+    "fire_resistant_gost9651_qualified": {"type": "boolean"},
+    "fy_norm_n_mm2": {"type": "number", "exclusiveMinimum": 0},
+    "route": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "N_n",
+        "A_gross_mm2",
+        "gamma_c",
+        "sp16_lambda_z_geom",
+        "sp16_lambda_y_geom",
+        "sp16_l_eff_z",
+        "sp16_l_eff_y",
+        "sp16_i_z",
+        "sp16_i_y",
+        "sp16_curve_z",
+        "sp16_curve_y"
+      ],
+      "properties": {
+        "N_n": {"type": "number"},
+        "A_gross_mm2": {"type": "number", "exclusiveMinimum": 0},
+        "gamma_c": {"type": "number", "exclusiveMinimum": 0},
+        "sp16_lambda_z_geom": {"type": "number", "minimum": 0},
+        "sp16_lambda_y_geom": {"type": "number", "minimum": 0},
+        "sp16_l_eff_z": {"type": "number", "exclusiveMinimum": 0},
+        "sp16_l_eff_y": {"type": "number", "exclusiveMinimum": 0},
+        "sp16_i_z": {"type": "number", "exclusiveMinimum": 0},
+        "sp16_i_y": {"type": "number", "exclusiveMinimum": 0},
+        "sp16_curve_z": {"enum": ["a", "b", "c"]},
+        "sp16_curve_y": {"enum": ["a", "b", "c"]}
+      }
+    }
+  }
+}

@@ -1,8 +1,8 @@
-"""Isolated installer for v0.90 REPORT4.
+"""Isolated installer for v0.90 REPORT4 with v0.91 SP554 refinement.
 
 The v0.90 narrative renderer is installed into ``streamlit_app_core`` without
-mutating the retained v0.89 module.  This keeps rollback/regression semantics
-stable while making REPORT4 the active UI renderer.
+mutating the retained v0.89 module.  v0.91 adds presentation-only final-SP554
+§9.2 governing-axis evidence while keeping the same REPORT-IR5 source.
 """
 from __future__ import annotations
 
@@ -13,16 +13,14 @@ import streamlit_expertise_report_v088 as _v088
 import streamlit_expertise_report_v089 as _v089
 import streamlit_live_report_v087 as _v087
 from standard_core.report_ir5 import build_report_ir5
-from streamlit_expertise_report_v090_thermal_refinement import (
-    render_expertise_narrative_markdown_v090_thermal_refinement,
-)
+from streamlit_expertise_report_v091 import render_expertise_narrative_markdown_v091
 
 _INSTALLED = "_fire_expertise_report_v090_isolated_installed"
 
 
 def _render_export(core: Any, report: Mapping[str, Any]) -> None:
     st = core.st
-    markdown = render_expertise_narrative_markdown_v090_thermal_refinement(report)
+    markdown = render_expertise_narrative_markdown_v091(report)
     st.download_button(
         "Скачать расчётный отчёт (.md)",
         data=markdown,
@@ -53,7 +51,7 @@ def render_expertise_report_v090(core: Any, env: Mapping[str, Any]) -> None:
         return
     session = app.service.get_session(sid)
     report = build_report_ir5(app.service.model, session)
-    markdown = render_expertise_narrative_markdown_v090_thermal_refinement(report)
+    markdown = render_expertise_narrative_markdown_v091(report)
 
     st.markdown("### Расчётный отчёт")
     st.caption("Отчёт обновляется после каждого принятого шага. Основной текст собран по инженерным разделам, а служебные этапы расчётного графа скрыты во вкладке Audit.")

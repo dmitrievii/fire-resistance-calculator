@@ -5,6 +5,8 @@ on:
     branches:
       - 'fix/v0.90-*'
       - 'feature/v0.90-*'
+      - 'fix/v0.91-*'
+      - 'feature/v0.91-*'
   pull_request:
     branches:
       - main
@@ -21,22 +23,46 @@ jobs:
       - name: Install runtime and tests
         run: |
           python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt pytest
+          python -m pip install -r requirements.txt pytest fastjsonschema
       - name: Compile v0.90 and retained report layers
         run: >-
           python -W error::SyntaxWarning -m py_compile
           streamlit_app.py
           streamlit_mech9_v090.py
+          streamlit_fire_sp554_v091.py
           streamlit_ui_polish_v090.py
           streamlit_expertise_report_v090.py
           streamlit_expertise_report_v090_fire_coeffs.py
           streamlit_expertise_report_v090_thermal_refinement.py
           streamlit_expertise_report_v090_install.py
+          streamlit_expertise_report_v091.py
           streamlit_expertise_report_v089.py
           standard_core/sp16_mech9_v090_ux_overlay.py
           standard_core/sp16_mech9_remaining_ambient.py
           standard_core/brittle_fracture_workflows.py
           standard_core/fatigue_workflows.py
+          standard_core/fire_sp554_runtime_v091.py
+          standard_core/fire_sp554_v091_guided_overlay.py
+          standard_core/fire_sp554_v091_registry_scope.py
+          standard_core/fire_sp554_b1_v091_final.py
+          standard_core/fire_sp554_runtime_v091_workflow.py
+      - name: v0.91 final SP554 remediation regression
+        run: >-
+          python -m pytest -q
+          tests/test_v091_final_sp554_normative_remediation.py
+          tests/test_v091_appendix_b1_full_table.py
+          tests/test_v091_sp554_workflow_e_norm_scope.py
+          tests/test_v091_sp554_end_to_end_thermal_verdict.py
+          tests/test_v091_sp554_report_trace.py
+          tests/test_v091_guided_axis_evidence.py
+          tests/test_v091_full_guided_report_closure.py
+          tests/test_v091_standalone_case_contract.py
+          tests/test_v091_registry_scope_isolation.py
+      - name: Frozen-DAG compatibility regression
+        run: >-
+          python -m pytest -q
+          tests/test_fire_ui16_signed_load_parallel_scheduler.py
+          tests/test_fire_ui24_val1_remediation.py
       - name: v0.90 focused regression
         run: >-
           python -m pytest -q
@@ -55,6 +81,9 @@ jobs:
           tests/test_streamlit_ui.py
           tests/test_streamlit_guided_ux.py
           tests/test_v086_fvm_ux_search.py
+      - name: Full historical source-tree audit
+        continue-on-error: true
+        run: python -m pytest -q
       - name: Boot real Streamlit server
         shell: bash
         run: |
