@@ -34,6 +34,7 @@ jobs:
           streamlit_fire_sp554_v091.py
           streamlit_sp554_gamma_ct_v092.py
           streamlit_canonical_actions_v092.py
+          streamlit_effective_length_v092.py
           streamlit_thermal_result_v092.py
           streamlit_ui_polish_v090.py
           streamlit_expertise_report_v090.py
@@ -45,6 +46,7 @@ jobs:
           standard_core/fire_sp554_v092_guided_overlay.py
           standard_core/sp16_mech_v092_canonical_actions.py
           standard_core/sp16_mech_v092_presentation.py
+          standard_core/sp16_mech7_v092_effective_length.py
           standard_core/sp16_mech9_v090_ux_overlay.py
           standard_core/sp16_mech9_remaining_ambient.py
           standard_core/brittle_fracture_workflows.py
@@ -66,6 +68,12 @@ jobs:
           tests/test_v092_canonical_action_migration.py
           tests/test_v092_canonical_plan_semantics.py
           tests/test_v092_canonical_presentation.py
+      - name: v0.92 full SP16 Section 10 effective-length regression
+        run: >-
+          python -m pytest -q
+          tests/test_v092_effective_length_full_section10.py
+          tests/test_v076_effective_length_card.py
+          tests/test_stage_n7_effective_length_workflows.py
       - name: v0.92 protected thermal result topology regression
         run: >-
           python -m pytest -q
