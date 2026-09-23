@@ -6,9 +6,11 @@ from pathlib import Path
 from standard_core.fire_ui0 import FireDAGModel
 from standard_core.fire_sp554_v092_guided_overlay import (
     BYPASS_SUCCESSOR_NODE_ID,
+    OBSOLETE_GAMMA_CT_CALC_NODE_ID,
     OBSOLETE_GAMMA_CT_SUBGRAPH,
     build_model,
 )
+from standard_core.report_metadata import report_metadata_for_model, report_spec_for_node
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -74,3 +76,19 @@ def test_v092_presentation_policy_has_no_removed_gamma_node_as_source_or_target(
     for key in ("hidden_normative_nodes", "guided_excluded_nodes"):
         assert OBSOLETE_GAMMA_CT_SUBGRAPH.isdisjoint(set(policy.get(key) or []))
     assert OBSOLETE_GAMMA_CT_SUBGRAPH.isdisjoint(set((policy.get("deferred_nodes") or {}).keys()))
+
+
+def test_v092_report_metadata_stays_bound_to_frozen_source_after_overlay_removes_gamma_nodes():
+    model = build_model(_load_real_model())
+
+    assert OBSOLETE_GAMMA_CT_CALC_NODE_ID not in model.nodes
+    metadata = report_metadata_for_model(model)
+
+    # The immutable sidecar may retain historical metadata for a node that
+    # existed in the frozen source DAG.  Validation must therefore succeed
+    # against source_path rather than rejecting the active overlay.
+    assert OBSOLETE_GAMMA_CT_CALC_NODE_ID in (metadata.get("node_report_specs") or {})
+
+    # Removed overlay nodes are not active report nodes and must not leak back
+    # into REPORT-IR through sidecar lookup.
+    assert report_spec_for_node(model, OBSOLETE_GAMMA_CT_CALC_NODE_ID) == {}
