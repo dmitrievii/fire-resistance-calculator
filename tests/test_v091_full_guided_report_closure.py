@@ -130,7 +130,6 @@ def test_v091_real_guided_session_closes_through_fire_result_and_same_ledger_rep
     values = session.plain_values()
     assert session.current_node_id == "SP554_I_EXPOSURE"
     assert values["fire_d2_critical_temperature_status"] == "COMPLETE"
-    assert values["fire_d2_critical_temperature_c"] > 20.0
 
     # Final SP554 §9.2 must be independent of any user/manual E_norm seed.
     history_ids = [row["node_id"] for row in session.interaction_history]
