@@ -6,15 +6,18 @@ however, executes the final equation with mandatory ``gamma_ct=1.1`` and emits
 a typed calculation-evidence object.
 
 This module is a report-only reconciliation layer over REPORT-IR5.  It does not
-calculate engineering quantities.  It enforces two active-v0.92 contracts:
+calculate engineering quantities.  It enforces three active-v0.92 contracts:
 
 * executed ``SP554_C_9_1`` blocks must carry the final typed runtime trace and
   are presented with the final gamma_ct equation;
 * the main progressive report contains completed trace evidence plus at most
-  one current ``PENDING_CURRENT`` node that is actually awaiting user input.
-  Future, N/A and deferred graph nodes are not projected into report blocks.
+  one current ``PENDING_CURRENT`` node that is actually awaiting user input;
+* section-property quantities that actually occur in completed trace evidence
+  receive engineering Russian labels, canonical z/y symbols and typographic
+  display units.  No unused property is injected into the report.
 
-A completed v0.92 §9.1 block without the typed evidence fails closed rather than
+Future, N/A and deferred graph nodes are not projected into report blocks.  A
+completed v0.92 §9.1 block without the typed evidence fails closed rather than
 silently falling back to the historical formula.
 """
 from __future__ import annotations
@@ -44,6 +47,48 @@ TENSION_SUBSTITUTION_TEMPLATE_LATEX = (
     r"\gamma_T=\frac{|{N_force}|}"
     r"{{A_net}\cdot {fy_norm}\cdot 1.1\cdot {gamma_c_tension}}"
 )
+
+# Presentation-only semantic labels.  Internal quantity IDs remain unchanged in
+# REPORT-IR/Audit.  Historical x/y geometry IDs are handled separately below
+# and are mapped to z/y only when explicit ``major_axis_is_x`` trace evidence is
+# available.
+_SECTION_PROPERTY_LABELS: dict[str, tuple[str, str]] = {
+    "A_gross": ("Площадь поперечного сечения", "A"),
+    "A_net": ("Площадь сечения нетто", "A_n"),
+    "sp16_i_z": ("Радиус инерции относительно сильной главной оси z-z", "i_z"),
+    "sp16_i_y": ("Радиус инерции относительно слабой главной оси y-y", "i_y"),
+    "I_shear_gross": ("Момент инерции, используемый при расчёте касательных напряжений", "I_Q"),
+    "S_shear_gross": ("Статический момент площади для расчёта касательных напряжений", "S"),
+    "W_pl_min_gross": ("Минимальный пластический момент сопротивления", "W_{pl,min}"),
+    "I_omega_gross": ("Секториальный момент инерции", "I_\omega"),
+    "W_omega_gross": ("Секториальный момент сопротивления", "W_\omega"),
+    "t_w": ("Толщина стенки", "t_w"),
+    "sec_tw": ("Толщина стенки", "t_w"),
+    "sec_h": ("Высота сечения", "h"),
+    "sec_b": ("Ширина сечения / полки", "b"),
+    "t_f": ("Толщина полки", "t_f"),
+}
+
+_PRETTY_UNITS = {
+    "mm": "мм",
+    "mm2": "мм²",
+    "mm^2": "мм²",
+    "mm3": "мм³",
+    "mm^3": "мм³",
+    "mm4": "мм⁴",
+    "mm^4": "мм⁴",
+    "mm6": "мм⁶",
+    "mm^6": "мм⁶",
+    "m": "м",
+    "m2": "м²",
+    "m^2": "м²",
+    "N": "Н",
+    "N/mm2": "Н/мм²",
+    "N/mm^2": "Н/мм²",
+    "MPa": "МПа",
+    "kg/m": "кг/м",
+    "1": "",
+}
 
 
 def _source_state(session_or_snapshot: Any) -> dict[str, Any]:
@@ -109,6 +154,104 @@ def _validate_trace(trace: Mapping[str, Any], block: Mapping[str, Any]) -> None:
         raise ValueError("v0.92 REPORT-IR: SP554 §9.1 execution result is non-numeric")
     if not math.isclose(float(actual), float(trace_value), rel_tol=1e-12, abs_tol=1e-12):
         raise ValueError("v0.92 REPORT-IR: SP554 §9.1 trace/result mismatch")
+
+
+def _explicit_major_axis_evidence(report: Mapping[str, Any]) -> bool | None:
+    values: set[bool] = set()
+    for block in report.get("blocks") or []:
+        if not isinstance(block, Mapping):
+            continue
+        for collection in (block.get("inputs") or [], block.get("outputs") or []):
+            for row in collection:
+                if not isinstance(row, Mapping) or row.get("quantity_id") != "major_axis_is_x":
+                    continue
+                value = row.get("raw_value")
+                if isinstance(value, bool):
+                    values.add(value)
+    if len(values) > 1:
+        raise ValueError("v0.92 REPORT-IR: contradictory major_axis_is_x execution evidence")
+    return next(iter(values)) if values else None
+
+
+def _legacy_axis_label(qid: str, major_axis_is_x: bool | None) -> tuple[str, str] | None:
+    """Map retained geometry IDs to z/y only with explicit runtime axis evidence."""
+    if major_axis_is_x is None:
+        return None
+    source_to_active = (
+        {"x": ("z", "сильной"), "y": ("y", "слабой")}
+        if major_axis_is_x
+        else {"x": ("y", "слабой"), "y": ("z", "сильной")}
+    )
+    table = {
+        "J_x": ("x", "I", "Момент инерции"),
+        "J_y": ("y", "I", "Момент инерции"),
+        "W_el_x_pos": ("x", "W", "Упругий момент сопротивления", "+"),
+        "W_el_x_neg": ("x", "W", "Упругий момент сопротивления", "-"),
+        "W_el_y_pos": ("y", "W", "Упругий момент сопротивления", "+"),
+        "W_el_y_neg": ("y", "W", "Упругий момент сопротивления", "-"),
+        "W_pl_x": ("x", "W_{pl}", "Пластический момент сопротивления"),
+        "W_pl_y": ("y", "W_{pl}", "Пластический момент сопротивления"),
+    }
+    spec = table.get(qid)
+    if spec is None:
+        return None
+    source_axis, base_symbol, name = spec[:3]
+    active_axis, qualifier = source_to_active[source_axis]
+    side = spec[3] if len(spec) > 3 else None
+    if base_symbol == "W":
+        symbol = f"W_{{{active_axis},{side}}}" if side else f"W_{active_axis}"
+    elif base_symbol == "W_{pl}":
+        symbol = f"W_{{pl,{active_axis}}}"
+    else:
+        symbol = f"{base_symbol}_{active_axis}"
+    suffix = f", сторона {side}" if side else ""
+    return (
+        f"{name} относительно {qualifier} главной оси {active_axis}-{active_axis}{suffix}",
+        symbol,
+    )
+
+
+def _pretty_display_value(row: Mapping[str, Any]) -> str | None:
+    value = row.get("raw_value")
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return None
+    number = float(value)
+    if not math.isfinite(number):
+        return None
+    unit = row.get("canonical_unit")
+    pretty_unit = _PRETTY_UNITS.get(str(unit), str(unit or ""))
+    text = format(number, ".12g")
+    return f"{text} {pretty_unit}".strip()
+
+
+def _humanize_executed_section_properties(report: dict[str, Any]) -> int:
+    """Rename only section-property rows that already exist in completed trace blocks."""
+    major_axis_is_x = _explicit_major_axis_evidence(report)
+    changed = 0
+    for block in report.get("blocks") or []:
+        if not isinstance(block, dict):
+            continue
+        for key in ("inputs", "outputs"):
+            rows = block.get(key)
+            if not isinstance(rows, list):
+                continue
+            for row in rows:
+                if not isinstance(row, dict):
+                    continue
+                qid = str(row.get("quantity_id") or "")
+                label = _SECTION_PROPERTY_LABELS.get(qid)
+                if label is None:
+                    label = _legacy_axis_label(qid, major_axis_is_x)
+                if label is None:
+                    continue
+                row["name_ru"], row["symbol"] = label
+                display = _pretty_display_value(row)
+                if display is not None:
+                    row["display_value"] = display
+                row["presentation_semantics"] = "active_v092_engineering_label"
+                row["technical_quantity_id_visible_in_main_report"] = False
+                changed += 1
+    return changed
 
 
 def _pending_current_block(model: Any, state: Mapping[str, Any], report: Mapping[str, Any]) -> dict[str, Any] | None:
@@ -229,6 +372,7 @@ def build_report_ir_v092(model: Any, session_or_snapshot: Any) -> dict[str, Any]
         block["presentation"] = presentation
         remediated_blocks += 1
 
+    humanized_section_property_rows = _humanize_executed_section_properties(report)
     pending_count = _append_progressive_pending(model, state, report)
 
     audit = report.get("audit")
@@ -240,6 +384,9 @@ def build_report_ir_v092(model: Any, session_or_snapshot: Any) -> dict[str, Any]
             "v092_future_dag_nodes_projected_to_main_report": False,
             "v092_pending_current_block_count": pending_count,
             "v092_pending_formula_visible_before_execution": False,
+            "v092_section_properties_humanized_from_completed_trace_only": True,
+            "v092_section_property_humanized_row_count": humanized_section_property_rows,
+            "v092_section_axis_mapping_requires_runtime_evidence": True,
             "v092_sp554_9_1_active": True,
             "v092_sp554_9_1_remediated_block_count": remediated_blocks,
             "v092_sp554_9_1_formula_source": "active_runtime_contract_plus_typed_execution_trace",
