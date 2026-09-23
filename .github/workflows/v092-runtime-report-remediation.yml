@@ -10,6 +10,8 @@ on:
       - 'standard_core/report_ir_v092.py'
       - 'streamlit_sp554_gamma_ct_v092.py'
       - 'streamlit_expertise_report_v090_install.py'
+      - 'streamlit_expertise_report_v092.py'
+      - 'tests/test_v092_progressive_report.py'
       - 'tests/test_v092_sp554_9_1_report_remediation.py'
       - 'tests/test_v092_sp554_gamma_ct_guided_bypass.py'
       - 'tests/test_v092_gamma_ct_presentation_policy.py'
@@ -26,6 +28,8 @@ on:
       - 'standard_core/report_ir_v092.py'
       - 'streamlit_sp554_gamma_ct_v092.py'
       - 'streamlit_expertise_report_v090_install.py'
+      - 'streamlit_expertise_report_v092.py'
+      - 'tests/test_v092_progressive_report.py'
       - 'tests/test_v092_sp554_9_1_report_remediation.py'
       - 'tests/test_v092_sp554_gamma_ct_guided_bypass.py'
       - 'tests/test_v092_gamma_ct_presentation_policy.py'
@@ -58,7 +62,11 @@ jobs:
             standard_core/fire_sp554_v092_guided_overlay.py \
             standard_core/report_ir_v092.py \
             streamlit_sp554_gamma_ct_v092.py \
-            streamlit_expertise_report_v090_install.py
+            streamlit_expertise_report_v090_install.py \
+            streamlit_expertise_report_v092.py
+
+      - name: Progressive-report regression
+        run: python -m pytest -q tests/test_v092_progressive_report.py
 
       - name: Final SP554 9.1 runtime-report regression
         run: >-
