@@ -1,4 +1,4 @@
-"""v0.92 REPORT-IR remediation for final SP554 §9.1.
+"""v0.92 REPORT-IR remediation for final SP554 §9.1 and progressive visibility.
 
 The frozen v0.3.70 DAG and its v0.3.72 report sidecar intentionally preserve
 the pre-final-publication §9.1 expression.  The active v0.92 guided overlay,
@@ -6,13 +6,13 @@ however, executes the final equation with mandatory ``gamma_ct=1.1`` and emits
 a typed calculation-evidence object.
 
 This module is a report-only reconciliation layer over REPORT-IR5.  It does not
-calculate gamma_T.  For an executed active-v0.92 ``SP554_C_9_1`` block it:
+calculate engineering quantities.  It enforces two active-v0.92 contracts:
 
-* requires the typed runtime evidence emitted by that exact producer;
-* verifies that the evidence identifies the final §9.1 formula and gamma_ct;
-* replaces only the stale presentation formula/template inherited from the
-  frozen sidecar;
-* leaves all numerical inputs/results and execution evidence untouched.
+* executed ``SP554_C_9_1`` blocks must carry the final typed runtime trace and
+  are presented with the final gamma_ct equation;
+* the main progressive report contains completed trace evidence plus at most
+  one current ``PENDING_CURRENT`` node that is actually awaiting user input.
+  Future, N/A and deferred graph nodes are not projected into report blocks.
 
 A completed v0.92 §9.1 block without the typed evidence fails closed rather than
 silently falling back to the historical formula.
@@ -34,13 +34,28 @@ from .fire_sp554_runtime_v092 import (
     TENSION_TRACE_SCHEMA,
 )
 from .fire_sp554_v092_guided_overlay import GRAPH_SUFFIX, TENSION_ALGORITHM_ID
-from .report_ir5 import build_report_ir5
+from .report_ir import _kind_for_node, _section_for_node, _title_for_node
+from .report_ir5 import _rebuild_sections, build_report_ir5
+from .report_metadata import report_spec_for_node
 
-REPORT_V092_CONTRACT = "v092_sp554_9_1_runtime_trace_reconciled"
+REPORT_V092_CONTRACT = "v092_progressive_report_and_sp554_9_1_runtime_trace_reconciled"
+PENDING_CURRENT_STATE = "PENDING_CURRENT"
 TENSION_SUBSTITUTION_TEMPLATE_LATEX = (
     r"\gamma_T=\frac{|{N_force}|}"
     r"{{A_net}\cdot {fy_norm}\cdot 1.1\cdot {gamma_c_tension}}"
 )
+
+
+def _source_state(session_or_snapshot: Any) -> dict[str, Any]:
+    if isinstance(session_or_snapshot, Mapping):
+        return copy.deepcopy(dict(session_or_snapshot))
+    snapshot = getattr(session_or_snapshot, "snapshot", None)
+    if not callable(snapshot):
+        raise TypeError("report source must be a session with snapshot() or a snapshot mapping")
+    value = snapshot()
+    if not isinstance(value, Mapping):
+        raise TypeError("session.snapshot() must return a mapping")
+    return copy.deepcopy(dict(value))
 
 
 def _active_v092_tension_model(model: Any) -> bool:
@@ -83,13 +98,88 @@ def _validate_trace(trace: Mapping[str, Any], block: Mapping[str, Any]) -> None:
         for row in block.get("outputs") or []
         if isinstance(row, Mapping) and row.get("quantity_id") == "gamma_T_9_1"
     ]
-    if len(output_values) != 1 or not isinstance(trace_value, (int, float)):
+    if (
+        len(output_values) != 1
+        or not isinstance(trace_value, (int, float))
+        or isinstance(trace_value, bool)
+    ):
         raise ValueError("v0.92 REPORT-IR: SP554 §9.1 result evidence is incomplete")
     actual = output_values[0]
     if not isinstance(actual, (int, float)) or isinstance(actual, bool):
         raise ValueError("v0.92 REPORT-IR: SP554 §9.1 execution result is non-numeric")
     if not math.isclose(float(actual), float(trace_value), rel_tol=1e-12, abs_tol=1e-12):
         raise ValueError("v0.92 REPORT-IR: SP554 §9.1 trace/result mismatch")
+
+
+def _pending_current_block(model: Any, state: Mapping[str, Any], report: Mapping[str, Any]) -> dict[str, Any] | None:
+    """Project only the actually entered current input node; never future DAG nodes."""
+    if str(state.get("status") or "") != "AWAITING_INPUT":
+        return None
+    node_id = state.get("current_node_id")
+    nodes = getattr(model, "nodes", {})
+    if not isinstance(node_id, str) or not isinstance(nodes, Mapping) or node_id not in nodes:
+        return None
+
+    # A current fail-closed diagnostic is already represented by branch_failures;
+    # do not duplicate it as a benign pending input.
+    for failure in state.get("branch_failures") or []:
+        if isinstance(failure, Mapping) and failure.get("node_id") == node_id:
+            return None
+
+    node = nodes[node_id]
+    spec = report_spec_for_node(model, node_id, node)
+    sequence = max(
+        (int(row.get("sequence") or 0) for row in report.get("blocks") or [] if isinstance(row, Mapping)),
+        default=0,
+    ) + 1
+    title = spec.get("title_ru") or spec.get("title") or _title_for_node(node)
+    section_key = spec.get("section_key") or _section_for_node(node)
+    kind = spec.get("kind") or _kind_for_node(node)
+
+    # Presentation deliberately excludes formula/substitution metadata.  The
+    # formula becomes visible only after a COMPLETE execution trace exists.
+    presentation = {
+        "visibility": "current_pending_only",
+        "progress_state": PENDING_CURRENT_STATE,
+    }
+    return {
+        "schema": "fire_report_block_v1",
+        "report_block_id": f"PENDING:{node_id}",
+        "owner_node_id": node_id,
+        "owner_standard_id": node.get("owner_standard_id"),
+        "sequence": sequence,
+        "event_kind": "pending_current_node",
+        "kind": str(kind),
+        "section_key": str(section_key),
+        "title": str(title),
+        "normative_refs": copy.deepcopy(node.get("normative_refs") or []),
+        "inputs": [],
+        "outputs": [],
+        "selected_edge_id": None,
+        "execution_spec": {"mode": "not_executed_current_node"},
+        "execution_evidence": {
+            "evidence_mode": "current_node_state_only",
+            "report_recomputed_result": False,
+        },
+        "presentation": presentation,
+        "message": "Текущий шаг ожидает ввода данных; расчёт ещё не выполнен.",
+        "progress_state": PENDING_CURRENT_STATE,
+    }
+
+
+def _append_progressive_pending(model: Any, state: Mapping[str, Any], report: dict[str, Any]) -> int:
+    pending = _pending_current_block(model, state, report)
+    if pending is None:
+        return 0
+    report.setdefault("blocks", []).append(pending)
+    report["blocks"].sort(
+        key=lambda row: (int(row.get("sequence") or 0), str(row.get("report_block_id") or ""))
+    )
+    report["block_count"] = len(report["blocks"])
+    report["sections"] = _rebuild_sections(
+        [row for row in report["blocks"] if isinstance(row, Mapping)]
+    )
+    return 1
 
 
 def _rehash(report: dict[str, Any]) -> None:
@@ -105,8 +195,9 @@ def _rehash(report: dict[str, Any]) -> None:
 
 
 def build_report_ir_v092(model: Any, session_or_snapshot: Any) -> dict[str, Any]:
-    """Build REPORT-IR5 and reconcile active final-SP554 §9.1 presentation."""
-    report = copy.deepcopy(build_report_ir5(model, session_or_snapshot))
+    """Build active-v0.92 progressive REPORT-IR without recomputing engineering values."""
+    state = _source_state(session_or_snapshot)
+    report = copy.deepcopy(build_report_ir5(model, state))
     if not _active_v092_tension_model(model):
         return report
 
@@ -138,11 +229,17 @@ def build_report_ir_v092(model: Any, session_or_snapshot: Any) -> dict[str, Any]
         block["presentation"] = presentation
         remediated_blocks += 1
 
+    pending_count = _append_progressive_pending(model, state, report)
+
     audit = report.get("audit")
     audit = dict(audit) if isinstance(audit, Mapping) else {}
     audit.update(
         {
             "v092_report_contract": REPORT_V092_CONTRACT,
+            "v092_progressive_visibility": True,
+            "v092_future_dag_nodes_projected_to_main_report": False,
+            "v092_pending_current_block_count": pending_count,
+            "v092_pending_formula_visible_before_execution": False,
             "v092_sp554_9_1_active": True,
             "v092_sp554_9_1_remediated_block_count": remediated_blocks,
             "v092_sp554_9_1_formula_source": "active_runtime_contract_plus_typed_execution_trace",
@@ -156,6 +253,7 @@ def build_report_ir_v092(model: Any, session_or_snapshot: Any) -> dict[str, Any]
 
 
 __all__ = [
+    "PENDING_CURRENT_STATE",
     "REPORT_V092_CONTRACT",
     "TENSION_SUBSTITUTION_TEMPLATE_LATEX",
     "build_report_ir_v092",
