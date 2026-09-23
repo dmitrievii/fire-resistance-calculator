@@ -70,7 +70,21 @@ def test_v091_guided_gamma_e_uses_normative_E_and_independent_two_axis_governing
         dict(values, E_norm=9.9e9, sp16_v081_governing_stability_axis="y"),
         node,
     )
-    assert first == second
+
+    # Engineering results are independent of both legacy inputs.
+    assert first[GAMMA_E_INTERNAL_QID] == pytest.approx(second[GAMMA_E_INTERNAL_QID])
+    assert first[GAMMA_E_REQUIRED_QID] == pytest.approx(second[GAMMA_E_REQUIRED_QID])
+    first_trace = first[STIFFNESS_TRACE_QID]
+    second_trace = second[STIFFNESS_TRACE_QID]
+    assert first_trace["axes"] == second_trace["axes"]
+    assert first_trace["governing_stiffness_axis"] == second_trace["governing_stiffness_axis"] == "y"
+    assert first_trace["E_n_mm2"] == pytest.approx(SP16_STEEL_E_N_MM2)
+    assert second_trace["E_n_mm2"] == pytest.approx(SP16_STEEL_E_N_MM2)
+    # Diagnostics intentionally retain the actual values that were ignored.
+    assert first_trace["legacy_E_norm_ignored"] == pytest.approx(1.0)
+    assert second_trace["legacy_E_norm_ignored"] == pytest.approx(9.9e9)
+    assert first_trace["legacy_ambient_governing_axis_ignored"] == "z"
+    assert second_trace["legacy_ambient_governing_axis_ignored"] == "y"
 
     expected_z = (
         400_000.0 * 3000.0**2
@@ -80,11 +94,9 @@ def test_v091_guided_gamma_e_uses_normative_E_and_independent_two_axis_governing
         400_000.0 * 6000.0**2
         / (math.pi**2 * 206000.0 * 5282.0 * 50.0**2)
     )
-    trace = first[STIFFNESS_TRACE_QID]
-    assert trace["E_n_mm2"] == pytest.approx(SP16_STEEL_E_N_MM2)
+    trace = first_trace
     assert trace["axes"]["z"]["gamma_e"] == pytest.approx(expected_z)
     assert trace["axes"]["y"]["gamma_e"] == pytest.approx(expected_y)
-    assert trace["governing_stiffness_axis"] == "y"
     assert first[GAMMA_E_INTERNAL_QID] == pytest.approx(expected_y)
     assert first[GAMMA_E_REQUIRED_QID] == pytest.approx(expected_y)
 
