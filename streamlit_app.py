@@ -19,6 +19,7 @@ from streamlit_expertise_report_v090_install import install as _install_expertis
 from streamlit_mech9_v090 import install as _install_mech9_ux
 from streamlit_fire_sp554_v091 import install as _install_fire_sp554_v091
 from streamlit_canonical_actions_v092 import install as _install_canonical_actions_v092
+from streamlit_thermal_result_v092 import install as _install_thermal_result_v092
 from streamlit_ui_polish_v090 import install as _install_ui_polish_v090
 # Legacy installer-chain marker retained for cumulative v0.77-v0.81 regression:
 # from streamlit_guided_ux_v081 import install as _install_guided_ux
@@ -50,6 +51,10 @@ _install_fire_sp554_v091(_core)
 # torsion only.  Historical Mx/T answers are never semantically replayed across
 # this boundary; retained sessions stop before the changed load-input state.
 _install_canonical_actions_v092(_core)
+# v0.92 thermal-result presentation is independent from later R_req input: once
+# the protected §12.5 trace exists in the ledger, its FVM curves are shown on
+# the current interactive card instead of waiting for another routing step.
+_install_thermal_result_v092(_core)
 # v0.87 LIVE-REPORT1 is retained underneath as a rollback/audit-capable presentation layer.
 _install_live_report(_core)
 # v0.88 widens the report pane and remains as the underlying expertise renderer.
