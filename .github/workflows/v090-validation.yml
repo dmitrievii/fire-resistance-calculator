@@ -62,7 +62,7 @@ jobs:
           tests/test_v092_gamma_ct_presentation_policy.py
       - name: v0.92 canonical action migration regression
         run: >-
-n          python -m pytest -q
+          python -m pytest -q
           tests/test_v092_canonical_action_migration.py
           tests/test_v092_canonical_plan_semantics.py
           tests/test_v092_canonical_presentation.py
