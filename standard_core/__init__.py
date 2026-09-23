@@ -32,3 +32,11 @@ _install_fire_sp554_runtime_v091()
 _install_fire_sp554_b1_v091_final()
 _install_fire_sp554_workflow_v091()
 _install_fire_sp554_registry_scope_v091()
+
+# v0.92 P0 route census.  §9.1 is brought onto the same final-publication
+# gamma_ct=1.1 contract as §9.2.  Legacy Section 10/11 paths remain deliberately
+# fail-closed until their real consumers use the canonical action convention:
+# Mz strong-axis bending, My weak-axis bending, Mx torsion only.
+from .fire_sp554_runtime_v092 import install as _install_fire_sp554_runtime_v092
+
+_install_fire_sp554_runtime_v092()
