@@ -1,13 +1,10 @@
 """v0.91 normative remediation for final SP 554.1311500.2026.
 
-This overlay deliberately separates the ambient SP16 stability state from the
-fire SP554 state.  SP16 ambient relative slenderness uses design resistance
-Ry, while SP554 9.2 defines the fire relative slenderness with Ryn/E and then
-requires phi to be evaluated by the SP16 central-compression rules.
-
-The module is installed from standard_core.__init__ so both the standalone
-FIRE-D2 workflow and the guided declarative registry use the same final-SP554
-mechanics.
+The fire branch reuses the qualified SP16 member geometry and buckling-curve
+classification.  It does not reuse the ambient SP16 relative slenderness or
+ambient phi, because SP554 9.2 defines the fire relative slenderness with
+Ryn/E.  The fire phi is evaluated by the same SP16 central-compression
+producer used by the ambient engine.
 """
 from __future__ import annotations
 
@@ -18,6 +15,8 @@ from . import axial_members as _axial
 from . import fire_sp554_runtime as _runtime
 from . import fire_bridge2_qualified_state as _bridge2
 
+
+GAMMA_CT = 1.1
 
 # Published final Table B.1 values that differ from the pre-publication
 # dataset used by FIRE-D2.  Unlisted rows/groups remain unchanged.
@@ -54,7 +53,12 @@ def _fire_stability_state_from_geometry(
     elastic_modulus_n_mm2: float,
     curve: str,
 ) -> tuple[float, float]:
-    """Return (lambda_bar_fire, phi_fire) for final SP554 9.2."""
+    """Return (lambda_bar_fire, phi_fire) for final SP554 9.2.
+
+    The geometry and curve type are qualified SP16 outputs.  Only the
+    nondimensional slenderness is formed again because SP554 requires Ryn/E.
+    The phi producer itself is the shared SP16 implementation.
+    """
     if not math.isfinite(lambda_geom) or lambda_geom < 0.0:
         raise ValueError("geometric slenderness lambda must be finite and >= 0")
     if not math.isfinite(ryn_n_mm2) or ryn_n_mm2 <= 0.0:
@@ -64,10 +68,11 @@ def _fire_stability_state_from_geometry(
     curve_norm = str(curve).lower()
     if curve_norm not in {"a", "b", "c"}:
         raise ValueError("buckling curve type must be a, b, or c")
+
     lambda_bar_fire = _axial.relative_slenderness(
-        slenderness=float(lambda_geom),
-        yield_strength=float(ryn_n_mm2),
-        elastic_modulus=float(elastic_modulus_n_mm2),
+        geometric_slenderness=float(lambda_geom),
+        design_yield_resistance_n_mm2=float(ryn_n_mm2),
+        elastic_modulus_n_mm2=float(elastic_modulus_n_mm2),
     )
     phi_fire = _axial.central_compression_stability_coefficient(
         relative_slenderness_value=lambda_bar_fire,
@@ -76,61 +81,131 @@ def _fire_stability_state_from_geometry(
     return float(lambda_bar_fire), float(phi_fire)
 
 
+def _qualified_axis(route: Mapping[str, Any], axis: str) -> dict[str, Any]:
+    """Read one qualified SP16 stability axis without rebuilding geometry."""
+    if axis not in {"z", "y"}:
+        raise ValueError("axis must be z or y")
+    lambda_geom = _runtime._number(route, f"sp16_lambda_{axis}_geom", nonnegative=True)
+    l_eff = _runtime._number(route, f"sp16_l_eff_{axis}", positive=True)
+    radius = _runtime._number(route, f"sp16_i_{axis}", positive=True)
+    curve = _runtime._string(route, f"sp16_curve_{axis}").lower()
+    if curve not in {"a", "b", "c"}:
+        raise ValueError(f"sp16_curve_{axis} must be a, b, or c")
+
+    # The three qualified SP16 outputs must describe the same geometry.  This
+    # is only a consistency gate; no geometry is reconstructed for engineering
+    # use in the fire branch.
+    lambda_from_qualified_geometry = l_eff / radius
+    tolerance = max(1e-6, 1e-5 * max(abs(lambda_geom), 1.0))
+    if abs(lambda_from_qualified_geometry - lambda_geom) > tolerance:
+        raise ValueError(
+            f"qualified SP16 axis {axis} is inconsistent: "
+            f"lambda={lambda_geom}, l_eff/i={lambda_from_qualified_geometry}"
+        )
+    return {
+        "axis": axis,
+        "lambda_geom": float(lambda_geom),
+        "l_eff_mm": float(l_eff),
+        "i_mm": float(radius),
+        "curve": curve,
+    }
+
+
+def _fire_axis_state(
+    route: Mapping[str, Any],
+    *,
+    axis: str,
+    ryn_n_mm2: float,
+    elastic_modulus_n_mm2: float,
+    n_n: float,
+    area_mm2: float,
+) -> dict[str, Any]:
+    qualified = _qualified_axis(route, axis)
+    lambda_bar_fire, phi_fire = _fire_stability_state_from_geometry(
+        lambda_geom=qualified["lambda_geom"],
+        ryn_n_mm2=ryn_n_mm2,
+        elastic_modulus_n_mm2=elastic_modulus_n_mm2,
+        curve=qualified["curve"],
+    )
+
+    # J_axis = A*i_axis^2 is an identity based on the already-qualified SP16
+    # radius of gyration; it avoids returning to unqualified raw section data.
+    j_axis = area_mm2 * qualified["i_mm"] * qualified["i_mm"]
+    gamma_e_axis = (
+        n_n
+        * qualified["l_eff_mm"]
+        * qualified["l_eff_mm"]
+        / (math.pi * math.pi * elastic_modulus_n_mm2 * j_axis)
+    )
+    return {
+        **qualified,
+        "lambda_bar_fire": float(lambda_bar_fire),
+        "phi_fire": float(phi_fire),
+        "J_from_qualified_A_i2_mm4": float(j_axis),
+        "gamma_e": float(gamma_e_axis),
+    }
+
+
 def _central_compression_final(
     case: Mapping[str, Any], route: Mapping[str, Any]
 ) -> tuple[list[dict[str, Any]], float | None, dict[str, Any]]:
     """Final published SP554 9.2 central-compression route.
 
-    Legacy route fields ``lambda_bar`` and ``phi_sp16_formula8`` are accepted
-    for saved-case compatibility but are not engineering inputs here.
+    Qualified SP16 l_eff, i, geometric lambda and curve type are reused for
+    both z and y.  Ambient lambda_bar / phi and raw mu/L/J inputs are ignored.
     """
     n = abs(_runtime._number(route, "N_n", positive=True))
     area = _runtime._number(route, "A_gross_mm2", positive=True)
+    # Legacy machine key kept for compatibility.  Normative meaning in SP554
+    # is Ryn, not ambient design Ry and not a generic fy design resistance.
     ryn = _runtime._number(case, "fy_norm_n_mm2", positive=True)
     elastic_modulus = _runtime._number(case, "E_norm_n_mm2", positive=True)
     gamma_c = _runtime._number(route, "gamma_c", positive=True)
-    mu = _runtime._number(route, "mu_length_sp16", positive=True)
-    member_length = _runtime._number(route, "member_length_mm", positive=True)
-    j_min = _runtime._number(route, "J_min_mm4", positive=True)
-    curve = _runtime._string(route, "buckling_curve_type").lower()
 
-    l_eff = mu * member_length
-    i_min = math.sqrt(j_min / area)
-    lambda_geom = l_eff / i_min
-    lambda_bar_fire, phi_fire = _fire_stability_state_from_geometry(
-        lambda_geom=lambda_geom,
-        ryn_n_mm2=ryn,
-        elastic_modulus_n_mm2=elastic_modulus,
-        curve=curve,
-    )
+    axes = {
+        axis: _fire_axis_state(
+            route,
+            axis=axis,
+            ryn_n_mm2=ryn,
+            elastic_modulus_n_mm2=elastic_modulus,
+            n_n=n,
+            area_mm2=area,
+        )
+        for axis in ("z", "y")
+    }
 
-    gamma_t = n / (phi_fire * area * ryn * gamma_c)
-    gamma_e = n * l_eff * l_eff / (math.pi * math.pi * elastic_modulus * j_min)
-    threshold = {"a": 3.8, "b": 4.4, "c": 5.8}[curve]
+    governing_strength_axis = min(axes, key=lambda key: axes[key]["phi_fire"])
+    governing_stiffness_axis = max(axes, key=lambda key: axes[key]["gamma_e"])
+    phi_fire = axes[governing_strength_axis]["phi_fire"]
+    gamma_e = axes[governing_stiffness_axis]["gamma_e"]
+
+    gamma_t = n / (phi_fire * area * ryn * GAMMA_CT * gamma_c)
     details = {
-        "phi": phi_fire,
+        "phi": float(phi_fire),
         "rule": "SP554_9_2_FIRE_SLENDERNESS_FROM_RYN_OVER_E",
-        "lambda_geom": lambda_geom,
-        "lambda_bar_fire": lambda_bar_fire,
-        "buckling_curve_type": curve,
-        "Ryn_n_mm2": ryn,
-        "E_n_mm2": elastic_modulus,
-        "i_min_mm": i_min,
-        "l_eff_mm": l_eff,
-        "low_slenderness_phi_equals_1_applicable": bool(lambda_bar_fire < 0.6 and curve in {"a", "b"}),
-        "high_slenderness_cap_applicable": bool(lambda_bar_fire > threshold),
+        "Ryn_n_mm2": float(ryn),
+        "E_n_mm2": float(elastic_modulus),
+        "gamma_ct": GAMMA_CT,
+        "gamma_c": float(gamma_c),
+        "governing_strength_axis": governing_strength_axis,
+        "governing_stiffness_axis": governing_stiffness_axis,
+        "axes": axes,
         "legacy_ambient_lambda_bar_ignored": route.get("lambda_bar"),
         "legacy_ambient_phi_sp16_formula8_ignored": route.get("phi_sp16_formula8"),
+        "legacy_raw_mu_ignored": route.get("mu_length_sp16"),
+        "legacy_raw_member_length_ignored": route.get("member_length_mm"),
+        "legacy_raw_J_min_ignored": route.get("J_min_mm4"),
     }
     return [
         _runtime._strength_candidate("9.2", gamma_t, details)
-    ], gamma_e, {
+    ], float(gamma_e), {
         "route": "central_compression",
-        "phi": phi_fire,
-        "lambda_geom": lambda_geom,
-        "lambda_bar_fire": lambda_bar_fire,
-        "l_eff_mm": l_eff,
-        "normative_basis": "final_SP554_9.2_plus_SP16_7.1.3",
+        "phi": float(phi_fire),
+        "gamma_ct": GAMMA_CT,
+        "governing_strength_axis": governing_strength_axis,
+        "governing_stiffness_axis": governing_stiffness_axis,
+        "axes": axes,
+        "normative_basis": "final_SP554_8.1_9.2_plus_SP16_7.1.3",
     }
 
 
@@ -148,27 +223,54 @@ def _number_from_values(values: Mapping[str, Any], key: str, *, positive: bool =
     return value
 
 
-def _phi_9_2_declarative_final(values: Mapping[str, Any], node: Mapping[str, Any]) -> Mapping[str, Any]:
-    """Replacement executor for the guided SP554_C_PHI_9_2_RULE node.
+def _value_from_aliases(values: Mapping[str, Any], *keys: str) -> Any:
+    for key in keys:
+        if key in values and values[key] is not None:
+            return values[key]
+    raise ValueError(f"SP554 9.2 final runtime requires one of: {', '.join(keys)}")
 
-    The frozen graph still carries legacy ambient phi/lambda quantities for
-    backward-compatible saved sessions.  The final value is recomputed from
-    geometric lambda, Ryn and E and therefore cannot inherit ambient Ry-based
-    stability coefficients.
+
+def _axis_from_values(values: Mapping[str, Any], axis: str) -> tuple[float, str]:
+    lambda_geom = float(
+        _value_from_aliases(
+            values,
+            f"sp16_lambda_{axis}_geom",
+            f"lambda_{axis}_geom_sp16",
+        )
+    )
+    curve = str(
+        _value_from_aliases(
+            values,
+            f"sp16_curve_{axis}",
+            f"sp16_buckling_curve_{axis}",
+        )
+    ).lower()
+    if not math.isfinite(lambda_geom) or lambda_geom < 0.0:
+        raise ValueError(f"qualified SP16 lambda_{axis} must be finite and >= 0")
+    if curve not in {"a", "b", "c"}:
+        raise ValueError(f"qualified SP16 curve_{axis} must be a, b, or c")
+    return lambda_geom, curve
+
+
+def _phi_9_2_declarative_final(values: Mapping[str, Any], node: Mapping[str, Any]) -> Mapping[str, Any]:
+    """Final guided phi producer from qualified SP16 z/y geometry.
+
+    The frozen graph can still carry ambient lambda_bar / phi fields for saved
+    session compatibility.  They cannot govern this result.
     """
-    lambda_geom = _number_from_values(values, "sp16_lambda_geom")
     ryn = _number_from_values(values, "fy_norm", positive=True)
     elastic_modulus = _number_from_values(values, "E_norm", positive=True)
-    if "sp16_buckling_curve_type" not in values:
-        raise ValueError("SP554 9.2 final runtime requires sp16_buckling_curve_type")
-    curve = str(values["sp16_buckling_curve_type"]).lower()
-    _, phi_fire = _fire_stability_state_from_geometry(
-        lambda_geom=lambda_geom,
-        ryn_n_mm2=ryn,
-        elastic_modulus_n_mm2=elastic_modulus,
-        curve=curve,
-    )
-    return {"phi_compression_sp554": phi_fire}
+    states: dict[str, tuple[float, float]] = {}
+    for axis in ("z", "y"):
+        lambda_geom, curve = _axis_from_values(values, axis)
+        states[axis] = _fire_stability_state_from_geometry(
+            lambda_geom=lambda_geom,
+            ryn_n_mm2=ryn,
+            elastic_modulus_n_mm2=elastic_modulus,
+            curve=curve,
+        )
+    governing_axis = min(states, key=lambda key: states[key][1])
+    return {"phi_compression_sp554": float(states[governing_axis][1])}
 
 
 def _install_guided_registry_override() -> None:
@@ -195,7 +297,8 @@ def install() -> None:
     _runtime._central_compression = _central_compression_final
     _runtime._v091_final_sp554_installed = True
     _runtime._v091_normative_basis = "published final SP 554.1311500.2026"
+    _runtime._v091_gamma_ct = GAMMA_CT
     _install_guided_registry_override()
 
 
-__all__ = ["install"]
+__all__ = ["GAMMA_CT", "install"]
