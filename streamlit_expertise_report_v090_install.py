@@ -2,9 +2,9 @@
 
 The v0.90 narrative renderer is installed into ``streamlit_app_core`` without
 mutating the retained v0.89 module.  v0.91 adds presentation-only final-SP554
-§9.2 governing-axis evidence.  v0.92 reconciles the active §9.1 report formula
-with the mandatory-gamma_ct runtime trace while preserving the frozen DAG and
-its historical sidecar for audit reproducibility.
+§9.2 governing-axis evidence.  v0.92 reconciles active §9.1 with the mandatory
+gamma_ct runtime trace and makes the main report strictly progressive: only
+completed evidence plus the current unfinished input step are visible.
 """
 from __future__ import annotations
 
@@ -15,14 +15,14 @@ import streamlit_expertise_report_v088 as _v088
 import streamlit_expertise_report_v089 as _v089
 import streamlit_live_report_v087 as _v087
 from standard_core.report_ir_v092 import build_report_ir_v092
-from streamlit_expertise_report_v091 import render_expertise_narrative_markdown_v091
+from streamlit_expertise_report_v092 import render_expertise_narrative_markdown_v092
 
 _INSTALLED = "_fire_expertise_report_v090_isolated_installed"
 
 
 def _render_export(core: Any, report: Mapping[str, Any]) -> None:
     st = core.st
-    markdown = render_expertise_narrative_markdown_v091(report)
+    markdown = render_expertise_narrative_markdown_v092(report)
     st.download_button(
         "Скачать расчётный отчёт (.md)",
         data=markdown,
@@ -41,7 +41,7 @@ def _render_export(core: Any, report: Mapping[str, Any]) -> None:
         on_click="ignore",
         key="fire:expertise-report-v090:download:ir",
     )
-    st.caption("Экранный и Markdown-отчёт строятся из одного REPORT-IR5/v0.92 projection. Численные результаты не пересчитываются presentation-слоем.")
+    st.caption("Экранный и Markdown-отчёт строятся из одного progressive REPORT-IR v0.92. Численные результаты не пересчитываются presentation-слоем.")
 
 
 def render_expertise_report_v090(core: Any, env: Mapping[str, Any]) -> None:
@@ -53,10 +53,10 @@ def render_expertise_report_v090(core: Any, env: Mapping[str, Any]) -> None:
         return
     session = app.service.get_session(sid)
     report = build_report_ir_v092(app.service.model, session)
-    markdown = render_expertise_narrative_markdown_v091(report)
+    markdown = render_expertise_narrative_markdown_v092(report)
 
     st.markdown("### Расчётный отчёт")
-    st.caption("Отчёт обновляется после каждого принятого шага. Основной текст собран по инженерным разделам, а служебные этапы расчётного графа скрыты во вкладке Audit.")
+    st.caption("Отчёт обновляется после каждого принятого шага. Показываются только фактически выполненные расчётные шаги и текущий незавершённый ввод; будущие и неприменимые ветви остаются только в Audit.")
     tab_report, tab_export, tab_audit = st.tabs(["Расчётный отчёт", "Экспорт", "Audit"])
     with tab_report:
         _v088._report_status(st, report)
