@@ -30,10 +30,16 @@ def install(core: Any) -> None:
 
     def _upgrade(app):
         registry = app.service.registry
-        install_registry_remediation(registry)
-        if GRAPH_SUFFIX not in str(app.model.graph.get("graph_id") or ""):
-            old_sessions = dict(app.service.sessions)
-            new_model = build_model(app.model)
+        already_canonical = GRAPH_SUFFIX in str(app.model.graph.get("graph_id") or "")
+        old_sessions = dict(app.service.sessions) if not already_canonical else {}
+        new_model = app.model if already_canonical else build_model(app.model)
+
+        # Scope the compatibility wrappers from the *active canonical model*.
+        # This deliberately leaves unrelated v0.91 final-SP554 executors
+        # untouched, preserving exact registry identity and frozen-DAG isolation.
+        install_registry_remediation(registry, new_model)
+
+        if not already_canonical:
             new_service = GuidedCalculationService(new_model, registry=registry)
             for sid, old_session in old_sessions.items():
                 new_service.sessions[sid] = replay_prefix_without_axis_alias(
