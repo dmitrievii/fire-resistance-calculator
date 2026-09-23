@@ -1,9 +1,10 @@
-"""Streamlit installer for the v0.92 mandatory-gamma_ct guided bypass."""
+"""Streamlit installer for the v0.92 mandatory-gamma_ct guided remediation."""
 from __future__ import annotations
 
 from typing import Any
 
 from standard_core.fire_ui0 import GuidedCalculationService
+from standard_core.fire_sp554_runtime_v092 import install_guided_registry_remediation_v092
 from standard_core.fire_sp554_v092_guided_overlay import (
     GRAPH_SUFFIX,
     build_model,
@@ -28,19 +29,27 @@ def install(core: Any) -> None:
             pass
 
     def _upgrade(app):
-        if str(app.model.graph.get("graph_id") or "").endswith(GRAPH_SUFFIX):
-            return app
         old_sessions = dict(app.service.sessions)
         registry = app.service.registry
+        # Registry binding is intentionally repeated for retained applications:
+        # an already transformed graph may still carry the pre-remediation
+        # executor object in memory after a hot reload.
+        install_guided_registry_remediation_v092(registry)
         new_model = build_model(app.model)
-        new_service = GuidedCalculationService(new_model, registry=registry)
-        for sid, old_session in old_sessions.items():
-            new_service.sessions[sid] = replay_without_obsolete_gamma_ct(
-                old_session, new_model, registry
-            )
-        app.model = new_model
-        app.service = new_service
-        _invalidate_contract()
+        graph_changed = new_model is not app.model
+        if graph_changed:
+            new_service = GuidedCalculationService(new_model, registry=registry)
+            for sid, old_session in old_sessions.items():
+                new_service.sessions[sid] = replay_without_obsolete_gamma_ct(
+                    old_session, new_model, registry
+                )
+            app.model = new_model
+            app.service = new_service
+            _invalidate_contract()
+        elif not str(app.model.graph.get("graph_id") or "").endswith(GRAPH_SUFFIX):
+            # Defensive fail-closed guard: build_model must establish the active
+            # v0.92 graph contract before the application can continue.
+            raise RuntimeError("v0.92 gamma_ct guided graph remediation was not installed")
         return app
 
     core._new_application = lambda: _upgrade(previous_new_application())
