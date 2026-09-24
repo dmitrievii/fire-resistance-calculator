@@ -47,10 +47,7 @@ def _trace() -> dict:
     return {
         "schema": "sp16_v092_effective_length_zy_trace_v1",
         "normative_basis": "СП 16.13330.2017 с изменениями 1–6, раздел 10",
-        "axis_convention": {
-            "z": "strong principal axis",
-            "y": "weak principal axis",
-        },
+        "axis_convention": {"z": "strong principal axis", "y": "weak principal axis"},
         "z": {
             "route": {
                 "method": "table30",
@@ -94,10 +91,7 @@ def _trace() -> dict:
 
 
 def _report(*, include_trace: bool = True, trace: dict | None = None) -> dict:
-    rows = [
-        _row("Ry_formula", 240.0, "MPa"),
-        _row("E_norm", 206000.0, "MPa"),
-    ]
+    rows = [_row("Ry_formula", 240.0, "MPa"), _row("E_norm", 206000.0, "MPa")]
     if include_trace:
         rows.append(_row(EVIDENCE_QID, trace or _trace()))
     return {
@@ -122,9 +116,7 @@ $$i=\sqrt{I/A},\qquad l_{ef}=\mu L$$
 
 Результат появится позже.
 """
-
     rendered = replace_zy_stability_section(old, _report(include_trace=False))
-
     assert "### 3.1" not in rendered
     assert r"l_{ef}=\mu L" not in rendered
     assert "### 3.2 Проверка центрального сжатия" in rendered
@@ -132,12 +124,10 @@ $$i=\sqrt{I/A},\qquad l_{ef}=\mu L$$
 
 def test_executed_trace_renders_formula_substitution_result_for_both_canonical_axes():
     section = zy_stability_section(_report())
-
     assert "Ось z — сильная главная ось" in section
     assert "Ось y — слабая главная ось" in section
     assert "$I_z$, $W_z$, $i_z$" in section
     assert "$I_y$, $W_y$, $i_y$" in section
-
     assert r"l_{ef,z}=\mu_{z}L=0.7\cdot 4500=3150\;\mathrm{mm}" in section
     assert r"\lambda_{z}=\frac{l_{ef,z}}{i_{z}}=\frac{3150}{70}=45" in section
     assert r"\bar{\lambda}_{z}=\lambda_{z}\sqrt{\frac{R_y}{E}}=45\sqrt{\frac{240}{206000}}=1.53694" in section
@@ -146,21 +136,18 @@ def test_executed_trace_renders_formula_substitution_result_for_both_canonical_a
     assert r"=9.87\left(1-0.04+0.09\cdot 1.53694\right)+1.53694^2=13.9876" in section
     assert r"\varphi_{8,z}=\frac{19.74}{\delta_{z}+\sqrt{\delta_{z}^2-39.48\bar{\lambda}_{z}^2}}" in section
     assert r"\varphi_{z}=\varphi_{8,z}=0.612345" in section
-
     assert "verified_analysis" in section
     assert r"\lambda_{y}=\frac{l_{ef,y}}{i_{y}}=\frac{3600}{35}=102.857" in section
     assert r"\bar{\lambda}_{y}=\lambda_{y}\sqrt{\frac{R_y}{E}}=102.857\sqrt{\frac{240}{206000}}=3.51301" in section
     assert "По таблице 7 для оси y: $\\alpha=0.04$, $\\beta=0.14$, тип кривой **c**" in section
     assert r"\delta_{y}=9.87\left(1-\alpha+\beta\bar{\lambda}_{y}\right)+\bar{\lambda}_{y}^2" in section
     assert r"\varphi_{y}=\varphi_{8,y}=0.238765" in section
-
-    assert "Определяющая по $\\varphi$ ось:** **y (слабая главная ось)**" in section
+    assert "**Определяющая по $\\varphi$ ось:** **y (слабая главная ось)**" in section
     assert "presentation-слой их не пересчитывает" in section
 
 
 def test_active_zy_report_does_not_reintroduce_legacy_principal_x_semantics():
     section = zy_stability_section(_report())
-
     forbidden = ("I_x", "W_x", "i_x", "ось x", "principal x")
     assert all(token not in section for token in forbidden)
     assert "I_z" in section and "I_y" in section
@@ -182,13 +169,10 @@ def test_full_phi_evidence_is_required_after_state_execution():
 
 def test_governing_axis_is_read_from_runtime_trace_not_selected_by_report():
     trace = _trace()
-    # Deliberately make phi_z numerically smaller while retaining runtime's
-    # governing-axis field = y. Presentation must not re-select an axis.
     trace["z"]["phi"] = 0.01
     trace["z"]["phi_evidence"]["final_phi"] = 0.01
     trace["y"]["phi"] = 0.99
     trace["y"]["phi_evidence"]["final_phi"] = 0.99
     trace["governing_axis_by_phi"] = "y"
-
     section = zy_stability_section(_report(trace=trace))
-    assert "Определяющая по $\\varphi$ ось:** **y (слабая главная ось)**" in section
+    assert "**Определяющая по $\\varphi$ ось:** **y (слабая главная ось)**" in section
