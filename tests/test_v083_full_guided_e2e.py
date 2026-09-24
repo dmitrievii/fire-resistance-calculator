@@ -155,14 +155,17 @@ def test_v083_new_calculation_reaches_terminal_fire_result_without_internal_quan
     assert session.current_node_id == "SP16_I_AMBIENT_LOADS"
     assert "SP554_D_GOST27751_GAMMA_CT" not in [row["node_id"] for row in session.interaction_history]
 
+    # Retained E2E must use the current SP16 canonical action axes: bending Mz/My,
+    # shear Qz/Qy and torsion Mx.  Legacy Mx/My + Qx/Qy + T keys are intentionally
+    # no longer accepted by the production submit adapter.
     _submit(app, sid, "SP16_I_AMBIENT_LOADS", {
         "ambient_load_combination": {"schema": "v083_e2e", "kind": "ambient"},
         "ambient_N_force": -600_000.0,
-        "ambient_M_x": 0.0,
+        "ambient_M_z": 0.0,
         "ambient_M_y": 0.0,
-        "ambient_Q_x": 0.0,
+        "ambient_Q_z": 0.0,
         "ambient_Q_y": 0.0,
-        "ambient_T_torsion": 0.0,
+        "ambient_M_x": 0.0,
         "ambient_B_bimoment": 0.0,
     })
     _submit(app, sid, "SP16_D_AMBIENT_CENSUS_CONFIRM", True)
