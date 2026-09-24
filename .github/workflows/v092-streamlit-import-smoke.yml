@@ -1,0 +1,37 @@
+name: v0.92 Streamlit startup import smoke
+
+on:
+  push:
+    branches:
+      - 'fix/v0.92-streamlit-cloud-import-hotfix'
+    paths:
+      - 'streamlit_app.py'
+      - 'streamlit_manual_net_v092.py'
+      - 'standard_core/fire_ui14_manual_net_v092.py'
+      - 'standard_core/fire_ui14_section_weakening.py'
+      - 'tests/test_v092_streamlit_cloud_import_smoke.py'
+      - '.github/workflows/v092-streamlit-import-smoke.yml'
+  pull_request:
+    paths:
+      - 'streamlit_app.py'
+      - 'streamlit_manual_net_v092.py'
+      - 'standard_core/fire_ui14_manual_net_v092.py'
+      - 'standard_core/fire_ui14_section_weakening.py'
+      - 'tests/test_v092_streamlit_cloud_import_smoke.py'
+      - '.github/workflows/v092-streamlit-import-smoke.yml'
+  workflow_dispatch:
+
+jobs:
+  import-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install runtime and tests
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt pytest
+      - name: Resolve v0.92 Streamlit startup imports
+        run: python -m pytest -q tests/test_v092_streamlit_cloud_import_smoke.py
