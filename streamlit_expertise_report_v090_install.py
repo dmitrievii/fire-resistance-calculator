@@ -3,10 +3,8 @@
 The retained report modules remain available for audit/rollback.  The active
 v0.92 renderer is progressive and compact: completed engineering evidence plus
 the current unfinished step only, with dense formula blocks and explicit visual
-hierarchy between subsections and chapters.  Section weakening is rendered from
-typed execution evidence.  The final presentation layer also projects only the
-actually active canonical action components, preserving signs and the SP16
-z/y/x action convention without leaking retained legacy Mx/Qx/T terminology.
+hierarchy between subsections and chapters. Section weakening, canonical action
+output and the z/y stability chain are rendered only from executed evidence.
 """
 from __future__ import annotations
 
@@ -18,8 +16,8 @@ import streamlit_expertise_report_v089 as _v089
 import streamlit_live_report_v087 as _v087
 from standard_core.report_ir_v092 import build_report_ir_v092
 from streamlit_expertise_report_v092 import REPORT_COMPACT_CSS, report_marker_html
-from streamlit_expertise_report_v092_actions import (
-    render_expertise_narrative_markdown_v092_actions as render_expertise_narrative_markdown_v092,
+from streamlit_expertise_report_v092_zy import (
+    render_expertise_narrative_markdown_v092_zy as render_expertise_narrative_markdown_v092,
 )
 
 _INSTALLED = "_fire_expertise_report_v090_isolated_installed"
