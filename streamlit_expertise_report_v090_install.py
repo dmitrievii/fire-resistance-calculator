@@ -3,7 +3,9 @@
 The retained report modules remain available for audit/rollback.  The active
 v0.92 renderer is progressive and compact: completed engineering evidence plus
 the current unfinished step only, with dense formula blocks and explicit visual
-hierarchy between subsections and chapters.
+hierarchy between subsections and chapters.  Section weakening is rendered from
+typed execution evidence, including formula -> numerical substitution ->
+recorded result without presentation-side engineering recomputation.
 """
 from __future__ import annotations
 
@@ -14,10 +16,9 @@ import streamlit_expertise_report_v088 as _v088
 import streamlit_expertise_report_v089 as _v089
 import streamlit_live_report_v087 as _v087
 from standard_core.report_ir_v092 import build_report_ir_v092
-from streamlit_expertise_report_v092 import (
-    REPORT_COMPACT_CSS,
-    render_expertise_narrative_markdown_v092,
-    report_marker_html,
+from streamlit_expertise_report_v092 import REPORT_COMPACT_CSS, report_marker_html
+from streamlit_expertise_report_v092_weakening import (
+    render_expertise_narrative_markdown_v092_weakening as render_expertise_narrative_markdown_v092,
 )
 
 _INSTALLED = "_fire_expertise_report_v090_isolated_installed"
