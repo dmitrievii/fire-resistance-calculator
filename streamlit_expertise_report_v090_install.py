@@ -4,8 +4,9 @@ The retained report modules remain available for audit/rollback.  The active
 v0.92 renderer is progressive and compact: completed engineering evidence plus
 the current unfinished step only, with dense formula blocks and explicit visual
 hierarchy between subsections and chapters.  Section weakening is rendered from
-typed execution evidence, including formula -> numerical substitution ->
-recorded result without presentation-side engineering recomputation.
+typed execution evidence.  The final presentation layer also projects only the
+actually active canonical action components, preserving signs and the SP16
+z/y/x action convention without leaking retained legacy Mx/Qx/T terminology.
 """
 from __future__ import annotations
 
@@ -17,8 +18,8 @@ import streamlit_expertise_report_v089 as _v089
 import streamlit_live_report_v087 as _v087
 from standard_core.report_ir_v092 import build_report_ir_v092
 from streamlit_expertise_report_v092 import REPORT_COMPACT_CSS, report_marker_html
-from streamlit_expertise_report_v092_weakening import (
-    render_expertise_narrative_markdown_v092_weakening as render_expertise_narrative_markdown_v092,
+from streamlit_expertise_report_v092_actions import (
+    render_expertise_narrative_markdown_v092_actions as render_expertise_narrative_markdown_v092,
 )
 
 _INSTALLED = "_fire_expertise_report_v090_isolated_installed"
@@ -62,7 +63,7 @@ def render_expertise_report_v090(core: Any, env: Mapping[str, Any]) -> None:
     # CSS is inert outside the bordered container containing the marker below.
     st.markdown(REPORT_COMPACT_CSS, unsafe_allow_html=True)
     st.markdown("### Расчётный отчёт")
-    st.caption("Отчёт обновляется после каждого принятого шага. Показываются только фактически выполненные расчётные шаги и текущий незавершённый ввод; будущие и неприменимые ветви доступны во вкладке Audit.")
+    st.caption("Отчёт обновляется после каждого принятого шага. Показываются только фактически выполненные расчётные шаги, ненулевые силовые факторы и текущий незавершённый ввод; будущие и неприменимые ветви доступны во вкладке Audit.")
     tab_report, tab_export, tab_audit = st.tabs(["Расчётный отчёт", "Экспорт", "Audit"])
     with tab_report:
         _v088._report_status(st, report)
