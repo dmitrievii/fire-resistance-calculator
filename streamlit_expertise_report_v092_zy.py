@@ -1,18 +1,18 @@
 """v0.92 trace-bound canonical z/y stability report overlay.
 
 The retained v0.89 narrative printed a generic §3.1 stability formula before the
-corresponding MECH7 runtime node had necessarily executed.  The active v0.92
-report must instead be progressive and auditable: no z/y formula is shown until
-``sp16_effective_length_zy_trace`` exists in completed execution evidence.
+corresponding MECH7 runtime node had necessarily executed. The active v0.92
+report is progressive: no z/y formula is shown until completed
+``sp16_effective_length_zy_trace`` evidence exists.
 
-After execution this module formats, but never evaluates, the values already
-captured by the qualified MECH7 runtime:
+After execution this module formats, but never evaluates, the values captured by
+the qualified MECH7 runtime and its validated full-phi evidence producer:
 
-    l_eff -> lambda -> lambda_bar -> phi
+    l_eff -> lambda -> lambda_bar -> Table-7 alpha/beta -> delta -> phi
 
-The canonical property contract is explicit in the report: z is the strong
-principal axis (Iz/Wz/iz), y is the weak principal axis (Iy/Wy/iy).  No legacy
-principal-x bending semantics are accepted or displayed.
+The canonical property contract is explicit: z is the strong principal axis
+(Iz/Wz/iz), y is the weak principal axis (Iy/Wy/iy). No legacy principal-x
+bending semantics are accepted or displayed.
 """
 from __future__ import annotations
 
@@ -22,6 +22,7 @@ from typing import Any, Mapping
 
 import streamlit_expertise_report_v089 as _v089
 from standard_core.sp16_mech7_v092_effective_length import EVIDENCE_QID
+from standard_core.sp16_mech7_v092_phi_evidence import PHI_TRACE_SCHEMA
 from streamlit_expertise_report_v092 import compact_engineering_markdown
 from streamlit_expertise_report_v092_actions import (
     render_expertise_narrative_markdown_v092_actions,
@@ -107,16 +108,79 @@ def _route_line(axis: str, state: Mapping[str, Any]) -> str:
     )
 
 
+def _phi_lines(axis: str, state: Mapping[str, Any]) -> list[str]:
+    evidence = state.get("phi_evidence")
+    if not isinstance(evidence, Mapping) or evidence.get("schema") != PHI_TRACE_SCHEMA:
+        raise ValueError(f"v0.92 z/y report: full phi evidence for axis {axis} is absent")
+    if evidence.get("validated_against_runtime") is not True:
+        raise ValueError(f"v0.92 z/y report: phi evidence for axis {axis} is not runtime-validated")
+
+    curve = str(evidence.get("curve") or "")
+    lambda_bar = _fmt(evidence.get("lambda_bar"))
+    alpha = _fmt(evidence.get("alpha"))
+    beta = _fmt(evidence.get("beta"))
+    final_phi = _fmt(evidence.get("final_phi"))
+    state_phi = _fmt(state.get("phi"))
+    if curve != str(state.get("curve") or "") or lambda_bar != _fmt(state.get("lambda_bar")):
+        raise ValueError(f"v0.92 z/y report: phi evidence operands mismatch for axis {axis}")
+    if final_phi != state_phi:
+        raise ValueError(f"v0.92 z/y report: phi evidence result mismatch for axis {axis}")
+
+    lines = [
+        rf"По таблице 7 для оси {axis}: $\alpha={alpha}$, $\beta={beta}$, тип кривой **{curve}**.",
+        "",
+    ]
+    branch = evidence.get("branch")
+    if branch == "low_slenderness_direct_phi_1":
+        lines.extend(
+            [
+                rf"При $\bar{{\lambda}}_{{{axis}}}={lambda_bar}<0.6$ для кривой {curve} применяется прямое правило п. 7.1.3:",
+                "",
+                rf"$$\varphi_{{{axis}}}=1.0={final_phi}$$",
+                "",
+            ]
+        )
+        return lines
+    if branch != "eq8_eq9_with_table7":
+        raise ValueError(f"v0.92 z/y report: unknown phi-evidence branch for axis {axis}")
+
+    delta = _fmt(evidence.get("delta"))
+    radicand = _fmt(evidence.get("eq8_radicand"))
+    phi_eq8 = _fmt(evidence.get("phi_eq8"))
+    lines.extend(
+        [
+            rf"$$\delta_{{{axis}}}=9.87\left(1-\alpha+\beta\bar{{\lambda}}_{{{axis}}}\right)+\bar{{\lambda}}_{{{axis}}}^2"
+            rf"=9.87\left(1-{alpha}+{beta}\cdot {lambda_bar}\right)+{lambda_bar}^2={delta}$$",
+            "",
+            rf"$$\varphi_{{8,{axis}}}=\frac{{19.74}}{{\delta_{{{axis}}}+\sqrt{{\delta_{{{axis}}}^2-39.48\bar{{\lambda}}_{{{axis}}}^2}}}}"
+            rf"=\frac{{19.74}}{{{delta}+\sqrt{{{radicand}}}}}={phi_eq8}$$",
+            "",
+        ]
+    )
+    if evidence.get("cap_applied") is True:
+        cap = _fmt(evidence.get("cap_candidate"))
+        threshold = _fmt(evidence.get("cap_threshold_lambda_bar"))
+        lines.extend(
+            [
+                rf"Так как $\bar{{\lambda}}_{{{axis}}}={lambda_bar}\ge {threshold}$, runtime применил предельное правило:",
+                "",
+                rf"$$\varphi_{{cap,{axis}}}=\frac{{7.6}}{{\bar{{\lambda}}_{{{axis}}^2}}={cap}$$",
+                "",
+                rf"$$\varphi_{{{axis}}}=\min({phi_eq8},\;{cap})={final_phi}$$",
+                "",
+            ]
+        )
+    else:
+        lines.extend([rf"$$\varphi_{{{axis}}}=\varphi_{{8,{axis}}}={final_phi}$$", ""])
+    return lines
+
+
 def _axis_block(axis: str, state: Mapping[str, Any], ry: float | None, elastic: float | None) -> list[str]:
     meta = _AXIS_META[axis]
     radius = _fmt(state.get("radius_mm"))
     leff = _fmt(state.get("effective_length_mm"))
     lam = _fmt(state.get("lambda"))
     lam_bar = _fmt(state.get("lambda_bar"))
-    curve = str(state.get("curve") or "").strip()
-    phi = _fmt(state.get("phi"))
-    if not curve:
-        raise ValueError(f"v0.92 z/y report: stability curve for axis {axis} is absent")
 
     lines = [
         f"#### Ось {axis} — {meta['role']}",
@@ -149,13 +213,7 @@ def _axis_block(axis: str, state: Mapping[str, Any], ry: float | None, elastic: 
                 "",
             ]
         )
-    lines.extend(
-        [
-            rf"$$\varphi_{{{axis}}}=\varphi(\bar{{\lambda}}_{{{axis}}},\;\text{{кривая }}{curve})"
-            rf"=\varphi({lam_bar},\;{curve})={phi}$$",
-            "",
-        ]
-    )
+    lines.extend(_phi_lines(axis, state))
     return lines
 
 
@@ -189,7 +247,7 @@ def zy_stability_section(report: Mapping[str, Any]) -> str:
         [
             f"**Определяющая по $\varphi$ ось:** **{governing} ({role})** — это значение зафиксировано runtime trace.",
             "",
-            f"*Нормативное основание: {trace.get('normative_basis') or 'СП 16.13330.2017, раздел 10'}.*",
+            f"*Нормативное основание: {trace.get('normative_basis') or 'СП 16.13330.2017, раздел 10'}; полный расчёт φ — п. 7.1.3, формулы (8)–(9), таблица 7.*",
             "",
         ]
     )
