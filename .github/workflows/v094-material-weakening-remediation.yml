@@ -1,0 +1,22 @@
+name: v0.94 material weakening remediation
+on:
+  push:
+    branches: ['fix/v094-material-weakening-single-card']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt pytest
+      - name: Compile active overlays
+        run: python -m py_compile streamlit_weakening_single_card_v094.py streamlit_expertise_report_v094_weakening.py streamlit_report_v094_install.py streamlit_app.py
+      - name: Focused regression
+        run: python -m pytest -q tests/test_v094_material_weakening_remediation.py
+      - name: Streamlit import smoke
+        run: python -c "import streamlit_app"
