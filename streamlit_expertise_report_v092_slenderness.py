@@ -52,8 +52,14 @@ def _trace(report: Mapping[str, Any]) -> tuple[Mapping[str, Any], Mapping[str, A
     check = trace.get("check")
     if not isinstance(check, Mapping):
         raise ValueError("v0.92 Table-32 report: trace check block is absent")
-    if bool(check.get("pass")) is not bool(row.get("pass")):
+    binder_pass = row.get("pass")
+    if not isinstance(binder_pass, bool):
+        raise ValueError("v0.92 Table-32 report: binder PASS/FAIL flag is absent")
+    if bool(check.get("pass")) is not binder_pass:
         raise ValueError("v0.92 Table-32 report: trace/binder verdict mismatch")
+    expected_status = "PASS" if binder_pass else "FAIL"
+    if row.get("status") != expected_status:
+        raise ValueError("v0.92 Table-32 report: binder status/pass fields are inconsistent")
     return trace, row
 
 
@@ -69,7 +75,8 @@ def limiting_slenderness_section(report: Mapping[str, Any]) -> str:
     actual = trace.get("actual_slenderness")
     check = trace.get("check")
     formula = trace.get("table32_row_formula")
-    if not all(isinstance(x, Mapping) for x in (inputs, alpha, limit, actual, check, formula)):
+    source = trace.get("table32_catalog_source")
+    if not all(isinstance(x, Mapping) for x in (inputs, alpha, limit, actual, check, formula, source)):
         raise ValueError("v0.92 Table-32 report: incomplete typed calculation trace")
 
     row_id = str(trace.get("table32_row_id") or "")
@@ -86,6 +93,7 @@ def limiting_slenderness_section(report: Mapping[str, Any]) -> str:
     ry = _fmt(inputs.get("Ry_n_mm2"))
     gamma_c = _fmt(inputs.get("gamma_c"))
     alpha_raw = _fmt(alpha.get("raw"))
+    alpha_min = _fmt(alpha.get("minimum"))
     alpha_result = _fmt(alpha.get("result"))
     lambda_z = _fmt(actual.get("lambda_z"))
     lambda_y = _fmt(actual.get("lambda_y"))
@@ -93,7 +101,11 @@ def limiting_slenderness_section(report: Mapping[str, Any]) -> str:
     lambda_u_base = _fmt(limit.get("base"))
     lambda_u = _fmt(limit.get("result"))
     utilization = _fmt(check.get("utilization"))
-    verdict = "PASS" if check.get("pass") is True else "FAIL"
+
+    # Verdict is projected from the authoritative MECH7 binder row. The trace
+    # result is only a validated consistency witness and never the decision source.
+    verdict = str(row.get("status"))
+    relation = r"\le" if verdict == "PASS" else ">"
 
     lines = [
         "#### Предельная гибкость по таблице 32",
@@ -107,7 +119,7 @@ def limiting_slenderness_section(report: Mapping[str, Any]) -> str:
         r"$$\alpha_{raw}=\frac{|N|}{\varphi A R_y\gamma_c}"
         + rf"=\frac{{{n}}}{{{phi}\cdot {area}\cdot {ry}\cdot {gamma_c}}}={alpha_raw}$$",
         "",
-        rf"$$\alpha=\max(\alpha_{{raw}},0.5)=\max({alpha_raw},0.5)={alpha_result}$$",
+        rf"$$\alpha=\max(\alpha_{{raw}},\alpha_{{min}})=\max({alpha_raw},{alpha_min})={alpha_result}$$",
         "",
     ]
 
@@ -115,9 +127,9 @@ def limiting_slenderness_section(report: Mapping[str, Any]) -> str:
     kind = formula.get("kind")
     if kind == "linear":
         constant = _fmt(formula.get("constant"))
-        coefficient = _fmt(formula.get("alpha_coefficient"))
-        sign = "+" if float(formula.get("alpha_coefficient")) >= 0.0 else "-"
-        coeff_abs = _fmt(abs(float(formula.get("alpha_coefficient"))))
+        coefficient_value = float(formula.get("alpha_coefficient"))
+        sign = "+" if coefficient_value >= 0.0 else "-"
+        coeff_abs = _fmt(abs(coefficient_value))
         lines.extend(
             [
                 f"Строка {row_id} таблицы 32: `{expression}`.",
@@ -156,15 +168,20 @@ def limiting_slenderness_section(report: Mapping[str, Any]) -> str:
             "",
             rf"$$\eta_\lambda=\frac{{\lambda}}{{\lambda_u}}=\frac{{{lambda_actual}}}{{{lambda_u}}}={utilization}$$",
             "",
-            f"**{verdict}:** $\lambda {'\\le' if verdict == 'PASS' else '>'} \lambda_u$. "
+            f"**{verdict}:** $\lambda {relation} \lambda_u$. "
             f"Статус взят из MECH7 binder evidence, а не определён presentation-слоем.",
             "",
             f"*Нормативное основание: {trace.get('normative_basis')}.*",
             "",
         ]
     )
-    # Cross-check presentation reads the same utilization but never derives it.
-    if not math.isclose(float(row.get("utilization")), float(check.get("utilization")), rel_tol=1e-12, abs_tol=1e-12):
+
+    # Presentation may validate identity of already-produced values, but must not
+    # derive a new utilization/verdict.
+    binder_utilization = row.get("utilization")
+    if isinstance(binder_utilization, bool) or not isinstance(binder_utilization, (int, float)):
+        raise ValueError("v0.92 Table-32 report: binder utilization is absent")
+    if not math.isclose(float(binder_utilization), float(check.get("utilization")), rel_tol=1e-12, abs_tol=1e-12):
         raise ValueError("v0.92 Table-32 report: displayed utilization differs from binder")
     return "\n".join(lines)
 
