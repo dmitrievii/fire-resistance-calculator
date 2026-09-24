@@ -18,6 +18,7 @@ from standard_core.sp16_mech7_v092_slenderness_evidence import (
 )
 from streamlit_expertise_report_v092 import compact_engineering_markdown
 from streamlit_expertise_report_v092_zy import render_expertise_narrative_markdown_v092_zy
+from streamlit_guided_ux import TABLE32_LABELS
 
 _HEADING_RE = re.compile(r"(?m)^### 3\.2 Проверка центрального сжатия и определяющий результат\s*$\n?")
 
@@ -82,6 +83,9 @@ def limiting_slenderness_section(report: Mapping[str, Any]) -> str:
     row_id = str(trace.get("table32_row_id") or "")
     if not row_id:
         raise ValueError("v0.92 Table-32 report: Table-32 row id is absent")
+    category_label = TABLE32_LABELS.get(row_id)
+    if not isinstance(category_label, str) or not category_label:
+        raise ValueError("v0.92 Table-32 report: selected row has no explicit classification label")
     phi_axis = str(alpha.get("governing_phi_axis") or "")
     lambda_axis = str(actual.get("governing_axis") or "")
     if phi_axis not in {"z", "y"} or lambda_axis not in {"z", "y"}:
@@ -102,16 +106,17 @@ def limiting_slenderness_section(report: Mapping[str, Any]) -> str:
     lambda_u = _fmt(limit.get("result"))
     utilization = _fmt(check.get("utilization"))
 
-    # Verdict is projected from the authoritative MECH7 binder row. The trace
-    # result is only a validated consistency witness and never the decision source.
     verdict = str(row.get("status"))
     relation = r"\le" if verdict == "PASS" else ">"
 
     lines = [
         "#### Предельная гибкость по таблице 32",
         "",
-        f"Выбранная категория: **таблица 32, строка {row_id}**. "
-        + ("Для элемента применено увеличение по п. 10.4.2 (группа 4)." if trace.get("group4_classification") is True else "Увеличение для группы 4 не применено."),
+        f"**Классификация элемента:** {category_label}.",
+        "",
+        f"Для расчёта принята **таблица 32, строка {row_id}**. Строка является явной инженерной классификацией пользователя; приложение не выводит её из типа профиля и не подставляет скрытое значение по умолчанию.",
+        "",
+        ("Для элемента явно применено увеличение по п. 10.4.2 (группа 4)." if trace.get("group4_classification") is True else "Пользователь явно указал, что увеличение для группы 4 не применяется."),
         "",
         f"Для вычисления $\alpha$ runtime использовал минимальный коэффициент устойчивости по оси **{phi_axis}**; "
         f"для проверки фактической гибкости — максимальную $\lambda$ по оси **{lambda_axis}**.",
@@ -130,54 +135,28 @@ def limiting_slenderness_section(report: Mapping[str, Any]) -> str:
         coefficient_value = float(formula.get("alpha_coefficient"))
         sign = "+" if coefficient_value >= 0.0 else "-"
         coeff_abs = _fmt(abs(coefficient_value))
-        lines.extend(
-            [
-                f"Строка {row_id} таблицы 32: `{expression}`.",
-                "",
-                rf"$$\lambda_{{u,base}}={constant}{sign}{coeff_abs}\alpha"
-                rf"={constant}{sign}{coeff_abs}\cdot {alpha_result}={lambda_u_base}$$",
-                "",
-            ]
-        )
+        lines.extend([
+            f"Строка {row_id} таблицы 32: `{expression}`.", "",
+            rf"$$\lambda_{{u,base}}={constant}{sign}{coeff_abs}\alpha={constant}{sign}{coeff_abs}\cdot {alpha_result}={lambda_u_base}$$", "",
+        ])
     elif kind == "constant":
-        lines.extend(
-            [
-                f"Строка {row_id} таблицы 32 задаёт постоянное значение `{expression}`.",
-                "",
-                rf"$$\lambda_{{u,base}}={lambda_u_base}$$",
-                "",
-            ]
-        )
+        lines.extend([f"Строка {row_id} таблицы 32 задаёт постоянное значение `{expression}`.", "", rf"$$\lambda_{{u,base}}={lambda_u_base}$$", ""])
     else:
         raise ValueError("v0.92 Table-32 report: unsupported row formula kind")
 
     if trace.get("group4_classification") is True:
         factor = _fmt(limit.get("group4_factor"))
-        lines.extend(
-            [
-                rf"$$\lambda_u={factor}\lambda_{{u,base}}={factor}\cdot {lambda_u_base}={lambda_u}$$",
-                "",
-            ]
-        )
+        lines.extend([rf"$$\lambda_u={factor}\lambda_{{u,base}}={factor}\cdot {lambda_u_base}={lambda_u}$$", ""])
     else:
         lines.extend([rf"$$\lambda_u=\lambda_{{u,base}}={lambda_u}$$", ""])
 
-    lines.extend(
-        [
-            rf"$$\lambda=\max(\lambda_z,\lambda_y)=\max({lambda_z},{lambda_y})={lambda_actual}\quad(\text{{ось }}{lambda_axis})$$",
-            "",
-            rf"$$\eta_\lambda=\frac{{\lambda}}{{\lambda_u}}=\frac{{{lambda_actual}}}{{{lambda_u}}}={utilization}$$",
-            "",
-            f"**{verdict}:** $\lambda {relation} \lambda_u$. "
-            f"Статус взят из MECH7 binder evidence, а не определён presentation-слоем.",
-            "",
-            f"*Нормативное основание: {trace.get('normative_basis')}.*",
-            "",
-        ]
-    )
+    lines.extend([
+        rf"$$\lambda=\max(\lambda_z,\lambda_y)=\max({lambda_z},{lambda_y})={lambda_actual}\quad(\text{{ось }}{lambda_axis})$$", "",
+        rf"$$\eta_\lambda=\frac{{\lambda}}{{\lambda_u}}=\frac{{{lambda_actual}}}{{{lambda_u}}}={utilization}$$", "",
+        f"**{verdict}:** $\lambda {relation} \lambda_u$. Статус взят из MECH7 binder evidence, а не определён presentation-слоем.", "",
+        f"*Нормативное основание: {trace.get('normative_basis')}.*", "",
+    ])
 
-    # Presentation may validate identity of already-produced values, but must not
-    # derive a new utilization/verdict.
     binder_utilization = row.get("utilization")
     if isinstance(binder_utilization, bool) or not isinstance(binder_utilization, (int, float)):
         raise ValueError("v0.92 Table-32 report: binder utilization is absent")
@@ -204,8 +183,4 @@ def render_expertise_narrative_markdown_v092_slenderness(report: Mapping[str, An
     return inject_limiting_slenderness(base, report)
 
 
-__all__ = [
-    "inject_limiting_slenderness",
-    "limiting_slenderness_section",
-    "render_expertise_narrative_markdown_v092_slenderness",
-]
+__all__ = ["inject_limiting_slenderness", "limiting_slenderness_section", "render_expertise_narrative_markdown_v092_slenderness"]
