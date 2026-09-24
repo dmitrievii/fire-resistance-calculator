@@ -164,7 +164,7 @@ def _phi_lines(axis: str, state: Mapping[str, Any]) -> list[str]:
             [
                 rf"Так как $\bar{{\lambda}}_{{{axis}}}={lambda_bar}\ge {threshold}$, runtime применил предельное правило:",
                 "",
-                rf"$$\varphi_{{cap,{axis}}}=\frac{{7.6}}{{\bar{{\lambda}}_{{{axis}}^2}}={cap}$$",
+                rf"$$\varphi_{{cap,{axis}}}=\frac{{7.6}}{{\bar{{\lambda}}_{{{axis}}}^2}}={cap}$$",
                 "",
                 rf"$$\varphi_{{{axis}}}=\min({phi_eq8},\;{cap})={final_phi}$$",
                 "",
