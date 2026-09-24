@@ -1,20 +1,9 @@
 """v0.92 contextual canonical-action presentation overlay.
 
 The retained v0.89 narrative predates the canonical SP16 action migration and
-still knows the legacy ``Mx/Qx/T`` vocabulary.  This module changes presentation
-only.  It reads already-recorded REPORT-IR values and replaces the load subsection
-with the active canonical contract:
-
-* N  - axial force;
-* Mz - strong-axis bending;
-* My - weak-axis bending;
-* Mx - torsion only;
-* Qz/Qy - separate shear components;
-* B  - direct bimoment.
-
-Only non-zero components that are actually present in the executed evidence are
-shown in the main report.  Signs are preserved exactly.  No resultant shear,
-legacy-axis translation or engineering recomputation is performed here.
+still knows the legacy ``Mx/Qx/T`` vocabulary. This module changes presentation
+only. It reads already-recorded REPORT-IR values and replaces the load subsection
+with the active canonical contract.
 """
 from __future__ import annotations
 
@@ -23,15 +12,12 @@ import re
 from typing import Any, Mapping
 
 import streamlit_expertise_report_v089 as _v089
-from streamlit_expertise_report_v092 import compact_engineering_markdown
 from streamlit_expertise_report_v092_weakening import (
     render_expertise_narrative_markdown_v092_weakening,
 )
 
 _ZERO_TOL = 1e-12
 
-# qid, report label.  Ordering is the canonical action-contract ordering used
-# throughout the active v0.92 UI and mechanical handoff.
 _CANONICAL_ACTIONS = (
     ("ambient_N_force", r"Продольная сила $N$"),
     ("ambient_M_z", r"Изгибающий момент $M_z$ (сильная ось z)"),
@@ -62,7 +48,6 @@ def _numeric_raw(hit: Any) -> float | None:
 
 
 def _canonical_action_hits(report: Mapping[str, Any]) -> list[tuple[str, str, Any]]:
-    """Return present, non-zero canonical actions from recorded report evidence."""
     active: list[tuple[str, str, Any]] = []
     for qid, label in _CANONICAL_ACTIONS:
         hit = _v089._find_row(report, qids=(qid,))
@@ -74,7 +59,6 @@ def _canonical_action_hits(report: Mapping[str, Any]) -> list[tuple[str, str, An
 
 
 def canonical_actions_section(report: Mapping[str, Any]) -> str:
-    """Render only active canonical action components; preserve trace signs/units."""
     active = _canonical_action_hits(report)
     if not active:
         return ""
@@ -97,8 +81,21 @@ def canonical_actions_section(report: Mapping[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def _normalize_spacing_without_structural_pruning(markdown: str) -> str:
+    """Compact whitespace while preserving pre-existing chapter/subchapter headings.
+
+    The action overlay owns only the action subsection. Running the global v0.92
+    empty-heading pruner here is unsafe after removal of legacy zero-action prose:
+    it can delete otherwise valid neighbouring chapter headings that this overlay
+    does not own.
+    """
+    text = re.sub(r"\n[ \t]*\n(?:[ \t]*\n)+", "\n\n", str(markdown or ""))
+    text = "\n".join(line.rstrip() for line in text.splitlines())
+    return text.strip()
+
+
 def replace_contextual_actions_section(markdown: str, report: Mapping[str, Any]) -> str:
-    """Replace legacy force prose without touching executed engineering results."""
+    """Replace legacy force prose without touching unrelated report structure."""
     text = str(markdown or "")
     section = canonical_actions_section(report)
     match = _ACTION_SECTION_RE.search(text)
@@ -106,19 +103,14 @@ def replace_contextual_actions_section(markdown: str, report: Mapping[str, Any])
         replacement = section + "\n" if section else ""
         text = _ACTION_SECTION_RE.sub(replacement, text, count=1)
     elif section:
-        # Chapter 1 can legitimately omit the legacy force subsection. Insert
-        # before weakening when present, otherwise directly before Chapter 2.
         anchor = re.search(r"(?m)^### 1\.3\s", text) or re.search(r"(?m)^## 2\.\s", text)
         if anchor:
             text = text[: anchor.start()] + section + "\n\n" + text[anchor.start() :]
         else:
             text = text.rstrip() + "\n\n" + section
 
-    # Retained v0.89 additionally emitted a prose paragraph enumerating zero
-    # legacy Mx/Qx/T actions.  That paragraph is presentation-only and must not
-    # leak obsolete axis semantics into the active v0.92 main report.
     text = _LEGACY_ZERO_PARAGRAPH_RE.sub("", text)
-    return compact_engineering_markdown(text) + "\n"
+    return _normalize_spacing_without_structural_pruning(text) + "\n"
 
 
 def render_expertise_narrative_markdown_v092_actions(report: Mapping[str, Any]) -> str:
