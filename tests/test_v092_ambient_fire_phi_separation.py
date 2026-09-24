@@ -107,5 +107,10 @@ def test_fire_gammaT_uses_Ryn_phi_fire_gamma_ct_and_gamma_c_exactly():
 
     expected = 400_000.0 / (phi_fire * 5282.0 * 255.0 * 1.1 * 0.9)
     assert result["gamma_T_required"] == pytest.approx(expected)
-    assert trace["Ryn_n_mm2"] == pytest.approx(255.0)
+
+    # Ryn provenance belongs to the governing strength-candidate evidence.
+    # route_trace deliberately carries the independently reconstructed fire state.
+    candidate = result["gamma_T_candidates"][0]
+    assert candidate["details"]["Ryn_n_mm2"] == pytest.approx(255.0)
+    assert candidate["details"]["gamma_ct"] == pytest.approx(1.1)
     assert trace["gamma_ct"] == pytest.approx(1.1)
