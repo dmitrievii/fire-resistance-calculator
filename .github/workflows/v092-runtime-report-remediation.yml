@@ -16,6 +16,7 @@ on:
       - 'tests/test_v092_progressive_report.py'
       - 'tests/test_v092_readable_section_properties.py'
       - 'tests/test_v092_compact_report.py'
+      - 'tests/test_v092_material_gamma_m_report.py'
       - 'tests/test_v092_sp554_9_1_report_remediation.py'
       - 'tests/test_v092_sp554_gamma_ct_guided_bypass.py'
       - 'tests/test_v092_gamma_ct_presentation_policy.py'
@@ -38,6 +39,7 @@ on:
       - 'tests/test_v092_progressive_report.py'
       - 'tests/test_v092_readable_section_properties.py'
       - 'tests/test_v092_compact_report.py'
+      - 'tests/test_v092_material_gamma_m_report.py'
       - 'tests/test_v092_sp554_9_1_report_remediation.py'
       - 'tests/test_v092_sp554_gamma_ct_guided_bypass.py'
       - 'tests/test_v092_gamma_ct_presentation_policy.py'
@@ -83,6 +85,9 @@ jobs:
 
       - name: Compact-report regression
         run: python -m pytest -q tests/test_v092_compact_report.py
+
+      - name: Material gamma_m provenance regression
+        run: python -m pytest -q tests/test_v092_material_gamma_m_report.py
 
       - name: Final SP554 9.1 runtime-report regression
         run: >-
