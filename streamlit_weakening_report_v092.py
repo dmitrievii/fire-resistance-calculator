@@ -1,18 +1,20 @@
 """v0.92 section-weakening engineering narrative.
 
-Presentation only.  Net-property values come from the typed calculation evidence
-stored by :mod:`standard_core.fire_ui14_section_weakening`; the SP16 Eq.(45)
-result comes from the executed ``sp16_shear_hole_alpha45`` quantity.  This
-module formats ``formula -> numerical substitution -> recorded result`` and
-never evaluates geometry or Eq.(45) independently.
+Presentation only.  Net-property values come from typed calculation evidence
+stored by the weakening runtime; the SP16 Eq.(45) result comes from the
+executed ``sp16_shear_hole_alpha45`` quantity.  Automatic geometry is rendered
+as formula -> numerical substitution -> recorded result.  Manual net I/W values
+are explicitly labelled as user input and are never dressed up as calculated
+formula results.  A_net remains geometry-derived in both modes.
 """
 from __future__ import annotations
 
 import re
-from typing import Any, Mapping
+from typing import Any, Iterable, Mapping
 
 import streamlit_expertise_report_v089 as _v089
 from standard_core.fire_ui14_section_weakening import WEAKENING_TRACE_SCHEMA
+from standard_core.fire_ui14_manual_net_v092 import MANUAL_SOURCE_TEXT_RU
 
 
 def _fmt(value: Any) -> str:
@@ -32,7 +34,17 @@ def _result_unit(step: Mapping[str, Any]) -> str:
         "mm2": "мм²",
         "mm3": "мм³",
         "mm4": "мм⁴",
+        "mm6": "мм⁶",
     }.get(str(result.get("unit") or ""), str(result.get("unit") or ""))
+
+
+def _unit_text(unit: Any) -> str:
+    return {
+        "mm2": "мм²",
+        "mm3": "мм³",
+        "mm4": "мм⁴",
+        "mm6": "мм⁶",
+    }.get(str(unit or ""), str(unit or ""))
 
 
 def _step_map(trace: Mapping[str, Any]) -> dict[str, Mapping[str, Any]]:
@@ -50,13 +62,31 @@ def _axis_map(trace: Mapping[str, Any]) -> dict[str, tuple[str, str]]:
         return {"x": ("z", "сильной"), "y": ("y", "слабой")}
     if major is False:
         return {"x": ("y", "слабой"), "y": ("z", "сильной")}
-    # Fail-safe presentation: do not invent active-axis meaning when runtime did
-    # not publish the major/minor relation.
     return {"x": ("x", "исходной каталожной"), "y": ("y", "исходной каталожной")}
 
 
 def _equation(formula: str, substitution: str) -> list[str]:
     return [f"$$ {formula} $$", "", f"$$ {substitution} $$", ""]
+
+
+def _formula45_lines(trace: Mapping[str, Any], alpha_hit: tuple[Mapping[str, Any], Mapping[str, Any]] | None) -> list[str]:
+    formula45 = trace.get("sp16_formula45")
+    if not isinstance(formula45, Mapping) or formula45.get("applicable") is not True:
+        return []
+    inputs = formula45.get("inputs") if isinstance(formula45.get("inputs"), Mapping) else {}
+    alpha = _v089._row_raw(alpha_hit)
+    lines = ["#### Коэффициент ослабления стенки при сдвиге по формуле (45) СП 16", ""]
+    if isinstance(alpha, (int, float)) and not isinstance(alpha, bool):
+        lines.extend(_equation(
+            str(formula45.get("formula_latex") or r"\alpha_h=\frac{s}{s-d}"),
+            rf"\alpha_h=\frac{{{_fmt(inputs.get('s'))}}}{{{_fmt(inputs.get('s'))}-{_fmt(inputs.get('d'))}}}={_fmt(alpha)}",
+        ))
+    ref = _v089._ref(alpha_hit[1]) if alpha_hit else ""
+    normative_scope = str(formula45.get("normative_scope") or "")
+    basis = ref or normative_scope
+    if basis:
+        lines.extend([f"*Нормативное основание: {basis}.*", ""])
+    return lines
 
 
 def _identity_section(trace: Mapping[str, Any]) -> str:
@@ -163,24 +193,113 @@ def _hole_section(trace: Mapping[str, Any], alpha_hit: tuple[Mapping[str, Any], 
                 rf"W_{{{sy},n,min}}=\min\left(\frac{{{_fmt(inp.get('I_yn'))}}}{{{_fmt(inp.get('x_pos'))}}},\frac{{{_fmt(inp.get('I_yn'))}}}{{{_fmt(inp.get('x_neg'))}}}\right)={_fmt(result)}\;\mathrm{{мм^3}}",
             ))
 
-    formula45 = trace.get("sp16_formula45")
-    if isinstance(formula45, Mapping) and formula45.get("applicable") is True:
-        inputs = formula45.get("inputs") if isinstance(formula45.get("inputs"), Mapping) else {}
-        alpha = _v089._row_raw(alpha_hit)
-        lines.extend(["#### Коэффициент ослабления стенки при сдвиге по формуле (45) СП 16", ""])
-        if isinstance(alpha, (int, float)) and not isinstance(alpha, bool):
-            lines.extend(_equation(
-                str(formula45.get("formula_latex") or r"\alpha_h=\frac{s}{s-d}"),
-                rf"\alpha_h=\frac{{{_fmt(inputs.get('s'))}}}{{{_fmt(inputs.get('s'))}-{_fmt(inputs.get('d'))}}}={_fmt(alpha)}",
-            ))
-        ref = _v089._ref(alpha_hit[1]) if alpha_hit else ""
-        normative_scope = str(formula45.get("normative_scope") or "")
-        basis = ref or normative_scope
-        if basis:
-            lines.extend([f"*Нормативное основание: {basis}.*", ""])
-
+    lines.extend(_formula45_lines(trace, alpha_hit))
     lines.extend([
         "Геометрическое уменьшение нетто-характеристик выше относится только к принятой упрощённой модели центрального отверстия в стенке; оно не расширяет область применимости формулы (45) на другие типы ослаблений.",
+        "",
+    ])
+    return "\n".join(lines).strip()
+
+
+def _walk_mappings(value: Any) -> Iterable[Mapping[str, Any]]:
+    if isinstance(value, Mapping):
+        yield value
+        for child in value.values():
+            yield from _walk_mappings(child)
+    elif isinstance(value, (list, tuple)):
+        for child in value:
+            yield from _walk_mappings(child)
+
+
+def _consumer_evidence(report: Mapping[str, Any]) -> list[Mapping[str, Any]]:
+    found: list[Mapping[str, Any]] = []
+    for block in report.get("blocks") or []:
+        if not isinstance(block, Mapping):
+            continue
+        for row in block.get("outputs") or []:
+            if not isinstance(row, Mapping):
+                continue
+            for mapping in _walk_mappings(row.get("raw_value")):
+                candidate = mapping.get("manual_net_property_consumption")
+                if isinstance(candidate, Mapping):
+                    found.append(candidate)
+    return found
+
+
+def _manual_section(trace: Mapping[str, Any], alpha_hit: tuple[Mapping[str, Any], Mapping[str, Any]] | None, report: Mapping[str, Any]) -> str:
+    steps = _step_map(trace)
+    lines = [
+        "### 1.3 Ослабления сечения",
+        "",
+        "Для отверстия в стенке площадь нетто определяется из принятой геометрии. Моменты инерции и моменты сопротивления нетто не вычисляются приложением: они заданы как готовые характеристики сечения.",
+        "",
+    ]
+
+    for key in ("REMOVED_AREA_CENTRAL_WEB_HOLE", "A_NET_CENTRAL_WEB_HOLE"):
+        step = steps.get(key)
+        if not step:
+            continue
+        inp = step.get("inputs") if isinstance(step.get("inputs"), Mapping) else {}
+        result = _result_value(step)
+        if result is None:
+            continue
+        if key == "REMOVED_AREA_CENTRAL_WEB_HOLE":
+            lines.extend(_equation(
+                r"\Delta A=d\,t_w",
+                rf"\Delta A={_fmt(inp.get('d'))}\cdot {_fmt(inp.get('t_w'))}={_fmt(result)}\;\mathrm{{мм^2}}",
+            ))
+        else:
+            lines.extend(_equation(
+                r"A_n=A-\Delta A",
+                rf"A_n={_fmt(inp.get('A'))}-{_fmt(inp.get('Delta_A'))}={_fmt(result)}\;\mathrm{{мм^2}}",
+            ))
+
+    manual_rows = [row for row in trace.get("manual_properties") or [] if isinstance(row, Mapping)]
+    if manual_rows:
+        lines.extend([
+            "#### Готовые характеристики нетто",
+            "",
+            f"Источник: **{MANUAL_SOURCE_TEXT_RU}**.",
+            "",
+        ])
+        for row in manual_rows:
+            symbol = str(row.get("canonical_symbol") or row.get("canonical_input_id") or "")
+            value = row.get("value")
+            unit = _unit_text(row.get("unit"))
+            source_kind = str(row.get("source_kind") or "")
+            if source_kind == "DERIVED_FROM_USER_INPUT_NET_PROPERTIES":
+                lines.append(f"- ${symbol}$ = **{_fmt(value)} {unit}** — минимум из введённой пары пластических характеристик.")
+            else:
+                lines.append(f"- ${symbol}$ = **{_fmt(value)} {unit}** — {MANUAL_SOURCE_TEXT_RU}.")
+        lines.append("")
+
+    consumers = _consumer_evidence(report)
+    if consumers:
+        consumed: dict[str, Any] = {}
+        for evidence in consumers:
+            values = evidence.get("consumed_runtime_quantities")
+            if isinstance(values, Mapping):
+                consumed.update(values)
+        if consumed:
+            lines.extend(["#### Использование в выполненных проверках СП 16", ""])
+            labels = {
+                "A_net": "A_n",
+                "I_xn": "I_{x,n} (внутренний transport)",
+                "I_yn": "I_{y,n} (внутренний transport)",
+                "W_xn_min": "W_{x,n,min} (внутренний transport)",
+                "W_yn_min": "W_{y,n,min} (внутренний transport)",
+                "I_omega_n": "I_{\\omega,n}",
+            }
+            lines.append(
+                "Выполненные downstream-проверки зафиксировали фактическое потребление следующих значений: "
+                + "; ".join(f"${labels.get(key, key)}={_fmt(value)}$" for key, value in sorted(consumed.items()))
+                + "."
+            )
+            lines.append("")
+
+    lines.extend(_formula45_lines(trace, alpha_hit))
+    lines.extend([
+        "Площадь $A_n$ не является ручным параметром и не может быть заменена значением из manual bundle. Отсутствующие обязательные $I_n/W_n$ не заменяются автоматическими значениями: ветвь останавливается fail-closed.",
         "",
     ])
     return "\n".join(lines).strip()
@@ -197,9 +316,11 @@ def weakening_section(report: Mapping[str, Any]) -> str:
     route = trace.get("route")
     if route == "identity_no_weakening":
         return _identity_section(trace)
+    alpha_hit = _v089._find_row(report, qids=("sp16_shear_hole_alpha45",))
     if route == "representative_central_web_hole":
-        alpha_hit = _v089._find_row(report, qids=("sp16_shear_hole_alpha45",))
         return _hole_section(trace, alpha_hit)
+    if route == "manual_net_properties_with_geometry_area":
+        return _manual_section(trace, alpha_hit, report)
     return ""
 
 
