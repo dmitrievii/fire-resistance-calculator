@@ -25,6 +25,7 @@ from streamlit_phi_evidence_v092 import install as _install_phi_evidence_v092
 from streamlit_thermal_result_v092 import install as _install_thermal_result_v092
 from streamlit_section_properties_v092 import install as _install_section_properties_v092
 from streamlit_manual_net_v092 import install as _install_manual_net_v092
+from streamlit_slenderness_evidence_v092 import install as _install_slenderness_evidence_v092
 from streamlit_ui_polish_v090 import install as _install_ui_polish_v090
 # Legacy installer-chain marker retained for cumulative v0.77-v0.81 regression:
 # from streamlit_guided_ux_v081 import install as _install_guided_ux
@@ -80,6 +81,10 @@ _install_thermal_result_v092(_core)
 # binders are installed. A_net remains geometry-derived; user I/W values are
 # canonical z/y and receive typed downstream-consumption evidence.
 _install_manual_net_v092(_core)
+# v0.92 Table-32 evidence must be installed after manual-net because manual-net
+# also wraps the MECH7 primary binder. This final binder wrapper records
+# alpha -> lambda_u -> lambda/lambda_u -> PASS/FAIL and validates exact parity.
+_install_slenderness_evidence_v092(_core)
 # v0.87 LIVE-REPORT1 is retained underneath as a rollback/audit-capable presentation layer.
 _install_live_report(_core)
 # v0.88 widens the report pane and remains as the underlying expertise renderer.
