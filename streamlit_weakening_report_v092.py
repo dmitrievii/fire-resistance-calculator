@@ -157,7 +157,12 @@ def _manual_section(trace: Mapping[str, Any], alpha_hit, report: Mapping[str, An
         for key,value in consumed.items():
             if key in labels: lines.append(f"- ${labels[key]}$ = **{_fmt(value)}**.")
         lines.append("")
-    lines.extend(_formula45_lines(trace,alpha_hit)); lines.append("Ручной ввод нетто-характеристик не превращается в вычисленную приложением формулу: отчёт сохраняет provenance пользовательского значения.")
+    lines.extend(_formula45_lines(trace,alpha_hit))
+    lines.extend([
+        "Площадь $A_n$ не является ручным параметром и не может быть заменена значением из manual bundle. Отсутствующие обязательные $I_n/W_n$ не заменяются автоматическими значениями: ветвь останавливается fail-closed.",
+        "",
+        "Ручной ввод нетто-характеристик не превращается в вычисленную приложением формулу: отчёт сохраняет provenance пользовательского значения.",
+    ])
     return "\n".join(lines).strip()
 
 
