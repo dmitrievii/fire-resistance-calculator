@@ -26,6 +26,8 @@ from streamlit_thermal_result_v092 import install as _install_thermal_result_v09
 from streamlit_section_properties_v092 import install as _install_section_properties_v092
 from streamlit_manual_net_v092 import install as _install_manual_net_v092
 from streamlit_slenderness_evidence_v092 import install as _install_slenderness_evidence_v092
+from streamlit_protection_geometry_v093 import install as _install_protection_geometry_v093
+from streamlit_expertise_report_v093_thermal_repro import install as _install_thermal_report_v093
 from streamlit_ui_polish_v090 import install as _install_ui_polish_v090
 # Legacy installer-chain marker retained for cumulative v0.77-v0.81 regression:
 # from streamlit_guided_ux_v081 import install as _install_guided_ux
@@ -77,6 +79,10 @@ _install_phi_evidence_v092(_core)
 # the protected §12.5 trace exists in the ledger, its FVM curves are shown on
 # the current interactive card instead of waiting for another routing step.
 _install_thermal_result_v092(_core)
+# v0.93 exposes the already-executed FIRE-UI1.9 Table-1 protected perimeter and
+# protected reduced thickness on the first card after contour/box selection,
+# before the user is asked for protection thickness.
+_install_protection_geometry_v093(_core)
 # v0.92 restores the explicit manual-net branch only after all ambient runtime
 # binders are installed. A_net remains geometry-derived; user I/W values are
 # canonical z/y and receive typed downstream-consumption evidence.
@@ -93,6 +99,10 @@ _install_expertise_report(_core)
 _install_expertise_narrative(_core)
 # v0.90 REPORT4 + v0.91/v0.92 SP554/report refinements are installed last as an isolated renderer.
 _install_expertise_mech9(_core)
+# v0.93 adds a runtime-evidence-only thermal reproducibility passport. It does
+# not recompute temperatures or normative verdicts and deliberately leaves the
+# existing T0 interaction contract unchanged (audit item #17 is out of scope).
+_install_thermal_report_v093(_core)
 
 # Re-export the core module API so tests and deployment tooling keep using the
 # stable `streamlit_app` entrypoint, including intentionally-private test hooks.
