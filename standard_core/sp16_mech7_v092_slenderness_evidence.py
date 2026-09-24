@@ -5,18 +5,22 @@ This module wraps that qualified binder after execution, reproduces its Table-32
 chain with the same audited scalar procedures, and validates exact parity before
 attaching a typed calculation trace to the existing evidence row.
 
-No report/presentation code evaluates Table 32, chooses an axis, or infers a
-verdict. Any mismatch with the binder is fail-closed.
+Table-32 row expressions and alpha_min are read from the audited Section-10
+catalog used by the qualified scalar producer.  This layer contains no duplicate
+normative row table.  No report/presentation code evaluates Table 32, chooses an
+axis, or infers a verdict. Any mismatch with the binder is fail-closed.
 """
 from __future__ import annotations
 
 import copy
 import math
+import re
 from typing import Any, Mapping
 
 from .effective_lengths_and_limiting_slenderness import (
     compressed_limit_alpha,
     slenderness_check,
+    table_32_catalog,
     table_32_compressed_limiting_slenderness,
 )
 from .fire_ui0 import ExecutionRegistry, FireUIError
@@ -25,17 +29,11 @@ from .sp16_mech7_v075_zy_runtime import BINDER_NODE_ID
 TRACE_SCHEMA = "sp16_v092_limiting_slenderness_evidence_v1"
 EVIDENCE_KEY = "effective_length_slenderness"
 
-_TABLE32_FORMULAS: dict[str, dict[str, Any]] = {
-    "1a": {"kind": "linear", "constant": 180.0, "alpha_coefficient": -60.0, "expression": "180-60*alpha"},
-    "1b": {"kind": "constant", "constant": 120.0, "alpha_coefficient": 0.0, "expression": "120"},
-    "2a": {"kind": "linear", "constant": 210.0, "alpha_coefficient": -60.0, "expression": "210-60*alpha"},
-    "2b": {"kind": "linear", "constant": 220.0, "alpha_coefficient": -40.0, "expression": "220-40*alpha"},
-    "3": {"kind": "constant", "constant": 220.0, "alpha_coefficient": 0.0, "expression": "220"},
-    "4": {"kind": "linear", "constant": 180.0, "alpha_coefficient": -60.0, "expression": "180-60*alpha"},
-    "5": {"kind": "linear", "constant": 210.0, "alpha_coefficient": -60.0, "expression": "210-60*alpha"},
-    "6": {"kind": "constant", "constant": 200.0, "alpha_coefficient": 0.0, "expression": "200"},
-    "7": {"kind": "constant", "constant": 150.0, "alpha_coefficient": 0.0, "expression": "150"},
-}
+_TABLE32_LINEAR_RE = re.compile(
+    r"^\s*(?P<constant>[0-9]+(?:\.[0-9]+)?)\s*"
+    r"(?P<sign>[+-])\s*"
+    r"(?P<coefficient>[0-9]+(?:\.[0-9]+)?)\s*\*\s*alpha\s*$"
+)
 
 
 def _number(values: Mapping[str, Any], key: str, *, positive: bool = False) -> float:
@@ -49,23 +47,85 @@ def _number(values: Mapping[str, Any], key: str, *, positive: bool = False) -> f
 
 
 def _axis_min(z: float, y: float) -> tuple[str, float]:
-    # Deterministic tie policy is evidence-only and mirrors min(z,y).
+    # Deterministic tie policy mirrors min(z, y) used by the authoritative binder.
     return ("z", z) if z <= y else ("y", y)
 
 
 def _axis_max(z: float, y: float) -> tuple[str, float]:
-    # Deterministic tie policy is evidence-only and mirrors max(z,y).
+    # Deterministic tie policy mirrors max(z, y) used by the authoritative binder.
     return ("z", z) if z >= y else ("y", y)
+
+
+def _table32_catalog_contract(row_id: str) -> tuple[dict[str, Any], float, dict[str, Any]]:
+    """Resolve trace metadata from the audited Table-32 catalogue, fail-closed."""
+    catalog = table_32_catalog()
+    if not isinstance(catalog, Mapping):
+        raise FireUIError("SP16 Table-32 audited catalog is unavailable")
+    rows = catalog.get("rows")
+    if not isinstance(rows, Mapping) or row_id not in rows:
+        raise FireUIError("SP16 limiting-slenderness evidence requires a valid Table-32 row id")
+
+    alpha_min_raw = catalog.get("alpha_min")
+    if isinstance(alpha_min_raw, bool) or not isinstance(alpha_min_raw, (int, float)):
+        raise FireUIError("SP16 Table-32 audited catalog has no numeric alpha_min")
+    alpha_min = float(alpha_min_raw)
+    if not math.isfinite(alpha_min) or alpha_min < 0.0:
+        raise FireUIError("SP16 Table-32 audited catalog has invalid alpha_min")
+
+    raw_formula = rows[row_id]
+    if isinstance(raw_formula, bool):
+        raise FireUIError(f"SP16 Table-32 row {row_id} has invalid boolean formula data")
+    if isinstance(raw_formula, (int, float)):
+        constant = float(raw_formula)
+        if not math.isfinite(constant) or constant <= 0.0:
+            raise FireUIError(f"SP16 Table-32 row {row_id} has invalid constant limit")
+        expression = format(constant, "g")
+        formula = {
+            "kind": "constant",
+            "constant": constant,
+            "alpha_coefficient": 0.0,
+            "expression": expression,
+        }
+    elif isinstance(raw_formula, str):
+        match = _TABLE32_LINEAR_RE.fullmatch(raw_formula)
+        if match is None:
+            raise FireUIError(
+                f"SP16 Table-32 row {row_id} expression is not supported by the audited evidence parser"
+            )
+        constant = float(match.group("constant"))
+        coefficient = float(match.group("coefficient"))
+        if match.group("sign") == "-":
+            coefficient = -coefficient
+        formula = {
+            "kind": "linear",
+            "constant": constant,
+            "alpha_coefficient": coefficient,
+            "expression": raw_formula.strip(),
+        }
+    else:
+        raise FireUIError(f"SP16 Table-32 row {row_id} has unsupported audited data type")
+
+    source = {
+        "provider": "table_32_catalog",
+        "clause": str(catalog.get("clause") or ""),
+        "pages": copy.deepcopy(catalog.get("pages")),
+        "row_id": row_id,
+        "raw_row_value": copy.deepcopy(raw_formula),
+        "alpha_min": alpha_min,
+    }
+    return formula, alpha_min, source
 
 
 def build_limiting_slenderness_trace(values: Mapping[str, Any]) -> dict[str, Any]:
     """Run the same qualified scalar chain used by the canonical MECH7 binder."""
     row_id = values.get("sp16_mech7_table32_row")
     group4 = values.get("sp16_mech7_group4_slenderness_increase")
-    if not isinstance(row_id, str) or row_id not in _TABLE32_FORMULAS:
+    if not isinstance(row_id, str):
         raise FireUIError("SP16 limiting-slenderness evidence requires a valid Table-32 row id")
     if not isinstance(group4, bool):
         raise FireUIError("SP16 limiting-slenderness evidence requires explicit group-4 classification")
+
+    formula, alpha_min, catalog_source = _table32_catalog_contract(row_id)
 
     n_signed = _number(values, "ambient_N_force")
     n = abs(n_signed)
@@ -82,9 +142,9 @@ def build_limiting_slenderness_trace(values: Mapping[str, Any]) -> dict[str, Any
 
     alpha_raw = n / (phi_governing * area * ry * gamma_c)
     alpha = float(compressed_limit_alpha(n, phi_governing, area, ry, gamma_c))
-    expected_alpha = max(alpha_raw, 0.5)
+    expected_alpha = max(alpha_raw, alpha_min)
     if not math.isclose(alpha, expected_alpha, rel_tol=1e-12, abs_tol=1e-12):
-        raise FireUIError("SP16 Table-32 alpha producer is inconsistent with its disclosed formula")
+        raise FireUIError("SP16 Table-32 alpha producer is inconsistent with audited alpha_min")
 
     base_limit = float(table_32_compressed_limiting_slenderness(row_id, alpha, False))
     final_limit = float(table_32_compressed_limiting_slenderness(row_id, alpha, group4))
@@ -92,12 +152,22 @@ def build_limiting_slenderness_trace(values: Mapping[str, Any]) -> dict[str, Any
     if not math.isclose(final_limit, base_limit * group4_factor, rel_tol=1e-12, abs_tol=1e-12):
         raise FireUIError("SP16 Table-32 group-4 factor is inconsistent with final lambda_u")
 
+    # The metadata parser is not an alternate normative calculator.  Its only
+    # numeric use is a drift guard: parsed catalogue metadata must describe the
+    # same base limit returned by the authoritative scalar producer.
+    if formula["kind"] == "constant":
+        catalog_described_limit = float(formula["constant"])
+    else:
+        catalog_described_limit = float(formula["constant"]) + float(formula["alpha_coefficient"]) * alpha
+    if not math.isclose(base_limit, catalog_described_limit, rel_tol=1e-12, abs_tol=1e-12):
+        raise FireUIError("SP16 Table-32 audited catalog metadata drifted from scalar producer")
+
     check = slenderness_check(actual_lambda, final_limit)
-    formula = copy.deepcopy(_TABLE32_FORMULAS[row_id])
 
     return {
         "schema": TRACE_SCHEMA,
         "normative_basis": "СП 16.13330.2017 с изм. №1–6, п. 10.4.1, таблица 32; п. 10.4.2 для группы 4",
+        "table32_catalog_source": catalog_source,
         "table32_row_id": row_id,
         "table32_row_formula": formula,
         "group4_classification": group4,
@@ -117,9 +187,9 @@ def build_limiting_slenderness_trace(values: Mapping[str, Any]) -> dict[str, Any
             "governing_phi_axis": phi_axis,
             "governing_phi": phi_governing,
             "raw": alpha_raw,
-            "minimum": 0.5,
+            "minimum": alpha_min,
             "result": alpha,
-            "minimum_applied": alpha_raw < 0.5,
+            "minimum_applied": alpha_raw < alpha_min,
         },
         "limiting_slenderness": {
             "base": base_limit,
