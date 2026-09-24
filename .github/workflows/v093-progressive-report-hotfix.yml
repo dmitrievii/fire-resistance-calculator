@@ -1,0 +1,40 @@
+name: v0.93 progressive report hotfix
+
+on:
+  push:
+    branches:
+      - 'fix/v093-progressive-report-material-hotfix-r4'
+    paths:
+      - 'streamlit_expertise_report_v093_progressive_hotfix.py'
+      - 'streamlit_expertise_report_v090_install.py'
+      - 'tests/test_v093_progressive_report_hotfix.py'
+      - '.github/workflows/v093-progressive-report-hotfix.yml'
+  pull_request:
+    paths:
+      - 'streamlit_expertise_report_v093_progressive_hotfix.py'
+      - 'streamlit_expertise_report_v090_install.py'
+      - 'tests/test_v093_progressive_report_hotfix.py'
+      - '.github/workflows/v093-progressive-report-hotfix.yml'
+  workflow_dispatch:
+
+jobs:
+  progressive-report-hotfix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install runtime and tests
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt pytest
+      - name: Compile active report chain
+        run: |
+          python -m py_compile \
+            streamlit_expertise_report_v093_progressive_hotfix.py \
+            streamlit_expertise_report_v090_install.py
+      - name: Progressive report regressions
+        run: python -m pytest -q tests/test_v093_progressive_report_hotfix.py
+      - name: Startup import smoke
+        run: python -c "import streamlit_app"

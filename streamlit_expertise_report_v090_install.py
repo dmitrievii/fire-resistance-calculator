@@ -1,10 +1,9 @@
-"""Isolated installer for v0.90 REPORT4 with v0.91/v0.92 refinement.
+"""Isolated installer for the active progressive expertise report.
 
-The retained report modules remain available for audit/rollback. The active
-v0.92 renderer is progressive and compact: completed engineering evidence plus
-the current unfinished step only. Section weakening, canonical action output,
-z/y stability and Table-32 limiting slenderness are rendered only from executed
-and runtime-validated evidence.
+The retained report modules remain available for audit/rollback.  The final
+v0.93 renderer applies the v0.92 trace-bound mechanics overlays and then enforces
+progressive chapter visibility, engineering-readable executed section properties
+and explicit gamma_m -> Table-2 resistance provenance.
 """
 from __future__ import annotations
 
@@ -12,12 +11,11 @@ import json
 from typing import Any, Mapping
 
 import streamlit_expertise_report_v088 as _v088
-import streamlit_expertise_report_v089 as _v089
 import streamlit_live_report_v087 as _v087
 from standard_core.report_ir_v092 import build_report_ir_v092
 from streamlit_expertise_report_v092 import REPORT_COMPACT_CSS, report_marker_html
-from streamlit_expertise_report_v092_slenderness import (
-    render_expertise_narrative_markdown_v092_slenderness as render_expertise_narrative_markdown_v092,
+from streamlit_expertise_report_v093_progressive_hotfix import (
+    render_expertise_narrative_markdown_v093_progressive as render_expertise_narrative_markdown_v092,
 )
 
 _INSTALLED = "_fire_expertise_report_v090_isolated_installed"
