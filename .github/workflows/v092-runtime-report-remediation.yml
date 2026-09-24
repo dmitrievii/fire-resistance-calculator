@@ -11,14 +11,17 @@ on:
       - 'standard_core/fire_ui14_manual_net_v092.py'
       - 'standard_core/report_ir_v092.py'
       - 'standard_core/sp16_mech7_v092_phi_evidence.py'
+      - 'standard_core/sp16_mech7_v092_slenderness_evidence.py'
       - 'streamlit_sp554_gamma_ct_v092.py'
       - 'streamlit_mech9_v090.py'
       - 'streamlit_phi_evidence_v092.py'
+      - 'streamlit_slenderness_evidence_v092.py'
       - 'streamlit_expertise_report_v090_install.py'
       - 'streamlit_expertise_report_v092.py'
       - 'streamlit_expertise_report_v092_weakening.py'
       - 'streamlit_expertise_report_v092_actions.py'
       - 'streamlit_expertise_report_v092_zy.py'
+      - 'streamlit_expertise_report_v092_slenderness.py'
       - 'streamlit_weakening_report_v092.py'
       - 'streamlit_section_properties_v092.py'
       - 'streamlit_manual_net_v092.py'
@@ -33,6 +36,9 @@ on:
       - 'tests/test_v092_gamma_c_compact_ux.py'
       - 'tests/test_v092_zy_formula_report.py'
       - 'tests/test_v092_full_phi_evidence.py'
+      - 'tests/test_v092_limiting_slenderness_evidence.py'
+      - 'tests/test_v092_table32_catalog_single_source.py'
+      - 'tests/test_v092_limiting_slenderness_report.py'
       - 'tests/test_v092_sp554_9_1_report_remediation.py'
       - 'tests/test_v092_sp554_gamma_ct_guided_bypass.py'
       - 'tests/test_v092_gamma_ct_presentation_policy.py'
@@ -50,14 +56,17 @@ on:
       - 'standard_core/fire_ui14_manual_net_v092.py'
       - 'standard_core/report_ir_v092.py'
       - 'standard_core/sp16_mech7_v092_phi_evidence.py'
+      - 'standard_core/sp16_mech7_v092_slenderness_evidence.py'
       - 'streamlit_sp554_gamma_ct_v092.py'
       - 'streamlit_mech9_v090.py'
       - 'streamlit_phi_evidence_v092.py'
+      - 'streamlit_slenderness_evidence_v092.py'
       - 'streamlit_expertise_report_v090_install.py'
       - 'streamlit_expertise_report_v092.py'
       - 'streamlit_expertise_report_v092_weakening.py'
       - 'streamlit_expertise_report_v092_actions.py'
       - 'streamlit_expertise_report_v092_zy.py'
+      - 'streamlit_expertise_report_v092_slenderness.py'
       - 'streamlit_weakening_report_v092.py'
       - 'streamlit_section_properties_v092.py'
       - 'streamlit_manual_net_v092.py'
@@ -72,6 +81,9 @@ on:
       - 'tests/test_v092_gamma_c_compact_ux.py'
       - 'tests/test_v092_zy_formula_report.py'
       - 'tests/test_v092_full_phi_evidence.py'
+      - 'tests/test_v092_limiting_slenderness_evidence.py'
+      - 'tests/test_v092_table32_catalog_single_source.py'
+      - 'tests/test_v092_limiting_slenderness_report.py'
       - 'tests/test_v092_sp554_9_1_report_remediation.py'
       - 'tests/test_v092_sp554_gamma_ct_guided_bypass.py'
       - 'tests/test_v092_gamma_ct_presentation_policy.py'
@@ -106,14 +118,17 @@ jobs:
             standard_core/fire_ui14_manual_net_v092.py \
             standard_core/report_ir_v092.py \
             standard_core/sp16_mech7_v092_phi_evidence.py \
+            standard_core/sp16_mech7_v092_slenderness_evidence.py \
             streamlit_sp554_gamma_ct_v092.py \
             streamlit_mech9_v090.py \
             streamlit_phi_evidence_v092.py \
+            streamlit_slenderness_evidence_v092.py \
             streamlit_expertise_report_v090_install.py \
             streamlit_expertise_report_v092.py \
             streamlit_expertise_report_v092_weakening.py \
             streamlit_expertise_report_v092_actions.py \
             streamlit_expertise_report_v092_zy.py \
+            streamlit_expertise_report_v092_slenderness.py \
             streamlit_weakening_report_v092.py \
             streamlit_section_properties_v092.py \
             streamlit_manual_net_v092.py \
@@ -148,6 +163,13 @@ jobs:
 
       - name: Full phi-delta evidence regression
         run: python -m pytest -q tests/test_v092_full_phi_evidence.py
+
+      - name: Table-32 limiting-slenderness traceability regression
+        run: >-
+          python -m pytest -q
+          tests/test_v092_limiting_slenderness_evidence.py
+          tests/test_v092_table32_catalog_single_source.py
+          tests/test_v092_limiting_slenderness_report.py
 
       - name: Final SP554 9.1 runtime-report regression
         run: >-
