@@ -21,6 +21,7 @@ from streamlit_fire_sp554_v091 import install as _install_fire_sp554_v091
 from streamlit_sp554_gamma_ct_v092 import install as _install_gamma_ct_v092
 from streamlit_canonical_actions_v092 import install as _install_canonical_actions_v092
 from streamlit_effective_length_v092 import install as _install_effective_length_v092
+from streamlit_phi_evidence_v092 import install as _install_phi_evidence_v092
 from streamlit_thermal_result_v092 import install as _install_thermal_result_v092
 from streamlit_section_properties_v092 import install as _install_section_properties_v092
 from streamlit_manual_net_v092 import install as _install_manual_net_v092
@@ -67,6 +68,10 @@ _install_canonical_actions_v092(_core)
 # the active z/y effective-length card. The adapter does not duplicate any
 # equations; it records typed l_eff -> lambda -> lambda_bar -> phi evidence.
 _install_effective_length_v092(_core)
+# v0.92 full-phi instrumentation enriches the already-produced z/y state with
+# Table-7 alpha/beta, Eq.(9) delta and Eq.(8)/cap evidence. It validates against
+# the qualified runtime phi and replays retained sessions through that contract.
+_install_phi_evidence_v092(_core)
 # v0.92 thermal-result presentation is independent from later R_req input: once
 # the protected §12.5 trace exists in the ledger, its FVM curves are shown on
 # the current interactive card instead of waiting for another routing step.
