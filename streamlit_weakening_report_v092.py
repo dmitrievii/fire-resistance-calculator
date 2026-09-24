@@ -9,6 +9,7 @@ formula results.  A_net remains geometry-derived in both modes.
 """
 from __future__ import annotations
 
+import math
 import re
 from typing import Any, Iterable, Mapping
 
@@ -18,6 +19,8 @@ from standard_core.fire_ui14_manual_net_v092 import MANUAL_SOURCE_TEXT_RU
 
 
 def _fmt(value: Any) -> str:
+    if isinstance(value, float) and math.isfinite(value) and value.is_integer():
+        return f"{int(value):,}".replace(",", " ")
     return _v089._fmt_number(value)
 
 
@@ -56,7 +59,6 @@ def _step_map(trace: Mapping[str, Any]) -> dict[str, Mapping[str, Any]]:
 
 
 def _axis_map(trace: Mapping[str, Any]) -> dict[str, tuple[str, str]]:
-    """Map historical geometry source axes to active z/y only from runtime evidence."""
     major = trace.get("major_axis_is_x")
     if major is True:
         return {"x": ("z", "сильной"), "y": ("y", "слабой")}
@@ -130,74 +132,45 @@ def _hole_section(trace: Mapping[str, Any], alpha_hit: tuple[Mapping[str, Any], 
         inp = step.get("inputs") if isinstance(step.get("inputs"), Mapping) else {}
         result = _result_value(step)
         if result is not None:
-            lines.extend(_equation(
-                r"\Delta A=d\,t_w",
-                rf"\Delta A={_fmt(inp.get('d'))}\cdot {_fmt(inp.get('t_w'))}={_fmt(result)}\;\mathrm{{мм^2}}",
-            ))
+            lines.extend(_equation(r"\Delta A=d\,t_w", rf"\Delta A={_fmt(inp.get('d'))}\cdot {_fmt(inp.get('t_w'))}={_fmt(result)}\;\mathrm{{мм^2}}"))
 
     step = steps.get("A_NET_CENTRAL_WEB_HOLE")
     if step:
         inp = step.get("inputs") if isinstance(step.get("inputs"), Mapping) else {}
         result = _result_value(step)
         if result is not None:
-            lines.extend(_equation(
-                r"A_n=A-\Delta A",
-                rf"A_n={_fmt(inp.get('A'))}-{_fmt(inp.get('Delta_A'))}={_fmt(result)}\;\mathrm{{мм^2}}",
-            ))
+            lines.extend(_equation(r"A_n=A-\Delta A", rf"A_n={_fmt(inp.get('A'))}-{_fmt(inp.get('Delta_A'))}={_fmt(result)}\;\mathrm{{мм^2}}"))
 
     step = steps.get("I_XN_CENTRAL_WEB_HOLE")
     if step:
         inp = step.get("inputs") if isinstance(step.get("inputs"), Mapping) else {}
         result = _result_value(step)
         if result is not None:
-            lines.extend([
-                f"Для {sx_name} главной оси **{sx}-{sx}**:",
-                "",
-                *_equation(
-                    rf"I_{{{sx},n}}=I_{sx}-\frac{{t_w d^3}}{{12}}",
-                    rf"I_{{{sx},n}}={_fmt(inp.get('I_x'))}-{_fmt(inp.get('Delta_I_x'))}={_fmt(result)}\;\mathrm{{мм^4}}",
-                ),
-            ])
+            lines.extend([f"Для {sx_name} главной оси **{sx}-{sx}**:", "", *_equation(rf"I_{{{sx},n}}=I_{sx}-\frac{{t_w d^3}}{{12}}", rf"I_{{{sx},n}}={_fmt(inp.get('I_x'))}-{_fmt(inp.get('Delta_I_x'))}={_fmt(result)}\;\mathrm{{мм^4}}")])
 
     step = steps.get("I_YN_CENTRAL_WEB_HOLE")
     if step:
         inp = step.get("inputs") if isinstance(step.get("inputs"), Mapping) else {}
         result = _result_value(step)
         if result is not None:
-            lines.extend([
-                f"Для {sy_name} главной оси **{sy}-{sy}**:",
-                "",
-                *_equation(
-                    rf"I_{{{sy},n}}=I_{sy}-\frac{{d t_w^3}}{{12}}",
-                    rf"I_{{{sy},n}}={_fmt(inp.get('I_y'))}-{_fmt(inp.get('Delta_I_y'))}={_fmt(result)}\;\mathrm{{мм^4}}",
-                ),
-            ])
+            lines.extend([f"Для {sy_name} главной оси **{sy}-{sy}**:", "", *_equation(rf"I_{{{sy},n}}=I_{sy}-\frac{{d t_w^3}}{{12}}", rf"I_{{{sy},n}}={_fmt(inp.get('I_y'))}-{_fmt(inp.get('Delta_I_y'))}={_fmt(result)}\;\mathrm{{мм^4}}")])
 
     step = steps.get("W_XN_MIN_CENTRAL_WEB_HOLE")
     if step:
         inp = step.get("inputs") if isinstance(step.get("inputs"), Mapping) else {}
         result = _result_value(step)
         if result is not None:
-            lines.extend(_equation(
-                rf"W_{{{sx},n,min}}=\min\left(\frac{{I_{{{sx},n}}}}{{y_+}},\frac{{I_{{{sx},n}}}}{{y_-}}\right)",
-                rf"W_{{{sx},n,min}}=\min\left(\frac{{{_fmt(inp.get('I_xn'))}}}{{{_fmt(inp.get('y_pos'))}}},\frac{{{_fmt(inp.get('I_xn'))}}}{{{_fmt(inp.get('y_neg'))}}}\right)={_fmt(result)}\;\mathrm{{мм^3}}",
-            ))
+            lines.extend(_equation(rf"W_{{{sx},n,min}}=\min\left(\frac{{I_{{{sx},n}}}}{{y_+}},\frac{{I_{{{sx},n}}}}{{y_-}}\right)", rf"W_{{{sx},n,min}}=\min\left(\frac{{{_fmt(inp.get('I_xn'))}}}{{{_fmt(inp.get('y_pos'))}}},\frac{{{_fmt(inp.get('I_xn'))}}}{{{_fmt(inp.get('y_neg'))}}}\right)={_fmt(result)}\;\mathrm{{мм^3}}"))
 
     step = steps.get("W_YN_MIN_CENTRAL_WEB_HOLE")
     if step:
         inp = step.get("inputs") if isinstance(step.get("inputs"), Mapping) else {}
         result = _result_value(step)
         if result is not None:
-            lines.extend(_equation(
-                rf"W_{{{sy},n,min}}=\min\left(\frac{{I_{{{sy},n}}}}{{x_+}},\frac{{I_{{{sy},n}}}}{{x_-}}\right)",
-                rf"W_{{{sy},n,min}}=\min\left(\frac{{{_fmt(inp.get('I_yn'))}}}{{{_fmt(inp.get('x_pos'))}}},\frac{{{_fmt(inp.get('I_yn'))}}}{{{_fmt(inp.get('x_neg'))}}}\right)={_fmt(result)}\;\mathrm{{мм^3}}",
-            ))
+            lines.extend(_equation(rf"W_{{{sy},n,min}}=\min\left(\frac{{I_{{{sy},n}}}}{{x_+}},\frac{{I_{{{sy},n}}}}{{x_-}}\right)", rf"W_{{{sy},n,min}}=\min\left(\frac{{{_fmt(inp.get('I_yn'))}}}{{{_fmt(inp.get('x_pos'))}}},\frac{{{_fmt(inp.get('I_yn'))}}}{{{_fmt(inp.get('x_neg'))}}}\right)={_fmt(result)}\;\mathrm{{мм^3}}"))
 
     lines.extend(_formula45_lines(trace, alpha_hit))
-    lines.extend([
-        "Геометрическое уменьшение нетто-характеристик выше относится только к принятой упрощённой модели центрального отверстия в стенке; оно не расширяет область применимости формулы (45) на другие типы ослаблений.",
-        "",
-    ])
+    lines.extend(["Геометрическое уменьшение нетто-характеристик выше относится только к принятой упрощённой модели центрального отверстия в стенке; оно не расширяет область применимости формулы (45) на другие типы ослаблений.", ""])
     return "\n".join(lines).strip()
 
 
@@ -228,12 +201,7 @@ def _consumer_evidence(report: Mapping[str, Any]) -> list[Mapping[str, Any]]:
 
 def _manual_section(trace: Mapping[str, Any], alpha_hit: tuple[Mapping[str, Any], Mapping[str, Any]] | None, report: Mapping[str, Any]) -> str:
     steps = _step_map(trace)
-    lines = [
-        "### 1.3 Ослабления сечения",
-        "",
-        "Для отверстия в стенке площадь нетто определяется из принятой геометрии. Моменты инерции и моменты сопротивления нетто не вычисляются приложением: они заданы как готовые характеристики сечения.",
-        "",
-    ]
+    lines = ["### 1.3 Ослабления сечения", "", "Для отверстия в стенке площадь нетто определяется из принятой геометрии. Моменты инерции и моменты сопротивления нетто не вычисляются приложением: они заданы как готовые характеристики сечения.", ""]
 
     for key in ("REMOVED_AREA_CENTRAL_WEB_HOLE", "A_NET_CENTRAL_WEB_HOLE"):
         step = steps.get(key)
@@ -244,24 +212,13 @@ def _manual_section(trace: Mapping[str, Any], alpha_hit: tuple[Mapping[str, Any]
         if result is None:
             continue
         if key == "REMOVED_AREA_CENTRAL_WEB_HOLE":
-            lines.extend(_equation(
-                r"\Delta A=d\,t_w",
-                rf"\Delta A={_fmt(inp.get('d'))}\cdot {_fmt(inp.get('t_w'))}={_fmt(result)}\;\mathrm{{мм^2}}",
-            ))
+            lines.extend(_equation(r"\Delta A=d\,t_w", rf"\Delta A={_fmt(inp.get('d'))}\cdot {_fmt(inp.get('t_w'))}={_fmt(result)}\;\mathrm{{мм^2}}"))
         else:
-            lines.extend(_equation(
-                r"A_n=A-\Delta A",
-                rf"A_n={_fmt(inp.get('A'))}-{_fmt(inp.get('Delta_A'))}={_fmt(result)}\;\mathrm{{мм^2}}",
-            ))
+            lines.extend(_equation(r"A_n=A-\Delta A", rf"A_n={_fmt(inp.get('A'))}-{_fmt(inp.get('Delta_A'))}={_fmt(result)}\;\mathrm{{мм^2}}"))
 
     manual_rows = [row for row in trace.get("manual_properties") or [] if isinstance(row, Mapping)]
     if manual_rows:
-        lines.extend([
-            "#### Готовые характеристики нетто",
-            "",
-            f"Источник: **{MANUAL_SOURCE_TEXT_RU}**.",
-            "",
-        ])
+        lines.extend(["#### Готовые характеристики нетто", "", f"Источник: **{MANUAL_SOURCE_TEXT_RU}**.", ""])
         for row in manual_rows:
             symbol = str(row.get("canonical_symbol") or row.get("canonical_input_id") or "")
             value = row.get("value")
@@ -282,59 +239,50 @@ def _manual_section(trace: Mapping[str, Any], alpha_hit: tuple[Mapping[str, Any]
                 consumed.update(values)
         if consumed:
             lines.extend(["#### Использование в выполненных проверках СП 16", ""])
-            labels = {
-                "A_net": "A_n",
-                "I_xn": "I_{x,n} (внутренний transport)",
-                "I_yn": "I_{y,n} (внутренний transport)",
-                "W_xn_min": "W_{x,n,min} (внутренний transport)",
-                "W_yn_min": "W_{y,n,min} (внутренний transport)",
-                "I_omega_n": "I_{\\omega,n}",
-            }
-            lines.append(
-                "Выполненные downstream-проверки зафиксировали фактическое потребление следующих значений: "
-                + "; ".join(f"${labels.get(key, key)}={_fmt(value)}$" for key, value in sorted(consumed.items()))
-                + "."
-            )
+            labels = {"A_net": "A_n", "I_xn": "I_{x,n} (внутренний transport)", "I_yn": "I_{y,n} (внутренний transport)", "W_xn_min": "W_{x,n,min} (внутренний transport)", "W_yn_min": "W_{y,n,min} (внутренний transport)"}
+            for key, value in consumed.items():
+                if key in labels:
+                    lines.append(f"- ${labels[key]}$ = **{_fmt(value)}**.")
             lines.append("")
 
     lines.extend(_formula45_lines(trace, alpha_hit))
-    lines.extend([
-        "Площадь $A_n$ не является ручным параметром и не может быть заменена значением из manual bundle. Отсутствующие обязательные $I_n/W_n$ не заменяются автоматическими значениями: ветвь останавливается fail-closed.",
-        "",
-    ])
+    lines.append("Ручной ввод нетто-характеристик не превращается в вычисленную приложением формулу: отчёт сохраняет provenance пользовательского значения.")
     return "\n".join(lines).strip()
 
 
 def weakening_section(report: Mapping[str, Any]) -> str:
     net_hit = _v089._find_row(report, qids=("net_section_geometry_2d",))
+    alpha_hit = _v089._find_row(report, qids=("sp16_shear_hole_alpha45",))
     raw = _v089._row_raw(net_hit)
     if not isinstance(raw, Mapping):
         return ""
     trace = raw.get("calculation_trace")
     if not isinstance(trace, Mapping) or trace.get("schema") != WEAKENING_TRACE_SCHEMA:
         return ""
-    route = trace.get("route")
+    route = str(trace.get("route") or "")
     if route == "identity_no_weakening":
         return _identity_section(trace)
-    alpha_hit = _v089._find_row(report, qids=("sp16_shear_hole_alpha45",))
     if route == "representative_central_web_hole":
         return _hole_section(trace, alpha_hit)
-    if route == "manual_net_properties_with_geometry_area":
+    if route == "manual_net_properties":
         return _manual_section(trace, alpha_hit, report)
     return ""
 
 
-def replace_weakening_section(markdown: str, report: Mapping[str, Any]) -> str:
-    section = weakening_section(report)
-    pattern = re.compile(r"(?ms)^### 1\.3 Ослабления сечения\n.*?(?=^### 1\.[4-9]\b|^## 2\.|\Z)")
-    if pattern.search(markdown):
-        return pattern.sub((section + "\n\n") if section else "", markdown, count=1)
-    if not section:
-        return markdown
-    marker = re.search(r"(?m)^## 2\.", markdown)
-    if marker:
-        return markdown[: marker.start()] + section + "\n\n" + markdown[marker.start() :]
-    return markdown.rstrip() + "\n\n" + section
+def replace_weakening_section(base: str, report: Mapping[str, Any]) -> str:
+    replacement = weakening_section(report)
+    if not replacement:
+        return base
+    pattern = re.compile(r"(?ms)^### 1\.3 Ослабления сечения\s*.*?(?=^### 1\.4\s|^## 2\.|\Z)")
+    if pattern.search(base):
+        return pattern.sub(replacement + "\n\n", base, count=1)
+    marker = "### 1.2"
+    pos = base.find(marker)
+    if pos >= 0:
+        next_section = base.find("\n## 2.", pos)
+        if next_section >= 0:
+            return base[:next_section].rstrip() + "\n\n" + replacement + "\n\n" + base[next_section:].lstrip()
+    return base.rstrip() + "\n\n" + replacement
 
 
 __all__ = ["replace_weakening_section", "weakening_section"]
