@@ -39,21 +39,17 @@ def _report(trace: dict, *, status: str | None = None, passed: bool | None = Non
     }
     bundle = {"evidence": {EVIDENCE_KEY: row}}
     return {
-        "blocks": [
-            {
-                "owner_node_id": "SP16_C_MECH7_PRIMARY_BINDER",
-                "inputs": [],
-                "outputs": [
-                    {
-                        "quantity_id": "sp16_mech7_primary_evidence",
-                        "raw_value": bundle,
-                        "canonical_unit": None,
-                        "name_ru": "SP16 MECH7 primary evidence",
-                        "symbol": None,
-                    }
-                ],
-            }
-        ]
+        "blocks": [{
+            "owner_node_id": "SP16_C_MECH7_PRIMARY_BINDER",
+            "inputs": [],
+            "outputs": [{
+                "quantity_id": "sp16_mech7_primary_evidence",
+                "raw_value": bundle,
+                "canonical_unit": None,
+                "name_ru": "SP16 MECH7 primary evidence",
+                "symbol": None,
+            }],
+        }]
     }
 
 
@@ -76,6 +72,20 @@ def test_table32_report_renders_full_alpha_limit_utilization_and_binder_verdict_
     assert "Статус взят из MECH7 binder evidence" in section
 
 
+def test_table32_report_explains_explicit_member_classification_and_uses_only_canonical_z_y_axes():
+    trace = build_limiting_slenderness_trace(_values(row_id="4"))
+    section = limiting_slenderness_section(_report(trace))
+
+    assert "**Классификация элемента:** 4 — Основные колонны." in section
+    assert "явной инженерной классификацией пользователя" in section
+    assert "не выводит её из типа профиля" in section
+    assert "скрытое значение по умолчанию" in section
+    assert "увеличение для группы 4 не применяется" in section
+    assert r"\lambda_z" in section and r"\lambda_y" in section
+    assert r"\lambda_x" not in section
+    assert "ось **x**" not in section
+
+
 def test_group4_factor_is_rendered_only_when_runtime_trace_says_it_applies():
     trace = build_limiting_slenderness_trace(_values(group4=True))
     section = limiting_slenderness_section(_report(trace))
@@ -87,9 +97,6 @@ def test_group4_factor_is_rendered_only_when_runtime_trace_says_it_applies():
 
 def test_renderer_projects_alpha_min_from_trace_and_has_no_hidden_point_five_constant():
     trace = copy.deepcopy(build_limiting_slenderness_trace(_values()))
-    # Synthetic evidence intentionally uses another already-validated minimum.
-    # Presentation must display the trace value, not contain its own Table-32
-    # normative constant. No engineering result is recomputed in this test.
     trace["alpha"]["raw"] = 0.4
     trace["alpha"]["minimum"] = 0.6
     trace["alpha"]["result"] = 0.6
@@ -112,16 +119,12 @@ def test_fail_verdict_is_projected_from_binder_evidence_not_inferred_by_renderer
 
 def test_deferred_or_absent_completed_evidence_produces_no_table32_report_section():
     report = {
-        "blocks": [
-            {
-                "outputs": [
-                    {
-                        "quantity_id": "sp16_mech7_primary_evidence",
-                        "raw_value": {"evidence": {EVIDENCE_KEY: {"status": "DEFERRED"}}},
-                    }
-                ]
-            }
-        ]
+        "blocks": [{
+            "outputs": [{
+                "quantity_id": "sp16_mech7_primary_evidence",
+                "raw_value": {"evidence": {EVIDENCE_KEY: {"status": "DEFERRED"}}},
+            }]
+        }]
     }
     assert limiting_slenderness_section(report) == ""
 
@@ -140,6 +143,5 @@ def test_report_fails_closed_on_trace_binder_verdict_mismatch():
 
 def test_report_fails_closed_when_binder_status_and_pass_flag_disagree():
     trace = build_limiting_slenderness_trace(_values())
-    # Trace says PASS, binder pass is kept True, but textual binder status is FAIL.
     with pytest.raises(ValueError, match="binder status/pass fields are inconsistent"):
         limiting_slenderness_section(_report(trace, status="FAIL", passed=True))
