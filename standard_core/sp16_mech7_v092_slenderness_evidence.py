@@ -24,6 +24,8 @@ from .effective_lengths_and_limiting_slenderness import (
     table_32_compressed_limiting_slenderness,
 )
 from .fire_ui0 import ExecutionRegistry, FireUIError
+from .sp16_mech7_v072_remediation import normalize_mech7_inputs as normalize_v072_mech7_inputs
+from .sp16_mech7_v074_physical_remediation import _hydrate_source_backed_n1_prerequisites
 from .sp16_mech7_v075_zy_runtime import BINDER_NODE_ID
 
 TRACE_SCHEMA = "sp16_v092_limiting_slenderness_evidence_v1"
@@ -47,17 +49,14 @@ def _number(values: Mapping[str, Any], key: str, *, positive: bool = False) -> f
 
 
 def _axis_min(z: float, y: float) -> tuple[str, float]:
-    # Deterministic tie policy mirrors min(z, y) used by the authoritative binder.
     return ("z", z) if z <= y else ("y", y)
 
 
 def _axis_max(z: float, y: float) -> tuple[str, float]:
-    # Deterministic tie policy mirrors max(z, y) used by the authoritative binder.
     return ("z", z) if z >= y else ("y", y)
 
 
 def _table32_catalog_contract(row_id: str) -> tuple[dict[str, Any], float, dict[str, Any]]:
-    """Resolve trace metadata from the audited Table-32 catalogue, fail-closed."""
     catalog = table_32_catalog()
     if not isinstance(catalog, Mapping):
         raise FireUIError("SP16 Table-32 audited catalog is unavailable")
@@ -79,29 +78,16 @@ def _table32_catalog_contract(row_id: str) -> tuple[dict[str, Any], float, dict[
         constant = float(raw_formula)
         if not math.isfinite(constant) or constant <= 0.0:
             raise FireUIError(f"SP16 Table-32 row {row_id} has invalid constant limit")
-        expression = format(constant, "g")
-        formula = {
-            "kind": "constant",
-            "constant": constant,
-            "alpha_coefficient": 0.0,
-            "expression": expression,
-        }
+        formula = {"kind": "constant", "constant": constant, "alpha_coefficient": 0.0, "expression": format(constant, "g")}
     elif isinstance(raw_formula, str):
         match = _TABLE32_LINEAR_RE.fullmatch(raw_formula)
         if match is None:
-            raise FireUIError(
-                f"SP16 Table-32 row {row_id} expression is not supported by the audited evidence parser"
-            )
+            raise FireUIError(f"SP16 Table-32 row {row_id} expression is not supported by the audited evidence parser")
         constant = float(match.group("constant"))
         coefficient = float(match.group("coefficient"))
         if match.group("sign") == "-":
             coefficient = -coefficient
-        formula = {
-            "kind": "linear",
-            "constant": constant,
-            "alpha_coefficient": coefficient,
-            "expression": raw_formula.strip(),
-        }
+        formula = {"kind": "linear", "constant": constant, "alpha_coefficient": coefficient, "expression": raw_formula.strip()}
     else:
         raise FireUIError(f"SP16 Table-32 row {row_id} has unsupported audited data type")
 
@@ -118,8 +104,10 @@ def _table32_catalog_contract(row_id: str) -> tuple[dict[str, Any], float, dict[
 
 def build_limiting_slenderness_trace(values: Mapping[str, Any]) -> dict[str, Any]:
     """Run the same qualified scalar chain used by the canonical MECH7 binder."""
-    row_id = values.get("sp16_mech7_table32_row")
-    group4 = values.get("sp16_mech7_group4_slenderness_increase")
+    hydrated = normalize_v072_mech7_inputs(_hydrate_source_backed_n1_prerequisites(values))
+
+    row_id = hydrated.get("sp16_mech7_table32_row")
+    group4 = hydrated.get("sp16_mech7_group4_slenderness_increase")
     if not isinstance(row_id, str):
         raise FireUIError("SP16 limiting-slenderness evidence requires a valid Table-32 row id")
     if not isinstance(group4, bool):
@@ -127,15 +115,15 @@ def build_limiting_slenderness_trace(values: Mapping[str, Any]) -> dict[str, Any
 
     formula, alpha_min, catalog_source = _table32_catalog_contract(row_id)
 
-    n_signed = _number(values, "ambient_N_force")
+    n_signed = _number(hydrated, "ambient_N_force")
     n = abs(n_signed)
-    lambda_z = _number(values, "sp16_lambda_z_geom", positive=True)
-    lambda_y = _number(values, "sp16_lambda_y_geom", positive=True)
-    phi_z = _number(values, "phi_z_sp16", positive=True)
-    phi_y = _number(values, "phi_y_sp16", positive=True)
-    area = _number(values, "A_gross", positive=True)
-    ry = _number(values, "Ry_formula", positive=True)
-    gamma_c = _number(values, "gamma_c_compression", positive=True)
+    lambda_z = _number(hydrated, "sp16_lambda_z_geom", positive=True)
+    lambda_y = _number(hydrated, "sp16_lambda_y_geom", positive=True)
+    phi_z = _number(hydrated, "phi_z_sp16", positive=True)
+    phi_y = _number(hydrated, "phi_y_sp16", positive=True)
+    area = _number(hydrated, "A_gross", positive=True)
+    ry = _number(hydrated, "Ry_formula", positive=True)
+    gamma_c = _number(hydrated, "gamma_c_compression", positive=True)
 
     phi_axis, phi_governing = _axis_min(phi_z, phi_y)
     lambda_axis, actual_lambda = _axis_max(lambda_z, lambda_y)
@@ -152,9 +140,6 @@ def build_limiting_slenderness_trace(values: Mapping[str, Any]) -> dict[str, Any
     if not math.isclose(final_limit, base_limit * group4_factor, rel_tol=1e-12, abs_tol=1e-12):
         raise FireUIError("SP16 Table-32 group-4 factor is inconsistent with final lambda_u")
 
-    # The metadata parser is not an alternate normative calculator.  Its only
-    # numeric use is a drift guard: parsed catalogue metadata must describe the
-    # same base limit returned by the authoritative scalar producer.
     if formula["kind"] == "constant":
         catalog_described_limit = float(formula["constant"])
     else:
@@ -191,22 +176,9 @@ def build_limiting_slenderness_trace(values: Mapping[str, Any]) -> dict[str, Any
             "result": alpha,
             "minimum_applied": alpha_raw < alpha_min,
         },
-        "limiting_slenderness": {
-            "base": base_limit,
-            "group4_factor": group4_factor,
-            "result": final_limit,
-        },
-        "actual_slenderness": {
-            "governing_axis": lambda_axis,
-            "lambda_z": lambda_z,
-            "lambda_y": lambda_y,
-            "result": actual_lambda,
-        },
-        "check": {
-            "utilization": float(check["utilization"]),
-            "pass": bool(check["pass"]),
-            "unlimited": bool(check["unlimited"]),
-        },
+        "limiting_slenderness": {"base": base_limit, "group4_factor": group4_factor, "result": final_limit},
+        "actual_slenderness": {"governing_axis": lambda_axis, "lambda_z": lambda_z, "lambda_y": lambda_y, "result": actual_lambda},
+        "check": {"utilization": float(check["utilization"]), "pass": bool(check["pass"]), "unlimited": bool(check["unlimited"])},
         "presentation_recomputes_values": False,
     }
 
@@ -230,7 +202,6 @@ def _validate_against_binder(trace: Mapping[str, Any], row: Mapping[str, Any]) -
 
 
 def install_registry_remediation(registry: ExecutionRegistry) -> ExecutionRegistry:
-    """Attach validated Table-32 calculation trace to the existing MECH7 binder."""
     previous = registry.get(BINDER_NODE_ID)
     if previous is None:
         raise FireUIError(f"SP16 limiting-slenderness evidence requires registered {BINDER_NODE_ID}")
@@ -248,8 +219,6 @@ def install_registry_remediation(registry: ExecutionRegistry) -> ExecutionRegist
         current = evidence.get(EVIDENCE_KEY)
         if not isinstance(current, Mapping):
             return outputs
-        # A deferred branch must remain deferred; no speculative formula trace is
-        # generated before its prerequisites/classification exist.
         if current.get("status") not in {"PASS", "FAIL"}:
             return outputs
 
@@ -272,9 +241,4 @@ def install_registry_remediation(registry: ExecutionRegistry) -> ExecutionRegist
     return registry
 
 
-__all__ = [
-    "EVIDENCE_KEY",
-    "TRACE_SCHEMA",
-    "build_limiting_slenderness_trace",
-    "install_registry_remediation",
-]
+__all__ = ["EVIDENCE_KEY", "TRACE_SCHEMA", "build_limiting_slenderness_trace", "install_registry_remediation"]
