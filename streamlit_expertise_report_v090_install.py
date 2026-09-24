@@ -1,10 +1,10 @@
 """Isolated installer for v0.90 REPORT4 with v0.91/v0.92 refinement.
 
-The retained report modules remain available for audit/rollback.  The active
+The retained report modules remain available for audit/rollback. The active
 v0.92 renderer is progressive and compact: completed engineering evidence plus
-the current unfinished step only, with dense formula blocks and explicit visual
-hierarchy between subsections and chapters. Section weakening, canonical action
-output and the z/y stability chain are rendered only from executed evidence.
+the current unfinished step only. Section weakening, canonical action output,
+z/y stability and Table-32 limiting slenderness are rendered only from executed
+and runtime-validated evidence.
 """
 from __future__ import annotations
 
@@ -16,8 +16,8 @@ import streamlit_expertise_report_v089 as _v089
 import streamlit_live_report_v087 as _v087
 from standard_core.report_ir_v092 import build_report_ir_v092
 from streamlit_expertise_report_v092 import REPORT_COMPACT_CSS, report_marker_html
-from streamlit_expertise_report_v092_zy import (
-    render_expertise_narrative_markdown_v092_zy as render_expertise_narrative_markdown_v092,
+from streamlit_expertise_report_v092_slenderness import (
+    render_expertise_narrative_markdown_v092_slenderness as render_expertise_narrative_markdown_v092,
 )
 
 _INSTALLED = "_fire_expertise_report_v090_isolated_installed"
@@ -58,7 +58,6 @@ def render_expertise_report_v090(core: Any, env: Mapping[str, Any]) -> None:
     report = build_report_ir_v092(app.service.model, session)
     markdown = render_expertise_narrative_markdown_v092(report)
 
-    # CSS is inert outside the bordered container containing the marker below.
     st.markdown(REPORT_COMPACT_CSS, unsafe_allow_html=True)
     st.markdown("### Расчётный отчёт")
     st.caption("Отчёт обновляется после каждого принятого шага. Показываются только фактически выполненные расчётные шаги, ненулевые силовые факторы и текущий незавершённый ввод; будущие и неприменимые ветви доступны во вкладке Audit.")
@@ -77,8 +76,6 @@ def render_expertise_report_v090(core: Any, env: Mapping[str, Any]) -> None:
 def install(core: Any) -> None:
     if getattr(core, _INSTALLED, False):
         return
-    # v0.89 remains an immutable retained layer. REPORT4/v0.92 is bound only at
-    # the core renderer hook, so importing/using retained versions stays stable.
     previous = core._render_ledger_trace
 
     def _render_ledger_trace(env: Mapping[str, Any]) -> None:
