@@ -1,4 +1,10 @@
-"""v0.90 Streamlit installer for MECH9 conditional authoring UX."""
+"""v0.90 Streamlit installer for MECH9 conditional authoring UX.
+
+The active v0.92 remediation also owns the compact SP16 Table-1 ``gamma_c``
+selector presentation.  The qualified v0.78 runtime/classification contract is
+unchanged: the user must still select one exact normative case and no Note-5
+fallback is inferred automatically.
+"""
 from __future__ import annotations
 
 import copy
@@ -17,6 +23,8 @@ _INSTALLED = "_fire_v090_mech9_ux_installed"
 _FATIGUE_NODE = "SP16_I_MECH9_FATIGUE_ORDINARY"
 _CONDITIONAL_NODE = "SP16_I_MECH9_BRITTLE_CONDITIONAL"
 _ANNEX_CONFIRM = "sp16_mech9_fatigue_annex_k_case_confirmed"
+_GAMMA_C_COMPONENT = "sp16_table1_gamma_c_compression"
+_GAMMA_C_NOTE5_CASE = "default_unlisted_case_note_5"
 
 
 def _old_value(old: Any, qid: str) -> Any:
@@ -35,6 +43,47 @@ def _bool_input(core: Any, label: str, current: Any, key: str) -> bool | None:
         format_func=lambda v: "Да" if v else "Нет",
         key=key,
     )
+
+
+def _gamma_c_number(value: Any) -> str:
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise ValueError("SP16 Table-1 gamma_c option has no numeric gamma_c")
+    return f"{float(value):.2f}".replace(".", ",")
+
+
+def _gamma_c_option_label(option: Mapping[str, Any]) -> str:
+    """One self-contained selector label; no duplicate caption is required."""
+    case_id = str(option.get("value") or "")
+    gamma = _gamma_c_number(option.get("gamma_c"))
+    if case_id == _GAMMA_C_NOTE5_CASE:
+        return f"Случай не указан в таблице 1 — γc = {gamma} по примечанию 5"
+
+    description = str(option.get("description_ru") or case_id).strip().rstrip(".")
+    position = case_id.split("_", 1)[0] if case_id else ""
+    prefix = f"Таблица 1, поз. {position}" if position else "Таблица 1"
+    return f"{prefix}: {description} — γc = {gamma}"
+
+
+def _render_gamma_c_compact(core: Any, card: Mapping[str, Any], old_payload: Any, mode_key: str):
+    """Render exactly one explicit Table-1 choice without repeated explanations."""
+    st = core._st()
+    presentation = card.get("presentation") or {}
+    options = [row for row in presentation.get("options") or [] if isinstance(row, Mapping)]
+    values = [str(row.get("value")) for row in options if row.get("value") is not None]
+    by_value = {str(row.get("value")): row for row in options if row.get("value") is not None}
+    current = old_payload if isinstance(old_payload, str) and old_payload in values else None
+
+    selected = st.selectbox(
+        "Случай по таблице 1 СП 16",
+        values,
+        index=values.index(current) if current in values else None,
+        placeholder="— выберите применимый случай —",
+        format_func=lambda value: _gamma_c_option_label(by_value[value]),
+        key=core._key(mode_key, card["node_id"], "case"),
+    )
+    # Deliberately no post-selection caption. The option itself carries the
+    # case, gamma_c and (for the fallback) Note-5 basis exactly once.
+    return selected, None, selected is not None
 
 
 def _render_section13_conditional(core: Any, env: Mapping[str, Any], card: Mapping[str, Any], old: Any, mode_key: str):
@@ -185,6 +234,9 @@ def install(core: Any) -> None:
 
     def _render_card_body(app, sid, env, card, old_payload, old_provenance, mode_key):
         node_id = str(card.get("node_id") or "")
+        component = str((card.get("presentation") or {}).get("component") or "generic")
+        if component == _GAMMA_C_COMPONENT:
+            return _render_gamma_c_compact(core, card, old_payload, mode_key)
         if node_id == _FATIGUE_NODE:
             # A typed Annex-K enum selection is the explicit classification.
             # Keep the quantity in the graph for backward-compatible session replay,
@@ -205,4 +257,9 @@ def install(core: Any) -> None:
     setattr(core, _INSTALLED, True)
 
 
-__all__ = ["install", "_render_section13_conditional"]
+__all__ = [
+    "install",
+    "_gamma_c_option_label",
+    "_render_gamma_c_compact",
+    "_render_section13_conditional",
+]
