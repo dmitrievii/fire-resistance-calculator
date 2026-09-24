@@ -4,9 +4,10 @@ The sidecar is presentation/report semantics only. It cannot alter quantities,
 edges, datasets, calculations, routing, applicability or executor behavior. The
 loader verifies the exact frozen source ``graph_id`` and ``graph_sha256`` before
 exposing any metadata to REPORT-IR.  An in-memory guided overlay may change the
-active graph identity, but it does not retarget the sidecar: validation remains
-anchored to the immutable DAG file named by ``model.source_path`` and all report
-spec references are still checked against the active model.
+active graph identity or remove superseded nodes, but it does not retarget the
+sidecar: metadata integrity is validated against the immutable DAG file named by
+``model.source_path``.  Specs for nodes that are absent from the active overlay
+are simply not exposed by ``report_spec_for_node``.
 """
 from __future__ import annotations
 
@@ -61,9 +62,8 @@ def _outputs(node: Mapping[str, Any]) -> set[str]:
     }
 
 
-def _is_boolean_quantity(model: Any, quantity_id: str) -> bool:
-    quantities = getattr(model, "quantities", {})
-    row = quantities.get(quantity_id) if isinstance(quantities, Mapping) else None
+def _is_boolean_quantity_in_catalog(quantities: Mapping[str, Any], quantity_id: str) -> bool:
+    row = quantities.get(quantity_id)
     if not isinstance(row, Mapping):
         return False
     return str(row.get("data_type") or row.get("type") or "").lower() in {"bool", "boolean"}
@@ -87,6 +87,26 @@ def _frozen_source_identity_from_path(path_text: str) -> tuple[str, str]:
     return graph_id, _canonical_graph_sha256(graph)
 
 
+@lru_cache(maxsize=8)
+def _frozen_source_catalog_from_path(path_text: str) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Return node/quantity indexes for sidecar validation against the frozen DAG."""
+    source_path = Path(path_text)
+    if not source_path.is_file():
+        raise ValueError(f"report metadata source DAG does not exist: {source_path}")
+    graph = _read_json(str(source_path))
+    nodes = {
+        str(row["id"]): row
+        for row in graph.get("nodes") or []
+        if isinstance(row, Mapping) and isinstance(row.get("id"), str)
+    }
+    quantities = {
+        str(row["id"]): row
+        for row in graph.get("quantities") or []
+        if isinstance(row, Mapping) and isinstance(row.get("id"), str)
+    }
+    return nodes, quantities
+
+
 def _frozen_source_identity(model: Any) -> tuple[Any, Any]:
     """Return the immutable file-backed DAG identity used by report metadata.
 
@@ -106,6 +126,20 @@ def _frozen_source_identity(model: Any) -> tuple[Any, Any]:
     return _frozen_source_identity_from_path(str(source_path))
 
 
+def _sidecar_validation_catalog(model: Any) -> tuple[Mapping[str, Any], Mapping[str, Any]]:
+    """Use the immutable source DAG when available; otherwise use the active model."""
+    source = getattr(model, "source_path", None)
+    if source:
+        source_path = Path(source).resolve()
+        return _frozen_source_catalog_from_path(str(source_path))
+    nodes = getattr(model, "nodes", {})
+    quantities = getattr(model, "quantities", {})
+    return (
+        nodes if isinstance(nodes, Mapping) else {},
+        quantities if isinstance(quantities, Mapping) else {},
+    )
+
+
 def _validate(model: Any, payload: Mapping[str, Any], *, source_path: Path) -> dict[str, Any]:
     if payload.get("schema") != REPORT_METADATA_SCHEMA:
         raise ValueError(f"unsupported report metadata schema in {source_path}")
@@ -121,11 +155,17 @@ def _validate(model: Any, payload: Mapping[str, Any], *, source_path: Path) -> d
     specs = payload.get("node_report_specs") or {}
     if not isinstance(specs, Mapping):
         raise ValueError("node_report_specs must be an object")
-    nodes = getattr(model, "nodes", {})
+
+    # The sidecar is byte/identity-bound to the frozen source DAG, not to a
+    # mutable in-memory presentation overlay.  v0.92 legitimately removes the
+    # obsolete gamma_ct decision/calculation/diagnostic subgraph; that must not
+    # make the source sidecar invalid.  Typos and stale node ids still fail
+    # closed because they are checked against the immutable source catalogue.
+    nodes, quantities = _sidecar_validation_catalog(model)
 
     for node_id, raw_spec in specs.items():
         if node_id not in nodes:
-            raise ValueError(f"report metadata references unknown node {node_id}")
+            raise ValueError(f"report metadata references unknown frozen-source node {node_id}")
         if not isinstance(raw_spec, Mapping):
             raise ValueError(f"report metadata for {node_id} must be an object")
         extra = sorted(set(raw_spec).difference(_ALLOWED_REPORT_SPEC_KEYS))
@@ -137,7 +177,7 @@ def _validate(model: Any, payload: Mapping[str, Any], *, source_path: Path) -> d
         if verdict_qid is not None:
             if not isinstance(verdict_qid, str) or verdict_qid not in outputs:
                 raise ValueError(f"verdict_quantity_id for {node_id} must be an output of that node")
-            if not _is_boolean_quantity(model, verdict_qid):
+            if not _is_boolean_quantity_in_catalog(quantities, verdict_qid):
                 raise ValueError(f"verdict_quantity_id for {node_id} must reference a boolean quantity")
 
         governing_qid = raw_spec.get("governing_quantity_id")
@@ -159,8 +199,9 @@ def report_metadata_for_model(model: Any) -> dict[str, Any]:
     Models without ``source_path`` intentionally fall back to inline
     ``node.report_spec`` metadata only; this keeps unit tests and synthetic DAGs
     independent of package files.  For in-memory guided overlays, the sidecar is
-    validated against the frozen DAG at ``source_path`` while every referenced
-    node/output is validated against the active overlay model.
+    validated against the frozen DAG at ``source_path``.  Overlay-removed nodes
+    may remain represented in that immutable sidecar without becoming active
+    report nodes.
     """
     source = getattr(model, "source_path", None)
     if not source:
@@ -188,13 +229,17 @@ def report_metadata_for_model(model: Any) -> dict[str, Any]:
 
 
 def report_spec_for_node(model: Any, node_id: str, node: Mapping[str, Any] | None = None) -> dict[str, Any]:
-    """Return merged inline + sidecar report metadata for one DAG node.
+    """Return merged inline + sidecar report metadata for one active DAG node.
 
     Conflicting duplicate keys fail closed. No execution metadata is accepted in
-    the sidecar, so this merge cannot affect engineering calculations.
+    the sidecar, so this merge cannot affect engineering calculations.  A node
+    removed by an active overlay has no report spec even if the frozen-source
+    sidecar still contains its historical metadata.
     """
     if node is None:
         nodes = getattr(model, "nodes", {})
+        if isinstance(nodes, Mapping) and node_id not in nodes:
+            return {}
         node = nodes.get(node_id) if isinstance(nodes, Mapping) else None
     node = node if isinstance(node, Mapping) else {}
     inline = node.get("report_spec")

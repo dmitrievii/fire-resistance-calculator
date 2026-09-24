@@ -1,0 +1,191 @@
+name: v0.92 runtime-report remediation
+
+on:
+  push:
+    branches:
+      - 'fix/v0.92-runtime-report-remediation'
+    paths:
+      - 'standard_core/fire_sp554_runtime_v092.py'
+      - 'standard_core/fire_sp554_v092_guided_overlay.py'
+      - 'standard_core/fire_ui14_section_weakening.py'
+      - 'standard_core/fire_ui14_manual_net_v092.py'
+      - 'standard_core/report_ir_v092.py'
+      - 'standard_core/sp16_mech7_v092_phi_evidence.py'
+      - 'standard_core/sp16_mech7_v092_slenderness_evidence.py'
+      - 'streamlit_sp554_gamma_ct_v092.py'
+      - 'streamlit_mech9_v090.py'
+      - 'streamlit_phi_evidence_v092.py'
+      - 'streamlit_slenderness_evidence_v092.py'
+      - 'streamlit_expertise_report_v090_install.py'
+      - 'streamlit_expertise_report_v092.py'
+      - 'streamlit_expertise_report_v092_weakening.py'
+      - 'streamlit_expertise_report_v092_actions.py'
+      - 'streamlit_expertise_report_v092_zy.py'
+      - 'streamlit_expertise_report_v092_slenderness.py'
+      - 'streamlit_weakening_report_v092.py'
+      - 'streamlit_section_properties_v092.py'
+      - 'streamlit_manual_net_v092.py'
+      - 'streamlit_app.py'
+      - 'tests/test_v092_progressive_report.py'
+      - 'tests/test_v092_readable_section_properties.py'
+      - 'tests/test_v092_compact_report.py'
+      - 'tests/test_v092_material_gamma_m_report.py'
+      - 'tests/test_v092_weakening_report.py'
+      - 'tests/test_v092_manual_net_properties.py'
+      - 'tests/test_v092_contextual_actions_report.py'
+      - 'tests/test_v092_gamma_c_compact_ux.py'
+      - 'tests/test_v092_zy_formula_report.py'
+      - 'tests/test_v092_full_phi_evidence.py'
+      - 'tests/test_v092_limiting_slenderness_evidence.py'
+      - 'tests/test_v092_table32_catalog_single_source.py'
+      - 'tests/test_v092_limiting_slenderness_report.py'
+      - 'tests/test_v092_sp554_9_1_report_remediation.py'
+      - 'tests/test_v092_sp554_gamma_ct_guided_bypass.py'
+      - 'tests/test_v092_gamma_ct_presentation_policy.py'
+      - 'tests/test_v092_sp554_gamma_ct_census.py'
+      - 'tests/test_v091_final_sp554_normative_remediation.py'
+      - 'tests/test_v091_full_guided_report_closure.py'
+      - 'tests/test_report_tension_golden.py'
+      - 'tests/test_v090_report_install_isolation.py'
+      - '.github/workflows/v092-runtime-report-remediation.yml'
+  pull_request:
+    paths:
+      - 'standard_core/fire_sp554_runtime_v092.py'
+      - 'standard_core/fire_sp554_v092_guided_overlay.py'
+      - 'standard_core/fire_ui14_section_weakening.py'
+      - 'standard_core/fire_ui14_manual_net_v092.py'
+      - 'standard_core/report_ir_v092.py'
+      - 'standard_core/sp16_mech7_v092_phi_evidence.py'
+      - 'standard_core/sp16_mech7_v092_slenderness_evidence.py'
+      - 'streamlit_sp554_gamma_ct_v092.py'
+      - 'streamlit_mech9_v090.py'
+      - 'streamlit_phi_evidence_v092.py'
+      - 'streamlit_slenderness_evidence_v092.py'
+      - 'streamlit_expertise_report_v090_install.py'
+      - 'streamlit_expertise_report_v092.py'
+      - 'streamlit_expertise_report_v092_weakening.py'
+      - 'streamlit_expertise_report_v092_actions.py'
+      - 'streamlit_expertise_report_v092_zy.py'
+      - 'streamlit_expertise_report_v092_slenderness.py'
+      - 'streamlit_weakening_report_v092.py'
+      - 'streamlit_section_properties_v092.py'
+      - 'streamlit_manual_net_v092.py'
+      - 'streamlit_app.py'
+      - 'tests/test_v092_progressive_report.py'
+      - 'tests/test_v092_readable_section_properties.py'
+      - 'tests/test_v092_compact_report.py'
+      - 'tests/test_v092_material_gamma_m_report.py'
+      - 'tests/test_v092_weakening_report.py'
+      - 'tests/test_v092_manual_net_properties.py'
+      - 'tests/test_v092_contextual_actions_report.py'
+      - 'tests/test_v092_gamma_c_compact_ux.py'
+      - 'tests/test_v092_zy_formula_report.py'
+      - 'tests/test_v092_full_phi_evidence.py'
+      - 'tests/test_v092_limiting_slenderness_evidence.py'
+      - 'tests/test_v092_table32_catalog_single_source.py'
+      - 'tests/test_v092_limiting_slenderness_report.py'
+      - 'tests/test_v092_sp554_9_1_report_remediation.py'
+      - 'tests/test_v092_sp554_gamma_ct_guided_bypass.py'
+      - 'tests/test_v092_gamma_ct_presentation_policy.py'
+      - 'tests/test_v092_sp554_gamma_ct_census.py'
+      - 'tests/test_v091_final_sp554_normative_remediation.py'
+      - 'tests/test_v091_full_guided_report_closure.py'
+      - 'tests/test_report_tension_golden.py'
+      - 'tests/test_v090_report_install_isolation.py'
+      - '.github/workflows/v092-runtime-report-remediation.yml'
+  workflow_dispatch:
+
+jobs:
+  v092-runtime-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install runtime and tests
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt pytest
+
+      - name: Compile v0.92 runtime and report layers
+        run: |
+          python -m py_compile \
+            standard_core/fire_sp554_runtime_v092.py \
+            standard_core/fire_sp554_v092_guided_overlay.py \
+            standard_core/fire_ui14_section_weakening.py \
+            standard_core/fire_ui14_manual_net_v092.py \
+            standard_core/report_ir_v092.py \
+            standard_core/sp16_mech7_v092_phi_evidence.py \
+            standard_core/sp16_mech7_v092_slenderness_evidence.py \
+            streamlit_sp554_gamma_ct_v092.py \
+            streamlit_mech9_v090.py \
+            streamlit_phi_evidence_v092.py \
+            streamlit_slenderness_evidence_v092.py \
+            streamlit_expertise_report_v090_install.py \
+            streamlit_expertise_report_v092.py \
+            streamlit_expertise_report_v092_weakening.py \
+            streamlit_expertise_report_v092_actions.py \
+            streamlit_expertise_report_v092_zy.py \
+            streamlit_expertise_report_v092_slenderness.py \
+            streamlit_weakening_report_v092.py \
+            streamlit_section_properties_v092.py \
+            streamlit_manual_net_v092.py \
+            streamlit_app.py
+
+      - name: Progressive-report regression
+        run: python -m pytest -q tests/test_v092_progressive_report.py
+
+      - name: Readable section-property regression
+        run: python -m pytest -q tests/test_v092_readable_section_properties.py
+
+      - name: Compact-report regression
+        run: python -m pytest -q tests/test_v092_compact_report.py
+
+      - name: Material gamma_m provenance regression
+        run: python -m pytest -q tests/test_v092_material_gamma_m_report.py
+
+      - name: Weakening formula-chain regression
+        run: python -m pytest -q tests/test_v092_weakening_report.py
+
+      - name: Manual net-property regression
+        run: python -m pytest -q tests/test_v092_manual_net_properties.py
+
+      - name: Contextual canonical-action regression
+        run: python -m pytest -q tests/test_v092_contextual_actions_report.py
+
+      - name: Compact gamma_c selector regression
+        run: python -m pytest -q tests/test_v092_gamma_c_compact_ux.py
+
+      - name: Canonical z-y formula-chain regression
+        run: python -m pytest -q tests/test_v092_zy_formula_report.py
+
+      - name: Full phi-delta evidence regression
+        run: python -m pytest -q tests/test_v092_full_phi_evidence.py
+
+      - name: Table-32 limiting-slenderness traceability regression
+        run: >-
+          python -m pytest -q
+          tests/test_v092_limiting_slenderness_evidence.py
+          tests/test_v092_table32_catalog_single_source.py
+          tests/test_v092_limiting_slenderness_report.py
+
+      - name: Final SP554 9.1 runtime-report regression
+        run: >-
+          python -m pytest -q
+          tests/test_v092_sp554_9_1_report_remediation.py
+          tests/test_v092_sp554_gamma_ct_guided_bypass.py
+          tests/test_v092_gamma_ct_presentation_policy.py
+          tests/test_v092_sp554_gamma_ct_census.py
+
+      - name: Retained final-SP554 regression
+        run: >-
+          python -m pytest -q
+          tests/test_v091_final_sp554_normative_remediation.py
+          tests/test_v091_full_guided_report_closure.py
+          tests/test_report_tension_golden.py
+          tests/test_v090_report_install_isolation.py
+
+      - name: Import production Streamlit entrypoint
+        run: python -c "import streamlit_app; print('streamlit_app import PASS')"

@@ -1,8 +1,10 @@
-"""Isolated installer for v0.90 REPORT4 with v0.91 SP554 refinement.
+"""Isolated installer for v0.90 REPORT4 with v0.91/v0.92 refinement.
 
-The v0.90 narrative renderer is installed into ``streamlit_app_core`` without
-mutating the retained v0.89 module.  v0.91 adds presentation-only final-SP554
-§9.2 governing-axis evidence while keeping the same REPORT-IR5 source.
+The retained report modules remain available for audit/rollback. The active
+v0.92 renderer is progressive and compact: completed engineering evidence plus
+the current unfinished step only. Section weakening, canonical action output,
+z/y stability and Table-32 limiting slenderness are rendered only from executed
+and runtime-validated evidence.
 """
 from __future__ import annotations
 
@@ -12,15 +14,18 @@ from typing import Any, Mapping
 import streamlit_expertise_report_v088 as _v088
 import streamlit_expertise_report_v089 as _v089
 import streamlit_live_report_v087 as _v087
-from standard_core.report_ir5 import build_report_ir5
-from streamlit_expertise_report_v091 import render_expertise_narrative_markdown_v091
+from standard_core.report_ir_v092 import build_report_ir_v092
+from streamlit_expertise_report_v092 import REPORT_COMPACT_CSS, report_marker_html
+from streamlit_expertise_report_v092_slenderness import (
+    render_expertise_narrative_markdown_v092_slenderness as render_expertise_narrative_markdown_v092,
+)
 
 _INSTALLED = "_fire_expertise_report_v090_isolated_installed"
 
 
 def _render_export(core: Any, report: Mapping[str, Any]) -> None:
     st = core.st
-    markdown = render_expertise_narrative_markdown_v091(report)
+    markdown = render_expertise_narrative_markdown_v092(report)
     st.download_button(
         "Скачать расчётный отчёт (.md)",
         data=markdown,
@@ -39,7 +44,7 @@ def _render_export(core: Any, report: Mapping[str, Any]) -> None:
         on_click="ignore",
         key="fire:expertise-report-v090:download:ir",
     )
-    st.caption("Экранный и Markdown-отчёт строятся из одного REPORT-IR5. Численные результаты не пересчитываются presentation-слоем.")
+    st.caption("Экранный и Markdown-отчёт формируются из одних и тех же зафиксированных результатов расчёта; экранный слой не пересчитывает инженерные величины.")
 
 
 def render_expertise_report_v090(core: Any, env: Mapping[str, Any]) -> None:
@@ -50,15 +55,17 @@ def render_expertise_report_v090(core: Any, env: Mapping[str, Any]) -> None:
         st.info("Расчётная сессия ещё не создана.")
         return
     session = app.service.get_session(sid)
-    report = build_report_ir5(app.service.model, session)
-    markdown = render_expertise_narrative_markdown_v091(report)
+    report = build_report_ir_v092(app.service.model, session)
+    markdown = render_expertise_narrative_markdown_v092(report)
 
+    st.markdown(REPORT_COMPACT_CSS, unsafe_allow_html=True)
     st.markdown("### Расчётный отчёт")
-    st.caption("Отчёт обновляется после каждого принятого шага. Основной текст собран по инженерным разделам, а служебные этапы расчётного графа скрыты во вкладке Audit.")
+    st.caption("Отчёт обновляется после каждого принятого шага. Показываются только фактически выполненные расчётные шаги, ненулевые силовые факторы и текущий незавершённый ввод; будущие и неприменимые ветви доступны во вкладке Audit.")
     tab_report, tab_export, tab_audit = st.tabs(["Расчётный отчёт", "Экспорт", "Audit"])
     with tab_report:
         _v088._report_status(st, report)
         with st.container(height=1120, border=True):
+            st.markdown(report_marker_html(), unsafe_allow_html=True)
             st.markdown(markdown)
     with tab_export:
         _render_export(core, report)
@@ -69,8 +76,6 @@ def render_expertise_report_v090(core: Any, env: Mapping[str, Any]) -> None:
 def install(core: Any) -> None:
     if getattr(core, _INSTALLED, False):
         return
-    # v0.89 remains an immutable retained layer.  REPORT4 is bound only at the
-    # core renderer hook, so importing/using v0.89 directly still gives v0.89.
     previous = core._render_ledger_trace
 
     def _render_ledger_trace(env: Mapping[str, Any]) -> None:

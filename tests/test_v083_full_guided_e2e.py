@@ -148,15 +148,24 @@ def test_v083_new_calculation_reaches_terminal_fire_result_without_internal_quan
         "holes_present": False,
         "model": "none",
     })
-    _submit(app, sid, "SP554_D_GOST27751_GAMMA_CT", False)
+
+    # v0.92 makes gamma_ct=1.1 mandatory for the supported SP554 fire route and
+    # auto-bypasses the obsolete GOST 27751 applicability question.  The retained
+    # v0.83 E2E route must therefore proceed directly to ambient actions.
+    assert session.current_node_id == "SP16_I_AMBIENT_LOADS"
+    assert "SP554_D_GOST27751_GAMMA_CT" not in [row["node_id"] for row in session.interaction_history]
+
+    # Retained E2E must use the current SP16 canonical action axes: bending Mz/My,
+    # shear Qz/Qy and torsion Mx.  Legacy Mx/My + Qx/Qy + T keys are intentionally
+    # no longer accepted by the production submit adapter.
     _submit(app, sid, "SP16_I_AMBIENT_LOADS", {
         "ambient_load_combination": {"schema": "v083_e2e", "kind": "ambient"},
         "ambient_N_force": -600_000.0,
-        "ambient_M_x": 0.0,
+        "ambient_M_z": 0.0,
         "ambient_M_y": 0.0,
-        "ambient_Q_x": 0.0,
+        "ambient_Q_z": 0.0,
         "ambient_Q_y": 0.0,
-        "ambient_T_torsion": 0.0,
+        "ambient_M_x": 0.0,
         "ambient_B_bimoment": 0.0,
     })
     _submit(app, sid, "SP16_D_AMBIENT_CENSUS_CONFIRM", True)
@@ -195,6 +204,7 @@ def test_v083_new_calculation_reaches_terminal_fire_result_without_internal_quan
     assert history_ids.count("SP16_I_V078_GAMMA_C_COMPRESSION_CASE") == 1
     assert not (LEGACY_TABLE1_COMPRESSION_NODES & set(history_ids))
     assert "SP554_I_COMPRESSION_CONTEXT" not in history_ids
+    assert "SP554_D_GOST27751_GAMMA_CT" not in history_ids
 
     _submit(app, sid, "SP554_I_EXPOSURE", "four_sides")
     # Descendant v0.84 auto-executes the former method selector and the combined
