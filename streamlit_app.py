@@ -29,10 +29,9 @@ from streamlit_slenderness_evidence_v092 import install as _install_slenderness_
 from streamlit_protection_geometry_v093 import install as _install_protection_geometry_v093
 from streamlit_expertise_report_v093_thermal_repro import install as _install_thermal_report_v093
 from streamlit_weakening_single_card_v094 import install as _install_weakening_single_card_v094
+from streamlit_weakening_atomic_v095 import install as _install_weakening_atomic_v095
 from streamlit_report_v094_install import install as _install_report_v094
 from streamlit_ui_polish_v090 import install as _install_ui_polish_v090
-# Legacy installer-chain marker retained for cumulative v0.77-v0.81 regression:
-# from streamlit_guided_ux_v081 import install as _install_guided_ux
 from streamlit_guided_ux_v086 import install as _install_guided_ux
 
 _core._st = lambda: _streamlit
@@ -55,23 +54,20 @@ _install_thermal_result_v092(_core)
 _install_protection_geometry_v093(_core)
 _install_manual_net_v092(_core)
 _install_slenderness_evidence_v092(_core)
-# v0.94: the structured weakening choice is authoritative. A later legacy
-# boolean hole question is automatically replayed from it and never shown as a
-# second user card. Numeric/detail inputs are not bypassed.
 _install_weakening_single_card_v094(_core)
+# v0.95 closes the remaining legacy I/W weakening compatibility question after
+# the structured weakening model has already been accepted.
+_install_weakening_atomic_v095(_core)
 _install_live_report(_core)
 _install_expertise_report(_core)
 _install_expertise_narrative(_core)
 _install_expertise_mech9(_core)
 _install_thermal_report_v093(_core)
-# v0.94 final report wrapper: existing gamma_m aliases, weakening trace and the
-# progressive guard for the thermal passport. Installed last intentionally.
 _install_report_v094(_core)
 
 for _name in dir(_core):
     if not _name.startswith("__"):
         globals()[_name] = getattr(_core, _name)
-
 
 if __name__ == "__main__":
     _core.main()
