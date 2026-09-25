@@ -193,11 +193,27 @@ def test_v079_semantic_replay_retains_tail_across_new_question_and_skips_retired
     assert migrated.plain_values()["qb"] == "old-b"
 
 
-def test_v079_repairs_remain_active_below_v081():
+def test_v079_repairs_remain_active_in_current_descendant_chain():
     app_source = (ROOT / "streamlit_app.py").read_text(encoding="utf-8")
+    v086 = (ROOT / "streamlit_guided_ux_v086.py").read_text(encoding="utf-8")
+    v085 = (ROOT / "streamlit_guided_ux_v085.py").read_text(encoding="utf-8")
+    v084 = (ROOT / "streamlit_guided_ux_v084.py").read_text(encoding="utf-8")
+    v083 = (ROOT / "streamlit_guided_ux_v083.py").read_text(encoding="utf-8")
+    v082 = (ROOT / "streamlit_guided_ux_v082.py").read_text(encoding="utf-8")
     v081 = (ROOT / "streamlit_guided_ux_v081.py").read_text(encoding="utf-8")
     v080 = (ROOT / "streamlit_guided_ux_v080.py").read_text(encoding="utf-8")
-    assert "streamlit_guided_ux_v081" in app_source
+
+    assert "from streamlit_guided_ux_v086 import install as _install_guided_ux" in app_source
+    assert "import streamlit_guided_ux_v085 as _v085" in v086
+    assert "_v085.install(core)" in v086
+    assert "import streamlit_guided_ux_v084 as _v084" in v085
+    assert "_v084.install(core)" in v085
+    assert "import streamlit_guided_ux_v083 as _v083" in v084
+    assert "_v083.install(core)" in v084
+    assert "import streamlit_guided_ux_v082 as _v082" in v083
+    assert "_v082.install(core)" in v083
+    assert "import streamlit_guided_ux_v081 as _v081" in v082
+    assert "_v081.install(core)" in v082
     assert "import streamlit_guided_ux_v080 as _v080" in v081
     assert "_v080.install(core)" in v081
     assert "import streamlit_guided_ux_v079 as _v079" in v080
