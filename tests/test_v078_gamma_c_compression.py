@@ -152,13 +152,26 @@ def test_v078_amendment6_table1_text_includes_lambda_profiles():
 
 def test_v078_layer_remains_in_active_descendant_chain():
     source = (ROOT / "streamlit_app.py").read_text(encoding="utf-8")
+    v086 = (ROOT / "streamlit_guided_ux_v086.py").read_text(encoding="utf-8")
+    v085 = (ROOT / "streamlit_guided_ux_v085.py").read_text(encoding="utf-8")
+    v084 = (ROOT / "streamlit_guided_ux_v084.py").read_text(encoding="utf-8")
+    v083 = (ROOT / "streamlit_guided_ux_v083.py").read_text(encoding="utf-8")
+    v082 = (ROOT / "streamlit_guided_ux_v082.py").read_text(encoding="utf-8")
     v081 = (ROOT / "streamlit_guided_ux_v081.py").read_text(encoding="utf-8")
     v080 = (ROOT / "streamlit_guided_ux_v080.py").read_text(encoding="utf-8")
     v079 = (ROOT / "streamlit_guided_ux_v079.py").read_text(encoding="utf-8")
-    assert "from streamlit_guided_ux_v081 import install as _install_guided_ux" in source
+
+    # Historical v0.78 must remain reachable through the current production
+    # entrypoint.  Do not pin an old layer as the direct streamlit_app import.
+    assert "from streamlit_guided_ux_v086 import install as _install_guided_ux" in source
+    assert "import streamlit_guided_ux_v085 as _v085" in v086
+    assert "_v085.install(core)" in v086
+    assert "import streamlit_guided_ux_v084 as _v084" in v085
+    assert "_v084.install(core)" in v085
+    assert "import streamlit_guided_ux_v083 as _v083" in v084
+    assert "import streamlit_guided_ux_v082 as _v082" in v083
+    assert "import streamlit_guided_ux_v081 as _v081" in v082
     assert "import streamlit_guided_ux_v080 as _v080" in v081
-    assert "_v080.install(core)" in v081
     assert "import streamlit_guided_ux_v079 as _v079" in v080
-    assert "_v079.install(core)" in v080
     assert "import streamlit_guided_ux_v078 as _v078_ui" in v079
     assert "install_gamma_c_registry" in v079
