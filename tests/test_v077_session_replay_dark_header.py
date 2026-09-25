@@ -15,7 +15,6 @@ from streamlit_guided_ux_v077 import (
     _repair_missing_table3_from_widget,
 )
 
-
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -24,13 +23,7 @@ def _model() -> FireDAGModel:
         "graph_id": "v077-history-anchor-test",
         "engine_contract": {},
         "quantities": [
-            {
-                "id": "fy_norm",
-                "name_ru": "Ryn",
-                "data_type": "number",
-                "canonical_unit": "N/mm2",
-                "source_policy": {},
-            },
+            {"id": "fy_norm", "name_ru": "Ryn", "data_type": "number", "canonical_unit": "N/mm2", "source_policy": {}},
             {
                 "id": MATERIAL_SAFETY_QUANTITY_ID,
                 "name_ru": "Категория таблицы 3",
@@ -42,13 +35,7 @@ def _model() -> FireDAGModel:
                 ],
                 "source_policy": {},
             },
-            {
-                "id": "later_value",
-                "name_ru": "Поздний ввод",
-                "data_type": "number",
-                "canonical_unit": None,
-                "source_policy": {},
-            },
+            {"id": "later_value", "name_ru": "Поздний ввод", "data_type": "number", "canonical_unit": None, "source_policy": {}},
         ],
         "nodes": [
             {
@@ -69,29 +56,11 @@ def _model() -> FireDAGModel:
                 "input_spec": {"user_prompt": "Later"},
                 "normative_refs": [],
             },
-            {
-                "id": "RESULT",
-                "node_type": "result",
-                "owner_standard_id": "SP16_2017",
-                "title": "Result",
-                "produces": [],
-                "consumes": [],
-                "normative_refs": [],
-            },
+            {"id": "RESULT", "node_type": "result", "owner_standard_id": "SP16_2017", "title": "Result", "produces": [], "consumes": [], "normative_refs": []},
         ],
         "edges": [
-            {
-                "id": "E1",
-                "from_node_id": MATERIAL_EDITOR_NODE_ID,
-                "to_node_id": "LATER_INPUT",
-                "edge_type": "control",
-            },
-            {
-                "id": "E2",
-                "from_node_id": "LATER_INPUT",
-                "to_node_id": "RESULT",
-                "edge_type": "control",
-            },
+            {"id": "E1", "from_node_id": MATERIAL_EDITOR_NODE_ID, "to_node_id": "LATER_INPUT", "edge_type": "control"},
+            {"id": "E2", "from_node_id": "LATER_INPUT", "to_node_id": "RESULT", "edge_type": "control"},
         ],
     }
     return FireDAGModel(graph)
@@ -109,18 +78,12 @@ def test_v077_history_edit_preserves_explicit_table3_category():
     )
     session.submit(355.0)
     session.submit(1.0)
-
     assert session.status == "RESULT"
     assert session.plain_values()[MATERIAL_SAFETY_QUANTITY_ID] == "statistical_control"
 
     migrated = _edit_with_material_safety_anchor(
-        session,
-        "LATER_INPUT",
-        2.0,
-        provenance=None,
-        category="statistical_control",
+        session, "LATER_INPUT", 2.0, provenance=None, category="statistical_control"
     )
-
     assert migrated is not session
     assert migrated.status == "RESULT"
     assert migrated.plain_values()[MATERIAL_SAFETY_QUANTITY_ID] == "statistical_control"
@@ -138,10 +101,8 @@ def test_v077_repairs_already_open_replayed_session_from_surviving_explicit_widg
     app = SimpleNamespace(service=SimpleNamespace(sessions={"fire-000001": broken}))
     state = {_category_state_key(MATERIAL_EDITOR_NODE_ID): "statistical_control"}
     core = SimpleNamespace(_st=lambda: SimpleNamespace(session_state=state))
-
     repaired_app = _repair_missing_table3_from_widget(core, app)
     repaired = repaired_app.service.sessions["fire-000001"]
-
     assert repaired is not broken
     assert repaired.status == "RESULT"
     assert repaired.plain_values()[MATERIAL_SAFETY_QUANTITY_ID] == "statistical_control"
@@ -166,6 +127,7 @@ def test_v077_mobile_header_has_no_forced_white_dark_mode_fallback():
 def test_v077_layer_remains_in_descendant_installer_chain():
     entrypoint = (ROOT / "streamlit_app.py").read_text(encoding="utf-8")
     v086 = (ROOT / "streamlit_guided_ux_v086.py").read_text(encoding="utf-8")
+    v085 = (ROOT / "streamlit_guided_ux_v085.py").read_text(encoding="utf-8")
     v084 = (ROOT / "streamlit_guided_ux_v084.py").read_text(encoding="utf-8")
     v083 = (ROOT / "streamlit_guided_ux_v083.py").read_text(encoding="utf-8")
     v082 = (ROOT / "streamlit_guided_ux_v082.py").read_text(encoding="utf-8")
@@ -173,12 +135,13 @@ def test_v077_layer_remains_in_descendant_installer_chain():
     v080 = (ROOT / "streamlit_guided_ux_v080.py").read_text(encoding="utf-8")
     v079 = (ROOT / "streamlit_guided_ux_v079.py").read_text(encoding="utf-8")
 
-    # The production entrypoint intentionally advances as new guided-UX layers
-    # are added.  This regression must verify ancestry, not pin a historical
-    # layer as the direct entrypoint import.
+    # Verify the actual production ancestry. v0.86 delegates to v0.85; v0.85
+    # retains v0.84, so v0.77 remains in the transitive installer chain.
     assert "from streamlit_guided_ux_v086 import install as _install_guided_ux" in entrypoint
-    assert "import streamlit_guided_ux_v084 as _v084" in v086
-    assert "_v084.install(core)" in v086
+    assert "import streamlit_guided_ux_v085 as _v085" in v086
+    assert "_v085.install(core)" in v086
+    assert "import streamlit_guided_ux_v084 as _v084" in v085
+    assert "_v084.install(core)" in v085
     assert "import streamlit_guided_ux_v083 as _v083" in v084
     assert "_v083.install(core)" in v084
     assert "import streamlit_guided_ux_v082 as _v082" in v083
