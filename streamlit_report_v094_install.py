@@ -1,11 +1,12 @@
-"""Install v0.94 material/weakening report remediation after v0.93 thermal layer."""
+"""Install cumulative v0.94/v0.95 report remediation."""
 from __future__ import annotations
 
 import re
 from typing import Any, Mapping
 
 import streamlit_expertise_report_v090_install as _report
-from streamlit_expertise_report_v094_weakening import _insert_weakening, _patch_gamma_aliases
+from streamlit_expertise_report_v094_weakening import _patch_gamma_aliases
+from streamlit_report_v095_upstream_closure import _insert_weakening
 
 _INSTALLED = "_fire_v094_material_weakening_report_installed"
 _THERMAL_PASSPORT_RE = re.compile(r"(?ms)^### 5\.3 Паспорт воспроизводимости.*?(?=^## 6\. Заключение|^## Текущий незавершённый шаг|\Z)")
@@ -34,9 +35,9 @@ def install(core: Any) -> None:
     def render(report: Mapping[str, Any]) -> str:
         patched = _patch_gamma_aliases(report)
         text = previous(patched)
+        # v0.95 consumes the exact producer-owned calculation_trace nested in
+        # net_section_geometry_2d.  No presentation recomputation is used.
         text = _insert_weakening(text, patched)
-        # v0.93 thermal passport must obey the same progressive-report contract:
-        # no empty future section before any thermal runtime has executed.
         if not _has_thermal_evidence(patched):
             text = _THERMAL_PASSPORT_RE.sub(lambda _m: "", text, count=1)
         return text
