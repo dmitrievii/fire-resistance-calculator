@@ -165,10 +165,26 @@ def test_v077_mobile_header_has_no_forced_white_dark_mode_fallback():
 
 def test_v077_layer_remains_in_descendant_installer_chain():
     entrypoint = (ROOT / "streamlit_app.py").read_text(encoding="utf-8")
+    v086 = (ROOT / "streamlit_guided_ux_v086.py").read_text(encoding="utf-8")
+    v084 = (ROOT / "streamlit_guided_ux_v084.py").read_text(encoding="utf-8")
+    v083 = (ROOT / "streamlit_guided_ux_v083.py").read_text(encoding="utf-8")
+    v082 = (ROOT / "streamlit_guided_ux_v082.py").read_text(encoding="utf-8")
     v081 = (ROOT / "streamlit_guided_ux_v081.py").read_text(encoding="utf-8")
     v080 = (ROOT / "streamlit_guided_ux_v080.py").read_text(encoding="utf-8")
     v079 = (ROOT / "streamlit_guided_ux_v079.py").read_text(encoding="utf-8")
-    assert "from streamlit_guided_ux_v081 import install as _install_guided_ux" in entrypoint
+
+    # The production entrypoint intentionally advances as new guided-UX layers
+    # are added.  This regression must verify ancestry, not pin a historical
+    # layer as the direct entrypoint import.
+    assert "from streamlit_guided_ux_v086 import install as _install_guided_ux" in entrypoint
+    assert "import streamlit_guided_ux_v084 as _v084" in v086
+    assert "_v084.install(core)" in v086
+    assert "import streamlit_guided_ux_v083 as _v083" in v084
+    assert "_v083.install(core)" in v084
+    assert "import streamlit_guided_ux_v082 as _v082" in v083
+    assert "_v082.install(core)" in v083
+    assert "import streamlit_guided_ux_v081 as _v081" in v082
+    assert "_v081.install(core)" in v082
     assert "import streamlit_guided_ux_v080 as _v080" in v081
     assert "_v080.install(core)" in v081
     assert "import streamlit_guided_ux_v079 as _v079" in v080
