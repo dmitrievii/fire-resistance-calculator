@@ -20,6 +20,7 @@ from streamlit_mech9_v090 import install as _install_mech9_ux
 from streamlit_fire_sp554_v091 import install as _install_fire_sp554_v091
 from streamlit_sp554_gamma_ct_v092 import install as _install_gamma_ct_v092
 from streamlit_canonical_actions_v092 import install as _install_canonical_actions_v092
+from streamlit_optional_actions_v095 import install as _install_optional_actions_v095
 from streamlit_effective_length_v092 import install as _install_effective_length_v092
 from streamlit_phi_evidence_v092 import install as _install_phi_evidence_v092
 from streamlit_thermal_result_v092 import install as _install_thermal_result_v092
@@ -48,6 +49,9 @@ _install_mech9_ux(_core)
 _install_fire_sp554_v091(_core)
 _install_gamma_ct_v092(_core)
 _install_canonical_actions_v092(_core)
+# v0.95: canonical action components not selected by the user are explicit
+# physical zeros.  In particular, an N-only case must not require ambient_M_z.
+_install_optional_actions_v095(_core)
 _install_effective_length_v092(_core)
 _install_phi_evidence_v092(_core)
 _install_thermal_result_v092(_core)
