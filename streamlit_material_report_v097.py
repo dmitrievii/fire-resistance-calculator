@@ -40,8 +40,6 @@ def _material_chapter_v097(report: Mapping[str, Any]) -> str:
     ru_raw = trace.get("Ru_unrounded_MPa")
     ry_round = trace.get("Ry_rounded_MPa")
     ru_round = trace.get("Ru_rounded_MPa")
-    ry_tab = trace.get("Ry_tabulated_MPa")
-    ru_tab = trace.get("Ru_tabulated_MPa")
 
     lines = ["## 2. Материал и расчётные характеристики", ""]
     if grade:
@@ -64,23 +62,14 @@ def _material_chapter_v097(report: Mapping[str, Any]) -> str:
 
     lines.extend([
         "Расчётное сопротивление по пределу текучести:", "",
-        "$$ R_y=\\frac{R_{yn}}{\\gamma_m} $$", "",
-        f"$$ R_y=\\frac{{{_fmt(ryn)}}}{{{_fmt(gamma_m)}}}={_fmt(ry_raw)}\\;\\mathrm{{MPa}}\\;\\rightarrow\\;{_fmt(ry_round)}\\;\\mathrm{{MPa}} $$", "",
+        f"$$ R_y=\\frac{{R_{{yn}}}}{{\\gamma_m}}=\\frac{{{_fmt(ryn)}}}{{{_fmt(gamma_m)}}}={_fmt(ry_raw)}\\;\\mathrm{{MPa}}\\;\\rightarrow\\;{_fmt(ry_round)}\\;\\mathrm{{MPa}} $$", "",
         "Расчётное сопротивление по временному сопротивлению:", "",
-        "$$ R_u=\\frac{R_{un}}{\\gamma_m} $$", "",
-        f"$$ R_u=\\frac{{{_fmt(run)}}}{{{_fmt(gamma_m)}}}={_fmt(ru_raw)}\\;\\mathrm{{MPa}}\\;\\rightarrow\\;{_fmt(ru_round)}\\;\\mathrm{{MPa}} $$", "",
+        f"$$ R_u=\\frac{{R_{{un}}}}{{\\gamma_m}}=\\frac{{{_fmt(run)}}}{{{_fmt(gamma_m)}}}={_fmt(ru_raw)}\\;\\mathrm{{MPa}}\\;\\rightarrow\\;{_fmt(ru_round)}\\;\\mathrm{{MPa}} $$", "",
         "Стрелкой показано округление до **5 Н/мм²**, применённое для расчётных сопротивлений в таблицах приложения В.", "",
     ])
 
     if source_table:
         lines.extend([f"*Нормативное основание исходной строки: СП 16.13330.2017, табл. {source_table}; $\\gamma_m$ — табл. 3.*", ""])
-    if ry_tab is not None and ru_tab is not None:
-        if bool(trace.get("annex_default_matches")):
-            lines.extend([f"Контроль с опубликованной строкой табл. {source_table}: $R_y={_fmt(ry_tab)}$ МПа, $R_u={_fmt(ru_tab)}$ МПа — **совпадение**.", ""])
-        else:
-            lines.extend([f"Опубликованные значения табл. {source_table} ($R_y={_fmt(ry_tab)}$ МПа, $R_u={_fmt(ru_tab)}$ МПа) относятся к нормативному табличному случаю; при явно выбранной иной категории $\\gamma_m$ выше показан пересчёт от $R_{{yn}},R_{{un}}$.", ""])
-
-    lines.append("*Report IR использует общий нормативный material helper v0.96; presentation layer только отображает зафиксированный v0.97 trace и не изменяет механический расчёт.*")
     return "\n".join(lines).strip()
 
 
