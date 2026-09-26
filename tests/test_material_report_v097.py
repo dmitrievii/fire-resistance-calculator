@@ -88,12 +88,16 @@ def test_v097_material_chapter_is_formula_substitution_result_and_rounding():
     assert "## 2. Материал и расчётные характеристики" in text
     assert "\\gamma_m=1.025" in text
     assert "таблице 3" in text
-    assert "R_y=\\frac{R_{yn}}{\\gamma_m}" in text
-    assert "R_u=\\frac{R_{un}}{\\gamma_m}" in text
+    assert "$$ R_y=\\frac{R_{yn}}{\\gamma_m}=\\frac{255}{1.025}=" in text
+    assert "$$ R_u=\\frac{R_{un}}{\\gamma_m}=\\frac{380}{1.025}=" in text
+    assert "\n$$ R_y=\\frac{R_{yn}}{\\gamma_m} $$\n" not in text
+    assert "\n$$ R_u=\\frac{R_{un}}{\\gamma_m} $$\n" not in text
     assert "250" in text
     assert "370" in text
     assert "округление до **5 Н/мм²**" in text
     assert "табл. В.4" in text
+    assert "Контроль с опубликованной строкой" not in text
+    assert "Report IR использует общий нормативный material helper" not in text
 
 
 def test_v097_entrypoint_installed_after_v094():
