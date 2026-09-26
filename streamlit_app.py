@@ -32,6 +32,7 @@ from streamlit_expertise_report_v093_thermal_repro import install as _install_th
 from streamlit_weakening_single_card_v094 import install as _install_weakening_single_card_v094
 from streamlit_weakening_atomic_v095 import install as _install_weakening_atomic_v095
 from streamlit_report_v094_install import install as _install_report_v094
+from streamlit_material_report_v097 import install as _install_material_report_v097
 from streamlit_ui_polish_v090 import install as _install_ui_polish_v090
 from streamlit_guided_ux_v086 import install as _install_guided_ux
 
@@ -68,6 +69,9 @@ _install_expertise_narrative(_core)
 _install_expertise_mech9(_core)
 _install_thermal_report_v093(_core)
 _install_report_v094(_core)
+# v0.97: publish Table-3 gamma_m and Annex-V resistance derivation into the
+# active Report IR and render formula = substitution = result + rounding.
+_install_material_report_v097(_core)
 
 for _name in dir(_core):
     if not _name.startswith("__"):
