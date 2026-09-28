@@ -1,11 +1,13 @@
-"""v0.98 weakening UI/report closure.
+"""v0.99 weakening UI/report closure.
 
-Closes three retained defects without changing the engineering runtime:
-* the legacy standalone I/W weakening boolean is hidden after the authoritative
-  section_weakening_model has been accepted;
-* REPORT-IR is reconciled with the canonical weakening executor trace;
-* the final narrative uses the typed v0.92 weakening renderer, including manual
-  net properties and the distinct purpose of SP16 formula (45).
+The authoritative section_weakening_model is the only user-facing weakening
+choice.  The retained standalone I/W boolean is a compatibility quantity only:
+it must never render as a second engineering question.  When the legacy card is
+encountered, resolve it from section_weakening_model if possible; otherwise
+suppress it rather than falling through to the historical renderer.
+
+REPORT-IR remains reconciled with the canonical weakening executor trace and the
+final narrative uses the typed v0.92 weakening renderer.
 """
 from __future__ import annotations
 
@@ -67,8 +69,6 @@ def _replace_weakening(text: str, report: Mapping[str, Any]) -> str:
     section = _normalized_weakening_section(report)
     if not section:
         return text
-    # Remove any retained v0.94/v0.95 weakening subsection.  Run repeatedly in
-    # case an older session/narrative contains both historical 1.2 and 1.3 forms.
     while _WEAKENING_SECTION_RE.search(text):
         text = _WEAKENING_SECTION_RE.sub("", text, count=1)
     anchor = re.search(r"(?m)^## 2\.\s", text)
@@ -87,26 +87,34 @@ def install(core: Any) -> None:
 
     def _render_card_body(app, sid, env, card, old_payload, old_provenance, mode_key):
         if _is_redundant_weakening_question(card):
-            # Historical/edit cards are presentation-only here: the accepted
-            # section_weakening_model is the single source of truth and this
-            # legacy boolean must not be shown as a second engineering choice.
-            if mode_key != "current":
-                return None
-            answer = _redundant_answer(_ledger_value(env, "section_weakening_model"))
-            if answer is not None:
-                fields = list(card.get("fields") or [])
-                scalar = card.get("submit_shape") == "scalar"
-                payload = answer if scalar else {fields[0]["quantity_id"]: answer}
-                app.service.submit(
-                    sid,
-                    payload,
-                    provenance={
-                        "source": "section_weakening_model",
-                        "ux_remediation": "v0.98_single_weakening_card",
-                    },
-                )
-                core.st.rerun()
-                return None
+            # v0.99 hard invariant: this legacy compatibility quantity is never
+            # user-facing — neither current nor historical/edit UI may render it.
+            # If the primary weakening model is already available, satisfy the
+            # runtime automatically.  If it is not yet available, suppress the
+            # card instead of delegating to the legacy renderer; no second
+            # engineering choice may be presented to the user.
+            if mode_key == "current":
+                answer = _redundant_answer(_ledger_value(env, "section_weakening_model"))
+                if answer is not None:
+                    fields = list(card.get("fields") or [])
+                    scalar = card.get("submit_shape") == "scalar"
+                    if scalar:
+                        payload = answer
+                    elif fields:
+                        payload = {fields[0]["quantity_id"]: answer}
+                    else:
+                        payload = None
+                    if payload is not None:
+                        app.service.submit(
+                            sid,
+                            payload,
+                            provenance={
+                                "source": "section_weakening_model",
+                                "ux_remediation": "v0.99_legacy_iw_never_user_facing",
+                            },
+                        )
+                        core.st.rerun()
+            return None
         return previous_card(app, sid, env, card, old_payload, old_provenance, mode_key)
 
     def build(model: Any, session_or_snapshot: Any) -> dict[str, Any]:

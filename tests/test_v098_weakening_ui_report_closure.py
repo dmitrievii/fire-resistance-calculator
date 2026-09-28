@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+from types import SimpleNamespace
+
 from standard_core.weakening_report_v098 import augment_weakening_report_ir_v098
+import streamlit_weakening_v098 as weakening_ui
 from streamlit_weakening_v098 import _normalized_weakening_section, _redundant_answer, _replace_weakening
 
 
@@ -90,6 +93,63 @@ def test_v098_redundant_iw_question_is_derived_from_primary_weakening_model():
     assert _redundant_answer("circular_bolt_holes") is True
     assert _redundant_answer("no_weakening") is False
     assert _redundant_answer(None) is None
+
+
+def test_v099_legacy_iw_card_never_falls_through_to_renderer(monkeypatch):
+    calls = []
+
+    class Service:
+        def submit(self, *args, **kwargs):
+            calls.append((args, kwargs))
+
+    class Streamlit:
+        def rerun(self):
+            calls.append("rerun")
+
+    def legacy_renderer(*args, **kwargs):
+        raise AssertionError("legacy I/W card must never render")
+
+    core = SimpleNamespace(_render_card_body=legacy_renderer, st=Streamlit())
+    monkeypatch.setattr(weakening_ui, "_is_redundant_weakening_question", lambda card: True)
+    weakening_ui.install(core)
+
+    app = SimpleNamespace(service=Service())
+    card = {"fields": [{"quantity_id": "legacy_iw"}], "submit_shape": "scalar"}
+
+    # Critical regression: even when section_weakening_model is not yet
+    # available, the compatibility card is suppressed instead of delegated.
+    result = core._render_card_body(app, "sid", {"state": {"ledger": []}}, card, None, None, "current")
+    assert result is None
+    assert calls == []
+
+    # Historical/edit presentation is suppressed as well.
+    result = core._render_card_body(app, "sid", {"state": {"ledger": []}}, card, None, None, "history")
+    assert result is None
+    assert calls == []
+
+
+def test_v099_legacy_iw_card_auto_resolves_when_primary_model_is_available(monkeypatch):
+    calls = []
+
+    class Service:
+        def submit(self, *args, **kwargs):
+            calls.append((args, kwargs))
+
+    class Streamlit:
+        def rerun(self):
+            calls.append("rerun")
+
+    core = SimpleNamespace(_render_card_body=lambda *a, **k: (_ for _ in ()).throw(AssertionError("must not render")), st=Streamlit())
+    monkeypatch.setattr(weakening_ui, "_is_redundant_weakening_question", lambda card: True)
+    weakening_ui.install(core)
+
+    env = {"state": {"ledger": [{"quantity_id": "section_weakening_model", "value": {"holes_present": True}}]}}
+    card = {"fields": [{"quantity_id": "legacy_iw"}], "submit_shape": "scalar"}
+    core._render_card_body(SimpleNamespace(service=Service()), "sid", env, card, None, None, "current")
+
+    assert calls[0][0] == ("sid", True)
+    assert calls[0][1]["provenance"]["source"] == "section_weakening_model"
+    assert calls[1] == "rerun"
 
 
 def test_v098_final_replace_removes_old_gap_and_old_weakening_section():
