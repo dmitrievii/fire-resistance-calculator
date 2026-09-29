@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from standard_core.fire_ui0 import _condition_value
 from standard_core.fire_ui1_http import FireUI1Application
 from standard_core.sp16_mech7_v0105_section_class_route import (
     BINDER,
@@ -33,8 +34,6 @@ def test_v0105_binder_mech8_predicates_have_section_class_produced_upstream():
     model = build_model(FireUI1Application.from_package_root(ROOT).model)
     binder_out = [e for e in model.outgoing[BINDER] if e["edge_type"] in {"branch", "control", "handoff"}]
     assert binder_out
-    # The historical defect was that these predicates consumed sp16_section_class
-    # without any guided path producing it before the binder.
     assert any("sp16_section_class" in e.get("quantity_ids", []) for e in binder_out)
     incoming = model.incoming[BINDER]
     assert any(e["id"] == _RETURN_EDGE and "sp16_section_class" in e.get("quantity_ids", []) for e in incoming)
@@ -42,12 +41,27 @@ def test_v0105_binder_mech8_predicates_have_section_class_produced_upstream():
 
 def test_v0105_no_direct_mech7_predecessor_can_reach_binder_without_classification():
     model = build_model(FireUI1Application.from_package_root(ROOT).model)
-    direct = {
-        e["id"]
-        for e in model.incoming[BINDER]
-        if e["id"] in _PRE_BINDER_EDGES
-    }
+    direct = {e["id"] for e in model.incoming[BINDER] if e["id"] in _PRE_BINDER_EDGES}
     assert direct == set()
+
+
+def test_v0105_binder_routing_is_total_for_all_allowed_section_classes_when_mq_is_present():
+    model = build_model(FireUI1Application.from_package_root(ROOT).model)
+    outgoing = [e for e in model.outgoing[BINDER] if e["edge_type"] == "branch"]
+    # Use the frozen/legacy axis vocabulary here because this test targets the
+    # base graph before the later v0.92 canonical-axis transform.  That transform
+    # renames the same predicates exactly; topology is unchanged.
+    base_values = {
+        "ambient_M_x": 10.0,
+        "ambient_M_y": 0.0,
+        "ambient_Q_x": 5.0,
+        "ambient_Q_y": 0.0,
+    }
+    for section_class in ("1", "2", "3", "other"):
+        values = {**base_values, "sp16_section_class": section_class}
+        states = [_condition_value(edge.get("condition"), values) for edge in outgoing]
+        assert None not in states, (section_class, states)
+        assert states.count(True) == 1, (section_class, states)
 
 
 def test_v0105_transform_is_idempotent():
