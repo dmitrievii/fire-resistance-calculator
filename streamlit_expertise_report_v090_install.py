@@ -4,9 +4,15 @@ The retained report modules remain available for audit/rollback.  The final
 v0.93 renderer applies the v0.92 trace-bound mechanics overlays and then enforces
 progressive chapter visibility, engineering-readable executed section properties
 and explicit gamma_m -> Table-2 resistance provenance.
+
+v0.104 performance contract: REPORT-IR + narrative generation is memoized by the
+accepted calculation state. Streamlit widget reruns that do not submit a DAG step
+must not rebuild the full engineering report. The export tab reuses the exact
+same already-rendered Markdown instead of rendering the narrative a second time.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 from typing import Any, Mapping
 
@@ -19,11 +25,40 @@ from streamlit_expertise_report_v093_progressive_hotfix import (
 )
 
 _INSTALLED = "_fire_expertise_report_v090_isolated_installed"
+_CACHE_KEY = "_fire_v0104_expertise_report_cache"
 
 
-def _render_export(core: Any, report: Mapping[str, Any]) -> None:
+def _state_fingerprint(env: Mapping[str, Any]) -> str:
+    """Stable key for accepted runtime state, independent of transient widgets."""
+    state = env.get("state") if isinstance(env, Mapping) else None
+    payload = json.dumps(state or {}, ensure_ascii=False, sort_keys=True, separators=(",", ":"), default=str)
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def _report_bundle(core: Any, env: Mapping[str, Any], app: Any, sid: str):
+    """Return REPORT-IR and narrative, rebuilding only after accepted state changes."""
     st = core.st
+    fingerprint = _state_fingerprint(env)
+    cached = st.session_state.get(_CACHE_KEY)
+    if isinstance(cached, Mapping) and cached.get("fingerprint") == fingerprint:
+        report = cached.get("report")
+        markdown = cached.get("markdown")
+        if isinstance(report, Mapping) and isinstance(markdown, str):
+            return report, markdown
+
+    session = app.service.get_session(sid)
+    report = build_report_ir_v092(app.service.model, session)
     markdown = render_expertise_narrative_markdown_v092(report)
+    st.session_state[_CACHE_KEY] = {
+        "fingerprint": fingerprint,
+        "report": report,
+        "markdown": markdown,
+    }
+    return report, markdown
+
+
+def _render_export(core: Any, report: Mapping[str, Any], markdown: str) -> None:
+    st = core.st
     st.download_button(
         "Скачать расчётный отчёт (.md)",
         data=markdown,
@@ -52,9 +87,7 @@ def render_expertise_report_v090(core: Any, env: Mapping[str, Any]) -> None:
     if app is None or not sid or sid not in app.service.sessions:
         st.info("Расчётная сессия ещё не создана.")
         return
-    session = app.service.get_session(sid)
-    report = build_report_ir_v092(app.service.model, session)
-    markdown = render_expertise_narrative_markdown_v092(report)
+    report, markdown = _report_bundle(core, env, app, sid)
 
     st.markdown(REPORT_COMPACT_CSS, unsafe_allow_html=True)
     st.markdown("### Расчётный отчёт")
@@ -66,7 +99,7 @@ def render_expertise_report_v090(core: Any, env: Mapping[str, Any]) -> None:
             st.markdown(report_marker_html(), unsafe_allow_html=True)
             st.markdown(markdown)
     with tab_export:
-        _render_export(core, report)
+        _render_export(core, report, markdown)
     with tab_audit:
         _v087._render_audit(core, report, env)
 
@@ -84,4 +117,9 @@ def install(core: Any) -> None:
     setattr(core, _INSTALLED, True)
 
 
-__all__ = ["install", "render_expertise_report_v090"]
+__all__ = [
+    "install",
+    "render_expertise_report_v090",
+    "_state_fingerprint",
+    "_report_bundle",
+]
