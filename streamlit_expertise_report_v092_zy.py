@@ -144,7 +144,13 @@ def zy_stability_section(report: Mapping[str, Any]) -> str:
 
 def replace_zy_stability_section(markdown: str, report: Mapping[str, Any]) -> str:
     text = str(markdown or ""); section = zy_stability_section(report); match = _SECTION_RE.search(text)
-    if match: text = _SECTION_RE.sub(section + ("\n" if section else ""), text, count=1)
+    # IMPORTANT: section contains LaTeX backslashes (\varphi, \lambda, \frac...).
+    # Passing it as a string replacement makes re.sub parse those backslashes as
+    # replacement escapes; Python 3.14 correctly rejects unknown escapes such as
+    # \v.  A callable replacement returns the text verbatim and is portable.
+    if match:
+        replacement = section + ("\n" if section else "")
+        text = _SECTION_RE.sub(lambda _match: replacement, text, count=1)
     elif section:
         anchor = re.search(r"(?m)^### 3\.2\s", text) or re.search(r"(?m)^## 4\.\s", text)
         if anchor: text = text[:anchor.start()] + section + "\n" + text[anchor.start():]
