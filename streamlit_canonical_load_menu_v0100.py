@@ -1,13 +1,9 @@
-"""v0.100 canonical signed-load menu remediation.
+"""v0.101 canonical signed-load menu remediation.
 
-The historical Streamlit load renderer hard-coded the pre-v0.92 quantity ids
-(Mx bending, Qx shear, T torsion).  After the active graph was migrated to the
-canonical SP16 convention (Mz/My bending, Mx torsion, Qz/Qy shear), that renderer
-could still submit ambient_Q_x and ambient_T_torsion to SP16_I_AMBIENT_LOADS.
-
-This installer replaces only the UI renderer.  It derives the payload strictly
-from the active card fields, so a canonical card cannot emit legacy quantity ids.
-No numerical SP16/SP554 executor or engineering equation is changed.
+The active v0.92 SP16 action contract is N/Mz/My/Mx/Qz/Qy/B.  v0.100 fixed
+legacy Qx/T emission but accidentally omitted B (bimoment) from the replacement
+renderer.  This version keeps payload generation strictly card-driven while
+restoring B whenever the active card declares it.
 """
 from __future__ import annotations
 
@@ -34,6 +30,7 @@ def _contract(kind: str, card: Mapping[str, Any]) -> dict[str, str | None]:
             "Mx": "ambient_M_x",
             "Qz": "ambient_Q_z",
             "Qy": "ambient_Q_y",
+            "B": "ambient_B_bimoment",
             "combo": "ambient_load_combination",
         }
     else:
@@ -44,6 +41,7 @@ def _contract(kind: str, card: Mapping[str, Any]) -> dict[str, str | None]:
             "Mx": "M_x",
             "Qz": "Q_z",
             "Qy": "Q_y",
+            "B": "B_bimoment",
             "combo": "special_load_combination",
         }
     return {key: (qid if qid in fields else None) for key, qid in candidates.items()}
@@ -58,7 +56,7 @@ def _old_value(old: Mapping[str, Any], qid: str | None, scale: float) -> float:
 
 def _payload_for_contract(q: Mapping[str, str | None], values: Mapping[str, float], *, kind: str) -> dict[str, Any]:
     payload: dict[str, Any] = {}
-    scales = {"N": 1e3, "Mz": 1e6, "My": 1e6, "Mx": 1e6, "Qz": 1e3, "Qy": 1e3}
+    scales = {"N": 1e3, "Mz": 1e6, "My": 1e6, "Mx": 1e6, "Qz": 1e3, "Qy": 1e3, "B": 1e9}
     for key, scale in scales.items():
         qid = q.get(key)
         if qid:
@@ -68,14 +66,15 @@ def _payload_for_contract(q: Mapping[str, str | None], values: Mapping[str, floa
         payload[combo_qid] = {
             "schema": "sp16_mech2_ambient_combination_v092_canonical_axes" if kind == "ambient" else "sp16_mech2_fire_special_combination_v092_canonical_axes",
             "kind": kind,
-            "convention": "x member axis; z-z/y-y principal axes; Mz/My bending; Mx torsion; Qz/Qy shear",
-            "display_units": {"force": "kN", "moment": "kNm"},
+            "convention": "x member axis; z-z/y-y principal axes; Mz/My bending; Mx torsion; Qz/Qy shear; B bimoment",
+            "display_units": {"force": "kN", "moment": "kNm", "bimoment": "kNm2"},
             "N_kN": float(values["N"]),
             "Mz_kNm": float(values["Mz"]),
             "My_kNm": float(values["My"]),
             "Mx_kNm": float(values["Mx"]),
             "Qz_kN": float(values["Qz"]),
             "Qy_kN": float(values["Qy"]),
+            "B_kNm2": float(values["B"]),
         }
     return payload
 
@@ -98,10 +97,21 @@ def install(core: Any) -> None:
         Qz = cols[1].number_input("Qz, кН", value=_old_value(old_map, q["Qz"], 1e3), key=core._key(mode_key, card["node_id"], "Qz"))
         Qy = cols[2].number_input("Qy, кН", value=_old_value(old_map, q["Qy"], 1e3), key=core._key(mode_key, card["node_id"], "Qy"))
 
+        # B is a direct canonical action input.  It is rendered only when the
+        # active node contract declares it; it is never silently synthesized.
+        if q["B"]:
+            B = st.number_input(
+                "B (бимомент), кН·м²",
+                value=_old_value(old_map, q["B"], 1e9),
+                key=core._key(mode_key, card["node_id"], "B"),
+            )
+        else:
+            B = 0.0
+
         if Mx != 0 or Qy != 0:
             st.warning("Mx (кручение) и Qy сохраняются как самостоятельные канонические компоненты; неподдержанная downstream-ветвь остановится fail-closed. Mx→B и Qy→Qz запрещены.")
 
-        values = {"N": N, "Mz": Mz, "My": My, "Mx": Mx, "Qz": Qz, "Qy": Qy}
+        values = {"N": N, "Mz": Mz, "My": My, "Mx": Mx, "Qz": Qz, "Qy": Qy, "B": B}
         payload = _payload_for_contract(q, values, kind=kind)
 
         if kind == "fire" and any(f.get("quantity_id") == "sp16_local_load_F" for f in card.get("fields", [])):
