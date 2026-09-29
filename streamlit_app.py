@@ -21,6 +21,7 @@ from streamlit_fire_sp554_v091 import install as _install_fire_sp554_v091
 from streamlit_sp554_gamma_ct_v092 import install as _install_gamma_ct_v092
 from streamlit_canonical_actions_v092 import install as _install_canonical_actions_v092
 from streamlit_optional_actions_v095 import install as _install_optional_actions_v095
+from streamlit_canonical_load_menu_v0100 import install as _install_canonical_load_menu_v0100
 from streamlit_effective_length_v092 import install as _install_effective_length_v092
 from streamlit_phi_evidence_v092 import install as _install_phi_evidence_v092
 from streamlit_thermal_result_v092 import install as _install_thermal_result_v092
@@ -54,6 +55,9 @@ _install_canonical_actions_v092(_core)
 # v0.95: canonical action components not selected by the user are explicit
 # physical zeros.  In particular, an N-only case must not require ambient_M_z.
 _install_optional_actions_v095(_core)
+# v0.100: the signed-load editor must emit exactly the active canonical card
+# quantities (Mz/My bending, Mx torsion, Qz/Qy shear), never legacy Qx/T ids.
+_install_canonical_load_menu_v0100(_core)
 _install_effective_length_v092(_core)
 _install_phi_evidence_v092(_core)
 _install_thermal_result_v092(_core)
@@ -73,8 +77,8 @@ _install_report_v094(_core)
 # v0.97: publish Table-3 gamma_m and Annex-V resistance derivation into the
 # active Report IR and render formula = substitution = result + rounding.
 _install_material_report_v097(_core)
-# v0.98: make section_weakening_model the single visible weakening card and
-# publish the canonical A/I/W/manual-net trace into the final report.
+# v0.98/v0.99: make section_weakening_model the single visible weakening card
+# and publish the canonical A/I/W/manual-net trace into the final report.
 _install_weakening_v098(_core)
 
 for _name in dir(_core):
