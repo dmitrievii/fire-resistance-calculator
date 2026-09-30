@@ -39,6 +39,7 @@ from streamlit_weakening_v098 import install as _install_weakening_v098
 from streamlit_ui_polish_v090 import install as _install_ui_polish_v090
 from streamlit_guided_ux_v086 import install as _install_guided_ux
 from streamlit_guided_ux_v0106 import install as _install_guided_ux_v0106
+from streamlit_weakening_route_v0109 import install as _install_weakening_route_v0109
 
 _core._st = lambda: _streamlit
 
@@ -77,6 +78,10 @@ _install_weakening_v098(_core)
 # Final presentation closure: explicit weakening choice, no duplicate I/W card,
 # human-readable Table-1 selectors and lazy heavy-report rendering.
 _install_guided_ux_v0106(_core)
+# v0.109 makes section_weakening_model atomic: retained I/W/manual-net interaction
+# nodes are bypassed and excluded from guided history, while the editor emits the
+# canonical net-property geometry model understood by the production executor.
+_install_weakening_route_v0109(_core)
 
 for _name in dir(_core):
     if not _name.startswith("__"):
