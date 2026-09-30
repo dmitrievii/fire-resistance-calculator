@@ -38,6 +38,7 @@ from streamlit_material_report_v097 import install as _install_material_report_v
 from streamlit_weakening_v098 import install as _install_weakening_v098
 from streamlit_ui_polish_v090 import install as _install_ui_polish_v090
 from streamlit_guided_ux_v086 import install as _install_guided_ux
+from streamlit_guided_ux_v0106 import install as _install_guided_ux_v0106
 
 _core._st = lambda: _streamlit
 
@@ -53,24 +54,17 @@ _install_mech9_ux(_core)
 _install_fire_sp554_v091(_core)
 _install_gamma_ct_v092(_core)
 _install_canonical_actions_v092(_core)
-# v0.95: canonical action components not selected by the user are explicit
-# physical zeros.  In particular, an N-only case must not require ambient_M_z.
 _install_optional_actions_v095(_core)
-# v0.100: the signed-load editor must emit exactly the active canonical card
-# quantities (Mz/My bending, Mx torsion, Qz/Qy shear), never legacy Qx/T ids.
 _install_canonical_load_menu_v0100(_core)
 _install_effective_length_v092(_core)
 _install_phi_evidence_v092(_core)
-# v0.105: MECH8 routing predicates require the SP16 section class.  Resolve the
-# existing §4.2.7 class decision before entering the MECH7 primary binder.
+# v0.106 repairs the v0.105 contextual class gate to the canonical Mz/My + Qz/Qy vocabulary.
 _install_mech7_route_v0105(_core)
 _install_thermal_result_v092(_core)
 _install_protection_geometry_v093(_core)
 _install_manual_net_v092(_core)
 _install_slenderness_evidence_v092(_core)
 _install_weakening_single_card_v094(_core)
-# v0.95 closes the remaining legacy I/W weakening compatibility question after
-# the structured weakening model has already been accepted.
 _install_weakening_atomic_v095(_core)
 _install_live_report(_core)
 _install_expertise_report(_core)
@@ -78,12 +72,11 @@ _install_expertise_narrative(_core)
 _install_expertise_mech9(_core)
 _install_thermal_report_v093(_core)
 _install_report_v094(_core)
-# v0.97: publish Table-3 gamma_m and Annex-V resistance derivation into the
-# active Report IR and render formula = substitution = result + rounding.
 _install_material_report_v097(_core)
-# v0.98/v0.99: make section_weakening_model the single visible weakening card
-# and publish the canonical A/I/W/manual-net trace into the final report.
 _install_weakening_v098(_core)
+# Final presentation closure: explicit weakening choice, no duplicate I/W card,
+# human-readable Table-1 selectors and lazy heavy-report rendering.
+_install_guided_ux_v0106(_core)
 
 for _name in dir(_core):
     if not _name.startswith("__"):
