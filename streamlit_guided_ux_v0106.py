@@ -1,20 +1,14 @@
-"""v0.106 guided UX closure.
+"""v0.107 guided UX closure.
 
-Closes six user-visible defects without changing normative arithmetic:
-- weakening choice has no implicit default and cannot become ready until the user
-  explicitly chooses no holes / bolt holes;
-- legacy I/W weakening compatibility cards are never rendered;
-- retained Table-1 selectors use human-readable engineering descriptions;
-- compression gamma_c is explicitly distinguished from bending gamma_c;
-- the heavy expertise report is rendered only on explicit request, so ordinary
-  widget reruns (fatigue/brittle/slenderness etc.) stay lightweight;
-- MECH7 route repair itself lives in the v0.106 graph overlay.
+Restores the complete weakening authoring contract after the v0.106 UX
+regression while retaining explicit no-default hole selection, human-readable
+Table-1 selectors and lazy report rendering.
 """
 from __future__ import annotations
 
 from typing import Any, Mapping
 
-_INSTALLED = "_fire_v0106_guided_ux_closure_installed"
+_INSTALLED = "_fire_v0107_guided_ux_closure_installed"
 
 _LEGACY_IW_TEXT = (
     "учитывать изменение моментов инерции",
@@ -39,9 +33,10 @@ _TABLE1_HUMAN = {
 
 
 def _is_legacy_iw(card: Mapping[str, Any]) -> bool:
-    text = " ".join(str(card.get(k) or "") for k in ("node_id", "title", "prompt" )).lower()
+    text = " ".join(str(card.get(k) or "") for k in ("node_id", "title", "prompt")).lower()
     notes = card.get("notes") or {}
-    text += " " + " ".join(str(v) for v in notes.values()).lower()
+    if isinstance(notes, Mapping):
+        text += " " + " ".join(str(v) for v in notes.values()).lower()
     fields = {str(f.get("quantity_id") or "").lower() for f in card.get("fields", []) if isinstance(f, Mapping)}
     if any(token in text for token in _LEGACY_IW_TEXT):
         return True
@@ -49,18 +44,21 @@ def _is_legacy_iw(card: Mapping[str, Any]) -> bool:
 
 
 def _ledger_value(env: Mapping[str, Any], qid: str):
-    for row in (env.get("state") or {}).get("ledger", []):
-        if row.get("quantity_id") == qid:
+    for row in reversed(list((env.get("state") or {}).get("ledger", []))):
+        if isinstance(row, Mapping) and row.get("quantity_id") == qid:
             return row.get("value")
     return None
+
+
+def _positive_input(st, label: str, value: Any, key: str, *, optional: bool = False):
+    default = float(value) if isinstance(value, (int, float)) and not isinstance(value, bool) else (None if optional else 0.0)
+    return st.number_input(label, min_value=0.0, value=default, key=key)
 
 
 def _weakening_editor(core: Any, card: Mapping[str, Any], old: Any, mode_key: str):
     st = core.st
     old = old if isinstance(old, Mapping) else {}
-    old_choice = None
-    if old:
-        old_choice = "holes" if old.get("holes_present") else "none"
+    old_choice = "holes" if old.get("holes_present") is True else ("none" if old.get("holes_present") is False else None)
     choice = st.selectbox(
         "Ослабление сечения",
         ["none", "holes"],
@@ -79,12 +77,71 @@ def _weakening_editor(core: Any, card: Mapping[str, Any], old: Any, mode_key: st
     s = st.number_input("Шаг отверстий s, мм", min_value=0.0, value=float(old.get("hole_pitch_mm", 80.0)), key=core._key(mode_key, card["node_id"], "s-explicit"))
     t0 = old.get("local_thickness_mm")
     t = st.number_input("Локальная толщина tₕ, мм (оставьте пустой для определения из модели сечения)", min_value=0.0, value=float(t0) if isinstance(t0, (int, float)) else None, key=core._key(mode_key, card["node_id"], "t-explicit"))
+
+    st.markdown("**Как определить характеристики нетто после ослабления?**")
+    old_mode = old.get("net_property_mode")
+    mode = st.radio(
+        "Характеристики нетто",
+        ["automatic_geometry", "manual_net_properties"],
+        index=1 if old_mode == "manual_net_properties" else 0,
+        format_func=lambda x: (
+            "Рассчитать автоматически по геометрии ослабления"
+            if x == "automatic_geometry"
+            else "Площадь Aₙ рассчитать автоматически, Iₙ/Wₙ ввести вручную"
+        ),
+        key=core._key(mode_key, card["node_id"], "net-property-mode"),
+    )
+
+    payload = {
+        "schema": "section_weakening_model_v0.49",
+        "holes_present": True,
+        "model": "round_bolt_hole_universal_v1",
+        "hole_diameter_mm": float(d),
+        "hole_pitch_mm": float(s),
+        "net_property_mode": mode,
+    }
+    if t is not None and t > 0:
+        payload["local_thickness_mm"] = float(t)
+
     ready = d > 0 and s > d and (t is None or t > 0)
     if s <= d:
         st.warning("Требуется s > d.")
-    payload = {"schema": "section_weakening_model_v0.49", "holes_present": True, "model": "round_bolt_hole_universal_v1", "hole_diameter_mm": float(d), "hole_pitch_mm": float(s)}
-    if t is not None and t > 0:
-        payload["local_thickness_mm"] = float(t)
+
+    if mode == "manual_net_properties":
+        st.caption("Aₙ не вводится вручную: оно всегда рассчитывается как Aₙ = A − d·tₕ. Ниже задаются готовые характеристики нетто в главных осях z/y.")
+        old_manual = old.get("manual_net_properties") if isinstance(old.get("manual_net_properties"), Mapping) else {}
+        c1, c2 = st.columns(2)
+        Iz = _positive_input(c1, "I_z,n, мм⁴", old_manual.get("I_z_n_mm4"), core._key(mode_key, card["node_id"], "Iz-net"))
+        Iy = _positive_input(c2, "I_y,n, мм⁴", old_manual.get("I_y_n_mm4"), core._key(mode_key, card["node_id"], "Iy-net"))
+        c1, c2 = st.columns(2)
+        Wz = _positive_input(c1, "W_z,n, мм³", old_manual.get("W_z_n_mm3"), core._key(mode_key, card["node_id"], "Wz-net"))
+        Wy = _positive_input(c2, "W_y,n, мм³", old_manual.get("W_y_n_mm3"), core._key(mode_key, card["node_id"], "Wy-net"))
+        st.caption("Дополнительные характеристики задаются только при наличии в расчётной модели.")
+        c1, c2 = st.columns(2)
+        Wplz = _positive_input(c1, "W_pl,z,eff, мм³ (необязательно)", old_manual.get("W_pl_z_eff_mm3"), core._key(mode_key, card["node_id"], "Wplz-net"), optional=True)
+        Wply = _positive_input(c2, "W_pl,y,eff, мм³ (необязательно)", old_manual.get("W_pl_y_eff_mm3"), core._key(mode_key, card["node_id"], "Wply-net"), optional=True)
+        c1, c2 = st.columns(2)
+        Iomega = _positive_input(c1, "I_ω,n, мм⁶ (необязательно)", old_manual.get("I_omega_n_mm6"), core._key(mode_key, card["node_id"], "Iomega-net"), optional=True)
+        Womega = _positive_input(c2, "W_ω,eff, мм⁴ (необязательно)", old_manual.get("W_omega_eff_mm4"), core._key(mode_key, card["node_id"], "Womega-net"), optional=True)
+        manual = {"I_z_n_mm4": float(Iz), "I_y_n_mm4": float(Iy), "W_z_n_mm3": float(Wz), "W_y_n_mm3": float(Wy)}
+        ready = ready and all(v > 0 for v in manual.values())
+        plastic_pair = (Wplz is not None, Wply is not None)
+        if plastic_pair[0] != plastic_pair[1]:
+            st.warning("Пластические характеристики необходимо задать парой: W_pl,z,eff и W_pl,y,eff.")
+            ready = False
+        if Wplz is not None and Wply is not None:
+            if Wplz <= 0 or Wply <= 0:
+                ready = False
+            else:
+                manual.update({"W_pl_z_eff_mm3": float(Wplz), "W_pl_y_eff_mm3": float(Wply)})
+        if Iomega is not None:
+            ready = ready and Iomega > 0
+            if Iomega > 0: manual["I_omega_n_mm6"] = float(Iomega)
+        if Womega is not None:
+            ready = ready and Womega > 0
+            if Womega > 0: manual["W_omega_eff_mm4"] = float(Womega)
+        payload["manual_net_properties"] = manual
+
     return (payload if ready else None), None, ready
 
 
@@ -106,21 +163,22 @@ def _table1_editor(core: Any, card: Mapping[str, Any], old: Any, mode_key: str):
     role = qid.removeprefix("sp16_gamma_c_case_")
     role_ru = {"bending": "изгиба", "compression": "сжатия", "tension": "растяжения", "nm": "совместного действия N и M"}.get(role, "текущей проверки")
     st.markdown(f"**Коэффициент условий работы γc для {role_ru}**")
-    selected = st.selectbox(
-        "Условия работы элемента",
-        values,
-        index=values.index(current) if current in values else None,
-        placeholder="— выберите описание, соответствующее вашему элементу —",
-        format_func=lambda value: _TABLE1_HUMAN.get(str(value), str(by_value[value].get("label") or value)),
-        key=core._key(mode_key, card["node_id"], "table1-human"),
-    )
+    selected = st.selectbox("Условия работы элемента", values, index=values.index(current) if current in values else None, placeholder="— выберите описание, соответствующее вашему элементу —", format_func=lambda value: _TABLE1_HUMAN.get(str(value), str(by_value[value].get("label") or value)), key=core._key(mode_key, card["node_id"], "table1-human"))
     if selected is not None:
-        row = by_value[selected]
-        detail = row.get("description")
+        detail = by_value[selected].get("description")
         if detail:
             st.caption(f"Нормативное значение: {detail}.")
     st.caption("Номер позиции таблицы сохраняется в evidence, но в интерфейсе основной выбор показан по инженерному смыслу, а не по коду позиции.")
     return selected, None, selected is not None
+
+
+def _legacy_payload(card: Mapping[str, Any], answer: bool):
+    fields = list(card.get("fields") or [])
+    if card.get("submit_shape") == "scalar":
+        return answer
+    if len(fields) == 1 and fields[0].get("quantity_id"):
+        return {fields[0]["quantity_id"]: answer}
+    return None
 
 
 def install(core: Any) -> None:
@@ -135,25 +193,19 @@ def install(core: Any) -> None:
             return _weakening_editor(core, card, old_payload, mode_key)
 
         if _is_legacy_iw(card):
-            model = _ledger_value(env, "section_weakening_model")
-            if isinstance(model, Mapping):
-                # Compatibility value only; never expose a second engineering question.
-                answer = bool(model.get("holes_present"))
-                if mode_key == "current":
-                    try:
-                        app.service.submit(sid, answer, provenance={"source": "section_weakening_model", "ui_surface": "v0.106_compatibility_auto_resolution"})
+            if mode_key == "current":
+                model = _ledger_value(env, "section_weakening_model")
+                if isinstance(model, Mapping) and isinstance(model.get("holes_present"), bool):
+                    payload = _legacy_payload(card, bool(model["holes_present"]))
+                    if payload is not None:
+                        app.service.submit(sid, payload, provenance={"source": "section_weakening_model", "ui_surface": "v0.107_compatibility_auto_resolution"})
                         core.st.rerun()
-                    except Exception:
-                        pass
+            # Hard invariant: compatibility card is never rendered, including history/edit.
             return None, None, False
 
         table1 = _table1_editor(core, card, old_payload, mode_key)
         if table1 is not None:
             return table1
-
-        if str(card.get("node_id") or "") == "SP16_I_V078_GAMMA_C_COMPRESSION_CASE":
-            core.st.info("Это γc именно для проверки сжатия/устойчивости. Ранее выбранный случай для изгиба относится к другой расчётной проверке и не переносится автоматически, если нормативный случай не доказан однозначно.")
-
         return previous_card(app, sid, env, card, old_payload, old_provenance, mode_key)
 
     def _render_ledger_trace(env):
@@ -170,4 +222,4 @@ def install(core: Any) -> None:
     setattr(core, _INSTALLED, True)
 
 
-__all__ = ["install", "_is_legacy_iw", "_TABLE1_HUMAN"]
+__all__ = ["install", "_is_legacy_iw", "_legacy_payload", "_TABLE1_HUMAN"]
