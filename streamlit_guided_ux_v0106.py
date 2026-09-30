@@ -1,14 +1,15 @@
-"""v0.107 guided UX closure.
+"""v0.108 guided UX closure.
 
 Restores the complete weakening authoring contract after the v0.106 UX
 regression while retaining explicit no-default hole selection, human-readable
-Table-1 selectors and lazy report rendering.
+Table-1 selectors and lazy report rendering. Legacy I/W compatibility cards
+are resolved from their declared scalar contract and never guess an enum value.
 """
 from __future__ import annotations
 
 from typing import Any, Mapping
 
-_INSTALLED = "_fire_v0107_guided_ux_closure_installed"
+_INSTALLED = "_fire_v0108_guided_ux_closure_installed"
 
 _LEGACY_IW_TEXT = (
     "учитывать изменение моментов инерции",
@@ -30,6 +31,10 @@ _TABLE1_HUMAN = {
     "row8": "Сжатые элементы из одиночных уголков/лямбда-профилей, прикреплённых одной полкой — случай 8",
     "row9": "Опорные плиты — случай 9",
 }
+
+
+class _LegacyIWResolutionError(ValueError):
+    """Raised when a hidden legacy I/W card cannot be resolved unambiguously."""
 
 
 def _is_legacy_iw(card: Mapping[str, Any]) -> bool:
@@ -176,12 +181,96 @@ def _table1_editor(core: Any, card: Mapping[str, Any], old: Any, mode_key: str):
     return selected, None, selected is not None
 
 
+def _legacy_enum_rows(card: Mapping[str, Any]) -> list[tuple[Any, str]]:
+    fields = list(card.get("fields") or [])
+    field = fields[0] if len(fields) == 1 and isinstance(fields[0], Mapping) else {}
+    raw = card.get("options") or field.get("enum_values") or field.get("options") or card.get("enum_values") or []
+    rows: list[tuple[Any, str]] = []
+    for item in raw:
+        if isinstance(item, Mapping):
+            value = item.get("value", item.get("id", item.get("key")))
+            if value is None:
+                continue
+            evidence = " ".join(
+                str(item.get(key) or "")
+                for key in ("value", "id", "key", "label", "title", "description")
+            )
+            rows.append((value, evidence))
+        else:
+            rows.append((item, str(item)))
+    return rows
+
+
+def _legacy_iw_semantic(value: Any, evidence: str) -> bool | None:
+    if isinstance(value, bool):
+        return value
+    text = f"{value} {evidence}".lower().replace("ё", "е").replace("-", "_")
+    compact = " ".join(text.replace("_", " ").split())
+
+    negative_phrases = (
+        "не учитывать", "без ослабления", "нет ослабления", "брутто",
+        "do not consider", "not consider", "without weakening", "ignore weakening",
+        "keep gross", "use gross",
+    )
+    if any(marker in compact for marker in negative_phrases):
+        return False
+
+    positive_phrases = (
+        "учитывать ослабление", "учитывать изменение", "с ослаблением", "нетто",
+        "consider weakening", "account for weakening", "with weakening", "use net",
+    )
+    if any(marker in compact for marker in positive_phrases):
+        return True
+
+    tokens = set(compact.split())
+    negative_tokens = {"false", "no", "gross", "unweakened", "unchanged", "ignore"}
+    positive_tokens = {"true", "yes", "net", "weakened", "reduced", "reduce"}
+    has_negative = bool(tokens & negative_tokens)
+    has_positive = bool(tokens & positive_tokens)
+    if has_negative == has_positive:
+        return None
+    return has_positive
+
+
+def _legacy_scalar_value(card: Mapping[str, Any], answer: bool) -> Any:
+    fields = list(card.get("fields") or [])
+    field = fields[0] if len(fields) == 1 and isinstance(fields[0], Mapping) else {}
+    data_type = str(field.get("data_type") or card.get("data_type") or "").strip().lower()
+
+    # Retain the historical boolean compatibility contract exactly.
+    if data_type in {"bool", "boolean"}:
+        return bool(answer)
+
+    rows = _legacy_enum_rows(card)
+    if rows:
+        matches = [value for value, evidence in rows if _legacy_iw_semantic(value, evidence) is bool(answer)]
+        if len(matches) == 1:
+            return matches[0]
+        qid = str(field.get("quantity_id") or card.get("quantity_id") or card.get("node_id") or "legacy I/W")
+        if not matches:
+            raise _LegacyIWResolutionError(
+                f"{qid}: enum contract has no unambiguous {'net/weakened' if answer else 'gross/unweakened'} value."
+            )
+        raise _LegacyIWResolutionError(
+            f"{qid}: enum contract has multiple {'net/weakened' if answer else 'gross/unweakened'} values: {matches!r}."
+        )
+
+    if "enum" in data_type:
+        qid = str(field.get("quantity_id") or card.get("quantity_id") or card.get("node_id") or "legacy I/W")
+        raise _LegacyIWResolutionError(f"{qid}: enum contract does not expose allowed values/options.")
+
+    # Old cards without an explicit type used a boolean payload; keep that compatibility only
+    # when no enum contract is declared anywhere on the card.
+    return bool(answer)
+
+
 def _legacy_payload(card: Mapping[str, Any], answer: bool):
     fields = list(card.get("fields") or [])
-    if card.get("submit_shape") == "scalar":
-        return answer
-    if len(fields) == 1 and fields[0].get("quantity_id"):
-        return {fields[0]["quantity_id"]: answer}
+    resolved = _legacy_scalar_value(card, answer)
+    if str(card.get("submit_shape") or "").lower() == "scalar":
+        return resolved
+    if len(fields) == 1 and isinstance(fields[0], Mapping) and fields[0].get("quantity_id"):
+        return {fields[0]["quantity_id"]: resolved}
     return None
 
 
@@ -200,9 +289,16 @@ def install(core: Any) -> None:
             if mode_key == "current":
                 model = _ledger_value(env, "section_weakening_model")
                 if isinstance(model, Mapping) and isinstance(model.get("holes_present"), bool):
-                    payload = _legacy_payload(card, bool(model["holes_present"]))
+                    try:
+                        payload = _legacy_payload(card, bool(model["holes_present"]))
+                    except _LegacyIWResolutionError as exc:
+                        core.st.error(
+                            "Legacy I/W compatibility contract cannot be resolved safely from "
+                            f"section_weakening_model: {exc} No engineering assumption was submitted."
+                        )
+                        return None, None, False
                     if payload is not None:
-                        app.service.submit(sid, payload, provenance={"source": "section_weakening_model", "ui_surface": "v0.107_compatibility_auto_resolution"})
+                        app.service.submit(sid, payload, provenance={"source": "section_weakening_model", "ui_surface": "v0.108_compatibility_auto_resolution"})
                         core.st.rerun()
             # Hard invariant: compatibility card is never rendered, including history/edit.
             return None, None, False
@@ -226,4 +322,10 @@ def install(core: Any) -> None:
     setattr(core, _INSTALLED, True)
 
 
-__all__ = ["install", "_is_legacy_iw", "_legacy_payload", "_TABLE1_HUMAN"]
+__all__ = [
+    "install",
+    "_is_legacy_iw",
+    "_legacy_payload",
+    "_LegacyIWResolutionError",
+    "_TABLE1_HUMAN",
+]
