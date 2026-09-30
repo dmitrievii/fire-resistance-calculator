@@ -136,10 +136,12 @@ def _weakening_editor(core: Any, card: Mapping[str, Any], old: Any, mode_key: st
                 manual.update({"W_pl_z_eff_mm3": float(Wplz), "W_pl_y_eff_mm3": float(Wply)})
         if Iomega is not None:
             ready = ready and Iomega > 0
-            if Iomega > 0: manual["I_omega_n_mm6"] = float(Iomega)
+            if Iomega > 0:
+                manual["I_omega_n_mm6"] = float(Iomega)
         if Womega is not None:
             ready = ready and Womega > 0
-            if Womega > 0: manual["W_omega_eff_mm4"] = float(Womega)
+            if Womega > 0:
+                manual["W_omega_eff_mm4"] = float(Womega)
         payload["manual_net_properties"] = manual
 
     return (payload if ready else None), None, ready
@@ -163,6 +165,8 @@ def _table1_editor(core: Any, card: Mapping[str, Any], old: Any, mode_key: str):
     role = qid.removeprefix("sp16_gamma_c_case_")
     role_ru = {"bending": "изгиба", "compression": "сжатия", "tension": "растяжения", "nm": "совместного действия N и M"}.get(role, "текущей проверки")
     st.markdown(f"**Коэффициент условий работы γc для {role_ru}**")
+    if role == "compression":
+        st.info("Это γc именно для проверки сжатия/устойчивости. Ранее выбранный случай для изгиба относится к другой расчётной проверке и не переносится автоматически, если нормативный случай не доказан однозначно.")
     selected = st.selectbox("Условия работы элемента", values, index=values.index(current) if current in values else None, placeholder="— выберите описание, соответствующее вашему элементу —", format_func=lambda value: _TABLE1_HUMAN.get(str(value), str(by_value[value].get("label") or value)), key=core._key(mode_key, card["node_id"], "table1-human"))
     if selected is not None:
         detail = by_value[selected].get("description")
