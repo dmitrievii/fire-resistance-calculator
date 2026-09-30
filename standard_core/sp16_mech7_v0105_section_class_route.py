@@ -1,14 +1,15 @@
-"""v0.105 close the MECH7 -> MECH8 section-class routing dependency.
+"""v0.106 close the MECH7 -> MECH8 section-class routing dependency.
 
-The MECH7 primary evidence binder has class-dependent branches only when bending
-and shear are simultaneously present (M+Q).  Previously that route could reach
-the binder without ``sp16_section_class`` and stop fail-closed with
-``BLOCKED_UNRESOLVED_BRANCH_CONDITION``.
+The production graph reaching this overlay has already passed the v0.92
+canonical-action transform.  Therefore M+Q detection MUST use the canonical
+principal-axis vocabulary Mz/My and Qz/Qy.  v0.105 accidentally retained the
+pre-v0.92 Mx/My + Qx/Qy vocabulary in its new predicates; Qx no longer exists in
+production, so a legitimate M+Q route could remain unresolved after the
+slenderness card.
 
-The repair is deliberately contextual: M+Q paths are routed through the existing
-SP16 §4.2.7 class decision and identity producer; routes without simultaneous
-M+Q retain their direct binder path because MECH8 can resolve them without a
-section class.  No class is inferred or defaulted.
+The repair is contextual: simultaneous bending + shear routes through the
+existing SP16 section-class decision; other routes remain direct. No class is
+inferred or defaulted.
 """
 from __future__ import annotations
 
@@ -29,17 +30,20 @@ _PRE_BINDER_EDGES = {
 _CLASS_EDGE_SUFFIX = "_V0105_MQ_CLASS"
 _RETURN_EDGE = "V0105_E_SECTION_CLASS_TO_MECH7_BINDER"
 
+# Canonical v0.92 action axes at the point this overlay is installed:
+# Mz/My = bending, Mx = torsion; Qz/Qy = shear.  Torsion must not be used as a
+# proxy for bending and the retired Qx quantity must never reappear.
 _M_PRESENT = {
     "type": "any_of",
     "conditions": [
-        {"type": "comparison", "quantity_id": "ambient_M_x", "operator": "neq", "value": 0.0},
+        {"type": "comparison", "quantity_id": "ambient_M_z", "operator": "neq", "value": 0.0},
         {"type": "comparison", "quantity_id": "ambient_M_y", "operator": "neq", "value": 0.0},
     ],
 }
 _Q_PRESENT = {
     "type": "any_of",
     "conditions": [
-        {"type": "comparison", "quantity_id": "ambient_Q_x", "operator": "neq", "value": 0.0},
+        {"type": "comparison", "quantity_id": "ambient_Q_z", "operator": "neq", "value": 0.0},
         {"type": "comparison", "quantity_id": "ambient_Q_y", "operator": "neq", "value": 0.0},
     ],
 }
@@ -50,14 +54,14 @@ _NO_MQ = {
         {
             "type": "all_of",
             "conditions": [
-                {"type": "comparison", "quantity_id": "ambient_M_x", "operator": "eq", "value": 0.0},
+                {"type": "comparison", "quantity_id": "ambient_M_z", "operator": "eq", "value": 0.0},
                 {"type": "comparison", "quantity_id": "ambient_M_y", "operator": "eq", "value": 0.0},
             ],
         },
         {
             "type": "all_of",
             "conditions": [
-                {"type": "comparison", "quantity_id": "ambient_Q_x", "operator": "eq", "value": 0.0},
+                {"type": "comparison", "quantity_id": "ambient_Q_z", "operator": "eq", "value": 0.0},
                 {"type": "comparison", "quantity_id": "ambient_Q_y", "operator": "eq", "value": 0.0},
             ],
         },
@@ -78,7 +82,14 @@ def transform_graph(graph: Mapping[str, Any]) -> dict[str, Any]:
     nodes = {str(row.get("id")): row for row in out.get("nodes", []) if isinstance(row, Mapping)}
     for required in (BINDER, CLASS_DECISION, CLASS_COPY):
         if required not in nodes:
-            raise FireUIError(f"v0.105 section-class routing requires {required}")
+            raise FireUIError(f"v0.106 section-class routing requires {required}")
+
+    # Fail closed if this overlay is accidentally applied before canonical-action
+    # migration: production must not silently recreate legacy Qx/T semantics.
+    qids = {str(row.get("id")) for row in out.get("quantities", []) if isinstance(row, Mapping)}
+    required_actions = {"ambient_M_z", "ambient_M_y", "ambient_Q_z", "ambient_Q_y"}
+    if not required_actions <= qids:
+        raise FireUIError(f"v0.106 requires canonical action quantities: {sorted(required_actions - qids)}")
 
     touched: set[str] = set()
     class_edges: list[dict[str, Any]] = []
@@ -89,10 +100,8 @@ def transform_graph(graph: Mapping[str, Any]) -> dict[str, Any]:
         if eid not in _PRE_BINDER_EDGES:
             continue
         if edge.get("to_node_id") != BINDER:
-            raise FireUIError(f"v0.105 expected {eid} to target {BINDER}")
+            raise FireUIError(f"v0.106 expected {eid} to target {BINDER}")
         original_condition = copy.deepcopy(edge.get("condition"))
-        # Keep the historical direct path for cases where MECH8 routing is
-        # class-independent (no simultaneous bending + shear).
         edge["condition"] = _and(original_condition, _NO_MQ)
         edge["label"] = str(edge.get("label") or eid) + " → binder (no simultaneous M+Q)"
         class_edges.append({
@@ -103,12 +112,12 @@ def transform_graph(graph: Mapping[str, Any]) -> dict[str, Any]:
             "label": "simultaneous M+Q → classify section before MECH8 routing",
             "condition": _and(original_condition, _MQ_PRESENT),
             "quantity_ids": list(dict.fromkeys(list(edge.get("quantity_ids") or []) + [
-                "ambient_M_x", "ambient_M_y", "ambient_Q_x", "ambient_Q_y"
+                "ambient_M_z", "ambient_M_y", "ambient_Q_z", "ambient_Q_y"
             ])),
         })
         touched.add(eid)
     if touched != _PRE_BINDER_EDGES:
-        raise FireUIError(f"v0.105 missing pre-binder edges: {sorted(_PRE_BINDER_EDGES - touched)}")
+        raise FireUIError(f"v0.106 missing pre-binder edges: {sorted(_PRE_BINDER_EDGES - touched)}")
     out.setdefault("edges", []).extend(class_edges)
 
     existing = {str(edge.get("id")) for edge in out.get("edges", []) if isinstance(edge, Mapping)}
@@ -118,14 +127,14 @@ def transform_graph(graph: Mapping[str, Any]) -> dict[str, Any]:
             "from_node_id": CLASS_COPY,
             "to_node_id": BINDER,
             "edge_type": "control",
-            "label": "SP16 §4.2.7 section class resolved → MECH7 primary binder",
+            "label": "SP16 section class resolved → MECH7 primary binder",
             "condition": None,
             "quantity_ids": ["sp16_section_class"],
         })
 
     out["graph_id"] = str(out.get("graph_id") or "") + GRAPH_SUFFIX
     out["description"] = str(out.get("description") or "") + (
-        " v0.105 resolves SP16 section class before class-dependent M+Q MECH8 branch selection; "
+        " v0.106 resolves SP16 section class before class-dependent canonical Mz/My + Qz/Qy MECH8 routing; "
         "class-independent routes remain direct and no class is inferred or defaulted."
     )
     return out
