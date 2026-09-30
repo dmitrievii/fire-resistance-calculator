@@ -2,7 +2,14 @@ from __future__ import annotations
 
 from types import SimpleNamespace
 
-from streamlit_guided_ux_v0106 import _is_legacy_iw, _legacy_payload, _table1_editor
+import pytest
+
+from streamlit_guided_ux_v0106 import (
+    _LegacyIWResolutionError,
+    _is_legacy_iw,
+    _legacy_payload,
+    _table1_editor,
+)
 
 
 def test_v0107_legacy_iw_title_is_hard_suppressed():
@@ -24,6 +31,69 @@ def test_v0107_legacy_iw_scalar_shape_is_resolved_as_scalar():
     }
     assert _is_legacy_iw(card) is True
     assert _legacy_payload(card, False) is False
+
+
+def test_v0108_legacy_iw_enum_scalar_uses_declared_net_gross_values():
+    card = {
+        "title": "Учитывать изменение моментов инерции и моментов сопротивления после ослабления?",
+        "fields": [
+            {
+                "quantity_id": "legacy_net_iw_choice",
+                "data_type": "enum",
+                "enum_values": ["gross", "net"],
+            }
+        ],
+        "submit_shape": "scalar",
+    }
+
+    assert _legacy_payload(card, True) == "net"
+    assert _legacy_payload(card, False) == "gross"
+
+
+def test_v0108_legacy_iw_enum_can_resolve_from_option_labels_not_order():
+    card = {
+        "fields": [{"quantity_id": "legacy_net_iw_choice", "data_type": "enum"}],
+        "options": [
+            {"value": "A", "label": "Не учитывать изменение I/W — использовать gross"},
+            {"value": "B", "label": "Учитывать ослабление — использовать net"},
+        ],
+        "submit_shape": "object",
+    }
+
+    assert _legacy_payload(card, True) == {"legacy_net_iw_choice": "B"}
+    assert _legacy_payload(card, False) == {"legacy_net_iw_choice": "A"}
+
+
+def test_v0108_legacy_iw_enum_fails_closed_when_semantics_are_unknown():
+    card = {
+        "fields": [
+            {
+                "quantity_id": "legacy_net_iw_choice",
+                "data_type": "enum",
+                "enum_values": ["option_a", "option_b"],
+            }
+        ],
+        "submit_shape": "scalar",
+    }
+
+    with pytest.raises(_LegacyIWResolutionError, match="no unambiguous"):
+        _legacy_payload(card, True)
+
+
+def test_v0108_legacy_iw_enum_fails_closed_when_semantics_are_ambiguous():
+    card = {
+        "fields": [
+            {
+                "quantity_id": "legacy_net_iw_choice",
+                "data_type": "enum",
+                "enum_values": ["net", "net_reduced", "gross"],
+            }
+        ],
+        "submit_shape": "scalar",
+    }
+
+    with pytest.raises(_LegacyIWResolutionError, match="multiple"):
+        _legacy_payload(card, True)
 
 
 def test_v0107_manual_net_runtime_contract_remains_canonical():
