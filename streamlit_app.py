@@ -24,6 +24,7 @@ from streamlit_optional_actions_v095 import install as _install_optional_actions
 from streamlit_canonical_load_menu_v0100 import install as _install_canonical_load_menu_v0100
 from streamlit_effective_length_v092 import install as _install_effective_length_v092
 from streamlit_phi_evidence_v092 import install as _install_phi_evidence_v092
+from streamlit_mech7_route_v0105 import install as _install_mech7_route_v0105
 from streamlit_thermal_result_v092 import install as _install_thermal_result_v092
 from streamlit_section_properties_v092 import install as _install_section_properties_v092
 from streamlit_manual_net_v092 import install as _install_manual_net_v092
@@ -60,6 +61,9 @@ _install_optional_actions_v095(_core)
 _install_canonical_load_menu_v0100(_core)
 _install_effective_length_v092(_core)
 _install_phi_evidence_v092(_core)
+# v0.105: MECH8 routing predicates require the SP16 section class.  Resolve the
+# existing §4.2.7 class decision before entering the MECH7 primary binder.
+_install_mech7_route_v0105(_core)
 _install_thermal_result_v092(_core)
 _install_protection_geometry_v093(_core)
 _install_manual_net_v092(_core)
