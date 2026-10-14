@@ -62,7 +62,7 @@ def test_v0109_automatic_editor_payload_uses_core_supported_geometry_model():
     assert normalized["model"] == CANONICAL_HOLE_MODEL
     parsed = _parse_model({"section_weakening_model": normalized})
     assert parsed is not None
-    assert parsed.model == CANONICAL_HOLE_MODEL
+    assert parsed["model"] == CANONICAL_HOLE_MODEL
 
 
 def test_v0109_manual_net_values_remain_inline_and_are_consumed_by_core_override():
