@@ -81,7 +81,7 @@ def _weakening_editor(core: Any, card: Mapping[str, Any], old: Any, mode_key: st
     d = st.number_input("Диаметр отверстия d, мм", min_value=0.0, value=float(old.get("hole_diameter_mm", 20.0)), key=core._key(mode_key, card["node_id"], "d-explicit"))
     s = st.number_input("Шаг отверстий s, мм", min_value=0.0, value=float(old.get("hole_pitch_mm", 80.0)), key=core._key(mode_key, card["node_id"], "s-explicit"))
     t0 = old.get("local_thickness_mm")
-    t = st.number_input("Локальная толщина tₕ, мм (оставьте пустой для определения из модели сечения)", min_value=0.0, value=float(t0) if isinstance(t0, (int, float)) else None, key=core._key(mode_key, card["node_id"], "t-explicit"))
+    t = st.number_input("Локальная толщина tₕ, мм (для центрального отверстия равна t_w; оставьте пустой для определения из сечения)", min_value=0.0, value=float(t0) if isinstance(t0, (int, float)) else None, key=core._key(mode_key, card["node_id"], "t-explicit"))
 
     st.markdown("**Как определить характеристики нетто после ослабления?**")
     old_mode = old.get("net_property_mode")
@@ -96,6 +96,13 @@ def _weakening_editor(core: Any, card: Mapping[str, Any], old: Any, mode_key: st
         ),
         key=core._key(mode_key, card["node_id"], "net-property-mode"),
     )
+
+    if mode == "automatic_geometry":
+        st.caption(
+            "Автоматический расчёт Aₙ, Iₙ и Wₙ поддерживается для одного "
+            "центрального отверстия в стенке двутавра с двойной симметрией. "
+            "Для других случаев потребуются проверенные характеристики нетто."
+        )
 
     payload = {
         "schema": "section_weakening_model_v0.49",
