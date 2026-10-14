@@ -158,6 +158,17 @@ def _manual_net_executor(values: Mapping[str, Any], node: Mapping[str, Any]) -> 
 
     area = _gross_required(values, "A_gross")
     tw, h, tf = _geometry_dimensions(values)
+    # v0.110: the canonical manual branch keeps A_net geometry-derived using
+    # the actual web thickness. Reject an incompatible optional local thickness
+    # rather than silently ignoring it in the v0.92 registry wrapper.
+    local_t = model.get("local_thickness_mm")
+    if local_t is not None:
+        explicit_t = _finite_positive(local_t, "local_thickness_mm")
+        if not math.isclose(explicit_t, tw, rel_tol=1e-9, abs_tol=1e-9):
+            raise FireUIError(
+                "central web-hole manual net model requires local_thickness_mm "
+                "to equal the actual web thickness t_w"
+            )
     if h is not None and tf is not None:
         clear_web = h - 2.0 * tf
         if clear_web <= 0.0 or d >= clear_web:
