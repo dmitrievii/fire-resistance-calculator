@@ -5,7 +5,8 @@ import math
 from typing import Any, Mapping
 
 from .fire_ui0 import ExecutionRegistry, FireUIError
-from .fire_ui14_section_weakening import build_fire_ui14_registry
+from .fire_ui14_section_weakening import build_fire_ui14_registry, _net_geometry_executor, _geometry_dimensions
+from .fire_ui14_manual_net_v092 import _manual_net_executor
 from .profile_catalog import InterimProfileCatalog
 
 
@@ -103,6 +104,41 @@ def _net_geometry(values: Mapping[str, Any], node: Mapping[str, Any]) -> Mapping
             if src in values and values[src] is not None: out[dst]=_positive(values[src],src)
         if points is not None: out["section_evaluation_points"]=points
         return out
+    # v0.110: the unified editor is authoritative when its inline mode is set.
+    # Legacy FIRE-UI1.6 sessions still use the independent decision quantity
+    # net_property_reduction_mode and retain their original semantics below.
+    raw = values["section_weakening_model"]
+    inline_mode = raw.get("net_property_mode")
+    if inline_mode in {"automatic_geometry", "manual_net_properties"}:
+        # The simplified UI1.4 geometry represents one central hole passing
+        # through the whole web. A different local thickness cannot silently
+        # be substituted in the area/inertia equations.
+        explicit_t = model.get("local_thickness_mm")
+        if explicit_t is not None:
+            web_t, _, _ = _geometry_dimensions(values)
+            if not math.isclose(explicit_t, web_t, rel_tol=1e-9, abs_tol=1e-9):
+                raise FireUIError(
+                    "central web-hole net model requires local_thickness_mm "
+                    "to equal the actual web thickness t_w; no implicit override is allowed"
+                )
+        if inline_mode == "automatic_geometry":
+            # Never alias automatic_geometry to area_only_keep_gross: the
+            # qualified UI1.4 executor actually deducts d*t_w from A, and
+            # the removed rectangle's Ix/Iy contributions from net I/W.
+            out = dict(_net_geometry_executor(values, node))
+        else:
+            # Use the existing v0.92 typed canonical z/y manual-net adapter.
+            # It validates required properties and never uses gross fallbacks.
+            out = dict(_manual_net_executor(values, node))
+        if points is not None:
+            out["section_evaluation_points"] = points
+        return out
+    if inline_mode is not None:
+        raise FireUIError(
+            "unsupported section_weakening_model.net_property_mode; "
+            "use automatic_geometry or manual_net_properties"
+        )
+
     t=_local_thickness(values,model); removed=model["d"]*t; an=area-removed
     if an<=0: raise FireUIError("bolt hole produces non-positive A_net")
     mode=values.get("net_property_reduction_mode")
